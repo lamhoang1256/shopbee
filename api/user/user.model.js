@@ -2,30 +2,14 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-    },
-    fullname: {
-      type: String,
-    },
-    avatar: {
-      type: String,
-    },
-    phone: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-    password: {
-      type: String,
-    },
-    address: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
+    username: String,
+    fullname: String,
+    avatar: String,
+    phone: String,
+    email: String,
+    password: String,
+    address: String,
+    city: String,
     isAdmin: {
       type: Boolean,
       default: false,

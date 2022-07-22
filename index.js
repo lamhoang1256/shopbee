@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 const authRoutes = require("./api/auth/auth.route");
+const categoryRoutes = require("./api/category/category.route");
 
 const app = express();
 dotenv.config();
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
   res.status(200).json("This is ecommerce api");
 });
 app.use("/api/auth", authRoutes);
+app.use("/api/category", categoryRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
