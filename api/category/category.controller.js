@@ -10,7 +10,6 @@ const categoryControllers = {
       res.status(500).json(error);
     }
   },
-
   getAllCategory: async (req, res) => {
     try {
       const categories = await Category.find();
@@ -19,7 +18,6 @@ const categoryControllers = {
       res.status(500).json(error);
     }
   },
-
   getSingleCategory: async (req, res) => {
     try {
       const category = await Category.findById(req.params.id);
@@ -28,7 +26,6 @@ const categoryControllers = {
       res.status(500).json(error);
     }
   },
-
   deleteCategory: async (req, res) => {
     try {
       await Category.findByIdAndDelete(req.params.id);
@@ -37,7 +34,6 @@ const categoryControllers = {
       res.status(500).json(error);
     }
   },
-
   updateCategory: async (req, res) => {
     try {
       const category = Category.findById(req.params.id);
