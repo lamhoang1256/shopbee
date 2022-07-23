@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 const authRoutes = require("./api/auth/auth.route");
 const categoryRoutes = require("./api/category/category.route");
 const productRoutes = require("./api/product/product.route");
+const bannerRoutes = require("./api/banner/banner.route");
 
 const app = express();
 dotenv.config();
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/product", productRoutes);
+app.use("/api/banner", bannerRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

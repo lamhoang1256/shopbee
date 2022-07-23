@@ -1,5 +1,5 @@
 {
-  "name": "shopbee",
+  "name": "shopbee-api",
   "version": "1.0.0",
   "description": "This is api using NodeJS",
   "main": "index.js",
