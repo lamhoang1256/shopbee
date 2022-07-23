@@ -10,9 +10,31 @@ const productControllers = {
       res.status(500).json(error);
     }
   },
+  getAllProductWithConditional: async (req, res) => {
+    try {
+      const pageSize = 1;
+      const page = Number(req.query.page) || 1;
+      const keyword = req.query.keyword
+        ? {
+            name: {
+              $regex: req.query.keyword,
+              $options: "i",
+            },
+          }
+        : {};
+      const countProducts = await Product.countDocuments({ ...keyword });
+      const products = await Product.find({ ...keyword })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1))
+        .sort({ _id: -1 });
+      res.json({ products, page, pages: Math.ceil(countProducts / pageSize) });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
   getAllProduct: async (req, res) => {
     try {
-      const products = await Product.find();
+      const products = await Product.find().sort({ createdAt: -1 });
       res.status(200).json(products);
     } catch (error) {
       res.status(500).json(error);
