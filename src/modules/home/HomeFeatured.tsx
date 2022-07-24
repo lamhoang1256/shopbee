@@ -20,7 +20,7 @@ const HomeFeatured = () => {
     <div className='layout-container'>
       <SectionHeader>Sản phẩm nổi bật</SectionHeader>
       <div className='grid-product'>
-        {products.map((product: any) => (
+        {products?.map((product: any) => (
           <ProductItem product={product} />
         ))}
       </div>

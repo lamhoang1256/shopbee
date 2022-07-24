@@ -19,7 +19,7 @@ const HomeCategories = () => {
     <div className='layout-container'>
       <SectionHeader>Danh mục</SectionHeader>
       <div className='flex gap-x-3'>
-        {categories.map((category: any) => (
+        {categories?.map((category: any) => (
           <div className='pb-3 text-center bg-white' key={category._id}>
             <img src={category.thumb} className='w-[200px] h-[200px]' alt='' />
             <span>{category.name}</span>
