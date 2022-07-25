@@ -1,3 +1,4 @@
 import SectionHeader from "./SectionHeader";
+import SectionGray from "./SectionGray";
 
-export { SectionHeader };
+export { SectionHeader, SectionGray };

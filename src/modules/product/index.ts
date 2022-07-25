@@ -1,7 +1,19 @@
-import ProductName from "./ProductName";
 import ProductPriceOld from "./ProductPriceOld";
 import ProductPriceSale from "./ProductPriceSale";
-import ProductMeta from "./ProductMeta";
 import ProductItem from "./ProductItem";
+import ProductTitle from "./ProductTitle";
+import ProductRating from "./ProductRating";
+import ProductImage from "./ProductImage";
+import ProductSold from "./ProductSold";
+import ProductLabelSale from "./ProductLabelSale";
 
-export { ProductName, ProductPriceOld, ProductPriceSale, ProductMeta, ProductItem };
+export {
+  ProductPriceOld,
+  ProductPriceSale,
+  ProductItem,
+  ProductTitle,
+  ProductRating,
+  ProductImage,
+  ProductSold,
+  ProductLabelSale,
+};

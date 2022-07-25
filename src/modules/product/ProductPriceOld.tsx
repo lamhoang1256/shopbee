@@ -1,9 +1,16 @@
+import classNames from "utils/className";
+
 interface ProductPriceOldProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-const ProductPriceOld = ({ children }: ProductPriceOldProps) => {
-  return <span className='text-[13px] line-through text-[#666]'>{children}</span>;
+const ProductPriceOld = ({ children, className }: ProductPriceOldProps) => {
+  return <span className={classNames("line-through", className)}>{children}</span>;
+};
+
+ProductPriceOld.defaultProps = {
+  className: "text-[#666]",
 };
 
 export default ProductPriceOld;

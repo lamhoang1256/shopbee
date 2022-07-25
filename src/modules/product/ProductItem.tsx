@@ -1,5 +1,11 @@
 import { IProduct } from "interfaces";
-import { ProductMeta, ProductName, ProductPriceOld, ProductPriceSale } from "modules/product";
+import {
+  ProductPriceOld,
+  ProductPriceSale,
+  ProductRating,
+  ProductTitle,
+  ProductImage,
+} from "modules/product";
 import { formatVNDCurrency } from "utils/helper";
 
 interface ProductItemProps {
@@ -9,14 +15,19 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <div className='bg-white shadow-product' key={product._id}>
-      <img src={product.image} className='aspect-square' alt='product' />
+      <ProductImage imageUrl={product.image} />
       <div className='p-[6px]'>
-        <ProductName>{product.name}</ProductName>
+        <ProductTitle>{product.name}</ProductTitle>
         <div className='flex items-baseline my-1 gap-x-2'>
-          <ProductPriceOld>{formatVNDCurrency(product.price)}</ProductPriceOld>
-          <ProductPriceSale>{formatVNDCurrency(product.salePrice)}</ProductPriceSale>
+          <ProductPriceOld className='text-[13px]'>
+            {formatVNDCurrency(product.price)}
+          </ProductPriceOld>
+          <ProductPriceSale>{formatVNDCurrency(product.priceSale)}</ProductPriceSale>
         </div>
-        <ProductMeta sold={product.sold} rating={product.rating} />
+        <div className='flex items-center justify-between'>
+          <ProductRating rating={product.rating} size='w-3 h-3' />
+          <span className='text-[#000000de] text-xs'>{product.sold} Đã bán</span>
+        </div>
       </div>
     </div>
   );

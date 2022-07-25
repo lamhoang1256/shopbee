@@ -7,7 +7,7 @@ export interface IProduct {
   category: string;
   price: number;
   rating: number;
-  salePrice: number;
+  priceSale: number;
   quantity: number;
   sold: number;
   view: number;
