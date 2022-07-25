@@ -1,3 +1,4 @@
+import { path } from "constants/path";
 import { IProduct } from "interfaces";
 import {
   ProductPriceOld,
@@ -6,6 +7,7 @@ import {
   ProductTitle,
   ProductImage,
 } from "modules/product";
+import { Link } from "react-router-dom";
 import { formatVNDCurrency } from "utils/helper";
 
 interface ProductItemProps {
@@ -14,7 +16,11 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className='bg-white shadow-product' key={product._id}>
+    <Link
+      to={`${path.detail}/${product._id}`}
+      className='bg-white shadow-product'
+      key={product._id}
+    >
       <ProductImage imageUrl={product.image} />
       <div className='p-[6px]'>
         <ProductTitle>{product.name}</ProductTitle>
@@ -29,7 +35,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           <span className='text-[#000000de] text-xs'>{product.sold} Đã bán</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

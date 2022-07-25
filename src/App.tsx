@@ -3,6 +3,7 @@ import MainLayout from "layouts/MainLayout";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import ProductDetail from "pages/ProductDetail";
+import { path } from "constants/path";
 
 const App = () => {
   return (
@@ -10,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='product/:id' element={<ProductDetail />} />
+          <Route path={`${path.detail}/:id`} element={<ProductDetail />} />
         </Route>
         <Route path='/login' element={<Login />} />
       </Routes>

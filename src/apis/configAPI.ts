@@ -13,4 +13,8 @@ export const configAPI = {
     const path = `api/product/all`;
     return axiosClient(path);
   },
+  getSingleProduct: (productId: string) => {
+    const path = `api/product/${productId}`;
+    return axiosClient(path);
+  },
 };
