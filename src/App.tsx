@@ -4,6 +4,7 @@ import Home from "pages/Home";
 import Login from "pages/Login";
 import ProductDetail from "pages/ProductDetail";
 import { path } from "constants/path";
+import { PageNotFound } from "pages/PageNotFound";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path={`${path.detail}/:id`} element={<ProductDetail />} />
         </Route>
         <Route path='/login' element={<Login />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Router>
   );

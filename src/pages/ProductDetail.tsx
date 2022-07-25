@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { formatVNDCurrency } from "utils/helper";
+import { PageNotFound } from "./PageNotFound";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -30,8 +31,9 @@ const ProductDetail = () => {
   useEffect(() => {
     fetchProductDetail();
   }, [id]);
-  if (!id) return <>Page Not Found</>;
-  if (!productInfo.name) return <>Product not exist</>;
+  if (!id) return <PageNotFound />;
+  if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
+  const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
   return (
     <>
       <div className='flex p-4 mt-6 bg-white layout-container gap-x-5'>
@@ -54,9 +56,7 @@ const ProductDetail = () => {
             <ProductPriceSale className='text-3xl font-medium'>
               {formatVNDCurrency(productInfo.priceSale)}
             </ProductPriceSale>
-            <ProductLabelSale>
-              {Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100)}% GIẢM
-            </ProductLabelSale>
+            <ProductLabelSale>{percentSale}% GIẢM</ProductLabelSale>
           </SectionGray>
           <div className='flex items-center mt-6 gap-x-4'>
             <span>Số lượng</span>
