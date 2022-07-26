@@ -19,6 +19,12 @@
     grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
     grid-gap: 10px;
   }
+  .cart-scrollbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  .cart-scrollbar::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+  }
 }
 
 @layer utilities {

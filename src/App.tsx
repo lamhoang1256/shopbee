@@ -5,6 +5,7 @@ import Login from "pages/Login";
 import ProductDetail from "pages/ProductDetail";
 import { path } from "constants/path";
 import { PageNotFound } from "pages/PageNotFound";
+import Cart from "pages/Cart";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path={path.cart} element={<Cart />} />
           <Route path={`${path.detail}/:id`} element={<ProductDetail />} />
         </Route>
         <Route path='/login' element={<Login />} />
