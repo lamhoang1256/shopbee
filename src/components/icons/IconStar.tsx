@@ -8,7 +8,7 @@ const IconStar = ({ className }: IconStarProps) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className={classNames("w-4 h-4", className)}
+      className={classNames("w-5 h-5", className)}
       viewBox='0 0 20 20'
       fill='currentColor'
     >

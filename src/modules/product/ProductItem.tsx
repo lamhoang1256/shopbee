@@ -1,14 +1,14 @@
 import { path } from "constants/path";
 import { IProduct } from "interfaces";
 import {
-  ProductPriceOld,
+  ProductImage,
   ProductPriceSale,
   ProductRating,
   ProductTitle,
-  ProductImage,
+  ProductLabelSale,
 } from "modules/product";
 import { Link } from "react-router-dom";
-import { formatVNDCurrency } from "utils/helper";
+import { formatCash, formatVNDCurrency } from "utils/helper";
 
 interface ProductItemProps {
   product: IProduct;
@@ -24,15 +24,15 @@ const ProductItem = ({ product }: ProductItemProps) => {
       <ProductImage imageUrl={product.image} />
       <div className='p-[6px]'>
         <ProductTitle>{product.name}</ProductTitle>
-        <div className='flex items-baseline my-1 gap-x-2'>
-          <ProductPriceOld className='text-[13px]'>
-            {formatVNDCurrency(product.price)}
-          </ProductPriceOld>
-          <ProductPriceSale>{formatVNDCurrency(product.priceSale)}</ProductPriceSale>
+        <div className='flex items-center my-1 gap-x-2'>
+          <ProductRating rating={product.rating} size='w-[14px] h-[14px]' />
+          <span className='text-[#787878] text-xs'>Đã bán {formatCash(product.sold)}</span>
         </div>
-        <div className='flex items-center justify-between'>
-          <ProductRating rating={product.rating} size='w-3 h-3' />
-          <span className='text-[#000000de] text-xs'>{product.sold} Đã bán</span>
+        <div className='flex items-center gap-x-2'>
+          <ProductPriceSale>{formatVNDCurrency(product.priceSale)}</ProductPriceSale>
+          <ProductLabelSale>
+            -{Math.ceil((1 - product.priceSale / product.price) * 100)}%
+          </ProductLabelSale>
         </div>
       </div>
     </Link>

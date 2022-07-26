@@ -4,7 +4,7 @@ const Cart = () => {
   return (
     <div className='layout-container'>
       <CartHeader />
-      <div className='px-5 py-5 mt-4 bg-white'>
+      <div className='p-2 mt-4 bg-white lg:p-5'>
         <CartItem />
       </div>
     </div>

@@ -6,7 +6,9 @@ interface SectionGrayProps {
 }
 
 const SectionGray = ({ children, className }: SectionGrayProps) => {
-  return <div className={classNames("bg-[#fafafa] px-5 py-4 ", className)}>{children}</div>;
+  return (
+    <div className={classNames("bg-[#fafafa] px-5 py-4 font-medium", className)}>{children}</div>
+  );
 };
 
 SectionGray.defaultProps = {

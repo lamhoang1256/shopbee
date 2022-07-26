@@ -4,7 +4,7 @@ const ButtonAddToCart = () => {
   return (
     <button
       type='button'
-      className='mt-5 flex items-center gap-x-2 text-orangeee bg-[#ff57221a] border border-orangeee h-12 px-4 hover:bg-[#ff572226] transition-all duration-300 rounded-sm'
+      className='flex justify-center font-semibold items-center w-[300px] h-12 mt-5 text-white gap-x-2 bg-redff4 rounded'
     >
       <IconCartOutline />
       <span className='text-sm'>Thêm vào giỏ hàng</span>

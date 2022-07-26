@@ -7,8 +7,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        orangeee: "#ee4d2d",
         black33: "#333333",
+        blue1a: "#1a94ff",
+        redff4: "#ff424e",
       },
       backgroundImage: {
         linearfef5: "linear-gradient(0, #fe6433, #f53e2d)",

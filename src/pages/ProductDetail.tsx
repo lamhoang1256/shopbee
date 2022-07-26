@@ -41,9 +41,9 @@ const ProductDetail = () => {
           <ProductImage imageUrl={productInfo.image} />
         </div>
         <div>
-          <ProductTitle className='text-xl font-medium'>{productInfo.name}</ProductTitle>
-          <div className='flex items-center my-4 gap-x-4'>
-            <span className='border-b text-orangeee border-orangeee'>{productInfo.rating}</span>
+          <ProductTitle className='text-[#242424] text-2xl'>{productInfo.name}</ProductTitle>
+          <div className='flex items-center my-4 gap-x-3'>
+            <span className='font-medium'>{productInfo.rating}</span>
             <ProductRating rating={productInfo.rating} />
             <ProductSold className='pl-4 border-l border-[#00000024]'>
               {productInfo.sold}
@@ -56,8 +56,12 @@ const ProductDetail = () => {
             <ProductPriceSale className='text-3xl font-medium'>
               {formatVNDCurrency(productInfo.priceSale)}
             </ProductPriceSale>
-            <ProductLabelSale>{percentSale}% GIẢM</ProductLabelSale>
+            <ProductLabelSale>-{percentSale}%</ProductLabelSale>
           </SectionGray>
+          <div className='text-sm px-3 py-2 border border-[#eeeeee] my-3 rounded-lg'>
+            <h4 className='font-medium text-[#00ab56]'>Thứ 6, 27/09</h4>
+            <span>18.000đ (Freeship 10K đh 149K)</span>
+          </div>
           <div className='flex items-center mt-6 gap-x-4'>
             <span>Số lượng</span>
             <QualityController />
@@ -69,7 +73,7 @@ const ProductDetail = () => {
       <div className='p-4 mt-6 bg-white layout-container'>
         <SectionGray>MÔ TẢ SẢN PHẨM</SectionGray>
         <p
-          className='mt-3 leading-6'
+          className='mt-3 leading-6 text-[#242424]'
           dangerouslySetInnerHTML={{
             __html: productInfo.description || "",
           }}

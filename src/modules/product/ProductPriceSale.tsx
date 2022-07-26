@@ -6,11 +6,11 @@ interface ProductPriceSaleProps {
 }
 
 const ProductPriceSale = ({ children, className }: ProductPriceSaleProps) => {
-  return <span className={classNames("text-orangeee", className)}>{children}</span>;
+  return <span className={classNames("text-redff4 font-medium", className)}>{children}</span>;
 };
 
 ProductPriceSale.defaultProps = {
-  className: "text-[15px]",
+  className: "",
 };
 
 export default ProductPriceSale;
