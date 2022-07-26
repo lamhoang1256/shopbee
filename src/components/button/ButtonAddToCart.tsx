@@ -1,15 +1,26 @@
-import { IconCartOutline } from "components/icons";
+import classNames from "utils/className";
 
-const ButtonAddToCart = () => {
+interface ButtonAddToCartProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const ButtonAddToCart = ({ children, className }: ButtonAddToCartProps) => {
   return (
     <button
       type='button'
-      className='flex justify-center font-semibold items-center w-[300px] h-12 mt-5 text-white gap-x-2 bg-redff4 rounded'
+      className={classNames(
+        "flex justify-center font-semibold items-center text-white bg-redff4 rounded",
+        className,
+      )}
     >
-      <IconCartOutline />
-      <span className='text-sm'>Thêm vào giỏ hàng</span>
+      {children}
     </button>
   );
+};
+
+ButtonAddToCart.defaultProps = {
+  className: "w-[210px] h-[40px]",
 };
 
 export default ButtonAddToCart;

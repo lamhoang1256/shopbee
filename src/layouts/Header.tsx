@@ -27,9 +27,9 @@ const Header = () => {
               <IconSearch />
             </button>
           </form>
-          <button type='button'>
+          <Link to={path.cart}>
             <IconCart className='text-white' />
-          </button>
+          </Link>
         </div>
       </div>
     </header>

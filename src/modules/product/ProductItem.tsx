@@ -21,8 +21,10 @@ const ProductItem = ({ product }: ProductItemProps) => {
       className='bg-white shadow-product'
       key={product._id}
     >
-      <ProductImage imageUrl={product.image} />
-      <div className='p-[6px]'>
+      <div className='p-2'>
+        <ProductImage imageUrl={product.image} />
+      </div>
+      <div className='p-[6px] pb-3'>
         <ProductTitle>{product.name}</ProductTitle>
         <div className='flex items-center my-1 gap-x-2'>
           <ProductRating rating={product.rating} size='w-[14px] h-[14px]' />

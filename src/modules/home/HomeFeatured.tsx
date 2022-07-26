@@ -1,5 +1,6 @@
 import { configAPI } from "apis/configAPI";
 import { SectionHeader } from "components/common";
+import { IProduct } from "interfaces";
 import { ProductItem } from "modules/product";
 import { useEffect, useState } from "react";
 
@@ -20,8 +21,8 @@ const HomeFeatured = () => {
     <div className='layout-container'>
       <SectionHeader>Sản phẩm nổi bật</SectionHeader>
       <div className='grid-product'>
-        {products?.map((product: any) => (
-          <ProductItem product={product} />
+        {products?.map((product: IProduct) => (
+          <ProductItem product={product} key={product._id} />
         ))}
       </div>
     </div>

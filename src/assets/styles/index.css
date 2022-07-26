@@ -33,6 +33,9 @@
       display: flex;
       flex-wrap: wrap;
     }
+    .grid-product {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 

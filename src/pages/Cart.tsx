@@ -1,4 +1,4 @@
-import { CartHeader, CartItem } from "modules/cart";
+import { CartFooter, CartHeader, CartItem } from "modules/cart";
 
 const Cart = () => {
   return (
@@ -7,6 +7,7 @@ const Cart = () => {
       <div className='p-2 mt-4 bg-white lg:p-5'>
         <CartItem />
       </div>
+      <CartFooter />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import ProductRating from "./ProductRating";
 import ProductImage from "./ProductImage";
 import ProductSold from "./ProductSold";
 import ProductLabelSale from "./ProductLabelSale";
+import ProductSaleBar from "./ProductSaleBar";
 
 export {
   ProductPriceOld,
@@ -16,4 +17,5 @@ export {
   ProductImage,
   ProductSold,
   ProductLabelSale,
+  ProductSaleBar,
 };

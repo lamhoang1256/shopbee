@@ -1,6 +1,7 @@
 import { configAPI } from "apis/configAPI";
 import { ButtonAddToCart } from "components/button";
 import { SectionGray } from "components/common";
+import { IconCartOutline } from "components/icons";
 import { QualityController } from "components/qualityController";
 import { IProduct } from "interfaces";
 import {
@@ -67,7 +68,10 @@ const ProductDetail = () => {
             <QualityController />
             <span>{productInfo.quantity} sản phẩm có sẵn</span>
           </div>
-          <ButtonAddToCart />
+          <ButtonAddToCart className='w-[300px] h-12 mt-5 gap-x-2'>
+            <IconCartOutline />
+            <span className='text-sm'>Thêm vào giỏ hàng</span>
+          </ButtonAddToCart>
         </div>
       </div>
       <div className='p-4 mt-6 bg-white layout-container'>
