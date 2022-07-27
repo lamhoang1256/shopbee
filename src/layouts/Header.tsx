@@ -9,8 +9,8 @@ const Header = () => {
         <div className='flex items-center justify-between text-white h-9'>
           <span>Kiểm tra đơn hàng</span>
           <div className='flex gap-x-4'>
-            <span>Đăng kí</span>
-            <span>Đăng nhập</span>
+            <Link to={path.signUp}>Đăng kí</Link>
+            <Link to={path.signIn}>Đăng nhập</Link>
           </div>
         </div>
         <div className='flex items-center h-20 gap-x-5 lg:gap-x-14'>

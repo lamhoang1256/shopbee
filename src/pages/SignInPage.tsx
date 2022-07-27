@@ -3,8 +3,8 @@ import { Input } from "components/input";
 
 const SignInPage = () => {
   return (
-    <div className='mt-6 max-w-[450px] mx-auto'>
-      <div className='pt-[35px] px-[45px] pb-[50px] bg-white w-full rounded-lg'>
+    <div className='layout-container'>
+      <div className='py-8 px-6 mt-12 mx-auto max-w-[450px] bg-white w-full rounded-lg'>
         <h1 className='text-[22px] font-medium'>Đăng nhập với email</h1>
         <span>Nhập email và mật khẩu tài khoản Tiki</span>
         <form>

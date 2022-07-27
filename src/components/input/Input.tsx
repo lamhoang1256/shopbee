@@ -9,7 +9,7 @@ const Input = ({ placeholder, name, type }: InputProps) => {
     <input
       id={name}
       type={type}
-      className='px-4 w-full font-dm max-w-[400px] outline-none rounded-lg py-3 border border-b-[#e0e0e0]'
+      className='px-4 w-full font-dm max-w-[400px] outline-none rounded-lg py-3 border border-[#b9b9b9]'
       placeholder={placeholder}
     />
   );
