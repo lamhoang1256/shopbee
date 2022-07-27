@@ -19,6 +19,6 @@ export const configAPI = {
   },
   signIn: (user: any) => {
     const path = `api/auth/sign-in`;
-    return axiosClient.post(path, user);
+    return axiosClient.post<any>(path, user);
   },
 };

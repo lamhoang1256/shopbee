@@ -1,10 +1,10 @@
 import { FormGroup, Label } from "components/form";
 import { Input } from "components/input";
-import { useStore } from "store/configStore";
+// import { useStore } from "store/configStore";
 
 const SignUpPage = () => {
-  const currentUser = useStore((state) => state.currentUser);
-  console.log("currentUser: ", currentUser);
+  // const currentUser = useStore((state) => state.currentUser);
+  // console.log("currentUser: ", currentUser);
 
   return (
     <div className='layout-container'>

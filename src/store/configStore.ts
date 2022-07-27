@@ -1,5 +1,10 @@
-import { LocalStorage } from "constants/localStorage";
 import create from "zustand";
+import { LocalStorage } from "constants/localStorage";
 
-const currentUser = JSON.parse(localStorage.getItem(LocalStorage.currentUser) || "{}");
-export const useStore = create(() => ({ currentUser }));
+export const useStore = create((set) => ({
+  currentUser: JSON.parse(localStorage.getItem(LocalStorage.currentUser) || "{}"),
+  signIn: (user: any) => {
+    localStorage.setItem(LocalStorage.currentUser, JSON.stringify(user));
+    set({ currentUser: user });
+  },
+}));

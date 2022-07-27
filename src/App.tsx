@@ -1,13 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { path } from "constants/path";
 import MainLayout from "layouts/MainLayout";
+import Cart from "pages/Cart";
 import Home from "pages/Home";
 import Login from "pages/Login";
-import ProductDetail from "pages/ProductDetail";
-import { path } from "constants/path";
 import { PageNotFound } from "pages/PageNotFound";
-import Cart from "pages/Cart";
-import SignUpPage from "pages/SignUpPage";
+import ProductDetail from "pages/ProductDetail";
 import SignInPage from "pages/SignInPage";
+import SignUpPage from "pages/SignUpPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
