@@ -10,10 +10,10 @@ const CartFooter = () => {
         <span>Chọn tất cả (1)</span>
         <span>Xóa</span>
       </div>
-      <div className='flex items-center justify-between gap-6'>
+      <div className='flex flex-col justify-between gap-6 lg:flex-row lg:items-center'>
         <div>
           <p>
-            Tổng thanh toán (0 sản phẩm):
+            Tổng (0 sản phẩm):
             <ProductPriceSale className='text-xl font-medium'> 0</ProductPriceSale>
           </p>
           <span>

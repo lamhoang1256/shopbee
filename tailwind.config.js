@@ -11,6 +11,9 @@ module.exports = {
         blue1a: "#1a94ff",
         redff4: "#ff424e",
       },
+      fontFamily: {
+        dm: ['"DM Sans"', " sans-serif"],
+      },
       backgroundImage: {
         linearfef5: "linear-gradient(0, #fe6433, #f53e2d)",
       },
