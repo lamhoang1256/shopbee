@@ -19,6 +19,10 @@ export const configAPI = {
   },
   signIn: (user: any) => {
     const path = `api/auth/sign-in`;
-    return axiosClient.post<any>(path, user);
+    return axiosClient.post(path, user);
+  },
+  signUp: (user: any) => {
+    const path = `api/auth/sign-up`;
+    return axiosClient.post(path, user);
   },
 };

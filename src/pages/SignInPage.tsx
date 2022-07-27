@@ -1,24 +1,30 @@
 import { configAPI } from "apis/configAPI";
 import { FormGroup, Label } from "components/form";
 import { Input } from "components/input";
+import { path } from "constants/path";
 import { useFormik } from "formik";
+import { useCheckLoggedIn } from "hooks/useCheckLoggedIn";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import * as Yup from "yup";
 
 const SignInPage = () => {
+  const navigate = useNavigate();
   const signIn = useStore((state: any) => state.signIn);
   const currentUser = useStore((state: any) => state.currentUser);
-  console.log("currentUser: ", currentUser);
+  useCheckLoggedIn(currentUser);
+
   const handleSignIn = async (values: any) => {
     try {
       const response: any = await configAPI.signIn(values);
       if (response.success) {
         signIn(response.data);
         toast.success(response.message);
+        navigate(path.home);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error?.message);
     }
   };
 
