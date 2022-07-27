@@ -1,20 +1,22 @@
 import { configAPI } from "apis/configAPI";
-import { FormGroup, Label } from "components/form";
+import { ButtonSubmitAuth } from "components/button";
+import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { Input } from "components/input";
 import { path } from "constants/path";
+import { SignInYup } from "constants/yup";
 import { useFormik } from "formik";
 import { useCheckLoggedIn } from "hooks/useCheckLoggedIn";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import * as Yup from "yup";
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const signIn = useStore((state: any) => state.signIn);
-  const currentUser = useStore((state: any) => state.currentUser);
+  const { signIn, currentUser } = useStore((state: any) => ({
+    signIn: state.signIn,
+    currentUser: state.currentUser,
+  }));
   useCheckLoggedIn(currentUser);
-
   const handleSignIn = async (values: any) => {
     try {
       const response: any = await configAPI.signIn(values);
@@ -33,10 +35,7 @@ const SignInPage = () => {
       email: "",
       password: "",
     },
-    validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
-      password: Yup.string().required("Required"),
-    }),
+    validationSchema: SignInYup,
     onSubmit: (values) => {
       handleSignIn(values);
     },
@@ -48,21 +47,17 @@ const SignInPage = () => {
         <span>Nhập email và mật khẩu tài khoản Tiki</span>
         <form onSubmit={formik.handleSubmit}>
           <FormGroup>
-            <Label htmlFor='email'>Email</Label>
+            <FormLabel htmlFor='email'>Email</FormLabel>
             <Input
               placeholder='Email'
               name='email'
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            <span className='text-redff4'>
-              {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
-              ) : null}
-            </span>
+            <FormMessError>{formik.touched.email && formik.errors?.email}</FormMessError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='password'>Password</Label>
+            <FormLabel htmlFor='password'>Password</FormLabel>
             <Input
               type='password'
               placeholder='Password'
@@ -70,18 +65,9 @@ const SignInPage = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            <span className='text-redff4'>
-              {formik.touched.password && formik.errors.password ? (
-                <div>{formik.errors.password}</div>
-              ) : null}
-            </span>
+            <FormMessError>{formik.touched.password && formik.errors?.password}</FormMessError>
           </FormGroup>
-          <button
-            className='w-full mt-2 py-[12px] bg-redff4 text-white font-semibold rounded-lg'
-            type='submit'
-          >
-            Đăng nhập
-          </button>
+          <ButtonSubmitAuth>Đăng nhập</ButtonSubmitAuth>
         </form>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import { configAPI } from "apis/configAPI";
-import { FormGroup, Label } from "components/form";
+import { ButtonSubmitAuth } from "components/button";
+import { FormGroup, FormMessError, FormLabel } from "components/form";
 import { Input } from "components/input";
 import { path } from "constants/path";
+import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
 import { useCheckLoggedIn } from "hooks/useCheckLoggedIn";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import * as Yup from "yup";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -31,13 +32,7 @@ const SignUpPage = () => {
       password: "",
       confirm_password: "",
     },
-    validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
-      password: Yup.string().required("Required"),
-      confirm_password: Yup.string()
-        .oneOf([Yup.ref("password")], "Password's not match")
-        .required("Required!"),
-    }),
+    validationSchema: SignUpYup,
     onSubmit: (values) => {
       handleSignUp(values);
     },
@@ -50,21 +45,17 @@ const SignUpPage = () => {
         <span>Nhập email và mật khẩu tài khoản Tiki</span>
         <form onSubmit={formik.handleSubmit}>
           <FormGroup>
-            <Label htmlFor='email'>Email</Label>
+            <FormLabel htmlFor='email'>Email</FormLabel>
             <Input
               placeholder='Email'
               name='email'
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            <span className='text-redff4'>
-              {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
-              ) : null}
-            </span>
+            <FormMessError>{formik.touched.email && formik.errors?.email}</FormMessError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='password'>Mật khẩu</Label>
+            <FormLabel htmlFor='password'>Mật khẩu</FormLabel>
             <Input
               type='password'
               placeholder='Password'
@@ -72,14 +63,10 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            <span className='text-redff4'>
-              {formik.touched.password && formik.errors.password ? (
-                <div>{formik.errors.password}</div>
-              ) : null}
-            </span>
+            <FormMessError>{formik.touched.password && formik.errors?.password}</FormMessError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='confirm_password'>Xác nhận mật khẩu</Label>
+            <FormLabel htmlFor='confirm_password'>Xác nhận mật khẩu</FormLabel>
             <Input
               type='password'
               placeholder='Repassword'
@@ -87,18 +74,11 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               value={formik.values.confirm_password}
             />
-            <span className='text-redff4'>
-              {formik.touched.confirm_password && formik.errors.confirm_password ? (
-                <div>{formik.errors.confirm_password}</div>
-              ) : null}
-            </span>
+            <FormMessError>
+              {formik.touched.confirm_password && formik.errors?.confirm_password}
+            </FormMessError>
           </FormGroup>
-          <button
-            className='w-full mt-2 py-[15px] bg-redff4 text-white font-semibold rounded-lg'
-            type='submit'
-          >
-            Đăng ký
-          </button>
+          <ButtonSubmitAuth>Đăng ký</ButtonSubmitAuth>
         </form>
       </div>
     </div>
