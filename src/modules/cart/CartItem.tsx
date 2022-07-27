@@ -4,7 +4,7 @@ import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "m
 
 const CartItem = () => {
   return (
-    <div className='border-[#00000017] border p-4 flex items-center gap-2'>
+    <div className='border-[#00000017] my-3 border p-4 flex items-center gap-2'>
       <div className='cart-header-grid'>
         <CheckBox className='flex-shrink-0' />
         <ProductImage

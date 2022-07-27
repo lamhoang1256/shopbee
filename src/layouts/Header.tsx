@@ -1,10 +1,15 @@
-import { IconCart, IconSearch } from "components/icons";
+import { IconCartOutline } from "components/icons";
 import { path } from "constants/path";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
-  const currentUser = useStore((state: any) => state.currentUser);
+  const { cart, currentUser } = useStore((state: any) => ({
+    cart: state.cart,
+    currentUser: state.currentUser,
+  }));
+
   return (
     <header className='bg-blue1a'>
       <div className='layout-container'>
@@ -28,18 +33,12 @@ const Header = () => {
           <Link to={path.home}>
             <h1 className='hidden text-2xl font-medium text-white lg:block'>Shopbee</h1>
           </Link>
-          <form className='flex items-center justify-between flex-1 px-3 bg-white rounded'>
-            <input
-              type='text'
-              className='flex-1 text-sm outline-none h-11'
-              placeholder='Nhập để tìm kiếm sản phẩm'
-            />
-            <button type='submit' className='bg-[#0d5cb6] h-[30px] px-5 text-white rounded'>
-              <IconSearch />
-            </button>
-          </form>
-          <Link to={path.cart}>
-            <IconCart className='text-white' />
+          <SearchBar />
+          <Link to={path.cart} className='relative'>
+            <IconCartOutline className='text-white' />
+            <span className='absolute flex items-center justify-center w-6 h-4 bg-white rounded-full -top-2 -right-4 text-blue1a'>
+              {cart?.length}
+            </span>
           </Link>
         </div>
       </div>

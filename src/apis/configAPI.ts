@@ -25,4 +25,8 @@ export const configAPI = {
     const path = `api/auth/sign-up`;
     return axiosClient.post(path, user);
   },
+  getPurchase: (userId: string) => {
+    const path = `api/purchase?status=-1&userId=${userId}`;
+    return axiosClient.get(path);
+  },
 };
