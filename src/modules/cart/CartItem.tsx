@@ -1,5 +1,5 @@
 import { CheckBox } from "components/checkbox";
-import { QualityController } from "components/qualityController";
+import { QuantityController } from "components/quantityController";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 
 const CartItem = () => {
@@ -19,7 +19,7 @@ const CartItem = () => {
           <ProductPriceOld>199.999đ</ProductPriceOld>
           <ProductPriceSale>199.999đ</ProductPriceSale>
         </div>
-        <QualityController />
+        <QuantityController />
         <span>Xóa</span>
       </div>
     </div>

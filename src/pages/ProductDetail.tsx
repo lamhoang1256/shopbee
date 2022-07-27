@@ -2,7 +2,7 @@ import { configAPI } from "apis/configAPI";
 import { ButtonAddToCart } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
-import { QualityController } from "components/qualityController";
+import { QuantityController } from "components/quantityController";
 import { IProduct } from "interfaces";
 import {
   ProductImage,
@@ -65,7 +65,7 @@ const ProductDetail = () => {
           </div>
           <div className='flex items-center mt-6 gap-x-4'>
             <span>Số lượng</span>
-            <QualityController />
+            <QuantityController />
             <span>{productInfo.quantity} sản phẩm có sẵn</span>
           </div>
           <ButtonAddToCart className='w-[300px] h-12 mt-5 gap-x-2'>
