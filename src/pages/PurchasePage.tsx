@@ -11,6 +11,8 @@ const PurchasePage = () => {
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
   console.log("status: ", status);
+  const handleActive = (value: number) => Number(value) === Number(status);
+
   const fetchAllPurchase = async () => {
     try {
       const { data } = await configAPI.getAllPurchase(currentUser?._id, { status });
@@ -25,7 +27,7 @@ const PurchasePage = () => {
   }, [currentUser, status]);
   return (
     <div>
-      <TabsPurchase />
+      <TabsPurchase handleActive={handleActive} />
       <div>
         {purchases.map((purchase: any) => (
           <PurchaseItem key={purchase?._id} purchaseInfo={purchase} />

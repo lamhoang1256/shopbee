@@ -1,44 +1,65 @@
 import { path } from "constants/path";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import classNames from "utils/className";
 
 const StyledTabsPurchase = styled.ul`
   a.active {
     border-bottom: 2px solid #ff424e;
+    color: #ff424e;
   }
 `;
 
-const TabsPurchase = () => {
+interface TabsPurchaseProps {
+  handleActive: (value: number) => boolean;
+}
+
+const TabsPurchase = ({ handleActive }: TabsPurchaseProps) => {
   return (
-    <StyledTabsPurchase className='flex bg-white text-redff4'>
+    <StyledTabsPurchase className='flex bg-white'>
       <li>
-        <NavLink to={path.purchase} className='block w-40 py-4 text-center border-text-redff4'>
+        <Link
+          to={path.purchase}
+          className={classNames(
+            "block w-40 py-4 text-center transition-all duration-75",
+            handleActive(0) ? "active" : "",
+          )}
+        >
           Tất cả
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink
+        <Link
           to={`${path.purchase}?status=1`}
-          className='block w-40 py-4 text-center border-text-redff4'
+          className={classNames(
+            "block w-40 py-4 text-center transition-all duration-75",
+            handleActive(1) ? "active" : "",
+          )}
         >
           Đang xác nhận
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink
+        <Link
           to={`${path.purchase}?status=4`}
-          className='block w-40 py-4 text-center border-text-redff4'
+          className={classNames(
+            "block w-40 py-4 text-center transition-all duration-75",
+            handleActive(4) ? "active" : "",
+          )}
         >
           Đã giao
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink
+        <Link
           to={`${path.purchase}?status=5`}
-          className='block w-40 py-4 text-center border-text-redff4'
+          className={classNames(
+            "block w-40 py-4 text-center transition-all duration-75",
+            handleActive(5) ? "active" : "",
+          )}
         >
           Đã hủy
-        </NavLink>
+        </Link>
       </li>
     </StyledTabsPurchase>
   );

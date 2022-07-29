@@ -1,3 +1,4 @@
+import { path } from "constants/path";
 import { ICart } from "interfaces/cart";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 import { formatVNDCurrency } from "utils/helper";
@@ -5,11 +6,14 @@ import { formatVNDCurrency } from "utils/helper";
 const PurchaseItem = ({ purchaseInfo }: { purchaseInfo: ICart }) => {
   return (
     <div className='p-5 mt-3 bg-white'>
-      <div className='flex items-center justify-between'>
+      <div>Đang chờ xác nhận</div>
+      <div className='flex my-3 py-5 border-b border-t border-[#ebebf0] items-center justify-between'>
         <div className='flex gap-3'>
           <ProductImage imageUrl={purchaseInfo?.product?.image} className='w-20 h-20' />
           <div>
-            <ProductTitle className='text-sm'>{purchaseInfo?.product?.name}</ProductTitle>
+            <ProductTitle className='text-sm' to={`${path.detail}/${purchaseInfo?.product?._id}`}>
+              {purchaseInfo?.product?.name}
+            </ProductTitle>
             <span>x{purchaseInfo?.quantity}</span>
           </div>
         </div>
