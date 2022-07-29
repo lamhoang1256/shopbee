@@ -15,11 +15,15 @@ import {
 } from "modules/product";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useStore } from "store/configStore";
 import { formatVNDCurrency } from "utils/helper";
 import { PageNotFound } from "./PageNotFound";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const currentUser = useStore((state: any) => state.currentUser);
+
   const [productInfo, setProductInfo] = useState<IProduct>(Object);
   const fetchProductDetail = async () => {
     try {
@@ -35,6 +39,21 @@ const ProductDetail = () => {
   if (!id) return <PageNotFound />;
   if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
   const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
+  const handleAddToCart = async () => {
+    const values = {
+      userId: currentUser?._id,
+      productId: id,
+      quantity: 1,
+    };
+    try {
+      const response: any = await configAPI.addToCart(values);
+      if (response.success) {
+        toast.success(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className='flex p-4 mt-6 bg-white layout-container gap-x-5'>
@@ -68,7 +87,7 @@ const ProductDetail = () => {
             <QuantityController />
             <span>{productInfo.quantity} sản phẩm có sẵn</span>
           </div>
-          <ButtonAddToCart className='w-[300px] h-12 mt-5 gap-x-2'>
+          <ButtonAddToCart className='w-[300px] h-12 mt-5 gap-x-2' onClick={handleAddToCart}>
             <IconCartOutline />
             <span className='text-sm'>Thêm vào giỏ hàng</span>
           </ButtonAddToCart>

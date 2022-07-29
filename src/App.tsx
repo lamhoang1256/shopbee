@@ -1,11 +1,13 @@
 import { configAPI } from "apis/configAPI";
 import { path } from "constants/path";
+import { UserLayout } from "layouts";
 import MainLayout from "layouts/MainLayout";
 import Cart from "pages/Cart";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import { PageNotFound } from "pages/PageNotFound";
 import ProductDetail from "pages/ProductDetail";
+import PurchasePage from "pages/PurchasePage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
 import { useEffect } from "react";
@@ -39,6 +41,9 @@ const App = () => {
           <Route path={`${path.detail}/:id`} element={<ProductDetail />} />
           <Route path={path.signUp} element={<SignUpPage />} />
           <Route path={path.signIn} element={<SignInPage />} />
+        </Route>
+        <Route path='/' element={<UserLayout />}>
+          <Route path={path.purchase} element={<PurchasePage />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<PageNotFound />} />

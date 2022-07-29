@@ -29,8 +29,16 @@ export const configAPI = {
     const path = `api/purchase?status=-1&userId=${userId}`;
     return axiosClient.get(path);
   },
+  getAllPurchase: (userId: string, params: any) => {
+    const path = `api/purchase?userId=${userId}`;
+    return axiosClient.get(path, { params });
+  },
   addToCart: (values: any) => {
     const path = `api/purchase/add-to-cart`;
+    return axiosClient.post(path, values);
+  },
+  productPayment: (userId: string, values: any) => {
+    const path = `api/purchase/payment?userId=${userId}`;
     return axiosClient.post(path, values);
   },
 };
