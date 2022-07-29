@@ -22,7 +22,7 @@
   .cart-header-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: 50px 100px 500px 180px 130px 80px;
+    grid-template-columns: 100px 500px 180px 130px 80px;
     grid-gap: 10px;
     align-items: center;
     justify-content: space-between;

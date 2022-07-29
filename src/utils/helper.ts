@@ -1,5 +1,7 @@
+import { ICart } from "interfaces/cart";
+
 export const formatVNDCurrency = (money: number) => {
-  return money.toLocaleString("vi", { style: "currency", currency: "VND" });
+  return money?.toLocaleString("vi", { style: "currency", currency: "VND" });
 };
 
 export const formatCash = (num: number) => {
@@ -13,4 +15,11 @@ export const formatCash = (num: number) => {
     return `${(num / 1000).toFixed(1).replace(/\.0$/, "")}k`;
   }
   return num;
+};
+
+export const calcTotalMoneyCart = (array: ICart[], key: "price" | "priceSale") => {
+  const totalMoney = array?.reduce((previousValue: number, currentValue: ICart) => {
+    return previousValue + currentValue.product[key] * currentValue.quantity;
+  }, 0);
+  return totalMoney;
 };

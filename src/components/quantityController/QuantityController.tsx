@@ -6,18 +6,28 @@ import QuantityInput from "./QuantityInput";
 
 interface QuantityControllerProps {
   className?: string;
+  defaultQuantity?: number;
+  onChangeValue?: (quantity: number) => void;
 }
 
-const QuantityController = ({ className }: QuantityControllerProps) => {
-  const [quantity, setQuantity] = useState(1);
+const QuantityController = ({
+  className,
+  defaultQuantity = 1,
+  onChangeValue,
+}: QuantityControllerProps) => {
+  const [quantity, setQuantity] = useState<number>(defaultQuantity);
   const handleIncreaseQuantity = () => {
     setQuantity((prevState) => prevState + 1);
+    if (onChangeValue) onChangeValue(quantity + 1);
   };
   const handleDecreaseQuantity = () => {
+    if (quantity <= 1) return;
     setQuantity((prevState) => prevState - 1);
+    if (onChangeValue) onChangeValue(quantity - 1);
   };
   const handleChangeQuantity = (value: string) => {
     setQuantity(() => Number(value));
+    if (onChangeValue) onChangeValue(Number(value));
   };
   return (
     <div className={classNames("flex", className)}>
@@ -34,6 +44,8 @@ const QuantityController = ({ className }: QuantityControllerProps) => {
 
 QuantityController.defaultProps = {
   className: "",
+  defaultQuantity: 1,
+  onChangeValue: () => {},
 };
 
 export default QuantityController;

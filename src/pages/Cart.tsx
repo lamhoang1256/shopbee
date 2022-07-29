@@ -1,17 +1,21 @@
-import { CartFooter, CartHeader, CartItem } from "modules/cart";
+import { ICart } from "interfaces/cart";
+import { CartBody, CartFooter, CartHeader, CartItem } from "modules/cart";
 import { useStore } from "store/configStore";
+import { calcTotalMoneyCart } from "utils/helper";
 
 const Cart = () => {
   const carts = useStore((state: any) => state.cart);
+  const total = calcTotalMoneyCart(carts, "price");
+  const totalSale = calcTotalMoneyCart(carts, "priceSale");
   return (
     <div className='layout-container'>
       <CartHeader />
-      <div className='mt-4 bg-white lg:p-5'>
-        {carts.map((cart: any) => (
-          <CartItem key={cart._id} />
-        ))}
-      </div>
-      <CartFooter />
+      <CartBody>
+        {carts?.map((cart: ICart) => {
+          return <CartItem key={cart._id} cartInfo={cart} />;
+        })}
+      </CartBody>
+      <CartFooter totalPayment={totalSale} totalPaymentNotSale={total} count={carts?.length} />
     </div>
   );
 };

@@ -29,4 +29,8 @@ export const configAPI = {
     const path = `api/purchase?status=-1&userId=${userId}`;
     return axiosClient.get(path);
   },
+  addToCart: (values: any) => {
+    const path = `api/purchase/add-to-cart`;
+    return axiosClient.post(path, values);
+  },
 };

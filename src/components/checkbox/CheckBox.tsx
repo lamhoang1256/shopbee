@@ -2,16 +2,25 @@ import classNames from "utils/className";
 
 interface CheckBoxProps {
   className?: string;
+  onChange?: (e: any) => void;
+  checked?: boolean;
 }
 
-const CheckBox = ({ className }: CheckBoxProps) => {
+const CheckBox = ({ className, onChange, checked }: CheckBoxProps) => {
   return (
-    <input type='checkbox' className={classNames("w-[18px] h-[18px] accent-blue1a", className)} />
+    <input
+      type='checkbox'
+      className={classNames("w-[18px] h-[18px] accent-blue1a", className)}
+      onChange={onChange}
+      checked={checked}
+    />
   );
 };
 
 CheckBox.defaultProps = {
   className: "",
+  onChange: () => {},
+  checked: false,
 };
 
 export default CheckBox;

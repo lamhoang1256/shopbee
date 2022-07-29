@@ -1,25 +1,50 @@
-import { CheckBox } from "components/checkbox";
+import { configAPI } from "apis/configAPI";
 import { QuantityController } from "components/quantityController";
+import { ICart } from "interfaces/cart";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
+import { useStore } from "store/configStore";
+import { formatVNDCurrency } from "utils/helper";
 
-const CartItem = () => {
+const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
+  const { carts, currentUser, updateCart } = useStore((state: any) => ({
+    carts: state.cart,
+    currentUser: state.currentUser,
+    updateCart: state.updateCart,
+  }));
+
+  const onChangeQuantity = (value: number) => {
+    const values = {
+      userId: currentUser?._id,
+      productId: cartInfo?.product?._id,
+      quantity: value,
+    };
+    const addToCart = async () => {
+      try {
+        const response: any = await configAPI.addToCart(values);
+        if (response?.success) {
+          const index = carts.findIndex((item: any) => response.purchase._id === item._id);
+          carts[index].quantity = response.purchase.quantity;
+          updateCart([...carts]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    addToCart();
+  };
+
   return (
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-2'>
       <div className='cart-header-grid'>
-        <CheckBox className='flex-shrink-0' />
-        <ProductImage
-          className='w-20 mx-auto'
-          imageUrl='https://api-ecom.duthanhduoc.com/images/ee1f61e3-2029-43fd-a66d-d746c8fd637c.jpg'
-        />
-        <ProductTitle className='text-left max-w-[500px] line-clamp-2'>
-          [Mã FADI5K245 giảm 5K đơn 0đ] Áo thun tay lỡ Gấu194 unisex form rộng trơn chữ vải coton
-          mềm mịn co dãn 4 chiều - GAU1994
+        <ProductImage className='w-20 mx-auto' imageUrl={cartInfo?.product?.image} />
+        <ProductTitle className='text-left max-w-[500px] line-clamp-2' to={cartInfo?.product?._id}>
+          {cartInfo?.product?.name}
         </ProductTitle>
         <div className='flex flex-col justify-center gap-x-1'>
-          <ProductPriceOld>199.999đ</ProductPriceOld>
-          <ProductPriceSale>199.999đ</ProductPriceSale>
+          <ProductPriceOld> {formatVNDCurrency(cartInfo?.product?.price)}</ProductPriceOld>
+          <ProductPriceSale>{formatVNDCurrency(cartInfo?.product?.priceSale)}</ProductPriceSale>
         </div>
-        <QuantityController />
+        <QuantityController defaultQuantity={cartInfo?.quantity} onChangeValue={onChangeQuantity} />
         <span>Xóa</span>
       </div>
     </div>
