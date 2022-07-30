@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import classNames from "utils/className";
 
-const StyledTabsPurchase = styled.ul`
+const StyledPurchaseTabs = styled.ul`
   a.active {
     border-bottom: 2px solid #ff424e;
     color: #ff424e;
   }
 `;
 
-interface TabsPurchaseProps {
+interface PurchaseTabsProps {
   handleActive: (value: number) => boolean;
 }
 
-const TabsPurchase = ({ handleActive }: TabsPurchaseProps) => {
+const PurchaseTabs = ({ handleActive }: PurchaseTabsProps) => {
   return (
-    <StyledTabsPurchase className='flex bg-white'>
+    <StyledPurchaseTabs className='flex bg-white'>
       <li>
         <Link
           to={path.purchase}
@@ -61,8 +61,8 @@ const TabsPurchase = ({ handleActive }: TabsPurchaseProps) => {
           Đã hủy
         </Link>
       </li>
-    </StyledTabsPurchase>
+    </StyledPurchaseTabs>
   );
 };
 
-export default TabsPurchase;
+export default PurchaseTabs;

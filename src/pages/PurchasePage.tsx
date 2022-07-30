@@ -1,6 +1,5 @@
 import { configAPI } from "apis/configAPI";
-import { TabsPurchase } from "components/tabs";
-import { PurchaseItem } from "modules/purchase";
+import { PurchaseItem, PurchaseTabs } from "modules/purchase";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useStore } from "store/configStore";
@@ -27,7 +26,7 @@ const PurchasePage = () => {
   }, [currentUser, status]);
   return (
     <div>
-      <TabsPurchase handleActive={handleActive} />
+      <PurchaseTabs handleActive={handleActive} />
       <div>
         {purchases.map((purchase: any) => (
           <PurchaseItem key={purchase?._id} purchaseInfo={purchase} />

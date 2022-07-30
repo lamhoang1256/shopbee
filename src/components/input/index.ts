@@ -1,3 +1,4 @@
 import Input from "./Input";
+import InputV2 from "./InputV2";
 
-export { Input };
+export { Input, InputV2 };

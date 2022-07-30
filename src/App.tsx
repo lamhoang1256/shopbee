@@ -7,6 +7,7 @@ import Home from "pages/Home";
 import Login from "pages/Login";
 import { PageNotFound } from "pages/PageNotFound";
 import ProductDetail from "pages/ProductDetail";
+import ProfilePage from "pages/ProfilePage";
 import PurchasePage from "pages/PurchasePage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
@@ -44,6 +45,7 @@ const App = () => {
         </Route>
         <Route path='/' element={<UserLayout />}>
           <Route path={path.purchase} element={<PurchasePage />} />
+          <Route path={path.profile} element={<ProfilePage />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<PageNotFound />} />

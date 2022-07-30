@@ -1,3 +1,4 @@
+import PurchaseTabs from "./PurchaseTabs";
 import PurchaseItem from "./PurchaseItem";
 
-export { PurchaseItem };
+export { PurchaseTabs, PurchaseItem };
