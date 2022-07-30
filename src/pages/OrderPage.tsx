@@ -26,8 +26,8 @@ const OrderPage = () => {
     <div>
       <PurchaseTabs handleActive={handleActive} />
       <div>
-        {orders.map((purchase: any) => (
-          <PurchaseItem key={purchase?._id} orders={purchase} />
+        {orders.map((order: any) => (
+          <PurchaseItem key={order?._id} order={order} />
         ))}
       </div>
     </div>

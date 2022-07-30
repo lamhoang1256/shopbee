@@ -9,14 +9,14 @@ interface OrderProductItemProps {
 
 const OrderProductItem = ({ order }: OrderProductItemProps) => {
   return (
-    <div className='flex items-center justify-between py-2'>
+    <div className='flex flex-col justify-between gap-3 py-2 lg:items-center lg:flex-row'>
       <div className='flex gap-3'>
         <ProductImage
           imageUrl={order?.image}
           className='w-20 h-20 object-cover border border-[#e1e1e1]'
         />
         <div>
-          <ProductTitle className='text-sm' to={`${path.detail}/${order?._id}`}>
+          <ProductTitle className='text-sm line-clamp-2' to={`${path.detail}/${order?._id}`}>
             {order?.name}
           </ProductTitle>
           <span className='block mt-1'>x{order?.quantity}</span>

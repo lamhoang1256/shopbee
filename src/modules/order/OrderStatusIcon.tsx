@@ -12,7 +12,7 @@ const OrderStatusIcon = ({ children, active }: OrderStatusIconProps) => {
   return (
     <div
       className={classNames(
-        "mx-auto flex items-center justify-center rounded-full w-14 h-14 border-4 bg-white",
+        "relative z-20 flex items-center justify-center rounded-full md:w-14 md:h-14 w-12 h-12 border-4 bg-white",
         stylesActive,
       )}
     >
