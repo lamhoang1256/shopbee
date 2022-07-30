@@ -5,10 +5,11 @@ import MainLayout from "layouts/MainLayout";
 import Cart from "pages/Cart";
 import Home from "pages/Home";
 import Login from "pages/Login";
+import OrderDetailsPage from "pages/OrderDetailsPage";
+import OrderPage from "pages/OrderPage";
 import { PageNotFound } from "pages/PageNotFound";
 import ProductDetail from "pages/ProductDetail";
 import ProfilePage from "pages/ProfilePage";
-import PurchasePage from "pages/PurchasePage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
 import { useEffect } from "react";
@@ -44,7 +45,8 @@ const App = () => {
           <Route path={path.signIn} element={<SignInPage />} />
         </Route>
         <Route path='/' element={<UserLayout />}>
-          <Route path={path.purchase} element={<PurchasePage />} />
+          <Route path={path.order} element={<OrderPage />} />
+          <Route path={`${path.order}/:id`} element={<OrderDetailsPage />} />
           <Route path={path.profile} element={<ProfilePage />} />
         </Route>
         <Route path='/login' element={<Login />} />

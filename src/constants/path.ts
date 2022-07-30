@@ -6,4 +6,5 @@ export const path = {
   signIn: "/sign-in",
   purchase: "/purchase",
   profile: "/profile",
+  order: "/order",
 };

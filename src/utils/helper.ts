@@ -1,6 +1,6 @@
 import { ICart } from "interfaces/cart";
 
-export const formatVNDCurrency = (money: number) => {
+export const formatMoney = (money: number) => {
   return money?.toLocaleString("vi", { style: "currency", currency: "VND" });
 };
 

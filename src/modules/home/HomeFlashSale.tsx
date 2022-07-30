@@ -2,7 +2,7 @@ import { configAPI } from "apis/configAPI";
 import { IProduct } from "interfaces";
 import { ProductLabelSale, ProductPriceSale, ProductSaleBar } from "modules/product";
 import { useEffect, useState } from "react";
-import { formatVNDCurrency } from "utils/helper";
+import { formatMoney } from "utils/helper";
 
 const HomeFlashSale = () => {
   const [products, setProducts] = useState([]);
@@ -28,7 +28,7 @@ const HomeFlashSale = () => {
               <div className='p-2'>
                 <img src={product.image} alt='product' />
                 <div className='flex items-center mt-2 gap-x-2'>
-                  <ProductPriceSale>{formatVNDCurrency(product.priceSale)}</ProductPriceSale>
+                  <ProductPriceSale>{formatMoney(product.priceSale)}</ProductPriceSale>
                   <ProductLabelSale>
                     -{Math.ceil((1 - product.priceSale / product.price) * 100)}%
                   </ProductLabelSale>

@@ -8,7 +8,7 @@ import {
   ProductLabelSale,
 } from "modules/product";
 import { Link } from "react-router-dom";
-import { formatCash, formatVNDCurrency } from "utils/helper";
+import { formatCash, formatMoney } from "utils/helper";
 
 interface ProductItemProps {
   product: IProduct;
@@ -31,7 +31,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           <span className='text-[#787878] text-xs'>Đã bán {formatCash(product.sold)}</span>
         </div>
         <div className='flex items-center gap-x-2'>
-          <ProductPriceSale>{formatVNDCurrency(product.priceSale)}</ProductPriceSale>
+          <ProductPriceSale>{formatMoney(product.priceSale)}</ProductPriceSale>
           <ProductLabelSale>
             -{Math.ceil((1 - product.priceSale / product.price) * 100)}%
           </ProductLabelSale>

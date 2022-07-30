@@ -41,4 +41,12 @@ export const configAPI = {
     const path = `api/purchase/payment?userId=${userId}`;
     return axiosClient.post(path, values);
   },
+  getAllOrder: (userId: string) => {
+    const path = `api/order?userId=${userId}`;
+    return axiosClient.get(path);
+  },
+  getSingleOrder: (orderId: string) => {
+    const path = `api/order/${orderId}`;
+    return axiosClient.get(path);
+  },
 };

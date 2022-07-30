@@ -3,7 +3,7 @@ import { QuantityController } from "components/quantityController";
 import { ICart } from "interfaces/cart";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 import { useStore } from "store/configStore";
-import { formatVNDCurrency } from "utils/helper";
+import { formatMoney } from "utils/helper";
 
 const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
   const { carts, currentUser, updateCart } = useStore((state: any) => ({
@@ -41,8 +41,8 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
           {cartInfo?.product?.name}
         </ProductTitle>
         <div className='flex flex-col justify-center gap-x-1'>
-          <ProductPriceOld> {formatVNDCurrency(cartInfo?.product?.price)}</ProductPriceOld>
-          <ProductPriceSale>{formatVNDCurrency(cartInfo?.product?.priceSale)}</ProductPriceSale>
+          <ProductPriceOld> {formatMoney(cartInfo?.product?.price)}</ProductPriceOld>
+          <ProductPriceSale>{formatMoney(cartInfo?.product?.priceSale)}</ProductPriceSale>
         </div>
         <QuantityController defaultQuantity={cartInfo?.quantity} onChangeValue={onChangeQuantity} />
         <span>Xóa</span>

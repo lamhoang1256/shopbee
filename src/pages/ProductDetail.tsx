@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import { formatVNDCurrency } from "utils/helper";
+import { formatMoney } from "utils/helper";
 import { PageNotFound } from "./PageNotFound";
 
 const ProductDetail = () => {
@@ -71,10 +71,10 @@ const ProductDetail = () => {
           </div>
           <SectionGray className='flex items-center gap-x-3'>
             <ProductPriceOld className='text-[#929292]'>
-              {formatVNDCurrency(productInfo.price)}
+              {formatMoney(productInfo.price)}
             </ProductPriceOld>
             <ProductPriceSale className='text-3xl font-medium'>
-              {formatVNDCurrency(productInfo.priceSale)}
+              {formatMoney(productInfo.priceSale)}
             </ProductPriceSale>
             <ProductLabelSale>-{percentSale}%</ProductLabelSale>
           </SectionGray>

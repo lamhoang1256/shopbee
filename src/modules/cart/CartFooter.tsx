@@ -3,7 +3,7 @@ import { ButtonAddToCart } from "components/button";
 import { ICart } from "interfaces/cart";
 import { ProductPriceSale } from "modules/product";
 import { useStore } from "store/configStore";
-import { formatVNDCurrency } from "utils/helper";
+import { formatMoney } from "utils/helper";
 
 interface CartFooterProps {
   totalPayment: number;
@@ -36,14 +36,12 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
           Tổng ({count} sản phẩm):
           <ProductPriceSale className='text-xl font-medium'>
             {" "}
-            {formatVNDCurrency(totalPayment)}
+            {formatMoney(totalPayment)}
           </ProductPriceSale>
         </div>
         <div>
           Tiết kiệm:{" "}
-          <ProductPriceSale>
-            {formatVNDCurrency(totalPaymentNotSale - totalPayment)}
-          </ProductPriceSale>
+          <ProductPriceSale>{formatMoney(totalPaymentNotSale - totalPayment)}</ProductPriceSale>
         </div>
       </div>
       <ButtonAddToCart onClick={handleBuyProduct}>Mua hàng</ButtonAddToCart>

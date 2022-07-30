@@ -4,36 +4,34 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useStore } from "store/configStore";
 
-const PurchasePage = () => {
+const OrderPage = () => {
   const currentUser = useStore((state: any) => state.currentUser);
-  const [purchases, setPurchases] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
-  console.log("status: ", status);
   const handleActive = (value: number) => Number(value) === Number(status);
 
-  const fetchAllPurchase = async () => {
+  const fetchAllOrder = async () => {
     try {
-      const { data } = await configAPI.getAllPurchase(currentUser?._id, { status });
-      console.log("data: ", data);
-      setPurchases(data);
+      const { data } = await configAPI.getAllOrder(currentUser?._id);
+      setOrders(data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    fetchAllPurchase();
+    fetchAllOrder();
   }, [currentUser, status]);
   return (
     <div>
       <PurchaseTabs handleActive={handleActive} />
       <div>
-        {purchases.map((purchase: any) => (
-          <PurchaseItem key={purchase?._id} purchaseInfo={purchase} />
+        {orders.map((purchase: any) => (
+          <PurchaseItem key={purchase?._id} orders={purchase} />
         ))}
       </div>
     </div>
   );
 };
 
-export default PurchasePage;
+export default OrderPage;
