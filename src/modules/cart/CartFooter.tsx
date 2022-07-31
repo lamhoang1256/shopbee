@@ -17,8 +17,8 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
 
   const buyProducts = async (values: any) => {
     try {
-      const { data } = await configAPI.buyProducts(values);
-      console.log("data: ", data);
+      const response: any = await configAPI.buyProducts(values);
+      console.log("response: ", response);
     } catch (error) {
       console.log(error);
     }

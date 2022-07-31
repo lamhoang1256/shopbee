@@ -9,6 +9,4 @@ export const useStore = create((set) => ({
   },
   cart: [],
   updateCart: (cart: any) => set({ cart }),
-  // addToCart: (productId: string, quantity: number) =>
-  //   set((state: any) => ({ userId: state.currentUser._id + 1, productId, quantity })),
 }));
