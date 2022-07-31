@@ -14,19 +14,35 @@ interface CartFooterProps {
 const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProps) => {
   const carts = useStore((state: any) => state.cart);
   const currentUser = useStore((state: any) => state.currentUser);
-  const handleBuyProduct = async () => {
-    const values = carts.map((cart: ICart) => {
-      return {
-        productId: cart.product._id,
-        quantity: cart.quantity,
-      };
-    });
+
+  const buyProducts = async (values: any) => {
     try {
-      const response = await configAPI.productPayment(currentUser?._id, values);
-      console.log("response: ", response);
+      const { data } = await configAPI.buyProducts(values);
+      console.log("data: ", data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleBuyProducts = () => {
+    const orderItems = carts.map((cart: ICart) => ({
+      name: cart.product.name,
+      quantity: cart.quantity,
+      image: cart.product.image,
+      price: cart.product.price,
+      priceSale: cart.product.priceSale,
+      product: cart.product._id,
+    }));
+    const values = {
+      orderItems,
+      shippingAddress:
+        "257/80/24, tổ 16, ấp 2 , (gần tạp hóa Phúc Trâm), Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh",
+      shippingPrice: 14000,
+      totalPriceProduct: 15000000,
+      totalDiscount: 10000,
+      userId: currentUser._id,
+    };
+    buyProducts(values);
   };
 
   return (
@@ -44,7 +60,7 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
           <ProductPriceSale>{formatMoney(totalPaymentNotSale - totalPayment)}</ProductPriceSale>
         </div>
       </div>
-      <ButtonAddToCart onClick={handleBuyProduct}>Mua hàng</ButtonAddToCart>
+      <ButtonAddToCart onClick={handleBuyProducts}>Mua hàng</ButtonAddToCart>
     </div>
   );
 };

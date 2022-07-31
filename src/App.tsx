@@ -40,7 +40,7 @@ const App = () => {
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path={path.cart} element={<Cart />} />
-          <Route path={`${path.detail}/:id`} element={<ProductDetail />} />
+          <Route path={`${path.product}/:id`} element={<ProductDetail />} />
           <Route path={path.signUp} element={<SignUpPage />} />
           <Route path={path.signIn} element={<SignInPage />} />
         </Route>

@@ -29,7 +29,7 @@ const HomeSuggest = () => {
           />
           <span className='text-[#787878]'>Dành cho bạn</span>
         </li>
-        <li className='flex flex-col items-center p-2 bg-white border rounded gap-y-1 border-blue1a'>
+        <li className='flex flex-col items-center p-2 bg-white border rounded gap-y-1 border-orangeee4'>
           <img
             src='https://salt.tikicdn.com/cache/w100/ts/personalish/41/99/9a/8898607d7fca4b79775a708c57a8152f.png.webp'
             alt='suggest'

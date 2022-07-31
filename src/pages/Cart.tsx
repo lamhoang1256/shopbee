@@ -11,9 +11,9 @@ const Cart = () => {
     <div className='layout-container'>
       <CartHeader />
       <CartBody>
-        {carts?.map((cart: ICart) => {
-          return <CartItem key={cart._id} cartInfo={cart} />;
-        })}
+        {carts?.map((cart: ICart) => (
+          <CartItem key={cart._id} cartInfo={cart} />
+        ))}
       </CartBody>
       <CartFooter totalPayment={totalSale} totalPaymentNotSale={total} count={carts?.length} />
     </div>

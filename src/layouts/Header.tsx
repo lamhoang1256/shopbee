@@ -11,10 +11,10 @@ const Header = () => {
   }));
 
   return (
-    <header className='bg-blue1a'>
+    <header className='bg-orangeee4'>
       <div className='layout-container'>
         <div className='flex items-center justify-between text-white h-9'>
-          <span>Kiểm tra đơn hàng</span>
+          <Link to={path.order}>Kiểm tra đơn hàng</Link>
           {!currentUser?.email && (
             <div className='flex gap-x-4'>
               <Link to={path.signUp}>Đăng kí</Link>
@@ -36,7 +36,7 @@ const Header = () => {
           <SearchBar />
           <Link to={path.cart} className='relative mr-5'>
             <IconCartOutline className='text-white' />
-            <span className='absolute flex items-center justify-center w-6 h-4 bg-white rounded-full -top-2 -right-4 text-blue1a'>
+            <span className='absolute flex items-center justify-center w-6 h-4 bg-white rounded-full -top-2 -right-4 text-orangeee4'>
               {cart?.length}
             </span>
           </Link>

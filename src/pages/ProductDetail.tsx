@@ -2,6 +2,7 @@ import { configAPI } from "apis/configAPI";
 import { ButtonAddToCart } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
+import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
 import { IProduct } from "interfaces";
 import {
@@ -23,13 +24,16 @@ import { PageNotFound } from "./PageNotFound";
 const ProductDetail = () => {
   const { id } = useParams();
   const currentUser = useStore((state: any) => state.currentUser);
-
   const [productInfo, setProductInfo] = useState<IProduct>(Object);
+  const [loading, setLoading] = useState(true);
   const fetchProductDetail = async () => {
+    setLoading(true);
     try {
       const { data } = await configAPI.getSingleProduct(id || "");
       setProductInfo(data);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -37,6 +41,7 @@ const ProductDetail = () => {
     fetchProductDetail();
   }, [id]);
   if (!id) return <PageNotFound />;
+  if (loading) return <Loading />;
   if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
   const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
   const handleAddToCart = async () => {

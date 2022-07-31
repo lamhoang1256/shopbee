@@ -17,7 +17,7 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link
-      to={`${path.detail}/${product._id}`}
+      to={`${path.product}/${product._id}`}
       className='bg-white shadow-product'
       key={product._id}
     >

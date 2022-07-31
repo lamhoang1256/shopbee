@@ -10,9 +10,15 @@ interface PurchaseItemProps {
 }
 
 const renderStatusOrder = (order: IOrder) => {
-  if (order.isDelivered) return <span className='text-[#2dc258]'>Giao hàng thành công</span>;
-  if (order?.isShipping) return <span className='text-[#06c]'>Đang giao hàng</span>;
-  if (order.isPaid) return <span>Đã thanh toán</span>;
+  if (order.isDelivered) {
+    return <span className='text-orangeee4'>Giao hàng thành công</span>;
+  }
+  if (order.isShipping) {
+    return <span className='text-[#06c]'>Đang giao hàng</span>;
+  }
+  if (order.isPaid) {
+    return <span>Đã thanh toán</span>;
+  }
   return <span>Chờ xác nhận</span>;
 };
 
@@ -20,10 +26,16 @@ const PurchaseItem = ({ order }: PurchaseItemProps) => {
   const totalPayment = order.totalPriceProduct + order.shippingPrice - order.totalDiscount;
   return (
     <div className='py-4 px-6 mt-3 border border-[#00000017] bg-white rounded'>
-      <div className='font-medium'>{renderStatusOrder(order)}</div>
+      <div className='flex items-center justify-between mt-2 mb-4'>
+        <div>
+          <span className='font-medium'>Mã đơn hàng: </span>
+          <span>{order?._id}</span>
+        </div>
+        {renderStatusOrder(order)}
+      </div>
       <div className='my-3'>
         {order?.orderItems?.map((orderItem) => (
-          <OrderProductItem order={orderItem} />
+          <OrderProductItem order={orderItem} key={orderItem?._id} />
         ))}
       </div>
       <div className='flex items-center justify-between mt-5'>
