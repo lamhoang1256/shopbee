@@ -18,7 +18,7 @@ const sidebarLinks = [
     display: "Đổi mật khẩu",
   },
   {
-    id: 1,
+    id: 3,
     icon: "https://cf.shopee.vn/file/f0049e9df4e536bc3e7f140d071e9078",
     path: path.order,
     display: "Đơn mua",
