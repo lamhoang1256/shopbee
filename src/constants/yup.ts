@@ -4,7 +4,7 @@ export const SignUpYup = Yup.object({
   email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
   password: Yup.string().required("Vui lòng nhập mật khẩu!"),
   confirm_password: Yup.string()
-    .oneOf([Yup.ref("password")], "Password's not match")
+    .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
     .required("Please input your confirm password!"),
 });
 
@@ -22,4 +22,12 @@ export const UserProfileYup = Yup.object({
     "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
   ),
   addressHome: Yup.string().required("Vui lòng nhập địa chỉ giao hàng!"),
+});
+
+export const UserChangePasswordYup = Yup.object({
+  currentPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
+  newPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("currentPassword")], "Xác nhận mật khẩu không khớp!")
+    .required("Vui lòng nhập xác nhận mật khẩu!"),
 });

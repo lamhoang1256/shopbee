@@ -1,10 +1,9 @@
 import { configAPI } from "apis/configAPI";
-import { FormLabel, FormMessError } from "components/form";
+import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserProfileYup } from "constants/yup";
 import { useFormik } from "formik";
 import { ICurrentUser } from "interfaces";
-import { ProfileGroup } from "modules/profile";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import Administrative from "./UserUpdateAdministrative";
@@ -53,11 +52,11 @@ const UserUpdateProfile = () => {
 
   return (
     <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
-      <ProfileGroup>
+      <FormGroup>
         <FormLabel htmlFor='email'>Email</FormLabel>
         <span>lamhoang@gmail.com</span>
-      </ProfileGroup>
-      <ProfileGroup>
+      </FormGroup>
+      <FormGroup>
         <FormLabel htmlFor='fullname'>Họ và tên</FormLabel>
         <InputV2
           name='fullname'
@@ -66,8 +65,8 @@ const UserUpdateProfile = () => {
           onChange={formik.handleChange}
         />
         <FormMessError>{formik.touched.fullname && formik.errors?.fullname}</FormMessError>
-      </ProfileGroup>
-      <ProfileGroup>
+      </FormGroup>
+      <FormGroup>
         <FormLabel htmlFor='phone'>Số điện thoại</FormLabel>
         <InputV2
           name='phone'
@@ -76,8 +75,8 @@ const UserUpdateProfile = () => {
           onChange={formik.handleChange}
         />
         <FormMessError>{formik.touched.phone && formik.errors?.phone}</FormMessError>
-      </ProfileGroup>
-      <ProfileGroup>
+      </FormGroup>
+      <FormGroup>
         <FormLabel htmlFor='addressAdministrative'>
           Địa chỉ: {currentUser.addressAdministrative}
         </FormLabel>
@@ -85,8 +84,8 @@ const UserUpdateProfile = () => {
         <FormMessError>
           {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
         </FormMessError>
-      </ProfileGroup>
-      <ProfileGroup>
+      </FormGroup>
+      <FormGroup>
         <FormLabel htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</FormLabel>
         <InputV2
           name='addressHome'
@@ -95,7 +94,7 @@ const UserUpdateProfile = () => {
           onChange={formik.handleChange}
         />
         <FormMessError>{formik.touched.addressHome && formik.errors?.addressHome}</FormMessError>
-      </ProfileGroup>
+      </FormGroup>
       <button type='submit' className='w-full h-10 mt-2 text-white rounded bg-orangeee4'>
         Lưu
       </button>
