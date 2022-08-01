@@ -4,7 +4,9 @@ export const path = {
   cart: "/cart",
   signUp: "/sign-up",
   signIn: "/sign-in",
-  purchase: "/purchase",
-  profile: "/profile",
-  order: "/order",
+  purchase: "user/purchase",
+  profile: "/user/profile",
+  order: "/user/order",
+  user: "/user",
+  password: "/user/password",
 };

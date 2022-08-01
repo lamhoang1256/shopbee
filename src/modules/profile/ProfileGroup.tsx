@@ -3,7 +3,7 @@ interface ProfileGroupProps {
 }
 
 const ProfileGroup = ({ children }: ProfileGroupProps) => {
-  return <div className='flex items-center mb-6 gap-x-4'>{children}</div>;
+  return <div className='flex flex-col mb-3 gap-y-1'>{children}</div>;
 };
 
 export default ProfileGroup;

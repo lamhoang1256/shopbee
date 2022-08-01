@@ -42,9 +42,9 @@ export const configAPI = {
     const path = `api/cart/all`;
     return axiosClient.delete(path, { data: values });
   },
-  getAllOrder: (userId: string): Promise<IResponse> => {
+  getAllOrder: (userId: string, params: any): Promise<IResponse> => {
     const path = `api/order/user?userId=${userId}`;
-    return axiosClient.get(path);
+    return axiosClient.get(path, { params });
   },
   getSingleOrder: (orderId: string): Promise<IResponse> => {
     const path = `api/order?orderId=${orderId}`;

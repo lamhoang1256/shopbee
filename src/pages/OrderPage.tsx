@@ -9,9 +9,9 @@ import { useStore } from "store/configStore";
 
 const tabs = [
   { key: 0, display: "Tất cả", to: path.order },
-  { key: 1, display: "Đã thanh toán", to: `${path.order}?type=1` },
-  { key: 2, display: "Đang giao hàng", to: `${path.order}?type=2` },
-  { key: 3, display: "Đã giao", to: `${path.order}?type=3` },
+  { key: 1, display: "Đã thanh toán", to: `${path.order}?status=1` },
+  { key: 2, display: "Đang giao hàng", to: `${path.order}?status=2` },
+  { key: 3, display: "Đã giao hàng", to: `${path.order}?status=3` },
 ];
 
 const OrderPage = () => {
@@ -19,12 +19,13 @@ const OrderPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
-  const type = searchParams.get("type") || "";
+  const status = searchParams.get("status") || "";
 
   const fetchAllOrder = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.getAllOrder(currentUser?._id);
+      const params = status ? { status } : {};
+      const { data } = await configAPI.getAllOrder(currentUser?._id, params);
       setOrders(data);
       setLoading(false);
     } catch (error) {
@@ -33,11 +34,11 @@ const OrderPage = () => {
   };
   useEffect(() => {
     fetchAllOrder();
-  }, [currentUser, type]);
+  }, [currentUser, status]);
   if (loading) return <Loading />;
   return (
     <>
-      <Tabs tabs={tabs} query={type} />
+      <Tabs tabs={tabs} query={status} />
       {orders.map((order: any) => (
         <OrderItem key={order?._id} order={order} />
       ))}

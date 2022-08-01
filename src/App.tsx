@@ -2,6 +2,7 @@ import { configAPI } from "apis/configAPI";
 import { path } from "constants/path";
 import { UserLayout } from "layouts";
 import MainLayout from "layouts/MainLayout";
+import { UserChangePassword } from "modules/user";
 import Cart from "pages/Cart";
 import Home from "pages/Home";
 import Login from "pages/Login";
@@ -44,10 +45,11 @@ const App = () => {
           <Route path={path.signUp} element={<SignUpPage />} />
           <Route path={path.signIn} element={<SignInPage />} />
         </Route>
-        <Route path='/' element={<UserLayout />}>
+        <Route element={<UserLayout />}>
           <Route path={path.order} element={<OrderPage />} />
           <Route path={`${path.order}/:id`} element={<OrderDetailsPage />} />
           <Route path={path.profile} element={<ProfilePage />} />
+          <Route path={path.password} element={<UserChangePassword />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<PageNotFound />} />
