@@ -2,6 +2,7 @@ import { configAPI } from "apis/configAPI";
 import { ButtonAddToCart } from "components/button";
 import { ICart } from "interfaces/cart";
 import { ProductPriceSale } from "modules/product";
+import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
 
@@ -18,7 +19,19 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
   const buyProducts = async (values: any) => {
     try {
       const response: any = await configAPI.buyProducts(values);
-      console.log("response: ", response);
+      if (response.success) toast.success(response.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleRemoveAllCart = async () => {
+    try {
+      const values = {
+        userId: currentUser?._id,
+      };
+      const response: any = await configAPI.deleteAllCart(values);
+      if (response.success) toast.success(response.message);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +73,16 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
           <ProductPriceSale>{formatMoney(totalPaymentNotSale - totalPayment)}</ProductPriceSale>
         </div>
       </div>
-      <ButtonAddToCart onClick={handleBuyProducts}>Mua hàng</ButtonAddToCart>
+      <div className='flex gap-3'>
+        <button
+          type='button'
+          onClick={handleRemoveAllCart}
+          className='py-2 px-4 border border-[#00000017]'
+        >
+          Xóa tất cả
+        </button>
+        <ButtonAddToCart onClick={handleBuyProducts}>Mua hàng</ButtonAddToCart>
+      </div>
     </div>
   );
 };

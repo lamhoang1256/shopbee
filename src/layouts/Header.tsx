@@ -25,11 +25,11 @@ const Header = () => {
             <img
               src='https://avatars.githubusercontent.com/u/61537853?v=4'
               alt='user'
-              className='w-8 h-8 rounded-full'
+              className='w-6 h-6 rounded-full'
             />
           )}
         </div>
-        <div className='flex items-center h-20 gap-x-5 lg:gap-x-14'>
+        <div className='flex items-center justify-between h-20 -ml-6 lg:ml-0 gap-x-6 '>
           <Link to={path.home}>
             <h1 className='hidden text-2xl font-medium text-white lg:block'>Shopbee</h1>
           </Link>

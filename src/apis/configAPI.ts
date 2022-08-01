@@ -1,55 +1,56 @@
+import { IResponse } from "interfaces";
 import axiosClient from "./axiosClient";
 
 export const configAPI = {
-  getAllBanner: () => {
+  getAllBanner: (): Promise<IResponse> => {
     const path = `api/banner`;
-    return axiosClient(path);
+    return axiosClient.get(path);
   },
-  getAllCategory: () => {
+  getAllCategory: (): Promise<IResponse> => {
     const path = `api/category`;
-    return axiosClient(path);
+    return axiosClient.get(path);
   },
-  getAllProduct: () => {
+  getAllProduct: (): Promise<IResponse> => {
     const path = `api/product/all`;
-    return axiosClient(path);
+    return axiosClient.get(path);
   },
-  getSingleProduct: (productId: string) => {
+  getSingleProduct: (productId: string): Promise<IResponse> => {
     const path = `api/product/${productId}`;
-    return axiosClient(path);
+    return axiosClient.get(path);
   },
-  signIn: (user: any) => {
+  signIn: (user: any): Promise<IResponse> => {
     const path = `api/auth/sign-in`;
     return axiosClient.post(path, user);
   },
-  signUp: (user: any) => {
+  signUp: (user: any): Promise<IResponse> => {
     const path = `api/auth/sign-up`;
     return axiosClient.post(path, user);
   },
-  getPurchase: (userId: string) => {
-    const path = `api/purchase?status=-1&userId=${userId}`;
+  getAllCart: (userId: string): Promise<IResponse> => {
+    const path = `api/cart?userId=${userId}`;
     return axiosClient.get(path);
   },
-  getAllPurchase: (userId: string, params: any) => {
-    const path = `api/purchase?userId=${userId}`;
-    return axiosClient.get(path, { params });
-  },
-  addToCart: (values: any) => {
-    const path = `api/purchase/add-to-cart`;
+  addToCart: (values: any): Promise<IResponse> => {
+    const path = `api/cart/add-to-cart`;
     return axiosClient.post(path, values);
   },
-  productPayment: (userId: string, values: any) => {
-    const path = `api/purchase/payment?userId=${userId}`;
-    return axiosClient.post(path, values);
+  deleteSingleCart: (values: any): Promise<IResponse> => {
+    const path = `api/cart`;
+    return axiosClient.delete(path, { data: values });
   },
-  getAllOrder: (userId: string) => {
-    const path = `api/order?userId=${userId}`;
+  deleteAllCart: (values: any): Promise<IResponse> => {
+    const path = `api/cart/all`;
+    return axiosClient.delete(path, { data: values });
+  },
+  getAllOrder: (userId: string): Promise<IResponse> => {
+    const path = `api/order/user?userId=${userId}`;
     return axiosClient.get(path);
   },
-  getSingleOrder: (orderId: string) => {
-    const path = `api/order/${orderId}`;
+  getSingleOrder: (orderId: string): Promise<IResponse> => {
+    const path = `api/order?orderId=${orderId}`;
     return axiosClient.get(path);
   },
-  buyProducts: (values: any) => {
+  buyProducts: (values: any): Promise<IResponse> => {
     const path = `api/order`;
     return axiosClient.post(path, values);
   },

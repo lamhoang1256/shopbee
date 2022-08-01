@@ -2,6 +2,7 @@ import { configAPI } from "apis/configAPI";
 import { QuantityController } from "components/quantityController";
 import { ICart } from "interfaces/cart";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
+import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
 
@@ -33,6 +34,19 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
     addToCart();
   };
 
+  const handleRemoveCartItem = async () => {
+    try {
+      const values = {
+        userId: currentUser?._id,
+        cartIds: cartInfo?._id,
+      };
+      const response: any = await configAPI.deleteSingleCart(values);
+      if (response.success) toast.success(response.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-2'>
       <div className='cart-header-grid'>
@@ -45,7 +59,9 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
           <ProductPriceSale>{formatMoney(cartInfo?.product?.priceSale)}</ProductPriceSale>
         </div>
         <QuantityController defaultQuantity={cartInfo?.quantity} onChangeValue={onChangeQuantity} />
-        <span>Xóa</span>
+        <button type='button' onClick={handleRemoveCartItem}>
+          Xóa
+        </button>
       </div>
     </div>
   );

@@ -25,8 +25,8 @@ const renderStatusOrder = (order: IOrder) => {
 const PurchaseItem = ({ order }: PurchaseItemProps) => {
   const totalPayment = order.totalPriceProduct + order.shippingPrice - order.totalDiscount;
   return (
-    <div className='py-4 px-6 mt-3 border border-[#00000017] bg-white rounded'>
-      <div className='flex items-center justify-between mt-2 mb-4'>
+    <div className='py-4 px-4 md:px-6 mt-3 border border-[#00000017] bg-white rounded'>
+      <div className='flex flex-col justify-between gap-2 mt-2 mb-4 md:items-center md:flex-row'>
         <div>
           <span className='font-medium'>Mã đơn hàng: </span>
           <span>{order?._id}</span>
@@ -38,7 +38,7 @@ const PurchaseItem = ({ order }: PurchaseItemProps) => {
           <OrderProductItem order={orderItem} key={orderItem?._id} />
         ))}
       </div>
-      <div className='flex items-center justify-between mt-5'>
+      <div className='flex flex-col-reverse justify-between gap-3 mt-5 md:flex-row md:items-center'>
         <Link to={`${path.order}/${order?._id}`}>
           <button type='button' className='py-2 px-4 border border-[#00000017]'>
             Xem chi tiết đơn

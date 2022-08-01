@@ -21,7 +21,7 @@ const App = () => {
   const updateCart = useStore((state: any) => state.updateCart);
   const fetchCart = async (userId: string) => {
     try {
-      const response: any = await configAPI.getPurchase(userId);
+      const response: any = await configAPI.getAllCart(userId);
       if (response?.success) updateCart(response?.data);
     } catch (error) {
       console.log(error);
