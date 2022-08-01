@@ -54,4 +54,8 @@ export const configAPI = {
     const path = `api/order`;
     return axiosClient.post(path, values);
   },
+  userUpdateProfile: (values: any): Promise<IResponse> => {
+    const path = `api/user`;
+    return axiosClient.put(path, values);
+  },
 };

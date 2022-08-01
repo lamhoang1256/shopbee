@@ -18,6 +18,8 @@ export const UserProfileYup = Yup.object({
   phone: Yup.string()
     .required("Vui lòng nhập số điện thoại!")
     .max(20, "Số điện thoại tối đa là 20 kí tự!"),
-  administrative: Yup.string().required("Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!"),
+  addressAdministrative: Yup.string().required(
+    "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
+  ),
   addressHome: Yup.string().required("Vui lòng nhập địa chỉ giao hàng!"),
 });

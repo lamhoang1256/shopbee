@@ -2,15 +2,15 @@ import { configAPIAddress } from "apis/address";
 import { ICommune, IDistrict, IProvince } from "interfaces";
 import { useEffect, useState } from "react";
 
-interface UserUpdateProvinceProps {
+interface UserUpdateAdministrativeProps {
   formik: any;
 }
 
-const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
+const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => {
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [communes, setCommunes] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState({
+  const [administrative, setAdministrative] = useState({
     idProvince: "",
     idDistrict: "",
     idCommune: "",
@@ -21,27 +21,27 @@ const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
   };
   const fetchAllDistrict = () => {
     configAPIAddress
-      .getAllDistrict({ idProvince: selectedAddress.idProvince })
+      .getAllDistrict({ idProvince: administrative.idProvince })
       .then((res) => setDistricts(res.data));
   };
   const fetchAllCommune = () => {
     configAPIAddress
-      .getAllCommune({ idDistrict: selectedAddress.idDistrict })
+      .getAllCommune({ idDistrict: administrative.idDistrict })
       .then((res) => setCommunes(res.data));
   };
 
   const handleUpdateAddress = () => {
     const province: IProvince =
-      provinces.find(({ idProvince }) => idProvince === selectedAddress.idProvince) ||
+      provinces.find(({ idProvince }) => idProvince === administrative.idProvince) ||
       ({} as IProvince);
     const district: IDistrict =
-      districts.find(({ idDistrict }) => idDistrict === selectedAddress.idDistrict) ||
+      districts.find(({ idDistrict }) => idDistrict === administrative.idDistrict) ||
       ({} as IDistrict);
     const commune: ICommune =
-      communes.find(({ idCommune }) => idCommune === selectedAddress.idCommune) || ({} as ICommune);
+      communes.find(({ idCommune }) => idCommune === administrative.idCommune) || ({} as ICommune);
     if (province?.name || district?.name || commune?.name) {
       formik?.setFieldValue(
-        "administrative",
+        "addressAdministrative",
         `${commune?.name}, ${district?.name}, ${province?.name}`,
       );
     }
@@ -54,16 +54,16 @@ const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
   useEffect(() => {
     fetchAllDistrict();
     formik?.setFieldValue("administrative", "");
-  }, [selectedAddress.idProvince]);
+  }, [administrative.idProvince]);
 
   useEffect(() => {
     fetchAllCommune();
     formik?.setFieldValue("administrative", "");
-  }, [selectedAddress.idProvince, selectedAddress.idDistrict]);
+  }, [administrative.idProvince, administrative.idDistrict]);
 
   useEffect(() => {
-    if (selectedAddress.idCommune) handleUpdateAddress();
-  }, [selectedAddress.idCommune]);
+    if (administrative.idCommune) handleUpdateAddress();
+  }, [administrative.idCommune]);
 
   return (
     <div className='grid grid-cols-3 gap-4'>
@@ -71,9 +71,7 @@ const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
         className='w-full h-10 border border-[#00000024] px-2 outline-none'
         name='province'
         id='province'
-        onChange={(e: any) =>
-          setSelectedAddress({ ...selectedAddress, idProvince: e.target.value })
-        }
+        onChange={(e: any) => setAdministrative({ ...administrative, idProvince: e.target.value })}
       >
         <option value=''>Chọn Tỉnh/Thành Phố</option>
         {provinces?.map((province: any) => (
@@ -86,9 +84,7 @@ const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
         className='w-full h-10 border border-[#00000024] px-2 outline-none'
         name='district'
         id='district'
-        onChange={(e: any) =>
-          setSelectedAddress({ ...selectedAddress, idDistrict: e.target.value })
-        }
+        onChange={(e: any) => setAdministrative({ ...administrative, idDistrict: e.target.value })}
       >
         <option value=''>Chọn Quận/Huyện</option>
         {districts?.map((item: any) => (
@@ -102,7 +98,7 @@ const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
         name='commune'
         id='commune'
         onChange={(e: any) => {
-          setSelectedAddress({ ...selectedAddress, idCommune: e.target.value });
+          setAdministrative({ ...administrative, idCommune: e.target.value });
         }}
       >
         <option value=''>Chọn Phường/Xã</option>
@@ -116,4 +112,4 @@ const UserUpdateProvince = ({ formik }: UserUpdateProvinceProps) => {
   );
 };
 
-export default UserUpdateProvince;
+export default UserUpdateAdministrative;

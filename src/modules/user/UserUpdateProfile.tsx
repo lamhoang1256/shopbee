@@ -1,36 +1,49 @@
+import { configAPI } from "apis/configAPI";
 import { FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserProfileYup } from "constants/yup";
 import { useFormik } from "formik";
+import { ICurrentUser } from "interfaces";
 import { ProfileGroup } from "modules/profile";
+import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import UserUpdateProvince from "./UserUpdateProvince";
+import Administrative from "./UserUpdateAdministrative";
 
 interface IValuesUpdateProfile {
   fullname: string;
   phone: string;
   addressHome: string;
-  administrative: string;
+  addressAdministrative: string;
 }
 
 const UserUpdateProfile = () => {
-  const currentUser = useStore((state: any) => state.currentUser);
+  const currentUser: ICurrentUser = useStore((state: any) => state.currentUser);
+  const updateProfile = async (values: any) => {
+    try {
+      const { success, message } = await configAPI.userUpdateProfile(values);
+      if (success) toast.success(message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleUpdateProfile = (values: IValuesUpdateProfile) => {
     const body = {
       _id: currentUser?._id,
       fullname: values.fullname,
       phone: values.phone,
-      address: `${values?.addressHome}, ${values?.administrative}`,
+      addressHome: values?.addressHome,
+      addressAdministrative: values?.addressAdministrative,
     };
-    console.log("body: ", body);
+    updateProfile(body);
   };
 
   const formik = useFormik({
     initialValues: {
-      fullname: "",
-      phone: "",
-      addressHome: "",
-      administrative: "",
+      fullname: currentUser.fullname || "",
+      phone: currentUser.phone || "",
+      addressHome: currentUser.addressHome || "",
+      addressAdministrative: currentUser.addressAdministrative || "",
     },
     validationSchema: UserProfileYup,
     onSubmit: (values) => {
@@ -39,7 +52,7 @@ const UserUpdateProfile = () => {
   });
 
   return (
-    <form className='lg:w-2/3' onSubmit={formik.handleSubmit}>
+    <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
       <ProfileGroup>
         <FormLabel htmlFor='email'>Email</FormLabel>
         <span>lamhoang@gmail.com</span>
@@ -65,14 +78,16 @@ const UserUpdateProfile = () => {
         <FormMessError>{formik.touched.phone && formik.errors?.phone}</FormMessError>
       </ProfileGroup>
       <ProfileGroup>
-        <FormLabel htmlFor='administrative'>Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã</FormLabel>
-        <UserUpdateProvince formik={formik} />
+        <FormLabel htmlFor='addressAdministrative'>
+          Địa chỉ: {currentUser.addressAdministrative}
+        </FormLabel>
+        <Administrative formik={formik} />
         <FormMessError>
-          {formik.touched.administrative && formik.errors?.administrative}
+          {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
         </FormMessError>
       </ProfileGroup>
       <ProfileGroup>
-        <FormLabel htmlFor='addressHome'>Địa chỉ</FormLabel>
+        <FormLabel htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</FormLabel>
         <InputV2
           name='addressHome'
           type='text'
