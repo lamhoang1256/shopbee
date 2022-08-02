@@ -1,19 +1,17 @@
 import { IconCartOutline } from "components/icons";
+import { defaultAvatar } from "constants/global";
 import { path } from "constants/path";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
 import SearchBar from "./SearchBar";
 
 const Header = () => {
-  const { cart, currentUser } = useStore((state: any) => ({
-    cart: state.carts,
-    currentUser: state.currentUser,
-  }));
+  const { carts, currentUser } = useStore((state) => state);
 
   return (
     <header className='bg-orangeee4'>
       <div className='layout-container'>
-        <div className='flex items-center justify-between text-white h-9'>
+        <div className='flex items-center justify-between h-12 text-white'>
           <Link to={path.order}>Kiểm tra đơn hàng</Link>
           {!currentUser?.email && (
             <div className='flex gap-x-4'>
@@ -22,11 +20,10 @@ const Header = () => {
             </div>
           )}
           {currentUser?.email && (
-            <img
-              src='https://avatars.githubusercontent.com/u/61537853?v=4'
-              alt='user'
-              className='w-6 h-6 rounded-full'
-            />
+            <div className='flex items-center gap-x-2'>
+              <img src={defaultAvatar} alt='avatar' className='object-cover w-5 h-5 rounded-full' />
+              <span className='font-medium'>{currentUser?.fullname}</span>
+            </div>
           )}
         </div>
         <div className='flex items-center justify-between h-20 -ml-6 lg:ml-0 gap-x-6 '>
@@ -34,10 +31,10 @@ const Header = () => {
             <h1 className='hidden text-2xl font-medium text-white lg:block'>Shopbee</h1>
           </Link>
           <SearchBar />
-          <Link to={path.cart} className='relative mr-5'>
+          <Link to={path.cart} className='relative mr-4 lg:mr-8'>
             <IconCartOutline className='text-white' />
-            <span className='absolute flex items-center justify-center w-6 h-4 bg-white rounded-full -top-2 -right-4 text-orangeee4'>
-              {cart?.length}
+            <span className='absolute flex items-center justify-center w-6 h-[18px] text-xs font-medium bg-white rounded-full -top-3 -right-3 text-orangeee4'>
+              {carts?.length >= 99 ? 99 : carts.length}
             </span>
           </Link>
         </div>

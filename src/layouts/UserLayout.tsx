@@ -1,3 +1,4 @@
+import { defaultAvatar } from "constants/global";
 import { path } from "constants/path";
 import { Link, Outlet } from "react-router-dom";
 import { useStore } from "store/configStore";
@@ -37,10 +38,7 @@ const UserLayout = () => {
             <div className='w-44'>
               <div className='flex items-center gap-x-2'>
                 <img
-                  src={
-                    currentUser?.avatar ||
-                    "https://cf.shopee.vn/file/cb3886f25384c1203482fa59bf62f515_tn"
-                  }
+                  src={currentUser?.avatar || defaultAvatar}
                   alt='avatar'
                   className='w-12 h-12 rounded-full'
                 />
