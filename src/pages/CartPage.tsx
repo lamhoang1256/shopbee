@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";
 
-const Cart = () => {
+const CartPage = () => {
   const { carts } = useStore((state) => state);
   const total = calcTotalMoneyCart(carts, "price");
   const totalSale = calcTotalMoneyCart(carts, "priceSale");
@@ -41,4 +41,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

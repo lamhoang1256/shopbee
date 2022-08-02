@@ -1,4 +1,4 @@
-export const PageNotFound = () => {
+const PageNotFound = () => {
   return (
     <div className='bg-white shadow1 max-w-[767px] mt-8 mx-auto text-center p-7'>
       <img src='/images/error404.png' alt='404' className='mx-auto' />
@@ -7,3 +7,5 @@ export const PageNotFound = () => {
     </div>
   );
 };
+
+export default PageNotFound;

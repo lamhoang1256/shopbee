@@ -1,15 +1,13 @@
 import { HomeBanner, HomeCategories, HomeFeatured } from "modules/home";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
       <HomeBanner />
-      {/* <HomeFlashSale /> */}
       <HomeCategories />
-      {/* <HomeSuggest /> */}
       <HomeFeatured />
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

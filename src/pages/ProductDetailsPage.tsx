@@ -19,9 +19,9 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
-import { PageNotFound } from "./PageNotFound";
+import PageNotFound from "./PageNotFound";
 
-const ProductDetail = () => {
+const ProductDetailsPage = () => {
   const { id } = useParams();
   const currentUser = useStore((state: any) => state.currentUser);
   const setCart = useStore((state: any) => state.setCart);
@@ -134,4 +134,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailsPage;

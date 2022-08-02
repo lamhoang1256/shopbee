@@ -1,20 +1,19 @@
-import { configAPI } from "apis/configAPI";
-import { path } from "constants/path";
-import { UserLayout } from "layouts";
-import MainLayout from "layouts/MainLayout";
-import { UserChangePassword } from "modules/user";
-import Cart from "pages/Cart";
-import Home from "pages/Home";
-import OrderDetailsPage from "pages/OrderDetailsPage";
-import OrderPage from "pages/OrderPage";
-import { PageNotFound } from "pages/PageNotFound";
-import ProductDetail from "pages/ProductDetail";
-import ProfilePage from "pages/ProfilePage";
-import SignInPage from "pages/SignInPage";
-import SignUpPage from "pages/SignUpPage";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useStore } from "store/configStore";
+import { configAPI } from "apis/configAPI";
+import { path } from "constants/path";
+import { MainLayout, UserLayout } from "layouts";
+import { UserChangePassword } from "modules/user";
+import CartPage from "pages/CartPage";
+import HomePage from "pages/HomePage";
+import OrderDetailsPage from "pages/OrderDetailsPage";
+import OrderPage from "pages/OrderPage";
+import ProductDetailsPage from "pages/ProductDetailsPage";
+import ProfilePage from "pages/ProfilePage";
+import SignInPage from "pages/SignInPage";
+import SignUpPage from "pages/SignUpPage";
+import PageNotFound from "pages/PageNotFound";
 
 const App = () => {
   const currentUser = useStore((state: any) => state.currentUser);
@@ -38,9 +37,9 @@ const App = () => {
     <Router>
       <Routes>
         <Route path='/' element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path={path.cart} element={<Cart />} />
-          <Route path={`${path.product}/:id`} element={<ProductDetail />} />
+          <Route index element={<HomePage />} />
+          <Route path={path.cart} element={<CartPage />} />
+          <Route path={`${path.product}/:id`} element={<ProductDetailsPage />} />
           <Route path={path.signUp} element={<SignUpPage />} />
           <Route path={path.signIn} element={<SignInPage />} />
         </Route>
