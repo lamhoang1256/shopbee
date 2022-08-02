@@ -1,6 +1,6 @@
-import { ButtonNormal } from "components/button";
+import { Button } from "components/button";
 
-const UserUploadAvatar = () => {
+const UserUpdateAvatar = () => {
   return (
     <div className='flex flex-col items-center gap-y-4 lg:w-1/3'>
       <img
@@ -8,7 +8,7 @@ const UserUploadAvatar = () => {
         alt='avatar'
         className='w-[100px] h-[100px] rounded-full'
       />
-      <ButtonNormal>Chọn ảnh</ButtonNormal>
+      <Button>Chọn ảnh</Button>
       <div className='text-[#999]'>
         <p>Dung lượng file tối đa 1 MB</p>
         <p>Định dạng:.JPEG, .PNG</p>
@@ -17,4 +17,4 @@ const UserUploadAvatar = () => {
   );
 };
 
-export default UserUploadAvatar;
+export default UserUpdateAvatar;

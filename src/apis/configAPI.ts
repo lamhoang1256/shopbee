@@ -58,4 +58,8 @@ export const configAPI = {
     const path = `api/user`;
     return axiosClient.put(path, values);
   },
+  userChangePassword: (values: any): Promise<IResponse> => {
+    const path = `api/user/change-password`;
+    return axiosClient.put(path, values);
+  },
 };

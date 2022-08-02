@@ -1,19 +1,36 @@
+import { configAPI } from "apis/configAPI";
+import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserChangePasswordYup } from "constants/yup";
 import { useFormik } from "formik";
+import { ICurrentUser } from "interfaces";
+import { toast } from "react-toastify";
+import { useStore } from "store/configStore";
 import UserTemplate from "./UserTemplate";
 
 const UserChangePassword = () => {
+  const currentUser: ICurrentUser = useStore((state: any) => state.currentUser);
+
+  const changePassword = async (values: any) => {
+    try {
+      const { success, message } = await configAPI.userChangePassword(values);
+      if (success) toast.success(message);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
+      _id: currentUser?._id,
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
     },
     validationSchema: UserChangePasswordYup,
     onSubmit: (values) => {
-      console.log("values: ", values);
+      changePassword(values);
     },
   });
   return (
@@ -56,12 +73,9 @@ const UserChangePassword = () => {
             {formik.touched.confirmPassword && formik.errors?.confirmPassword}
           </FormMessError>
         </FormGroup>
-        <button
-          type='submit'
-          className='w-full h-10 mt-2 text-white rounded password-white bg-orangeee4'
-        >
+        <Button type='submit' primary className='w-full h-10'>
           Lưu
-        </button>
+        </Button>
       </form>
     </UserTemplate>
   );

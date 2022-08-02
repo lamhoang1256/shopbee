@@ -1,6 +1,6 @@
 import ButtonAddToCart from "./ButtonAddToCart";
 import ButtonShowMore from "./ButtonShowMore";
 import ButtonSubmitAuth from "./ButtonSubmitAuth";
-import ButtonNormal from "./ButtonNormal";
+import Button from "./Button";
 
-export { ButtonAddToCart, ButtonNormal, ButtonShowMore, ButtonSubmitAuth };
+export { ButtonAddToCart, Button, ButtonShowMore, ButtonSubmitAuth };

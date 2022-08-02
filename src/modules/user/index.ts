@@ -1,6 +1,6 @@
-import UserUploadAvatar from "./UserUploadAvatar";
+import UserUpdateAvatar from "./UserUpdateAvatar";
 import UserUpdateProfile from "./UserUpdateProfile";
 import UserChangePassword from "./UserChangePassword";
 import UserTemplate from "./UserTemplate";
 
-export { UserUploadAvatar, UserUpdateProfile, UserTemplate, UserChangePassword };
+export { UserUpdateAvatar, UserUpdateProfile, UserTemplate, UserChangePassword };

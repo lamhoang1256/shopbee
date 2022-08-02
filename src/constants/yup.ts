@@ -28,6 +28,6 @@ export const UserChangePasswordYup = Yup.object({
   currentPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
   newPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("currentPassword")], "Xác nhận mật khẩu không khớp!")
+    .oneOf([Yup.ref("newPassword")], "Xác nhận mật khẩu không khớp!")
     .required("Vui lòng nhập xác nhận mật khẩu!"),
 });

@@ -1,4 +1,5 @@
 import { configAPI } from "apis/configAPI";
+import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserProfileYup } from "constants/yup";
@@ -9,6 +10,7 @@ import { useStore } from "store/configStore";
 import Administrative from "./UserUpdateAdministrative";
 
 interface IValuesUpdateProfile {
+  _id: string;
   fullname: string;
   phone: string;
   addressHome: string;
@@ -21,24 +23,18 @@ const UserUpdateProfile = () => {
     try {
       const { success, message } = await configAPI.userUpdateProfile(values);
       if (success) toast.success(message);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.success(error?.message);
     }
   };
 
   const handleUpdateProfile = (values: IValuesUpdateProfile) => {
-    const body = {
-      _id: currentUser?._id,
-      fullname: values.fullname,
-      phone: values.phone,
-      addressHome: values?.addressHome,
-      addressAdministrative: values?.addressAdministrative,
-    };
-    updateProfile(body);
+    updateProfile(values);
   };
 
   const formik = useFormik({
     initialValues: {
+      _id: currentUser?._id,
       fullname: currentUser.fullname || "",
       phone: currentUser.phone || "",
       addressHome: currentUser.addressHome || "",
@@ -54,7 +50,7 @@ const UserUpdateProfile = () => {
     <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
       <FormGroup>
         <FormLabel htmlFor='email'>Email</FormLabel>
-        <span>lamhoang@gmail.com</span>
+        <span>{currentUser?.email}</span>
       </FormGroup>
       <FormGroup>
         <FormLabel htmlFor='fullname'>Họ và tên</FormLabel>
@@ -95,9 +91,9 @@ const UserUpdateProfile = () => {
         />
         <FormMessError>{formik.touched.addressHome && formik.errors?.addressHome}</FormMessError>
       </FormGroup>
-      <button type='submit' className='w-full h-10 mt-2 text-white rounded bg-orangeee4'>
+      <Button type='submit' primary className='w-full h-10'>
         Lưu
-      </button>
+      </Button>
     </form>
   );
 };
