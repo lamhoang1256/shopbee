@@ -1,5 +1,5 @@
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
-import { IOrder } from "interfaces/order";
+import { IOrder } from "interfaces";
 import OrderStatusBar from "./OrderStatusBar";
 import OrderStatusIcon from "./OrderStatusIcon";
 import OrderStatusItem from "./OrderStatusItem";

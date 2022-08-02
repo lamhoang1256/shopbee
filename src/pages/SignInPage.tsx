@@ -12,8 +12,8 @@ import { useStore } from "store/configStore";
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const { signIn, currentUser } = useStore((state: any) => ({
-    signIn: state.signIn,
+  const { setCurrentUser, currentUser } = useStore((state: any) => ({
+    setCurrentUser: state.setCurrentUser,
     currentUser: state.currentUser,
   }));
   useCheckLoggedIn(currentUser);
@@ -21,7 +21,7 @@ const SignInPage = () => {
     try {
       const response: any = await configAPI.signIn(values);
       if (response.success) {
-        signIn(response.data);
+        setCurrentUser(response.data);
         toast.success(response.message);
         navigate(path.home);
       }

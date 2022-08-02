@@ -4,7 +4,7 @@ import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
-import { IProduct } from "interfaces";
+import { ICart, IProduct } from "interfaces";
 import {
   ProductImage,
   ProductLabelSale,
@@ -24,8 +24,15 @@ import { PageNotFound } from "./PageNotFound";
 const ProductDetail = () => {
   const { id } = useParams();
   const currentUser = useStore((state: any) => state.currentUser);
+  const setCart = useStore((state: any) => state.setCart);
+  const carts: ICart[] = useStore((state: any) => state.carts);
   const [productInfo, setProductInfo] = useState<IProduct>(Object);
   const [loading, setLoading] = useState(true);
+  const [quantityAdd, setQuantityAdd] = useState(1);
+  const handleChangeQuantityController = (value: number) => {
+    setQuantityAdd(() => value);
+  };
+
   const fetchProductDetail = async () => {
     setLoading(true);
     try {
@@ -43,20 +50,36 @@ const ProductDetail = () => {
   if (!id) return <PageNotFound />;
   if (loading) return <Loading />;
   if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
+
   const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
   const handleAddToCart = async () => {
+    let quantity = quantityAdd;
+    const existCartItem = carts?.find((cart) => cart.product._id === id);
+    if (existCartItem) {
+      quantity = existCartItem.quantity + quantityAdd;
+      existCartItem.quantity += quantityAdd;
+    }
     const values = {
       userId: currentUser?._id,
       productId: id,
-      quantity: 1,
+      quantity,
     };
+
     try {
-      const response: any = await configAPI.addToCart(values);
-      if (response.success) {
-        toast.success(response.message);
+      const { message, success, data } = await configAPI.addToCart(values);
+      if (success) {
+        if (existCartItem) {
+          const cartsWithoutExistCartItem = carts?.filter(
+            (cart) => cart?._id !== existCartItem?._id,
+          );
+          setCart([...cartsWithoutExistCartItem, existCartItem]);
+        } else {
+          setCart([...carts, data]);
+        }
+        toast.success(message);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error?.message);
     }
   };
   return (
@@ -89,7 +112,7 @@ const ProductDetail = () => {
           </div>
           <div className='flex items-center mt-6 gap-x-4'>
             <span>Số lượng</span>
-            <QuantityController />
+            <QuantityController onChangeValue={handleChangeQuantityController} />
             <span>{productInfo.quantity} sản phẩm có sẵn</span>
           </div>
           <ButtonAddToCart className='w-[300px] h-12 mt-5 gap-x-2' onClick={handleAddToCart}>

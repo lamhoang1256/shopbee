@@ -1,6 +1,6 @@
 import { configAPI } from "apis/configAPI";
 import { Loading } from "components/loading";
-import { IOrder } from "interfaces/order";
+import { IOrder } from "interfaces";
 import { OrderPaymentField, OrderStatus } from "modules/order";
 import OrderProductItem from "modules/order/OrderProductItem";
 import { ProductPriceSale } from "modules/product";

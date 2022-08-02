@@ -5,7 +5,6 @@ import MainLayout from "layouts/MainLayout";
 import { UserChangePassword } from "modules/user";
 import Cart from "pages/Cart";
 import Home from "pages/Home";
-import Login from "pages/Login";
 import OrderDetailsPage from "pages/OrderDetailsPage";
 import OrderPage from "pages/OrderPage";
 import { PageNotFound } from "pages/PageNotFound";
@@ -19,11 +18,11 @@ import { useStore } from "store/configStore";
 
 const App = () => {
   const currentUser = useStore((state: any) => state.currentUser);
-  const updateCart = useStore((state: any) => state.updateCart);
+  const setCart = useStore((state: any) => state.setCart);
   const fetchCart = async (userId: string) => {
     try {
-      const response: any = await configAPI.getAllCart(userId);
-      if (response?.success) updateCart(response?.data);
+      const { data, success } = await configAPI.getAllCart(userId);
+      if (success) setCart(data);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +50,6 @@ const App = () => {
           <Route path={path.profile} element={<ProfilePage />} />
           <Route path={path.password} element={<UserChangePassword />} />
         </Route>
-        <Route path='/login' element={<Login />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Router>

@@ -1,15 +1,15 @@
 import { path } from "constants/path";
-import { ICart } from "interfaces/cart";
+import { ICart } from "interfaces";
 import { CartBody, CartFooter, CartHeader, CartItem } from "modules/cart";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";
 
 const Cart = () => {
-  const carts = useStore((state: any) => state.cart);
+  const { carts } = useStore((state) => state);
   const total = calcTotalMoneyCart(carts, "price");
   const totalSale = calcTotalMoneyCart(carts, "priceSale");
-  if (carts.length === 0) {
+  if (carts?.length === 0) {
     return (
       <div className='layout-container'>
         <div className='flex flex-col items-center justify-center gap-y-2 h-[400px] '>

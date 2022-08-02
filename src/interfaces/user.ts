@@ -5,7 +5,7 @@ export interface ICurrentUser {
   createdAt: string;
   email: string;
   fullname: string;
-  isAdmin: false;
+  isAdmin: boolean;
   phone: string;
   refreshToken: string;
   updatedAt: string;

@@ -1,6 +1,6 @@
 import { Button } from "components/button";
 import { path } from "constants/path";
-import { IOrder } from "interfaces/order";
+import { IOrder } from "interfaces";
 import OrderProductItem from "modules/order/OrderProductItem";
 import { ProductPriceSale } from "modules/product";
 import { Link } from "react-router-dom";
@@ -24,7 +24,6 @@ const renderStatusOrder = (order: IOrder) => {
 };
 
 const PurchaseItem = ({ order }: PurchaseItemProps) => {
-  const totalPayment = order.totalPriceProduct + order.shippingPrice - order.totalDiscount;
   return (
     <div className='py-4 px-4 md:px-6 mt-3 border border-[#00000017] bg-white rounded'>
       <div className='flex flex-col justify-between gap-2 mt-2 mb-4 md:items-center md:flex-row'>
@@ -45,7 +44,9 @@ const PurchaseItem = ({ order }: PurchaseItemProps) => {
         </Link>
         <div>
           <span>Tổng số tiền: </span>
-          <ProductPriceSale className='pl-1 text-2xl'>{formatMoney(totalPayment)}</ProductPriceSale>
+          <ProductPriceSale className='pl-1 text-2xl'>
+            {formatMoney(order?.totalPayment)}
+          </ProductPriceSale>
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import { configAPI } from "apis/configAPI";
 import { ButtonAddToCart } from "components/button";
-import { ICart } from "interfaces/cart";
+import { path } from "constants/path";
+import { ICart } from "interfaces";
 import { ProductPriceSale } from "modules/product";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
@@ -13,15 +15,19 @@ interface CartFooterProps {
 }
 
 const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProps) => {
-  const carts = useStore((state: any) => state.cart);
-  const currentUser = useStore((state: any) => state.currentUser);
+  const navigate = useNavigate();
+  const { carts, currentUser, setCart } = useStore((state) => state);
 
   const buyProducts = async (values: any) => {
     try {
-      const response: any = await configAPI.buyProducts(values);
-      if (response.success) toast.success(response.message);
-    } catch (error) {
-      console.log(error);
+      const { data, success, message } = await configAPI.buyProducts(values);
+      if (success) {
+        toast.success(message);
+        setCart([]);
+        navigate(`${path.order}/${data?._id}`);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
     }
   };
 
@@ -30,10 +36,10 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
       const values = {
         userId: currentUser?._id,
       };
-      const response: any = await configAPI.deleteAllCart(values);
-      if (response.success) toast.success(response.message);
-    } catch (error) {
-      console.log(error);
+      const { success, message } = await configAPI.deleteAllCart(values);
+      if (success) toast.success(message);
+    } catch (error: any) {
+      toast.error(error?.message);
     }
   };
 
@@ -46,14 +52,19 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
       priceSale: cart.product.priceSale,
       product: cart.product._id,
     }));
+    const totalPriceProduct = orderItems.reduce((prevValue, currentValue) => {
+      return prevValue + currentValue.quantity * currentValue.priceSale;
+    }, 0);
+    const shippingPrice = 16000;
+    const totalDiscount = 10000;
     const values = {
-      orderItems,
-      shippingAddress:
-        "257/80/24, tổ 16, ấp 2 , (gần tạp hóa Phúc Trâm), Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh",
-      shippingPrice: 14000,
-      totalPriceProduct: 15000000,
-      totalDiscount: 10000,
       userId: currentUser._id,
+      orderItems,
+      shippingAddress: `${currentUser?.addressHome}, ${currentUser?.addressAdministrative}`,
+      shippingPrice,
+      totalPriceProduct,
+      totalDiscount,
+      totalPayment: totalPriceProduct + shippingPrice - totalDiscount,
     };
     buyProducts(values);
   };

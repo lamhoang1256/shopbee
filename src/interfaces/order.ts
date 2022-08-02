@@ -20,6 +20,7 @@ export interface IOrder {
   shippingPrice: number;
   totalPriceProduct: number;
   totalDiscount: number;
+  totalPayment: number;
   isPaid: true;
   isDelivered: true;
   isShipping: true;

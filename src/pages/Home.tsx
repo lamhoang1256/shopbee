@@ -1,12 +1,12 @@
-import { HomeBanner, HomeFeatured, HomeFlashSale, HomeSuggest } from "modules/home";
+import { HomeBanner, HomeCategories, HomeFeatured } from "modules/home";
 
 const Home = () => {
   return (
     <div>
       <HomeBanner />
-      <HomeFlashSale />
-      {/* <HomeCategories /> */}
-      <HomeSuggest />
+      {/* <HomeFlashSale /> */}
+      <HomeCategories />
+      {/* <HomeSuggest /> */}
       <HomeFeatured />
     </div>
   );

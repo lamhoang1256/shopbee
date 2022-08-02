@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { cart, currentUser } = useStore((state: any) => ({
-    cart: state.cart,
+    cart: state.carts,
     currentUser: state.currentUser,
   }));
 

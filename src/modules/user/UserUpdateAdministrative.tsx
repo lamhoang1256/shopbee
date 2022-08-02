@@ -53,12 +53,10 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
 
   useEffect(() => {
     fetchAllDistrict();
-    formik?.setFieldValue("administrative", "");
   }, [administrative.idProvince]);
 
   useEffect(() => {
     fetchAllCommune();
-    formik?.setFieldValue("administrative", "");
   }, [administrative.idProvince, administrative.idDistrict]);
 
   useEffect(() => {

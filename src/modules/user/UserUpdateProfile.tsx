@@ -19,12 +19,17 @@ interface IValuesUpdateProfile {
 
 const UserUpdateProfile = () => {
   const currentUser: ICurrentUser = useStore((state: any) => state.currentUser);
+  const setCurrentUser = useStore((state: any) => state.setCurrentUser);
   const updateProfile = async (values: any) => {
     try {
-      const { success, message } = await configAPI.userUpdateProfile(values);
-      if (success) toast.success(message);
+      const { data, success, message } = await configAPI.userUpdateProfile(values);
+      if (success) {
+        const newCurrentUser = { ...currentUser, ...data };
+        setCurrentUser(newCurrentUser);
+        toast.success(message);
+      }
     } catch (error: any) {
-      toast.success(error?.message);
+      toast.error(error?.message);
     }
   };
 
@@ -42,6 +47,7 @@ const UserUpdateProfile = () => {
     },
     validationSchema: UserProfileYup,
     onSubmit: (values) => {
+      console.log("values: ", values);
       handleUpdateProfile(values);
     },
   });

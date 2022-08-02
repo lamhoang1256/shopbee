@@ -1,17 +1,25 @@
 import { configAPI } from "apis/configAPI";
 import { QuantityController } from "components/quantityController";
-import { ICart } from "interfaces/cart";
+import { path } from "constants/path";
+import { ICurrentUser, ICart } from "interfaces";
+
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
 
 const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
-  const { carts, currentUser, updateCart } = useStore((state: any) => ({
-    carts: state.cart,
-    currentUser: state.currentUser,
-    updateCart: state.updateCart,
-  }));
+  const {
+    carts,
+    currentUser,
+    setCart,
+  }: { carts: ICart[]; currentUser: ICurrentUser; setCart: (carts: ICart[]) => void } = useStore(
+    (state: any) => ({
+      carts: state.carts,
+      currentUser: state.currentUser,
+      setCart: state.setCart,
+    }),
+  );
 
   const onChangeQuantity = (value: number) => {
     const values = {
@@ -21,11 +29,11 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
     };
     const addToCart = async () => {
       try {
-        const response: any = await configAPI.addToCart(values);
-        if (response?.success) {
-          const index = carts.findIndex((item: any) => response.purchase._id === item._id);
-          carts[index].quantity = response.purchase.quantity;
-          updateCart([...carts]);
+        const { data, success } = await configAPI.addToCart(values);
+        if (success) {
+          const index = carts.findIndex((cart: ICart) => data?._id === cart._id);
+          carts[index].quantity = data.quantity;
+          setCart([...carts]);
         }
       } catch (error) {
         console.log(error);
@@ -51,7 +59,10 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-2'>
       <div className='cart-header-grid'>
         <ProductImage className='w-20 mx-auto' imageUrl={cartInfo?.product?.image} />
-        <ProductTitle className='text-left max-w-[500px] line-clamp-2' to={cartInfo?.product?._id}>
+        <ProductTitle
+          className='text-left max-w-[500px] line-clamp-2'
+          to={`${path.product}/${cartInfo?.product?._id}`}
+        >
           {cartInfo?.product?.name}
         </ProductTitle>
         <div className='flex flex-col justify-center gap-x-1'>

@@ -1,5 +1,5 @@
 import { path } from "constants/path";
-import { IOrderProductItem } from "interfaces/order";
+import { IOrderProductItem } from "interfaces";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 import { formatMoney } from "utils/helper";
 
