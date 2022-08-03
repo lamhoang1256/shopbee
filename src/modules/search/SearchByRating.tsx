@@ -1,33 +1,43 @@
 import { IconStar } from "components/icons";
+import { path } from "constants/path";
+import { Link } from "react-router-dom";
 import classNames from "utils/className";
 
 const renderStarRating = (score: number) => {
-  return [1, 2, 3, 4, 5].map((item) => {
-    if (item <= score) {
-      return <IconStar key={item} className={classNames("text-[#ffce3d] w-5 h-5")} />;
+  return [1, 2, 3, 4, 5].map((num) => {
+    if (num <= score) {
+      return <IconStar key={num} className={classNames("text-[#ffce3d] w-5 h-5")} />;
     }
-    return <IconStar key={item} className={classNames("text-[#d5d5d5] w-5 h-5")} />;
+    return <IconStar key={num} className={classNames("text-[#d5d5d5] w-5 h-5")} />;
   });
 };
 
-export const SearchByRating = () => {
+const SearchByRating = () => {
   return (
     <>
-      {[5, 4, 3, 2, 1].map((number) => {
-        if (number === 5) {
+      <div className='mt-6 search-catelog-header'>
+        <IconStar />
+        <span>Đánh giá</span>
+      </div>
+      <div className='mt-3'>
+        {[5, 4, 3, 2, 1].map((num) => {
+          if (num === 5) {
+            return (
+              <Link to={`${path.search}?rating=${num}`} className='flex mt-2' key={num}>
+                {renderStarRating(num)}
+              </Link>
+            );
+          }
           return (
-            <div className='flex mt-2' key={number}>
-              {renderStarRating(number)}
-            </div>
+            <Link to={`${path.search}?rating=${num}`} className='flex mt-2' key={num}>
+              {renderStarRating(num)}
+              <span className='text-[#000000cc] ml-2'>Trở lên</span>
+            </Link>
           );
-        }
-        return (
-          <div className='flex mt-2' key={number}>
-            {renderStarRating(number)}
-            <span className='text-[#000000cc] ml-2'>Trở lên</span>
-          </div>
-        );
-      })}
+        })}
+      </div>
     </>
   );
 };
+
+export default SearchByRating;

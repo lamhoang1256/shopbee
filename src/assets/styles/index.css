@@ -46,4 +46,10 @@
   .shadow1 {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
+  .search-catelog-header {
+    @apply border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center;
+  }
+  .search-sidebar {
+    @apply -translate-x-full lg:w-48 z-10 w-full fixed inset-0 lg:translate-x-0 bg-[#f5f5f5] min-h-screen p-4 lg:p-0 transition-all duration-300 lg:static overflow-auto;
+  }
 }
