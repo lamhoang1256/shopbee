@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 const SearchPage = () => {
   const [results, setResults] = useState<IProduct[]>([]);
+
   const fetchSearchProducts = async () => {
     try {
       const { data } = await configAPI.getAllProduct();
