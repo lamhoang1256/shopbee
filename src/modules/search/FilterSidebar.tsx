@@ -13,10 +13,11 @@ export const renderRating = (score: number) => {
 };
 
 const FilterSidebar = () => {
+  const headlineStyles =
+    "border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center";
   const searchSidebarRef = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const toggleSearchSidebar = () =>
-    searchSidebarRef.current && searchSidebarRef.current.classList.toggle("translate-x-0");
+    searchSidebarRef.current && searchSidebarRef.current.classList.toggle("!translate-x-0");
 
   return (
     <>
@@ -24,7 +25,7 @@ const FilterSidebar = () => {
         Bộ lọc
       </Button>
       <div
-        className='lg:w-48 z-10 w-full fixed inset-0 -translate-x-full lg:translate-x-0  bg-[#f5f5f5] min-h-screen p-4 transition-all duration-300 lg:static overflow-auto'
+        className='-translate-x-full lg:w-48 z-10 w-full fixed inset-0 lg:translate-x-0 bg-[#f5f5f5] min-h-screen p-4 lg:p-0 transition-all duration-300 lg:static overflow-auto'
         ref={searchSidebarRef}
       >
         <div className='max-w-[192px]'>
@@ -37,7 +38,7 @@ const FilterSidebar = () => {
               <IconPrev className='w-4 h-4' />
               <span className='text-base font-medium'>Trở lại</span>
             </div>
-            <div className='border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center'>
+            <div className={headlineStyles}>
               <IconMenu />
               <h3>Tất cả danh mục</h3>
             </div>
@@ -60,7 +61,7 @@ const FilterSidebar = () => {
             </ul>
           </div>
           <div className='mt-5'>
-            <div className='border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center'>
+            <div className={headlineStyles}>
               <IconFilter />
               <h3>Bộ lọc tìm kiếm</h3>
             </div>
@@ -85,28 +86,22 @@ const FilterSidebar = () => {
             </div>
           </div>
           <div className='mt-6'>
-            <div className='border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center'>
+            <div className={headlineStyles}>
               <IconStar />
               <span>Đánh giá</span>
             </div>
             <div className='mt-3'>
-              <div className='flex mt-2'>{renderRating(5)}</div>
-              <div className='flex mt-2'>
-                {renderRating(4)}
-                <span className='text-[#000000cc] ml-2'>Trở lên</span>
-              </div>
-              <div className='flex mt-2'>
-                {renderRating(3)}
-                <span className='text-[#000000cc] ml-2'>Trở lên</span>
-              </div>
-              <div className='flex mt-2'>
-                {renderRating(2)}
-                <span className='text-[#000000cc] ml-2'>Trở lên</span>
-              </div>
-              <div className='flex mt-2'>
-                {renderRating(1)}
-                <span className='text-[#000000cc] ml-2'>Trở lên</span>
-              </div>
+              {[5, 4, 3, 2, 1].map((number) => {
+                if (number === 5) {
+                  return <div className='flex mt-2'>{renderRating(number)}</div>;
+                }
+                return (
+                  <div className='flex mt-2'>
+                    {renderRating(number)}
+                    <span className='text-[#000000cc] ml-2'>Trở lên</span>
+                  </div>
+                );
+              })}
             </div>
             <div className='border-t-2 pb-3 mt-6 border-[#0000000d]'>
               <Button primary className='w-full py-[6px] mt-4 rounded-sm'>
