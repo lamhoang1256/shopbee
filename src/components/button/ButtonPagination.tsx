@@ -2,20 +2,26 @@
 import { ButtonHTMLAttributes } from "react";
 import classNames from "utils/className";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonPaginationProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
   primary?: boolean;
 }
 
-const Button = ({ children, type, className, primary, ...props }: ButtonProps) => {
+const ButtonPagination = ({
+  children,
+  type,
+  className,
+  primary,
+  ...props
+}: ButtonPaginationProps) => {
   if (primary) {
     return (
       <button
         type={type}
         {...props}
         className={classNames(
-          "py-2 px-4 rounded border border-transparent text-white bg-orangeee4",
+          "h-9 w-10 flex items-center justify-center border border-[#00000017] bg-[#fff] cursor-pointer",
           className,
         )}
       >
@@ -27,16 +33,20 @@ const Button = ({ children, type, className, primary, ...props }: ButtonProps) =
     <button
       type={type}
       {...props}
-      className={classNames("py-2 px-4 border border-[#00000017]", className)}
+      disabled
+      className={classNames(
+        "h-9 flex items-center justify-center w-10 border bg-[#f9f9f9] border-[#00000017] opacity-70",
+        className,
+      )}
     >
       {children}
     </button>
   );
 };
 
-Button.defaultProps = {
+ButtonPagination.defaultProps = {
   className: "",
   primary: false,
 };
 
-export default Button;
+export default ButtonPagination;

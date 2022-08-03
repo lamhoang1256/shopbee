@@ -9,8 +9,14 @@ import IconClipboard from "./IconClipboard";
 import IconMoney from "./IconMoney";
 import IconShipping from "./IconShipping";
 import IconCheck from "./IconCheck";
+import IconMenu from "./IconMenu";
+import IconFilter from "./IconFilter";
+import IconNext from "./IconNext";
+import IconPrev from "./IconPrev";
 
 export {
+  IconPrev,
+  IconNext,
   IconShipping,
   IconCheck,
   IconMoney,
@@ -18,8 +24,10 @@ export {
   IconClipboard,
   IconTrash,
   IconPlus,
+  IconFilter,
   IconCart,
   IconCartOutline,
   IconStar,
   IconMinus,
+  IconMenu,
 };

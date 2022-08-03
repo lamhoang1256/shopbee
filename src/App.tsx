@@ -14,6 +14,7 @@ import ProfilePage from "pages/ProfilePage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
 import PageNotFound from "pages/PageNotFound";
+import SearchPage from "pages/SearchPage";
 
 const App = () => {
   const currentUser = useStore((state: any) => state.currentUser);
@@ -42,6 +43,7 @@ const App = () => {
           <Route path={`${path.product}/:id`} element={<ProductDetailsPage />} />
           <Route path={path.signUp} element={<SignUpPage />} />
           <Route path={path.signIn} element={<SignInPage />} />
+          <Route path={path.search} element={<SearchPage />} />
         </Route>
         <Route element={<UserLayout />}>
           <Route path={path.order} element={<OrderPage />} />

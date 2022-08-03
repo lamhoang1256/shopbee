@@ -9,4 +9,5 @@ export const path = {
   order: "/user/order",
   user: "/user",
   password: "/user/password",
+  search: "/search",
 };

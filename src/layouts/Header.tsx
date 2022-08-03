@@ -7,7 +7,6 @@ import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { carts, currentUser } = useStore((state) => state);
-
   return (
     <header className='bg-orangeee4'>
       <div className='layout-container'>
@@ -26,8 +25,8 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className='flex items-center justify-between h-20 -ml-6 lg:ml-0 gap-x-6 '>
-          <Link to={path.home}>
+        <div className='flex items-center justify-between h-20 -ml-3 lg:ml-0 gap-x-3 md:gap-x-6 '>
+          <Link to={path.home} className='w-36'>
             <h1 className='hidden text-2xl font-medium text-white lg:block'>Shopbee</h1>
           </Link>
           <SearchBar />
