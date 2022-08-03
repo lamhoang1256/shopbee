@@ -1,4 +1,5 @@
 import { IResponse } from "interfaces";
+import { ISearchParams } from "interfaces/search";
 import axiosClient from "./axiosClient";
 
 export const configAPI = {
@@ -10,9 +11,9 @@ export const configAPI = {
     const path = `api/category`;
     return axiosClient.get(path);
   },
-  getAllProduct: (): Promise<IResponse> => {
-    const path = `api/product/all`;
-    return axiosClient.get(path);
+  getAllProduct: (params?: ISearchParams): Promise<IResponse> => {
+    const path = `api/product`;
+    return axiosClient.get(path, { params });
   },
   getSingleProduct: (productId: string): Promise<IResponse> => {
     const path = `api/product/${productId}`;

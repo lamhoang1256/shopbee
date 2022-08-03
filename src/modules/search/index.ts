@@ -1,4 +1,4 @@
-import FilterSidebar from "./FilterSidebar";
+import SearchSidebar from "./SearchSidebar";
 import SearchSortBar from "./SearchSortBar";
 
-export { FilterSidebar, SearchSortBar };
+export { SearchSidebar, SearchSortBar };

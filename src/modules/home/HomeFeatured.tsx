@@ -9,7 +9,7 @@ const HomeFeatured = () => {
   const fetchHomeFeatured = async () => {
     try {
       const { data } = await configAPI.getAllProduct();
-      setProducts(data);
+      setProducts(data?.products);
     } catch (error) {
       console.log(error);
     }

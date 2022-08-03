@@ -1,18 +1,9 @@
 import { Button } from "components/button";
 import { IconFilter, IconMenu, IconPrev, IconStar } from "components/icons";
 import { useRef } from "react";
-import classNames from "utils/className";
+import { SearchByRating } from "./SearchByRating";
 
-export const renderRating = (score: number) => {
-  return [1, 2, 3, 4, 5].map((item) => {
-    if (item <= score) {
-      return <IconStar key={item} className={classNames("text-[#ffce3d] w-5 h-5")} />;
-    }
-    return <IconStar key={item} className={classNames("text-[#d5d5d5] w-5 h-5")} />;
-  });
-};
-
-const FilterSidebar = () => {
+const SearchSidebar = () => {
   const headlineStyles =
     "border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center";
   const searchSidebarRef = useRef<any>(null);
@@ -91,17 +82,7 @@ const FilterSidebar = () => {
               <span>Đánh giá</span>
             </div>
             <div className='mt-3'>
-              {[5, 4, 3, 2, 1].map((number) => {
-                if (number === 5) {
-                  return <div className='flex mt-2'>{renderRating(number)}</div>;
-                }
-                return (
-                  <div className='flex mt-2'>
-                    {renderRating(number)}
-                    <span className='text-[#000000cc] ml-2'>Trở lên</span>
-                  </div>
-                );
-              })}
+              <SearchByRating />
             </div>
             <div className='border-t-2 pb-3 mt-6 border-[#0000000d]'>
               <Button primary className='w-full py-[6px] mt-4 rounded-sm'>
@@ -115,4 +96,4 @@ const FilterSidebar = () => {
   );
 };
 
-export default FilterSidebar;
+export default SearchSidebar;
