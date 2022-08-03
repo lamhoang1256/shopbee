@@ -2,18 +2,29 @@ import { Button } from "components/button";
 import { FormMessError } from "components/form";
 import { IconFilter } from "components/icons";
 import { InputRangePrice } from "components/input";
+import { path } from "constants/path";
 import { SearchRangePriceYup } from "constants/yup";
 import { useFormik } from "formik";
+import { ISearchParams } from "interfaces/search";
+import queryString from "query-string";
+import { useNavigate } from "react-router-dom";
+import { useSearchContext } from "./search-context";
 
 const SearchRangePrice = () => {
+  const { searchPageParams } = useSearchContext();
+  const navigate = useNavigate();
   const handleSearchByRangePrice = (values: any) => {
-    console.log("values: ", values);
+    const newParams: ISearchParams = {
+      ...searchPageParams,
+      ...values,
+    };
+    navigate(`${path.search}?${queryString.stringify(newParams)}`);
   };
 
   const formik = useFormik({
     initialValues: {
-      minPrice: "",
-      maxPrice: "",
+      price_min: "",
+      price_max: "",
     },
     validationSchema: SearchRangePriceYup,
     onSubmit: (values) => {
@@ -36,22 +47,22 @@ const SearchRangePrice = () => {
         <div className='flex items-center justify-between'>
           <InputRangePrice
             type='number'
-            name='minPrice'
+            name='price_min'
             placeholder='Từ'
-            value={formik.values.minPrice}
+            value={formik.values.price_min}
             onChange={formik.handleChange}
           />
           <span>-</span>
           <InputRangePrice
             type='number'
-            name='maxPrice'
+            name='price_max'
             placeholder='Đến'
-            value={formik.values.maxPrice}
+            value={formik.values.price_max}
             onChange={formik.handleChange}
           />
         </div>
         <FormMessError className='block text-xs'>
-          {formik.touched.maxPrice && formik.errors?.maxPrice}
+          {formik.touched.price_max && formik.errors?.price_max}
         </FormMessError>
         <Button type='submit' primary className='w-full py-[6px] rounded-sm'>
           ÁP DỤNG

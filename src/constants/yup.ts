@@ -33,6 +33,6 @@ export const UserChangePasswordYup = Yup.object({
 });
 
 export const SearchRangePriceYup = Yup.object({
-  minPrice: Yup.number().min(0),
-  maxPrice: Yup.number().min(Yup.ref("minPrice"), "Vui lòng điền khoảng giá phù hợp"),
+  price_min: Yup.number().min(0),
+  price_max: Yup.number().min(Yup.ref("price_min"), "Vui lòng điền khoảng giá phù hợp"),
 });
