@@ -31,3 +31,8 @@ export const UserChangePasswordYup = Yup.object({
     .oneOf([Yup.ref("newPassword")], "Xác nhận mật khẩu không khớp!")
     .required("Vui lòng nhập xác nhận mật khẩu!"),
 });
+
+export const SearchRangePriceYup = Yup.object({
+  minPrice: Yup.number().min(0),
+  maxPrice: Yup.number().min(Yup.ref("minPrice"), "Vui lòng điền khoảng giá phù hợp"),
+});

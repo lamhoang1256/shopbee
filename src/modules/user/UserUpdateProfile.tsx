@@ -47,7 +47,6 @@ const UserUpdateProfile = () => {
     },
     validationSchema: UserProfileYup,
     onSubmit: (values) => {
-      console.log("values: ", values);
       handleUpdateProfile(values);
     },
   });

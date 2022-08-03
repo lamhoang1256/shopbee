@@ -8,6 +8,14 @@
     background-color: #f5f5f5;
     font-size: 14px;
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
   .layout-container {
     width: 100%;
     max-width: 1230px;
