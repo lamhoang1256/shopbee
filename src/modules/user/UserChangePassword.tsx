@@ -4,15 +4,14 @@ import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserChangePasswordYup } from "constants/yup";
 import { useFormik } from "formik";
-import { ICurrentUser } from "interfaces";
+import { IPayloadChangePassword } from "interfaces";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import UserTemplate from "./UserTemplate";
 
 const UserChangePassword = () => {
-  const currentUser: ICurrentUser = useStore((state: any) => state.currentUser);
-
-  const changePassword = async (values: any) => {
+  const { currentUser } = useStore((state) => state);
+  const changePassword = async (values: IPayloadChangePassword) => {
     try {
       const { success, message } = await configAPI.userChangePassword(values);
       if (success) toast.success(message);

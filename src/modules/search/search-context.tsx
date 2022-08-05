@@ -1,4 +1,4 @@
-import { ISearchParams } from "interfaces/search";
+import { ISearchParams } from "interfaces";
 import { createContext, useContext } from "react";
 
 interface ISearchContext {

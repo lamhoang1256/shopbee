@@ -74,14 +74,15 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
       <div>
         <div>
           Tổng ({count} sản phẩm):
-          <ProductPriceSale className='text-xl font-medium'>
-            {" "}
+          <ProductPriceSale className='ml-1 text-xl font-medium'>
             {formatMoney(totalPayment)}
           </ProductPriceSale>
         </div>
         <div>
-          Tiết kiệm:{" "}
-          <ProductPriceSale>{formatMoney(totalPaymentNotSale - totalPayment)}</ProductPriceSale>
+          Tiết kiệm:
+          <ProductPriceSale className='ml-1'>
+            {formatMoney(totalPaymentNotSale - totalPayment)}
+          </ProductPriceSale>
         </div>
       </div>
       <div className='flex gap-3'>

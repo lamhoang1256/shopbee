@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
+import { UserSidebar } from "modules/user";
 import Footer from "./Footer";
 import Header from "./Header";
-import SettingsSidebar from "./SettingsSidebar";
 
 const UserLayout = () => {
   return (
@@ -10,7 +10,7 @@ const UserLayout = () => {
       <main className='flex-1'>
         <div className='layout-container'>
           <div className='flex flex-col gap-6 mt-8 lg:flex-row'>
-            <SettingsSidebar />
+            <UserSidebar />
             <div className='flex-1'>
               <Outlet />
             </div>

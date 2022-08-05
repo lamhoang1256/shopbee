@@ -48,7 +48,7 @@ const OrderStatus = ({ order }: OrderStatusProps) => {
       <OrderStatusBar widthActive={calcWidthActiveStatusBar()} />
       <div className='grid grid-cols-1 gap-5 md:grid-cols-4'>
         {statusList.map((status) => (
-          <div className='flex items-center gap-3 md:flex-col'>
+          <div className='flex items-center gap-3 md:flex-col' key={status.label}>
             <OrderStatusIcon active={status.active}>{status.icon}</OrderStatusIcon>
             <OrderStatusItem label={status.label}>{status.display}</OrderStatusItem>
           </div>

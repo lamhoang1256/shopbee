@@ -100,7 +100,9 @@ const ProductDetailsPage = () => {
             <ProductImage imageUrl={productInfo.image} />
           </div>
           <div>
-            <ProductTitle className='text-[#242424] text-2xl'>{productInfo.name}</ProductTitle>
+            <ProductTitle className='text-[#242424] text-base lg:text-2xl'>
+              {productInfo.name}
+            </ProductTitle>
             <div className='flex items-center my-4 gap-x-3'>
               <span className='font-medium'>{productInfo.rating}</span>
               <ProductRating rating={productInfo.rating} />
@@ -108,11 +110,11 @@ const ProductDetailsPage = () => {
                 {productInfo.sold}
               </ProductSold>
             </div>
-            <SectionGray className='flex flex-col-reverse md:flex-row gap-y-1 md:items-center gap-x-3'>
+            <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
               <ProductPriceOld className='text-[#929292]'>
                 {formatMoney(productInfo.price)}
               </ProductPriceOld>
-              <ProductPriceSale className='text-3xl font-medium'>
+              <ProductPriceSale className='text-lg font-medium lg:text-3xl'>
                 {formatMoney(productInfo.priceSale)}
               </ProductPriceSale>
               <ProductLabelSale>-{percentSale}%</ProductLabelSale>
@@ -126,12 +128,12 @@ const ProductDetailsPage = () => {
               <QuantityController onChangeValue={handleChangeQuantityController} />
               <span>{productInfo.quantity} sản phẩm có sẵn</span>
             </div>
-            <div className='flex items-center mt-6 gap-x-2'>
-              <ButtonAddToCart className='h-12' onClick={handleAddToCart}>
+            <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
+              <ButtonAddToCart className='h-10 lg:h-12' onClick={handleAddToCart}>
                 <IconCartOutline className='w-4 h-4 mr-2' />
                 <span className='text-sm'>Thêm vào giỏ hàng</span>
               </ButtonAddToCart>
-              <Button primary className='h-12 rounded-sm'>
+              <Button primary className='h-10 rounded-sm lg:h-12'>
                 Mua ngay
               </Button>
             </div>

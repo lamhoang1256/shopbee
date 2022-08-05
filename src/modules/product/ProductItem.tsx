@@ -26,7 +26,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
       </div>
       <div className='p-[6px] pb-3'>
         <ProductTitle>{product.name}</ProductTitle>
-        <div className='flex items-center my-1 gap-x-2'>
+        <div className='flex flex-col my-1 gap-x-2 gap-y-1 md:items-center md:flex-row'>
           <ProductRating rating={product.rating} size='w-[14px] h-[14px]' />
           <span className='text-[#787878] text-xs'>Đã bán {formatCash(product.sold)}</span>
         </div>

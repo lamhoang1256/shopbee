@@ -1,5 +1,5 @@
-import { IResponse } from "interfaces";
-import { ISearchParams } from "interfaces/search";
+import { IResponse, ISearchParams } from "interfaces";
+
 import axiosClient from "./axiosClient";
 
 export const configAPI = {

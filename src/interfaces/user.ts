@@ -12,3 +12,10 @@ export interface ICurrentUser {
   __v: number;
   _id: string;
 }
+
+export interface IPayloadChangePassword {
+  _id: string;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}

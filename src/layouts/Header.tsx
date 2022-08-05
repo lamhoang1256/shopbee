@@ -29,12 +29,12 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className='flex items-center justify-between h-20 -ml-3 lg:ml-0 gap-x-3 md:gap-x-6 '>
-          <Link to={path.home} className='w-36'>
-            <h1 className='hidden text-2xl font-medium text-white lg:block'>Shopbee</h1>
+        <div className='flex items-center justify-between h-20 lg:ml-0 gap-x-3 md:gap-x-6'>
+          <Link to={path.home} className='hidden w-0 md:block md:w-36'>
+            <h1 className='text-2xl font-medium text-white'>Shopbee</h1>
           </Link>
           <SearchBar />
-          <Link to={path.cart} className='relative mr-4 lg:mr-8'>
+          <Link to={path.cart} className='relative '>
             <IconCartOutline className='text-white' />
             <span className='absolute flex items-center justify-center w-6 h-[18px] text-xs font-medium bg-white rounded-full -top-3 -right-3 text-orangeee4'>
               {carts?.length >= 99 ? 99 : carts.length}

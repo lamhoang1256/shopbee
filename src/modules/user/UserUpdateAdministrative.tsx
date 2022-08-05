@@ -6,6 +6,12 @@ interface UserUpdateAdministrativeProps {
   formik: any;
 }
 
+const initAdministrative = {
+  province: {} as IProvince,
+  district: {} as IDistrict,
+  commune: {} as ICommune,
+};
+
 const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => {
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -33,12 +39,13 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
   const handleUpdateAddress = () => {
     const province: IProvince =
       provinces.find(({ idProvince }) => idProvince === administrative.idProvince) ||
-      ({} as IProvince);
+      initAdministrative.province;
     const district: IDistrict =
       districts.find(({ idDistrict }) => idDistrict === administrative.idDistrict) ||
-      ({} as IDistrict);
+      initAdministrative.district;
     const commune: ICommune =
-      communes.find(({ idCommune }) => idCommune === administrative.idCommune) || ({} as ICommune);
+      communes.find(({ idCommune }) => idCommune === administrative.idCommune) ||
+      initAdministrative.commune;
     if (province?.name || district?.name || commune?.name) {
       formik?.setFieldValue(
         "addressAdministrative",
@@ -50,15 +57,12 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
   useEffect(() => {
     fetchAllProvince();
   }, []);
-
   useEffect(() => {
     fetchAllDistrict();
   }, [administrative.idProvince]);
-
   useEffect(() => {
     fetchAllCommune();
   }, [administrative.idProvince, administrative.idDistrict]);
-
   useEffect(() => {
     if (administrative.idCommune) handleUpdateAddress();
   }, [administrative.idCommune]);

@@ -1,7 +1,6 @@
 import { configAPI } from "apis/configAPI";
 import { Pagination } from "components/pagination";
-import { IProduct } from "interfaces";
-import { ISearchParams } from "interfaces/search";
+import { IProduct, ISearchParams } from "interfaces";
 import { ProductItem } from "modules/product";
 import { SearchSidebar, SearchSortBar, SearchProvider } from "modules/search";
 import { useEffect, useState } from "react";

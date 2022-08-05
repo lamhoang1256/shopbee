@@ -1,10 +1,10 @@
 import { IconPrev } from "components/icons";
 
-interface SearchCloseSidebarProps {
+interface SidebarCloseActionProps {
   onCloseSidebar: () => any;
 }
 
-const SearchCloseSidebar = ({ onCloseSidebar }: SearchCloseSidebarProps) => {
+const SidebarCloseAction = ({ onCloseSidebar }: SidebarCloseActionProps) => {
   return (
     <div
       className='flex items-center mb-5 cursor-pointer gap-x-2 lg:hidden'
@@ -17,4 +17,4 @@ const SearchCloseSidebar = ({ onCloseSidebar }: SearchCloseSidebarProps) => {
   );
 };
 
-export default SearchCloseSidebar;
+export default SidebarCloseAction;
