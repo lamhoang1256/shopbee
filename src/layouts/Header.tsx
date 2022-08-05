@@ -1,5 +1,5 @@
 import { IconCartOutline } from "components/icons";
-import { defaultAvatar } from "constants/global";
+import { defaultUserAvatar } from "constants/global";
 import { path } from "constants/path";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
@@ -20,7 +20,11 @@ const Header = () => {
           )}
           {currentUser?.email && (
             <div className='flex items-center gap-x-2'>
-              <img src={defaultAvatar} alt='avatar' className='object-cover w-5 h-5 rounded-full' />
+              <img
+                src={defaultUserAvatar}
+                alt='avatar'
+                className='object-cover w-5 h-5 rounded-full'
+              />
               <span className='font-medium'>{currentUser?.fullname}</span>
             </div>
           )}

@@ -1,4 +1,4 @@
-import { defaultAvatar } from "constants/global";
+import { defaultUserAvatar } from "constants/global";
 import { path } from "constants/path";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
@@ -30,7 +30,7 @@ const SettingsSidebar = () => {
     <div className='w-48'>
       <div className='flex items-center gap-x-2'>
         <img
-          src={currentUser?.avatar || defaultAvatar}
+          src={currentUser?.avatar || defaultUserAvatar}
           alt='avatar'
           className='w-12 h-12 rounded-full'
         />

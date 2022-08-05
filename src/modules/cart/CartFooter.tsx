@@ -1,5 +1,5 @@
 import { configAPI } from "apis/configAPI";
-import { ButtonAddToCart } from "components/button";
+import { Button } from "components/button";
 import { path } from "constants/path";
 import { ICart } from "interfaces";
 import { ProductPriceSale } from "modules/product";
@@ -85,14 +85,10 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
         </div>
       </div>
       <div className='flex gap-3'>
-        <button
-          type='button'
-          onClick={handleRemoveAllCart}
-          className='py-2 px-4 border border-[#00000017]'
-        >
-          Xóa tất cả
-        </button>
-        <ButtonAddToCart onClick={handleBuyProducts}>Mua hàng</ButtonAddToCart>
+        <Button onClick={handleRemoveAllCart}>Xóa tất cả</Button>
+        <Button primary onClick={handleBuyProducts}>
+          Mua hàng
+        </Button>
       </div>
     </div>
   );

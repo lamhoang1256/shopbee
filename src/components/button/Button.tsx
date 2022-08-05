@@ -15,7 +15,7 @@ const Button = ({ children, type, className, primary, ...props }: ButtonProps) =
         type={type}
         {...props}
         className={classNames(
-          "py-2 px-4 rounded border border-transparent text-white bg-orangeee4",
+          "py-2 px-4 rounded-sm border border-transparent text-white bg-orangeee4",
           className,
         )}
       >
@@ -27,7 +27,7 @@ const Button = ({ children, type, className, primary, ...props }: ButtonProps) =
     <button
       type={type}
       {...props}
-      className={classNames("py-2 px-4 border border-[#00000017]", className)}
+      className={classNames("py-2 rounded-sm px-4 border border-[#00000017]", className)}
     >
       {children}
     </button>

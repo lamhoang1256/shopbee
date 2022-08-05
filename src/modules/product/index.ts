@@ -7,6 +7,7 @@ import ProductImage from "./ProductImage";
 import ProductSold from "./ProductSold";
 import ProductLabelSale from "./ProductLabelSale";
 import ProductSaleBar from "./ProductSaleBar";
+import ProductSkeleton from "./ProductSkeleton";
 
 export {
   ProductPriceOld,
@@ -18,4 +19,5 @@ export {
   ProductSold,
   ProductLabelSale,
   ProductSaleBar,
+  ProductSkeleton,
 };

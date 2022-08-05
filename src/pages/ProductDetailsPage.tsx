@@ -41,7 +41,6 @@ const ProductDetailsPage = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   };
   useEffect(() => {
@@ -67,17 +66,14 @@ const ProductDetailsPage = () => {
 
     try {
       const { message, success, data } = await configAPI.addToCart(values);
-      if (success) {
-        if (existCartItem) {
-          const cartsWithoutExistCartItem = carts?.filter(
-            (cart) => cart?._id !== existCartItem?._id,
-          );
-          setCart([...cartsWithoutExistCartItem, existCartItem]);
-        } else {
-          setCart([...carts, data]);
-        }
-        toast.success(message);
+      if (!success) return;
+      if (existCartItem) {
+        const cartsWithoutExistCartItem = carts?.filter((cart) => cart?._id !== existCartItem?._id);
+        setCart([...cartsWithoutExistCartItem, existCartItem]);
+      } else {
+        setCart([...carts, data]);
       }
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -128,7 +124,7 @@ const ProductDetailsPage = () => {
       </div>
       <div className='p-4 mt-6 bg-white layout-container'>
         <SectionGray>MÔ TẢ SẢN PHẨM</SectionGray>
-        <p
+        <div
           className='mt-3 leading-6 text-[#242424]'
           dangerouslySetInnerHTML={{
             __html: productInfo.description || "",
