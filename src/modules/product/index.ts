@@ -6,7 +6,6 @@ import ProductRating from "./ProductRating";
 import ProductImage from "./ProductImage";
 import ProductSold from "./ProductSold";
 import ProductLabelSale from "./ProductLabelSale";
-import ProductSaleBar from "./ProductSaleBar";
 import ProductSkeleton from "./ProductSkeleton";
 import ProductDesc from "./ProductDesc";
 
@@ -19,7 +18,6 @@ export {
   ProductImage,
   ProductSold,
   ProductLabelSale,
-  ProductSaleBar,
   ProductSkeleton,
   ProductDesc,
 };

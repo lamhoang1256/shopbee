@@ -5,9 +5,9 @@ interface ProductImageProps {
   className?: string;
 }
 
-const ProductImage = ({ imageUrl, className }: ProductImageProps) => {
-  return <img src={imageUrl} className={classNames("aspect-square", className)} alt='product' />;
-};
+const ProductImage = ({ imageUrl, className }: ProductImageProps) => (
+  <img src={imageUrl} className={classNames("aspect-square", className)} alt='product' />
+);
 
 ProductImage.defaultProps = {
   className: "",

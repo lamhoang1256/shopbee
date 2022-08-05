@@ -1,7 +1,5 @@
-import { path } from "constants/path";
 import { ICart } from "interfaces";
-import { CartBody, CartFooter, CartHeader, CartItem } from "modules/cart";
-import { Link } from "react-router-dom";
+import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/cart";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";
 
@@ -9,25 +7,7 @@ const CartPage = () => {
   const { carts } = useStore((state) => state);
   const total = calcTotalMoneyCart(carts, "price");
   const totalSale = calcTotalMoneyCart(carts, "priceSale");
-  if (carts?.length === 0) {
-    return (
-      <div className='layout-container'>
-        <div className='flex flex-col items-center justify-center gap-y-2 h-[400px] '>
-          <img
-            src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/cart/9bdd8040b334d31946f49e36beaf32db.png'
-            alt='cart'
-            className='w-28 h-28'
-          />
-          <h3 className='font-medium text-base text-[#00000066]'>Giỏ hàng của bạn còn trống</h3>
-          <Link to={path.home}>
-            <button type='button' className='py-2 mt-2 text-white rounded px-9 bg-orangeee4'>
-              MUA NGAY
-            </button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  if (carts?.length === 0) return <CartEmpty />;
   return (
     <div className='layout-container'>
       <CartHeader />

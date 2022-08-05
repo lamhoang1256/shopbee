@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { configAPI } from "apis/configAPI";
 import { Button, ButtonAddToCart } from "components/button";
-import { SectionGray, SectionHeader } from "components/common";
+import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
-import { ICart, IProduct } from "interfaces";
+import { IProduct } from "interfaces";
 import {
   ProductDesc,
   ProductImage,
@@ -26,12 +25,10 @@ import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const currentUser = useStore((state: any) => state.currentUser);
-  const setCart = useStore((state: any) => state.setCart);
-  const carts: ICart[] = useStore((state: any) => state.carts);
+  const { currentUser, setCart, carts } = useStore((state) => state);
+  const [loading, setLoading] = useState(true);
   const [productInfo, setProductInfo] = useState<IProduct>(Object);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
-  const [loading, setLoading] = useState(true);
   const [quantityAdd, setQuantityAdd] = useState(1);
   const handleChangeQuantityController = (value: number) => {
     setQuantityAdd(() => value);
@@ -66,8 +63,8 @@ const ProductDetailsPage = () => {
   if (!id) return <PageNotFound />;
   if (loading) return <Loading />;
   if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
-
   const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
+
   const handleAddToCart = async () => {
     let quantity = quantityAdd;
     const existCartItem = carts?.find((cart) => cart.product._id === id);
@@ -80,7 +77,6 @@ const ProductDetailsPage = () => {
       productId: id,
       quantity,
     };
-
     try {
       const { message, success, data } = await configAPI.addToCart(values);
       if (!success) return;
@@ -95,6 +91,7 @@ const ProductDetailsPage = () => {
       toast.error(error?.message);
     }
   };
+
   return (
     <div className='layout-container'>
       <section>

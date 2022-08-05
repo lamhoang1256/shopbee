@@ -30,3 +30,15 @@ export interface IOrder {
   shippingAt: string;
   deliveredAt: string;
 }
+
+export interface IStatusOrder {
+  active: boolean;
+  icon: any;
+  label: string;
+  display: string;
+}
+
+export interface IPayment {
+  label: string;
+  value: number;
+}

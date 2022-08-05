@@ -1,12 +1,10 @@
 import { configAPI } from "apis/configAPI";
 import { Loading } from "components/loading";
 import { IOrder } from "interfaces";
-import { OrderPaymentField, OrderStatus } from "modules/order";
+import { OrderPayment, OrderStatus } from "modules/order";
 import OrderProductItem from "modules/order/OrderProductItem";
-import { ProductPriceSale } from "modules/product";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { formatMoney } from "utils/helper";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -26,6 +24,25 @@ const OrderDetailsPage = () => {
     fetchDetailsOrder();
   }, [id]);
   if (loading) return <Loading />;
+  const payments = [
+    {
+      label: "Tổng tiền hàng",
+      value: order.totalPriceProduct,
+    },
+    {
+      label: "Phí vận chuyển",
+      value: order.shippingPrice,
+    },
+    {
+      label: "Voucher từ Shopbee",
+      value: order.totalPriceProduct * -1,
+    },
+    {
+      label: "Tổng thanh toán",
+      value: order.totalPriceProduct + order.shippingPrice - order.totalDiscount,
+    },
+  ];
+
   return (
     <div>
       <div className='px-4 py-5 bg-white rounded-md'>
@@ -34,7 +51,6 @@ const OrderDetailsPage = () => {
           <span>ID ĐƠN HÀNG: {order?._id}</span>
         </div>
         <OrderStatus order={order} />
-
         <div className='grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2'>
           <div className='p-3 border border-[#e8e8e8]'>
             <h3 className='mb-2 text-lg'>Chi tiết đơn hàng</h3>
@@ -56,23 +72,7 @@ const OrderDetailsPage = () => {
           ))}
         </div>
       </div>
-
-      <div className='p-4 mt-2 bg-white rounded-md'>
-        <OrderPaymentField label='Tổng tiền hàng'>
-          {formatMoney(order.totalPriceProduct)}
-        </OrderPaymentField>
-        <OrderPaymentField label='Phí vận chuyển'>
-          {formatMoney(order.shippingPrice)}
-        </OrderPaymentField>
-        <OrderPaymentField label='Voucher từ Shopbee'>
-          - {formatMoney(order.totalDiscount)}
-        </OrderPaymentField>
-        <OrderPaymentField label='Tổng thanh toán'>
-          <ProductPriceSale>
-            {formatMoney(order.totalPriceProduct + order.shippingPrice - order.totalDiscount)}
-          </ProductPriceSale>
-        </OrderPaymentField>
-      </div>
+      <OrderPayment payments={payments} />
     </div>
   );
 };

@@ -15,10 +15,10 @@ const tabs = [
 ];
 
 const OrderPage = () => {
-  const currentUser = useStore((state: any) => state.currentUser);
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { currentUser } = useStore((state) => state);
   const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
   const status = searchParams.get("status") || "";
 
   const fetchAllOrder = async () => {

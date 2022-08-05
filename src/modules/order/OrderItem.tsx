@@ -6,7 +6,7 @@ import { ProductPriceSale } from "modules/product";
 import { Link } from "react-router-dom";
 import { formatMoney } from "utils/helper";
 
-interface PurchaseItemProps {
+interface OrderItemProps {
   order: IOrder;
 }
 
@@ -23,7 +23,7 @@ const renderStatusOrder = (order: IOrder) => {
   return <span>Chờ xác nhận</span>;
 };
 
-const PurchaseItem = ({ order }: PurchaseItemProps) => {
+const OrderItem = ({ order }: OrderItemProps) => {
   return (
     <div className='py-4 px-4 md:px-6 mt-3 border border-[#00000017] bg-white rounded'>
       <div className='flex flex-col justify-between gap-2 mt-2 mb-4 md:items-center md:flex-row'>
@@ -53,4 +53,4 @@ const PurchaseItem = ({ order }: PurchaseItemProps) => {
   );
 };
 
-export default PurchaseItem;
+export default OrderItem;
