@@ -13,12 +13,16 @@ import IconMenu from "./IconMenu";
 import IconFilter from "./IconFilter";
 import IconNext from "./IconNext";
 import IconPrev from "./IconPrev";
+import IconUp from "./IconUp";
+import IconDown from "./IconDown";
 
 export {
   IconPrev,
   IconNext,
   IconShipping,
   IconCheck,
+  IconUp,
+  IconDown,
   IconMoney,
   IconSearch,
   IconClipboard,

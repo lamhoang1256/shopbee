@@ -10,4 +10,5 @@ export const path = {
   user: "/user",
   password: "/user/password",
   search: "/search",
+  dashboard: "/dashboard",
 };

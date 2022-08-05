@@ -34,7 +34,7 @@ const Header = () => {
             <h1 className='text-2xl font-medium text-white'>Shopbee</h1>
           </Link>
           <SearchBar />
-          <Link to={path.cart} className='relative '>
+          <Link to={path.cart} className='relative'>
             <IconCartOutline className='text-white' />
             <span className='absolute flex items-center justify-center w-6 h-[18px] text-xs font-medium bg-white rounded-full -top-3 -right-3 text-orangeee4'>
               {carts?.length >= 99 ? 99 : carts.length}

@@ -15,6 +15,7 @@ import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
 import PageNotFound from "pages/PageNotFound";
 import SearchPage from "pages/SearchPage";
+import DashboardPage from "pages/DashboardPage";
 
 const App = () => {
   const currentUser = useStore((state: any) => state.currentUser);
@@ -51,6 +52,7 @@ const App = () => {
           <Route path={path.profile} element={<ProfilePage />} />
           <Route path={path.password} element={<UserChangePassword />} />
         </Route>
+        <Route path={path.dashboard} element={<DashboardPage />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Router>
