@@ -44,7 +44,7 @@ const SearchPage = () => {
         <SearchSidebar />
         <div className='flex-1'>
           <SearchSortBar />
-          <div className='mt-5 grid-product'>
+          <div className='mt-5 product-grid'>
             {results?.map((product) => (
               <ProductItem product={product} key={product._id} />
             ))}

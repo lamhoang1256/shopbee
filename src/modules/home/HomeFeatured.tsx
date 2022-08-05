@@ -22,7 +22,7 @@ const HomeFeatured = () => {
       <SectionHeader>
         <h3 className='text-base font-medium text-orangeee4'>GỢI Ý HÔM NAY</h3>
       </SectionHeader>
-      <div className='my-3 grid-product'>
+      <div className='my-3 product-grid'>
         {products?.map((product: IProduct) => (
           <ProductItem product={product} key={product._id} />
         ))}

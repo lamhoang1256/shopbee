@@ -147,7 +147,7 @@ const ProductDetailsPage = () => {
       {relatedProduct?.length > 0 && (
         <div className='mt-5'>
           <h3 className='text-[#0000008a] text-base font-medium'>SẢN PHẨM TƯƠNG TỰ</h3>
-          <div className='my-3 grid-product'>
+          <div className='my-3 product-grid'>
             {relatedProduct?.map((product: IProduct) => (
               <ProductItem product={product} key={product._id} />
             ))}

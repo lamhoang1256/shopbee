@@ -37,7 +37,10 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
         userId: currentUser?._id,
       };
       const { success, message } = await configAPI.deleteAllCart(values);
-      if (success) toast.success(message);
+      if (success) {
+        setCart([]);
+        toast.success(message);
+      }
     } catch (error: any) {
       toast.error(error?.message);
     }
