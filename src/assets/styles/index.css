@@ -60,4 +60,32 @@
   .search-sidebar {
     @apply -translate-x-full lg:w-48 z-10 w-full fixed inset-0 lg:translate-x-0 bg-[#f5f5f5] min-h-screen p-4 lg:p-0 transition-all duration-300 lg:static overflow-auto;
   }
+  .home-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  @media screen and (max-width: 767.98px) {
+    .home-categories {
+      justify-content: flex-start;
+      grid-auto-columns: 100px;
+      grid-auto-flow: column;
+      grid-gap: 0;
+      overflow: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-snap-stop: always;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding: 1rem;
+      grid-template-columns: unset;
+    }
+    .home-categories::-webkit-scrollbar {
+      display: none;
+      width: 0;
+    }
+    .home-categories > * {
+      scroll-snap-align: start;
+    }
+  }
 }

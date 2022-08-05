@@ -18,7 +18,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link
       to={`${path.product}/${product._id}`}
-      className='bg-white shadow-product'
+      className='transition duration-300 border bg-white shadow-product hover:-translate-y-[2px] border-transparent hover:border-orangeee4'
       key={product._id}
     >
       <div className='p-2'>

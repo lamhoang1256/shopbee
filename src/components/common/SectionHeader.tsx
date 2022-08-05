@@ -1,13 +1,20 @@
+import classNames from "utils/className";
+
 interface SectionHeaderProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-const SectionHeader = ({ children }: SectionHeaderProps) => {
+const SectionHeader = ({ children, className }: SectionHeaderProps) => {
   return (
-    <h3 className='px-5 py-4 my-4 text-lg font-normal uppercase bg-white text-black33'>
+    <div className={classNames("px-5 py-4 text-lg uppercase bg-white text-black33", className)}>
       {children}
-    </h3>
+    </div>
   );
+};
+
+SectionHeader.defaultProps = {
+  className: "",
 };
 
 export default SectionHeader;

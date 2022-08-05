@@ -19,8 +19,10 @@ const HomeFeatured = () => {
   }, []);
   return (
     <div className='layout-container'>
-      <SectionHeader>Sản phẩm nổi bật</SectionHeader>
-      <div className='grid-product'>
+      <SectionHeader>
+        <h3 className='text-base font-medium text-orangeee4'>GỢI Ý HÔM NAY</h3>
+      </SectionHeader>
+      <div className='my-3 grid-product'>
         {products?.map((product: IProduct) => (
           <ProductItem product={product} key={product._id} />
         ))}
