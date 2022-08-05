@@ -11,7 +11,7 @@ const ButtonAddToCart = ({ children, className, onClick }: ButtonAddToCartProps)
     <button
       type='button'
       className={classNames(
-        "flex justify-center font-semibold items-center text-white bg-redff4 rounded",
+        "flex justify-center px-3 items-center border border-orangeee4 text-orangeee4 bg-[#ff57221a] rounded-sm",
         className,
       )}
       onClick={onClick}
@@ -22,7 +22,7 @@ const ButtonAddToCart = ({ children, className, onClick }: ButtonAddToCartProps)
 };
 
 ButtonAddToCart.defaultProps = {
-  className: "w-[210px] h-[40px]",
+  className: "h-12",
   onClick: () => {},
 };
 

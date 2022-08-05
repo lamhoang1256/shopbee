@@ -1,5 +1,5 @@
 import { configAPI } from "apis/configAPI";
-import { ButtonAddToCart } from "components/button";
+import { Button, ButtonAddToCart } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
@@ -84,8 +84,8 @@ const ProductDetailsPage = () => {
   };
   return (
     <>
-      <div className='flex p-4 mt-6 bg-white layout-container gap-x-5'>
-        <div className='flex-shrink-0 w-[400px]'>
+      <div className='flex flex-col p-4 mt-6 bg-white gap-y-6 lg:flex-row layout-container gap-x-5'>
+        <div className='flex-shrink-0 lg:w-[400px]'>
           <ProductImage imageUrl={productInfo.image} />
         </div>
         <div>
@@ -97,7 +97,7 @@ const ProductDetailsPage = () => {
               {productInfo.sold}
             </ProductSold>
           </div>
-          <SectionGray className='flex items-center gap-x-3'>
+          <SectionGray className='flex flex-col-reverse md:flex-row gap-y-1 md:items-center gap-x-3'>
             <ProductPriceOld className='text-[#929292]'>
               {formatMoney(productInfo.price)}
             </ProductPriceOld>
@@ -110,15 +110,20 @@ const ProductDetailsPage = () => {
             <h4 className='font-medium text-[#00ab56]'>Thứ 6, 27/09</h4>
             <span>18.000đ (Freeship 10K đh 149K)</span>
           </div>
-          <div className='flex items-center mt-6 gap-x-4'>
+          <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
             <span>Số lượng</span>
             <QuantityController onChangeValue={handleChangeQuantityController} />
             <span>{productInfo.quantity} sản phẩm có sẵn</span>
           </div>
-          <ButtonAddToCart className='w-[300px] h-12 mt-5 gap-x-2' onClick={handleAddToCart}>
-            <IconCartOutline />
-            <span className='text-sm'>Thêm vào giỏ hàng</span>
-          </ButtonAddToCart>
+          <div className='flex items-center mt-6 gap-x-2'>
+            <ButtonAddToCart className='h-12' onClick={handleAddToCart}>
+              <IconCartOutline className='w-4 h-4 mr-2' />
+              <span className='text-sm'>Thêm vào giỏ hàng</span>
+            </ButtonAddToCart>
+            <Button primary className='h-12 rounded-sm'>
+              Mua ngay
+            </Button>
+          </div>
         </div>
       </div>
       <div className='p-4 mt-6 bg-white layout-container'>
