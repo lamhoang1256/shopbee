@@ -8,7 +8,7 @@ interface OrderPaymentProps {
 
 const OrderPayment = ({ payments }: OrderPaymentProps) => {
   return (
-    <div className='p-4 mt-2 text-right bg-white rounded-md'>
+    <div className='p-4 mt-3 text-right bg-white rounded-md'>
       {payments?.map(({ label, value }) => {
         if (label === "Tổng thanh toán") {
           return (

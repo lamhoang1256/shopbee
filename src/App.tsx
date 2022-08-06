@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useStore } from "store/configStore";
 import { configAPI } from "apis/configAPI";
 import { path } from "constants/path";
-import { MainLayout, UserLayout } from "layouts";
+import { DashboardLayout, MainLayout, UserLayout } from "layouts";
 import { UserChangePassword } from "modules/user";
 import CartPage from "pages/CartPage";
 import HomePage from "pages/HomePage";
@@ -16,6 +16,7 @@ import SignUpPage from "pages/SignUpPage";
 import PageNotFound from "pages/PageNotFound";
 import SearchPage from "pages/SearchPage";
 import DashboardPage from "pages/DashboardPage";
+import { OrderManage, OrderUpdate } from "modules/order";
 
 const App = () => {
   const currentUser = useStore((state: any) => state.currentUser);
@@ -52,7 +53,11 @@ const App = () => {
           <Route path={path.profile} element={<ProfilePage />} />
           <Route path={path.password} element={<UserChangePassword />} />
         </Route>
-        <Route path={path.dashboard} element={<DashboardPage />} />
+        <Route path='/dashboard' element={<DashboardLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path={path.orderManage} element={<OrderManage />} />
+          <Route path={`${path.orderManage}/:id`} element={<OrderUpdate />} />
+        </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Router>

@@ -18,7 +18,7 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
       <Button primary onClick={() => toggleSearchSidebar()} className='lg:hidden'>
         {labelOpenSidebar}
       </Button>
-      <div className={classNames("search-sidebar lg:w-48", className)} ref={sidebarRef}>
+      <div className={classNames("search-sidebar", className)} ref={sidebarRef}>
         <SidebarCloseAction onCloseSidebar={toggleSearchSidebar} />
         <div>{children}</div>
       </div>
@@ -28,7 +28,7 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
 
 SearchSidebar.defaultProps = {
   labelOpenSidebar: "Mở sidebar",
-  className: "",
+  className: "lg:w-48",
 };
 
 export default SearchSidebar;

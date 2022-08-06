@@ -1,12 +1,17 @@
 import { configAPI } from "apis/configAPI";
+import { Button } from "components/button";
+import { SectionWhite } from "components/common";
 import { Loading } from "components/loading";
+import { Select } from "components/select";
 import { IOrder } from "interfaces";
-import { OrderOverview, OrderPayment, OrderStatus } from "modules/order";
-import OrderProductItem from "modules/order/OrderProductItem";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import OrderOverview from "./OrderOverview";
+import OrderPayment from "./OrderPayment";
+import OrderProductItem from "./OrderProductItem";
+import OrderStatus from "./OrderStatus";
 
-const OrderDetailsPage = () => {
+const OrderUpdate = () => {
   const { id } = useParams();
   const [order, setOrder] = useState<IOrder>(Object);
   const [loading, setLoading] = useState(true);
@@ -42,25 +47,36 @@ const OrderDetailsPage = () => {
       value: order.totalPriceProduct + order.shippingPrice - order.totalDiscount,
     },
   ];
-
   return (
-    <div>
-      <div className='px-4 py-5 bg-white rounded-md'>
+    <>
+      <SectionWhite>
         <div className='flex flex-col justify-between md:items-center md:flex-row'>
           <h3 className='text-lg font-medium'>Quản lí đơn hàng</h3>
           <span>ID ĐƠN HÀNG: {order?._id}</span>
         </div>
         <OrderStatus order={order} />
         <OrderOverview order={order} />
-      </div>
-      <div className='p-4 mt-4 bg-white rounded-md'>
+      </SectionWhite>
+      <SectionWhite className='mt-3'>
+        <div className='flex items-center gap-x-5'>
+          <span>Trạng thái đơn hàng</span>
+          <Select name='status'>
+            <option value='1'>Chờ xác nhận</option>
+            <option value='2'>Đã thanh toán</option>
+            <option value='3'>Đang vận chuyển</option>
+            <option value='4'>Giao hàng thành công</option>
+          </Select>
+          <Button primary>Cập nhật trạng thái</Button>
+        </div>
+      </SectionWhite>
+      <SectionWhite className='mt-3'>
         {order?.orderItems.map((orderItem) => (
           <OrderProductItem order={orderItem} key={orderItem._id} />
         ))}
-      </div>
+      </SectionWhite>
       <OrderPayment payments={payments} />
-    </div>
+    </>
   );
 };
 
-export default OrderDetailsPage;
+export default OrderUpdate;

@@ -1,5 +1,4 @@
 import { Button } from "components/button";
-import { path } from "constants/path";
 import { IOrder } from "interfaces";
 import OrderProductItem from "modules/order/OrderProductItem";
 import { ProductPriceSale } from "modules/product";
@@ -39,7 +38,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
         ))}
       </div>
       <div className='flex flex-col-reverse justify-between gap-3 mt-5 md:flex-row md:items-center'>
-        <Link to={`${path.order}/${order?._id}`}>
+        <Link to={`${order?._id}`}>
           <Button>Xem chi tiết đơn</Button>
         </Link>
         <div>
