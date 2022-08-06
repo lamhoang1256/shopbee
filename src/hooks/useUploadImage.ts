@@ -1,21 +1,25 @@
+import { configCloudinaryAPI } from "apis/cloudinaryAPI";
 import { useState } from "react";
+import { toast } from "react-toastify";
+
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || "";
 
 export const useUploadImage = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [previewImage, setPreviewImage] = useState("");
+  const [inputImageValue, setImageValue] = useState("");
+  const [urlCloudinary, setUrlCloudinary] = useState("");
 
-  const handlePreviewImage = (file: any) => {
-    const reader: any = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewImage(reader.result);
-    };
-  };
-
-  const handleFileInputChange = (e: any) => {
+  const handleFileInputChange = async (e: any) => {
     const file = e.target.files[0];
-    handlePreviewImage(file);
-    setInputValue(e.target.value);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+    try {
+      const { url } = await configCloudinaryAPI.uploadImage(formData);
+      setImageValue(e.target.value);
+      setUrlCloudinary(url);
+    } catch (error: any) {
+      toast.error("error: ", error?.message);
+    }
   };
-  return { inputValue, previewImage, handleFileInputChange };
+  return { inputImageValue, urlCloudinary, handleFileInputChange };
 };

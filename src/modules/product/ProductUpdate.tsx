@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const ProductAddNew = () => {
+const ProductUpdate = () => {
   const { inputImageValue, urlCloudinary, handleFileInputChange } = useUploadImage();
   console.log("inputImageValue: ", inputImageValue);
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -40,7 +40,7 @@ const ProductAddNew = () => {
       priceSale: "",
       quantity: "",
     },
-    // validationSchema: ProductAddNewSchemaYup,
+    // validationSchema: ProductUpdateSchemaYup,
     onSubmit: (values) => {
       handleAddNewProduct(values);
     },
@@ -55,7 +55,7 @@ const ProductAddNew = () => {
 
   return (
     <HeaderTemplate
-      label='Thêm 1 sản phẩm mới'
+      label='Sửa thông tin sản phẩm'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
@@ -139,4 +139,4 @@ const ProductAddNew = () => {
   );
 };
 
-export default ProductAddNew;
+export default ProductUpdate;

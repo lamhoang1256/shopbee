@@ -9,11 +9,13 @@ import ProductLabelSale from "./ProductLabelSale";
 import ProductSkeleton from "./ProductSkeleton";
 import ProductDesc from "./ProductDesc";
 import ProductAddNew from "./ProductAddNew";
+import ProductUpdate from "./ProductUpdate";
 
 export {
   ProductPriceOld,
   ProductPriceSale,
   ProductItem,
+  ProductUpdate,
   ProductAddNew,
   ProductTitle,
   ProductRating,

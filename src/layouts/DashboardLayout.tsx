@@ -22,7 +22,7 @@ const productManage = [
   },
   {
     display: "Thêm sản phẩm",
-    path: path.dashboard,
+    path: path.productAddNew,
   },
 ];
 const DashboardLayout = () => {

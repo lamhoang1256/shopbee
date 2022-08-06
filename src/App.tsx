@@ -17,7 +17,7 @@ import PageNotFound from "pages/PageNotFound";
 import SearchPage from "pages/SearchPage";
 import DashboardPage from "pages/DashboardPage";
 import { OrderManage, OrderUpdate } from "modules/order";
-import { ProductAddNew } from "modules/product";
+import { ProductAddNew, ProductUpdate } from "modules/product";
 
 const App = () => {
   const currentUser = useStore((state: any) => state.currentUser);
@@ -59,6 +59,7 @@ const App = () => {
           <Route path={path.orderManage} element={<OrderManage />} />
           <Route path={`${path.orderManage}/:id`} element={<OrderUpdate />} />
           <Route path={path.productAddNew} element={<ProductAddNew />} />
+          <Route path={`${path.productUpdate}/:id`} element={<ProductUpdate />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>

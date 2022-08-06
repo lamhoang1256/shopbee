@@ -12,5 +12,6 @@ export const path = {
   search: "/search",
   dashboard: "/dashboard",
   productAddNew: "/dashboard/add-product",
+  productUpdate: "/dashboard/update-product",
   orderManage: "/dashboard/order-manage",
 };
