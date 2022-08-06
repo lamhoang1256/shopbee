@@ -4,12 +4,13 @@ import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { ImageUpload } from "components/image";
 import { InputV2 } from "components/input";
 import { Select } from "components/select";
-import { ProductAddNewSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
 import { useUploadImage } from "hooks/useUploadImage";
 import { ICategory } from "interfaces";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ProductAddNew = () => {
   const { inputValue, previewImage, handleFileInputChange } = useUploadImage();
@@ -38,7 +39,7 @@ const ProductAddNew = () => {
       priceSale: "",
       quantity: "",
     },
-    validationSchema: ProductAddNewSchemaYup,
+    // validationSchema: ProductAddNewSchemaYup,
     onSubmit: (values) => {
       handleAddNewProduct(values);
     },
@@ -122,11 +123,10 @@ const ProductAddNew = () => {
         </FormGroup>
         <FormGroup>
           <FormLabel htmlFor='description'>Mô tả sản phẩm</FormLabel>
-          <InputV2
-            name='description'
-            type='text'
-            value={formik.values.description}
-            onChange={formik.handleChange}
+          <ReactQuill
+            className='mt-1'
+            theme='snow'
+            onChange={(e) => formik?.setFieldValue("description", e)}
           />
           <FormMessError>{formik.touched.description && formik.errors?.description}</FormMessError>
         </FormGroup>
