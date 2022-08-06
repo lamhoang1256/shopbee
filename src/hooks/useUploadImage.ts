@@ -21,5 +21,5 @@ export const useUploadImage = () => {
       toast.error("error: ", error?.message);
     }
   };
-  return { inputImageValue, urlCloudinary, handleFileInputChange };
+  return { inputImageValue, urlCloudinary, setUrlCloudinary, handleFileInputChange };
 };

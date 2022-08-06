@@ -1,20 +1,23 @@
 import { configAPI } from "apis/configAPI";
+import { productAPI } from "apis/product";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { ImageUpload } from "components/image";
 import { InputV2 } from "components/input";
 import { Select } from "components/select";
+import { initialValuesProduct } from "constants/initialValue";
+import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
 import { useUploadImage } from "hooks/useUploadImage";
-import { ICategory } from "interfaces";
+import { ICategory, IProductPayload } from "interfaces";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { toast } from "react-toastify";
 
 const ProductAddNew = () => {
   const { inputImageValue, urlCloudinary, handleFileInputChange } = useUploadImage();
-  console.log("inputImageValue: ", inputImageValue);
   const [categories, setCategories] = useState<ICategory[]>([]);
 
   const fetchCategories = async () => {
@@ -26,22 +29,21 @@ const ProductAddNew = () => {
     }
   };
 
-  const handleAddNewProduct = (values: any) => {
-    console.log("values: ", values);
+  const handleAddNewProduct = async (values: IProductPayload) => {
+    const payload: IProductPayload = values;
+    if (payload.priceSale === 0) payload.priceSale = payload.price;
+    try {
+      const { success, message } = await productAPI.productAddNew(payload);
+      if (success) toast.success(message);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
   };
 
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      image: "",
-      description: "",
-      category: "",
-      price: "",
-      priceSale: "",
-      quantity: "",
-    },
-    // validationSchema: ProductAddNewSchemaYup,
-    onSubmit: (values) => {
+    initialValues: initialValuesProduct,
+    validationSchema: ProductSchemaYup,
+    onSubmit: (values: IProductPayload) => {
       handleAddNewProduct(values);
     },
   });
@@ -71,7 +73,7 @@ const ProductAddNew = () => {
         </FormGroup>
         <FormGroup>
           <FormLabel htmlFor='category'>Chọn danh mục</FormLabel>
-          <Select name='category' onChange={formik.handleChange}>
+          <Select name='category' onChange={formik.handleChange} value={formik.values.category}>
             <option value=''>Chọn danh mục</option>
             {categories?.map((category) => (
               <option value={category._id} key={category._id}>
@@ -127,6 +129,7 @@ const ProductAddNew = () => {
           <ReactQuill
             className='mt-1'
             theme='snow'
+            value={formik.values.description}
             onChange={(e) => formik?.setFieldValue("description", e)}
           />
           <FormMessError>{formik.touched.description && formik.errors?.description}</FormMessError>
