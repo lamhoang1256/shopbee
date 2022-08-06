@@ -36,3 +36,13 @@ export const SearchRangePriceYup = Yup.object({
   price_min: Yup.number().min(0),
   price_max: Yup.number().min(Yup.ref("price_min"), "Vui lòng điền khoảng giá phù hợp"),
 });
+
+export const ProductAddNewSchemaYup = Yup.object({
+  name: Yup.string().required("Vui lòng nhập tên sản phẩm!"),
+  // image: Yup.string().required("Vui lòng chọn hình ảnh!"),
+  description: Yup.string().required("Vui lòng nhập mô tả sản phẩm!"),
+  category: Yup.string().required("Vui lòng chọn danh mục!"),
+  price: Yup.number().required("Vui lòng chọn giá sản phẩm!"),
+  priceSale: Yup.number().max(Yup.ref("price"), "Giá đã giảm không được lớn hơn giá giốc"),
+  quantity: Yup.number().required("Vui lòng chọn số lượng!"),
+});

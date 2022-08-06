@@ -8,11 +8,13 @@ import ProductSold from "./ProductSold";
 import ProductLabelSale from "./ProductLabelSale";
 import ProductSkeleton from "./ProductSkeleton";
 import ProductDesc from "./ProductDesc";
+import ProductAddNew from "./ProductAddNew";
 
 export {
   ProductPriceOld,
   ProductPriceSale,
   ProductItem,
+  ProductAddNew,
   ProductTitle,
   ProductRating,
   ProductImage,

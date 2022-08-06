@@ -5,9 +5,9 @@ import { InputV2 } from "components/input";
 import { UserChangePasswordYup } from "constants/yup";
 import { useFormik } from "formik";
 import { IPayloadChangePassword } from "interfaces";
+import { HeaderTemplate } from "layouts";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import UserTemplate from "./UserTemplate";
 
 const UserChangePassword = () => {
   const { currentUser } = useStore((state) => state);
@@ -33,7 +33,7 @@ const UserChangePassword = () => {
     },
   });
   return (
-    <UserTemplate
+    <HeaderTemplate
       label='Đổi Mật Khẩu'
       desc='Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác'
     >
@@ -76,7 +76,7 @@ const UserChangePassword = () => {
           Lưu
         </Button>
       </form>
-    </UserTemplate>
+    </HeaderTemplate>
   );
 };
 

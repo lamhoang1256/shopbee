@@ -1,10 +1,10 @@
-interface UserTemplateProps {
+interface HeaderTemplateProps {
   children: React.ReactNode;
   label: string;
   desc: string;
 }
 
-const UserTemplate = ({ label, desc, children }: UserTemplateProps) => {
+const HeaderTemplate = ({ label, desc, children }: HeaderTemplateProps) => {
   return (
     <div className='p-5 pb-10 bg-white rounded'>
       <div className='border-b-[1px] pb-5 border-[#efefef]'>
@@ -16,4 +16,4 @@ const UserTemplate = ({ label, desc, children }: UserTemplateProps) => {
   );
 };
 
-export default UserTemplate;
+export default HeaderTemplate;

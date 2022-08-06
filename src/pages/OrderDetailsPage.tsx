@@ -44,7 +44,7 @@ const OrderDetailsPage = () => {
   ];
 
   return (
-    <div>
+    <>
       <div className='px-4 py-5 bg-white rounded-md'>
         <div className='flex flex-col justify-between md:items-center md:flex-row'>
           <h3 className='text-lg font-medium'>Quản lí đơn hàng</h3>
@@ -59,7 +59,7 @@ const OrderDetailsPage = () => {
         ))}
       </div>
       <OrderPayment payments={payments} />
-    </div>
+    </>
   );
 };
 

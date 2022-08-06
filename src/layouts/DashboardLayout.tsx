@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 const orderManage = [
   {
     display: "Tất cả",
-    path: path.dashboard,
+    path: path.orderManage,
   },
   {
     display: "Đơn hủy",
@@ -27,7 +27,7 @@ const productManage = [
 ];
 const DashboardLayout = () => {
   return (
-    <div>
+    <>
       <DashboardHeader />
       <main className='flex flex-col gap-6 lg:flex-row'>
         <Sidebar className='lg:w-[220px] lg:p-4 lg:bg-white shadow1'>
@@ -56,7 +56,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

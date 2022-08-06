@@ -1,7 +1,7 @@
 interface SelectProps {
   children: React.ReactNode;
   name: string;
-  onChange?: () => void;
+  onChange?: any;
 }
 
 const Select = ({ name, children, onChange }: SelectProps) => {

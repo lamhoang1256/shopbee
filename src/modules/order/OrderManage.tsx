@@ -1,4 +1,5 @@
 import { configAPI } from "apis/configAPI";
+import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
 import { useEffect, useState } from "react";
@@ -17,7 +18,6 @@ const OrderManage = () => {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
   const status = searchParams.get("status") || "";
-  console.log("loading: ", loading);
 
   const fetchAllOrder = async () => {
     setLoading(true);
@@ -33,7 +33,7 @@ const OrderManage = () => {
   useEffect(() => {
     fetchAllOrder();
   }, [status]);
-
+  if (loading) return <Loading />;
   return (
     <>
       <Tabs tabs={tabs} query={status} />

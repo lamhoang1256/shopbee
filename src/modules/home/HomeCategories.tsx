@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const HomeCategories = () => {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const fetchHomeBanner = async () => {
+  const fetchHomeCategories = async () => {
     setLoading(true);
     try {
       const { data } = await configAPI.getAllCategory();
@@ -19,7 +19,7 @@ const HomeCategories = () => {
     }
   };
   useEffect(() => {
-    fetchHomeBanner();
+    fetchHomeCategories();
   }, []);
 
   if (loading) {

@@ -1,13 +1,14 @@
-import { UserTemplate, UserUpdateProfile, UserUpdateAvatar } from "modules/user";
+import { HeaderTemplate } from "layouts";
+import { UserUpdateProfile, UserUpdateAvatar } from "modules/user";
 
 const ProfilePage = () => {
   return (
-    <UserTemplate label='Hồ sơ của tôi' desc='Quản lý thông tin hồ sơ để bảo mật tài khoản'>
+    <HeaderTemplate label='Hồ sơ của tôi' desc='Quản lý thông tin hồ sơ để bảo mật tài khoản'>
       <div className='flex flex-col-reverse gap-8 lg:flex-row'>
         <UserUpdateProfile />
         <UserUpdateAvatar />
       </div>
-    </UserTemplate>
+    </HeaderTemplate>
   );
 };
 

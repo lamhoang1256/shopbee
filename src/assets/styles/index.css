@@ -53,6 +53,10 @@
       grid-template-columns: 1fr 3fr 1fr;
       grid-template-rows: 1fr 1fr;
     }
+    .form-add-grid {
+      display: grid;
+      grid-template-columns: 100%;
+    }
   }
   @media screen and (max-width: 320.98px) {
     .product-grid {
