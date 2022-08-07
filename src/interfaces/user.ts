@@ -4,6 +4,7 @@ export interface ICurrentUser {
   addressAdministrative: string;
   createdAt: string;
   email: string;
+  avatar: string;
   fullname: string;
   isAdmin: boolean;
   phone: string;

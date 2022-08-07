@@ -4,7 +4,6 @@ import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserProfileYup } from "constants/yup";
 import { useFormik } from "formik";
-import { ICurrentUser } from "interfaces";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import Administrative from "./UserUpdateAdministrative";
@@ -18,8 +17,7 @@ interface IValuesUpdateProfile {
 }
 
 const UserUpdateProfile = () => {
-  const currentUser: ICurrentUser = useStore((state: any) => state.currentUser);
-  const setCurrentUser = useStore((state: any) => state.setCurrentUser);
+  const { currentUser, setCurrentUser } = useStore((state) => state);
   const updateProfile = async (values: any) => {
     try {
       const { data, success, message } = await configAPI.userUpdateProfile(values);

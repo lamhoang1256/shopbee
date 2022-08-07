@@ -2,6 +2,7 @@ import { defaultUserAvatar } from "constants/global";
 import { path } from "constants/path";
 import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
+import { useStore } from "store/configStore";
 
 const sidebarLinks = [
   {
@@ -25,10 +26,15 @@ const sidebarLinks = [
 ];
 
 const UserSidebar = () => {
+  const { currentUser } = useStore((state) => state);
   return (
     <Sidebar labelOpenSidebar='Tài khoản của tôi'>
       <div className='flex items-center gap-x-2'>
-        <img src={defaultUserAvatar} alt='avatar' className='w-12 h-12 rounded-full' />
+        <img
+          src={currentUser?.avatar || defaultUserAvatar}
+          alt='avatar'
+          className='w-12 h-12 rounded-full'
+        />
         <div>
           <h3 className='font-semibold'>User</h3>
           <Link to={path.profile}>Sửa hồ sơ</Link>

@@ -1,10 +1,9 @@
 interface ImageUploadProps {
   onChange: any;
-  value: string | number;
   previewImage: string;
 }
 
-const ImageUpload = ({ value, onChange, previewImage }: ImageUploadProps) => {
+const ImageUpload = ({ onChange, previewImage }: ImageUploadProps) => {
   return (
     <div className='relative aspect-square overflow-hidden border border-dotted rounded-md border-[#00000024] object-cover max-w-[200px]'>
       {previewImage && (
@@ -13,7 +12,6 @@ const ImageUpload = ({ value, onChange, previewImage }: ImageUploadProps) => {
       <input
         name='image'
         type='file'
-        value={value}
         onChange={onChange}
         className='absolute z-10 w-full h-full opacity-0'
       />

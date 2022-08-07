@@ -1,4 +1,5 @@
 import { configAPIAddress } from "apis/address";
+import { Select } from "components/select";
 import { ICommune, IDistrict, IProvince } from "interfaces";
 import { useEffect, useState } from "react";
 
@@ -69,10 +70,8 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
 
   return (
     <div className='grid grid-cols-3 gap-4'>
-      <select
-        className='w-full h-10 border border-[#00000024] px-2 outline-none'
+      <Select
         name='province'
-        id='province'
         onChange={(e: any) => setAdministrative({ ...administrative, idProvince: e.target.value })}
       >
         <option value=''>Chọn Tỉnh/Thành Phố</option>
@@ -81,11 +80,9 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
             {province.name}
           </option>
         ))}
-      </select>
-      <select
-        className='w-full h-10 border border-[#00000024] px-2 outline-none'
+      </Select>
+      <Select
         name='district'
-        id='district'
         onChange={(e: any) => setAdministrative({ ...administrative, idDistrict: e.target.value })}
       >
         <option value=''>Chọn Quận/Huyện</option>
@@ -94,11 +91,9 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
             {item.name}
           </option>
         ))}
-      </select>
-      <select
-        className='w-full h-10 border border-[#00000024] px-2 outline-none'
+      </Select>
+      <Select
         name='commune'
-        id='commune'
         onChange={(e: any) => {
           setAdministrative({ ...administrative, idCommune: e.target.value });
         }}
@@ -109,7 +104,7 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
             {item.name}
           </option>
         ))}
-      </select>
+      </Select>
     </div>
   );
 };

@@ -8,7 +8,6 @@ import { Select } from "components/select";
 import { initialValuesProduct } from "constants/initialValue";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { useUploadImage } from "hooks/useUploadImage";
 import { ICategory, IProductPayload } from "interfaces";
 import { HeaderTemplate } from "layouts";
 import PageNotFound from "pages/PageNotFound";
@@ -17,12 +16,11 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { uploadImage } from "utils/uploadImage";
 
 const ProductUpdate = () => {
   const { id } = useParams();
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const { inputImageValue, setUrlCloudinary, urlCloudinary, handleFileInputChange } =
-    useUploadImage();
 
   const handleUpdateProduct = async (values: IProductPayload) => {
     const payload: IProductPayload = values;
@@ -34,7 +32,6 @@ const ProductUpdate = () => {
       toast.error(error?.message);
     }
   };
-
   const formik = useFormik({
     initialValues: initialValuesProduct,
     validationSchema: ProductSchemaYup,
@@ -42,28 +39,39 @@ const ProductUpdate = () => {
       handleUpdateProduct(values);
     },
   });
+  const handleSelectImage = async (e: any) => {
+    const urlImage = await uploadImage(e);
+    formik?.setFieldValue("image", urlImage);
+  };
 
-  const fetchCategories = async () => {
-    const { data } = await configAPI.getAllCategory();
-    setCategories(data);
-  };
-  const fetchData = async () => {
-    const { success, data } = await productAPI.getSingleProduct(id || "");
-    if (success) {
-      formik.resetForm({
-        values: data,
-      });
-      setUrlCloudinary(data?.image);
-      formik?.setFieldValue("category", data?.category._id);
-    }
-  };
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await configAPI.getAllCategory();
+        setCategories(data);
+      } catch (error) {
+        console.log("Failed to fetch categories: ", error);
+      }
+    };
     fetchCategories();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { success, data } = await productAPI.getSingleProduct(id || "");
+        if (success) {
+          formik.resetForm({
+            values: data,
+          });
+        }
+        formik?.setFieldValue("category", data?.category._id);
+      } catch (error) {
+        console.log("Failed to fetch data: ", error);
+      }
+    };
     fetchData();
   }, [id]);
-  useEffect(() => {
-    formik?.setFieldValue("image", urlCloudinary);
-  }, [urlCloudinary]);
 
   if (!id) return <PageNotFound />;
   return (
@@ -127,11 +135,7 @@ const ProductUpdate = () => {
         </div>
         <FormGroup>
           <FormLabel htmlFor='image'>Chọn ảnh sản phẩm</FormLabel>
-          <ImageUpload
-            value={inputImageValue}
-            onChange={handleFileInputChange}
-            previewImage={urlCloudinary}
-          />
+          <ImageUpload onChange={handleSelectImage} previewImage={formik.values.image} />
           <FormMessError>{formik.touched.image && formik.errors?.image}</FormMessError>
         </FormGroup>
         <FormGroup>

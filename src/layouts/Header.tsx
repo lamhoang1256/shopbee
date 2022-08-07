@@ -21,7 +21,7 @@ const Header = () => {
           {currentUser?.email && (
             <div className='flex items-center gap-x-2'>
               <img
-                src={defaultUserAvatar}
+                src={currentUser?.avatar || defaultUserAvatar}
                 alt='avatar'
                 className='object-cover w-5 h-5 rounded-full'
               />

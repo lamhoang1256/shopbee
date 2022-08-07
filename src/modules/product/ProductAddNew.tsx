@@ -8,16 +8,15 @@ import { Select } from "components/select";
 import { initialValuesProduct } from "constants/initialValue";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { useUploadImage } from "hooks/useUploadImage";
 import { ICategory, IProductPayload } from "interfaces";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
+import { uploadImage } from "utils/uploadImage";
 
 const ProductAddNew = () => {
-  const { inputImageValue, urlCloudinary, handleFileInputChange } = useUploadImage();
   const [categories, setCategories] = useState<ICategory[]>([]);
 
   const fetchCategories = async () => {
@@ -48,12 +47,14 @@ const ProductAddNew = () => {
     },
   });
 
+  const handleSelectImage = async (e: any) => {
+    const urlImage = await uploadImage(e);
+    formik?.setFieldValue("image", urlImage);
+  };
+
   useEffect(() => {
     fetchCategories();
   }, []);
-  useEffect(() => {
-    formik?.setFieldValue("image", urlCloudinary);
-  }, [urlCloudinary]);
 
   return (
     <HeaderTemplate
@@ -117,11 +118,7 @@ const ProductAddNew = () => {
         </div>
         <FormGroup>
           <FormLabel htmlFor='image'>Chọn ảnh sản phẩm</FormLabel>
-          <ImageUpload
-            value={inputImageValue}
-            onChange={handleFileInputChange}
-            previewImage={urlCloudinary}
-          />
+          <ImageUpload onChange={handleSelectImage} previewImage={formik.values.image} />
           <FormMessError>{formik.touched.image && formik.errors?.image}</FormMessError>
         </FormGroup>
         <FormGroup>
