@@ -11,6 +11,10 @@ export const productAPI = {
     const path = `api/product/${productId}`;
     return axiosClient.put(path, product);
   },
+  deleteProduct: (productId: string): Promise<IResponse> => {
+    const path = `api/product/${productId}`;
+    return axiosClient.delete(path);
+  },
   getSingleProduct: (productId: string): Promise<IResponse> => {
     const path = `api/product/${productId}`;
     return axiosClient.get(path);

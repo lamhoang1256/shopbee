@@ -1,11 +1,10 @@
-import { path } from "constants/path";
 import { IProduct } from "interfaces";
 import {
   ProductImage,
+  ProductLabelSale,
   ProductPriceSale,
   ProductRating,
   ProductTitle,
-  ProductLabelSale,
 } from "modules/product";
 import { Link } from "react-router-dom";
 import { formatCash, formatMoney } from "utils/helper";
@@ -17,7 +16,7 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link
-      to={`${path.product}/${product._id}`}
+      to={product._id}
       className='transition duration-300 border bg-white shadow-product hover:-translate-y-[2px] border-transparent hover:border-orangeee4'
       key={product._id}
     >

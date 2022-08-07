@@ -18,7 +18,7 @@ const orderManage = [
 const productManage = [
   {
     display: "Tất Cả Sản Phẩm",
-    path: path.dashboard,
+    path: path.productManage,
   },
   {
     display: "Thêm sản phẩm",
