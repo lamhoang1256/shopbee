@@ -9,7 +9,6 @@ interface PaginationProps {
   handleClickNumberPage: (page: number) => void;
 }
 
-// const limitButtonPage = 1
 const Pagination = ({ pagination, goToNext, goToPrev, handleClickNumberPage }: PaginationProps) => {
   return (
     <div className='flex gap-x-3 text-[#00000066] justify-center items-center my-8'>
