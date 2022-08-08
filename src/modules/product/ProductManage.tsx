@@ -1,15 +1,18 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { configAPI } from "apis/configAPI";
 import { productAPI } from "apis/product";
-import { Button } from "components/button";
+import { ActionDelete } from "components/action";
 import { Loading } from "components/loading";
 import { path } from "constants/path";
 import { IProduct } from "interfaces";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatMoney } from "utils/helper";
+import { formatCash, formatMoney } from "utils/helper";
 import ProductImage from "./ProductImage";
 import ProductPriceSale from "./ProductPriceSale";
+import ProductRating from "./ProductRating";
 import ProductTitle from "./ProductTitle";
 
 const ProductManage = () => {
@@ -23,7 +26,6 @@ const ProductManage = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log("Failed to fetch all product: ", error);
     }
   };
 
@@ -49,24 +51,28 @@ const ProductManage = () => {
     >
       {loading && <Loading />}
       {!loading && (
-        <div className='my-3 product-grid'>
-          {products?.map((product) => (
-            <div className='bg-white transitio shadow-product ' key={product._id}>
-              <ProductImage imageUrl={product.image} className='p-2' />
-              <div className='p-[6px]'>
-                <ProductTitle>{product.name}</ProductTitle>
-                <ProductPriceSale>{formatMoney(product.priceSale)}</ProductPriceSale>
-              </div>
-              <div className='grid grid-cols-2 gap-1'>
-                <Button className='w-full py-1' onClick={() => handleDeleteProduct(product._id)}>
-                  Xóa
-                </Button>
-                <Button to={`${path.productUpdate}/${product._id}`} className='w-full py-1'>
-                  Sửa
-                </Button>
-              </div>
-            </div>
-          ))}
+        <div className='gap-3 my-3 product-grid'>
+          {products?.map((product) => {
+            const { priceSale, image, _id, name, rating, sold } = product;
+            return (
+              <Link
+                to={`${path.productUpdate}/${_id}`}
+                className='relative bg-white shadow-product'
+                key={_id}
+              >
+                <ProductImage imageUrl={image} />
+                <div className='p-2 pb-4'>
+                  <ProductTitle>{name}</ProductTitle>
+                  <div className='flex flex-col my-1 gap-x-2 gap-y-1 md:items-center md:flex-row'>
+                    <ProductRating rating={rating} size='w-[14px] h-[14px]' />
+                    <span className='text-[#787878] text-xs'>Đã bán {formatCash(sold)}</span>
+                  </div>
+                  <ProductPriceSale>{formatMoney(priceSale)}</ProductPriceSale>
+                </div>
+                <ActionDelete onClick={() => handleDeleteProduct(_id)} className='!w-5 !h-5' />
+              </Link>
+            );
+          })}
         </div>
       )}
     </HeaderTemplate>

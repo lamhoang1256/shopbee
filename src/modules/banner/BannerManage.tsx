@@ -1,5 +1,5 @@
 import { bannerAPI } from "apis/bannerAPI";
-import { IconClose } from "components/icons";
+import { ActionDelete } from "components/action";
 import { ImageUpload } from "components/image";
 import { Loading } from "components/loading";
 import { HeaderTemplate } from "layouts";
@@ -90,13 +90,7 @@ const BannerManage = () => {
                   onChange={(e) => handleUpdateBanner(e, banner._id)}
                 />
               </div>
-              <button
-                type='button'
-                className='absolute z-10 flex items-center justify-center w-6 h-6 rounded-full bg-redff4 -top-2 -right-2'
-                onClick={() => handleDeleteBanner(banner._id)}
-              >
-                <IconClose className='w-[14px] h-[14px] text-white' />
-              </button>
+              <ActionDelete onClick={() => handleDeleteBanner(banner._id)} />
             </div>
           ))}
         </div>

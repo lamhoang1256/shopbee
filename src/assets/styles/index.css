@@ -81,6 +81,9 @@
   .search-sidebar {
     @apply -translate-x-full z-10 w-full fixed inset-0 lg:translate-x-0 bg-[#f5f5f5] min-h-screen p-4 lg:p-0 transition-all duration-300 lg:static overflow-auto;
   }
+  .product-item {
+    @apply transition duration-300 border bg-white shadow-product hover:-translate-y-[2px] border-transparent hover:border-orangeee4;
+  }
   .home-categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
