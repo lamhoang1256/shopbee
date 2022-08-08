@@ -9,6 +9,7 @@ export const path = {
   order: "/user/order",
   user: "/user",
   userUpdate: "/dashboard/user/update",
+  userAddNew: "/dashboard/user/add",
   userManage: "/dashboard/user/manage",
   password: "/user/password",
   search: "/search",

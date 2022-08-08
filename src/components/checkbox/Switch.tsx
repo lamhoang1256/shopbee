@@ -11,6 +11,7 @@ const Switch = ({ isChecked, handleOnChangeSwitch }: SwitchProps) => {
     <label htmlFor='default-toggle' className='relative inline-flex items-center cursor-pointer'>
       <input
         type='checkbox'
+        id='default-toggle'
         className='sr-only peer'
         checked={isChecked}
         onChange={(e) => onChangeSwitch(e)}

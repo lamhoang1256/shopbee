@@ -4,7 +4,7 @@ import { useStore } from "store/configStore";
 import { configAPI } from "apis/configAPI";
 import { path } from "constants/path";
 import { DashboardLayout, MainLayout, UserLayout } from "layouts";
-import { UserChangePassword, UserManage, UserUpdateByAdmin } from "modules/user";
+import { UserAddNew, UserChangePassword, UserManage, UserUpdateByAdmin } from "modules/user";
 import CartPage from "pages/CartPage";
 import HomePage from "pages/HomePage";
 import OrderDetailsPage from "pages/OrderDetailsPage";
@@ -65,6 +65,7 @@ const App = () => {
           <Route path={path.banner} element={<BannerManage />} />
           <Route path={path.userManage} element={<UserManage />} />
           <Route path={`${path.userUpdate}/:id`} element={<UserUpdateByAdmin />} />
+          <Route path={path.userAddNew} element={<UserAddNew />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>

@@ -31,6 +31,12 @@ const bannerManage = [
     path: path.banner,
   },
 ];
+const userManage = [
+  {
+    display: "Tất cả người dùng",
+    path: path.userManage,
+  },
+];
 const DashboardLayout = () => {
   return (
     <>
@@ -65,6 +71,16 @@ const DashboardLayout = () => {
                 className='w-4 h-4'
               />
               <span className='font-semibold'>Quản lý banner</span>
+            </div>
+          </Dropdown>
+          <Dropdown dropdownData={userManage} className='mt-6'>
+            <div className='flex items-center gap-x-2'>
+              <img
+                src='https://cf.shopee.vn/file/f82f8ccb649afcdf4f07f1dd9c41bcb0'
+                alt='icon'
+                className='w-4 h-4'
+              />
+              <span className='font-semibold'>Quản lý người dùng</span>
             </div>
           </Dropdown>
         </Sidebar>

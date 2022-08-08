@@ -15,4 +15,8 @@ export const userAPI = {
     const path = `api/user`;
     return axiosClient.post(path, payload);
   },
+  deleteUser: (userId: string): Promise<IResponse> => {
+    const path = `api/user/${userId}`;
+    return axiosClient.delete(path);
+  },
 };

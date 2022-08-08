@@ -1,24 +1,20 @@
-import { configAPI } from "apis/configAPI";
 import { userAPI } from "apis/userAPI";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
-import { UserProfileYup } from "constants/yup";
+import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 import UserUpdateAdministrative from "./UserUpdateAdministrative";
 import UserUpdateAvatar from "./UserUpdateAvatar";
 
-const UserUpdateByAdmin = () => {
-  const { id } = useParams();
-  const handleUpdateUser = async (values: any) => {
+const UserAddNew = () => {
+  const handleAddNewUser = async (values: any) => {
     try {
-      const { success, message } = await configAPI.userUpdateProfile(values);
+      const { success, message } = await userAPI.addNewUser(values);
       if (success) toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
@@ -27,55 +23,30 @@ const UserUpdateByAdmin = () => {
 
   const formik = useFormik({
     initialValues: {
-      _id: "",
       fullname: "",
       phone: "",
       email: "",
+      password: "",
+      confirm_password: "",
       avatar: "",
       isAdmin: false,
       addressHome: "",
       addressAdministrative: "",
     },
-    validationSchema: UserProfileYup,
+    validationSchema: SignUpYup,
     onSubmit: (values) => {
-      handleUpdateUser(values);
+      handleAddNewUser(values);
     },
   });
 
-  const handleUpdateAvatar = async (e: any) => {
-    try {
-      const urlImage = await uploadImage(e);
-      const payload = {
-        _id: id,
-        avatar: urlImage,
-      };
-      const { success, message, data } = await configAPI.userUpdateProfile(payload);
-      formik.setFieldValue("avatar", data?.avatar);
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
+  const handleUploadAvatar = async (e: any) => {
+    const avatar = await uploadImage(e);
+    formik.setFieldValue("avatar", avatar);
   };
-
-  const fetchUser = async () => {
-    try {
-      const { data, success } = await userAPI.getSingleUser(id || "");
-      if (success) {
-        formik.resetForm({
-          values: data,
-        });
-      }
-    } catch (error) {
-      console.log("Failed to fetch user: ", error);
-    }
-  };
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   return (
     <HeaderTemplate
-      label='Cập nhật thông tin người dùng'
+      label='Thêm người dùng mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <div className='flex flex-col-reverse gap-8 lg:flex-row'>
@@ -89,6 +60,28 @@ const UserUpdateByAdmin = () => {
               onChange={formik.handleChange}
             />
             <FormMessError>{formik.touched.email && formik.errors?.email}</FormMessError>
+          </FormGroup>
+          <FormGroup>
+            <FormLabel htmlFor='password'>Mật khẩu</FormLabel>
+            <InputV2
+              name='password'
+              type='password'
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
+            <FormMessError>{formik.touched.password && formik.errors?.password}</FormMessError>
+          </FormGroup>
+          <FormGroup>
+            <FormLabel htmlFor='confirm_password'>Xác nhận mật khẩu</FormLabel>
+            <InputV2
+              name='confirm_password'
+              type='password'
+              value={formik.values.confirm_password}
+              onChange={formik.handleChange}
+            />
+            <FormMessError>
+              {formik.touched.confirm_password && formik.errors?.confirm_password}
+            </FormMessError>
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='fullname'>Họ và tên</FormLabel>
@@ -145,10 +138,10 @@ const UserUpdateByAdmin = () => {
             Lưu
           </Button>
         </form>
-        <UserUpdateAvatar avatar={formik.values.avatar} handleUpdateAvatar={handleUpdateAvatar} />
+        <UserUpdateAvatar avatar={formik.values.avatar} handleUpdateAvatar={handleUploadAvatar} />
       </div>
     </HeaderTemplate>
   );
 };
 
-export default UserUpdateByAdmin;
+export default UserAddNew;
