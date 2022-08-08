@@ -1,3 +1,4 @@
 import CheckBox from "./CheckBox";
+import Switch from "./Switch";
 
-export { CheckBox };
+export { CheckBox, Switch };

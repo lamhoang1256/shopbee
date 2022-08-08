@@ -8,6 +8,8 @@ export const path = {
   profile: "/user/profile",
   order: "/user/order",
   user: "/user",
+  userUpdate: "/dashboard/user/update",
+  userManage: "/dashboard/user/manage",
   password: "/user/password",
   search: "/search",
   dashboard: "/dashboard",

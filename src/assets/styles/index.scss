@@ -88,6 +88,23 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
+  .tables {
+    width: 100%;
+    overflow-x: auto;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 8px;
+    }
+    td,
+    th {
+      text-align: left;
+      padding: 20px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+  }
+
   @media screen and (max-width: 767.98px) {
     .home-categories {
       justify-content: flex-start;

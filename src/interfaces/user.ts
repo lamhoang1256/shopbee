@@ -8,6 +8,7 @@ export interface ICurrentUser {
   fullname: string;
   isAdmin: boolean;
   phone: string;
+  password?: string;
   refreshToken: string;
   updatedAt: string;
   __v: number;
