@@ -11,6 +11,7 @@ export const path = {
   password: "/user/password",
   search: "/search",
   dashboard: "/dashboard",
+  banner: "/dashboard/banner",
   productManage: "/dashboard/product",
   productAddNew: "/dashboard/product/add-new",
   productUpdate: "/dashboard/product/update",

@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { bannerAPI } from "apis/bannerAPI";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,7 +9,7 @@ const HomeBanner = () => {
   const fetchHomeBanner = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.getAllBanner();
+      const { data } = await bannerAPI.getAllBanner();
       setBanners(data);
       setLoading(false);
     } catch (error) {

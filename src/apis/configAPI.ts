@@ -3,10 +3,6 @@ import { IResponse, ISearchParams } from "interfaces";
 import axiosClient from "./axiosClient";
 
 export const configAPI = {
-  getAllBanner: (): Promise<IResponse> => {
-    const path = `api/banner`;
-    return axiosClient.get(path);
-  },
   getAllCategory: (): Promise<IResponse> => {
     const path = `api/category`;
     return axiosClient.get(path);

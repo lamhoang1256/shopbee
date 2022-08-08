@@ -1,11 +1,19 @@
+import classNames from "utils/className";
+
 interface ImageUploadProps {
   onChange: any;
   previewImage: string;
+  className?: string;
 }
 
-const ImageUpload = ({ onChange, previewImage }: ImageUploadProps) => {
+const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) => {
   return (
-    <div className='relative aspect-square overflow-hidden border border-dotted rounded-md border-[#00000024] object-cover max-w-[200px]'>
+    <div
+      className={classNames(
+        "relative aspect-square overflow-hidden border border-dotted rounded-md border-[#00000024] object-cover max-w-[200px] p-4",
+        className,
+      )}
+    >
       {previewImage && (
         <img src={previewImage} alt='preview' className='absolute inset-0 bg-white' />
       )}
@@ -25,6 +33,10 @@ const ImageUpload = ({ onChange, previewImage }: ImageUploadProps) => {
       </div>
     </div>
   );
+};
+
+ImageUpload.defaultProps = {
+  className: "",
 };
 
 export default ImageUpload;

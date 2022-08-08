@@ -25,6 +25,12 @@ const productManage = [
     path: path.productAddNew,
   },
 ];
+const bannerManage = [
+  {
+    display: "Tất cả Banner",
+    path: path.banner,
+  },
+];
 const DashboardLayout = () => {
   return (
     <>
@@ -51,8 +57,18 @@ const DashboardLayout = () => {
               <span className='font-semibold'>Quản lý sản phẩm</span>
             </div>
           </Dropdown>
+          <Dropdown dropdownData={bannerManage} className='mt-6'>
+            <div className='flex items-center gap-x-2'>
+              <img
+                src='https://cf.shopee.vn/file/f82f8ccb649afcdf4f07f1dd9c41bcb0'
+                alt='icon'
+                className='w-4 h-4'
+              />
+              <span className='font-semibold'>Quản lý banner</span>
+            </div>
+          </Dropdown>
         </Sidebar>
-        <div className='flex-1 mt-6 mb-10 max-w-[1140px]'>
+        <div className='flex-1 mt-6 px-[15px] mb-10 max-w-[1140px]'>
           <Outlet />
         </div>
       </main>
