@@ -48,7 +48,7 @@ const UserManage = () => {
       {!loading && (
         <div className='tables'>
           <table>
-            <thead className='border-b bg-gray-50'>
+            <thead className=''>
               <tr>
                 <th>STT</th>
                 <th>Thông tin khách hàng</th>

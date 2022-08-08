@@ -16,7 +16,11 @@ const UserUpdateAvatar = ({ avatar, handleUpdateAvatar }: UserUpdateAvatarProps)
       />
       <div className='relative w-[100px] mx-auto h-10'>
         <Button className='absolute'>Chọn ảnh</Button>
-        <input type='file' className='absolute inset-0 opacity-0' onChange={handleUpdateAvatar} />
+        <input
+          type='file'
+          className='absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer'
+          onChange={handleUpdateAvatar}
+        />
       </div>
       <div className='text-[#999]'>
         <p>Dung lượng file tối đa 1 MB</p>

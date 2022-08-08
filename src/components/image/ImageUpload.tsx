@@ -21,7 +21,7 @@ const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) =>
         name='image'
         type='file'
         onChange={onChange}
-        className='absolute z-10 w-full h-full opacity-0'
+        className='absolute z-10 w-full h-full opacity-0 cursor-pointer'
       />
       <div className='flex flex-col items-center justify-center h-full gap-y-2'>
         <img

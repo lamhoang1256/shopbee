@@ -36,6 +36,10 @@ const userManage = [
     display: "Tất cả người dùng",
     path: path.userManage,
   },
+  {
+    display: "Thêm người dùng mới",
+    path: path.userAddNew,
+  },
 ];
 const DashboardLayout = () => {
   return (
@@ -50,7 +54,7 @@ const DashboardLayout = () => {
                 alt='icon'
                 className='w-4 h-4'
               />
-              <span className='font-semibold'>Quản lý đơn hàng</span>
+              <span className=''>Quản lý đơn hàng</span>
             </div>
           </Dropdown>
           <Dropdown dropdownData={productManage} className='mt-6'>
@@ -60,7 +64,7 @@ const DashboardLayout = () => {
                 alt='icon'
                 className='w-4 h-4'
               />
-              <span className='font-semibold'>Quản lý sản phẩm</span>
+              <span className=''>Quản lý sản phẩm</span>
             </div>
           </Dropdown>
           <Dropdown dropdownData={bannerManage} className='mt-6'>
@@ -70,7 +74,7 @@ const DashboardLayout = () => {
                 alt='icon'
                 className='w-4 h-4'
               />
-              <span className='font-semibold'>Quản lý banner</span>
+              <span className=''>Quản lý banner</span>
             </div>
           </Dropdown>
           <Dropdown dropdownData={userManage} className='mt-6'>
@@ -80,7 +84,7 @@ const DashboardLayout = () => {
                 alt='icon'
                 className='w-4 h-4'
               />
-              <span className='font-semibold'>Quản lý người dùng</span>
+              <span className=''>Quản lý người dùng</span>
             </div>
           </Dropdown>
         </Sidebar>

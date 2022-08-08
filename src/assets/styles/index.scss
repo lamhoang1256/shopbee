@@ -13,6 +13,10 @@
     -webkit-appearance: none;
     margin: 0;
   }
+  input[type="file"],
+  input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+  }
   input[type="number"] {
     -moz-appearance: textfield;
   }
@@ -94,7 +98,12 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+    thead th {
+      color: #999;
+      font-weight: 400;
+      background-color: #f6f6f6;
     }
     td,
     th {

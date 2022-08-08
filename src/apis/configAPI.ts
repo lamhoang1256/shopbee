@@ -7,7 +7,7 @@ export const configAPI = {
     const path = `api/category`;
     return axiosClient.get(path);
   },
-  getAllProduct: (params?: ISearchParams): Promise<IResponse> => {
+  getAllProduct: (params?: Partial<ISearchParams>): Promise<IResponse> => {
     const path = `api/product`;
     return axiosClient.get(path, { params });
   },

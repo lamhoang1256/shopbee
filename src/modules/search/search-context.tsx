@@ -1,8 +1,10 @@
-import { ISearchParams } from "interfaces";
+import { IPagination, ISearchParams } from "interfaces";
 import { createContext, useContext } from "react";
 
 interface ISearchContext {
   searchPageParams: ISearchParams;
+  pagination: IPagination;
+  handleSearch: (params: any) => void;
 }
 interface SearchProviderProps {
   value: ISearchContext;

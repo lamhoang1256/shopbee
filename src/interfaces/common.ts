@@ -29,3 +29,9 @@ export interface ICloudinaryUpload {
   version_id: string;
   width: number;
 }
+
+export interface IPagination {
+  limit: number;
+  page: number;
+  pageCount: number;
+}
