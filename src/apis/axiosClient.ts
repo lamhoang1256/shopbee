@@ -1,6 +1,6 @@
 import axios from "axios";
 import { LocalStorage } from "constants/localStorage";
-import { ICurrentUser } from "interfaces";
+import { ICurrentUser } from "@types";
 import queryString from "query-string";
 
 const currentUser: ICurrentUser = JSON.parse(

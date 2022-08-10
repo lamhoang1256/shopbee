@@ -1,6 +1,6 @@
 import { productAPI } from "apis";
 import { SectionHeader } from "components/common";
-import { IProduct } from "interfaces";
+import { IProduct } from "@types";
 import { ProductItem } from "modules/product";
 import { useEffect, useState } from "react";
 

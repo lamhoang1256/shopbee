@@ -1,4 +1,4 @@
-import { ICart, ICurrentUser, IUseStore } from "interfaces";
+import { ICart, ICurrentUser, IUseStore } from "@types";
 import { getCurrentUserLocalStorage, setCurrentUserLocalStorage } from "utils/localStorage";
 import create from "zustand";
 

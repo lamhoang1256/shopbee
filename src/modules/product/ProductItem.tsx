@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { path } from "constants/path";
-import { IProduct } from "interfaces";
+import { IProduct } from "@types";
 import {
   ProductImage,
   ProductLabelSale,

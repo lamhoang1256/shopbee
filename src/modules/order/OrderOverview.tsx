@@ -1,4 +1,4 @@
-import { IOrder } from "interfaces";
+import { IOrder } from "@types";
 
 interface OrderOverviewProps {
   order: IOrder;

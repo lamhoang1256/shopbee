@@ -1,4 +1,4 @@
-import { ICart } from "interfaces";
+import { ICart } from "@types";
 import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/cart";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";

@@ -1,4 +1,4 @@
-import { ICart } from "interfaces";
+import { ICart } from "@types";
 
 export const formatMoney = (money: number) => {
   return money?.toLocaleString("vi", { style: "currency", currency: "VND" });

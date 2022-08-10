@@ -1,7 +1,7 @@
 import { productAPI } from "apis";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
-import { IPagination, IProduct, ISearchParams } from "interfaces";
+import { IPagination, IProduct, ISearchParams } from "@types";
 import { ProductItem } from "modules/product";
 import { SearchProvider, SearchSidebar, SearchSortBar } from "modules/search";
 import queryString from "query-string";

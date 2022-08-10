@@ -1,4 +1,4 @@
-import { IResponse } from "interfaces";
+import { IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const userAPI = {

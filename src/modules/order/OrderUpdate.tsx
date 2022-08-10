@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { SectionWhite } from "components/common";
 import { Loading } from "components/loading";
 import { Select } from "components/select";
-import { IOrder } from "interfaces";
+import { IOrder } from "@types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import OrderOverview from "./OrderOverview";

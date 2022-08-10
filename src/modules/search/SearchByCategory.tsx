@@ -1,7 +1,7 @@
 import { categoryAPI } from "apis";
 import { IconMenu } from "components/icons";
 import { path } from "constants/path";
-import { ICategory } from "interfaces";
+import { ICategory } from "@types";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 

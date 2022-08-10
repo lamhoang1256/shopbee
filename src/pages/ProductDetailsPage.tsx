@@ -1,11 +1,11 @@
-import { cartAPI } from "apis";
-import { productAPI } from "apis";
+import { cartAPI, productAPI } from "apis";
+
 import { Button, ButtonAddToCart } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
-import { IProduct } from "interfaces";
+import { IProduct } from "@types";
 import {
   ProductDesc,
   ProductImage,

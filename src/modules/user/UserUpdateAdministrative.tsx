@@ -1,6 +1,6 @@
 import { addressAPI } from "apis";
 import { Select } from "components/select";
-import { ICommune, IDistrict, IProvince } from "interfaces";
+import { ICommune, IDistrict, IProvince } from "@types";
 import { useEffect, useState } from "react";
 
 interface UserUpdateAdministrativeProps {

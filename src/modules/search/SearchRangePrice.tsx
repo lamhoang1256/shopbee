@@ -5,7 +5,7 @@ import { InputRangePrice } from "components/input";
 import { path } from "constants/path";
 import { SearchRangePriceYup } from "constants/yup";
 import { useFormik } from "formik";
-import { ISearchParams } from "interfaces";
+import { ISearchParams } from "@types";
 import queryString from "query-string";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "./search-context";

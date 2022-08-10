@@ -1,4 +1,4 @@
-import { IProductPayload, IResponse, ISearchParams } from "interfaces";
+import { IProductPayload, IResponse, ISearchParams } from "@types";
 import axiosClient from "./axiosClient";
 
 export const productAPI = {

@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
-import { ICurrentUser, IPagination } from "interfaces";
+import { ICurrentUser, IPagination } from "@types";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";

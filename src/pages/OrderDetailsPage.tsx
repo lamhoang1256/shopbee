@@ -1,6 +1,6 @@
 import { orderAPI } from "apis";
 import { Loading } from "components/loading";
-import { IOrder } from "interfaces";
+import { IOrder } from "@types";
 import { OrderOverview, OrderPayment, OrderStatus } from "modules/order";
 import OrderProductItem from "modules/order/OrderProductItem";
 import { useEffect, useState } from "react";

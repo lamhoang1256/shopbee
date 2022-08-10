@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICloudinaryUpload } from "interfaces";
+import { ICloudinaryUpload } from "@types";
 
 const axiosCloudinary = axios.create({
   baseURL: process.env.REACT_APP_CLOUDINARY_API,

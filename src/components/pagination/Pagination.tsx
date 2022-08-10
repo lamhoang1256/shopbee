@@ -1,5 +1,5 @@
 import { IconNext, IconPrev } from "components/icons";
-import { IPagination } from "interfaces";
+import { IPagination } from "@types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import queryString from "query-string";
 import ButtonPage from "./ButtonPage";

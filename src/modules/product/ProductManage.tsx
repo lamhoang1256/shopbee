@@ -3,7 +3,7 @@ import { productAPI } from "apis";
 import { ActionDelete } from "components/action";
 import { Loading } from "components/loading";
 import { path } from "constants/path";
-import { IProduct } from "interfaces";
+import { IProduct } from "@types";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";

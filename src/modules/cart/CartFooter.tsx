@@ -1,7 +1,7 @@
 import { cartAPI, productAPI } from "apis";
 import { Button } from "components/button";
 import { path } from "constants/path";
-import { ICart } from "interfaces";
+import { ICart } from "@types";
 import { ProductPriceSale } from "modules/product";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

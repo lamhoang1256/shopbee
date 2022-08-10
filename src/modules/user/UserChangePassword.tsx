@@ -4,7 +4,7 @@ import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { UserChangePasswordYup } from "constants/yup";
 import { useFormik } from "formik";
-import { IPayloadChangePassword } from "interfaces";
+import { IPayloadChangePassword } from "@types";
 import { HeaderTemplate } from "layouts";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";

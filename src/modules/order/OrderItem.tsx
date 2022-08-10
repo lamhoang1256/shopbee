@@ -1,5 +1,5 @@
 import { Button } from "components/button";
-import { IOrder } from "interfaces";
+import { IOrder } from "@types";
 import OrderProductItem from "modules/order/OrderProductItem";
 import { ProductPriceSale } from "modules/product";
 import { Link } from "react-router-dom";

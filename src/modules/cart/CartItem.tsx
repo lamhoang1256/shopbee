@@ -1,7 +1,7 @@
 import { cartAPI } from "apis";
 import { QuantityController } from "components/quantityController";
 import { path } from "constants/path";
-import { ICart } from "interfaces";
+import { ICart } from "@types";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";

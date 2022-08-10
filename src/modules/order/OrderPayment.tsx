@@ -1,4 +1,4 @@
-import { IPayment } from "interfaces";
+import { IPayment } from "@types";
 import { ProductPriceSale } from "modules/product";
 import { formatMoney } from "utils/helper";
 

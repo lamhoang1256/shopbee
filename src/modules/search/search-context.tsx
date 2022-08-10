@@ -1,4 +1,4 @@
-import { IPagination, ISearchParams } from "interfaces";
+import { IPagination, ISearchParams } from "@types";
 import { createContext, useContext } from "react";
 
 interface ISearchContext {

@@ -1,5 +1,5 @@
-import { categoryAPI } from "apis";
-import { productAPI } from "apis";
+import { categoryAPI, productAPI } from "apis";
+
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { ImageUpload } from "components/image";
@@ -8,7 +8,7 @@ import { Select } from "components/select";
 import { initialValuesProduct } from "constants/initialValue";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { ICategory, IProductPayload } from "interfaces";
+import { ICategory, IProductPayload } from "@types";
 import { HeaderTemplate } from "layouts";
 import PageNotFound from "pages/PageNotFound";
 import { useEffect, useState } from "react";

@@ -4,7 +4,7 @@ import ButtonPagination from "components/button/ButtonPagination";
 import { IconNext, IconPrev } from "components/icons";
 import { path } from "constants/path";
 import { useNavigate } from "react-router-dom";
-import { ISearchParams } from "interfaces";
+import { ISearchParams } from "@types";
 import { useSearchContext } from "./search-context";
 
 const SearchSortBar = () => {
