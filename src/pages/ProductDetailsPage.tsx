@@ -1,4 +1,5 @@
-import { configAPI } from "apis/configAPI";
+import { cartAPI } from "apis";
+import { productAPI } from "apis";
 import { Button, ButtonAddToCart } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
@@ -36,7 +37,7 @@ const ProductDetailsPage = () => {
 
   const fetchRelatedProduct = async (params: { category: string }) => {
     try {
-      const { data } = await configAPI.getAllProduct(params);
+      const { data } = await productAPI.getAllProduct(params);
       setRelatedProduct(data.products);
     } catch (error) {
       console.log("error: ", error);
@@ -46,7 +47,7 @@ const ProductDetailsPage = () => {
   const fetchProductDetail = async () => {
     setLoading(true);
     try {
-      const { data, success } = await configAPI.getSingleProduct(id || "");
+      const { data, success } = await productAPI.getSingleProduct(id || "");
       if (success) {
         const params = { category: data.category._id };
         fetchRelatedProduct(params);
@@ -78,7 +79,7 @@ const ProductDetailsPage = () => {
       quantity,
     };
     try {
-      const { message, success, data } = await configAPI.addToCart(values);
+      const { message, success, data } = await cartAPI.addToCart(values);
       if (!success) return;
       if (existCartItem) {
         const cartsWithoutExistCartItem = carts?.filter((cart) => cart?._id !== existCartItem?._id);

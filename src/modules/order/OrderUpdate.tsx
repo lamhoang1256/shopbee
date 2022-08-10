@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { SectionWhite } from "components/common";
 import { Loading } from "components/loading";
@@ -18,7 +18,7 @@ const OrderUpdate = () => {
   const fetchDetailsOrder = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.getSingleOrder(id || "");
+      const { data } = await orderAPI.getSingleOrder(id || "");
       setOrder(data);
       setLoading(false);
     } catch (error) {

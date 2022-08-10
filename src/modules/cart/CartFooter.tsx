@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { cartAPI, productAPI } from "apis";
 import { Button } from "components/button";
 import { path } from "constants/path";
 import { ICart } from "interfaces";
@@ -20,7 +20,7 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
 
   const buyProducts = async (values: any) => {
     try {
-      const { data, success, message } = await configAPI.buyProducts(values);
+      const { data, success, message } = await productAPI.buyProducts(values);
       if (success) {
         toast.success(message);
         setCart([]);
@@ -36,7 +36,7 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
       const values = {
         userId: currentUser?._id,
       };
-      const { success, message } = await configAPI.deleteAllCart(values);
+      const { success, message } = await cartAPI.deleteAllCart(values);
       if (success) {
         setCart([]);
         toast.success(message);

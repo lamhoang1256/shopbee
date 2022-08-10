@@ -1,9 +1,13 @@
 import axios from "axios";
+import { LocalStorage } from "constants/localStorage";
 import { ICurrentUser } from "interfaces";
 import queryString from "query-string";
-import { getCurrentUserLocalStorage, setCurrentUserLocalStorage } from "utils/localStorage";
 
-const currentUser: ICurrentUser = getCurrentUserLocalStorage();
+const currentUser: ICurrentUser = JSON.parse(
+  localStorage.getItem(LocalStorage.currentUser) || "{}",
+);
+console.log("currentUser: ", currentUser);
+
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API,
   paramsSerializer: (params) => queryString.stringify(params),
@@ -13,12 +17,13 @@ const axiosClient = axios.create({
   },
 });
 
-const requestRefreshToken = async () => {
+const handleRefreshToken = async () => {
   const path = `${process.env.REACT_APP_API}/api/auth/refresh-token?refreshToken=${currentUser.refreshToken}`;
   const { data } = await axios.post(path);
   return data.data;
 };
 
+let refreshTokenRequest: any = null;
 axiosClient.interceptors.response.use(
   async (response) => {
     if (response && response.data) {
@@ -26,14 +31,17 @@ axiosClient.interceptors.response.use(
     }
     return response;
   },
-
   async (error) => {
     const { response } = error;
     if (response.status === 401 && response.data.error.message === "jwt expired") {
+      refreshTokenRequest = refreshTokenRequest || handleRefreshToken;
       try {
-        const { accessToken, refreshToken } = await requestRefreshToken();
+        const { accessToken, refreshToken } = await refreshTokenRequest();
         response.config.headers.Authorization = `Bearer ${accessToken}`;
-        setCurrentUserLocalStorage({ accessToken, refreshToken });
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify({ ...currentUser, refreshToken, accessToken }),
+        );
         return await axiosClient(response.config);
       } catch (err: any) {
         return Promise.reject(err);

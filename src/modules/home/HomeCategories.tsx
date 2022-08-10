@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
-import { configAPI } from "apis/configAPI";
+import { categoryAPI } from "apis";
 import { path } from "constants/path";
 import { ICategory } from "interfaces";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const HomeCategories = () => {
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ const HomeCategories = () => {
   const fetchHomeCategories = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.getAllCategory();
+      const { data } = await categoryAPI.getAllCategory();
       setCategories(data);
       setLoading(false);
     } catch (error) {

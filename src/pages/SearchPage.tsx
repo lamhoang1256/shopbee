@@ -1,10 +1,10 @@
-import { configAPI } from "apis/configAPI";
+import { productAPI } from "apis";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
-import queryString from "query-string";
 import { IPagination, IProduct, ISearchParams } from "interfaces";
 import { ProductItem } from "modules/product";
-import { SearchSidebar, SearchSortBar, SearchProvider } from "modules/search";
+import { SearchProvider, SearchSidebar, SearchSortBar } from "modules/search";
+import queryString from "query-string";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -53,7 +53,7 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchSearchProducts = async (params: ISearchParams) => {
       try {
-        const { data } = await configAPI.getAllProduct(params);
+        const { data } = await productAPI.getAllProduct(params);
         setResults(data?.products);
         setPagination(data?.pagination);
       } catch (error) {

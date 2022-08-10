@@ -1,4 +1,4 @@
-import { configAPIAddress } from "apis/address";
+import { addressAPI } from "apis";
 import { Select } from "components/select";
 import { ICommune, IDistrict, IProvince } from "interfaces";
 import { useEffect, useState } from "react";
@@ -24,15 +24,15 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
   });
 
   const fetchAllProvince = () => {
-    configAPIAddress.getAllCity().then((res) => setProvinces(res.data));
+    addressAPI.getAllCity().then((res) => setProvinces(res.data));
   };
   const fetchAllDistrict = () => {
-    configAPIAddress
+    addressAPI
       .getAllDistrict({ idProvince: administrative.idProvince })
       .then((res) => setDistricts(res.data));
   };
   const fetchAllCommune = () => {
-    configAPIAddress
+    addressAPI
       .getAllCommune({ idDistrict: administrative.idDistrict })
       .then((res) => setCommunes(res.data));
   };

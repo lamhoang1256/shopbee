@@ -1,4 +1,4 @@
-import { userAPI } from "apis/userAPI";
+import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";

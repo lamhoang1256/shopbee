@@ -1,5 +1,4 @@
 import { IResponse } from "interfaces";
-
 import axiosClient from "./axiosClient";
 
 export const userAPI = {
@@ -18,5 +17,13 @@ export const userAPI = {
   deleteUser: (userId: string): Promise<IResponse> => {
     const path = `api/user/${userId}`;
     return axiosClient.delete(path);
+  },
+  updateProfileMe: (values: any): Promise<IResponse> => {
+    const path = `api/user`;
+    return axiosClient.put(path, values);
+  },
+  changePasswordMe: (values: any): Promise<IResponse> => {
+    const path = `api/user/change-password`;
+    return axiosClient.put(path, values);
   },
 };

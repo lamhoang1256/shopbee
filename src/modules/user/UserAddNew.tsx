@@ -1,4 +1,4 @@
-import { userAPI } from "apis/userAPI";
+import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
 import { FormGroup, FormLabel, FormMessError } from "components/form";

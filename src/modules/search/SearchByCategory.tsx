@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { categoryAPI } from "apis";
 import { IconMenu } from "components/icons";
 import { path } from "constants/path";
 import { ICategory } from "interfaces";
@@ -9,7 +9,7 @@ const SearchByCategory = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const fetchAllCategory = async () => {
     try {
-      const { data } = await configAPI.getAllCategory();
+      const { data } = await categoryAPI.getAllCategory();
       setCategories(data);
     } catch (error) {
       console.log(error);

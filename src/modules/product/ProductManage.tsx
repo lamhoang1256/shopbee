@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { configAPI } from "apis/configAPI";
-import { productAPI } from "apis/product";
+import { productAPI } from "apis";
 import { ActionDelete } from "components/action";
 import { Loading } from "components/loading";
 import { path } from "constants/path";
@@ -21,7 +20,7 @@ const ProductManage = () => {
   const fetchAllProduct = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.getAllProduct();
+      const { data } = await productAPI.getAllProduct();
       setProducts(data?.products);
       setLoading(false);
     } catch (error) {

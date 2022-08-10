@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { orderAPI } from "apis";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
@@ -25,7 +25,7 @@ const OrderPage = () => {
     setLoading(true);
     try {
       const params = status ? { status } : {};
-      const { data } = await configAPI.getAllOrder(currentUser?._id, params);
+      const { data } = await orderAPI.getAllOrder(currentUser?._id, params);
       setOrders(data);
       setLoading(false);
     } catch (error) {

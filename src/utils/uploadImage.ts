@@ -1,4 +1,4 @@
-import { configCloudinaryAPI } from "apis/cloudinaryAPI";
+import { configCloudinaryAPI } from "apis";
 import { toast } from "react-toastify";
 
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || "";

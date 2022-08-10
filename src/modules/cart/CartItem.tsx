@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { cartAPI } from "apis";
 import { QuantityController } from "components/quantityController";
 import { path } from "constants/path";
 import { ICart } from "interfaces";
@@ -17,7 +17,7 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
         productId: cartInfo?.product?._id,
         quantity,
       };
-      const { data, success } = await configAPI.addToCart(payload);
+      const { data, success } = await cartAPI.addToCart(payload);
       if (success) {
         const index = carts.findIndex((cart: ICart) => data?._id === cart._id);
         carts[index].quantity = quantity;
@@ -38,7 +38,7 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
       cartIds: cartInfo?._id,
     };
     try {
-      const { success, message } = await configAPI.deleteSingleCart(payload);
+      const { success, message } = await cartAPI.deleteSingleCart(payload);
       if (success) {
         const updatedCarts = carts.filter((cartItem) => cartItem._id !== cartInfo?._id);
         setCart(updatedCarts);

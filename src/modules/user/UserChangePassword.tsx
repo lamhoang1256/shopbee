@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { userAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
@@ -13,7 +13,7 @@ const UserChangePassword = () => {
   const { currentUser } = useStore((state) => state);
   const changePassword = async (values: IPayloadChangePassword) => {
     try {
-      const { success, message } = await configAPI.userChangePassword(values);
+      const { success, message } = await userAPI.changePasswordMe(values);
       if (success) toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);

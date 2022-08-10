@@ -1,6 +1,6 @@
-import { configAPI } from "apis/configAPI";
+import { authAPI } from "apis";
 import { ButtonSubmitAuth } from "components/button";
-import { FormGroup, FormMessError, FormLabel } from "components/form";
+import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { Input } from "components/input";
 import { path } from "constants/path";
 import { SignUpYup } from "constants/yup";
@@ -16,7 +16,7 @@ const SignUpPage = () => {
   useCheckLoggedIn(currentUser);
   const handleSignUp = async (values: any) => {
     try {
-      const response: any = await configAPI.signUp(values);
+      const response: any = await authAPI.signUp(values);
       if (response.success) {
         navigate(path.signIn);
         toast.success(response.message);

@@ -1,9 +1,8 @@
-import { IProductPayload, IResponse } from "interfaces";
-
+import { IProductPayload, IResponse, ISearchParams } from "interfaces";
 import axiosClient from "./axiosClient";
 
 export const productAPI = {
-  productAddNew: (product: IProductPayload): Promise<IResponse> => {
+  addNewProduct: (product: IProductPayload): Promise<IResponse> => {
     const path = `api/product`;
     return axiosClient.post(path, product);
   },
@@ -15,8 +14,16 @@ export const productAPI = {
     const path = `api/product/${productId}`;
     return axiosClient.delete(path);
   },
+  getAllProduct: (params?: Partial<ISearchParams>): Promise<IResponse> => {
+    const path = `api/product`;
+    return axiosClient.get(path, { params });
+  },
   getSingleProduct: (productId: string): Promise<IResponse> => {
     const path = `api/product/${productId}`;
     return axiosClient.get(path);
+  },
+  buyProducts: (values: any): Promise<IResponse> => {
+    const path = `api/order`;
+    return axiosClient.post(path, values);
   },
 };

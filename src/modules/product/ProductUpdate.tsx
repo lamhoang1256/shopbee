@@ -1,5 +1,5 @@
-import { configAPI } from "apis/configAPI";
-import { productAPI } from "apis/product";
+import { categoryAPI } from "apis";
+import { productAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { ImageUpload } from "components/image";
@@ -47,7 +47,7 @@ const ProductUpdate = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await configAPI.getAllCategory();
+        const { data } = await categoryAPI.getAllCategory();
         setCategories(data);
       } catch (error) {
         console.log("Failed to fetch categories: ", error);

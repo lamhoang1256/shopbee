@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { orderAPI } from "apis";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
@@ -23,7 +23,7 @@ const OrderManage = () => {
     setLoading(true);
     try {
       const params = status ? { status } : {};
-      const { data } = await configAPI.getAllOrderByAdmin(params);
+      const { data } = await orderAPI.getAllOrderByAdmin(params);
       setOrders(data);
       setLoading(false);
     } catch (error) {

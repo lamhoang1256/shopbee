@@ -1,30 +1,30 @@
-import { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useStore } from "store/configStore";
-import { configAPI } from "apis/configAPI";
+import { cartAPI } from "apis";
 import { path } from "constants/path";
 import { DashboardLayout, MainLayout, UserLayout } from "layouts";
+import { BannerManage } from "modules/banner";
+import { OrderManage, OrderUpdate } from "modules/order";
+import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
 import { UserAddNew, UserChangePassword, UserManage, UserUpdateByAdmin } from "modules/user";
 import CartPage from "pages/CartPage";
+import DashboardPage from "pages/DashboardPage";
 import HomePage from "pages/HomePage";
 import OrderDetailsPage from "pages/OrderDetailsPage";
 import OrderPage from "pages/OrderPage";
+import PageNotFound from "pages/PageNotFound";
 import ProductDetailsPage from "pages/ProductDetailsPage";
 import ProfilePage from "pages/ProfilePage";
+import SearchPage from "pages/SearchPage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
-import PageNotFound from "pages/PageNotFound";
-import SearchPage from "pages/SearchPage";
-import DashboardPage from "pages/DashboardPage";
-import { OrderManage, OrderUpdate } from "modules/order";
-import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
-import { BannerManage } from "modules/banner";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useStore } from "store/configStore";
 
 const App = () => {
   const { currentUser, setCart } = useStore((state) => state);
   const fetchCart = async (userId: string) => {
     try {
-      const { data, success } = await configAPI.getAllCart(userId);
+      const { data, success } = await cartAPI.getAllCart(userId);
       if (success) setCart(data);
     } catch (error) {
       console.log(error);

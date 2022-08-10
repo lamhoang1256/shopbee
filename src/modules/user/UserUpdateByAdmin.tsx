@@ -1,5 +1,4 @@
-import { configAPI } from "apis/configAPI";
-import { userAPI } from "apis/userAPI";
+import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
@@ -18,7 +17,7 @@ const UserUpdateByAdmin = () => {
   const { id } = useParams();
   const handleUpdateUser = async (values: any) => {
     try {
-      const { success, message } = await configAPI.userUpdateProfile(values);
+      const { success, message } = await userAPI.updateProfileMe(values);
       if (success) toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
@@ -49,7 +48,7 @@ const UserUpdateByAdmin = () => {
         _id: id,
         avatar: urlImage,
       };
-      const { success, message, data } = await configAPI.userUpdateProfile(payload);
+      const { success, message, data } = await userAPI.updateProfileMe(payload);
       formik.setFieldValue("avatar", data?.avatar);
       if (success) toast.success(message);
     } catch (error: any) {

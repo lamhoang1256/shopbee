@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { userAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
@@ -20,7 +20,7 @@ const UserUpdateProfile = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const updateProfile = async (values: any) => {
     try {
-      const { data, success, message } = await configAPI.userUpdateProfile(values);
+      const { data, success, message } = await userAPI.updateProfileMe(values);
       if (success) {
         const newCurrentUser = { ...currentUser, ...data };
         setCurrentUser(newCurrentUser);

@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { authAPI } from "apis";
 import { ButtonSubmitAuth } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { Input } from "components/input";
@@ -19,7 +19,7 @@ const SignInPage = () => {
   useCheckLoggedIn(currentUser);
   const handleSignIn = async (values: any) => {
     try {
-      const response: any = await configAPI.signIn(values);
+      const response: any = await authAPI.signIn(values);
       if (response.success) {
         setCurrentUser(response.data);
         toast.success(response.message);

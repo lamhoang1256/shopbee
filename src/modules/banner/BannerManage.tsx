@@ -1,4 +1,4 @@
-import { bannerAPI } from "apis/bannerAPI";
+import { bannerAPI } from "apis";
 import { ActionDelete } from "components/action";
 import { ImageUpload } from "components/image";
 import { Loading } from "components/loading";

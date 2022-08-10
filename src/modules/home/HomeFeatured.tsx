@@ -1,4 +1,4 @@
-import { configAPI } from "apis/configAPI";
+import { productAPI } from "apis";
 import { SectionHeader } from "components/common";
 import { IProduct } from "interfaces";
 import { ProductItem } from "modules/product";
@@ -8,7 +8,7 @@ const HomeFeatured = () => {
   const [products, setProducts] = useState([]);
   const fetchHomeFeatured = async () => {
     try {
-      const { data } = await configAPI.getAllProduct();
+      const { data } = await productAPI.getAllProduct();
       setProducts(data?.products);
     } catch (error) {
       console.log(error);

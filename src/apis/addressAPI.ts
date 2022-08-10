@@ -2,14 +2,14 @@ import axios from "axios";
 import queryString from "query-string";
 
 const axiosClientAddress = axios.create({
-  baseURL: "https://sheltered-anchorage-60344.herokuapp.com",
+  baseURL: process.env.REACT_APP_ADMINISTRATION,
   paramsSerializer: (params) => queryString.stringify(params),
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export const configAPIAddress = {
+export const addressAPI = {
   getAllCity: () => {
     const path = `/province`;
     return axiosClientAddress.get(path);

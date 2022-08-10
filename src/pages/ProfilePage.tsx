@@ -1,6 +1,6 @@
-import { configAPI } from "apis/configAPI";
+import { userAPI } from "apis";
 import { HeaderTemplate } from "layouts";
-import { UserUpdateProfile, UserUpdateAvatar } from "modules/user";
+import { UserUpdateAvatar, UserUpdateProfile } from "modules/user";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { uploadImage } from "utils/uploadImage";
@@ -14,7 +14,7 @@ const ProfilePage = () => {
         _id: currentUser?._id,
         avatar,
       };
-      const { data, success, message } = await configAPI.userUpdateProfile(payload);
+      const { data, success, message } = await userAPI.updateProfileMe(payload);
       if (success) {
         const newCurrentUser = { ...currentUser, ...data };
         setCurrentUser(newCurrentUser);

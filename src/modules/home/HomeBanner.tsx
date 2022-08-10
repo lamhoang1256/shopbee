@@ -1,4 +1,4 @@
-import { bannerAPI } from "apis/bannerAPI";
+import { bannerAPI } from "apis";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

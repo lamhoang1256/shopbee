@@ -1,5 +1,5 @@
-import { configAPI } from "apis/configAPI";
-import { productAPI } from "apis/product";
+import { categoryAPI } from "apis";
+import { productAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { ImageUpload } from "components/image";
@@ -21,7 +21,7 @@ const ProductAddNew = () => {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await configAPI.getAllCategory();
+      const { data } = await categoryAPI.getAllCategory();
       setCategories(data);
     } catch (error) {
       console.log("error: ", error);
@@ -32,7 +32,7 @@ const ProductAddNew = () => {
     const payload: IProductPayload = values;
     if (payload.priceSale === 0) payload.priceSale = payload.price;
     try {
-      const { success, message } = await productAPI.productAddNew(payload);
+      const { success, message } = await productAPI.addNewProduct(payload);
       if (success) toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
