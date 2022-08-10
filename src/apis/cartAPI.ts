@@ -2,8 +2,8 @@ import { IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const cartAPI = {
-  getAllCart: (userId: string): Promise<IResponse> => {
-    const path = `api/cart?userId=${userId}`;
+  getAllCart: (): Promise<IResponse> => {
+    const path = `api/cart`;
     return axiosClient.get(path);
   },
   addToCart: (values: any): Promise<IResponse> => {
@@ -14,8 +14,8 @@ export const cartAPI = {
     const path = `api/cart`;
     return axiosClient.delete(path, { data: values });
   },
-  deleteAllCart: (values: any): Promise<IResponse> => {
+  deleteAllCart: (): Promise<IResponse> => {
     const path = `api/cart/all`;
-    return axiosClient.delete(path, { data: values });
+    return axiosClient.delete(path);
   },
 };

@@ -1,19 +1,17 @@
+import { ICart } from "@types";
 import { cartAPI } from "apis";
 import { QuantityController } from "components/quantityController";
 import { path } from "constants/path";
-import { ICart } from "@types";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
 
 const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
-  const { carts, currentUser, setCart } = useStore((state) => state);
-
+  const { carts, setCart } = useStore((state) => state);
   const handleAddToCart = async (quantity: number) => {
     try {
       const payload = {
-        userId: currentUser?._id,
         productId: cartInfo?.product?._id,
         quantity,
       };
@@ -29,7 +27,6 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
   };
   const handleRemoveCartItem = async () => {
     const payload = {
-      userId: currentUser?._id,
       cartIds: cartInfo?._id,
     };
     try {
@@ -51,11 +48,7 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-3'>
       <ProductImage className='w-24 lg:w-20' imageUrl={cartInfo?.product?.image} />
       <div className='flex flex-col flex-1 md:flex-row'>
-        <ProductTitle
-          styleLink='md:w-[40%]'
-          className='line-clamp-2'
-          to={`${path.product}/${cartInfo?.product?._id}`}
-        >
+        <ProductTitle styleLink='md:w-[40%]' to={`${path.product}/${cartInfo?.product?._id}`}>
           {cartInfo?.product?.name}
         </ProductTitle>
         <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>

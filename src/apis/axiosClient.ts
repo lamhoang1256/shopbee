@@ -47,7 +47,8 @@ axiosClient.interceptors.response.use(
         return Promise.reject(err);
       }
     }
-    return Promise.reject(error);
+    const errorResult = { ...response.data, status: response.status };
+    return Promise.reject(errorResult);
   },
 );
 

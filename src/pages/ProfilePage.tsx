@@ -10,11 +10,7 @@ const ProfilePage = () => {
   const handleUpdateAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
-      const payload = {
-        _id: currentUser?._id,
-        avatar,
-      };
-      const { data, success, message } = await userAPI.updateProfileMe(payload);
+      const { data, success, message } = await userAPI.updateProfileMe({ avatar });
       if (success) {
         const newCurrentUser = { ...currentUser, ...data };
         setCurrentUser(newCurrentUser);

@@ -9,7 +9,6 @@ import { useStore } from "store/configStore";
 import Administrative from "./UserUpdateAdministrative";
 
 interface IValuesUpdateProfile {
-  _id: string;
   fullname: string;
   phone: string;
   addressHome: string;
@@ -37,7 +36,6 @@ const UserUpdateProfile = () => {
 
   const formik = useFormik({
     initialValues: {
-      _id: currentUser?._id,
       fullname: currentUser.fullname || "",
       phone: currentUser.phone || "",
       addressHome: currentUser.addressHome || "",

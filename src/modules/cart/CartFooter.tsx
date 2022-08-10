@@ -33,10 +33,7 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
 
   const handleRemoveAllCart = async () => {
     try {
-      const values = {
-        userId: currentUser?._id,
-      };
-      const { success, message } = await cartAPI.deleteAllCart(values);
+      const { success, message } = await cartAPI.deleteAllCart();
       if (success) {
         setCart([]);
         toast.success(message);
@@ -61,7 +58,6 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
     const shippingPrice = 16000;
     const totalDiscount = 10000;
     const values = {
-      userId: currentUser._id,
       orderItems,
       shippingAddress: `${currentUser?.addressHome}, ${currentUser?.addressAdministrative}`,
       shippingPrice,

@@ -16,7 +16,6 @@ export interface ICurrentUser {
 }
 
 export interface IPayloadChangePassword {
-  _id: string;
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;

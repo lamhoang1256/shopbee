@@ -22,9 +22,9 @@ import { useStore } from "store/configStore";
 
 const App = () => {
   const { currentUser, setCart } = useStore((state) => state);
-  const fetchCart = async (userId: string) => {
+  const fetchCart = async () => {
     try {
-      const { data, success } = await cartAPI.getAllCart(userId);
+      const { data, success } = await cartAPI.getAllCart();
       if (success) setCart(data);
     } catch (error) {
       console.log(error);
@@ -32,7 +32,7 @@ const App = () => {
   };
   useEffect(() => {
     if (currentUser?.email) {
-      fetchCart(currentUser?._id);
+      fetchCart();
     }
   }, []);
 
