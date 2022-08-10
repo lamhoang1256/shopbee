@@ -18,7 +18,7 @@ const SearchSortBar = () => {
     navigate(`${path.search}?${queryString.stringify(newParams)}`);
   };
   const handleSortByPrice = (e: any) => {
-    handleSearch({ order: e.target.value, sort_by: "price" });
+    handleSearch({ order: e.target.value, sort_by: "priceSale" });
   };
   const goNextPage = () => {
     const newPage = Number(searchPageParams.page) + 1;

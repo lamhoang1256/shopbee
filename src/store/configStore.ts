@@ -1,13 +1,13 @@
-import create from "zustand";
-import { LocalStorage } from "constants/localStorage";
 import { ICart, ICurrentUser, IUseStore } from "interfaces";
+import { getCurrentUserLocalStorage, setCurrentUserLocalStorage } from "utils/localStorage";
+import create from "zustand";
 
 export const useStore = create<IUseStore>((set) => ({
   carts: [],
   setCart: (carts: ICart[]) => set({ carts }),
-  currentUser: JSON.parse(localStorage.getItem(LocalStorage.currentUser) || "{}"),
+  currentUser: getCurrentUserLocalStorage(),
   setCurrentUser: (currentUser: ICurrentUser) => {
-    localStorage.setItem(LocalStorage.currentUser, JSON.stringify(currentUser));
+    setCurrentUserLocalStorage(currentUser);
     set({ currentUser });
   },
 }));

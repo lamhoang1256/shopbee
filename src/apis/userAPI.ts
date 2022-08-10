@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient";
 
 export const userAPI = {
   getAllUser: (): Promise<IResponse> => {
-    const path = `api/user`;
+    const path = `api/user/?limit=1`;
     return axiosClient.get(path);
   },
   getSingleUser: (userId: string): Promise<IResponse> => {

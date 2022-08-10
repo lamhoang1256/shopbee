@@ -1,8 +1,9 @@
 import { userAPI } from "apis/userAPI";
 import { Button } from "components/button";
 import { Loading } from "components/loading";
+import { Pagination } from "components/pagination";
 import { path } from "constants/path";
-import { ICurrentUser } from "interfaces";
+import { ICurrentUser, IPagination } from "interfaces";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -11,12 +12,14 @@ import UserAvatar from "./UserAvatar";
 
 const UserManage = () => {
   const [users, setUsers] = useState<ICurrentUser[]>([]);
+  const [pagination, setPagination] = useState<IPagination>(Object);
   const [loading, setLoading] = useState(true);
   const fetchAllUser = async () => {
     setLoading(true);
     try {
       const { data } = await userAPI.getAllUser();
       setUsers(data.users);
+      setPagination(data.pagination);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -94,6 +97,7 @@ const UserManage = () => {
           </table>
         </div>
       )}
+      {users.length > 0 && <Pagination pagination={pagination} handleClickNumberPage={() => {}} />}
     </HeaderTemplate>
   );
 };

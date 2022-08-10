@@ -21,8 +21,7 @@ import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
 import { BannerManage } from "modules/banner";
 
 const App = () => {
-  const currentUser = useStore((state: any) => state.currentUser);
-  const setCart = useStore((state: any) => state.setCart);
+  const { currentUser, setCart } = useStore((state) => state);
   const fetchCart = async (userId: string) => {
     try {
       const { data, success } = await configAPI.getAllCart(userId);
@@ -31,7 +30,6 @@ const App = () => {
       console.log(error);
     }
   };
-
   useEffect(() => {
     if (currentUser?.email) {
       fetchCart(currentUser?._id);

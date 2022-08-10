@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { path } from "constants/path";
 import { IProduct } from "interfaces";
 import {
   ProductImage,
@@ -18,7 +19,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
   const { priceSale, price, image, _id, name, rating, sold } = product;
   const precentSale = Math.ceil((1 - priceSale / price) * 100);
   return (
-    <Link to={_id} className='product-item' key={_id}>
+    <Link to={`${path.product}/${_id}`} className='product-item' key={_id}>
       <ProductImage imageUrl={image} />
       <div className='p-2 pb-4'>
         <ProductTitle>{name}</ProductTitle>

@@ -57,7 +57,7 @@ const SearchPage = () => {
         setResults(data?.products);
         setPagination(data?.pagination);
       } catch (error) {
-        console.log(error);
+        console.log(`Failed to fetch products:`, error);
       }
     };
     fetchSearchProducts(searchPageParams);
@@ -74,12 +74,14 @@ const SearchPage = () => {
               <ProductItem product={product} key={product._id} />
             ))}
           </div>
-          <Pagination
-            pagination={pagination}
-            goToNext={goNextPage}
-            goToPrev={goPrevPage}
-            handleClickNumberPage={handleClickNumberPage}
-          />
+          {results.length > 0 && (
+            <Pagination
+              pagination={pagination}
+              goToNext={goNextPage}
+              goToPrev={goPrevPage}
+              handleClickNumberPage={handleClickNumberPage}
+            />
+          )}
         </div>
       </div>
     </SearchProvider>
