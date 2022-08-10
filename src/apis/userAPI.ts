@@ -18,6 +18,10 @@ export const userAPI = {
     const path = `api/user/${userId}`;
     return axiosClient.delete(path);
   },
+  updateUser: (values: any): Promise<IResponse> => {
+    const path = `api/user/`;
+    return axiosClient.put(path, values);
+  },
   updateProfileMe: (values: any): Promise<IResponse> => {
     const path = `api/user`;
     return axiosClient.put(path, values);

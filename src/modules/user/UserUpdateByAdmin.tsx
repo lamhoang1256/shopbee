@@ -17,7 +17,7 @@ const UserUpdateByAdmin = () => {
   const { id } = useParams();
   const handleUpdateUser = async (values: any) => {
     try {
-      const { success, message } = await userAPI.updateProfileMe(values);
+      const { success, message } = await userAPI.updateUser(values);
       if (success) toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);

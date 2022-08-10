@@ -5,7 +5,7 @@ export const SignUpYup = Yup.object({
   password: Yup.string().required("Vui lòng nhập mật khẩu!"),
   confirm_password: Yup.string()
     .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
-    .required("Please input your confirm password!"),
+    .required("Vui lòng nhập xác nhận mật khẩu!"),
 });
 
 export const SignInYup = Yup.object({

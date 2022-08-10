@@ -1,6 +1,6 @@
 import { cartAPI } from "apis";
 import { path } from "constants/path";
-import { DashboardLayout, MainLayout, UserLayout } from "layouts";
+import { AuthLayout, DashboardLayout, MainLayout, UserLayout } from "layouts";
 import { BannerManage } from "modules/banner";
 import { OrderManage, OrderUpdate } from "modules/order";
 import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
@@ -43,9 +43,13 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path={path.cart} element={<CartPage />} />
           <Route path={`${path.product}/:id`} element={<ProductDetailsPage />} />
-          <Route path={path.signUp} element={<SignUpPage />} />
-          <Route path={path.signIn} element={<SignInPage />} />
           <Route path={path.search} element={<SearchPage />} />
+        </Route>
+        <Route path='/' element={<AuthLayout title='Đăng ký' />}>
+          <Route path={path.signUp} element={<SignUpPage />} />
+        </Route>
+        <Route path='/' element={<AuthLayout title='Đăng nhập' />}>
+          <Route path={path.signIn} element={<SignInPage />} />
         </Route>
         <Route element={<UserLayout />}>
           <Route path={path.order} element={<OrderPage />} />

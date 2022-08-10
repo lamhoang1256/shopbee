@@ -5,7 +5,6 @@ import { path } from "constants/path";
 import { OrderItem } from "modules/order";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useStore } from "store/configStore";
 
 const tabs = [
   { key: 0, display: "Tất cả", to: path.order },
@@ -15,7 +14,6 @@ const tabs = [
 ];
 
 const OrderPage = () => {
-  const { currentUser } = useStore((state) => state);
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
@@ -25,7 +23,7 @@ const OrderPage = () => {
     setLoading(true);
     try {
       const params = status ? { status } : {};
-      const { data } = await orderAPI.getAllOrder(currentUser?._id, params);
+      const { data } = await orderAPI.getAllOrder(params);
       setOrders(data);
       setLoading(false);
     } catch (error) {
@@ -34,7 +32,7 @@ const OrderPage = () => {
   };
   useEffect(() => {
     fetchAllOrder();
-  }, [currentUser, status]);
+  }, [status]);
   if (loading) return <Loading />;
   return (
     <>

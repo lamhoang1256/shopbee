@@ -26,7 +26,7 @@ import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const { currentUser, setCart, carts } = useStore((state) => state);
+  const { setCart, carts } = useStore((state) => state);
   const [loading, setLoading] = useState(true);
   const [productInfo, setProductInfo] = useState<IProduct>(Object);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
@@ -74,7 +74,6 @@ const ProductDetailsPage = () => {
       existCartItem.quantity += quantityAdd;
     }
     const values = {
-      userId: currentUser?._id,
       productId: id,
       quantity,
     };
