@@ -3,7 +3,7 @@ import axiosClient from "./axiosClient";
 
 export const orderAPI = {
   getAllOrder: (userId: string, params: any): Promise<IResponse> => {
-    const path = `api/order/user?userId=${userId}`;
+    const path = `api/order/me?userId=${userId}`;
     return axiosClient.get(path, { params });
   },
   getAllOrderByAdmin: (params: any): Promise<IResponse> => {

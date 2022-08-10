@@ -10,7 +10,7 @@ const ProductPriceSale = ({ children, className }: ProductPriceSaleProps) => {
 };
 
 ProductPriceSale.defaultProps = {
-  className: "font-medium text-base",
+  className: "font-medium lg:text-base",
 };
 
 export default ProductPriceSale;

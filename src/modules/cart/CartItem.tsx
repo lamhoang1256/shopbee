@@ -27,11 +27,6 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
       toast.error(error?.message);
     }
   };
-
-  const onChangeQuantity = (value: number) => {
-    handleAddToCart(value);
-  };
-
   const handleRemoveCartItem = async () => {
     const payload = {
       userId: currentUser?._id,
@@ -48,31 +43,36 @@ const CartItem = ({ cartInfo }: { cartInfo: ICart }) => {
       toast.error(error?.message);
     }
   };
+  const onChangeQuantity = (value: number) => {
+    handleAddToCart(value);
+  };
 
   return (
-    <div className='border-[#00000017] my-3 border p-4 flex items-center gap-2'>
-      <div className='cart-grid'>
-        <ProductImage className='w-20 mx-auto' imageUrl={cartInfo?.product?.image} />
-        <div className=' cart-grid-2'>
-          <ProductTitle
-            className='text-left max-w-[500px] line-clamp-3 lg:line-clamp-2'
-            to={`${path.product}/${cartInfo?.product?._id}`}
-          >
-            {cartInfo?.product?.name}
-          </ProductTitle>
+    <div className='border-[#00000017] my-3 border p-4 flex items-center gap-3'>
+      <ProductImage className='w-24 lg:w-20' imageUrl={cartInfo?.product?.image} />
+      <div className='flex flex-col flex-1 md:flex-row'>
+        <ProductTitle
+          styleLink='md:w-[40%]'
+          className='line-clamp-2'
+          to={`${path.product}/${cartInfo?.product?._id}`}
+        >
+          {cartInfo?.product?.name}
+        </ProductTitle>
+        <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>
+          <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2'>
+            <ProductPriceOld> {formatMoney(cartInfo?.product?.price)}</ProductPriceOld>
+            <ProductPriceSale>{formatMoney(cartInfo?.product?.priceSale)}</ProductPriceSale>
+          </div>
+          <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
+            <QuantityController
+              defaultQuantity={cartInfo?.quantity}
+              onChangeValue={onChangeQuantity}
+            />
+            <button type='button' onClick={handleRemoveCartItem}>
+              Xóa
+            </button>
+          </div>
         </div>
-        <div className='flex flex-col justify-center gap-x-1'>
-          <ProductPriceOld> {formatMoney(cartInfo?.product?.price)}</ProductPriceOld>
-          <ProductPriceSale>{formatMoney(cartInfo?.product?.priceSale)}</ProductPriceSale>
-        </div>
-        <QuantityController
-          defaultQuantity={cartInfo?.quantity}
-          onChangeValue={onChangeQuantity}
-          className='mx-auto'
-        />
-        <button type='button' onClick={handleRemoveCartItem}>
-          Xóa
-        </button>
       </div>
     </div>
   );
