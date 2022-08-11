@@ -6,7 +6,6 @@ import queryString from "query-string";
 const currentUser: ICurrentUser = JSON.parse(
   localStorage.getItem(LocalStorage.currentUser) || "{}",
 );
-console.log("currentUser: ", currentUser);
 
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API,
