@@ -97,7 +97,7 @@ const UserManage = () => {
           </table>
         </div>
       )}
-      {users.length > 0 && <Pagination pagination={pagination} handleClickNumberPage={() => {}} />}
+      {users.length > 0 && <Pagination pagination={pagination} />}
     </HeaderTemplate>
   );
 };

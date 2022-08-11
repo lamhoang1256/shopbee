@@ -13,18 +13,16 @@ import { setCurrentUserLocalStorage } from "utils/localStorage";
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const { setCurrentUser, currentUser } = useStore((state: any) => ({
-    setCurrentUser: state.setCurrentUser,
-    currentUser: state.currentUser,
-  }));
+  const { setCurrentUser, currentUser } = useStore((state) => state);
   useCheckLoggedIn(currentUser);
+
   const handleSignIn = async (values: any) => {
     try {
-      const response: any = await authAPI.signIn(values);
-      if (response.success) {
-        setCurrentUser(response.data);
-        setCurrentUserLocalStorage(response.data);
-        toast.success(response.message);
+      const { success, data, message } = await authAPI.signIn(values);
+      if (success) {
+        setCurrentUser(data);
+        setCurrentUserLocalStorage(data);
+        toast.success(message);
         navigate(path.home);
       }
     } catch (error: any) {

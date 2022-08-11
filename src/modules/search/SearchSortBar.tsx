@@ -1,32 +1,28 @@
+import { useSearchParams } from "react-router-dom";
+import { IPagination } from "@types";
 import { Button } from "components/button";
-import queryString from "query-string";
 import ButtonPagination from "components/button/ButtonPagination";
 import { IconNext, IconPrev } from "components/icons";
-import { path } from "constants/path";
-import { useNavigate } from "react-router-dom";
-import { ISearchParams } from "@types";
-import { useSearchContext } from "./search-context";
 
-const SearchSortBar = () => {
-  const { searchPageParams, pagination } = useSearchContext();
-  const navigate = useNavigate();
-  const handleSearch = (params: any) => {
-    const newParams: ISearchParams = {
-      ...searchPageParams,
-      ...params,
-    };
-    navigate(`${path.search}?${queryString.stringify(newParams)}`);
-  };
+interface SearchSortBarProps {
+  pagination: IPagination;
+}
+
+const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentParams = Object.fromEntries(searchParams);
+  const currentPage = Number(searchParams.get("page"));
+
   const handleSortByPrice = (e: any) => {
-    handleSearch({ order: e.target.value, sort_by: "priceSale" });
+    setSearchParams({ ...currentParams, order: e.target.value, sort_by: "priceSale" });
   };
   const goNextPage = () => {
-    const newPage = Number(searchPageParams.page) + 1;
-    handleSearch({ page: newPage });
+    const nextPage = currentPage + 1;
+    setSearchParams({ ...currentParams, page: nextPage.toString() });
   };
   const goPrevPage = () => {
-    const newPage = Number(searchPageParams.page) - 1;
-    handleSearch({ page: newPage });
+    const prevPage = currentPage - 1;
+    setSearchParams({ ...currentParams, page: prevPage.toString() });
   };
 
   return (
@@ -36,19 +32,19 @@ const SearchSortBar = () => {
         <Button
           primary
           className='py-0 rounded-sm h-9'
-          onClick={() => handleSearch({ sort_by: "view" })}
+          onClick={() => setSearchParams({ ...currentParams, sort_by: "view" })}
         >
           Phổ biến
         </Button>
         <Button
           className='py-0 bg-white rounded-sm h-9'
-          onClick={() => handleSearch({ sort_by: "createdAt" })}
+          onClick={() => setSearchParams({ ...currentParams, sort_by: "createdAt" })}
         >
           Mới nhất
         </Button>
         <Button
           className='py-0 bg-white rounded-sm h-9'
-          onClick={() => handleSearch({ sort_by: "sold" })}
+          onClick={() => setSearchParams({ ...currentParams, sort_by: "sold" })}
         >
           Bán chạy
         </Button>
@@ -65,16 +61,13 @@ const SearchSortBar = () => {
       </div>
       <div className='flex items-center'>
         <div className='mr-3'>
-          <span className='text-orangeee4'>{searchPageParams.page || 1}</span>
+          <span className='text-orangeee4'>{currentPage || 1}</span>
           <span>/{pagination.pageCount || 1}</span>
         </div>
         <ButtonPagination onClick={goPrevPage} primary={pagination.page > 1}>
           <IconPrev className='w-3 h-3' />
         </ButtonPagination>
-        <ButtonPagination
-          onClick={goNextPage}
-          primary={pagination.pageCount > searchPageParams.page}
-        >
+        <ButtonPagination onClick={goNextPage} primary={pagination.pageCount > currentPage}>
           <IconNext className='w-3 h-3' />
         </ButtonPagination>
       </div>

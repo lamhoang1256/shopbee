@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ICategory } from "@types";
 import { categoryAPI } from "apis";
 import { IconMenu } from "components/icons";
 import { path } from "constants/path";
-import { ICategory } from "@types";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const SearchByCategory = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -12,12 +12,13 @@ const SearchByCategory = () => {
       const { data } = await categoryAPI.getAllCategory();
       setCategories(data);
     } catch (error) {
-      console.log(error);
+      console.log(`Failed to fetch categories:`, error);
     }
   };
   useEffect(() => {
     fetchAllCategory();
   }, []);
+
   return (
     <>
       <div className='search-catelog-header'>

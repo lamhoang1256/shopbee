@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import { IconStar } from "components/icons";
 import { path } from "constants/path";
-import { Link } from "react-router-dom";
 import classNames from "utils/className";
 
 const renderStarRating = (score: number) => {

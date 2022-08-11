@@ -1,34 +1,27 @@
+import { useSearchParams } from "react-router-dom";
+import { useFormik } from "formik";
 import { Button } from "components/button";
 import { FormMessError } from "components/form";
 import { IconFilter } from "components/icons";
 import { InputRangePrice } from "components/input";
-import { path } from "constants/path";
 import { SearchRangePriceYup } from "constants/yup";
-import { useFormik } from "formik";
-import { ISearchParams } from "@types";
-import queryString from "query-string";
-import { useNavigate } from "react-router-dom";
-import { useSearchContext } from "./search-context";
+
+interface IParamsSearchByPrice {
+  price_min: string;
+  price_max: string;
+}
 
 const SearchRangePrice = () => {
-  const { searchPageParams } = useSearchContext();
-  const navigate = useNavigate();
-  const handleSearchByRangePrice = (values: any) => {
-    const newParams: ISearchParams = {
-      ...searchPageParams,
-      ...values,
-    };
-    navigate(`${path.search}?${queryString.stringify(newParams)}`);
-  };
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentParams = Object.fromEntries(searchParams);
   const formik = useFormik({
     initialValues: {
       price_min: "",
       price_max: "",
     },
     validationSchema: SearchRangePriceYup,
-    onSubmit: (values) => {
-      handleSearchByRangePrice(values);
+    onSubmit: (params: IParamsSearchByPrice) => {
+      setSearchParams({ ...currentParams, ...params });
     },
   });
 
@@ -46,7 +39,6 @@ const SearchRangePrice = () => {
         <span className='text-[#000000cc]'>Khoản giá</span>
         <div className='flex items-center justify-between'>
           <InputRangePrice
-            type='number'
             name='price_min'
             placeholder='Từ'
             value={formik.values.price_min}
@@ -54,7 +46,6 @@ const SearchRangePrice = () => {
           />
           <span>-</span>
           <InputRangePrice
-            type='number'
             name='price_max'
             placeholder='Đến'
             value={formik.values.price_max}
