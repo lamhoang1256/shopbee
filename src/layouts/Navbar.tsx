@@ -49,7 +49,7 @@ const Navbar = () => {
               {currentUser?.fullname}
             </span>
           </div>
-          <Popover active={activePopover}>
+          <Popover active={activePopover} className='min-w-[150px]'>
             <Link to={path.profile} className={stylesPopoverLink}>
               Tài khoản của tôi
             </Link>

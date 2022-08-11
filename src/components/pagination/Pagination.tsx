@@ -11,6 +11,7 @@ interface PaginationProps {
 const Pagination = ({ pagination }: PaginationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentParams = Object.fromEntries(searchParams);
+  console.log("currentParams: ", currentParams);
   const currentPage = Number(searchParams.get("page") || 1);
 
   const goPrevPage = () => {

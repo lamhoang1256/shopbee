@@ -24,7 +24,7 @@ const SearchPage = () => {
       }
     };
     fetchSearchProducts(currentParams);
-  }, [currentParams]);
+  }, [searchParams]);
 
   return (
     <div className='flex flex-col gap-6 mt-8 layout-container lg:flex-row'>

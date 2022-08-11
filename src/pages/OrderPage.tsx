@@ -1,7 +1,9 @@
 import { orderAPI } from "apis";
+import { InputSearch } from "components/input";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
+import { useFormik } from "formik";
 import { OrderItem } from "modules/order";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -30,6 +32,16 @@ const OrderPage = () => {
       setLoading(false);
     }
   };
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+    },
+    onSubmit: (values) => {
+      console.log("values: ", values);
+    },
+  });
+
   useEffect(() => {
     fetchAllOrder();
   }, [status]);
@@ -37,6 +49,15 @@ const OrderPage = () => {
   return (
     <>
       <Tabs tabs={tabs} query={status} />
+      <form onSubmit={formik.handleSubmit} autoComplete='off'>
+        <InputSearch
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          className='mt-3'
+          name='name'
+          placeholder='Tìm kiếm theo Tên Shop, ID đơn hàng hoặc Tên Sản phẩm'
+        />
+      </form>
       {orders.map((order: any) => (
         <OrderItem key={order?._id} order={order} />
       ))}
