@@ -1,28 +1,40 @@
 import axios from "axios";
-import { LocalStorage } from "constants/localStorage";
-import { ICurrentUser } from "@types";
 import queryString from "query-string";
+import {
+  getAccessTokenLocalStorage,
+  getRefreshTokenLocalStorage,
+  setCurrentUserLocalStorage,
+} from "utils/localStorage";
 
-const currentUser: ICurrentUser = JSON.parse(
-  localStorage.getItem(LocalStorage.currentUser) || "{}",
-);
-
+const BASE_URL_API = process.env.REACT_APP_API;
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API,
+  baseURL: BASE_URL_API,
   paramsSerializer: (params) => queryString.stringify(params),
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${currentUser?.accessToken}`,
-  },
 });
 
-const handleRefreshToken = async () => {
-  const path = `${process.env.REACT_APP_API}/api/auth/refresh-token?refreshToken=${currentUser.refreshToken}`;
+const requestRefreshToken = async () => {
+  const refreshToken = getRefreshTokenLocalStorage();
+  const path = `${BASE_URL_API}/api/auth/refresh-token?refreshToken=${refreshToken}}`;
   const { data } = await axios.post(path);
   return data.data;
 };
 
-let refreshTokenRequest: any = null;
+axiosClient.interceptors.request.use(
+  async (config) => {
+    const customConfig = {
+      ...config,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getAccessTokenLocalStorage()}`,
+      },
+    };
+    return customConfig;
+  },
+  (err) => {
+    return Promise.reject(err);
+  },
+);
+
 axiosClient.interceptors.response.use(
   async (response) => {
     if (response && response.data) {
@@ -32,15 +44,11 @@ axiosClient.interceptors.response.use(
   },
   async (error) => {
     const { response } = error;
-    if (response.status === 401 && response.data.error.message === "jwt expired") {
-      refreshTokenRequest = refreshTokenRequest || handleRefreshToken;
+    if (response?.status === 401 && response.data?.error?.message === "jwt expired") {
       try {
-        const { accessToken, refreshToken } = await refreshTokenRequest();
+        const { accessToken, refreshToken } = await requestRefreshToken();
         response.config.headers.Authorization = `Bearer ${accessToken}`;
-        localStorage.setItem(
-          "currentUser",
-          JSON.stringify({ ...currentUser, refreshToken, accessToken }),
-        );
+        setCurrentUserLocalStorage({ accessToken, refreshToken });
         return await axiosClient(response.config);
       } catch (err: any) {
         return Promise.reject(err);

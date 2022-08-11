@@ -9,6 +9,7 @@ import { useCheckLoggedIn } from "hooks/useCheckLoggedIn";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
+import { setCurrentUserLocalStorage } from "utils/localStorage";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const SignInPage = () => {
       const response: any = await authAPI.signIn(values);
       if (response.success) {
         setCurrentUser(response.data);
+        setCurrentUserLocalStorage(response.data);
         toast.success(response.message);
         navigate(path.home);
       }

@@ -28,6 +28,7 @@ const HeaderCart = () => {
           <div className='mt-5'>
             {carts.slice(0, 5).map((cart) => (
               <Link
+                key={cart._id}
                 to={`${path.product}/${cart.product._id}`}
                 className='flex items-start p-3 gap-x-2 hover:bg-[#f8f8f8] transition-all duration-300'
               >

@@ -1,17 +1,31 @@
+import { ICurrentUser } from "@types";
+import { authAPI } from "apis";
 import { Popover } from "components/popover";
 import { defaultUserAvatar } from "constants/global";
 import { path } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { UserAvatar } from "modules/user";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import classNames from "utils/className";
+import { removeCurrentUserLocalStorage } from "utils/localStorage";
 
 const Navbar = () => {
-  const { currentUser } = useStore((state) => state);
+  const { currentUser, setCurrentUser } = useStore((state) => state);
   const { activePopover, hidePopover, showPopover } = usePopover();
-  const handleLogout = () => {
-    console.log("logout");
+
+  const handleLogout = async () => {
+    try {
+      const { success, message } = await authAPI.logout({
+        refreshToken: currentUser?.refreshToken,
+      });
+      setCurrentUser({} as ICurrentUser);
+      removeCurrentUserLocalStorage();
+      if (success) toast.success(message);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
   };
   const stylesPopoverLink =
     "text-[#000000cc] block px-5 py-2 hover:bg-[#fafafa] transition-all duration-300 hover:text-[#00bfa5]";

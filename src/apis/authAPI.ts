@@ -1,4 +1,4 @@
-import { IResponse } from "@types";
+import { IRefreshToken, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const authAPI = {
@@ -9,5 +9,9 @@ export const authAPI = {
   signUp: (user: any): Promise<IResponse> => {
     const path = `api/auth/sign-up`;
     return axiosClient.post(path, user);
+  },
+  logout: (refreshToken: IRefreshToken): Promise<IResponse> => {
+    const path = `api/auth/logout`;
+    return axiosClient.post(path, refreshToken);
   },
 };
