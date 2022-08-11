@@ -18,6 +18,10 @@ module.exports = {
       backgroundImage: {
         linearfef5: "linear-gradient(0, #fe6433, #f53e2d)",
       },
+      screens: {
+        max5se: { max: "320.98px" },
+        maxsm: { max: "768.98px" },
+      },
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],

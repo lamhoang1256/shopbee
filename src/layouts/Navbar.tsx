@@ -31,7 +31,9 @@ const Navbar = () => {
               urlAvatar={currentUser?.avatar || defaultUserAvatar}
               className='object-cover w-5 h-5 rounded-full'
             />
-            <span className='font-medium'>{currentUser?.fullname}</span>
+            <span className='font-medium max5se:line-clamp-1 max5se:max-w-[130px]'>
+              {currentUser?.fullname}
+            </span>
           </div>
           <Popover active={activePopover}>
             <Link to={path.profile} className={stylesPopoverLink}>
