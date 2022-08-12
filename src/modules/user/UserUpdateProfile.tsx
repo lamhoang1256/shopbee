@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { userAPI } from "apis";
 import { useStore } from "store/configStore";
 import { ProfileSchemaYup } from "constants/yup";
-import { InputV2 } from "components/input";
+import { Input } from "components/input";
 import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
@@ -57,7 +57,7 @@ const UserUpdateProfile = () => {
       </FormGroup>
       <FormGroup>
         <FormLabel htmlFor='fullname'>Họ và tên</FormLabel>
-        <InputV2
+        <Input
           name='fullname'
           type='text'
           value={formik.values.fullname}
@@ -67,7 +67,7 @@ const UserUpdateProfile = () => {
       </FormGroup>
       <FormGroup>
         <FormLabel htmlFor='phone'>Số điện thoại</FormLabel>
-        <InputV2
+        <Input
           name='phone'
           type='text'
           value={formik.values.phone}
@@ -84,7 +84,7 @@ const UserUpdateProfile = () => {
       </FormGroup>
       <FormGroup>
         <FormLabel htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</FormLabel>
-        <InputV2
+        <Input
           name='addressHome'
           type='text'
           value={formik.values.addressHome}

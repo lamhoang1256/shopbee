@@ -3,7 +3,7 @@ import { categoryAPI, productAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { ImageUpload } from "components/image";
-import { InputV2 } from "components/input";
+import { Input } from "components/input";
 import { Select } from "components/select";
 import { initialValuesProduct } from "constants/initialValue";
 import { ProductSchemaYup } from "constants/yup";
@@ -82,7 +82,7 @@ const ProductUpdate = () => {
       <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
           <FormLabel htmlFor='name'>Tên sản phẩm</FormLabel>
-          <InputV2
+          <Input
             name='name'
             type='text'
             value={formik.values.name}
@@ -104,7 +104,7 @@ const ProductUpdate = () => {
         <div className='grid md:grid-cols-3 gap-x-2'>
           <FormGroup>
             <FormLabel htmlFor='quantity'>Số lượng hiện có</FormLabel>
-            <InputV2
+            <Input
               name='quantity'
               type='number'
               value={formik.values.quantity}
@@ -114,7 +114,7 @@ const ProductUpdate = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='price'>Giá gốc</FormLabel>
-            <InputV2
+            <Input
               name='price'
               type='number'
               value={formik.values.price}
@@ -124,7 +124,7 @@ const ProductUpdate = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='priceSale'>Giá đã giảm</FormLabel>
-            <InputV2
+            <Input
               name='priceSale'
               type='number'
               value={formik.values.priceSale}

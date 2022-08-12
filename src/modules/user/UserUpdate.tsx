@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { Switch } from "components/checkbox";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
-import { InputV2 } from "components/input";
+import { Input } from "components/input";
 import { ProfileSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
@@ -73,7 +73,7 @@ const UserUpdate = () => {
         <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
             <FormLabel htmlFor='email'>Email</FormLabel>
-            <InputV2
+            <Input
               name='email'
               type='text'
               value={formik.values.email}
@@ -83,7 +83,7 @@ const UserUpdate = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='fullname'>Họ và tên</FormLabel>
-            <InputV2
+            <Input
               name='fullname'
               type='text'
               value={formik.values.fullname}
@@ -93,7 +93,7 @@ const UserUpdate = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='phone'>Số điện thoại</FormLabel>
-            <InputV2
+            <Input
               name='phone'
               type='text'
               value={formik.values.phone}
@@ -112,7 +112,7 @@ const UserUpdate = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</FormLabel>
-            <InputV2
+            <Input
               name='addressHome'
               type='text'
               value={formik.values.addressHome}

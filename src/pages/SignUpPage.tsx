@@ -1,7 +1,7 @@
 import { authAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
-import { InputV2 } from "components/input";
+import { Input } from "components/input";
 import { path } from "constants/path";
 import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
@@ -45,7 +45,7 @@ const SignUpPage = () => {
         <form onSubmit={formik.handleSubmit}>
           <FormGroup className='mt-4'>
             <FormLabel htmlFor='email'>Email</FormLabel>
-            <InputV2
+            <Input
               placeholder='Email'
               name='email'
               onChange={formik.handleChange}
@@ -55,7 +55,7 @@ const SignUpPage = () => {
           </FormGroup>
           <FormGroup className='mt-4'>
             <FormLabel htmlFor='password'>Mật khẩu</FormLabel>
-            <InputV2
+            <Input
               type='password'
               placeholder='Mật khẩu'
               name='password'
@@ -66,7 +66,7 @@ const SignUpPage = () => {
           </FormGroup>
           <FormGroup className='mt-4'>
             <FormLabel htmlFor='confirm_password'>Xác nhận mật khẩu</FormLabel>
-            <InputV2
+            <Input
               type='password'
               placeholder='Xác nhận mật khẩu'
               name='confirm_password'

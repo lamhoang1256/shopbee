@@ -2,7 +2,7 @@ import { addressAPI } from "apis";
 import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
-import { InputV2 } from "components/input";
+import { Input } from "components/input";
 import { AddressSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
@@ -60,9 +60,9 @@ const ShopAddressUpdate = () => {
         </FormGroup>
         <FormGroup>
           <FormLabel htmlFor='addressDetail'>Địa chỉ lấy hàng cụ thể</FormLabel>
-          <InputV2
-            name='addressDetail'
+          <Input
             type='text'
+            name='addressDetail'
             value={formik.values.addressDetail}
             onChange={formik.handleChange}
           />
