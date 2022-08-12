@@ -1,58 +1,56 @@
-import { addressAPI } from "apis";
-import { Select } from "components/select";
 import { ICommune, IDistrict, IProvince } from "@types";
+import { addressAPI } from "apis";
+import { FormGroup, FormMessError } from "components/form";
+import { Select } from "components/select";
+import { initialAddressDetail } from "constants/initialValue";
 import { useEffect, useState } from "react";
 
 interface UserUpdateAdministrativeProps {
   formik: any;
 }
 
-const initAdministrative = {
-  province: {} as IProvince,
-  district: {} as IDistrict,
-  commune: {} as ICommune,
-};
-
 const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => {
-  const [provinces, setProvinces] = useState([]);
-  const [districts, setDistricts] = useState([]);
-  const [communes, setCommunes] = useState([]);
-  const [administrative, setAdministrative] = useState({
-    idProvince: "",
-    idDistrict: "",
-    idCommune: "",
-  });
+  const { addressIdProvince, addressIdDistrict, addressIdCommune } = formik.values;
+  const [addressDetail, setAddressDetail] = useState(initialAddressDetail);
+  const [provinces, setProvinces] = useState<IProvince[]>([]);
+  const [districts, setDistricts] = useState<IDistrict[]>([]);
+  const [communes, setCommunes] = useState<ICommune[]>([]);
 
   const fetchAllProvince = () => {
     addressAPI.getAllCity().then((res) => setProvinces(res.data));
   };
   const fetchAllDistrict = () => {
-    addressAPI
-      .getAllDistrict({ idProvince: administrative.idProvince })
-      .then((res) => setDistricts(res.data));
+    const params = { idProvince: addressIdProvince };
+    addressAPI.getAllDistrict(params).then((res) => setDistricts(res.data));
   };
   const fetchAllCommune = () => {
-    addressAPI
-      .getAllCommune({ idDistrict: administrative.idDistrict })
-      .then((res) => setCommunes(res.data));
+    const params = { idDistrict: addressIdDistrict };
+    addressAPI.getAllCommune(params).then((res) => setCommunes(res.data));
   };
 
   const handleUpdateAddress = () => {
-    const province: IProvince =
-      provinces.find(({ idProvince }) => idProvince === administrative.idProvince) ||
-      initAdministrative.province;
-    const district: IDistrict =
-      districts.find(({ idDistrict }) => idDistrict === administrative.idDistrict) ||
-      initAdministrative.district;
-    const commune: ICommune =
-      communes.find(({ idCommune }) => idCommune === administrative.idCommune) ||
-      initAdministrative.commune;
-    if (province?.name || district?.name || commune?.name) {
-      formik?.setFieldValue(
-        "addressAdministrative",
-        `${commune?.name}, ${district?.name}, ${province?.name}`,
-      );
-    }
+    const { commune, district, province } = addressDetail;
+    const address = `${commune}, ${district}, ${province}`;
+    formik?.setFieldValue("addressAdministrative", address);
+  };
+
+  const handleChangeProvince = async (e: any) => {
+    const province = e.target.options[e.target.selectedIndex].text;
+    setAddressDetail({ ...addressDetail, province });
+    formik?.setFieldValue("addressIdProvince", e.target.value);
+    formik?.setFieldValue("addressIdDistrict", "");
+    formik?.setFieldValue("addressIdCommune", "");
+  };
+  const handleChangeDistrict = async (e: any) => {
+    const district = e.target.options[e.target.selectedIndex].text;
+    setAddressDetail({ ...addressDetail, district });
+    formik?.setFieldValue("addressIdDistrict", e.target.value);
+    formik?.setFieldValue("addressIdCommune", "");
+  };
+  const handleChangeCommune = (e: any) => {
+    const commune = e.target.options[e.target.selectedIndex].text;
+    setAddressDetail({ ...addressDetail, commune });
+    formik?.setFieldValue("addressIdCommune", e.target.value);
   };
 
   useEffect(() => {
@@ -60,51 +58,55 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
   }, []);
   useEffect(() => {
     fetchAllDistrict();
-  }, [administrative.idProvince]);
+  }, [addressIdProvince]);
   useEffect(() => {
     fetchAllCommune();
-  }, [administrative.idProvince, administrative.idDistrict]);
+  }, [addressIdDistrict]);
   useEffect(() => {
-    if (administrative.idCommune) handleUpdateAddress();
-  }, [administrative.idCommune]);
+    handleUpdateAddress();
+  }, [addressIdCommune]);
 
   return (
     <div className='grid grid-cols-3 gap-4'>
-      <Select
-        name='province'
-        onChange={(e: any) => setAdministrative({ ...administrative, idProvince: e.target.value })}
-      >
-        <option value=''>Chọn Tỉnh/Thành Phố</option>
-        {provinces?.map((province: any) => (
-          <option value={province.idProvince} key={province.idProvince}>
-            {province.name}
-          </option>
-        ))}
-      </Select>
-      <Select
-        name='district'
-        onChange={(e: any) => setAdministrative({ ...administrative, idDistrict: e.target.value })}
-      >
-        <option value=''>Chọn Quận/Huyện</option>
-        {districts?.map((item: any) => (
-          <option value={item.idDistrict} key={item.idDistrict}>
-            {item.name}
-          </option>
-        ))}
-      </Select>
-      <Select
-        name='commune'
-        onChange={(e: any) => {
-          setAdministrative({ ...administrative, idCommune: e.target.value });
-        }}
-      >
-        <option value=''>Chọn Phường/Xã</option>
-        {communes?.map((item: any) => (
-          <option value={item.idCommune} key={item.idCommune}>
-            {item.name}
-          </option>
-        ))}
-      </Select>
+      <FormGroup>
+        <Select name='province' value={addressIdProvince} onChange={handleChangeProvince}>
+          <option value=''>Chọn Tỉnh/Thành Phố</option>
+          {provinces?.map((province) => (
+            <option value={province.idProvince} key={province.idProvince}>
+              {province.name}
+            </option>
+          ))}
+        </Select>
+        <FormMessError>
+          {formik.touched.addressIdProvince && formik.errors?.addressIdProvince}
+        </FormMessError>
+      </FormGroup>
+      <FormGroup>
+        <Select name='district' value={addressIdDistrict} onChange={handleChangeDistrict}>
+          <option value=''>Chọn Quận/Huyện</option>
+          {districts?.map((district) => (
+            <option value={district.idDistrict} key={district.idDistrict}>
+              {district.name}
+            </option>
+          ))}
+        </Select>
+        <FormMessError>
+          {formik.touched.addressIdDistrict && formik.errors?.addressIdDistrict}
+        </FormMessError>
+      </FormGroup>
+      <FormGroup>
+        <Select name='commune' value={addressIdCommune} onChange={handleChangeCommune}>
+          <option value=''>Chọn Phường/Xã</option>
+          {communes?.map((commune) => (
+            <option value={commune.idCommune} key={commune.idCommune}>
+              {commune.name}
+            </option>
+          ))}
+        </Select>
+        <FormMessError>
+          {formik.touched.addressIdCommune && formik.errors?.addressIdCommune}
+        </FormMessError>
+      </FormGroup>
     </div>
   );
 };

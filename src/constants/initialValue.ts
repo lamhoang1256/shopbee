@@ -7,3 +7,9 @@ export const initialValuesProduct = {
   priceSale: 0,
   quantity: 0,
 };
+
+export const initialAddressDetail = {
+  province: "",
+  district: "",
+  commune: "",
+};

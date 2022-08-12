@@ -11,6 +11,7 @@ module.exports = {
         redff4: "#ff424e",
         orangeee4: "#ee4d2d",
         gray999: "#999",
+        blue08f: "#08f",
       },
       fontFamily: {
         dm: ['"DM Sans"', " sans-serif"],

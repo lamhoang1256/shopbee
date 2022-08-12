@@ -40,6 +40,9 @@ const UserUpdateProfile = () => {
       phone: currentUser.phone || "",
       addressHome: currentUser.addressHome || "",
       addressAdministrative: currentUser.addressAdministrative || "",
+      addressIdProvince: "",
+      addressIdDistrict: "",
+      addressIdCommune: "",
     },
     validationSchema: UserProfileYup,
     onSubmit: (values) => {

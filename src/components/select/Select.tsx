@@ -1,18 +1,17 @@
-interface SelectProps {
+interface SelectProps extends React.HTMLAttributes<HTMLSelectElement> {
   children: React.ReactNode;
   name: string;
-  onChange?: any;
-  value?: string | number;
+  value?: string;
 }
 
-const Select = ({ name, children, onChange, value }: SelectProps) => {
+const Select = ({ name, children, value, ...props }: SelectProps) => {
   return (
     <select
       className='h-10 border border-[#00000024] px-2 outline-none'
       id={name}
       name={name}
-      onChange={onChange}
       value={value}
+      {...props}
     >
       {children}
     </select>
@@ -20,7 +19,6 @@ const Select = ({ name, children, onChange, value }: SelectProps) => {
 };
 
 Select.defaultProps = {
-  onChange: () => {},
   value: "",
 };
 

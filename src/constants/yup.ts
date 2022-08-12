@@ -22,6 +22,19 @@ export const UserProfileYup = Yup.object({
     "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
   ),
   addressHome: Yup.string().required("Vui lòng nhập địa chỉ giao hàng!"),
+  addressIdProvince: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+  addressIdDistrict: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+  addressIdCommune: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+});
+
+export const AddressYup = Yup.object({
+  addressAdministrative: Yup.string().required(
+    "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
+  ),
+  addressDetail: Yup.string().required("Vui lòng nhập địa chỉ lấy hàng!"),
+  addressIdProvince: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+  addressIdDistrict: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+  addressIdCommune: Yup.string().required("Vui lòng chọn Phường/Xã!"),
 });
 
 export const UserChangePasswordYup = Yup.object({

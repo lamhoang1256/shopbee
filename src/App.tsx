@@ -4,6 +4,7 @@ import { AuthLayout, DashboardLayout, MainLayout, UserLayout } from "layouts";
 import { BannerManage } from "modules/banner";
 import { OrderManage, OrderUpdate } from "modules/order";
 import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
+import { ShopAddressManage, ShopAddressUpdate } from "modules/shop";
 import { UserAddNew, UserChangePassword, UserManage, UserUpdateByAdmin } from "modules/user";
 import CartPage from "pages/CartPage";
 import DashboardPage from "pages/DashboardPage";
@@ -65,6 +66,8 @@ const App = () => {
           <Route path={path.productAddNew} element={<ProductAddNew />} />
           <Route path={`${path.productUpdate}/:id`} element={<ProductUpdate />} />
           <Route path={path.banner} element={<BannerManage />} />
+          <Route path={path.address} element={<ShopAddressManage />} />
+          <Route path={`${path.address}/:id`} element={<ShopAddressUpdate />} />
           <Route path={path.userManage} element={<UserManage />} />
           <Route path={`${path.userUpdate}/:id`} element={<UserUpdateByAdmin />} />
           <Route path={path.userAddNew} element={<UserAddNew />} />
