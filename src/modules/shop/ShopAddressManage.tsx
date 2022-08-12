@@ -1,12 +1,12 @@
-import { IShopAddress } from "@types";
-import { addressAPI } from "apis";
-import { Button } from "components/button";
-import { Loading } from "components/loading";
-import { path } from "constants/path";
-import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { addressAPI } from "apis";
+import { path } from "constants/path";
+import { IShopAddress } from "@types";
 import classNames from "utils/className";
+import { HeaderTemplate } from "layouts";
+import { Button } from "components/button";
+import { Loading } from "components/loading";
 
 const stylesLabel = "px-[2px] py-1 border-[#0000008a] border-[0.5px] rounded-[1px] mr-2";
 const ShopAddressManage = () => {
@@ -23,6 +23,18 @@ const ShopAddressManage = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+    }
+  };
+
+  const handleChangeDefaultShopAddress = async (addressId: string) => {
+    try {
+      const { success, message } = await addressAPI.changeDefaultShopAddress(addressId);
+      if (success) {
+        toast.success(message);
+        fetchShopAddress();
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
     }
   };
 
@@ -82,7 +94,9 @@ const ShopAddressManage = () => {
                 Xóa
               </Button>
             </div>
-            <Button>Thiết lập mặc định</Button>
+            <Button onClick={() => handleChangeDefaultShopAddress(address._id)}>
+              Thiết lập mặc định
+            </Button>
           </div>
         </div>
       ))}

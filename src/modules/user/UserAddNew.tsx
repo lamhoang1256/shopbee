@@ -21,7 +21,7 @@ const UserAddNew = () => {
       confirm_password: "",
       avatar: "",
       isAdmin: false,
-      addressHome: "",
+      addressDetail: "",
       addressAdministrative: "",
     },
     validationSchema: SignUpYup,
@@ -109,14 +109,16 @@ const UserAddNew = () => {
             </MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</Label>
+            <Label htmlFor='addressDetail'>Địa chỉ nhận hàng cụ thể</Label>
             <Input
-              name='addressHome'
+              name='addressDetail'
               type='text'
-              value={formik.values.addressHome}
+              value={formik.values.addressDetail}
               onChange={formik.handleChange}
             />
-            <MessageError>{formik.touched.addressHome && formik.errors?.addressHome}</MessageError>
+            <MessageError>
+              {formik.touched.addressDetail && formik.errors?.addressDetail}
+            </MessageError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor='isAdmin'>Quyền quản trị (Admin)</Label>

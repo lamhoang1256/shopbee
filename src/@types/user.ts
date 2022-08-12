@@ -1,6 +1,6 @@
 export interface ICurrentUser {
   accessToken: string;
-  addressHome: string;
+  addressDetail: string;
   addressAdministrative: string;
   createdAt: string;
   email: string;

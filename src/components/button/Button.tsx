@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   to?: string;
 }
 
-const Button = ({ children, type, className, primary, to, ...props }: ButtonProps) => {
+const Button = ({ children, type, className = "", primary, to, ...props }: ButtonProps) => {
   const stylesButton = primary
     ? "py-2 px-4 rounded-sm border border-transparent text-white bg-orangeee4 hover:bg-[#f05d40] transtion-all duration-200"
     : "py-2 rounded-sm px-4 border border-[#00000017]";

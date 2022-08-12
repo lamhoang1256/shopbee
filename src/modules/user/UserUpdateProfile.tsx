@@ -15,7 +15,7 @@ const UserUpdateProfile = () => {
     initialValues: {
       fullname: "",
       phone: "",
-      addressHome: "",
+      addressDetail: "",
       addressAdministrative: "",
       addressIdProvince: "",
       addressIdDistrict: "",
@@ -83,14 +83,14 @@ const UserUpdateProfile = () => {
         </MessageError>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</Label>
+        <Label htmlFor='addressDetail'>Địa chỉ nhận hàng cụ thể</Label>
         <Input
-          name='addressHome'
+          name='addressDetail'
           type='text'
-          value={formik.values.addressHome}
+          value={formik.values.addressDetail}
           onChange={formik.handleChange}
         />
-        <MessageError>{formik.touched.addressHome && formik.errors?.addressHome}</MessageError>
+        <MessageError>{formik.touched.addressDetail && formik.errors?.addressDetail}</MessageError>
       </FormGroup>
       <Button type='submit' primary className='w-full h-10'>
         Lưu
