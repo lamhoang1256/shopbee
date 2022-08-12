@@ -13,7 +13,7 @@ export const SignInYup = Yup.object({
   password: Yup.string().required("Vui lòng nhập mật khẩu!"),
 });
 
-export const UserProfileYup = Yup.object({
+export const ProfileSchemaYup = Yup.object({
   fullname: Yup.string().required("Vui lòng nhập họ và tên!"),
   phone: Yup.string()
     .required("Vui lòng nhập số điện thoại!")
@@ -27,7 +27,7 @@ export const UserProfileYup = Yup.object({
   addressIdCommune: Yup.string().required("Vui lòng chọn Phường/Xã!"),
 });
 
-export const AddressYup = Yup.object({
+export const AddressSchemaYup = Yup.object({
   addressAdministrative: Yup.string().required(
     "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
   ),
@@ -37,7 +37,7 @@ export const AddressYup = Yup.object({
   addressIdCommune: Yup.string().required("Vui lòng chọn Phường/Xã!"),
 });
 
-export const UserChangePasswordYup = Yup.object({
+export const UserPasswordSchemaYup = Yup.object({
   currentPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
   newPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
   confirmPassword: Yup.string()

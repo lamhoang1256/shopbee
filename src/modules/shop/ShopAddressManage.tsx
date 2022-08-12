@@ -57,7 +57,9 @@ const ShopAddressManage = () => {
               <h3 className='text-lg text-black'>Nguyễn Hoàng Lâm</h3>
               <span>(+84) 8317242473</span>
             </div>
-            <p>{address.addressAdministrative}</p>
+            <p>
+              {address.addressDetail}, {address.addressAdministrative}
+            </p>
             {address.settingDefault && (
               <div className='mt-3'>
                 <span className={classNames(stylesLabel, "text-orangeee4 !border-orangeee4")}>

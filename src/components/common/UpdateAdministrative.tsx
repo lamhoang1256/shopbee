@@ -5,11 +5,11 @@ import { Select } from "components/select";
 import { initialAddressDetail } from "constants/initialValue";
 import { useEffect, useState } from "react";
 
-interface UserUpdateAdministrativeProps {
+interface UpdateAdministrativeProps {
   formik: any;
 }
 
-const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => {
+const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   const { addressIdProvince, addressIdDistrict, addressIdCommune } = formik.values;
   const [addressDetail, setAddressDetail] = useState(initialAddressDetail);
   const [provinces, setProvinces] = useState<IProvince[]>([]);
@@ -26,12 +26,6 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
   const fetchAllCommune = () => {
     const params = { idDistrict: addressIdDistrict };
     addressAPI.getAllCommune(params).then((res) => setCommunes(res.data));
-  };
-
-  const handleUpdateAddress = () => {
-    const { commune, district, province } = addressDetail;
-    const address = `${commune}, ${district}, ${province}`;
-    formik?.setFieldValue("addressAdministrative", address);
   };
 
   const handleChangeProvince = async (e: any) => {
@@ -53,6 +47,12 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
     formik?.setFieldValue("addressIdCommune", e.target.value);
   };
 
+  const handleUpdateAddress = () => {
+    const { commune, district, province } = addressDetail;
+    const address = `${commune}, ${district}, ${province}`;
+    formik?.setFieldValue("addressAdministrative", address);
+  };
+
   useEffect(() => {
     fetchAllProvince();
   }, []);
@@ -71,9 +71,9 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
       <FormGroup>
         <Select name='province' value={addressIdProvince} onChange={handleChangeProvince}>
           <option value=''>Chọn Tỉnh/Thành Phố</option>
-          {provinces?.map((province) => (
-            <option value={province.idProvince} key={province.idProvince}>
-              {province.name}
+          {provinces?.map(({ idProvince, name }) => (
+            <option value={idProvince} key={idProvince}>
+              {name}
             </option>
           ))}
         </Select>
@@ -84,9 +84,9 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
       <FormGroup>
         <Select name='district' value={addressIdDistrict} onChange={handleChangeDistrict}>
           <option value=''>Chọn Quận/Huyện</option>
-          {districts?.map((district) => (
-            <option value={district.idDistrict} key={district.idDistrict}>
-              {district.name}
+          {districts?.map(({ idDistrict, name }) => (
+            <option value={idDistrict} key={idDistrict}>
+              {name}
             </option>
           ))}
         </Select>
@@ -97,9 +97,9 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
       <FormGroup>
         <Select name='commune' value={addressIdCommune} onChange={handleChangeCommune}>
           <option value=''>Chọn Phường/Xã</option>
-          {communes?.map((commune) => (
-            <option value={commune.idCommune} key={commune.idCommune}>
-              {commune.name}
+          {communes?.map(({ idCommune, name }) => (
+            <option value={idCommune} key={idCommune}>
+              {name}
             </option>
           ))}
         </Select>
@@ -111,4 +111,4 @@ const UserUpdateAdministrative = ({ formik }: UserUpdateAdministrativeProps) => 
   );
 };
 
-export default UserUpdateAdministrative;
+export default UpdateAdministrative;

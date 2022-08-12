@@ -1,18 +1,16 @@
-import UserUpdateAvatar from "./UserUpdateAvatar";
+import UserChangeAvatar from "./UserChangeAvatar";
 import UserUpdateProfile from "./UserUpdateProfile";
 import UserChangePassword from "./UserChangePassword";
-import UserUpdateByAdmin from "./UserUpdateByAdmin";
+import UserUpdate from "./UserUpdate";
 import UserSidebar from "./UserSidebar";
 import UserManage from "./UserManage";
 import UserAvatar from "./UserAvatar";
 import UserAddNew from "./UserAddNew";
-import UserUpdateAdministrative from "./UserUpdateAdministrative";
 
 export {
-  UserUpdateAvatar,
-  UserUpdateByAdmin,
+  UserChangeAvatar,
+  UserUpdate,
   UserAvatar,
-  UserUpdateAdministrative,
   UserAddNew,
   UserManage,
   UserUpdateProfile,

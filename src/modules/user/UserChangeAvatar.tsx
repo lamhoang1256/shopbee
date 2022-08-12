@@ -1,13 +1,13 @@
-import { Button } from "components/button";
 import { defaultUserAvatar } from "constants/global";
+import { Button } from "components/button";
 import UserAvatar from "./UserAvatar";
 
-interface UserUpdateAvatarProps {
+interface UserChangeAvatarProps {
   avatar: string;
-  handleUpdateAvatar: (e: any) => Promise<void>;
+  handleChangeAvatar: (e: any) => Promise<void>;
 }
 
-const UserUpdateAvatar = ({ avatar, handleUpdateAvatar }: UserUpdateAvatarProps) => {
+const UserChangeAvatar = ({ avatar, handleChangeAvatar }: UserChangeAvatarProps) => {
   return (
     <div className='flex flex-col items-center gap-y-4 lg:w-1/3'>
       <UserAvatar urlAvatar={avatar || defaultUserAvatar} />
@@ -16,7 +16,7 @@ const UserUpdateAvatar = ({ avatar, handleUpdateAvatar }: UserUpdateAvatarProps)
         <input
           type='file'
           className='absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer'
-          onChange={handleUpdateAvatar}
+          onChange={handleChangeAvatar}
         />
       </div>
       <div className='text-[#999]'>
@@ -27,4 +27,4 @@ const UserUpdateAvatar = ({ avatar, handleUpdateAvatar }: UserUpdateAvatarProps)
   );
 };
 
-export default UserUpdateAvatar;
+export default UserChangeAvatar;

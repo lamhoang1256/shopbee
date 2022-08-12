@@ -1,30 +1,17 @@
-import { IShopAddress } from "@types";
 import { addressAPI } from "apis";
 import { Button } from "components/button";
+import { UpdateAdministrative } from "components/common";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
-import { AddressYup } from "constants/yup";
+import { AddressSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
-import { UserUpdateAdministrative } from "modules/user";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
 
 const ShopAddressUpdate = () => {
-  const { id } = useParams();
-  const { currentUser } = useStore((state) => state);
-
-  const handleUpdateShopAddress = async (values: Partial<IShopAddress>) => {
-    try {
-      const { success, message } = await addressAPI.updateShopAddress(values, id || "");
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
+  const { id = "" } = useParams();
   const formik = useFormik({
     initialValues: {
       addressDetail: "",
@@ -32,29 +19,30 @@ const ShopAddressUpdate = () => {
       addressIdProvince: "",
       addressIdDistrict: "",
       addressIdCommune: "",
-      settingDefault: false,
     },
-    validationSchema: AddressYup,
-    onSubmit: (values) => {
-      handleUpdateShopAddress(values);
+    validationSchema: AddressSchemaYup,
+    onSubmit: async (values) => {
+      try {
+        const { success, message } = await addressAPI.updateShopAddress(values, id);
+        if (success) toast.success(message);
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
 
-  const fetchData = async () => {
-    try {
-      const { success, data } = await addressAPI.getSingleShopAddress(id || "");
-      if (success) {
+  useEffect(() => {
+    const fetchAddressNeedUpdate = async () => {
+      try {
+        const { data } = await addressAPI.getSingleShopAddress(id || "");
         formik.resetForm({
           values: data,
         });
+      } catch (error) {
+        console.log("Failed to fetch address: ", error);
       }
-    } catch (error) {
-      console.log("Failed to fetch address: ", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
+    };
+    fetchAddressNeedUpdate();
   }, [id]);
 
   return (
@@ -64,16 +52,14 @@ const ShopAddressUpdate = () => {
     >
       <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
-          <FormLabel htmlFor='addressAdministrative'>
-            Địa chỉ: {currentUser.addressAdministrative}
-          </FormLabel>
-          <UserUpdateAdministrative formik={formik} />
+          <FormLabel htmlFor='addressAdministrative'>Địa chỉ:</FormLabel>
+          <UpdateAdministrative formik={formik} />
           <FormMessError>
             {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
           </FormMessError>
         </FormGroup>
         <FormGroup>
-          <FormLabel htmlFor='addressDetail'>Địa chỉ lấy hàng/ trả hàng</FormLabel>
+          <FormLabel htmlFor='addressDetail'>Địa chỉ lấy hàng cụ thể</FormLabel>
           <InputV2
             name='addressDetail'
             type='text'

@@ -1,32 +1,27 @@
-import { IPayloadChangePassword } from "@types";
+import { toast } from "react-toastify";
+import { useFormik } from "formik";
 import { userAPI } from "apis";
 import { Button } from "components/button";
-import { FormGroup, FormLabel, FormMessError } from "components/form";
-import { InputV2 } from "components/input";
-import { UserChangePasswordYup } from "constants/yup";
-import { useFormik } from "formik";
+import { UserPasswordSchemaYup } from "constants/yup";
 import { HeaderTemplate } from "layouts";
-import { toast } from "react-toastify";
+import { InputV2 } from "components/input";
+import { FormGroup, FormLabel, FormMessError } from "components/form";
 
 const UserChangePassword = () => {
-  const changePassword = async (payload: IPayloadChangePassword) => {
-    try {
-      const { success, message } = await userAPI.changePasswordMe(payload);
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
     },
-    validationSchema: UserChangePasswordYup,
-    onSubmit: (values) => {
-      changePassword(values);
+    validationSchema: UserPasswordSchemaYup,
+    onSubmit: async (values) => {
+      try {
+        const { success, message } = await userAPI.changePasswordMe(values);
+        if (success) toast.success(message);
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
   return (

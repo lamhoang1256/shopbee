@@ -1,13 +1,13 @@
+import { toast } from "react-toastify";
 import { userAPI } from "apis";
 import { HeaderTemplate } from "layouts";
-import { UserUpdateAvatar, UserUpdateProfile } from "modules/user";
-import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
 import { uploadImage } from "utils/uploadImage";
+import { useStore } from "store/configStore";
+import { UserChangeAvatar, UserUpdateProfile } from "modules/user";
 
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
-  const handleUpdateAvatar = async (e: any) => {
+  const handleChangeAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
       const { data, success, message } = await userAPI.updateProfileMe({ avatar });
@@ -25,7 +25,7 @@ const ProfilePage = () => {
     <HeaderTemplate label='Hồ sơ của tôi' desc='Quản lý thông tin hồ sơ để bảo mật tài khoản'>
       <div className='flex flex-col-reverse gap-8 lg:flex-row'>
         <UserUpdateProfile />
-        <UserUpdateAvatar avatar={currentUser.avatar} handleUpdateAvatar={handleUpdateAvatar} />
+        <UserChangeAvatar avatar={currentUser.avatar} handleChangeAvatar={handleChangeAvatar} />
       </div>
     </HeaderTemplate>
   );

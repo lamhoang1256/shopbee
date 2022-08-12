@@ -1,6 +1,7 @@
 import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
+import { UpdateAdministrative } from "components/common";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
 import { SignUpYup } from "constants/yup";
@@ -8,19 +9,9 @@ import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
-import UserUpdateAdministrative from "./UserUpdateAdministrative";
-import UserUpdateAvatar from "./UserUpdateAvatar";
+import UserChangeAvatar from "./UserChangeAvatar";
 
 const UserAddNew = () => {
-  const handleAddNewUser = async (values: any) => {
-    try {
-      const { success, message } = await userAPI.addNewUser(values);
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       fullname: "",
@@ -34,8 +25,13 @@ const UserAddNew = () => {
       addressAdministrative: "",
     },
     validationSchema: SignUpYup,
-    onSubmit: (values) => {
-      handleAddNewUser(values);
+    onSubmit: async (values) => {
+      try {
+        const { success, message } = await userAPI.addNewUser(values);
+        if (success) toast.success(message);
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
 
@@ -107,7 +103,7 @@ const UserAddNew = () => {
             <FormLabel htmlFor='addressAdministrative'>
               Địa chỉ: {formik.values.addressAdministrative}
             </FormLabel>
-            <UserUpdateAdministrative formik={formik} />
+            <UpdateAdministrative formik={formik} />
             <FormMessError>
               {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
             </FormMessError>
@@ -138,7 +134,7 @@ const UserAddNew = () => {
             Lưu
           </Button>
         </form>
-        <UserUpdateAvatar avatar={formik.values.avatar} handleUpdateAvatar={handleUploadAvatar} />
+        <UserChangeAvatar avatar={formik.values.avatar} handleChangeAvatar={handleUploadAvatar} />
       </div>
     </HeaderTemplate>
   );

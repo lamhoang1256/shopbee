@@ -5,7 +5,7 @@ import { BannerManage } from "modules/banner";
 import { OrderManage, OrderUpdate } from "modules/order";
 import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
 import { ShopAddressManage, ShopAddressUpdate } from "modules/shop";
-import { UserAddNew, UserChangePassword, UserManage, UserUpdateByAdmin } from "modules/user";
+import { UserAddNew, UserChangePassword, UserManage, UserUpdate } from "modules/user";
 import CartPage from "pages/CartPage";
 import DashboardPage from "pages/DashboardPage";
 import HomePage from "pages/HomePage";
@@ -69,7 +69,7 @@ const App = () => {
           <Route path={path.address} element={<ShopAddressManage />} />
           <Route path={`${path.address}/:id`} element={<ShopAddressUpdate />} />
           <Route path={path.userManage} element={<UserManage />} />
-          <Route path={`${path.userUpdate}/:id`} element={<UserUpdateByAdmin />} />
+          <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
           <Route path={path.userAddNew} element={<UserAddNew />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />

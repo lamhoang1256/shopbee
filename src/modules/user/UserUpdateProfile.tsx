@@ -1,54 +1,53 @@
-import { userAPI } from "apis";
-import { Button } from "components/button";
-import { FormGroup, FormLabel, FormMessError } from "components/form";
-import { InputV2 } from "components/input";
-import { UserProfileYup } from "constants/yup";
-import { useFormik } from "formik";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import { userAPI } from "apis";
 import { useStore } from "store/configStore";
-import Administrative from "./UserUpdateAdministrative";
-
-interface IValuesUpdateProfile {
-  fullname: string;
-  phone: string;
-  addressHome: string;
-  addressAdministrative: string;
-}
+import { ProfileSchemaYup } from "constants/yup";
+import { InputV2 } from "components/input";
+import { Button } from "components/button";
+import { UpdateAdministrative } from "components/common";
+import { FormGroup, FormLabel, FormMessError } from "components/form";
 
 const UserUpdateProfile = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
-  const updateProfile = async (values: any) => {
-    try {
-      const { data, success, message } = await userAPI.updateProfileMe(values);
-      if (success) {
-        const newCurrentUser = { ...currentUser, ...data };
-        setCurrentUser(newCurrentUser);
-        toast.success(message);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
-  const handleUpdateProfile = (values: IValuesUpdateProfile) => {
-    updateProfile(values);
-  };
-
   const formik = useFormik({
     initialValues: {
-      fullname: currentUser.fullname || "",
-      phone: currentUser.phone || "",
-      addressHome: currentUser.addressHome || "",
-      addressAdministrative: currentUser.addressAdministrative || "",
+      fullname: "",
+      phone: "",
+      addressHome: "",
+      addressAdministrative: "",
       addressIdProvince: "",
       addressIdDistrict: "",
       addressIdCommune: "",
     },
-    validationSchema: UserProfileYup,
-    onSubmit: (values) => {
-      handleUpdateProfile(values);
+    validationSchema: ProfileSchemaYup,
+    onSubmit: async (values) => {
+      try {
+        const { data, success, message } = await userAPI.updateProfileMe(values);
+        if (success) {
+          setCurrentUser({ ...currentUser, ...data });
+          toast.success(message);
+        }
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
+
+  useEffect(() => {
+    const fetchProfileNeedUpdate = async () => {
+      try {
+        const { data } = await userAPI.getSingleUser(currentUser?._id);
+        formik.resetForm({
+          values: data,
+        });
+      } catch (error) {
+        console.log("Failed to fetch address: ", error);
+      }
+    };
+    fetchProfileNeedUpdate();
+  }, []);
 
   return (
     <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
@@ -77,10 +76,8 @@ const UserUpdateProfile = () => {
         <FormMessError>{formik.touched.phone && formik.errors?.phone}</FormMessError>
       </FormGroup>
       <FormGroup>
-        <FormLabel htmlFor='addressAdministrative'>
-          Địa chỉ: {currentUser.addressAdministrative}
-        </FormLabel>
-        <Administrative formik={formik} />
+        <FormLabel htmlFor='addressAdministrative'>Địa chỉ:</FormLabel>
+        <UpdateAdministrative formik={formik} />
         <FormMessError>
           {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
         </FormMessError>

@@ -1,29 +1,20 @@
 import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
+import { UpdateAdministrative } from "components/common";
 import { FormGroup, FormLabel, FormMessError } from "components/form";
 import { InputV2 } from "components/input";
-import { UserProfileYup } from "constants/yup";
+import { ProfileSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
-import UserUpdateAdministrative from "./UserUpdateAdministrative";
-import UserUpdateAvatar from "./UserUpdateAvatar";
+import UserChangeAvatar from "./UserChangeAvatar";
 
-const UserUpdateByAdmin = () => {
-  const { id } = useParams();
-  const handleUpdateUser = async (values: any) => {
-    try {
-      const { success, message } = await userAPI.updateUser(values);
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
+const UserUpdate = () => {
+  const { id = "" } = useParams();
   const formik = useFormik({
     initialValues: {
       _id: "",
@@ -35,41 +26,42 @@ const UserUpdateByAdmin = () => {
       addressHome: "",
       addressAdministrative: "",
     },
-    validationSchema: UserProfileYup,
-    onSubmit: (values) => {
-      handleUpdateUser(values);
+    validationSchema: ProfileSchemaYup,
+    onSubmit: async (values) => {
+      try {
+        const { success, message } = await userAPI.updateUser(values);
+        if (success) toast.success(message);
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
 
-  const handleUpdateAvatar = async (e: any) => {
+  const handleChangeAvatar = async (e: any) => {
     try {
-      const urlImage = await uploadImage(e);
-      const payload = {
-        _id: id,
-        avatar: urlImage,
-      };
-      const { success, message, data } = await userAPI.updateProfileMe(payload);
-      formik.setFieldValue("avatar", data?.avatar);
-      if (success) toast.success(message);
+      const avatar = await uploadImage(e);
+      const { success, message, data } = await userAPI.updateProfileMe({ avatar });
+      if (success) {
+        formik.setFieldValue("avatar", data?.avatar);
+        toast.success(message);
+      }
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
 
-  const fetchUser = async () => {
-    try {
-      const { data, success } = await userAPI.getSingleUser(id || "");
-      if (success) {
+  useEffect(() => {
+    const fetchUserNeedUpdate = async () => {
+      try {
+        const { data } = await userAPI.getSingleUser(id);
         formik.resetForm({
           values: data,
         });
+      } catch (error) {
+        console.log("Failed to fetch user: ", error);
       }
-    } catch (error) {
-      console.log("Failed to fetch user: ", error);
-    }
-  };
-  useEffect(() => {
-    fetchUser();
+    };
+    fetchUserNeedUpdate();
   }, []);
 
   return (
@@ -113,7 +105,7 @@ const UserUpdateByAdmin = () => {
             <FormLabel htmlFor='addressAdministrative'>
               Địa chỉ: {formik.values.addressAdministrative}
             </FormLabel>
-            <UserUpdateAdministrative formik={formik} />
+            <UpdateAdministrative formik={formik} />
             <FormMessError>
               {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
             </FormMessError>
@@ -144,10 +136,10 @@ const UserUpdateByAdmin = () => {
             Lưu
           </Button>
         </form>
-        <UserUpdateAvatar avatar={formik.values.avatar} handleUpdateAvatar={handleUpdateAvatar} />
+        <UserChangeAvatar avatar={formik.values.avatar} handleChangeAvatar={handleChangeAvatar} />
       </div>
     </HeaderTemplate>
   );
 };
 
-export default UserUpdateByAdmin;
+export default UserUpdate;
