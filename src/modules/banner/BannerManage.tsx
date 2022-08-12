@@ -10,6 +10,7 @@ import { uploadImage } from "utils/uploadImage";
 const BannerManage = () => {
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const fetchBanners = async () => {
     setLoading(true);
     try {

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { Link } from "react-router-dom";
 import { path } from "constants/path";
 import { IProduct } from "@types";
+import { formatCash, formatMoney } from "utils/helper";
 import {
   ProductImage,
   ProductLabelSale,
@@ -8,8 +10,6 @@ import {
   ProductRating,
   ProductTitle,
 } from "modules/product";
-import { Link } from "react-router-dom";
-import { formatCash, formatMoney } from "utils/helper";
 
 interface ProductItemProps {
   product: IProduct;

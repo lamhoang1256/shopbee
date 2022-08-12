@@ -1,9 +1,9 @@
-import { categoryAPI } from "apis";
-import { path } from "constants/path";
-import { ICategory } from "@types";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { ICategory } from "@types";
+import { categoryAPI } from "apis";
+import { path } from "constants/path";
 
 const HomeCategories = () => {
   const [loading, setLoading] = useState(true);

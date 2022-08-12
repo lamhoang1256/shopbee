@@ -8,11 +8,11 @@ interface ProductRatingProps {
 
 const renderRating = (rating: number, size: string) => {
   const scoreRating = Math.ceil(rating);
-  return [1, 2, 3, 4, 5].map((item) => {
-    if (item <= scoreRating) {
-      return <IconStar key={item} className={classNames("text-[#ffce3d]", size)} />;
+  return [1, 2, 3, 4, 5].map((score) => {
+    if (score <= scoreRating) {
+      return <IconStar key={score} className={classNames("text-[#ffce3d]", size)} />;
     }
-    return <IconStar key={item} className={classNames("text-[#d5d5d5]", size)} />;
+    return <IconStar key={score} className={classNames("text-[#d5d5d5]", size)} />;
   });
 };
 

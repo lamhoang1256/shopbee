@@ -1,44 +1,40 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import { ICategory, IProductPayload } from "@types";
+import { ProductSchemaYup } from "constants/yup";
 import { categoryAPI, productAPI } from "apis";
-
+import { HeaderTemplate } from "layouts";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
 import { Input } from "components/input";
 import { Select } from "components/select";
 import { initialValuesProduct } from "constants/initialValue";
-import { ProductSchemaYup } from "constants/yup";
-import { useFormik } from "formik";
-import { ICategory, IProductPayload } from "@types";
-import { HeaderTemplate } from "layouts";
 import PageNotFound from "pages/PageNotFound";
-import { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
+import "react-quill/dist/quill.snow.css";
 
 const ProductUpdate = () => {
-  const { id } = useParams();
+  const { id = "" } = useParams();
   const [categories, setCategories] = useState<ICategory[]>([]);
-
-  const handleUpdateProduct = async (values: IProductPayload) => {
-    const payload: IProductPayload = values;
-    if (payload.priceSale === 0) payload.priceSale = payload.price;
-    try {
-      const { success, message } = await productAPI.updateProduct(id || "", payload);
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
   const formik = useFormik({
     initialValues: initialValuesProduct,
     validationSchema: ProductSchemaYup,
-    onSubmit: (values) => {
-      handleUpdateProduct(values);
+    onSubmit: async (values) => {
+      const payload: IProductPayload = values;
+      if (payload.priceSale === 0) payload.priceSale = payload.price;
+      try {
+        const { success, message } = await productAPI.updateProduct(id || "", payload);
+        if (success) toast.success(message);
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
+
   const handleSelectImage = async (e: any) => {
     const urlImage = await uploadImage(e);
     formik?.setFieldValue("image", urlImage);
@@ -57,20 +53,18 @@ const ProductUpdate = () => {
   }, [id]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProductNeedUpdate = async () => {
       try {
-        const { success, data } = await productAPI.getSingleProduct(id || "");
-        if (success) {
-          formik.resetForm({
-            values: data,
-          });
-        }
+        const { data } = await productAPI.getSingleProduct(id);
+        formik.resetForm({
+          values: data,
+        });
         formik?.setFieldValue("category", data?.category._id);
       } catch (error) {
         console.log("Failed to fetch data: ", error);
       }
     };
-    fetchData();
+    fetchProductNeedUpdate();
   }, [id]);
 
   if (!id) return <PageNotFound />;

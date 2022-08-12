@@ -1,9 +1,7 @@
-import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
 import { IOrder, IStatusOrder } from "@types";
+import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
+import classNames from "utils/className";
 import { formatDateVN } from "utils/helper";
-import OrderStatusBar from "./OrderStatusBar";
-import OrderStatusIcon from "./OrderStatusIcon";
-import OrderStatusItem from "./OrderStatusItem";
 
 interface OrderStatusProps {
   order: IOrder;
@@ -45,12 +43,33 @@ const OrderStatus = ({ order }: OrderStatusProps) => {
 
   return (
     <div className='mt-8 relative gap-4 mx-auto max-w-[700px] md:text-center'>
-      <OrderStatusBar widthActive={calcWidthActiveStatusBar()} />
+      <div
+        className={classNames(
+          "hidden md:block absolute top-[28px] w-3/4 left-1/2 -translate-x-1/2 h-1 bg-[#dbdbdb] after:absolute after:left-0 after:z-10 after:h-1 after:bg-[#2dc258]",
+          calcWidthActiveStatusBar(),
+        )}
+      />
       <div className='grid grid-cols-1 gap-5 md:grid-cols-4'>
         {statusList.map((status) => (
           <div className='flex items-center gap-3 md:flex-col' key={status.label}>
-            <OrderStatusIcon active={status.active}>{status.icon}</OrderStatusIcon>
-            <OrderStatusItem label={status.label}>{status.display}</OrderStatusItem>
+            <div
+              className={classNames(
+                "relative z-20 flex items-center justify-center rounded-full md:w-14 md:h-14 w-12 h-12 border-4 bg-white",
+                status.active
+                  ? "border-[#2dc258] text-[#2dc258]"
+                  : " border-[#dbdbdb] text-[#dbdbdb]",
+              )}
+            >
+              {status.icon}
+            </div>
+            <div>
+              <h3>{status.label}</h3>
+              <span className='text-[#00000042] text-xs'>{status.icon}</span>
+            </div>
+            <div>
+              <h3>{status.label}</h3>
+              <span className='text-[#00000042] text-xs'>{status.display}</span>
+            </div>
           </div>
         ))}
       </div>

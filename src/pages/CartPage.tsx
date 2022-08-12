@@ -1,7 +1,7 @@
 import { ICart } from "@types";
-import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/cart";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";
+import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/cart";
 
 const CartPage = () => {
   const { carts } = useStore((state) => state);
@@ -13,7 +13,7 @@ const CartPage = () => {
       <CartHeader />
       <CartBody>
         {carts?.map((cart: ICart) => (
-          <CartItem key={cart._id} cartInfo={cart} />
+          <CartItem key={cart._id} cartItem={cart} />
         ))}
       </CartBody>
       <CartFooter totalPayment={totalSale} totalPaymentNotSale={total} count={carts?.length} />

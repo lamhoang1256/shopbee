@@ -1,49 +1,34 @@
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import ReactQuill from "react-quill";
+import { useFormik } from "formik";
 import { categoryAPI, productAPI } from "apis";
-
+import { ICategory, IProductPayload } from "@types";
+import { ProductSchemaYup } from "constants/yup";
+import { HeaderTemplate } from "layouts";
+import { initialValuesProduct } from "constants/initialValue";
+import { uploadImage } from "utils/uploadImage";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
 import { Input } from "components/input";
 import { Select } from "components/select";
-import { initialValuesProduct } from "constants/initialValue";
-import { ProductSchemaYup } from "constants/yup";
-import { useFormik } from "formik";
-import { ICategory, IProductPayload } from "@types";
-import { HeaderTemplate } from "layouts";
-import { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { toast } from "react-toastify";
-import { uploadImage } from "utils/uploadImage";
 
 const ProductAddNew = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
-
-  const fetchCategories = async () => {
-    try {
-      const { data } = await categoryAPI.getAllCategory();
-      setCategories(data);
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
-
-  const handleAddNewProduct = async (values: IProductPayload) => {
-    const payload: IProductPayload = values;
-    if (payload.priceSale === 0) payload.priceSale = payload.price;
-    try {
-      const { success, message } = await productAPI.addNewProduct(payload);
-      if (success) toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
   const formik = useFormik({
     initialValues: initialValuesProduct,
     validationSchema: ProductSchemaYup,
-    onSubmit: (values: IProductPayload) => {
-      handleAddNewProduct(values);
+    onSubmit: async (values) => {
+      const payload: IProductPayload = values;
+      if (payload.priceSale === 0) payload.priceSale = payload.price;
+      try {
+        const { success, message } = await productAPI.addNewProduct(payload);
+        if (success) toast.success(message);
+      } catch (error: any) {
+        toast.error(error?.message);
+      }
     },
   });
 
@@ -53,6 +38,14 @@ const ProductAddNew = () => {
   };
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await categoryAPI.getAllCategory();
+        setCategories(data);
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    };
     fetchCategories();
   }, []);
 

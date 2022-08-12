@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import classNames from "utils/className";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  className?: string;
   primary?: boolean;
   to?: string;
 }
@@ -31,7 +29,6 @@ const Button = ({ children, type, className, primary, to, ...props }: ButtonProp
 };
 
 Button.defaultProps = {
-  className: "",
   primary: false,
   to: "",
 };

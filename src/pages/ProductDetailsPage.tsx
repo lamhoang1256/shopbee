@@ -66,7 +66,6 @@ const ProductDetailsPage = () => {
   const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
 
   const handleAddToCart = async () => {
-    console.log("add");
     let quantity = quantityAdd;
     const existCartItem = carts?.find((cart) => cart.product._id === id);
     if (existCartItem) {

@@ -1,9 +1,9 @@
-import { Button } from "components/button";
-import { IOrder } from "@types";
-import OrderProductItem from "modules/order/OrderProductItem";
-import { ProductPriceSale } from "modules/product";
 import { Link } from "react-router-dom";
+import { IOrder } from "@types";
 import { formatMoney } from "utils/helper";
+import { Button } from "components/button";
+import { ProductPriceSale } from "modules/product";
+import OrderProductItem from "./OrderProductItem";
 
 interface OrderItemProps {
   order: IOrder;

@@ -1,12 +1,12 @@
-import { cartAPI, productAPI } from "apis";
-import { Button } from "components/button";
-import { path } from "constants/path";
-import { ICart } from "@types";
-import { ProductPriceSale } from "modules/product";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { ICart } from "@types";
+import { path } from "constants/path";
+import { cartAPI, productAPI } from "apis";
 import { formatMoney } from "utils/helper";
+import { useStore } from "store/configStore";
+import { Button } from "components/button";
+import { ProductPriceSale } from "modules/product";
 
 interface CartFooterProps {
   totalPayment: number;
