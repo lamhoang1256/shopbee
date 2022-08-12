@@ -59,7 +59,7 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
     const totalDiscount = 10000;
     const values = {
       orderItems,
-      shippingAddress: `${currentUser?.addressDetail}, ${currentUser?.addressAdministrative}`,
+      shippingTo: `${currentUser?.addressDetail}, ${currentUser?.addressAdministrative}`,
       shippingPrice,
       totalPriceProduct,
       totalDiscount,

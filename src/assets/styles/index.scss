@@ -107,6 +107,9 @@
   .product-item {
     @apply transition duration-300 border bg-white shadow-product hover:-translate-y-[2px] border-transparent hover:border-orangeee4;
   }
+  .order-status {
+    @apply relative z-20 flex items-center justify-center rounded-full md:w-14 md:h-14 w-12 h-12 border-4 bg-white;
+  }
   .home-categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));

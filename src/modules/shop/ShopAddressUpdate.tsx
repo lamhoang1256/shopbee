@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useFormik } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addressAPI } from "apis";
 import { HeaderTemplate } from "layouts";
@@ -9,8 +9,10 @@ import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
+import { path } from "constants/path";
 
 const ShopAddressUpdate = () => {
+  const navigate = useNavigate();
   const { id = "" } = useParams();
   const formik = useFormik({
     initialValues: {
@@ -24,7 +26,10 @@ const ShopAddressUpdate = () => {
     onSubmit: async (values) => {
       try {
         const { success, message } = await addressAPI.updateShopAddress(values, id);
-        if (success) toast.success(message);
+        if (success) {
+          toast.success(message);
+          navigate(path.address);
+        }
       } catch (error: any) {
         toast.error(error?.message);
       }

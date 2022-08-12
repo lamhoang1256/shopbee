@@ -4,8 +4,8 @@ export const formatMoney = (money: number) => {
   return money?.toLocaleString("vi", { style: "currency", currency: "VND" });
 };
 
-export const formatDateVN = (date: string | Date) => {
-  return new Date(date).toLocaleDateString();
+export const formatDateVN = (timestamp: string) => {
+  return new Date(timestamp).toLocaleDateString();
 };
 
 export const formatCash = (num: number) => {
@@ -26,4 +26,15 @@ export const calcTotalMoneyCart = (array: ICart[], key: "price" | "priceSale") =
     return previousValue + currentValue.product[key] * currentValue.quantity;
   }, 0);
   return totalMoney;
+};
+
+export const formatDateVNFull = (timestamp: string) => {
+  const date = new Date(timestamp);
+  const days = `00${date.getDate()}`.slice(-2);
+  const months = `00${date.getMonth() + 1}`.slice(-2);
+  const years = date.getFullYear();
+  const hours = `00${date.getHours()}`.slice(-2);
+  const minutes = `00${date.getMinutes()}`.slice(-2);
+  const seconds = `00${date.getSeconds()}`.slice(-2);
+  return `${hours}:${minutes}:${seconds} ${days}/${months}/${years}`;
 };

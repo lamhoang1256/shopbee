@@ -1,4 +1,5 @@
 import { IOrder } from "@types";
+import { formatDateVNFull } from "utils/helper";
 
 interface OrderOverviewProps {
   order: IOrder;
@@ -10,13 +11,14 @@ const OrderOverview = ({ order }: OrderOverviewProps) => {
       <div className='p-3 border border-[#e8e8e8]'>
         <h3 className='mb-2 text-lg'>Chi tiết đơn hàng</h3>
         <p>Mã đơn hàng: {order?._id}</p>
-        <p>Đặt ngày: {new Date(order?.createdAt).toLocaleDateString("vi-VI")}</p>
+        <p>Đặt lúc: {formatDateVNFull(order?.createdAt)}</p>
+        <p>Địa chỉ shop: {order?.shippingFrom}</p>
       </div>
       <div className='p-3 border border-[#e8e8e8]'>
         <h3 className='mb-2 text-lg'>Thông tin nhận hàng</h3>
         <p>{order?.user?.fullname}</p>
         <p>Email: {order?.user?.email}</p>
-        <p>Địa chỉ: {order?.shippingAddress}</p>
+        <p>Địa chỉ nhận hàng: {order?.shippingTo}</p>
       </div>
     </div>
   );

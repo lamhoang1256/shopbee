@@ -1,7 +1,7 @@
 import { IOrder, IStatusOrder } from "@types";
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
 import classNames from "utils/className";
-import { formatDateVN } from "utils/helper";
+import { formatDateVNFull } from "utils/helper";
 
 interface OrderStatusProps {
   order: IOrder;
@@ -19,25 +19,25 @@ const OrderStatus = ({ order }: OrderStatusProps) => {
       active: true,
       icon: <IconClipboard />,
       label: "Chờ xác nhận",
-      display: formatDateVN(order?.paidAt),
+      display: formatDateVNFull(order?.paidAt),
     },
     {
       active: order?.isPaid,
       icon: <IconMoney />,
       label: "Đã thanh toán",
-      display: formatDateVN(order?.paidAt),
+      display: formatDateVNFull(order?.paidAt),
     },
     {
       active: order?.isShipping,
       icon: <IconShipping />,
       label: "Đang vận chuyển",
-      display: order?.shippingAt ? formatDateVN(order?.shippingAt) : "Đang chờ",
+      display: order?.shippingAt ? formatDateVNFull(order?.shippingAt) : "Đang chờ",
     },
     {
       active: order?.isDelivered,
       icon: <IconCheck />,
       label: "Giao hàng thành công",
-      display: order?.deliveredAt ? formatDateVN(order?.deliveredAt) : "Đang chờ",
+      display: order?.deliveredAt ? formatDateVNFull(order?.deliveredAt) : "Đang chờ",
     },
   ];
 
@@ -50,25 +50,19 @@ const OrderStatus = ({ order }: OrderStatusProps) => {
         )}
       />
       <div className='grid grid-cols-1 gap-5 md:grid-cols-4'>
-        {statusList.map((status) => (
-          <div className='flex items-center gap-3 md:flex-col' key={status.label}>
+        {statusList.map(({ label, active, icon, display }) => (
+          <div className='flex items-center gap-3 md:flex-col' key={label}>
             <div
               className={classNames(
-                "relative z-20 flex items-center justify-center rounded-full md:w-14 md:h-14 w-12 h-12 border-4 bg-white",
-                status.active
-                  ? "border-[#2dc258] text-[#2dc258]"
-                  : " border-[#dbdbdb] text-[#dbdbdb]",
+                "order-status",
+                active ? "border-[#2dc258] text-[#2dc258]" : " border-[#dbdbdb] text-[#dbdbdb]",
               )}
             >
-              {status.icon}
+              {icon}
             </div>
             <div>
-              <h3>{status.label}</h3>
-              <span className='text-[#00000042] text-xs'>{status.icon}</span>
-            </div>
-            <div>
-              <h3>{status.label}</h3>
-              <span className='text-[#00000042] text-xs'>{status.display}</span>
+              <h3>{label}</h3>
+              <span className='text-[#00000042] text-xs'>{display}</span>
             </div>
           </div>
         ))}

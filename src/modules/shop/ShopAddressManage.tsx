@@ -52,54 +52,61 @@ const ShopAddressManage = () => {
   useEffect(() => {
     fetchShopAddress();
   }, []);
-  if (loading) return <Loading />;
   return (
     <HeaderTemplate
       label='Quản lí địa chỉ shop'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
-      <span>Địa chỉ</span>
-      {addressList.map((address) => (
-        <div
-          key={address._id}
-          className='flex md:items-center md:flex-row flex-col justify-between border-b-[1px] py-5 border-[#efefef] gap-3'
-        >
-          <div>
-            <div className='flex items-center gap-x-3'>
-              <h3 className='text-lg text-black'>Nguyễn Hoàng Lâm</h3>
-              <span>(+84) 8317242473</span>
-            </div>
-            <p>
-              {address.addressDetail}, {address.addressAdministrative}
-            </p>
-            {address.settingDefault && (
-              <div className='mt-3'>
-                <span className={classNames(stylesLabel, "text-orangeee4 !border-orangeee4")}>
-                  Mặc định
-                </span>
-                <span className={stylesLabel}>Địa chỉ lấy hàng</span>
-                <span className={stylesLabel}>Địa chỉ trả hàng</span>
+      {loading && <Loading />}
+      {!loading && (
+        <>
+          <span>Địa chỉ</span>
+          {addressList.map((address) => (
+            <div
+              key={address._id}
+              className='flex md:items-center md:flex-row flex-col justify-between border-b-[1px] py-5 border-[#efefef] gap-3'
+            >
+              <div>
+                <div className='flex items-center gap-x-3'>
+                  <h3 className='text-lg text-black'>Nguyễn Hoàng Lâm</h3>
+                  <span>(+84) 8317242473</span>
+                </div>
+                <p>
+                  {address.addressDetail}, {address.addressAdministrative}
+                </p>
+                {address.settingDefault && (
+                  <div className='mt-3'>
+                    <span className={classNames(stylesLabel, "text-orangeee4 !border-orangeee4")}>
+                      Mặc định
+                    </span>
+                    <span className={stylesLabel}>Địa chỉ lấy hàng</span>
+                    <span className={stylesLabel}>Địa chỉ trả hàng</span>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-          <div className='flex flex-col flex-shrink-0 gap-1'>
-            <div className='flex'>
-              <Button to={`${path.address}/${address._id}`} className='border-none text-blue08f'>
-                Cập nhật
-              </Button>
-              <Button
-                className='border-none text-blue08f'
-                onClick={() => handleDeleteShopAddress(address._id)}
-              >
-                Xóa
-              </Button>
+              <div className='flex flex-col flex-shrink-0 gap-1'>
+                <div className='flex'>
+                  <Button
+                    to={`${path.address}/${address._id}`}
+                    className='border-none text-blue08f'
+                  >
+                    Cập nhật
+                  </Button>
+                  <Button
+                    className='border-none text-blue08f'
+                    onClick={() => handleDeleteShopAddress(address._id)}
+                  >
+                    Xóa
+                  </Button>
+                </div>
+                <Button onClick={() => handleChangeDefaultShopAddress(address._id)}>
+                  Thiết lập mặc định
+                </Button>
+              </div>
             </div>
-            <Button onClick={() => handleChangeDefaultShopAddress(address._id)}>
-              Thiết lập mặc định
-            </Button>
-          </div>
-        </div>
-      ))}
+          ))}
+        </>
+      )}
     </HeaderTemplate>
   );
 };
