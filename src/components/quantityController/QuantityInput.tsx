@@ -1,16 +1,15 @@
-interface QuantityInputProps {
-  value: number;
-  onChange: (value: string) => void;
+interface QuantityInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  handleChange: (quantity: number) => void;
 }
 
-const QuantityInput = ({ value, onChange }: QuantityInputProps) => {
+const QuantityInput = ({ handleChange, ...props }: QuantityInputProps) => {
   return (
     <input
-      type='text'
-      className='w-10 lg:w-12 h-6 lg:h-8 border-[#00000017] border text-center outline-none'
-      value={value}
       min={1}
-      onChange={(e) => onChange(e.target.value)}
+      type='number'
+      onChange={(e) => handleChange(Number(e.target.value))}
+      className='w-10 lg:w-12 h-6 lg:h-8 border-[#00000017] border text-center outline-none'
+      {...props}
     />
   );
 };

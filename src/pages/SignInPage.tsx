@@ -1,6 +1,6 @@
 import { authAPI } from "apis";
 import { Button } from "components/button";
-import { FormGroup, FormLabel, FormMessError } from "components/form";
+import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { path } from "constants/path";
 import { SignInYup } from "constants/yup";
@@ -46,17 +46,17 @@ const SignInPage = () => {
         <h1 className='text-[22px]'>Đăng nhập</h1>
         <form onSubmit={formik.handleSubmit}>
           <FormGroup className='mt-4'>
-            <FormLabel htmlFor='email'>Email</FormLabel>
+            <Label htmlFor='email'>Email</Label>
             <Input
               placeholder='Email'
               name='email'
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            <FormMessError>{formik.touched.email && formik.errors?.email}</FormMessError>
+            <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
           </FormGroup>
           <FormGroup className='mt-4'>
-            <FormLabel htmlFor='password'>Mật khẩu</FormLabel>
+            <Label htmlFor='password'>Mật khẩu</Label>
             <Input
               type='password'
               placeholder='Password'
@@ -64,7 +64,7 @@ const SignInPage = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            <FormMessError>{formik.touched.password && formik.errors?.password}</FormMessError>
+            <MessageError>{formik.touched.password && formik.errors?.password}</MessageError>
           </FormGroup>
           <Button primary className='w-full mt-3'>
             Đăng nhập

@@ -1,6 +1,5 @@
 import { cartAPI, productAPI } from "apis";
-
-import { Button, ButtonAddToCart } from "components/button";
+import { Button, ButtonOutline } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
@@ -67,6 +66,7 @@ const ProductDetailsPage = () => {
   const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
 
   const handleAddToCart = async () => {
+    console.log("add");
     let quantity = quantityAdd;
     const existCartItem = carts?.find((cart) => cart.product._id === id);
     if (existCartItem) {
@@ -129,10 +129,10 @@ const ProductDetailsPage = () => {
               <span>{productInfo.quantity} sản phẩm có sẵn</span>
             </div>
             <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
-              <ButtonAddToCart className='h-10 lg:h-12' onClick={handleAddToCart}>
+              <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
                 <IconCartOutline className='w-4 h-4 mr-2' />
                 <span className='text-sm'>Thêm vào giỏ hàng</span>
-              </ButtonAddToCart>
+              </ButtonOutline>
               <Button primary className='h-10 rounded-sm lg:h-12'>
                 Mua ngay
               </Button>

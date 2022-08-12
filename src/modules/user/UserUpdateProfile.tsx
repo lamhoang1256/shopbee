@@ -7,7 +7,7 @@ import { ProfileSchemaYup } from "constants/yup";
 import { Input } from "components/input";
 import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
-import { FormGroup, FormLabel, FormMessError } from "components/form";
+import { FormGroup, Label, MessageError } from "components/form";
 
 const UserUpdateProfile = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
@@ -52,45 +52,45 @@ const UserUpdateProfile = () => {
   return (
     <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
       <FormGroup>
-        <FormLabel htmlFor='email'>Email</FormLabel>
+        <Label htmlFor='email'>Email</Label>
         <span>{currentUser?.email}</span>
       </FormGroup>
       <FormGroup>
-        <FormLabel htmlFor='fullname'>Họ và tên</FormLabel>
+        <Label htmlFor='fullname'>Họ và tên</Label>
         <Input
           name='fullname'
           type='text'
           value={formik.values.fullname}
           onChange={formik.handleChange}
         />
-        <FormMessError>{formik.touched.fullname && formik.errors?.fullname}</FormMessError>
+        <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
       </FormGroup>
       <FormGroup>
-        <FormLabel htmlFor='phone'>Số điện thoại</FormLabel>
+        <Label htmlFor='phone'>Số điện thoại</Label>
         <Input
           name='phone'
           type='text'
           value={formik.values.phone}
           onChange={formik.handleChange}
         />
-        <FormMessError>{formik.touched.phone && formik.errors?.phone}</FormMessError>
+        <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
       </FormGroup>
       <FormGroup>
-        <FormLabel htmlFor='addressAdministrative'>Địa chỉ:</FormLabel>
+        <Label htmlFor='addressAdministrative'>Địa chỉ:</Label>
         <UpdateAdministrative formik={formik} />
-        <FormMessError>
+        <MessageError>
           {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
-        </FormMessError>
+        </MessageError>
       </FormGroup>
       <FormGroup>
-        <FormLabel htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</FormLabel>
+        <Label htmlFor='addressHome'>Địa chỉ nhận hàng cụ thể</Label>
         <Input
           name='addressHome'
           type='text'
           value={formik.values.addressHome}
           onChange={formik.handleChange}
         />
-        <FormMessError>{formik.touched.addressHome && formik.errors?.addressHome}</FormMessError>
+        <MessageError>{formik.touched.addressHome && formik.errors?.addressHome}</MessageError>
       </FormGroup>
       <Button type='submit' primary className='w-full h-10'>
         Lưu

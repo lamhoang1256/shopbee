@@ -1,10 +1,6 @@
 import classNames from "utils/className";
 
-interface CheckBoxProps {
-  className?: string;
-  onChange?: (e: any) => void;
-  checked?: boolean;
-}
+interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const CheckBox = ({ className, onChange, checked }: CheckBoxProps) => {
   return (
@@ -15,12 +11,6 @@ const CheckBox = ({ className, onChange, checked }: CheckBoxProps) => {
       checked={checked}
     />
   );
-};
-
-CheckBox.defaultProps = {
-  className: "",
-  onChange: () => {},
-  checked: false,
 };
 
 export default CheckBox;

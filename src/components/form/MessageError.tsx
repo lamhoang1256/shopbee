@@ -1,18 +1,18 @@
 import classNames from "utils/className";
 
-interface FormMessErrorProps {
+interface MessageErrorProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const FormMessError = ({ children, className }: FormMessErrorProps) => {
+const MessageError = ({ children, className }: MessageErrorProps) => {
   return (
     <span className={classNames("text-redff4 text-xs font-medium", className)}>{children}</span>
   );
 };
 
-FormMessError.defaultProps = {
+MessageError.defaultProps = {
   className: "",
 };
 
-export default FormMessError;
+export default MessageError;

@@ -2,7 +2,6 @@ import { ButtonHTMLAttributes } from "react";
 
 interface ButtonPageProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   active: boolean;
-  children: React.ReactNode;
 }
 
 const ButtonPage = ({ children, active, ...props }: ButtonPageProps) => {

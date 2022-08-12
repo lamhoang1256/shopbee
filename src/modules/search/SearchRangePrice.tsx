@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { Button } from "components/button";
-import { FormMessError } from "components/form";
+import { MessageError } from "components/form";
 import { IconFilter } from "components/icons";
 import { InputRangePrice } from "components/input";
 import { SearchRangePriceYup } from "constants/yup";
@@ -52,9 +52,9 @@ const SearchRangePrice = () => {
             onChange={formik.handleChange}
           />
         </div>
-        <FormMessError className='block text-xs'>
+        <MessageError className='block text-xs'>
           {formik.touched.price_max && formik.errors?.price_max}
-        </FormMessError>
+        </MessageError>
         <Button type='submit' primary className='w-full py-[6px] rounded-sm'>
           ÁP DỤNG
         </Button>

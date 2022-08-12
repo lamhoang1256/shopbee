@@ -5,7 +5,7 @@ import { Button } from "components/button";
 import { UserPasswordSchemaYup } from "constants/yup";
 import { HeaderTemplate } from "layouts";
 import { Input } from "components/input";
-import { FormGroup, FormLabel, FormMessError } from "components/form";
+import { FormGroup, Label, MessageError } from "components/form";
 
 const UserChangePassword = () => {
   const formik = useFormik({
@@ -31,38 +31,38 @@ const UserChangePassword = () => {
     >
       <form className='lg:w-1/2' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
-          <FormLabel htmlFor='currentPassword'>Mật khẩu hiện tại</FormLabel>
+          <Label htmlFor='currentPassword'>Mật khẩu hiện tại</Label>
           <Input
             name='currentPassword'
             type='password'
             value={formik.values.currentPassword}
             onChange={formik.handleChange}
           />
-          <FormMessError>
+          <MessageError>
             {formik.touched.currentPassword && formik.errors?.currentPassword}
-          </FormMessError>
+          </MessageError>
         </FormGroup>
         <FormGroup>
-          <FormLabel htmlFor='newPassword'>Mật Khẩu Mới</FormLabel>
+          <Label htmlFor='newPassword'>Mật Khẩu Mới</Label>
           <Input
             name='newPassword'
             type='password'
             value={formik.values.newPassword}
             onChange={formik.handleChange}
           />
-          <FormMessError>{formik.touched.newPassword && formik.errors?.newPassword}</FormMessError>
+          <MessageError>{formik.touched.newPassword && formik.errors?.newPassword}</MessageError>
         </FormGroup>
         <FormGroup>
-          <FormLabel htmlFor='confirmPassword'>Xác Nhận Mật Khẩu</FormLabel>
+          <Label htmlFor='confirmPassword'>Xác Nhận Mật Khẩu</Label>
           <Input
             name='confirmPassword'
             type='password'
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
           />
-          <FormMessError>
+          <MessageError>
             {formik.touched.confirmPassword && formik.errors?.confirmPassword}
-          </FormMessError>
+          </MessageError>
         </FormGroup>
         <Button type='submit' primary className='w-full h-10'>
           Lưu

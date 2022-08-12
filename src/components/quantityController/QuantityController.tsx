@@ -25,16 +25,16 @@ const QuantityController = ({
     setQuantity((prevState) => prevState - 1);
     if (onChangeValue) onChangeValue(quantity - 1);
   };
-  const handleChangeQuantity = (value: string) => {
-    setQuantity(() => Number(value));
-    if (onChangeValue) onChangeValue(Number(value));
+  const handleChangeQuantity = (countQuantity: number) => {
+    setQuantity(() => countQuantity);
+    if (onChangeValue) onChangeValue(countQuantity);
   };
   return (
     <div className={classNames("flex", className)}>
       <QuantityButton onClick={handleDecreaseQuantity}>
         <IconMinus />
       </QuantityButton>
-      <QuantityInput value={quantity} onChange={handleChangeQuantity} />
+      <QuantityInput value={quantity} handleChange={handleChangeQuantity} />
       <QuantityButton onClick={handleIncreaseQuantity}>
         <IconPlus />
       </QuantityButton>

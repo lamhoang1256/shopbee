@@ -1,14 +1,14 @@
-import { addressAPI } from "apis";
-import { Button } from "components/button";
-import { UpdateAdministrative } from "components/common";
-import { FormGroup, FormLabel, FormMessError } from "components/form";
-import { Input } from "components/input";
-import { AddressSchemaYup } from "constants/yup";
-import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
 import { useEffect } from "react";
+import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { addressAPI } from "apis";
+import { HeaderTemplate } from "layouts";
+import { AddressSchemaYup } from "constants/yup";
+import { Button } from "components/button";
+import { UpdateAdministrative } from "components/common";
+import { FormGroup, Label, MessageError } from "components/form";
+import { Input } from "components/input";
 
 const ShopAddressUpdate = () => {
   const { id = "" } = useParams();
@@ -52,23 +52,23 @@ const ShopAddressUpdate = () => {
     >
       <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
-          <FormLabel htmlFor='addressAdministrative'>Địa chỉ:</FormLabel>
+          <Label htmlFor='addressAdministrative'>Địa chỉ:</Label>
           <UpdateAdministrative formik={formik} />
-          <FormMessError>
+          <MessageError>
             {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
-          </FormMessError>
+          </MessageError>
         </FormGroup>
         <FormGroup>
-          <FormLabel htmlFor='addressDetail'>Địa chỉ lấy hàng cụ thể</FormLabel>
+          <Label htmlFor='addressDetail'>Địa chỉ lấy hàng cụ thể</Label>
           <Input
             type='text'
             name='addressDetail'
             value={formik.values.addressDetail}
             onChange={formik.handleChange}
           />
-          <FormMessError>
+          <MessageError>
             {formik.touched.addressDetail && formik.errors?.addressDetail}
-          </FormMessError>
+          </MessageError>
         </FormGroup>
         <Button type='submit' primary className='w-full h-10'>
           Lưu

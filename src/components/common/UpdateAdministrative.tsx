@@ -1,6 +1,6 @@
 import { ICommune, IDistrict, IProvince } from "@types";
 import { addressAPI } from "apis";
-import { FormGroup, FormMessError } from "components/form";
+import { FormGroup, MessageError } from "components/form";
 import { Select } from "components/select";
 import { initialAddressDetail } from "constants/initialValue";
 import { useEffect, useState } from "react";
@@ -77,9 +77,9 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
             </option>
           ))}
         </Select>
-        <FormMessError>
+        <MessageError>
           {formik.touched.addressIdProvince && formik.errors?.addressIdProvince}
-        </FormMessError>
+        </MessageError>
       </FormGroup>
       <FormGroup>
         <Select name='district' value={addressIdDistrict} onChange={handleChangeDistrict}>
@@ -90,9 +90,9 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
             </option>
           ))}
         </Select>
-        <FormMessError>
+        <MessageError>
           {formik.touched.addressIdDistrict && formik.errors?.addressIdDistrict}
-        </FormMessError>
+        </MessageError>
       </FormGroup>
       <FormGroup>
         <Select name='commune' value={addressIdCommune} onChange={handleChangeCommune}>
@@ -103,9 +103,9 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
             </option>
           ))}
         </Select>
-        <FormMessError>
+        <MessageError>
           {formik.touched.addressIdCommune && formik.errors?.addressIdCommune}
-        </FormMessError>
+        </MessageError>
       </FormGroup>
     </div>
   );

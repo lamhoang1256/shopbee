@@ -1,5 +1,5 @@
-import FormLabel from "./FormLabel";
+import Label from "./Label";
 import FormGroup from "./FormGroup";
-import FormMessError from "./FormMessError";
+import MessageError from "./MessageError";
 
-export { FormLabel, FormGroup, FormMessError };
+export { Label, FormGroup, MessageError };
