@@ -1,10 +1,9 @@
-import { orderAPI } from "apis";
-import { Loading } from "components/loading";
-import { IOrder } from "@types";
-import { OrderOverview, OrderPayment, OrderStatus } from "modules/order";
-import OrderProductItem from "modules/order/OrderProductItem";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { IOrder } from "@types";
+import { orderAPI } from "apis";
+import { Loading } from "components/loading";
+import { OrderOverview, OrderPayment, OrderProductItem, OrderStatus } from "modules/order";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();

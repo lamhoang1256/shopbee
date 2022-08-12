@@ -2,6 +2,10 @@ export interface ICurrentUser {
   accessToken: string;
   addressDetail: string;
   addressAdministrative: string;
+  addressHome: string;
+  addressIdCommune: string;
+  addressIdDistrict: string;
+  addressIdProvince: string;
   createdAt: string;
   email: string;
   avatar: string;

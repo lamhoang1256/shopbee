@@ -8,6 +8,7 @@ interface OrderProductItemProps {
 }
 
 const OrderProductItem = ({ order }: OrderProductItemProps) => {
+  console.log("order: ", order);
   return (
     <div className='flex flex-col justify-between gap-3 py-2 lg:items-center lg:flex-row'>
       <div className='flex gap-3'>

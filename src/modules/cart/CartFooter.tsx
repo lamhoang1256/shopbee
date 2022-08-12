@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ICart } from "@types";
+import { cartAPI } from "apis";
 import { path } from "constants/path";
-import { cartAPI, productAPI } from "apis";
 import { formatMoney } from "utils/helper";
 import { useStore } from "store/configStore";
 import { Button } from "components/button";
@@ -15,22 +13,7 @@ interface CartFooterProps {
 }
 
 const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProps) => {
-  const navigate = useNavigate();
-  const { carts, currentUser, setCart } = useStore((state) => state);
-
-  const buyProducts = async (values: any) => {
-    try {
-      const { data, success, message } = await productAPI.buyProducts(values);
-      if (success) {
-        toast.success(message);
-        setCart([]);
-        navigate(`${path.order}/${data?._id}`);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
+  const { setCart } = useStore((state) => state);
   const handleRemoveAllCart = async () => {
     try {
       const { success, message } = await cartAPI.deleteAllCart();
@@ -41,31 +24,6 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
     } catch (error: any) {
       toast.error(error?.message);
     }
-  };
-
-  const handleBuyProducts = () => {
-    const orderItems = carts.map((cart: ICart) => ({
-      name: cart.product.name,
-      quantity: cart.quantity,
-      image: cart.product.image,
-      price: cart.product.price,
-      priceSale: cart.product.priceSale,
-      product: cart.product._id,
-    }));
-    const totalPriceProduct = orderItems.reduce((prevValue, currentValue) => {
-      return prevValue + currentValue.quantity * currentValue.priceSale;
-    }, 0);
-    const shippingPrice = 16000;
-    const totalDiscount = 10000;
-    const values = {
-      orderItems,
-      shippingTo: `${currentUser?.addressDetail}, ${currentUser?.addressAdministrative}`,
-      shippingPrice,
-      totalPriceProduct,
-      totalDiscount,
-      totalPayment: totalPriceProduct + shippingPrice - totalDiscount,
-    };
-    buyProducts(values);
   };
 
   return (
@@ -86,8 +44,8 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
       </div>
       <div className='flex gap-3'>
         <Button onClick={handleRemoveAllCart}>Xóa tất cả</Button>
-        <Button primary onClick={handleBuyProducts}>
-          Mua hàng
+        <Button primary to={path.payment}>
+          Thanh toán
         </Button>
       </div>
     </div>

@@ -12,6 +12,7 @@ import HomePage from "pages/HomePage";
 import OrderDetailsPage from "pages/OrderDetailsPage";
 import OrderPage from "pages/OrderPage";
 import PageNotFound from "pages/PageNotFound";
+import PaymentPage from "pages/PaymentPage";
 import ProductDetailsPage from "pages/ProductDetailsPage";
 import ProfilePage from "pages/ProfilePage";
 import SearchPage from "pages/SearchPage";
@@ -46,6 +47,7 @@ const App = () => {
           <Route path={`${path.product}/:id`} element={<ProductDetailsPage />} />
           <Route path={path.search} element={<SearchPage />} />
         </Route>
+        <Route path={path.payment} element={<PaymentPage />} />
         <Route path='/' element={<AuthLayout title='Đăng ký' />}>
           <Route path={path.signUp} element={<SignUpPage />} />
         </Route>

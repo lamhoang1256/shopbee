@@ -39,15 +39,17 @@ const Navbar = () => {
         </div>
       )}
       {currentUser?.email && (
-        <div className='relative h-full' onMouseEnter={showPopover} onMouseLeave={hidePopover}>
-          <div className='flex items-center h-full gap-x-2'>
+        <div
+          className='relative h-full !min-w-[160px] max5se:max-w-[130px]'
+          onMouseEnter={showPopover}
+          onMouseLeave={hidePopover}
+        >
+          <div className='flex items-center justify-end h-full gap-x-2'>
             <UserAvatar
               urlAvatar={currentUser?.avatar || defaultUserAvatar}
               className='object-cover w-5 h-5 rounded-full'
             />
-            <span className='font-medium max5se:line-clamp-1 max5se:max-w-[130px]'>
-              {currentUser?.fullname}
-            </span>
+            <span className='font-medium max5se:line-clamp-1 '>{currentUser?.fullname}</span>
           </div>
           <Popover active={activePopover} className='min-w-[150px]'>
             <Link to={path.profile} className={stylesPopoverLink}>
