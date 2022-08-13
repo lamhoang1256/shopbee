@@ -127,6 +127,11 @@
       transparent 82px
     );
   }
+  .product-desc img {
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 8px;
+  }
   .home-categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));

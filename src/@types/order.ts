@@ -1,29 +1,32 @@
-export interface IOrderProductItem {
-  name: string;
+import { IProduct } from "./product";
+
+export enum IOrderStatus {
+  waiting = "waiting",
+  processing = "processing",
+  shipping = "shipping",
+  delivered = "delivered",
+  canceled = "canceled",
+}
+export interface IOrderItem {
+  product: IProduct;
   quantity: number;
-  image: string;
-  oldPrice: number;
-  price: number;
-  product: string;
-  _id: string;
 }
 export interface IOrder {
   _id: string;
-  orderItems: IOrderProductItem[];
+  orderItems: IOrderItem[];
   shippingFrom: string;
   shippingTo: string;
   shippingFee: number;
   oldPrice: number;
+  price: number;
   promotion: number;
   total: number;
-  isPaid: boolean;
-  isDelivered: boolean;
-  isShipping: boolean;
-  paidAt: string;
-  createdAt: string;
-  updatedAt: string;
+  status: IOrderStatus;
   shippingAt: string;
   deliveredAt: string;
+  canceledAt: string;
+  createdAt: string;
+  updatedAt: string;
   user: {
     _id: string;
     email: string;

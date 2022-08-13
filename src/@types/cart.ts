@@ -5,7 +5,6 @@ export interface ICart {
   user: string;
   product: IProduct;
   quantity: number;
-  status: number;
   createdAt: string;
   updatedAt: string;
 }

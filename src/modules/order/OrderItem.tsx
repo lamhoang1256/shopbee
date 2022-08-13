@@ -1,22 +1,23 @@
-import { Link } from "react-router-dom";
 import { IOrder } from "@types";
-import { formatMoney } from "utils/helper";
 import { Button } from "components/button";
 import { ProductPriceSale } from "modules/product";
-import OrderProductItem from "./OrderProductItem";
+import { Link } from "react-router-dom";
+import { formatMoney } from "utils/helper";
+import OrderProduct from "./OrderProduct";
 
 interface OrderItemProps {
   order: IOrder;
 }
 
 const renderStatusOrder = (order: IOrder) => {
-  if (order.isDelivered) {
+  console.log("order: ", order);
+  if (order.status === "delivered") {
     return <span className='text-orangeee4'>Giao hàng thành công</span>;
   }
-  if (order.isShipping) {
+  if (order.status === "shipping") {
     return <span className='text-[#06c]'>Đang giao hàng</span>;
   }
-  if (order.isPaid) {
+  if (order.status === "processing") {
     return <span>Đã thanh toán</span>;
   }
   return <span>Chờ xác nhận</span>;
@@ -34,7 +35,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
       </div>
       <div className='my-3'>
         {order?.orderItems?.map((orderItem) => (
-          <OrderProductItem order={orderItem} key={orderItem?._id} />
+          <OrderProduct order={orderItem} key={orderItem.product._id} />
         ))}
       </div>
       <div className='flex flex-col-reverse justify-between gap-3 mt-5 md:flex-row md:items-center'>

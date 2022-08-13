@@ -4,13 +4,13 @@ import OrderStatus from "./OrderStatus";
 import OrderManage from "./OrderManage";
 import OrderOverview from "./OrderOverview";
 import OrderUpdate from "./OrderUpdate";
-import OrderProductItem from "./OrderProductItem";
+import OrderProduct from "./OrderProduct";
 
 export {
   OrderItem,
   OrderPayment,
   OrderStatus,
-  OrderProductItem,
+  OrderProduct,
   OrderManage,
   OrderOverview,
   OrderUpdate,

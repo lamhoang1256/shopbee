@@ -4,7 +4,7 @@ import { Button } from "components/button";
 import { SectionWhite } from "components/common";
 import { Input } from "components/input";
 import { path } from "constants/path";
-import { OrderPayment, OrderProductItem } from "modules/order";
+import { OrderPayment, OrderProduct } from "modules/order";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -132,11 +132,8 @@ const PaymentPage = () => {
         <SectionWhite className='mt-3'>
           <h2>Sản phẩm</h2>
           <div className='mt-3'>
-            {carts.map((cart) => (
-              <OrderProductItem
-                key={cart._id}
-                order={{ ...cart.product, quantity: cart.quantity, product: cart.product._id }}
-              />
+            {carts.map(({ _id, quantity, product }) => (
+              <OrderProduct key={_id} order={{ quantity, product }} />
             ))}
           </div>
         </SectionWhite>

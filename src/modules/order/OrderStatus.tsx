@@ -9,9 +9,9 @@ interface OrderStatusProps {
 
 const OrderStatus = ({ order }: OrderStatusProps) => {
   const calcWidthActiveStatusBar = () => {
-    if (order?.isPaid && order?.isShipping && order?.isDelivered) return "after:w-[100%]";
-    if (order?.isPaid && order?.isShipping) return "after:w-[70%]";
-    if (order?.isPaid) return "after:w-[30%]";
+    if (order.status === "delivered") return "after:w-[100%]";
+    if (order.status === "shipping") return "after:w-[70%]";
+    if (order.status === "processing") return "after:w-[30%]";
     return "after:w-0";
   };
   const statusList: IStatusOrder[] = [
@@ -19,22 +19,22 @@ const OrderStatus = ({ order }: OrderStatusProps) => {
       active: true,
       icon: <IconClipboard />,
       label: "Chờ xác nhận",
-      display: formatDateVNFull(order?.paidAt),
+      display: formatDateVNFull(order?.createdAt),
     },
     {
-      active: order?.isPaid,
+      active: order.status === "processing",
       icon: <IconMoney />,
       label: "Đã thanh toán",
-      display: formatDateVNFull(order?.paidAt),
+      display: formatDateVNFull(order?.createdAt),
     },
     {
-      active: order?.isShipping,
+      active: order.status === "shipping",
       icon: <IconShipping />,
       label: "Đang vận chuyển",
       display: order?.shippingAt ? formatDateVNFull(order?.shippingAt) : "Đang chờ",
     },
     {
-      active: order?.isDelivered,
+      active: order.status === "delivered",
       icon: <IconCheck />,
       label: "Giao hàng thành công",
       display: order?.deliveredAt ? formatDateVNFull(order?.deliveredAt) : "Đang chờ",

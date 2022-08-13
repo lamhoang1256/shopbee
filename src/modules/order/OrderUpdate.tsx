@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import OrderOverview from "./OrderOverview";
 import OrderPayment from "./OrderPayment";
-import OrderProductItem from "./OrderProductItem";
+import OrderProduct from "./OrderProduct";
 import OrderStatus from "./OrderStatus";
 
 const OrderUpdate = () => {
@@ -71,7 +71,7 @@ const OrderUpdate = () => {
       </SectionWhite>
       <SectionWhite className='mt-3'>
         {order?.orderItems.map((orderItem) => (
-          <OrderProductItem order={orderItem} key={orderItem._id} />
+          <OrderProduct order={orderItem} key={orderItem.product._id} />
         ))}
       </SectionWhite>
       <OrderPayment payments={payments} />

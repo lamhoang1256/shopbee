@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { IOrder } from "@types";
 import { orderAPI } from "apis";
 import { Loading } from "components/loading";
-import { OrderOverview, OrderPayment, OrderProductItem, OrderStatus } from "modules/order";
+import { OrderOverview, OrderPayment, OrderProduct, OrderStatus } from "modules/order";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -54,7 +54,7 @@ const OrderDetailsPage = () => {
       </div>
       <div className='p-4 mt-4 bg-white rounded-md'>
         {order?.orderItems.map((orderItem) => (
-          <OrderProductItem order={orderItem} key={orderItem._id} />
+          <OrderProduct order={orderItem} key={orderItem.product._id} />
         ))}
       </div>
       <OrderPayment payments={payments} />
