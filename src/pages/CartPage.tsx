@@ -5,8 +5,8 @@ import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/c
 
 const CartPage = () => {
   const { carts } = useStore((state) => state);
-  const total = calcTotalMoneyCart(carts, "price");
-  const totalSale = calcTotalMoneyCart(carts, "priceSale");
+  const total = calcTotalMoneyCart(carts, "oldPrice");
+  const totalSale = calcTotalMoneyCart(carts, "price");
   if (carts?.length === 0) return <CartEmpty />;
   return (
     <div className='layout-container'>
@@ -16,7 +16,7 @@ const CartPage = () => {
           <CartItem key={cart._id} cartItem={cart} />
         ))}
       </CartBody>
-      <CartFooter totalPayment={totalSale} totalPaymentNotSale={total} count={carts?.length} />
+      <CartFooter total={totalSale} totalNotSale={total} count={carts?.length} />
     </div>
   );
 };

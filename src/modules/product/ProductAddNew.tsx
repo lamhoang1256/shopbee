@@ -22,7 +22,7 @@ const ProductAddNew = () => {
     validationSchema: ProductSchemaYup,
     onSubmit: async (values) => {
       const payload: IProductPayload = values;
-      if (payload.priceSale === 0) payload.priceSale = payload.price;
+      if (payload.price === 0) payload.price = payload.oldPrice;
       try {
         const { success, message } = await productAPI.addNewProduct(payload);
         if (success) toast.success(message);
@@ -89,7 +89,17 @@ const ProductAddNew = () => {
             <MessageError>{formik.touched.quantity && formik.errors?.quantity}</MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='price'>Giá gốc</Label>
+            <Label htmlFor='oldPrice'>Giá gốc</Label>
+            <Input
+              name='oldPrice'
+              type='number'
+              value={formik.values.oldPrice}
+              onChange={formik.handleChange}
+            />
+            <MessageError>{formik.touched.oldPrice && formik.errors?.oldPrice}</MessageError>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='price'>Giá đã giảm</Label>
             <Input
               name='price'
               type='number'
@@ -97,16 +107,6 @@ const ProductAddNew = () => {
               onChange={formik.handleChange}
             />
             <MessageError>{formik.touched.price && formik.errors?.price}</MessageError>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='priceSale'>Giá đã giảm</Label>
-            <Input
-              name='priceSale'
-              type='number'
-              value={formik.values.priceSale}
-              onChange={formik.handleChange}
-            />
-            <MessageError>{formik.touched.priceSale && formik.errors?.priceSale}</MessageError>
           </FormGroup>
         </div>
         <FormGroup>

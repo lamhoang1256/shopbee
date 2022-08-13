@@ -16,8 +16,8 @@ interface ProductItemProps {
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
-  const { priceSale, price, image, _id, name, rating, sold } = product;
-  const precentSale = Math.ceil((1 - priceSale / price) * 100);
+  const { price, oldPrice, image, _id, name, rating, sold } = product;
+  const precentSale = Math.ceil((1 - price / oldPrice) * 100);
   return (
     <Link to={`${path.product}/${_id}`} className='product-item' key={_id}>
       <ProductImage imageUrl={image} />
@@ -28,7 +28,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           <span className='text-[#787878] text-xs'>Đã bán {formatCash(sold)}</span>
         </div>
         <div className='flex items-center gap-x-2'>
-          <ProductPriceSale>{formatMoney(priceSale)}</ProductPriceSale>
+          <ProductPriceSale>{formatMoney(price)}</ProductPriceSale>
           <ProductLabelSale>-{precentSale}%</ProductLabelSale>
         </div>
       </div>

@@ -16,9 +16,7 @@ const ShopAddressManage = () => {
     setLoading(true);
     try {
       let { data } = await addressAPI.getAllShopAddress();
-      data = data.sort(
-        (x: any, y: any) => -1 * (Number(x.settingDefault) - Number(y.settingDefault)),
-      );
+      data = data.sort((x: any, y: any) => -1 * (Number(x.default) - Number(y.default)));
       setAddressList(data);
       setLoading(false);
     } catch (error) {
@@ -74,7 +72,7 @@ const ShopAddressManage = () => {
                 <p>
                   {address.street}, {address.address}
                 </p>
-                {address.settingDefault && (
+                {address.default && (
                   <div className='mt-3'>
                     <span className={classNames(stylesLabel, "text-orangeee4 !border-orangeee4")}>
                       Mặc định

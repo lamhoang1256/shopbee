@@ -38,7 +38,7 @@ const HeaderCart = () => {
                 />
                 <ProductTitle className='line-clamp-1'>{cart.product.name}</ProductTitle>
                 <ProductPriceSale className='flex-shrink-0 ml-2'>
-                  {formatMoney(cart.product.priceSale)}
+                  {formatMoney(cart.product.price)}
                 </ProductPriceSale>
               </Link>
             ))}

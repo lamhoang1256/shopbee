@@ -14,7 +14,7 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
   const currentPage = Number(searchParams.get("page"));
 
   const handleSortByPrice = (e: any) => {
-    setSearchParams({ ...currentParams, order: e.target.value, sort_by: "priceSale" });
+    setSearchParams({ ...currentParams, order: e.target.value, sort_by: "price" });
   };
   const goNextPage = () => {
     const nextPage = currentPage + 1;

@@ -3,8 +3,8 @@ export const initialValuesProduct = {
   image: "",
   description: "",
   category: "",
+  oldPrice: 0,
   price: 0,
-  priceSale: 0,
   quantity: 0,
 };
 

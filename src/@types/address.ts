@@ -20,5 +20,5 @@ export interface IShopAddress {
   cityId: string;
   districtId: string;
   wardId: string;
-  settingDefault: boolean;
+  default: boolean;
 }

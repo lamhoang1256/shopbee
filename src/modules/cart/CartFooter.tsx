@@ -7,12 +7,12 @@ import { Button } from "components/button";
 import { ProductPriceSale } from "modules/product";
 
 interface CartFooterProps {
-  totalPayment: number;
-  totalPaymentNotSale: number;
+  total: number;
+  totalNotSale: number;
   count: number;
 }
 
-const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProps) => {
+const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
   const { setCart } = useStore((state) => state);
   const handleRemoveAllCart = async () => {
     try {
@@ -32,14 +32,12 @@ const CartFooter = ({ totalPayment, totalPaymentNotSale, count }: CartFooterProp
         <div>
           Tổng ({count} sản phẩm):
           <ProductPriceSale className='ml-1 text-xl font-medium'>
-            {formatMoney(totalPayment)}
+            {formatMoney(total)}
           </ProductPriceSale>
         </div>
         <div>
           Tiết kiệm:
-          <ProductPriceSale className='ml-1'>
-            {formatMoney(totalPaymentNotSale - totalPayment)}
-          </ProductPriceSale>
+          <ProductPriceSale className='ml-1'>{formatMoney(totalNotSale - total)}</ProductPriceSale>
         </div>
       </div>
       <div className='flex gap-3'>

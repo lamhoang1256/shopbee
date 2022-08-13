@@ -52,7 +52,7 @@ const ProductManage = () => {
       {!loading && (
         <div className='gap-3 my-3 product-grid'>
           {products?.map((product) => {
-            const { priceSale, image, _id, name, rating, sold } = product;
+            const { price, image, _id, name, rating, sold } = product;
             return (
               <Link
                 to={`${path.productUpdate}/${_id}`}
@@ -66,7 +66,7 @@ const ProductManage = () => {
                     <ProductRating rating={rating} size='w-[14px] h-[14px]' />
                     <span className='text-[#787878] text-xs'>Đã bán {formatCash(sold)}</span>
                   </div>
-                  <ProductPriceSale>{formatMoney(priceSale)}</ProductPriceSale>
+                  <ProductPriceSale>{formatMoney(price)}</ProductPriceSale>
                 </div>
                 <ActionDelete onClick={() => handleDeleteProduct(_id)} className='!w-5 !h-5' />
               </Link>

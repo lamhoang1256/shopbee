@@ -53,8 +53,8 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
         </ProductTitle>
         <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2'>
-            <ProductPriceOld> {formatMoney(cartItem?.product?.price)}</ProductPriceOld>
-            <ProductPriceSale>{formatMoney(cartItem?.product?.priceSale)}</ProductPriceSale>
+            <ProductPriceOld> {formatMoney(cartItem?.product?.oldPrice)}</ProductPriceOld>
+            <ProductPriceSale>{formatMoney(cartItem?.product?.price)}</ProductPriceSale>
           </div>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
             <QuantityController

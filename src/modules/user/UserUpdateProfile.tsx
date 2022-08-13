@@ -24,7 +24,7 @@ const UserUpdateProfile = () => {
     validationSchema: ProfileSchemaYup,
     onSubmit: async (values) => {
       try {
-        const { data, success, message } = await userAPI.updateProfileMe(values);
+        const { data, success, message } = await userAPI.updateMe(values);
         if (success) {
           setCurrentUser({ ...currentUser, ...data });
           toast.success(message);

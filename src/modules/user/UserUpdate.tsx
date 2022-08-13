@@ -40,7 +40,7 @@ const UserUpdate = () => {
   const handleChangeAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
-      const { success, message, data } = await userAPI.updateProfileMe({ avatar });
+      const { success, message, data } = await userAPI.updateMe({ avatar });
       if (success) {
         formik.setFieldValue("avatar", data?.avatar);
         toast.success(message);

@@ -14,10 +14,10 @@ import { calcTotalMoneyCart } from "utils/helper";
 const PaymentPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCart } = useStore((state) => state);
-  const totalPriceProduct = calcTotalMoneyCart(carts, "priceSale");
-  const [shippingPrice] = useState(16000);
-  const [totalDiscount] = useState(10000);
-  const [totalPayment] = useState(totalPriceProduct + shippingPrice - totalDiscount);
+  const oldPrice = calcTotalMoneyCart(carts, "price");
+  const [shippingFee] = useState(16000);
+  const [promotion] = useState(10000);
+  const [total] = useState(oldPrice + shippingFee - promotion);
 
   const buyProducts = async (values: any) => {
     try {
@@ -37,36 +37,36 @@ const PaymentPage = () => {
       name: cart.product.name,
       quantity: cart.quantity,
       image: cart.product.image,
+      oldPrice: cart.product.oldPrice,
       price: cart.product.price,
-      priceSale: cart.product.priceSale,
       product: cart.product._id,
     }));
     const values = {
       orderItems,
       shippingTo: `${currentUser?.street}, ${currentUser?.address}`,
-      shippingPrice,
-      totalPriceProduct,
-      totalDiscount,
-      totalPayment,
+      shippingFee,
+      oldPrice,
+      promotion,
+      total,
     };
     buyProducts(values);
   };
   const payments = [
     {
       label: "Tổng tiền hàng",
-      value: totalPriceProduct,
+      value: oldPrice,
     },
     {
       label: "Phí vận chuyển",
-      value: shippingPrice,
+      value: shippingFee,
     },
     {
       label: "Voucher từ Shopbee",
-      value: totalDiscount,
+      value: promotion,
     },
     {
       label: "Tổng thanh toán",
-      value: totalPayment,
+      value: total,
     },
   ];
 
@@ -134,8 +134,8 @@ const PaymentPage = () => {
           <div className='mt-3'>
             {carts.map((cart) => (
               <OrderProductItem
-                order={{ ...cart.product, product: cart.product._id }}
                 key={cart._id}
+                order={{ ...cart.product, quantity: cart.quantity, product: cart.product._id }}
               />
             ))}
           </div>

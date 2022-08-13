@@ -26,19 +26,19 @@ const OrderDetailsPage = () => {
   const payments = [
     {
       label: "Tổng tiền hàng",
-      value: order.totalPriceProduct,
+      value: order.oldPrice,
     },
     {
       label: "Phí vận chuyển",
-      value: order.shippingPrice,
+      value: order.shippingFee,
     },
     {
       label: "Voucher từ Shopbee",
-      value: order.totalPriceProduct * -1,
+      value: order.oldPrice * -1,
     },
     {
       label: "Tổng thanh toán",
-      value: order.totalPriceProduct + order.shippingPrice - order.totalDiscount,
+      value: order.oldPrice + order.shippingFee - order.promotion,
     },
   ];
 

@@ -43,9 +43,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
         </Link>
         <div>
           <span>Tổng số tiền: </span>
-          <ProductPriceSale className='pl-1 text-2xl'>
-            {formatMoney(order?.totalPayment)}
-          </ProductPriceSale>
+          <ProductPriceSale className='pl-1 text-2xl'>{formatMoney(order?.total)}</ProductPriceSale>
         </div>
       </div>
     </div>

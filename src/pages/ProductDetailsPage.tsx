@@ -63,7 +63,7 @@ const ProductDetailsPage = () => {
   if (!id) return <PageNotFound />;
   if (loading) return <Loading />;
   if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
-  const percentSale = Math.ceil(100 - (productInfo.priceSale / productInfo.price) * 100);
+  const percentSale = Math.ceil(100 - (productInfo.price / productInfo.oldPrice) * 100);
 
   const handleAddToCart = async () => {
     let quantity = quantityAdd;
@@ -111,10 +111,10 @@ const ProductDetailsPage = () => {
             </div>
             <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
               <ProductPriceOld className='text-[#929292]'>
-                {formatMoney(productInfo.price)}
+                {formatMoney(productInfo.oldPrice)}
               </ProductPriceOld>
               <ProductPriceSale className='text-lg font-medium lg:text-3xl'>
-                {formatMoney(productInfo.priceSale)}
+                {formatMoney(productInfo.price)}
               </ProductPriceSale>
               <ProductLabelSale>-{percentSale}%</ProductLabelSale>
             </SectionGray>
@@ -125,7 +125,7 @@ const ProductDetailsPage = () => {
             <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
               <span>Số lượng</span>
               <QuantityController onChangeValue={handleChangeQuantityController} />
-              <span>{productInfo.quantity} sản phẩm có sẵn</span>
+              <span>{productInfo.stock} sản phẩm có sẵn</span>
             </div>
             <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
               <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>

@@ -11,7 +11,7 @@ export const orderAPI = {
     return axiosClient.get(path, { params });
   },
   getSingleOrder: (orderId: string): Promise<IResponse> => {
-    const path = `api/order?orderId=${orderId}`;
+    const path = `api/order/${orderId}`;
     return axiosClient.get(path);
   },
 };

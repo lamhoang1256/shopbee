@@ -5,10 +5,10 @@ export interface IProduct {
   images: string[];
   description: string;
   category: string;
-  price: number;
+  oldPrice: number;
   rating: number;
-  priceSale: number;
-  quantity: number;
+  price: number;
+  stock: number;
   sold: number;
   view: number;
 }
@@ -18,7 +18,7 @@ export interface IProductPayload {
   image: string;
   description: string;
   category: string;
+  oldPrice: number;
   price: number;
-  priceSale: number;
   quantity: number;
 }

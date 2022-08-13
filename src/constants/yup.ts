@@ -51,7 +51,7 @@ export const ProductSchemaYup = Yup.object({
   image: Yup.string().required("Vui lòng chọn hình ảnh!"),
   description: Yup.string().required("Vui lòng nhập mô tả sản phẩm!"),
   category: Yup.string().required("Vui lòng chọn danh mục!"),
-  price: Yup.number().required("Vui lòng chọn giá sản phẩm!"),
-  priceSale: Yup.number().max(Yup.ref("price"), "Giá đã giảm không được lớn hơn giá gốc"),
+  oldPrice: Yup.number().required("Vui lòng chọn giá sản phẩm!"),
+  price: Yup.number().max(Yup.ref("oldPrice"), "Giá đã giảm không được lớn hơn giá gốc"),
   quantity: Yup.number().required("Vui lòng chọn số lượng!"),
 });

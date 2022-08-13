@@ -13,7 +13,7 @@ const axiosClientAddress = axios.create({
 
 export const addressAPI = {
   getAllCity: () => {
-    const path = `/province`;
+    const path = `/city`;
     return axiosClientAddress.get(path);
   },
   getAllDistrict: (params: any) => {

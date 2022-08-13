@@ -21,7 +21,7 @@ export const formatCash = (num: number) => {
   return num;
 };
 
-export const calcTotalMoneyCart = (array: ICart[], key: "price" | "priceSale") => {
+export const calcTotalMoneyCart = (array: ICart[], key: "oldPrice" | "price") => {
   const totalMoney = array?.reduce((previousValue: number, currentValue: ICart) => {
     return previousValue + currentValue.product[key] * currentValue.quantity;
   }, 0);

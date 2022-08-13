@@ -2,8 +2,8 @@ export interface IOrderProductItem {
   name: string;
   quantity: number;
   image: string;
+  oldPrice: number;
   price: number;
-  priceSale: number;
   product: string;
   _id: string;
 }
@@ -12,10 +12,10 @@ export interface IOrder {
   orderItems: IOrderProductItem[];
   shippingFrom: string;
   shippingTo: string;
-  shippingPrice: number;
-  totalPriceProduct: number;
-  totalDiscount: number;
-  totalPayment: number;
+  shippingFee: number;
+  oldPrice: number;
+  promotion: number;
+  total: number;
   isPaid: boolean;
   isDelivered: boolean;
   isShipping: boolean;

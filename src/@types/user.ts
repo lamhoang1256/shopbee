@@ -1,25 +1,24 @@
 export interface ICurrentUser {
+  _id: string;
   accessToken: string;
+  refreshToken: string;
   street: string;
   address: string;
-  addressHome: string;
-  wardId: string;
-  districtId: string;
   cityId: string;
-  createdAt: string;
+  districtId: string;
+  wardId: string;
+  fullname: string;
   email: string;
   avatar: string;
-  fullname: string;
-  isAdmin: boolean;
   phone: string;
+  isAdmin: boolean;
   password?: string;
-  refreshToken: string;
+  createdAt: string;
   updatedAt: string;
   __v: number;
-  _id: string;
 }
 
-export interface IPayloadChangePassword {
+export interface IChangePassword {
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
