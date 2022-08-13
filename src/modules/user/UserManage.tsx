@@ -81,7 +81,7 @@ const UserManage = () => {
                   <td>{user.phone}</td>
                   <td>
                     <span className='max-w-[180px] line-clamp-1'>
-                      {user.addressAdministrative?.split(",").slice(-1)[0]}
+                      {user.address?.split(",").slice(-1)[0]}
                     </span>
                   </td>
                   <td>{user.isAdmin ? "Admin" : "User"}</td>

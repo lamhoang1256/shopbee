@@ -15,11 +15,11 @@ const UserUpdateProfile = () => {
     initialValues: {
       fullname: "",
       phone: "",
-      addressDetail: "",
-      addressAdministrative: "",
-      addressIdProvince: "",
-      addressIdDistrict: "",
-      addressIdCommune: "",
+      street: "",
+      address: "",
+      cityId: "",
+      districtId: "",
+      wardId: "",
     },
     validationSchema: ProfileSchemaYup,
     onSubmit: async (values) => {
@@ -76,21 +76,19 @@ const UserUpdateProfile = () => {
         <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor='addressAdministrative'>Địa chỉ:</Label>
+        <Label htmlFor='address'>Địa chỉ:</Label>
         <UpdateAdministrative formik={formik} />
-        <MessageError>
-          {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
-        </MessageError>
+        <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor='addressDetail'>Địa chỉ nhận hàng cụ thể</Label>
+        <Label htmlFor='street'>Địa chỉ nhận hàng cụ thể</Label>
         <Input
-          name='addressDetail'
+          name='street'
           type='text'
-          value={formik.values.addressDetail}
+          value={formik.values.street}
           onChange={formik.handleChange}
         />
-        <MessageError>{formik.touched.addressDetail && formik.errors?.addressDetail}</MessageError>
+        <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
       </FormGroup>
       <Button type='submit' primary className='w-full h-10'>
         Lưu

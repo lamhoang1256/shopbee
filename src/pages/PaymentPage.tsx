@@ -43,7 +43,7 @@ const PaymentPage = () => {
     }));
     const values = {
       orderItems,
-      shippingTo: `${currentUser?.addressDetail}, ${currentUser?.addressAdministrative}`,
+      shippingTo: `${currentUser?.street}, ${currentUser?.address}`,
       shippingPrice,
       totalPriceProduct,
       totalDiscount,
@@ -123,10 +123,7 @@ const PaymentPage = () => {
           </h3>
           <p>Họ tên: {currentUser.fullname}</p>
           <p>Số điện thoại: {currentUser.phone}</p>
-          <p>
-            Địa chỉ nhận hàng:{" "}
-            {`${currentUser.addressDetail}, ${currentUser.addressAdministrative}`}
-          </p>
+          <p>Địa chỉ nhận hàng: {`${currentUser.street}, ${currentUser.address}`}</p>
           <Link to={path.profile} className='font-medium text-blue08f'>
             Thay đổi
           </Link>

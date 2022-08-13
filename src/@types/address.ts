@@ -1,24 +1,24 @@
-export interface IProvince {
+export interface ICity {
   ID: string;
-  idProvince: string;
+  cityId: string;
   name: string;
 }
 export interface IDistrict {
-  idProvince: string;
-  idDistrict: string;
+  cityId: string;
+  districtId: string;
   name: string;
 }
-export interface ICommune {
-  idDistrict: string;
-  idCommune: string;
+export interface IWard {
+  districtId: string;
+  wardId: string;
   name: string;
 }
 export interface IShopAddress {
   _id: string;
-  addressDetail: string;
-  addressAdministrative: string;
-  addressIdProvince: string;
-  addressIdDistrict: string;
-  addressIdCommune: string;
+  street: string;
+  address: string;
+  cityId: string;
+  districtId: string;
+  wardId: string;
   settingDefault: boolean;
 }

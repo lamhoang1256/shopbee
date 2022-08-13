@@ -1,8 +1,8 @@
-import { ICommune, IDistrict, IProvince } from "@types";
+import { IWard, IDistrict, ICity } from "@types";
 import { addressAPI } from "apis";
 import { FormGroup, MessageError } from "components/form";
 import { Select } from "components/select";
-import { initialAddressDetail } from "constants/initialValue";
+import { initAdministrative } from "constants/initialValue";
 import { useEffect, useState } from "react";
 
 interface UpdateAdministrativeProps {
@@ -10,102 +10,94 @@ interface UpdateAdministrativeProps {
 }
 
 const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
-  const { addressIdProvince, addressIdDistrict, addressIdCommune } = formik.values;
-  const [addressDetail, setAddressDetail] = useState(initialAddressDetail);
-  const [provinces, setProvinces] = useState<IProvince[]>([]);
+  const { cityId, districtId, wardId } = formik.values;
+  const [administrative, setAdministrative] = useState(initAdministrative);
+  const [citys, setCitys] = useState<ICity[]>([]);
   const [districts, setDistricts] = useState<IDistrict[]>([]);
-  const [communes, setCommunes] = useState<ICommune[]>([]);
+  const [wards, setWards] = useState<IWard[]>([]);
 
-  const fetchAllProvince = () => {
-    addressAPI.getAllCity().then((res) => setProvinces(res.data));
+  const fetchAllCity = () => {
+    addressAPI.getAllCity().then((res) => setCitys(res.data));
   };
   const fetchAllDistrict = () => {
-    const params = { idProvince: addressIdProvince };
-    addressAPI.getAllDistrict(params).then((res) => setDistricts(res.data));
+    addressAPI.getAllDistrict({ cityId }).then((res) => setDistricts(res.data));
   };
-  const fetchAllCommune = () => {
-    const params = { idDistrict: addressIdDistrict };
-    addressAPI.getAllCommune(params).then((res) => setCommunes(res.data));
+  const fetchAllWard = () => {
+    addressAPI.getAllWard({ districtId }).then((res) => setWards(res.data));
   };
 
-  const handleChangeProvince = async (e: any) => {
-    const province = e.target.options[e.target.selectedIndex].text;
-    setAddressDetail({ ...addressDetail, province });
-    formik?.setFieldValue("addressIdProvince", e.target.value);
-    formik?.setFieldValue("addressIdDistrict", "");
-    formik?.setFieldValue("addressIdCommune", "");
+  const handleChangeCity = async (e: any) => {
+    const city = e.target.options[e.target.selectedIndex].text;
+    setAdministrative({ ...administrative, city });
+    formik?.setFieldValue("cityId", e.target.value);
+    formik?.setFieldValue("districtId", "");
+    formik?.setFieldValue("wardId", "");
   };
   const handleChangeDistrict = async (e: any) => {
     const district = e.target.options[e.target.selectedIndex].text;
-    setAddressDetail({ ...addressDetail, district });
-    formik?.setFieldValue("addressIdDistrict", e.target.value);
-    formik?.setFieldValue("addressIdCommune", "");
+    setAdministrative({ ...administrative, district });
+    formik?.setFieldValue("districtId", e.target.value);
+    formik?.setFieldValue("wardId", "");
   };
-  const handleChangeCommune = (e: any) => {
-    const commune = e.target.options[e.target.selectedIndex].text;
-    setAddressDetail({ ...addressDetail, commune });
-    formik?.setFieldValue("addressIdCommune", e.target.value);
+  const handleChangeWard = (e: any) => {
+    const ward = e.target.options[e.target.selectedIndex].text;
+    setAdministrative({ ...administrative, ward });
+    formik?.setFieldValue("wardId", e.target.value);
   };
 
   const handleUpdateAddress = () => {
-    const { commune, district, province } = addressDetail;
-    const address = `${commune}, ${district}, ${province}`;
-    formik?.setFieldValue("addressAdministrative", address);
+    const { ward, district, city } = administrative;
+    const address = `${ward}, ${district}, ${city}`;
+    formik?.setFieldValue("address", address);
   };
 
   useEffect(() => {
-    fetchAllProvince();
+    fetchAllCity();
   }, []);
   useEffect(() => {
     fetchAllDistrict();
-  }, [addressIdProvince]);
+  }, [cityId]);
   useEffect(() => {
-    fetchAllCommune();
-  }, [addressIdDistrict]);
+    fetchAllWard();
+  }, [districtId]);
   useEffect(() => {
     handleUpdateAddress();
-  }, [addressIdCommune]);
+  }, [wardId]);
 
   return (
     <div className='grid grid-cols-3 gap-4'>
       <FormGroup>
-        <Select name='province' value={addressIdProvince} onChange={handleChangeProvince}>
+        <Select name='city' value={cityId} onChange={handleChangeCity}>
           <option value=''>Chọn Tỉnh/Thành Phố</option>
-          {provinces?.map(({ idProvince, name }) => (
-            <option value={idProvince} key={idProvince}>
-              {name}
+          {citys?.map((city) => (
+            <option value={city.cityId} key={city.cityId}>
+              {city.name}
             </option>
           ))}
         </Select>
-        <MessageError>
-          {formik.touched.addressIdProvince && formik.errors?.addressIdProvince}
-        </MessageError>
+        <MessageError>{formik.touched.cityId && formik.errors?.cityId}</MessageError>
       </FormGroup>
       <FormGroup>
-        <Select name='district' value={addressIdDistrict} onChange={handleChangeDistrict}>
+        <Select name='district' value={districtId} onChange={handleChangeDistrict}>
           <option value=''>Chọn Quận/Huyện</option>
-          {districts?.map(({ idDistrict, name }) => (
-            <option value={idDistrict} key={idDistrict}>
-              {name}
+          {districts?.map((district) => (
+            <option value={district.districtId} key={district.districtId}>
+              {district.name}
             </option>
           ))}
         </Select>
-        <MessageError>
-          {formik.touched.addressIdDistrict && formik.errors?.addressIdDistrict}
-        </MessageError>
+        <MessageError>{formik.touched.districtId && formik.errors?.districtId}</MessageError>
       </FormGroup>
       <FormGroup>
-        <Select name='commune' value={addressIdCommune} onChange={handleChangeCommune}>
+        <Select name='ward' value={wardId} onChange={handleChangeWard}>
           <option value=''>Chọn Phường/Xã</option>
-          {communes?.map(({ idCommune, name }) => (
-            <option value={idCommune} key={idCommune}>
-              {name}
+          {wards?.map((ward) => (
+            <option value={ward.wardId} key={ward.wardId}>
+              {ward.name}
             </option>
           ))}
         </Select>
-        <MessageError>
-          {formik.touched.addressIdCommune && formik.errors?.addressIdCommune}
-        </MessageError>
+        <MessageError>{formik.touched.wardId && formik.errors?.wardId}</MessageError>
       </FormGroup>
     </div>
   );

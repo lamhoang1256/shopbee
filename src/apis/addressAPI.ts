@@ -20,8 +20,8 @@ export const addressAPI = {
     const path = `/district`;
     return axiosClientAddress.get(path, { params });
   },
-  getAllCommune: (params: any) => {
-    const path = `/commune`;
+  getAllWard: (params: any) => {
+    const path = `/ward`;
     return axiosClientAddress.get(path, { params });
   },
   getAllShopAddress: (): Promise<IResponse> => {

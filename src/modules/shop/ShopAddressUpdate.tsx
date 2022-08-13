@@ -16,11 +16,11 @@ const ShopAddressUpdate = () => {
   const { id = "" } = useParams();
   const formik = useFormik({
     initialValues: {
-      addressDetail: "",
-      addressAdministrative: "",
-      addressIdProvince: "",
-      addressIdDistrict: "",
-      addressIdCommune: "",
+      street: "",
+      address: "",
+      cityId: "",
+      districtId: "",
+      wardId: "",
     },
     validationSchema: AddressSchemaYup,
     onSubmit: async (values) => {
@@ -57,23 +57,14 @@ const ShopAddressUpdate = () => {
     >
       <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
-          <Label htmlFor='addressAdministrative'>Địa chỉ:</Label>
+          <Label htmlFor='address'>Địa chỉ:</Label>
           <UpdateAdministrative formik={formik} />
-          <MessageError>
-            {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
-          </MessageError>
+          <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor='addressDetail'>Địa chỉ lấy hàng cụ thể</Label>
-          <Input
-            type='text'
-            name='addressDetail'
-            value={formik.values.addressDetail}
-            onChange={formik.handleChange}
-          />
-          <MessageError>
-            {formik.touched.addressDetail && formik.errors?.addressDetail}
-          </MessageError>
+          <Label htmlFor='street'>Địa chỉ lấy hàng cụ thể</Label>
+          <Input name='street' value={formik.values.street} onChange={formik.handleChange} />
+          <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
         </FormGroup>
         <Button type='submit' primary className='w-full h-10'>
           Lưu

@@ -72,7 +72,7 @@ const ShopAddressManage = () => {
                   <span>(+84) 8317242473</span>
                 </div>
                 <p>
-                  {address.addressDetail}, {address.addressAdministrative}
+                  {address.street}, {address.address}
                 </p>
                 {address.settingDefault && (
                   <div className='mt-3'>

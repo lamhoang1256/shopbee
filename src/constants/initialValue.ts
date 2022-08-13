@@ -8,8 +8,8 @@ export const initialValuesProduct = {
   quantity: 0,
 };
 
-export const initialAddressDetail = {
-  province: "",
+export const initAdministrative = {
+  city: "",
   district: "",
-  commune: "",
+  ward: "",
 };

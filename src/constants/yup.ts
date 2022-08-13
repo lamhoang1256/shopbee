@@ -18,23 +18,19 @@ export const ProfileSchemaYup = Yup.object({
   phone: Yup.string()
     .required("Vui lòng nhập số điện thoại!")
     .max(20, "Số điện thoại tối đa là 20 kí tự!"),
-  addressAdministrative: Yup.string().required(
-    "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
-  ),
-  addressDetail: Yup.string().required("Vui lòng nhập địa chỉ giao hàng!"),
-  addressIdProvince: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
-  addressIdDistrict: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
-  addressIdCommune: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+  address: Yup.string().required("Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!"),
+  street: Yup.string().required("Vui lòng nhập địa chỉ giao hàng!"),
+  cityId: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+  districtId: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+  wardId: Yup.string().required("Vui lòng chọn Phường/Xã!"),
 });
 
 export const AddressSchemaYup = Yup.object({
-  addressAdministrative: Yup.string().required(
-    "Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!",
-  ),
-  addressDetail: Yup.string().required("Vui lòng nhập địa chỉ lấy hàng!"),
-  addressIdProvince: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
-  addressIdDistrict: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
-  addressIdCommune: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+  address: Yup.string().required("Vui lòng chọn Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã!"),
+  street: Yup.string().required("Vui lòng nhập địa chỉ lấy hàng!"),
+  cityId: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+  districtId: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+  wardId: Yup.string().required("Vui lòng chọn Phường/Xã!"),
 });
 
 export const UserPasswordSchemaYup = Yup.object({

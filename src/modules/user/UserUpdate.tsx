@@ -23,8 +23,8 @@ const UserUpdate = () => {
       email: "",
       avatar: "",
       isAdmin: false,
-      addressDetail: "",
-      addressAdministrative: "",
+      street: "",
+      address: "",
     },
     validationSchema: ProfileSchemaYup,
     onSubmit: async (values) => {
@@ -102,25 +102,19 @@ const UserUpdate = () => {
             <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='addressAdministrative'>
-              Địa chỉ: {formik.values.addressAdministrative}
-            </Label>
+            <Label htmlFor='address'>Địa chỉ: {formik.values.address}</Label>
             <UpdateAdministrative formik={formik} />
-            <MessageError>
-              {formik.touched.addressAdministrative && formik.errors?.addressAdministrative}
-            </MessageError>
+            <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='addressDetail'>Địa chỉ nhận hàng cụ thể</Label>
+            <Label htmlFor='street'>Địa chỉ nhận hàng cụ thể</Label>
             <Input
-              name='addressDetail'
+              name='street'
               type='text'
-              value={formik.values.addressDetail}
+              value={formik.values.street}
               onChange={formik.handleChange}
             />
-            <MessageError>
-              {formik.touched.addressDetail && formik.errors?.addressDetail}
-            </MessageError>
+            <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor='isAdmin'>Quyền quản trị (Admin)</Label>
