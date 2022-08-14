@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { IPagination, IProduct } from "@types";
+import { IPagination, IProduct, ISearchParams } from "@types";
 import { productAPI } from "apis";
 import { Pagination } from "components/pagination";
 import { ProductItem } from "modules/product";
 import { SearchSidebar, SearchSortBar } from "modules/search";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const initialPagination = { limit: 30, page: 1, pageCount: 1 };
 const SearchPage = () => {
@@ -14,7 +14,7 @@ const SearchPage = () => {
   const [pagination, setPagination] = useState<IPagination>(initialPagination);
 
   useEffect(() => {
-    const fetchSearchProducts = async (params: { [k: string]: string }) => {
+    const fetchSearchProducts = async (params: Partial<ISearchParams>) => {
       try {
         const { data } = await productAPI.getAllProduct(params);
         setResults(data?.products);

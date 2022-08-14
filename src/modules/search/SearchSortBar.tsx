@@ -1,28 +1,22 @@
-import { useSearchParams } from "react-router-dom";
 import { IPagination } from "@types";
 import { Button } from "components/button";
 import ButtonPagination from "components/button/ButtonPagination";
 import { IconNext, IconPrev } from "components/icons";
+import usePagination from "hooks/usePagination";
+import { useSearchParams } from "react-router-dom";
 
 interface SearchSortBarProps {
   pagination: IPagination;
 }
 
 const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
+  const { handleFilter, goNextPage, goPrevPage } = usePagination();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentParams = Object.fromEntries(searchParams);
   const currentPage = Number(searchParams.get("page"));
 
   const handleSortByPrice = (e: any) => {
-    setSearchParams({ ...currentParams, order: e.target.value, sort_by: "price" });
-  };
-  const goNextPage = () => {
-    const nextPage = currentPage + 1;
-    setSearchParams({ ...currentParams, page: nextPage.toString() });
-  };
-  const goPrevPage = () => {
-    const prevPage = currentPage - 1;
-    setSearchParams({ ...currentParams, page: prevPage.toString() });
+    handleFilter({ order: e.target.value, sort_by: "price" });
   };
 
   return (

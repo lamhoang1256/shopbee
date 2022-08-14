@@ -3,7 +3,7 @@ import classNames from "utils/className";
 
 interface ButtonOutlineProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const ButtonOutline = ({ children, className, onClick }: ButtonOutlineProps) => {
+const ButtonOutline = ({ children, className = "", onClick }: ButtonOutlineProps) => {
   return (
     <button
       type='button'

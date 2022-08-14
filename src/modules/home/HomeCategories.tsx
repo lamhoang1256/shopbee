@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { path } from "constants/path";
 import { ICategory } from "@types";
 import { categoryAPI } from "apis";
-import { path } from "constants/path";
 
 const HomeCategories = () => {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const fetchHomeCategories = async () => {
-    setLoading(true);
-    try {
-      const { data } = await categoryAPI.getAllCategory();
-      setCategories(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
+    const fetchHomeCategories = async () => {
+      setLoading(true);
+      try {
+        const { data } = await categoryAPI.getAllCategory();
+        setCategories(data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
     fetchHomeCategories();
   }, []);
 
@@ -28,7 +28,7 @@ const HomeCategories = () => {
         <div className='py-3 my-4 bg-white'>
           <h3 className='px-5 text-[#0000008a] text-base'>DANH MỤC</h3>
           <div className='mt-3 home-categories'>
-            {Array(12)
+            {Array(10)
               .fill(0)
               .map(() => (
                 <div

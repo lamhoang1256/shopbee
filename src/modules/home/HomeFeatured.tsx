@@ -9,7 +9,7 @@ import { ProductItem } from "modules/product";
 const initialPagination = { limit: 30, page: 1, pageCount: 1 };
 const HomeFeatured = () => {
   const [searchParams] = useSearchParams();
-  const page = searchParams.get("page") || 1;
+  const page = searchParams.get("page") || "1";
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState<IPagination>(initialPagination);
   useEffect(() => {

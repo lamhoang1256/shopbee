@@ -2,7 +2,7 @@ import classNames from "utils/className";
 
 interface InputSearchProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const InputSearch = ({ name, className, ...props }: InputSearchProps) => {
+const InputSearch = ({ name, className = "", ...props }: InputSearchProps) => {
   return (
     <input
       id={name}

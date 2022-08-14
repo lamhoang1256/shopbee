@@ -1,7 +1,7 @@
-import { IPagination } from "@types";
 import { v4 as uuidv4 } from "uuid";
+import { IPagination } from "@types";
+import usePagination from "hooks/usePagination";
 import { IconNext, IconPrev } from "components/icons";
-import { useSearchParams } from "react-router-dom";
 import ButtonPage from "./ButtonPage";
 
 interface PaginationProps {
@@ -9,22 +9,7 @@ interface PaginationProps {
 }
 
 const Pagination = ({ pagination }: PaginationProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentParams = Object.fromEntries(searchParams);
-  console.log("currentParams: ", currentParams);
-  const currentPage = Number(searchParams.get("page") || 1);
-
-  const goPrevPage = () => {
-    const prevPage = currentPage - 1;
-    setSearchParams({ ...currentParams, page: prevPage.toString() });
-  };
-  const goNextPage = () => {
-    const nextPage = currentPage + 1;
-    setSearchParams({ ...currentParams, page: nextPage.toString() });
-  };
-  const handleClickNumberPage = (page: number) => {
-    setSearchParams({ ...currentParams, page: page.toString() });
-  };
+  const { goPrevPage, goNextPage, handleClickNumberPage } = usePagination();
 
   return (
     <div className='flex gap-x-3 text-[#00000066] justify-center items-center my-8'>

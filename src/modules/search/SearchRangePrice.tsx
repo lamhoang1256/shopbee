@@ -1,10 +1,10 @@
-import { useSearchParams } from "react-router-dom";
-import { useFormik } from "formik";
 import { Button } from "components/button";
 import { MessageError } from "components/form";
 import { IconFilter } from "components/icons";
 import { InputRangePrice } from "components/input";
 import { SearchRangePriceYup } from "constants/yup";
+import { useFormik } from "formik";
+import usePagination from "hooks/usePagination";
 
 interface IParamsSearchByPrice {
   price_min: string;
@@ -12,8 +12,7 @@ interface IParamsSearchByPrice {
 }
 
 const SearchRangePrice = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentParams = Object.fromEntries(searchParams);
+  const { handleFilter } = usePagination();
   const formik = useFormik({
     initialValues: {
       price_min: "",
@@ -21,7 +20,7 @@ const SearchRangePrice = () => {
     },
     validationSchema: SearchRangePriceYup,
     onSubmit: (params: IParamsSearchByPrice) => {
-      setSearchParams({ ...currentParams, ...params });
+      handleFilter(params);
     },
   });
 

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ICategory } from "@types";
 import { categoryAPI } from "apis";
-import { IconMenu } from "components/icons";
 import { path } from "constants/path";
+import { IconMenu } from "components/icons";
 
 const SearchByCategory = () => {
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get("category");
   const [categories, setCategories] = useState<ICategory[]>([]);
+
   const fetchAllCategory = async () => {
     try {
       const { data } = await categoryAPI.getAllCategory();
@@ -28,7 +31,10 @@ const SearchByCategory = () => {
       <ul className='mt-2'>
         {categories.map(({ _id, name }) => (
           <li className='px-3 py-[6px]' key={_id}>
-            <Link to={`${path.search}?category=${_id}`} className='text-[#000000cc] line-clamp-1'>
+            <Link
+              to={`${path.search}?category=${_id}`}
+              className={categoryId === _id ? "text-orangeee4" : "text-[#000000cc] line-clamp-1"}
+            >
               {name}
             </Link>
           </li>
