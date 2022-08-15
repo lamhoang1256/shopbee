@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ICart, IShop } from "@types";
-import { productAPI, shopAPI } from "apis";
+import { productAPI, shopAPI, voucherAPI } from "apis";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";
 import { path } from "constants/path";
@@ -18,14 +18,27 @@ const CheckoutPage = () => {
   const price = calcTotalMoneyCart(carts, "price");
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
   const [total, setTotal] = useState(0);
+  const [voucher, setVoucher] = useState("");
   const [shippingFee, setShippingFee] = useState(0);
-  const [promotion] = useState(10000);
+  const [promotion, setPromotion] = useState(0);
 
   const calcShippingFee = () => {
     const shopCityId = Number(shopInfo.cityId || 0);
     const userCityId = Number(currentUser.cityId);
     const shipping = Math.abs(shopCityId - userCityId);
     setShippingFee(10000 + shipping * 1000);
+  };
+
+  const handleApplyVoucher = async () => {
+    try {
+      const { data, success, message } = await voucherAPI.applyVoucher(voucher);
+      if (success) {
+        setPromotion(data.value);
+        toast.success(message);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
   };
 
   const buyProducts = async (values: any) => {
@@ -153,10 +166,15 @@ const CheckoutPage = () => {
             <h2 className='maxsm:hidden'>
               Mã giảm giá (mỗi lần chỉ sử dụng tối đa 1 mã giảm giá.)
             </h2>
-            <form className='flex flex-wrap items-center gap-2'>
-              <Input placeholder='Mã Voucher Shopbee' className='maxsm:w-full' />
-              <Button>Áp dụng</Button>
-            </form>
+            <div className='flex flex-wrap items-center gap-2'>
+              <Input
+                value={voucher}
+                className='maxsm:w-full'
+                placeholder='Mã Voucher Shopbee'
+                onChange={(e) => setVoucher(e.target.value)}
+              />
+              <Button onClick={handleApplyVoucher}>Áp dụng</Button>
+            </div>
           </div>
         </SectionWhite>
         <OrderPayment payments={payments} />
