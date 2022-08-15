@@ -1,10 +1,11 @@
-import { cartAPI, productAPI } from "apis";
+import { ICity, IProduct, IShop } from "@types";
+import { addressAPI, cartAPI, productAPI, shopAPI } from "apis";
 import { Button, ButtonOutline } from "components/button";
 import { SectionGray } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
-import { IProduct } from "@types";
+import { Option, Select } from "components/select";
 import {
   ProductDesc,
   ProductImage,
@@ -24,42 +25,67 @@ import { formatMoney } from "utils/helper";
 import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
+  const { setCart, carts, currentUser } = useStore((state) => state);
   const { id } = useParams();
-  const { setCart, carts } = useStore((state) => state);
   const [loading, setLoading] = useState(true);
+  const [citys, setCitys] = useState<ICity[]>([]);
+  const [cityId, setCityId] = useState(currentUser.cityId);
   const [productInfo, setProductInfo] = useState<IProduct>(Object);
-  const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
+  const [shopInfo, setShopInfo] = useState<IShop>(Object);
+  const [shippingFee, setShippingFee] = useState(0);
   const [quantityAdd, setQuantityAdd] = useState(1);
+  const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
+
   const handleChangeQuantityController = (value: number) => {
     setQuantityAdd(() => value);
   };
 
-  const fetchRelatedProduct = async (params: { category: string }) => {
-    try {
-      const { data } = await productAPI.getAllProduct(params);
-      setRelatedProduct(data.products);
-    } catch (error) {
-      console.log("error: ", error);
-    }
+  const calcShippingFee = () => {
+    const shopCityId = Number(shopInfo.cityId);
+    const userCityId = Number(cityId);
+    const shipping = Math.abs(shopCityId - userCityId);
+    setShippingFee(10000 + shipping * 1000);
   };
 
-  const fetchProductDetail = async () => {
-    setLoading(true);
-    try {
-      const { data, success } = await productAPI.getSingleProduct(id || "");
-      if (success) {
-        const params = { category: data.category._id };
-        fetchRelatedProduct(params);
-        setProductInfo(data);
-      }
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
+    const fetchRelatedProduct = async (params: { category: string }) => {
+      productAPI.getAllProduct(params).then((res) => setRelatedProduct(res.data.products));
+    };
+    const fetchProductDetail = async () => {
+      setLoading(true);
+      try {
+        const { data, success } = await productAPI.getSingleProduct(id || "");
+        if (success) {
+          const params = { category: data.category._id };
+          fetchRelatedProduct(params);
+          setProductInfo(data);
+        }
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
     fetchProductDetail();
   }, [id]);
+
+  useEffect(() => {
+    const fetchAllCity = () => {
+      addressAPI.getAllCity().then((res) => setCitys(res.data));
+    };
+    const fetchShopInfo = () => {
+      shopAPI.getShop().then((res) => {
+        setShopInfo(res.data[0]);
+        setCityId(res.data[0].cityId);
+      });
+    };
+    fetchAllCity();
+    fetchShopInfo();
+  }, []);
+
+  useEffect(() => {
+    calcShippingFee();
+  }, [cityId]);
+
   if (!id) return <PageNotFound />;
   if (loading) return <Loading />;
   if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
@@ -118,10 +144,26 @@ const ProductDetailsPage = () => {
               </ProductPriceSale>
               <ProductLabelSale>-{percentSale}%</ProductLabelSale>
             </SectionGray>
-            <div className='text-sm px-3 py-2 border border-[#eeeeee] my-3 rounded-lg'>
-              <h4 className='font-medium text-[#00ab56]'>Thứ 6, 27/09</h4>
-              <span>18.000đ (Freeship 10K đh 149K)</span>
+            <div className='mt-3'>
+              <span>Vận chuyển từ: {shopInfo.administrative}</span>
+              <div className='my-1'>
+                <span>Vận chuyển tới:</span>
+                <Select
+                  name='city'
+                  value={cityId}
+                  className='px-1 ml-1 h-7'
+                  onChange={(e) => setCityId(e.target.value)}
+                >
+                  <Option value=''>Chọn Tỉnh/Thành Phố</Option>
+                  {citys?.map((city) => (
+                    <Option value={city.cityId} key={city.cityId}>
+                      {city.name}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
             </div>
+            <span>Phí vận chuyển: {formatMoney(shippingFee)} (Freeship 10K đh 149K)</span>
             <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
               <span>Số lượng</span>
               <QuantityController onChangeValue={handleChangeQuantityController} />

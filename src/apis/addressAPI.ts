@@ -24,7 +24,7 @@ export const addressAPI = {
     const path = `/ward`;
     return axiosClientAddress.get(path, { params });
   },
-  getAllShopAddress: (): Promise<IResponse> => {
+  getAllShop: (): Promise<IResponse> => {
     const path = `/api/shop/address`;
     return axiosClient.get(path);
   },
@@ -32,7 +32,11 @@ export const addressAPI = {
     const path = `api/shop/address/${addressId}`;
     return axiosClient.get(path);
   },
-  updateShopAddress: (values: any, addressId: string): Promise<IResponse> => {
+  getShopAddressDefault: (): Promise<IResponse> => {
+    const path = `api/shop/address?default=true`;
+    return axiosClient.get(path);
+  },
+  updateShop: (values: any, addressId: string): Promise<IResponse> => {
     const path = `api/shop/address/${addressId}`;
     return axiosClient.put(path, values);
   },

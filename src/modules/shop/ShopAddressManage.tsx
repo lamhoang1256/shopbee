@@ -15,7 +15,7 @@ const ShopAddressManage = () => {
   const fetchShopAddress = async () => {
     setLoading(true);
     try {
-      let { data } = await addressAPI.getAllShopAddress();
+      let { data } = await addressAPI.getAllShop();
       data = data.sort((x: any, y: any) => -1 * (Number(x.default) - Number(y.default)));
       setAddressList(data);
       setLoading(false);

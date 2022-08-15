@@ -1,23 +1,32 @@
-import { ICart } from "@types";
-import { productAPI } from "apis";
-import { Button } from "components/button";
-import { SectionWhite } from "components/common";
-import { Input } from "components/input";
-import { path } from "constants/path";
-import { OrderPayment, OrderProduct } from "modules/order";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ICart, IShop } from "@types";
+import { productAPI, shopAPI } from "apis";
 import { useStore } from "store/configStore";
 import { calcTotalMoneyCart } from "utils/helper";
+import { path } from "constants/path";
+import { Button } from "components/button";
+import { IconGPS } from "components/icons";
+import { Input } from "components/input";
+import { SectionWhite } from "components/common";
+import { OrderPayment, OrderProduct } from "modules/order";
 
-const PaymentPage = () => {
+const CheckoutPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCart } = useStore((state) => state);
-  const oldPrice = calcTotalMoneyCart(carts, "price");
-  const [shippingFee] = useState(16000);
+  const price = calcTotalMoneyCart(carts, "price");
+  const [shopInfo, setShopInfo] = useState<IShop>(Object);
+  const [total, setTotal] = useState(0);
+  const [shippingFee, setShippingFee] = useState(0);
   const [promotion] = useState(10000);
-  const [total] = useState(oldPrice + shippingFee - promotion);
+
+  const calcShippingFee = () => {
+    const shopCityId = Number(shopInfo.cityId || 0);
+    const userCityId = Number(currentUser.cityId);
+    const shipping = Math.abs(shopCityId - userCityId);
+    setShippingFee(10000 + shipping * 1000);
+  };
 
   const buyProducts = async (values: any) => {
     try {
@@ -34,27 +43,41 @@ const PaymentPage = () => {
 
   const handleBuyProducts = () => {
     const orderItems = carts.map((cart: ICart) => ({
-      name: cart.product.name,
       quantity: cart.quantity,
-      image: cart.product.image,
-      oldPrice: cart.product.oldPrice,
-      price: cart.product.price,
-      product: cart.product._id,
+      product: cart.product,
     }));
     const values = {
       orderItems,
       shippingTo: `${currentUser?.street}, ${currentUser?.address}`,
+      price,
       shippingFee,
-      oldPrice,
       promotion,
       total,
     };
     buyProducts(values);
   };
+
+  useEffect(() => {
+    const fetchShopInfo = () => {
+      shopAPI.getShop().then((res) => {
+        setShopInfo(res.data[0]);
+      });
+    };
+    fetchShopInfo();
+  }, []);
+
+  useEffect(() => {
+    calcShippingFee();
+  }, [shopInfo.cityId]);
+
+  useEffect(() => {
+    setTotal(price + shippingFee - promotion);
+  }, [price, shippingFee, promotion]);
+
   const payments = [
     {
       label: "Tổng tiền hàng",
-      value: oldPrice,
+      value: price,
     },
     {
       label: "Phí vận chuyển",
@@ -62,7 +85,7 @@ const PaymentPage = () => {
     },
     {
       label: "Voucher từ Shopbee",
-      value: promotion,
+      value: -promotion,
     },
     {
       label: "Tổng thanh toán",
@@ -107,28 +130,16 @@ const PaymentPage = () => {
         <div className='mt-3 gradient-line ' />
         <SectionWhite className='text-base font-medium rounded-tl-none rounded-tr-none'>
           <h3 className='flex items-center gap-2 mb-2 text-lg font-medium text-orangeee4'>
-            <svg
-              height='16'
-              viewBox='0 0 12 16'
-              width='12'
-              className='shopee-svg-icon icon-location-marker'
-              fill='#ee4d2d'
-            >
-              <path
-                d='M6 3.2c1.506 0 2.727 1.195 2.727 2.667 0 1.473-1.22 2.666-2.727 2.666S3.273 7.34 3.273 5.867C3.273 4.395 4.493 3.2 6 3.2zM0 6c0-3.315 2.686-6 6-6s6 2.685 6 6c0 2.498-1.964 5.742-6 9.933C1.613 11.743 0 8.498 0 6z'
-                fillRule='evenodd'
-              />
-            </svg>
+            <IconGPS />
             Thông tin nhận hàng
           </h3>
           <p>Họ tên: {currentUser.fullname}</p>
           <p>Số điện thoại: {currentUser.phone}</p>
           <p>Địa chỉ nhận hàng: {`${currentUser.street}, ${currentUser.address}`}</p>
           <Link to={path.profile} className='font-medium text-blue08f'>
-            Thay đổi
+            Thay đổi địa chỉ giao hàng
           </Link>
         </SectionWhite>
-
         <SectionWhite className='mt-3'>
           <h2>Sản phẩm</h2>
           <div className='mt-3'>
@@ -139,7 +150,9 @@ const PaymentPage = () => {
         </SectionWhite>
         <SectionWhite>
           <div className='flex items-center justify-between'>
-            <h2 className='maxsm:hidden'>Voucher</h2>
+            <h2 className='maxsm:hidden'>
+              Mã giảm giá (mỗi lần chỉ sử dụng tối đa 1 mã giảm giá.)
+            </h2>
             <form className='flex flex-wrap items-center gap-2'>
               <Input placeholder='Mã Voucher Shopbee' className='maxsm:w-full' />
               <Button>Áp dụng</Button>
@@ -147,19 +160,17 @@ const PaymentPage = () => {
           </div>
         </SectionWhite>
         <OrderPayment payments={payments} />
-        <div className='px-4 pb-6 bg-white'>
-          <div className='flex flex-wrap-reverse justify-end gap-y-3 lg:items-center lg:justify-between'>
-            <span className='maxsm:hidden'>
-              Nhấn Đặt hàng đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopbee
-            </span>
-            <Button primary onClick={handleBuyProducts} className='px-14'>
-              Đặt hàng
-            </Button>
-          </div>
+        <div className='flex flex-wrap-reverse justify-end px-4 pb-6 bg-white gap-y-3 lg:items-center lg:justify-between'>
+          <span className='maxsm:hidden'>
+            Nhấn Đặt hàng đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopbee
+          </span>
+          <Button primary onClick={handleBuyProducts} className='px-14'>
+            Đặt hàng
+          </Button>
         </div>
       </main>
     </div>
   );
 };
 
-export default PaymentPage;
+export default CheckoutPage;

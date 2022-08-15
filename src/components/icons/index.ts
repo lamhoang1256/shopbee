@@ -16,8 +16,10 @@ import IconNext from "./IconNext";
 import IconPrev from "./IconPrev";
 import IconUp from "./IconUp";
 import IconDown from "./IconDown";
+import IconGPS from "./IconGPS";
 
 export {
+  IconGPS,
   IconPrev,
   IconNext,
   IconShipping,

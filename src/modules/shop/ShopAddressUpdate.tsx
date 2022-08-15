@@ -25,7 +25,7 @@ const ShopAddressUpdate = () => {
     validationSchema: AddressSchemaYup,
     onSubmit: async (values) => {
       try {
-        const { success, message } = await addressAPI.updateShopAddress(values, id);
+        const { success, message } = await addressAPI.updateShop(values, id);
         if (success) {
           toast.success(message);
           navigate(path.address);

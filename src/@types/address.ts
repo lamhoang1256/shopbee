@@ -15,10 +15,11 @@ export interface IWard {
 }
 export interface IShopAddress {
   _id: string;
-  street: string;
-  address: string;
   cityId: string;
   districtId: string;
   wardId: string;
+  street: string;
+  administrative: string;
+  address: string;
   default: boolean;
 }

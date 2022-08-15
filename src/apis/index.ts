@@ -7,3 +7,4 @@ export * from "./cloudinaryAPI";
 export * from "./orderAPI";
 export * from "./productAPI";
 export * from "./userAPI";
+export * from "./shopAPI";

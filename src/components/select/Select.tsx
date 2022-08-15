@@ -1,11 +1,14 @@
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
+import { SelectHTMLAttributes } from "react";
+import classNames from "utils/className";
 
-const Select = ({ name, children, ...props }: SelectProps) => {
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {}
+
+const Select = ({ name, className = "", children, ...props }: SelectProps) => {
   return (
     <select
       id={name}
       name={name}
-      className='h-10 border border-[#00000024] px-2 outline-none'
+      className={classNames("h-10 border border-[#00000024] px-2 outline-none", className)}
       {...props}
     >
       {children}

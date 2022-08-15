@@ -16,7 +16,10 @@ const OrderProduct = ({ order }: OrderProductItemProps) => {
           className='w-20 h-20 object-cover border border-[#e1e1e1]'
         />
         <div>
-          <ProductTitle className='text-sm line-clamp-2' to={`${path.product}/${order?.product}`}>
+          <ProductTitle
+            className='text-sm line-clamp-2'
+            to={`${path.product}/${order?.product._id}`}
+          >
             {order.product.name}
           </ProductTitle>
           <span className='block mt-1'>x{order?.quantity}</span>

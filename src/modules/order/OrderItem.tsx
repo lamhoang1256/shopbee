@@ -10,7 +10,6 @@ interface OrderItemProps {
 }
 
 const renderStatusOrder = (order: IOrder) => {
-  console.log("order: ", order);
   if (order.status === "delivered") {
     return <span className='text-orangeee4'>Giao hàng thành công</span>;
   }
@@ -35,7 +34,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
       </div>
       <div className='my-3'>
         {order?.orderItems?.map((orderItem) => (
-          <OrderProduct order={orderItem} key={orderItem.product._id} />
+          <OrderProduct order={orderItem} key={orderItem?.product._id} />
         ))}
       </div>
       <div className='flex flex-col-reverse justify-between gap-3 mt-5 md:flex-row md:items-center'>
