@@ -33,7 +33,9 @@ const SearchByCategory = () => {
           <li className='px-3 py-[6px]' key={_id}>
             <Link
               to={`${path.search}?category=${_id}`}
-              className={categoryId === _id ? "text-orangeee4" : "text-[#000000cc] line-clamp-1"}
+              className={
+                categoryId === _id ? "text-orangeee4 line-clamp-1" : "text-[#000000cc] line-clamp-1"
+              }
             >
               {name}
             </Link>

@@ -17,6 +17,7 @@ import IconPrev from "./IconPrev";
 import IconUp from "./IconUp";
 import IconDown from "./IconDown";
 import IconGPS from "./IconGPS";
+import IconCube from "./IconCube";
 
 export {
   IconGPS,
@@ -38,4 +39,5 @@ export {
   IconStar,
   IconMinus,
   IconMenu,
+  IconCube,
 };

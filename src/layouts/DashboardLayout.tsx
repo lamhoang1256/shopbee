@@ -1,92 +1,69 @@
-import { Dropdown } from "components/dropdown";
-import { path } from "constants/path";
+import { NavLink, Outlet } from "react-router-dom";
 import { Sidebar } from "layouts";
+import { path } from "constants/path";
 import { DashboardHeader } from "modules/dashboard";
-import { Outlet } from "react-router-dom";
+import { IconCube } from "components/icons";
 
-const orderManage = [
+const sidebarLinks = [
   {
+    icon: <IconCube />,
     display: "Tất cả",
     path: path.orderManage,
   },
   {
+    icon: <IconCube />,
     display: "Đơn hủy",
     path: path.dashboard,
   },
-];
-
-const productManage = [
   {
+    icon: <IconCube />,
     display: "Tất Cả Sản Phẩm",
     path: path.productManage,
   },
   {
+    icon: <IconCube />,
     display: "Thêm sản phẩm",
     path: path.productAddNew,
   },
-];
-const bannerManage = [
   {
+    icon: <IconCube />,
     display: "Tất cả Banner",
     path: path.banner,
   },
-];
-const userManage = [
   {
+    icon: <IconCube />,
     display: "Tất cả người dùng",
     path: path.userManage,
   },
   {
+    icon: <IconCube />,
     display: "Thêm người dùng mới",
     path: path.userAddNew,
   },
 ];
+
+const stylesLink = "flex gap-x-2 items-center p-3";
+const stylesLinkActive = "flex gap-x-2 items-center p-3 bg-orangeee4 text-white rounded-lg";
 const DashboardLayout = () => {
   return (
     <>
       <DashboardHeader />
       <main className='flex flex-col gap-6 lg:flex-row'>
-        <Sidebar className='lg:w-[220px] lg:p-4 lg:bg-white shadow1'>
-          <Dropdown dropdownData={orderManage}>
-            <div className='flex items-center gap-x-2'>
-              <img
-                src='https://cf.shopee.vn/file/f82f8ccb649afcdf4f07f1dd9c41bcb0'
-                alt='icon'
-                className='w-4 h-4'
-              />
-              <span className=''>Quản lý đơn hàng</span>
-            </div>
-          </Dropdown>
-          <Dropdown dropdownData={productManage} className='mt-6'>
-            <div className='flex items-center gap-x-2'>
-              <img
-                src='https://cf.shopee.vn/file/f82f8ccb649afcdf4f07f1dd9c41bcb0'
-                alt='icon'
-                className='w-4 h-4'
-              />
-              <span className=''>Quản lý sản phẩm</span>
-            </div>
-          </Dropdown>
-          <Dropdown dropdownData={bannerManage} className='mt-6'>
-            <div className='flex items-center gap-x-2'>
-              <img
-                src='https://cf.shopee.vn/file/f82f8ccb649afcdf4f07f1dd9c41bcb0'
-                alt='icon'
-                className='w-4 h-4'
-              />
-              <span className=''>Quản lý banner</span>
-            </div>
-          </Dropdown>
-          <Dropdown dropdownData={userManage} className='mt-6'>
-            <div className='flex items-center gap-x-2'>
-              <img
-                src='https://cf.shopee.vn/file/f82f8ccb649afcdf4f07f1dd9c41bcb0'
-                alt='icon'
-                className='w-4 h-4'
-              />
-              <span className=''>Quản lý người dùng</span>
-            </div>
-          </Dropdown>
+        <Sidebar className='lg:w-[280px] lg:p-4 lg:bg-white shadow1'>
+          <ul>
+            {sidebarLinks.map((link) => (
+              <li>
+                <NavLink
+                  end
+                  to={link.path}
+                  className={({ isActive }) => (isActive ? stylesLinkActive : stylesLink)}
+                >
+                  {link.icon}
+                  {link.display}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </Sidebar>
         <div className='flex-1 mt-6 px-[15px] mb-10 max-w-[1140px]'>
           <Outlet />
