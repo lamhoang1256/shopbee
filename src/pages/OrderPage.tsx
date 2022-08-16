@@ -11,9 +11,10 @@ import { OrderEmpty, OrderItem } from "modules/order";
 
 const tabs = [
   { key: 0, display: "Tất cả", to: path.order },
-  { key: 1, display: "Đã thanh toán", to: `${path.order}?status=1` },
-  { key: 2, display: "Đang giao hàng", to: `${path.order}?status=2` },
-  { key: 3, display: "Đã giao hàng", to: `${path.order}?status=3` },
+  { key: 1, display: "Đã thanh toán", to: `${path.order}?status=processing` },
+  { key: 2, display: "Đang giao hàng", to: `${path.order}?status=shipping` },
+  { key: 3, display: "Đã giao hàng", to: `${path.order}?status=delivered` },
+  { key: 4, display: "Đã hủy", to: `${path.order}?status=canceled` },
 ];
 
 const OrderPage = () => {
@@ -45,8 +46,6 @@ const OrderPage = () => {
     };
     fetchAllOrderMe();
   }, [searchParams]);
-
-  if (loading) return <Loading />;
   return (
     <>
       <Tabs tabs={tabs} query={status} />
@@ -59,8 +58,13 @@ const OrderPage = () => {
           placeholder='Tìm kiếm theo đơn hàng theo ID'
         />
       </form>
-      {orders.length === 0 && <OrderEmpty />}
-      {orders.length > 0 && orders.map((order) => <OrderItem key={order?._id} order={order} />)}
+      {loading && <Loading />}
+      {!loading &&
+        (orders.length === 0 ? (
+          <OrderEmpty />
+        ) : (
+          orders.map((order) => <OrderItem key={order?._id} order={order} />)
+        ))}
     </>
   );
 };

@@ -1,11 +1,18 @@
 import { IProduct } from "./product";
 
-export enum IOrderStatus {
+export enum OrderStatusEnum {
   waiting = "waiting",
   processing = "processing",
   shipping = "shipping",
   delivered = "delivered",
   canceled = "canceled",
+}
+export enum IOrderStatusCode {
+  waiting = 0,
+  processing = 1,
+  shipping = 2,
+  delivered = 3,
+  canceled = 4,
 }
 export interface IOrderItem {
   product: IProduct;
@@ -21,7 +28,8 @@ export interface IOrder {
   price: number;
   promotion: number;
   total: number;
-  status: IOrderStatus;
+  status: OrderStatusEnum;
+  statusCode: IOrderStatusCode;
   shippingAt: string;
   deliveredAt: string;
   canceledAt: string;
@@ -37,8 +45,8 @@ export interface IOrder {
 export interface IStatusOrder {
   active: boolean;
   icon: any;
-  label: string;
-  display: string;
+  date: string;
+  status: string;
 }
 
 export interface IPayment {

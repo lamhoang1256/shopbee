@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import OrderOverview from "./OrderOverview";
 import OrderPayment from "./OrderPayment";
 import OrderProduct from "./OrderProduct";
-import OrderStatus from "./OrderStatus";
+import OrderProgress from "./OrderProgress";
 
 const OrderUpdate = () => {
   const { id } = useParams();
@@ -54,7 +54,7 @@ const OrderUpdate = () => {
           <h3 className='text-lg font-medium'>Quản lí đơn hàng</h3>
           <span>ID ĐƠN HÀNG: {order?._id}</span>
         </div>
-        <OrderStatus order={order} />
+        <OrderProgress order={order} />
         <OrderOverview order={order} />
       </SectionWhite>
       <SectionWhite className='mt-3'>
@@ -64,7 +64,7 @@ const OrderUpdate = () => {
             <option value='1'>Chờ xác nhận</option>
             <option value='2'>Đã thanh toán</option>
             <option value='3'>Đang vận chuyển</option>
-            <option value='4'>Giao hàng thành công</option>
+            <option value='4'>Đã giao hàng</option>
           </Select>
           <Button primary>Cập nhật trạng thái</Button>
         </div>

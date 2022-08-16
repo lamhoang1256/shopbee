@@ -1,25 +1,27 @@
-import { IOrder } from "@types";
+import { Link } from "react-router-dom";
+import { IOrder, IOrderStatusCode } from "@types";
+import { formatMoney } from "utils/helper";
 import { Button } from "components/button";
 import { ProductPriceSale } from "modules/product";
-import { Link } from "react-router-dom";
-import { formatMoney } from "utils/helper";
 import OrderProduct from "./OrderProduct";
 
 interface OrderItemProps {
   order: IOrder;
 }
 
-const renderStatusOrder = (order: IOrder) => {
-  if (order.status === "delivered") {
-    return <span className='text-orangeee4'>Giao hàng thành công</span>;
+const renderStatusOrderWithColor = (statusCode: number) => {
+  switch (statusCode) {
+    case IOrderStatusCode.processing:
+      return <span className='text-yellow-400'>ĐANG XỬ LÍ</span>;
+    case IOrderStatusCode.shipping:
+      return <span className='text-blue-500'>ĐANG GIAO HÀNG</span>;
+    case IOrderStatusCode.delivered:
+      return <span className='text-[#2dc258]'>ĐÃ GIAO HÀNG</span>;
+    case IOrderStatusCode.canceled:
+      return <span className='text-redff4'>ĐÃ HỦY</span>;
+    default:
+      return <span className='text-orangeee4'>ĐANG CHỜ XỬ LÍ</span>;
   }
-  if (order.status === "shipping") {
-    return <span className='text-[#06c]'>Đang giao hàng</span>;
-  }
-  if (order.status === "processing") {
-    return <span>Đã thanh toán</span>;
-  }
-  return <span>Chờ xác nhận</span>;
 };
 
 const OrderItem = ({ order }: OrderItemProps) => {
@@ -30,7 +32,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
           <span className='font-medium'>Mã đơn hàng: </span>
           <span>{order?._id}</span>
         </div>
-        {renderStatusOrder(order)}
+        {renderStatusOrderWithColor(order.statusCode)}
       </div>
       <div className='my-3'>
         {order?.orderItems?.map((orderItem) => (
