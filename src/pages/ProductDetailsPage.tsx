@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import { formatMoney } from "utils/helper";
+import { calcShippingFee, formatMoney } from "utils/helper";
 import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
@@ -38,13 +38,6 @@ const ProductDetailsPage = () => {
 
   const handleChangeQuantityController = (value: number) => {
     setQuantityAdd(() => value);
-  };
-
-  const calcShippingFee = () => {
-    const shopCityId = Number(shopInfo.cityId);
-    const userCityId = Number(cityId);
-    const shipping = Math.abs(shopCityId - userCityId);
-    setShippingFee(10000 + shipping * 1000);
   };
 
   useEffect(() => {
@@ -83,7 +76,7 @@ const ProductDetailsPage = () => {
   }, []);
 
   useEffect(() => {
-    calcShippingFee();
+    setShippingFee(calcShippingFee(shopInfo.cityId, cityId));
   }, [cityId]);
 
   if (!id) return <PageNotFound />;
@@ -154,7 +147,7 @@ const ProductDetailsPage = () => {
                   className='px-1 ml-1 h-7'
                   onChange={(e) => setCityId(e.target.value)}
                 >
-                  <Option value=''>Chọn Tỉnh/Thành Phố</Option>
+                  <Option value='01'>Chọn Tỉnh/Thành Phố</Option>
                   {citys?.map((city) => (
                     <Option value={city.cityId} key={city.cityId}>
                       {city.name}

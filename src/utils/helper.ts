@@ -21,7 +21,7 @@ export const formatCash = (num: number) => {
   return num;
 };
 
-export const calcTotalMoneyCart = (array: ICart[], key: "oldPrice" | "price") => {
+export const calcTotalCart = (array: ICart[], key: "oldPrice" | "price") => {
   const totalMoney = array?.reduce((previousValue: number, currentValue: ICart) => {
     return previousValue + currentValue.product[key] * currentValue.quantity;
   }, 0);
@@ -37,4 +37,12 @@ export const formatDateVNFull = (timestamp: string) => {
   const minutes = `00${date.getMinutes()}`.slice(-2);
   const seconds = `00${date.getSeconds()}`.slice(-2);
   return `${hours}:${minutes}:${seconds} ${days}/${months}/${years}`;
+};
+
+export const calcShippingFee = (shopCityId: string, userCityId: string) => {
+  console.log("userCityId: ", userCityId);
+  console.log("shopCityId: ", shopCityId);
+  const distance = Math.abs(Number(shopCityId) - Number(userCityId));
+  console.log(10000 + distance * 1000);
+  return 10000 + distance * 1000;
 };

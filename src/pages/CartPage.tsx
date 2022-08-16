@@ -1,12 +1,12 @@
 import { ICart } from "@types";
 import { useStore } from "store/configStore";
-import { calcTotalMoneyCart } from "utils/helper";
+import { calcTotalCart } from "utils/helper";
 import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/cart";
 
 const CartPage = () => {
   const { carts } = useStore((state) => state);
-  const total = calcTotalMoneyCart(carts, "oldPrice");
-  const totalSale = calcTotalMoneyCart(carts, "price");
+  const total = calcTotalCart(carts, "oldPrice");
+  const totalSale = calcTotalCart(carts, "price");
   if (carts?.length === 0) return <CartEmpty />;
   return (
     <div className='layout-container'>

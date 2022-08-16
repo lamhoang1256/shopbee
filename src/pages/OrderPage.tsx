@@ -1,12 +1,13 @@
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { orderAPI } from "apis";
+import { IOrder } from "@types";
+import { path } from "constants/path";
 import { InputSearch } from "components/input";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
-import { path } from "constants/path";
-import { useFormik } from "formik";
-import { OrderItem } from "modules/order";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { OrderEmpty, OrderItem } from "modules/order";
 
 const tabs = [
   { key: 0, display: "Tất cả", to: path.order },
@@ -16,51 +17,50 @@ const tabs = [
 ];
 
 const OrderPage = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<IOrder[]>([]);
+  const params = Object.fromEntries(searchParams);
   const status = searchParams.get("status") || "";
-
-  const fetchAllOrder = async () => {
-    setLoading(true);
-    try {
-      const params = status ? { status } : {};
-      const { data } = await orderAPI.getAllOrder(params);
-      setOrders(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      orderId: "",
     },
     onSubmit: (values) => {
-      console.log("values: ", values);
+      setSearchParams(values);
     },
   });
 
   useEffect(() => {
-    fetchAllOrder();
-  }, [status]);
+    const fetchAllOrderMe = async () => {
+      setLoading(true);
+      try {
+        const { data } = await orderAPI.getAllOrder(params);
+        setOrders(data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+    fetchAllOrderMe();
+  }, [searchParams]);
+
   if (loading) return <Loading />;
   return (
     <>
       <Tabs tabs={tabs} query={status} />
       <form onSubmit={formik.handleSubmit} autoComplete='off'>
         <InputSearch
-          value={formik.values.name}
-          onChange={formik.handleChange}
+          name='orderId'
           className='mt-3'
-          name='name'
-          placeholder='Tìm kiếm theo Tên Shop, ID đơn hàng hoặc Tên Sản phẩm'
+          value={formik.values.orderId}
+          onChange={formik.handleChange}
+          placeholder='Tìm kiếm theo đơn hàng theo ID'
         />
       </form>
-      {orders.map((order: any) => (
-        <OrderItem key={order?._id} order={order} />
-      ))}
+      {orders.length === 0 && <OrderEmpty />}
+      {orders.length > 0 && orders.map((order) => <OrderItem key={order?._id} order={order} />)}
     </>
   );
 };

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { ICart, IShop } from "@types";
 import { productAPI, shopAPI, voucherAPI } from "apis";
 import { useStore } from "store/configStore";
-import { calcTotalMoneyCart } from "utils/helper";
+import { calcShippingFee, calcTotalCart } from "utils/helper";
 import { path } from "constants/path";
 import { Button } from "components/button";
 import { IconGPS } from "components/icons";
@@ -15,19 +15,12 @@ import { OrderPayment, OrderProduct } from "modules/order";
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCart } = useStore((state) => state);
-  const price = calcTotalMoneyCart(carts, "price");
+  const price = calcTotalCart(carts, "price");
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
   const [total, setTotal] = useState(0);
-  const [voucher, setVoucher] = useState("");
   const [shippingFee, setShippingFee] = useState(0);
   const [promotion, setPromotion] = useState(0);
-
-  const calcShippingFee = () => {
-    const shopCityId = Number(shopInfo.cityId || 0);
-    const userCityId = Number(currentUser.cityId);
-    const shipping = Math.abs(shopCityId - userCityId);
-    setShippingFee(10000 + shipping * 1000);
-  };
+  const [voucher, setVoucher] = useState("");
 
   const handleApplyVoucher = async () => {
     try {
@@ -38,6 +31,7 @@ const CheckoutPage = () => {
       }
     } catch (error: any) {
       toast.error(error?.message);
+      setPromotion(0);
     }
   };
 
@@ -80,8 +74,8 @@ const CheckoutPage = () => {
   }, []);
 
   useEffect(() => {
-    calcShippingFee();
-  }, [shopInfo.cityId]);
+    setShippingFee(calcShippingFee(shopInfo.cityId, currentUser.cityId));
+  }, [shopInfo.cityId, currentUser.cityId]);
 
   useEffect(() => {
     setTotal(price + shippingFee - promotion);

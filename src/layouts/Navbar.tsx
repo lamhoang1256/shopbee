@@ -58,6 +58,11 @@ const Navbar = () => {
             <Link to={path.order} className={stylesPopoverLink}>
               Đơn mua
             </Link>
+            {currentUser.isAdmin && (
+              <Link to={path.dashboard} className={stylesPopoverLink}>
+                Dashboard
+              </Link>
+            )}
             <button
               type='button'
               onClick={handleLogout}

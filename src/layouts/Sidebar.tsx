@@ -18,7 +18,7 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
       <Button primary onClick={() => toggleSearchSidebar()} className='lg:hidden'>
         {labelOpenSidebar}
       </Button>
-      <div className={classNames("search-sidebar", className)} ref={sidebarRef}>
+      <div className={classNames("layout-sidebar", className)} ref={sidebarRef}>
         <SidebarCloseAction onCloseSidebar={toggleSearchSidebar} />
         <div>{children}</div>
       </div>
