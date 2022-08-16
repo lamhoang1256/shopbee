@@ -72,7 +72,7 @@ const OrderDetailsPage = () => {
         <OrderProgress order={order} />
         <OrderOverview order={order} />
       </div>
-      <div className='bg-[#fffcf5] p-3 flex gap-y-3 md:justify-between flex-col md:flex-row border-dotted border border-[rgba(0,0,0,.09)]'>
+      <div className='bg-[#fafdff] p-3 flex gap-y-3 md:justify-between flex-col md:flex-row border-dotted border border-[rgba(0,0,0,.09)]'>
         <span className='leading-10 text-xs text-[#0000008a]'>
           Cảm ơn bạn đã mua sắm tại Shopbee!
         </span>

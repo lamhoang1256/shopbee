@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 import { ICart, IShop } from "@types";
 import { productAPI, shopAPI, voucherAPI } from "apis";
 import { useStore } from "store/configStore";
-import { calcShippingFee, calcTotalCart } from "utils/helper";
+import { calcShippingFee, calcTotalCart, formatMoney } from "utils/helper";
 import { path } from "constants/path";
 import { Button } from "components/button";
 import { IconGPS } from "components/icons";
 import { Input } from "components/input";
 import { SectionWhite } from "components/common";
 import { OrderPayment, OrderProduct } from "modules/order";
+import { ProductPriceSale } from "modules/product";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -155,28 +156,48 @@ const CheckoutPage = () => {
             ))}
           </div>
         </SectionWhite>
-        <SectionWhite>
-          <div className='flex items-center justify-between'>
-            <h2 className='maxsm:hidden'>
-              Mã giảm giá (mỗi lần chỉ sử dụng tối đa 1 mã giảm giá.)
-            </h2>
-            <div className='flex flex-wrap items-center gap-2'>
-              <Input
-                value={voucher}
-                className='maxsm:w-full'
-                placeholder='Mã Voucher Shopbee'
-                onChange={(e) => setVoucher(e.target.value)}
-              />
-              <Button onClick={handleApplyVoucher}>Áp dụng</Button>
-            </div>
+        <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex gap-x-8 gap-y-4 justify-between flex-col md:flex-row'>
+          <div className='flex flex-col flex-1 md:items-center md:flex-row gap-x-3 gap-y-2'>
+            <span>Lời nhắn: </span>
+            <Input placeholder='Lưu ý cho người bán' className='md:flex-1' />
           </div>
-        </SectionWhite>
+          <div className='flex flex-col md:flex-row gap-x-4'>
+            <span className='text-green00b'>Đơn vị vận chuyển:</span>
+            <div>
+              <h4>Nhanh</h4>
+              <p>Nhận hàng vào 18 Th08 - 19 Th08</p>
+              <p>
+                (Nhanh tay vào ngay &quot;Shopbee Voucher&quot; để săn mã Miễn phí vận chuyển nhé!)
+              </p>
+            </div>
+            <span className='text-base'>{formatMoney(shippingFee)}</span>
+          </div>
+        </div>
+        <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center'>
+          <span>Tổng số tiền ({carts.length} sản phẩm):</span>
+          <ProductPriceSale className='text-lg font-medium'>{formatMoney(price)}</ProductPriceSale>
+        </div>
+        <div className='flex p-4 items-center justify-between border-dotted border border-[rgba(0,0,0,.09)] bg-[#fff]'>
+          <h2 className='maxsm:hidden'>Mã giảm giá (mỗi lần chỉ sử dụng tối đa 1 mã giảm giá.)</h2>
+          <div className='flex items-center max5se:flex-wrap md:gap-2'>
+            <Input
+              value={voucher}
+              className=''
+              placeholder='Mã Voucher Shopbee'
+              onChange={(e) => setVoucher(e.target.value)}
+            />
+            <Button onClick={handleApplyVoucher} className='flex-shrink-0'>
+              Áp dụng
+            </Button>
+          </div>
+        </div>
+
         <OrderPayment payments={payments} />
-        <div className='flex flex-wrap-reverse justify-end px-4 pb-6 bg-white gap-y-3 lg:items-center lg:justify-between'>
+        <div className='bg-[#fffcf5] border-dotted border border-[rgba(0,0,0,.09)] flex flex-wrap-reverse justify-end px-4 py-6 gap-y-3 lg:items-center lg:justify-between'>
           <span className='maxsm:hidden'>
             Nhấn Đặt hàng đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopbee
           </span>
-          <Button primary onClick={handleBuyProducts} className='px-14'>
+          <Button primary onClick={handleBuyProducts} className='py-3 text-base px-14'>
             Đặt hàng
           </Button>
         </div>

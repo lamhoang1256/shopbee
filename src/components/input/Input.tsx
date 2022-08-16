@@ -7,7 +7,10 @@ const Input = ({ name, className = "", ...props }: InputProps) => {
     <input
       id={name}
       name={name}
-      className={classNames("px-4 outline-none h-10 border border-[#00000024]", className)}
+      className={classNames(
+        "px-4 rounded-sm outline-none h-10 border border-[#00000024]",
+        className,
+      )}
       {...props}
     />
   );
