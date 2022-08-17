@@ -66,8 +66,8 @@ const ProductDetailsPage = () => {
     };
     const fetchShopInfo = () => {
       shopAPI.getShop().then((res) => {
-        setShopInfo(res.data[0]);
-        setCityId(res.data[0].cityId);
+        setShopInfo(res.data);
+        setCityId(res.data.cityId);
       });
     };
     fetchAllCity();

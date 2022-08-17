@@ -41,6 +41,11 @@ const sidebarLinks = [
     display: "Thêm người dùng mới",
     path: path.userAddNew,
   },
+  {
+    icon: <IconCube />,
+    display: "Thông tin shop",
+    path: path.shop,
+  },
 ];
 
 const stylesLink = "flex gap-x-2 items-center p-3";

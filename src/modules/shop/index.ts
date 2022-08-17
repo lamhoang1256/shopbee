@@ -1,4 +1,3 @@
-import ShopAddressManage from "./ShopAddressManage";
-import ShopAddressUpdate from "./ShopAddressUpdate";
+import ShopUpdate from "./ShopUpdate";
 
-export { ShopAddressManage, ShopAddressUpdate };
+export { ShopUpdate };

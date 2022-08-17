@@ -16,7 +16,7 @@ export const path = {
   search: "/search",
   dashboard: "/dashboard",
   banner: "/dashboard/banner",
-  address: "/dashboard/shop/address",
+  shop: "/dashboard/shop",
   productManage: "/dashboard/product",
   productAddNew: "/dashboard/product/add-new",
   productUpdate: "/dashboard/product/update",

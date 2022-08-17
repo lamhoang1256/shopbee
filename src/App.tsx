@@ -4,15 +4,15 @@ import { AuthLayout, DashboardLayout, MainLayout, UserLayout } from "layouts";
 import { BannerManage } from "modules/banner";
 import { OrderManage, OrderUpdate } from "modules/order";
 import { ProductAddNew, ProductManage, ProductUpdate } from "modules/product";
-import { ShopAddressManage, ShopAddressUpdate } from "modules/shop";
+import { ShopUpdate } from "modules/shop";
 import { UserAddNew, UserChangePassword, UserManage, UserUpdate } from "modules/user";
 import CartPage from "pages/CartPage";
+import CheckoutPage from "pages/CheckoutPage";
 import DashboardPage from "pages/DashboardPage";
 import HomePage from "pages/HomePage";
 import OrderDetailsPage from "pages/OrderDetailsPage";
 import OrderPage from "pages/OrderPage";
 import PageNotFound from "pages/PageNotFound";
-import CheckoutPage from "pages/CheckoutPage";
 import ProductDetailsPage from "pages/ProductDetailsPage";
 import ProfilePage from "pages/ProfilePage";
 import SearchPage from "pages/SearchPage";
@@ -68,8 +68,7 @@ const App = () => {
           <Route path={path.productAddNew} element={<ProductAddNew />} />
           <Route path={`${path.productUpdate}/:id`} element={<ProductUpdate />} />
           <Route path={path.banner} element={<BannerManage />} />
-          <Route path={path.address} element={<ShopAddressManage />} />
-          <Route path={`${path.address}/:id`} element={<ShopAddressUpdate />} />
+          <Route path={path.shop} element={<ShopUpdate />} />
           <Route path={path.userManage} element={<UserManage />} />
           <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
           <Route path={path.userAddNew} element={<UserAddNew />} />
