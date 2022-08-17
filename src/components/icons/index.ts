@@ -18,6 +18,8 @@ import IconUp from "./IconUp";
 import IconDown from "./IconDown";
 import IconGPS from "./IconGPS";
 import IconCube from "./IconCube";
+import IconShowPassword from "./IconShowPassword";
+import IconHiddenPassword from "./IconHiddenPassword";
 
 export {
   IconGPS,
@@ -37,6 +39,8 @@ export {
   IconCart,
   IconCartOutline,
   IconStar,
+  IconShowPassword,
+  IconHiddenPassword,
   IconMinus,
   IconMenu,
   IconCube,

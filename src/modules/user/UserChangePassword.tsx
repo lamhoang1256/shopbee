@@ -4,7 +4,7 @@ import { userAPI } from "apis";
 import { Button } from "components/button";
 import { UserPasswordSchemaYup } from "constants/yup";
 import { HeaderTemplate } from "layouts";
-import { Input } from "components/input";
+import { Input, InputPassword } from "components/input";
 import { FormGroup, Label, MessageError } from "components/form";
 
 const UserChangePassword = () => {
@@ -32,9 +32,8 @@ const UserChangePassword = () => {
       <form className='lg:w-1/2' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
           <Label htmlFor='currentPassword'>Mật khẩu hiện tại</Label>
-          <Input
+          <InputPassword
             name='currentPassword'
-            type='password'
             value={formik.values.currentPassword}
             onChange={formik.handleChange}
           />
