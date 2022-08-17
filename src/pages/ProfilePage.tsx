@@ -23,7 +23,7 @@ const ProfilePage = () => {
 
   return (
     <HeaderTemplate label='Hồ sơ của tôi' desc='Quản lý thông tin hồ sơ để bảo mật tài khoản'>
-      <div className='flex flex-col-reverse gap-8 mt-4 lg:flex-row'>
+      <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <UserUpdateMe />
         <UserChangeAvatar avatar={currentUser.avatar} handleChangeAvatar={handleChangeAvatar} />
       </div>
