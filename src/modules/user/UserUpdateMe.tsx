@@ -65,7 +65,7 @@ const UserUpdateMe = () => {
         <Input name='phone' value={formik.values.phone} onChange={formik.handleChange} />
         <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
       </FormGroup>
-      <FormGroup>
+      <FormGroup className='mb-0'>
         <Label htmlFor='address'>Địa chỉ:</Label>
         <UpdateAdministrative formik={formik} />
         <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>

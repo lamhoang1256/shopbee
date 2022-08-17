@@ -10,12 +10,10 @@ import {
   ProductDesc,
   ProductImage,
   ProductItem,
-  ProductLabelSale,
   ProductNotFound,
   ProductPriceOld,
   ProductPriceSale,
   ProductRating,
-  ProductSold,
   ProductTitle,
 } from "modules/product";
 import { useEffect, useState } from "react";
@@ -125,9 +123,10 @@ const ProductDetailsPage = () => {
             <div className='flex items-center my-4 gap-x-3'>
               <span className='font-medium'>{productInfo.rating}</span>
               <ProductRating rating={productInfo.rating} />
-              <ProductSold className='pl-4 border-l border-[#00000024]'>
+              <div className='pl-4 border-l border-[#00000024]'>
                 {productInfo.sold}
-              </ProductSold>
+                <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>
+              </div>
             </div>
             <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
               <ProductPriceOld className='text-[#929292]'>
@@ -136,7 +135,9 @@ const ProductDetailsPage = () => {
               <ProductPriceSale className='text-lg font-medium lg:text-3xl'>
                 {formatMoney(productInfo.price)}
               </ProductPriceSale>
-              <ProductLabelSale>-{percentSale}%</ProductLabelSale>
+              <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
+                -{percentSale}%
+              </span>
             </SectionGray>
             <div className='mt-3'>
               <span>Vận chuyển từ: {shopInfo.administrative}</span>
@@ -157,7 +158,7 @@ const ProductDetailsPage = () => {
                 </Select>
               </div>
             </div>
-            <span>Phí vận chuyển: {formatMoney(shippingFee)} (Freeship 10K đh 149K)</span>
+            <span>Phí vận chuyển: {formatMoney(shippingFee)}</span>
             <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
               <span>Số lượng</span>
               <QuantityController onChangeValue={handleChangeQuantityController} />

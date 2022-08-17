@@ -7,7 +7,14 @@ export enum OrderStatusEnum {
   delivered = "delivered",
   canceled = "canceled",
 }
-export enum IOrderStatusCode {
+export enum OrderStatusLabelEnum {
+  waiting = "Đang chờ",
+  processing = "Đang xử lí",
+  shipping = "Đang giao hàng",
+  delivered = "Đã giao hàng",
+  canceled = "Đã hủy",
+}
+export enum OrderStatusCodeEnum {
   waiting = 0,
   processing = 1,
   shipping = 2,
@@ -29,7 +36,7 @@ export interface IOrder {
   promotion: number;
   total: number;
   status: OrderStatusEnum;
-  statusCode: IOrderStatusCode;
+  statusCode: OrderStatusCodeEnum;
   shippingAt: string;
   deliveredAt: string;
   canceledAt: string;

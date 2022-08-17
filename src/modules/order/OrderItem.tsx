@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IOrder, IOrderStatusCode } from "@types";
+import { IOrder, OrderStatusCodeEnum } from "@types";
 import { formatMoney } from "utils/helper";
 import { Button } from "components/button";
 import { ProductPriceSale } from "modules/product";
@@ -11,13 +11,13 @@ interface OrderItemProps {
 
 const renderStatusOrderWithColor = (statusCode: number) => {
   switch (statusCode) {
-    case IOrderStatusCode.processing:
+    case OrderStatusCodeEnum.processing:
       return <span className='text-yellow-400'>ĐANG XỬ LÍ</span>;
-    case IOrderStatusCode.shipping:
+    case OrderStatusCodeEnum.shipping:
       return <span className='text-blue-500'>ĐANG GIAO HÀNG</span>;
-    case IOrderStatusCode.delivered:
+    case OrderStatusCodeEnum.delivered:
       return <span className='text-[#2dc258]'>ĐÃ GIAO HÀNG</span>;
-    case IOrderStatusCode.canceled:
+    case OrderStatusCodeEnum.canceled:
       return <span className='text-redff4'>ĐÃ HỦY</span>;
     default:
       return <span className='text-orangeee4'>ĐANG CHỜ XỬ LÍ</span>;

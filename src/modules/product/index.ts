@@ -4,8 +4,6 @@ import ProductItem from "./ProductItem";
 import ProductTitle from "./ProductTitle";
 import ProductRating from "./ProductRating";
 import ProductImage from "./ProductImage";
-import ProductSold from "./ProductSold";
-import ProductLabelSale from "./ProductLabelSale";
 import ProductDesc from "./ProductDesc";
 import ProductAddNew from "./ProductAddNew";
 import ProductUpdate from "./ProductUpdate";
@@ -21,8 +19,6 @@ export {
   ProductTitle,
   ProductRating,
   ProductImage,
-  ProductSold,
-  ProductLabelSale,
   ProductDesc,
   ProductManage,
   ProductNotFound,

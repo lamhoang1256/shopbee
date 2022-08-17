@@ -1,6 +1,11 @@
-import { IOrder, IOrderStatusCode, IStatusOrder, OrderStatusEnum } from "@types";
+import {
+  IOrder,
+  IStatusOrder,
+  OrderStatusCodeEnum,
+  OrderStatusEnum,
+  OrderStatusLabelEnum,
+} from "@types";
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
-import { orderStatusLabel } from "constants/global";
 import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
 import { v4 as uuidv4 } from "uuid";
@@ -11,9 +16,9 @@ interface OrderStatusProps {
 
 const OrderProgress = ({ order }: OrderStatusProps) => {
   const calcWidthActiveStatusBar = () => {
-    if (order.statusCode >= IOrderStatusCode.delivered) return "after:w-[100%]";
-    if (order.statusCode >= IOrderStatusCode.shipping) return "after:w-[66%]";
-    if (order.statusCode >= IOrderStatusCode.processing) return "after:w-[33%]";
+    if (order.statusCode >= OrderStatusCodeEnum.delivered) return "after:w-[100%]";
+    if (order.statusCode >= OrderStatusCodeEnum.shipping) return "after:w-[66%]";
+    if (order.statusCode >= OrderStatusCodeEnum.processing) return "after:w-[33%]";
     return "after:w-0";
   };
 
@@ -25,7 +30,7 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
             <IconCheck />
           </div>
           <div>
-            <h3>{orderStatusLabel[4]}</h3>
+            <h3>{OrderStatusLabelEnum.canceled}</h3>
             <span className='text-[#00000042] text-xs block mt-1'>
               {formatDateVNFull(order?.canceledAt)}
             </span>
@@ -37,26 +42,26 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
   const statusList: IStatusOrder[] = [
     {
       icon: <IconClipboard />,
-      active: order.statusCode >= IOrderStatusCode.waiting,
-      status: orderStatusLabel[0],
+      active: order.statusCode >= OrderStatusCodeEnum.waiting,
+      status: OrderStatusLabelEnum.waiting,
       date: formatDateVNFull(order?.createdAt),
     },
     {
       icon: <IconMoney />,
-      active: order.statusCode >= IOrderStatusCode.processing,
-      status: orderStatusLabel[1],
+      active: order.statusCode >= OrderStatusCodeEnum.processing,
+      status: OrderStatusLabelEnum.processing,
       date: formatDateVNFull(order?.createdAt),
     },
     {
       icon: <IconShipping />,
-      active: order.statusCode >= IOrderStatusCode.shipping,
-      status: orderStatusLabel[2],
+      active: order.statusCode >= OrderStatusCodeEnum.shipping,
+      status: OrderStatusLabelEnum.shipping,
       date: order?.shippingAt ? formatDateVNFull(order?.shippingAt) : "Đang chờ",
     },
     {
       icon: <IconCheck />,
-      active: order.statusCode >= IOrderStatusCode.delivered,
-      status: orderStatusLabel[3],
+      active: order.statusCode >= OrderStatusCodeEnum.delivered,
+      status: OrderStatusLabelEnum.delivered,
       date: order?.deliveredAt ? formatDateVNFull(order?.deliveredAt) : "Đang chờ",
     },
   ];

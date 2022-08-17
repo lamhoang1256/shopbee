@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { IOrder, OrderStatusEnum } from "@types";
+import { IOrder, OrderStatusCodeEnum } from "@types";
 import { orderAPI } from "apis";
+import { Button } from "components/button";
 import { Loading } from "components/loading";
+import { orderStatusLabel } from "constants/global";
 import {
   OrderHeader,
   OrderOverview,
@@ -10,8 +10,8 @@ import {
   OrderProduct,
   OrderProgress,
 } from "modules/order";
-import { Button } from "components/button";
-import { orderStatusLabel } from "constants/global";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const OrderDetailsPage = () => {
@@ -76,11 +76,12 @@ const OrderDetailsPage = () => {
         </span>
         <div className='flex flex-wrap gap-2'>
           <Button>Lấy mã đơn hàng</Button>
-          {order.status !== OrderStatusEnum.delivered && order.status !== OrderStatusEnum.canceled && (
-            <Button primary onClick={handleCancelOrder}>
-              Hủy đơn hàng
-            </Button>
-          )}
+          {order.statusCode !== OrderStatusCodeEnum.delivered &&
+            order.statusCode !== OrderStatusCodeEnum.canceled && (
+              <Button primary onClick={handleCancelOrder}>
+                Hủy đơn hàng
+              </Button>
+            )}
         </div>
       </div>
       <div className='p-4 mt-4 bg-white rounded-md'>

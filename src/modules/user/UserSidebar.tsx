@@ -13,7 +13,7 @@ const sidebarLinks = [
   },
   {
     id: 2,
-    icon: "https://cf.shopee.vn/file/ba61750a46794d8847c3f463c5e71cc4",
+    icon: "/images/icon-password.png",
     path: path.password,
     display: "Đổi mật khẩu",
   },

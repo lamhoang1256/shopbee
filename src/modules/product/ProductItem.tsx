@@ -1,15 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Link } from "react-router-dom";
-import { path } from "constants/path";
 import { IProduct } from "@types";
+import { path } from "constants/path";
+import { ProductImage, ProductPriceSale, ProductRating, ProductTitle } from "modules/product";
+import { Link } from "react-router-dom";
 import { formatCash, formatMoney } from "utils/helper";
-import {
-  ProductImage,
-  ProductLabelSale,
-  ProductPriceSale,
-  ProductRating,
-  ProductTitle,
-} from "modules/product";
 
 interface ProductItemProps {
   product: IProduct;
@@ -29,7 +23,9 @@ const ProductItem = ({ product }: ProductItemProps) => {
         </div>
         <div className='flex items-center gap-x-2'>
           <ProductPriceSale>{formatMoney(price)}</ProductPriceSale>
-          <ProductLabelSale>-{precentSale}%</ProductLabelSale>
+          <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
+            -{precentSale}%
+          </span>
         </div>
       </div>
     </Link>
