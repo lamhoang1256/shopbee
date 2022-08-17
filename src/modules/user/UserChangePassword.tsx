@@ -1,11 +1,11 @@
-import { toast } from "react-toastify";
-import { useFormik } from "formik";
 import { userAPI } from "apis";
 import { Button } from "components/button";
-import { UserPasswordSchemaYup } from "constants/yup";
-import { HeaderTemplate } from "layouts";
-import { Input, InputPassword } from "components/input";
 import { FormGroup, Label, MessageError } from "components/form";
+import { InputPassword } from "components/input";
+import { UserPasswordSchemaYup } from "constants/yup";
+import { useFormik } from "formik";
+import { HeaderTemplate } from "layouts";
+import { toast } from "react-toastify";
 
 const UserChangePassword = () => {
   const formik = useFormik({
@@ -29,7 +29,7 @@ const UserChangePassword = () => {
       label='Đổi Mật Khẩu'
       desc='Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác'
     >
-      <form className='lg:w-1/2' onSubmit={formik.handleSubmit} autoComplete='off'>
+      <form className='max-w-[470px] mt-4' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
           <Label htmlFor='currentPassword'>Mật khẩu hiện tại</Label>
           <InputPassword
@@ -43,9 +43,8 @@ const UserChangePassword = () => {
         </FormGroup>
         <FormGroup>
           <Label htmlFor='newPassword'>Mật Khẩu Mới</Label>
-          <Input
+          <InputPassword
             name='newPassword'
-            type='password'
             value={formik.values.newPassword}
             onChange={formik.handleChange}
           />
@@ -53,9 +52,8 @@ const UserChangePassword = () => {
         </FormGroup>
         <FormGroup>
           <Label htmlFor='confirmPassword'>Xác Nhận Mật Khẩu</Label>
-          <Input
+          <InputPassword
             name='confirmPassword'
-            type='password'
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
           />

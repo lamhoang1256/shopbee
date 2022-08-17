@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { Switch } from "components/checkbox";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/input";
+import { Input, InputPassword } from "components/input";
 import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
@@ -74,9 +74,8 @@ const UserAddNew = () => {
           <div className='grid gap-2 lg:grid-cols-2'>
             <FormGroup>
               <Label htmlFor='password'>Mật khẩu</Label>
-              <Input
+              <InputPassword
                 name='password'
-                type='password'
                 value={formik.values.password}
                 onChange={formik.handleChange}
               />
@@ -84,9 +83,8 @@ const UserAddNew = () => {
             </FormGroup>
             <FormGroup>
               <Label htmlFor='confirm_password'>Xác nhận mật khẩu</Label>
-              <Input
+              <InputPassword
                 name='confirm_password'
-                type='password'
                 value={formik.values.confirm_password}
                 onChange={formik.handleChange}
               />

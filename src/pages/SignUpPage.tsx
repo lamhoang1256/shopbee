@@ -1,7 +1,7 @@
 import { authAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/input";
+import { Input, InputPassword } from "components/input";
 import { path } from "constants/path";
 import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
@@ -55,8 +55,7 @@ const SignUpPage = () => {
           </FormGroup>
           <FormGroup className='mt-4'>
             <Label htmlFor='password'>Mật khẩu</Label>
-            <Input
-              type='password'
+            <InputPassword
               placeholder='Mật khẩu'
               name='password'
               onChange={formik.handleChange}
@@ -66,8 +65,7 @@ const SignUpPage = () => {
           </FormGroup>
           <FormGroup className='mt-4'>
             <Label htmlFor='confirm_password'>Xác nhận mật khẩu</Label>
-            <Input
-              type='password'
+            <InputPassword
               placeholder='Xác nhận mật khẩu'
               name='confirm_password'
               onChange={formik.handleChange}
