@@ -10,7 +10,7 @@ import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatMoney } from "utils/helper";
+import { formatMoney, scrollToTop } from "utils/helper";
 import ProductImage from "./ProductImage";
 import ProductNotFound from "./ProductNotFound";
 import ProductPriceSale from "./ProductPriceSale";
@@ -55,6 +55,7 @@ const ProductManage = () => {
   };
   useEffect(() => {
     fetchAllProduct();
+    scrollToTop();
   }, [searchParams]);
 
   return (

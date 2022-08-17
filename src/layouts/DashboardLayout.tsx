@@ -7,28 +7,28 @@ import { IconCube } from "components/icons";
 const sidebarLinks = [
   {
     icon: <IconCube />,
-    display: "Tất cả",
-    path: path.orderManage,
-  },
-  {
-    icon: <IconCube />,
-    display: "Đơn hủy",
+    display: "Tổng quan",
     path: path.dashboard,
   },
   {
     icon: <IconCube />,
-    display: "Tất Cả Sản Phẩm",
+    display: "Tất cả banner",
+    path: path.banner,
+  },
+  {
+    icon: <IconCube />,
+    display: "Tất cả đơn hàng",
+    path: path.orderManage,
+  },
+  {
+    icon: <IconCube />,
+    display: "Tất cả sản phẩm",
     path: path.productManage,
   },
   {
     icon: <IconCube />,
     display: "Thêm sản phẩm",
     path: path.productAddNew,
-  },
-  {
-    icon: <IconCube />,
-    display: "Tất cả Banner",
-    path: path.banner,
   },
   {
     icon: <IconCube />,

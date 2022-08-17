@@ -1,12 +1,12 @@
-import { Button } from "components/button";
-import { IconCartOutline } from "components/icons";
-import { Popover } from "components/popover";
-import { path } from "constants/path";
-import usePopover from "hooks/usePopover";
-import { ProductImage, ProductPriceSale, ProductTitle } from "modules/product";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
 import { formatMoney } from "utils/helper";
+import { Popover } from "components/popover";
+import { path } from "constants/path";
+import usePopover from "hooks/usePopover";
+import { Button } from "components/button";
+import { IconCartOutline } from "components/icons";
+import { ProductImage, ProductPriceSale, ProductTitle } from "modules/product";
 
 const HeaderCart = () => {
   const { carts } = useStore((state) => state);
@@ -32,7 +32,7 @@ const HeaderCart = () => {
                 <h3 className='text-[#00000066]'>Giỏ hàng của bạn còn trống</h3>
               </div>
             )}
-            {carts &&
+            {carts.length > 0 &&
               carts.slice(0, 5).map((cart) => (
                 <Link
                   key={cart._id}

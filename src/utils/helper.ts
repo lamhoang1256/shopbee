@@ -40,9 +40,13 @@ export const formatDateVNFull = (timestamp: string) => {
 };
 
 export const calcShippingFee = (shopCityId: string, userCityId: string) => {
-  console.log("userCityId: ", userCityId);
-  console.log("shopCityId: ", shopCityId);
   const distance = Math.abs(Number(shopCityId) - Number(userCityId));
-  console.log(10000 + distance * 1000);
   return 10000 + distance * 1000;
+};
+
+export const scrollToTop = (top: number = 0) => {
+  window.scrollTo({
+    top,
+    behavior: "smooth",
+  });
 };
