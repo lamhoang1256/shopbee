@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import { Sidebar } from "layouts";
 import { path } from "constants/path";
 import { DashboardHeader } from "modules/dashboard";
@@ -52,7 +53,7 @@ const DashboardLayout = () => {
         <Sidebar className='lg:w-[280px] lg:p-4 lg:bg-white shadow1'>
           <ul>
             {sidebarLinks.map((link) => (
-              <li>
+              <li key={uuidv4()}>
                 <NavLink
                   end
                   to={link.path}
