@@ -13,17 +13,19 @@ import OrderEmpty from "./OrderEmpty";
 import OrderItem from "./OrderItem";
 
 const tabs = [
-  { key: 0, display: "Tất cả", to: path.orderManage },
-  { key: 1, display: "Đã thanh toán", to: `${path.orderManage}?status=1` },
-  { key: 2, display: "Đang giao hàng", to: `${path.orderManage}?status=2` },
-  { key: 3, display: "Đã giao hàng", to: `${path.orderManage}?status=3` },
+  { key: "", display: "Tất cả", to: path.orderManage },
+  { key: "processing", display: "Đã thanh toán", to: `${path.orderManage}?status=processing` },
+  { key: "shipping", display: "Đang giao hàng", to: `${path.orderManage}?status=shipping` },
+  { key: "delivered", display: "Đã giao hàng", to: `${path.orderManage}?status=delivered` },
+  { key: "canceled", display: "Đã hủy", to: `${path.orderManage}?status=canceled` },
 ];
 
 const OrderManage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState<IOrder[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status") || "";
+  const params = Object.fromEntries(searchParams);
   const formik = useFormik({
     initialValues: {
       orderId: "",
@@ -36,7 +38,6 @@ const OrderManage = () => {
   const fetchAllOrder = async () => {
     setLoading(true);
     try {
-      const params = status ? { status } : {};
       const { data } = await orderAPI.getAllOrderByAdmin(params);
       setOrders(data);
       setLoading(false);
@@ -46,14 +47,14 @@ const OrderManage = () => {
   };
   useEffect(() => {
     fetchAllOrder();
-  }, [status]);
-  if (loading) return <Loading />;
+  }, [searchParams]);
+
   return (
     <HeaderTemplate
       label='Quản lí đơn hàng'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
-      <Tabs tabs={tabs} query={status} />
+      <Tabs tabs={tabs} query={status} className='border-[#efefef] border-b' />
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}
@@ -70,7 +71,6 @@ const OrderManage = () => {
           Tìm kiếm
         </Button>
       </form>
-
       {loading && <Loading />}
       {!loading &&
         (orders.length === 0 ? (

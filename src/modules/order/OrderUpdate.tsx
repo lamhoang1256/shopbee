@@ -6,10 +6,12 @@ import { Select } from "components/select";
 import { IOrder } from "@types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { orderStatusLabel } from "constants/global";
 import OrderOverview from "./OrderOverview";
 import OrderPayment from "./OrderPayment";
 import OrderProduct from "./OrderProduct";
 import OrderProgress from "./OrderProgress";
+import OrderHeader from "./OrderHeader";
 
 const OrderUpdate = () => {
   const { id } = useParams();
@@ -32,7 +34,7 @@ const OrderUpdate = () => {
   const payments = [
     {
       label: "Tổng tiền hàng",
-      value: order.oldPrice,
+      value: order.price,
     },
     {
       label: "Phí vận chuyển",
@@ -40,20 +42,17 @@ const OrderUpdate = () => {
     },
     {
       label: "Voucher từ Shopbee",
-      value: order.oldPrice * -1,
+      value: order.promotion * -1,
     },
     {
       label: "Tổng thanh toán",
-      value: order.oldPrice + order.shippingFee - order.promotion,
+      value: order.total,
     },
   ];
   return (
     <>
       <SectionWhite>
-        <div className='flex flex-col justify-between md:items-center md:flex-row'>
-          <h3 className='text-lg font-medium'>Quản lí đơn hàng</h3>
-          <span>ID ĐƠN HÀNG: {order?._id}</span>
-        </div>
+        <OrderHeader id={order._id}>{orderStatusLabel[order.statusCode]}</OrderHeader>
         <OrderProgress order={order} />
         <OrderOverview order={order} />
       </SectionWhite>

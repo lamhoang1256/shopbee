@@ -75,7 +75,7 @@ const BannerManage = () => {
     >
       {loading && <Loading />}
       {!loading && (
-        <div className='grid gap-4 lg:grid-cols-2'>
+        <div className='grid gap-4 mt-4 lg:grid-cols-2'>
           <ImageUpload
             onChange={handleUploadNewBanner}
             previewImage=''

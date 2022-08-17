@@ -66,7 +66,7 @@ const ProductManage = () => {
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}
-        className='flex flex-wrap items-center mb-4 sm:flex-nowrap gap-x-2 gap-y-1'
+        className='flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1'
       >
         <Input
           name='name'

@@ -6,6 +6,7 @@ import OrderOverview from "./OrderOverview";
 import OrderUpdate from "./OrderUpdate";
 import OrderProduct from "./OrderProduct";
 import OrderEmpty from "./OrderEmpty";
+import OrderHeader from "./OrderHeader";
 
 export {
   OrderItem,
@@ -16,4 +17,5 @@ export {
   OrderManage,
   OrderOverview,
   OrderUpdate,
+  OrderHeader,
 };

@@ -10,11 +10,11 @@ import { Tabs } from "components/tabs";
 import { OrderEmpty, OrderItem } from "modules/order";
 
 const tabs = [
-  { key: 0, display: "Tất cả", to: path.order },
-  { key: 1, display: "Đã thanh toán", to: `${path.order}?status=processing` },
-  { key: 2, display: "Đang giao hàng", to: `${path.order}?status=shipping` },
-  { key: 3, display: "Đã giao hàng", to: `${path.order}?status=delivered` },
-  { key: 4, display: "Đã hủy", to: `${path.order}?status=canceled` },
+  { key: "", display: "Tất cả", to: path.order },
+  { key: "processing", display: "Đã thanh toán", to: `${path.order}?status=processing` },
+  { key: "shipping", display: "Đang giao hàng", to: `${path.order}?status=shipping` },
+  { key: "delivered", display: "Đã giao hàng", to: `${path.order}?status=delivered` },
+  { key: "canceled", display: "Đã hủy", to: `${path.order}?status=canceled` },
 ];
 
 const OrderPage = () => {

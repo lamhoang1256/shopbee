@@ -3,20 +3,21 @@ import classNames from "utils/className";
 
 interface TabsProps {
   query: string | number;
+  className?: string;
   tabs: {
     to: string;
-    key: number;
+    key: string;
     display: string;
   }[];
 }
 
-const Tabs = ({ tabs, query }: TabsProps) => {
+const Tabs = ({ tabs, query, className }: TabsProps) => {
   return (
-    <ul className='flex overflow-auto bg-white'>
+    <ul className={`flex overflow-auto bg-white ${className}`}>
       {tabs.map((tab) => {
         const tabStyles = "block w-40 py-4 text-center transition-all duration-75";
         const tabActiveStyles = "border-b-2 border-b-[#ff424e] text-[#ff424e]";
-        const checkActive = (value: number) => Number(value) === Number(query);
+        const checkActive = (value: string) => value === query;
         return (
           <li key={tab.key}>
             <Link
@@ -33,6 +34,10 @@ const Tabs = ({ tabs, query }: TabsProps) => {
       })}
     </ul>
   );
+};
+
+Tabs.defaultProps = {
+  className: "",
 };
 
 export default Tabs;

@@ -3,7 +3,13 @@ import { useParams } from "react-router-dom";
 import { IOrder, OrderStatusEnum } from "@types";
 import { orderAPI } from "apis";
 import { Loading } from "components/loading";
-import { OrderOverview, OrderPayment, OrderProduct, OrderProgress } from "modules/order";
+import {
+  OrderHeader,
+  OrderOverview,
+  OrderPayment,
+  OrderProduct,
+  OrderProgress,
+} from "modules/order";
 import { Button } from "components/button";
 import { orderStatusLabel } from "constants/global";
 import { toast } from "react-toastify";
@@ -60,15 +66,7 @@ const OrderDetailsPage = () => {
   return (
     <>
       <div className='px-4 py-5 bg-white rounded-md'>
-        <div className='flex flex-col justify-between md:items-center md:flex-row'>
-          <h3 className='text-lg font-medium'>Quản lí đơn hàng</h3>
-          <span>
-            ID ĐƠN HÀNG: {order?._id} |{" "}
-            <span className='text-orangeee4'>
-              {orderStatusLabel[order.statusCode].toUpperCase()}
-            </span>
-          </span>
-        </div>
+        <OrderHeader id={order._id}>{orderStatusLabel[order.statusCode]}</OrderHeader>
         <OrderProgress order={order} />
         <OrderOverview order={order} />
       </div>

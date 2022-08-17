@@ -11,7 +11,7 @@ const HeaderTemplate = ({ label, desc, children }: HeaderTemplateProps) => {
         <h2 className='text-lg font-medium'>{label}</h2>
         <span>{desc}</span>
       </div>
-      <div className='pt-6'>{children}</div>
+      <div>{children}</div>
     </div>
   );
 };
