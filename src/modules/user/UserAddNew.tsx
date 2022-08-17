@@ -46,7 +46,7 @@ const UserAddNew = () => {
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <div className='flex flex-col-reverse gap-8 lg:flex-row'>
-        <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
+        <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
             <Label htmlFor='email'>Email</Label>
             <Input

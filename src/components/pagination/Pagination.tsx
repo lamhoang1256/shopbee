@@ -12,8 +12,13 @@ const Pagination = ({ pagination }: PaginationProps) => {
   const { goPrevPage, goNextPage, handleClickNumberPage } = usePagination();
 
   return (
-    <div className='flex gap-x-3 text-[#00000066] justify-center items-center my-8'>
-      <button type='button' onClick={goPrevPage} disabled={pagination.page <= 1}>
+    <div className='flex flex-wrap gap-x-3 gap-y-2 text-[#00000066] justify-center items-center my-8'>
+      <button
+        type='button'
+        className='cursor-pointer'
+        onClick={goPrevPage}
+        disabled={pagination.page <= 1}
+      >
         <IconPrev />
       </button>
       {Array(pagination.pageCount)
@@ -27,7 +32,12 @@ const Pagination = ({ pagination }: PaginationProps) => {
             {index + 1}
           </ButtonPage>
         ))}
-      <button type='button' onClick={goNextPage} disabled={pagination.page >= pagination.pageCount}>
+      <button
+        type='button'
+        className='cursor-pointer'
+        onClick={goNextPage}
+        disabled={pagination.page >= pagination.pageCount}
+      >
         <IconNext />
       </button>
     </div>

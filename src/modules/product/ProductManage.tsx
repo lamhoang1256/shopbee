@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { IPagination, IProduct } from "@types";
 import { productAPI } from "apis";
 import { Button } from "components/button";
+import { Input } from "components/input";
 import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
+import { useFormik } from "formik";
 import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -17,8 +18,16 @@ const ProductManage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState<IPagination>(Object);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams);
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+    },
+    onSubmit: (values) => {
+      setSearchParams(values);
+    },
+  });
 
   const fetchAllProduct = async () => {
     setLoading(true);
@@ -43,15 +52,31 @@ const ProductManage = () => {
       toast.error(error?.message);
     }
   };
-
   useEffect(() => {
     fetchAllProduct();
   }, [searchParams]);
+
   return (
     <HeaderTemplate
       label='Quản lí sản phẩm'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
+      <form
+        onSubmit={formik.handleSubmit}
+        autoComplete='off'
+        className='flex flex-wrap items-center mb-4 sm:flex-nowrap gap-x-2 gap-y-1'
+      >
+        <Input
+          name='name'
+          className='w-full lg:!h-12'
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          placeholder='Tìm kiếm sản phẩm theo tên'
+        />
+        <Button primary className='flex-shrink-0 lg:h-12'>
+          Tìm kiếm
+        </Button>
+      </form>
       {loading && <Loading />}
       {!loading && (
         <>

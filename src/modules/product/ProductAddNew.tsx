@@ -54,7 +54,7 @@ const ProductAddNew = () => {
       label='Thêm 1 sản phẩm mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
-      <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
+      <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
           <Label htmlFor='name'>Tên sản phẩm</Label>
           <Input

@@ -1,5 +1,5 @@
 import UserChangeAvatar from "./UserChangeAvatar";
-import UserUpdateProfile from "./UserUpdateProfile";
+import UserUpdateMe from "./UserUpdateMe";
 import UserChangePassword from "./UserChangePassword";
 import UserUpdate from "./UserUpdate";
 import UserSidebar from "./UserSidebar";
@@ -13,7 +13,7 @@ export {
   UserAvatar,
   UserAddNew,
   UserManage,
-  UserUpdateProfile,
+  UserUpdateMe,
   UserSidebar,
   UserChangePassword,
 };

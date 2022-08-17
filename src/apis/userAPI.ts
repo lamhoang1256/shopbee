@@ -2,9 +2,9 @@ import { IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const userAPI = {
-  getAllUser: (): Promise<IResponse> => {
-    const path = `api/user/?limit=1`;
-    return axiosClient.get(path);
+  getAllUser: (params: any): Promise<IResponse> => {
+    const path = `api/user`;
+    return axiosClient.get(path, { params });
   },
   getSingleUser: (userId: string): Promise<IResponse> => {
     const path = `api/user/${userId}`;

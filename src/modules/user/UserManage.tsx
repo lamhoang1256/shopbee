@@ -8,16 +8,19 @@ import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { formatDateVN } from "utils/helper";
+import { useSearchParams } from "react-router-dom";
 import UserAvatar from "./UserAvatar";
 
 const UserManage = () => {
   const [users, setUsers] = useState<ICurrentUser[]>([]);
   const [pagination, setPagination] = useState<IPagination>(Object);
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries(searchParams);
   const [loading, setLoading] = useState(true);
   const fetchAllUser = async () => {
     setLoading(true);
     try {
-      const { data } = await userAPI.getAllUser();
+      const { data } = await userAPI.getAllUser({ ...params, limit: "10" });
       setUsers(data.users);
       setPagination(data.pagination);
       setLoading(false);

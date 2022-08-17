@@ -9,7 +9,7 @@ import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 
-const UserUpdateProfile = () => {
+const UserUpdateMe = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const formik = useFormik({
     initialValues: {
@@ -97,4 +97,4 @@ const UserUpdateProfile = () => {
   );
 };
 
-export default UserUpdateProfile;
+export default UserUpdateMe;
