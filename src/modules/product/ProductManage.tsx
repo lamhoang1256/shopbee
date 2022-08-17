@@ -12,6 +12,7 @@ import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatMoney } from "utils/helper";
 import ProductImage from "./ProductImage";
+import ProductNotFound from "./ProductNotFound";
 import ProductPriceSale from "./ProductPriceSale";
 
 const ProductManage = () => {
@@ -78,7 +79,7 @@ const ProductManage = () => {
         </Button>
       </form>
       {loading && <Loading />}
-      {!loading && (
+      {!loading && products.length > 0 && (
         <>
           <div className='tables'>
             <table>
@@ -124,9 +125,10 @@ const ProductManage = () => {
               </tbody>
             </table>
           </div>
-          {products.length > 0 && <Pagination pagination={pagination} />}
+          <Pagination pagination={pagination} />
         </>
       )}
+      {!loading && products.length === 0 && <ProductNotFound />}
     </HeaderTemplate>
   );
 };

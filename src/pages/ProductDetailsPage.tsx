@@ -11,6 +11,7 @@ import {
   ProductImage,
   ProductItem,
   ProductLabelSale,
+  ProductNotFound,
   ProductPriceOld,
   ProductPriceSale,
   ProductRating,
@@ -81,7 +82,7 @@ const ProductDetailsPage = () => {
 
   if (!id) return <PageNotFound />;
   if (loading) return <Loading />;
-  if (!productInfo.name) return <div className='layout-container'>Product not exist</div>;
+  if (!productInfo.name) return <ProductNotFound />;
   const percentSale = Math.ceil(100 - (productInfo.price / productInfo.oldPrice) * 100);
 
   const handleAddToCart = async () => {

@@ -26,22 +26,29 @@ const HeaderCart = () => {
         <div className='py-3 shadow2'>
           <span className='px-3'>Sản phẩm mới thêm</span>
           <div className='mt-5'>
-            {carts.slice(0, 5).map((cart) => (
-              <Link
-                key={cart._id}
-                to={`${path.product}/${cart.product._id}`}
-                className='flex items-start p-3 gap-x-2 hover:bg-[#f8f8f8] transition-all duration-300'
-              >
-                <ProductImage
-                  imageUrl={cart.product.image}
-                  className='border h-11 w-11 border-[#00000017]'
-                />
-                <ProductTitle className='line-clamp-1'>{cart.product.name}</ProductTitle>
-                <ProductPriceSale className='flex-shrink-0 ml-2'>
-                  {formatMoney(cart.product.price)}
-                </ProductPriceSale>
-              </Link>
-            ))}
+            {carts.length === 0 && (
+              <div className='flex flex-col items-center justify-center gap-y-1'>
+                <img src='/images/cart-empty.png' alt='cart' className='w-20 h-20' />
+                <h3 className='text-[#00000066]'>Giỏ hàng của bạn còn trống</h3>
+              </div>
+            )}
+            {carts &&
+              carts.slice(0, 5).map((cart) => (
+                <Link
+                  key={cart._id}
+                  to={`${path.product}/${cart.product._id}`}
+                  className='flex items-start p-3 gap-x-2 hover:bg-[#f8f8f8] transition-all duration-300'
+                >
+                  <ProductImage
+                    imageUrl={cart.product.image}
+                    className='border h-11 w-11 border-[#00000017]'
+                  />
+                  <ProductTitle className='line-clamp-1'>{cart.product.name}</ProductTitle>
+                  <ProductPriceSale className='flex-shrink-0 ml-2'>
+                    {formatMoney(cart.product.price)}
+                  </ProductPriceSale>
+                </Link>
+              ))}
             <div className='flex items-center justify-between px-3 mt-7'>
               <div>{carts.length > 5 && <span>{carts.length - 5} Thêm vào giỏ hàng</span>}</div>
               <Button primary className='py-[6px]' to={path.cart}>

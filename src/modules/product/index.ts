@@ -10,6 +10,7 @@ import ProductDesc from "./ProductDesc";
 import ProductAddNew from "./ProductAddNew";
 import ProductUpdate from "./ProductUpdate";
 import ProductManage from "./ProductManage";
+import ProductNotFound from "./ProductNotFound";
 
 export {
   ProductPriceOld,
@@ -24,4 +25,5 @@ export {
   ProductLabelSale,
   ProductDesc,
   ProductManage,
+  ProductNotFound,
 };
