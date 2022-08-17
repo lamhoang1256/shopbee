@@ -1,7 +1,7 @@
 import { ICity, IProduct, IShop } from "@types";
 import { addressAPI, cartAPI, productAPI, shopAPI } from "apis";
 import { Button, ButtonOutline } from "components/button";
-import { SectionGray } from "components/common";
+import { SectionGray, SectionWhite } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
@@ -16,6 +16,7 @@ import {
   ProductRating,
   ProductTitle,
 } from "modules/product";
+import { ShopOverview } from "modules/shop";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -112,7 +113,7 @@ const ProductDetailsPage = () => {
   return (
     <div className='layout-container'>
       <section>
-        <div className='flex flex-col p-4 mt-6 bg-white gap-y-6 lg:flex-row gap-x-5'>
+        <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
           <div className='flex-shrink-0 lg:w-[400px]'>
             <ProductImage imageUrl={productInfo.image} />
           </div>
@@ -175,10 +176,13 @@ const ProductDetailsPage = () => {
             </div>
           </div>
         </div>
-        <div className='p-4 mt-6 bg-white layout-container'>
+        <SectionWhite className='mt-4'>
+          <ShopOverview shopInfo={shopInfo} />
+        </SectionWhite>
+        <SectionWhite className='mt-4'>
           <SectionGray>MÔ TẢ SẢN PHẨM</SectionGray>
           <ProductDesc description={productInfo.description} />
-        </div>
+        </SectionWhite>
       </section>
       {relatedProduct?.length > 0 && (
         <div className='mt-5'>

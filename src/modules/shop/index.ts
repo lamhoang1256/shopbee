@@ -1,3 +1,4 @@
 import ShopUpdate from "./ShopUpdate";
+import ShopOverview from "./ShopOverview";
 
-export { ShopUpdate };
+export { ShopUpdate, ShopOverview };

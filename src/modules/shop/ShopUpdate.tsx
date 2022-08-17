@@ -26,9 +26,12 @@ const ShopUpdate = () => {
     },
     validationSchema: AddressSchemaYup,
     onSubmit: async (values: any) => {
-      console.log("values: ", values);
+      const payload = {
+        ...values,
+        address: `${values.street}, ${values.administrative}`,
+      };
       try {
-        const { success, message } = await shopAPI.updateShop(formik.values._id, values);
+        const { success, message } = await shopAPI.updateShop(formik.values._id, payload);
         if (success) {
           toast.success(message);
         }

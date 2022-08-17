@@ -11,7 +11,7 @@ interface UpdateAdministrativeProps {
 
 const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   const { cityId, districtId, wardId } = formik.values;
-  const [administrative, setAdministrative] = useState(initAdministrative);
+  const [addressState, setAddressState] = useState(initAdministrative);
   const [citys, setCitys] = useState<ICity[]>([]);
   const [districts, setDistricts] = useState<IDistrict[]>([]);
   const [wards, setWards] = useState<IWard[]>([]);
@@ -27,29 +27,28 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   };
 
   const handleChangeCity = async (e: any) => {
-    console.log("e: ", e.target.options);
     const city = e.target.options[e.target.selectedIndex].text;
-    setAdministrative({ ...administrative, city });
+    setAddressState({ ...addressState, city });
     formik?.setFieldValue("cityId", e.target.value);
     formik?.setFieldValue("districtId", "");
     formik?.setFieldValue("wardId", "");
   };
   const handleChangeDistrict = async (e: any) => {
     const district = e.target.options[e.target.selectedIndex].text;
-    setAdministrative({ ...administrative, district });
+    setAddressState({ ...addressState, district });
     formik?.setFieldValue("districtId", e.target.value);
     formik?.setFieldValue("wardId", "");
   };
   const handleChangeWard = (e: any) => {
     const ward = e.target.options[e.target.selectedIndex].text;
-    setAdministrative({ ...administrative, ward });
+    setAddressState({ ...addressState, ward });
     formik?.setFieldValue("wardId", e.target.value);
   };
 
   const handleUpdateAddress = () => {
-    const { ward, district, city } = administrative;
-    const address = `${ward}, ${district}, ${city}`;
-    formik?.setFieldValue("address", address);
+    const { ward, district, city } = addressState;
+    const administrative = `${ward}, ${district}, ${city}`;
+    formik?.setFieldValue("administrative", administrative);
   };
 
   useEffect(() => {
