@@ -50,29 +50,19 @@ const UserUpdateMe = () => {
   }, []);
 
   return (
-    <form className='lg:w-2/3' onSubmit={formik.handleSubmit} autoComplete='off'>
+    <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
       <FormGroup>
         <Label htmlFor='email'>Email</Label>
         <span>{currentUser?.email}</span>
       </FormGroup>
       <FormGroup>
         <Label htmlFor='fullname'>Họ và tên</Label>
-        <Input
-          name='fullname'
-          type='text'
-          value={formik.values.fullname}
-          onChange={formik.handleChange}
-        />
+        <Input name='fullname' value={formik.values.fullname} onChange={formik.handleChange} />
         <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
       </FormGroup>
       <FormGroup>
         <Label htmlFor='phone'>Số điện thoại</Label>
-        <Input
-          name='phone'
-          type='text'
-          value={formik.values.phone}
-          onChange={formik.handleChange}
-        />
+        <Input name='phone' value={formik.values.phone} onChange={formik.handleChange} />
         <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
       </FormGroup>
       <FormGroup>
@@ -82,12 +72,7 @@ const UserUpdateMe = () => {
       </FormGroup>
       <FormGroup>
         <Label htmlFor='street'>Địa chỉ nhận hàng cụ thể</Label>
-        <Input
-          name='street'
-          type='text'
-          value={formik.values.street}
-          onChange={formik.handleChange}
-        />
+        <Input name='street' value={formik.values.street} onChange={formik.handleChange} />
         <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
       </FormGroup>
       <Button type='submit' primary className='w-full h-10'>

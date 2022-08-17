@@ -11,13 +11,3 @@ export interface IProduct {
   sold: number;
   view: number;
 }
-
-export interface IProductPayload {
-  name: string;
-  image: string;
-  description: string;
-  category: string;
-  oldPrice: number;
-  price: number;
-  quantity: number;
-}

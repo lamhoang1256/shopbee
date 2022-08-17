@@ -17,14 +17,16 @@ const UserUpdate = () => {
   const { id = "" } = useParams();
   const formik = useFormik({
     initialValues: {
-      _id: "",
       fullname: "",
       phone: "",
       email: "",
       avatar: "",
-      isAdmin: false,
       street: "",
+      cityId: "",
+      districtId: "",
+      wardId: "",
       address: "",
+      isAdmin: false,
     },
     validationSchema: ProfileSchemaYup,
     onSubmit: async (values) => {
@@ -69,7 +71,7 @@ const UserUpdate = () => {
       label='Cập nhật thông tin người dùng'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
-      <div className='flex flex-col-reverse gap-8 lg:flex-row'>
+      <div className='flex flex-col-reverse gap-8 mt-4 lg:flex-row'>
         <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
             <Label htmlFor='email'>Email</Label>
@@ -81,26 +83,28 @@ const UserUpdate = () => {
             />
             <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
           </FormGroup>
-          <FormGroup>
-            <Label htmlFor='fullname'>Họ và tên</Label>
-            <Input
-              name='fullname'
-              type='text'
-              value={formik.values.fullname}
-              onChange={formik.handleChange}
-            />
-            <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='phone'>Số điện thoại</Label>
-            <Input
-              name='phone'
-              type='text'
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-            />
-            <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
-          </FormGroup>
+          <div className='grid gap-2 lg:grid-cols-2'>
+            <FormGroup>
+              <Label htmlFor='fullname'>Họ và tên</Label>
+              <Input
+                name='fullname'
+                type='text'
+                value={formik.values.fullname}
+                onChange={formik.handleChange}
+              />
+              <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='phone'>Số điện thoại</Label>
+              <Input
+                name='phone'
+                type='text'
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+              />
+              <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
+            </FormGroup>
+          </div>
           <FormGroup>
             <Label htmlFor='address'>Địa chỉ: {formik.values.address}</Label>
             <UpdateAdministrative formik={formik} />

@@ -1,4 +1,4 @@
-import { IWard, IDistrict, ICity } from "@types";
+import { ICity, IDistrict, IWard } from "@types";
 import { addressAPI } from "apis";
 import { FormGroup, MessageError } from "components/form";
 import { Select } from "components/select";
@@ -27,6 +27,7 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   };
 
   const handleChangeCity = async (e: any) => {
+    console.log("e: ", e.target.options);
     const city = e.target.options[e.target.selectedIndex].text;
     setAdministrative({ ...administrative, city });
     formik?.setFieldValue("cityId", e.target.value);

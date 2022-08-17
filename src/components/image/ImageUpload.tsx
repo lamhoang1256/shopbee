@@ -10,7 +10,7 @@ const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) =>
   return (
     <div
       className={classNames(
-        "relative aspect-square overflow-hidden border border-dotted rounded-md border-[#00000024] object-cover max-w-[200px] p-4",
+        "relative aspect-square overflow-hidden border border-dotted rounded-lg border-[#00000024] object-cover w-[202px] p-4",
         className,
       )}
     >

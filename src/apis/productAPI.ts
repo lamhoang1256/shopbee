@@ -1,12 +1,12 @@
-import { IProductPayload, IResponse, ISearchParams } from "@types";
+import { IProduct, IResponse, ISearchParams } from "@types";
 import axiosClient from "./axiosClient";
 
 export const productAPI = {
-  addNewProduct: (product: IProductPayload): Promise<IResponse> => {
+  addNewProduct: (product: Partial<IProduct>): Promise<IResponse> => {
     const path = `api/product`;
     return axiosClient.post(path, product);
   },
-  updateProduct: (productId: string, product: IProductPayload): Promise<IResponse> => {
+  updateProduct: (productId: string, product: Partial<IProduct>): Promise<IResponse> => {
     const path = `api/product/${productId}`;
     return axiosClient.put(path, product);
   },

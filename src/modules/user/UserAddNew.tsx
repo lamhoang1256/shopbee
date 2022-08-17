@@ -14,15 +14,18 @@ import UserChangeAvatar from "./UserChangeAvatar";
 const UserAddNew = () => {
   const formik = useFormik({
     initialValues: {
+      email: "",
       fullname: "",
       phone: "",
-      email: "",
       password: "",
       confirm_password: "",
       avatar: "",
-      isAdmin: false,
       street: "",
+      cityId: "",
+      districtId: "",
+      wardId: "",
       address: "",
+      isAdmin: false,
     },
     validationSchema: SignUpYup,
     onSubmit: async (values) => {
@@ -45,73 +48,61 @@ const UserAddNew = () => {
       label='Thêm người dùng mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
-      <div className='flex flex-col-reverse gap-8 lg:flex-row'>
+      <div className='flex flex-col-reverse gap-8 mt-4 lg:flex-row'>
         <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
             <Label htmlFor='email'>Email</Label>
-            <Input
-              name='email'
-              type='text'
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
+            <Input name='email' value={formik.values.email} onChange={formik.handleChange} />
             <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
           </FormGroup>
-          <FormGroup>
-            <Label htmlFor='password'>Mật khẩu</Label>
-            <Input
-              name='password'
-              type='password'
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            <MessageError>{formik.touched.password && formik.errors?.password}</MessageError>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='confirm_password'>Xác nhận mật khẩu</Label>
-            <Input
-              name='confirm_password'
-              type='password'
-              value={formik.values.confirm_password}
-              onChange={formik.handleChange}
-            />
-            <MessageError>
-              {formik.touched.confirm_password && formik.errors?.confirm_password}
-            </MessageError>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='fullname'>Họ và tên</Label>
-            <Input
-              name='fullname'
-              type='text'
-              value={formik.values.fullname}
-              onChange={formik.handleChange}
-            />
-            <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='phone'>Số điện thoại</Label>
-            <Input
-              name='phone'
-              type='text'
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-            />
-            <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='address'>Địa chỉ: {formik.values.address}</Label>
+          <div className='grid gap-2 lg:grid-cols-2'>
+            <FormGroup>
+              <Label htmlFor='fullname'>Họ và tên</Label>
+              <Input
+                name='fullname'
+                value={formik.values.fullname}
+                onChange={formik.handleChange}
+              />
+              <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='phone'>Số điện thoại</Label>
+              <Input name='phone' value={formik.values.phone} onChange={formik.handleChange} />
+              <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
+            </FormGroup>
+          </div>
+          <div className='grid gap-2 lg:grid-cols-2'>
+            <FormGroup>
+              <Label htmlFor='password'>Mật khẩu</Label>
+              <Input
+                name='password'
+                type='password'
+                value={formik.values.password}
+                onChange={formik.handleChange}
+              />
+              <MessageError>{formik.touched.password && formik.errors?.password}</MessageError>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='confirm_password'>Xác nhận mật khẩu</Label>
+              <Input
+                name='confirm_password'
+                type='password'
+                value={formik.values.confirm_password}
+                onChange={formik.handleChange}
+              />
+              <MessageError>
+                {formik.touched.confirm_password && formik.errors?.confirm_password}
+              </MessageError>
+            </FormGroup>
+          </div>
+          <FormGroup className='mb-0'>
+            <Label htmlFor='address'>Địa chỉ:</Label>
             <UpdateAdministrative formik={formik} />
             <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor='street'>Địa chỉ nhận hàng cụ thể</Label>
-            <Input
-              name='street'
-              type='text'
-              value={formik.values.street}
-              onChange={formik.handleChange}
-            />
+            <Input name='street' value={formik.values.street} onChange={formik.handleChange} />
             <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
           </FormGroup>
           <FormGroup>

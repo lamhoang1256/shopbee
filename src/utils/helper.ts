@@ -50,3 +50,7 @@ export const scrollToTop = (top: number = 0) => {
     behavior: "smooth",
   });
 };
+
+export function getRandomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
