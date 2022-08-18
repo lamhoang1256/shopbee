@@ -10,7 +10,7 @@ interface UpdateAdministrativeProps {
 }
 
 const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
-  const { cityId, districtId, wardId } = formik.values;
+  const { cityId, districtId, wardId, street } = formik.values;
   const [addressState, setAddressState] = useState(initAdministrative);
   const [citys, setCitys] = useState<ICity[]>([]);
   const [districts, setDistricts] = useState<IDistrict[]>([]);
@@ -49,6 +49,7 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
     const { ward, district, city } = addressState;
     const administrative = `${ward}, ${district}, ${city}`;
     formik?.setFieldValue("administrative", administrative);
+    formik?.setFieldValue("address", `${street}, ${administrative}`);
   };
 
   useEffect(() => {

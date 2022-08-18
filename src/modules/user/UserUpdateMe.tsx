@@ -22,7 +22,7 @@ const UserUpdateMe = () => {
       wardId: "",
     },
     validationSchema: ProfileSchemaYup,
-    onSubmit: async (values) => {
+    onSubmit: async (values: any) => {
       try {
         const { data, success, message } = await userAPI.updateMe(values);
         if (success) {

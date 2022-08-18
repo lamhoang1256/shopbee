@@ -18,8 +18,10 @@ const CheckoutPage = () => {
   const { currentUser, carts, setCart } = useStore((state) => state);
   const price = calcTotalCart(carts, "price");
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
+  console.log("shopInfo: ", shopInfo);
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
+  console.log("shippingFee: ", shippingFee);
   const [promotion, setPromotion] = useState(0);
   const [voucher, setVoucher] = useState("");
 
@@ -56,7 +58,7 @@ const CheckoutPage = () => {
     }));
     const values = {
       orderItems,
-      shippingTo: `${currentUser?.street}, ${currentUser?.address}`,
+      shippingTo: currentUser?.address,
       price,
       shippingFee,
       promotion,
@@ -68,7 +70,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     const fetchShopInfo = () => {
       shopAPI.getShopInfo().then((res) => {
-        setShopInfo(res.data[0]);
+        setShopInfo(res.data);
       });
     };
     fetchShopInfo();
@@ -76,7 +78,7 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     setShippingFee(calcShippingFee(shopInfo.cityId, currentUser.cityId));
-  }, [shopInfo.cityId, currentUser.cityId]);
+  }, [shopInfo?.cityId, currentUser?.cityId]);
 
   useEffect(() => {
     setTotal(price + shippingFee - promotion);

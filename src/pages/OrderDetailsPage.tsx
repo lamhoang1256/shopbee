@@ -2,6 +2,7 @@ import { IOrder, OrderStatusCodeEnum } from "@types";
 import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { Loading } from "components/loading";
+import { ModalAddReview } from "components/modal";
 import { orderStatusLabel } from "constants/global";
 import {
   OrderHeader,
@@ -18,6 +19,13 @@ const OrderDetailsPage = () => {
   const { id } = useParams();
   const [order, setOrder] = useState<IOrder>(Object);
   const [loading, setLoading] = useState(true);
+  const [showModalReview, setShowModalReview] = useState(false);
+  const openModalReview = () => {
+    setShowModalReview(true);
+  };
+  const closeModalReview = () => {
+    setShowModalReview(false);
+  };
 
   const fetchDetailsOrder = async () => {
     setLoading(true);
@@ -75,7 +83,7 @@ const OrderDetailsPage = () => {
           Cảm ơn bạn đã mua sắm tại Shopbee!
         </span>
         <div className='flex flex-wrap gap-2'>
-          <Button>Lấy mã đơn hàng</Button>
+          <Button onClick={openModalReview}>Viết nhận xét</Button>
           {order.statusCode !== OrderStatusCodeEnum.delivered &&
             order.statusCode !== OrderStatusCodeEnum.canceled && (
               <Button primary onClick={handleCancelOrder}>
@@ -90,6 +98,7 @@ const OrderDetailsPage = () => {
         ))}
       </div>
       <OrderPayment payments={payments} />
+      <ModalAddReview isOpen={showModalReview} closeModal={closeModalReview} />
     </>
   );
 };
