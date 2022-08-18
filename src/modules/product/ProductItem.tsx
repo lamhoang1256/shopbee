@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { IProduct } from "@types";
+import { Rating } from "components/rating";
 import { path } from "constants/path";
-import { ProductImage, ProductPriceSale, ProductRating, ProductTitle } from "modules/product";
+import { ProductImage, ProductPriceSale, ProductTitle } from "modules/product";
 import { Link } from "react-router-dom";
 import { formatCash, formatMoney } from "utils/helper";
 
@@ -18,7 +19,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
       <div className='p-2 pb-4'>
         <ProductTitle>{name}</ProductTitle>
         <div className='flex flex-col my-1 gap-x-2 gap-y-1 md:items-center md:flex-row'>
-          <ProductRating rating={rating} className='w-[14px] h-[14px]' />
+          <Rating rating={rating} className='w-[14px] h-[14px]' />
           <span className='text-[#787878] text-xs'>Đã bán {formatCash(sold)}</span>
         </div>
         <div className='flex items-center gap-x-2'>

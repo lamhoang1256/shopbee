@@ -25,6 +25,7 @@ const Review = ({ reviews }: ReviewProps) => {
             avatar={review.user.avatar}
             fullname={review.user.fullname}
             rating={review.rating}
+            createdAt={review.createdAt}
           >
             {review.comment}
           </ReviewItem>

@@ -5,6 +5,7 @@ import { SectionGray, SectionWhite } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
+import { Rating } from "components/rating";
 import { Review } from "components/review";
 import { Option, Select } from "components/select";
 import {
@@ -14,7 +15,6 @@ import {
   ProductNotFound,
   ProductPriceOld,
   ProductPriceSale,
-  ProductRating,
   ProductTitle,
 } from "modules/product";
 import { ShopOverview } from "modules/shop";
@@ -124,7 +124,7 @@ const ProductDetailsPage = () => {
             </ProductTitle>
             <div className='flex items-center my-4 gap-x-3'>
               <span className='font-medium'>{productInfo.rating}</span>
-              <ProductRating rating={productInfo.rating} />
+              <Rating rating={productInfo.rating} />
               <div className='pl-4 border-l border-[#00000024]'>
                 {productInfo.sold}
                 <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>

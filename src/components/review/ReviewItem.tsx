@@ -1,14 +1,16 @@
+import { Rating } from "components/rating";
 import { defaultUserAvatar } from "constants/global";
-import { ProductRating } from "modules/product";
+import { formatDateVNFull } from "utils/helper";
 
 interface ReviewItemProps {
   avatar: string;
   fullname: string;
   rating: number;
+  createdAt: string;
   children: React.ReactNode;
 }
 
-const ReviewItem = ({ avatar, fullname, rating, children }: ReviewItemProps) => {
+const ReviewItem = ({ avatar, fullname, rating, children, createdAt }: ReviewItemProps) => {
   return (
     <div className='mt-4'>
       <div className='flex items-center gap-x-4'>
@@ -19,10 +21,13 @@ const ReviewItem = ({ avatar, fullname, rating, children }: ReviewItemProps) => 
         />
         <div>
           <h3 className='text-[15px] font-medium'>{fullname}</h3>
-          <ProductRating rating={rating} className='w-4 h-4' />
+          <Rating rating={rating} className='w-4 h-4' />
         </div>
       </div>
-      <p className='mt-1'>{children}</p>
+      <span className='text-[rgba(0,0,0,.54)] block mt-1 md:ml-14'>
+        {formatDateVNFull(createdAt)}
+      </span>
+      <p className='mt-1 md:ml-14'>{children}</p>
     </div>
   );
 };

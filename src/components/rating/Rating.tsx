@@ -16,12 +16,12 @@ const renderRating = (rating: number, className: string) => {
   });
 };
 
-const ProductRating = ({ rating, className = "" }: ProductRatingProps) => {
+const Rating = ({ rating, className = "" }: ProductRatingProps) => {
   return <div className='flex'>{renderRating(rating, className)}</div>;
 };
 
-ProductRating.defaultProps = {
+Rating.defaultProps = {
   className: "",
 };
 
-export default ProductRating;
+export default Rating;

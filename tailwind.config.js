@@ -19,6 +19,7 @@ module.exports = {
       },
       backgroundImage: {
         linearfef5: "linear-gradient(0, #fe6433, #f53e2d)",
+        linearOrange: "linear-gradient(-180deg,#f53d2d,#f63)",
       },
       screens: {
         max5se: { max: "320.98px" },
