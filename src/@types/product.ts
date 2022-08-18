@@ -1,3 +1,14 @@
+import { ICurrentUser } from "./user";
+
+export interface IReview {
+  _id: string;
+  comment: string;
+  rating: number;
+  user: ICurrentUser;
+  updatedAt: string;
+  createdAt: string;
+}
+
 export interface IProduct {
   _id: string;
   name: string;
@@ -10,4 +21,5 @@ export interface IProduct {
   stock: number;
   sold: number;
   view: number;
+  reviews: IReview[];
 }

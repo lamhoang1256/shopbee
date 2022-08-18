@@ -68,7 +68,7 @@ const UserUpdate = () => {
 
   return (
     <HeaderTemplate
-      label='Cập nhật thông tin người dùng'
+      label='Chỉnh sửa thông tin người dùng'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>

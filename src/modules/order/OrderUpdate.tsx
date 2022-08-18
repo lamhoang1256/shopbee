@@ -65,7 +65,7 @@ const OrderUpdate = () => {
             <option value='3'>Đang vận chuyển</option>
             <option value='4'>Đã giao hàng</option>
           </Select>
-          <Button primary>Cập nhật trạng thái</Button>
+          <Button primary>Chỉnh sửa trạng thái</Button>
         </div>
       </SectionWhite>
       <SectionWhite className='mt-3'>

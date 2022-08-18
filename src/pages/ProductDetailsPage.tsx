@@ -5,6 +5,7 @@ import { SectionGray, SectionWhite } from "components/common";
 import { IconCartOutline } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
+import { Review } from "components/review";
 import { Option, Select } from "components/select";
 import {
   ProductDesc,
@@ -66,7 +67,7 @@ const ProductDetailsPage = () => {
       addressAPI.getAllCity().then((res) => setCitys(res.data));
     };
     const fetchShopInfo = () => {
-      shopAPI.getShop().then((res) => {
+      shopAPI.getShopInfo().then((res) => {
         setShopInfo(res.data);
         setCityId(res.data.cityId);
       });
@@ -182,6 +183,10 @@ const ProductDetailsPage = () => {
         <SectionWhite className='mt-4'>
           <SectionGray>MÔ TẢ SẢN PHẨM</SectionGray>
           <ProductDesc description={productInfo.description} />
+        </SectionWhite>
+        <SectionWhite className='mt-4'>
+          <SectionGray>ĐÁNH GIÁ SẢN PHẨM</SectionGray>
+          <Review reviews={productInfo.reviews} />
         </SectionWhite>
       </section>
       {relatedProduct?.length > 0 && (

@@ -154,7 +154,7 @@ const ProductUpdate = () => {
             <MessageError>{formik.touched.description && formik.errors?.description}</MessageError>
           </FormGroup>
           <Button type='submit' primary className='w-full h-10'>
-            Cập nhật sản phẩm
+            Chỉnh sửa sản phẩm
           </Button>
         </div>
         <FormGroup>

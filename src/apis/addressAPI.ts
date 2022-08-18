@@ -36,7 +36,7 @@ export const addressAPI = {
     const path = `api/shop/address?default=true`;
     return axiosClient.get(path);
   },
-  updateShop: (values: any, addressId: string): Promise<IResponse> => {
+  updateShopInfo: (values: any, addressId: string): Promise<IResponse> => {
     const path = `api/shop/address/${addressId}`;
     return axiosClient.put(path, values);
   },

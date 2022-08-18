@@ -10,12 +10,11 @@ interface PaginationProps {
 
 const Pagination = ({ pagination }: PaginationProps) => {
   const { goPrevPage, goNextPage, handleClickNumberPage } = usePagination();
-
   return (
     <div className='flex flex-wrap gap-x-3 gap-y-2 text-[#00000066] justify-center items-center my-8'>
       <button
         type='button'
-        className='cursor-pointer'
+        className='cursor-pointer disabled:cursor-not-allowed'
         onClick={goPrevPage}
         disabled={pagination.page <= 1}
       >
@@ -34,7 +33,7 @@ const Pagination = ({ pagination }: PaginationProps) => {
         ))}
       <button
         type='button'
-        className='cursor-pointer'
+        className='cursor-pointer disabled:cursor-not-allowed'
         onClick={goNextPage}
         disabled={pagination.page >= pagination.pageCount}
       >

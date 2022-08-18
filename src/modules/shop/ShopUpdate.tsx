@@ -31,7 +31,7 @@ const ShopUpdate = () => {
         address: `${values.street}, ${values.administrative}`,
       };
       try {
-        const { success, message } = await shopAPI.updateShop(formik.values._id, payload);
+        const { success, message } = await shopAPI.updateShopInfo(formik.values._id, payload);
         if (success) {
           toast.success(message);
         }
@@ -43,7 +43,7 @@ const ShopUpdate = () => {
 
   const fetchShopInfo = async () => {
     try {
-      const { data } = await shopAPI.getShop();
+      const { data } = await shopAPI.getShopInfo();
       formik.resetForm({
         values: data,
       });
@@ -55,7 +55,9 @@ const ShopUpdate = () => {
   const handleChangeAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
-      const { success, message, data } = await shopAPI.updateShop(formik.values._id, { avatar });
+      const { success, message, data } = await shopAPI.updateShopInfo(formik.values._id, {
+        avatar,
+      });
       if (success) {
         formik.setFieldValue("avatar", data?.avatar);
         toast.success(message);

@@ -67,7 +67,7 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     const fetchShopInfo = () => {
-      shopAPI.getShop().then((res) => {
+      shopAPI.getShopInfo().then((res) => {
         setShopInfo(res.data[0]);
       });
     };
