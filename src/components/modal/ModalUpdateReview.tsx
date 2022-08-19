@@ -43,7 +43,7 @@ const ModalUpdateReview = ({ isOpen, closeModal, product }: ModalUpdateReviewPro
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel='Add new review'
+      contentLabel='Chỉnh sửa nhận xét'
       className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
       style={{
         overlay: {

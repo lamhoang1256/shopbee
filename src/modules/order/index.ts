@@ -7,8 +7,10 @@ import OrderUpdate from "./OrderUpdate";
 import OrderProduct from "./OrderProduct";
 import OrderEmpty from "./OrderEmpty";
 import OrderHeader from "./OrderHeader";
+import OrderReview from "./OrderReview";
 
 export {
+  OrderReview,
   OrderItem,
   OrderPayment,
   OrderProgress,

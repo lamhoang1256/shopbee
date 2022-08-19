@@ -39,7 +39,7 @@ const ModalAddReview = ({
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel='Add new review'
+      contentLabel='Thêm bình luận mới'
       className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
       style={{
         overlay: {

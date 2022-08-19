@@ -14,6 +14,10 @@ export const productAPI = {
     const path = `api/product/${productId}/review`;
     return axiosClient.put(path, review);
   },
+  deleteReview: (productId: string, payload: { reviewId: string }): Promise<IResponse> => {
+    const path = `api/product/${productId}/review`;
+    return axiosClient.delete(path, { data: payload });
+  },
   updateProduct: (productId: string, product: Partial<IProduct>): Promise<IResponse> => {
     const path = `api/product/${productId}`;
     return axiosClient.put(path, product);
