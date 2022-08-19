@@ -12,18 +12,24 @@ import { Input } from "components/input";
 import { SectionWhite } from "components/common";
 import { OrderPayment, OrderProduct } from "modules/order";
 import { ProductPriceSale } from "modules/product";
+import { ModalApplyVoucher } from "components/modal";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCart } = useStore((state) => state);
   const price = calcTotalCart(carts, "price");
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
-  console.log("shopInfo: ", shopInfo);
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
-  console.log("shippingFee: ", shippingFee);
   const [promotion, setPromotion] = useState(0);
   const [voucher, setVoucher] = useState("");
+  const [showModalVoucher, setShowModalVoucher] = useState(false);
+  const openModalVoucher = () => {
+    setShowModalVoucher(true);
+  };
+  const closeModalVoucher = () => {
+    setShowModalVoucher(false);
+  };
 
   const handleApplyVoucher = async () => {
     try {
@@ -180,6 +186,7 @@ const CheckoutPage = () => {
           <ProductPriceSale className='text-lg font-medium'>{formatMoney(price)}</ProductPriceSale>
         </div>
         <div className='flex p-4 items-center justify-between border-dotted border border-[rgba(0,0,0,.09)] bg-[#fff]'>
+          <Button onClick={openModalVoucher}>Chọn voucher</Button>
           <h2 className='maxsm:hidden'>Mã giảm giá (mỗi lần chỉ sử dụng tối đa 1 mã giảm giá.)</h2>
           <div className='flex items-center max5se:flex-wrap md:gap-2'>
             <Input
@@ -204,6 +211,7 @@ const CheckoutPage = () => {
           </Button>
         </div>
       </main>
+      <ModalApplyVoucher isOpen={showModalVoucher} closeModal={closeModalVoucher} />
     </div>
   );
 };
