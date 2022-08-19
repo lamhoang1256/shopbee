@@ -2,38 +2,42 @@ import { IProduct } from "@types";
 import { productAPI } from "apis";
 import { Button } from "components/button";
 import { ProductImage, ProductTitle } from "modules/product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
+import { useStore } from "store/configStore";
 
-interface ModalAddReviewProps {
+interface ModalUpdateReviewProps {
   isOpen: boolean;
   product: IProduct;
   closeModal: () => void;
-  fetchDetailsOrder: () => Promise<void>;
 }
 
-const ModalAddReview = ({
-  isOpen,
-  closeModal,
-  product,
-  fetchDetailsOrder,
-}: ModalAddReviewProps) => {
+const ModalUpdateReview = ({ isOpen, closeModal, product }: ModalUpdateReviewProps) => {
+  const { currentUser } = useStore((state) => state);
   const [rating] = useState(4);
   const [comment, setComment] = useState("");
-  const handleAddNewReview = async () => {
+  const myReview = product.reviews?.find((review) => review.user._id === currentUser._id);
+
+  const handleUpdateReview = async () => {
     try {
-      const payload = { rating, comment };
-      const { success, message } = await productAPI.addNewReview(product._id, payload);
+      const { success, message } = await productAPI.updateReview(product._id, {
+        reviewId: myReview?._id,
+        rating,
+        comment,
+      });
       if (success) {
         toast.success(message);
-        fetchDetailsOrder();
         closeModal();
       }
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
+
+  useEffect(() => {
+    if (myReview?.comment) setComment(myReview?.comment);
+  }, [myReview]);
 
   return (
     <Modal
@@ -71,13 +75,12 @@ const ModalAddReview = ({
             className='w-full'
             onClick={() => {
               closeModal();
-              setComment("");
             }}
           >
             Hủy
           </Button>
-          <Button primary className='w-full' onClick={handleAddNewReview}>
-            Gửi đánh giá
+          <Button primary className='w-full' onClick={handleUpdateReview}>
+            Chỉnh sửa nhận xét
           </Button>
         </div>
       </div>
@@ -85,4 +88,4 @@ const ModalAddReview = ({
   );
 };
 
-export default ModalAddReview;
+export default ModalUpdateReview;

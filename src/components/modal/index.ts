@@ -1,3 +1,4 @@
 import ModalAddReview from "./ModalAddReview";
+import ModalUpdateReview from "./ModalUpdateReview";
 
-export { ModalAddReview };
+export { ModalAddReview, ModalUpdateReview };
