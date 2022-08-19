@@ -1,5 +1,11 @@
 import { ICurrentUser } from "./user";
 
+export interface IPayloadReview {
+  reviewId?: string;
+  comment: string;
+  rating: number;
+}
+
 export interface IReview {
   _id: string;
   comment: string;

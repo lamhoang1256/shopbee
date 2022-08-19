@@ -1,4 +1,4 @@
-import { IOrder, OrderStatusCodeEnum } from "@types";
+import { IOrder, IProduct, OrderStatusCodeEnum } from "@types";
 import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { Loading } from "components/loading";
@@ -20,8 +20,11 @@ const OrderDetailsPage = () => {
   const [order, setOrder] = useState<IOrder>(Object);
   const [loading, setLoading] = useState(true);
   const [showModalReview, setShowModalReview] = useState(false);
-  const openModalReview = () => {
+  const [productReview, setProductReview] = useState<IProduct>(Object);
+
+  const openModalReview = (product: IProduct) => {
     setShowModalReview(true);
+    setProductReview(product);
   };
   const closeModalReview = () => {
     setShowModalReview(false);
@@ -83,7 +86,6 @@ const OrderDetailsPage = () => {
           Cảm ơn bạn đã mua sắm tại Shopbee!
         </span>
         <div className='flex flex-wrap gap-2'>
-          <Button onClick={openModalReview}>Viết nhận xét</Button>
           {order.statusCode !== OrderStatusCodeEnum.delivered &&
             order.statusCode !== OrderStatusCodeEnum.canceled && (
               <Button primary onClick={handleCancelOrder}>
@@ -94,11 +96,18 @@ const OrderDetailsPage = () => {
       </div>
       <div className='p-4 mt-4 bg-white rounded-md'>
         {order?.orderItems.map((orderItem) => (
-          <OrderProduct order={orderItem} key={orderItem.product._id} />
+          <div className='my-3'>
+            <OrderProduct order={orderItem} key={orderItem.product._id} />
+            <Button onClick={() => openModalReview(orderItem.product)}>Viết nhận xét</Button>
+          </div>
         ))}
       </div>
       <OrderPayment payments={payments} />
-      <ModalAddReview isOpen={showModalReview} closeModal={closeModalReview} />
+      <ModalAddReview
+        isOpen={showModalReview}
+        closeModal={closeModalReview}
+        product={productReview}
+      />
     </>
   );
 };

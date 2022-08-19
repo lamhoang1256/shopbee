@@ -21,6 +21,9 @@ import SignUpPage from "pages/SignUpPage";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useStore } from "store/configStore";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const App = () => {
   const { currentUser, setCart } = useStore((state) => state);

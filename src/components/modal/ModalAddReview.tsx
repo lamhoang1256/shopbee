@@ -1,20 +1,36 @@
-import Modal from "react-modal";
+import { IProduct } from "@types";
+import { productAPI } from "apis";
 import { Button } from "components/button";
-import { IconClose } from "components/icons";
 import { ProductImage, ProductTitle } from "modules/product";
+import { useState } from "react";
+import Modal from "react-modal";
+import { toast } from "react-toastify";
 
 interface ModalAddReviewProps {
   isOpen: boolean;
+  product: IProduct;
   closeModal: () => void;
 }
 
-const ModalAddReview = ({ isOpen, closeModal }: ModalAddReviewProps) => {
+const ModalAddReview = ({ isOpen, closeModal, product }: ModalAddReviewProps) => {
+  const [rating] = useState(4);
+  const [comment, setComment] = useState("");
+
+  const handleAddNewReview = async () => {
+    try {
+      const { success, message } = await productAPI.addNewReview(product._id, { rating, comment });
+      if (success) toast.success(message);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
       contentLabel='Add new review'
-      className='max-w-[600px] min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
+      className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
       style={{
         overlay: {
           backgroundColor: "#2424247f",
@@ -24,31 +40,33 @@ const ModalAddReview = ({ isOpen, closeModal }: ModalAddReviewProps) => {
     >
       <div>
         <div className='flex gap-x-2'>
-          <ProductImage
-            imageUrl='https://salt.tikicdn.com/cache/200x200/ts/product/83/11/1b/a5e3e184831377b9ad63d714e9f38ec8.jpg'
-            className='w-10 h-10'
-          />
+          <ProductImage imageUrl={product.image} className='w-10 h-10' />
           <div>
-            <ProductTitle className='font-medium line-clamp-1'>
-              Áo thun nam trơn cổ tròn thời trang Everest nhiều màu - Xanh Thiên Thanh - XL
-            </ProductTitle>
+            <ProductTitle className='font-medium line-clamp-1'>{product.name}</ProductTitle>
             <span>Shopbee</span>
           </div>
-          <button type='button' onClick={closeModal}>
-            <IconClose />
-          </button>
         </div>
         <div>
           <h2 className='mt-4 text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
           <textarea
             rows={5}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
             placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
             className='border-[#00000024] focus:border-[#0000008a] border mt-6 p-3 w-full outline-none resize-none rounded'
           />
         </div>
         <div className='flex mt-4 gap-x-2'>
-          <Button className='w-full'>Thêm ảnh</Button>
-          <Button primary className='w-full'>
+          <Button
+            className='w-full'
+            onClick={() => {
+              closeModal();
+              setComment("");
+            }}
+          >
+            Hủy
+          </Button>
+          <Button primary className='w-full' onClick={handleAddNewReview}>
             Gửi đánh giá
           </Button>
         </div>
