@@ -28,7 +28,7 @@ export const calcTotalCart = (array: ICart[], key: "oldPrice" | "price") => {
   return totalMoney;
 };
 
-export const formatDateVNFull = (timestamp: string) => {
+export const formatDateVNFull = (timestamp: string | number) => {
   const date = new Date(timestamp);
   const days = `00${date.getDate()}`.slice(-2);
   const months = `00${date.getMonth() + 1}`.slice(-2);

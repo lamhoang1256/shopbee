@@ -15,6 +15,7 @@ export interface ICurrentUser {
   password?: string;
   createdAt: string;
   updatedAt: string;
+  vouchersSave: [];
   __v: number;
 }
 

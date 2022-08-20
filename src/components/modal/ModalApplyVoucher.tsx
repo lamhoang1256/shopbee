@@ -1,7 +1,11 @@
+import { IVoucher } from "@types";
+import { voucherAPI } from "apis";
 import { Button } from "components/button";
 import { SectionGray, VoucherItem } from "components/common";
 import { Input } from "components/input";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 
 interface ModalApplyVoucherProps {
   isOpen: boolean;
@@ -9,6 +13,31 @@ interface ModalApplyVoucherProps {
 }
 
 const ModalApplyVoucher = ({ isOpen, closeModal }: ModalApplyVoucherProps) => {
+  const [newVoucher, setNewVoucher] = useState("");
+  const [vouchers, setVouchers] = useState<IVoucher[]>([]);
+
+  const fetchMyVoucher = () => {
+    voucherAPI.getMyVoucher().then((res) => {
+      setVouchers(res.data.reverse());
+    });
+  };
+
+  const handleSaveVoucher = async () => {
+    try {
+      const { success, message } = await voucherAPI.saveVoucher(newVoucher);
+      if (success) {
+        toast.success(message);
+        fetchMyVoucher();
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchMyVoucher();
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -27,20 +56,28 @@ const ModalApplyVoucher = ({ isOpen, closeModal }: ModalApplyVoucherProps) => {
         <SectionGray className='mt-4 maxsm:p-0'>
           <div className='flex items-center md:gap-2'>
             <span className='hidden md:block'>Mã Voucher</span>
-            <Input className='flex-1 maxsm:w-[160px]' placeholder='Mã Voucher Shopbee' />
-            <Button onClick={() => {}} className='flex-shrink-0'>
+            <Input
+              value={newVoucher}
+              className='flex-1 maxsm:w-[160px]'
+              placeholder='Mã Voucher Shopbee'
+              onChange={(e) => setNewVoucher(e.target.value)}
+            />
+            <Button onClick={handleSaveVoucher} className='flex-shrink-0'>
               Áp dụng
             </Button>
           </div>
         </SectionGray>
-        <VoucherItem />
+        <div className='overflow-y-auto max-h-64'>
+          {vouchers.map((voucher) => (
+            <VoucherItem
+              key={voucher._id}
+              description={voucher.description}
+              expirationDate={voucher.expirationDate}
+            />
+          ))}
+        </div>
         <div className='flex justify-end mt-4 gap-x-2'>
-          <Button
-            className='w-[140px]'
-            onClick={() => {
-              closeModal();
-            }}
-          >
+          <Button className='w-[140px]' onClick={closeModal}>
             Trở lại
           </Button>
           <Button primary onClick={() => {}} className='w-[140px]'>

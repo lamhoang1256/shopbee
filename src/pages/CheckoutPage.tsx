@@ -22,7 +22,7 @@ const CheckoutPage = () => {
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [promotion, setPromotion] = useState(0);
-  const [voucher, setVoucher] = useState("");
+  const [voucher] = useState("");
   const [showModalVoucher, setShowModalVoucher] = useState(false);
   const openModalVoucher = () => {
     setShowModalVoucher(true);
@@ -31,9 +31,10 @@ const CheckoutPage = () => {
     setShowModalVoucher(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleApplyVoucher = async () => {
     try {
-      const { data, success, message } = await voucherAPI.applyVoucher(voucher);
+      const { data, success, message } = await voucherAPI.saveVoucher(voucher);
       if (success) {
         setPromotion(data.value);
         toast.success(message);
@@ -186,19 +187,10 @@ const CheckoutPage = () => {
           <ProductPriceSale className='text-lg font-medium'>{formatMoney(price)}</ProductPriceSale>
         </div>
         <div className='flex p-4 items-center justify-between border-dotted border border-[rgba(0,0,0,.09)] bg-[#fff]'>
-          <Button onClick={openModalVoucher}>Chọn voucher</Button>
-          <h2 className='maxsm:hidden'>Mã giảm giá (mỗi lần chỉ sử dụng tối đa 1 mã giảm giá.)</h2>
-          <div className='flex items-center max5se:flex-wrap md:gap-2'>
-            <Input
-              value={voucher}
-              className=''
-              placeholder='Mã Voucher Shopbee'
-              onChange={(e) => setVoucher(e.target.value)}
-            />
-            <Button onClick={handleApplyVoucher} className='flex-shrink-0'>
-              Áp dụng
-            </Button>
-          </div>
+          <h3>Voucher Shopbee</h3>
+          <button type='button' className='text-[#05a] text-[15px]' onClick={openModalVoucher}>
+            Chọn Voucher
+          </button>
         </div>
 
         <OrderPayment payments={payments} />
