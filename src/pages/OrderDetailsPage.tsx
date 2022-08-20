@@ -62,7 +62,7 @@ const OrderDetailsPage = () => {
     },
     {
       label: "Tổng thanh toán",
-      value: order.price + order.shippingFee - order.promotion,
+      value: order.total,
     },
   ];
 

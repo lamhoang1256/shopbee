@@ -10,12 +10,18 @@ import { toast } from "react-toastify";
 interface ModalApplyVoucherProps {
   isOpen: boolean;
   closeModal: () => void;
+  appliedVoucher: IVoucher;
+  setAppliedVoucher: React.Dispatch<React.SetStateAction<IVoucher>>;
 }
 
-const ModalApplyVoucher = ({ isOpen, closeModal }: ModalApplyVoucherProps) => {
+const ModalApplyVoucher = ({
+  isOpen,
+  closeModal,
+  appliedVoucher,
+  setAppliedVoucher,
+}: ModalApplyVoucherProps) => {
   const [newVoucher, setNewVoucher] = useState("");
   const [vouchers, setVouchers] = useState<IVoucher[]>([]);
-
   const fetchMyVoucher = () => {
     voucherAPI.getMyVoucher().then((res) => {
       setVouchers(res.data.reverse());
@@ -71,16 +77,23 @@ const ModalApplyVoucher = ({ isOpen, closeModal }: ModalApplyVoucherProps) => {
           {vouchers.map((voucher) => (
             <VoucherItem
               key={voucher._id}
-              description={voucher.description}
-              expirationDate={voucher.expirationDate}
+              appliedVoucher={appliedVoucher}
+              voucher={voucher}
+              setAppliedVoucher={setAppliedVoucher}
             />
           ))}
         </div>
         <div className='flex justify-end mt-4 gap-x-2'>
-          <Button className='w-[140px]' onClick={closeModal}>
+          <Button
+            className='w-[140px]'
+            onClick={() => {
+              closeModal();
+              setAppliedVoucher({} as IVoucher);
+            }}
+          >
             Trở lại
           </Button>
-          <Button primary onClick={() => {}} className='w-[140px]'>
+          <Button primary onClick={closeModal} className='w-[140px]'>
             OK
           </Button>
         </div>

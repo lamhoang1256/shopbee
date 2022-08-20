@@ -1,18 +1,18 @@
+import { ICart, IShop, IVoucher } from "@types";
+import { productAPI, shopAPI } from "apis";
+import { Button } from "components/button";
+import { SectionWhite } from "components/common";
+import { IconGPS } from "components/icons";
+import { Input } from "components/input";
+import { ModalApplyVoucher } from "components/modal";
+import { path } from "constants/path";
+import { OrderPayment, OrderProduct } from "modules/order";
+import { ProductPriceSale } from "modules/product";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ICart, IShop } from "@types";
-import { productAPI, shopAPI, voucherAPI } from "apis";
 import { useStore } from "store/configStore";
 import { calcShippingFee, calcTotalCart, formatMoney } from "utils/helper";
-import { path } from "constants/path";
-import { Button } from "components/button";
-import { IconGPS } from "components/icons";
-import { Input } from "components/input";
-import { SectionWhite } from "components/common";
-import { OrderPayment, OrderProduct } from "modules/order";
-import { ProductPriceSale } from "modules/product";
-import { ModalApplyVoucher } from "components/modal";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -21,28 +21,13 @@ const CheckoutPage = () => {
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
-  const [promotion, setPromotion] = useState(0);
-  const [voucher] = useState("");
+  const [appliedVoucher, setAppliedVoucher] = useState<IVoucher>(Object);
   const [showModalVoucher, setShowModalVoucher] = useState(false);
   const openModalVoucher = () => {
     setShowModalVoucher(true);
   };
   const closeModalVoucher = () => {
     setShowModalVoucher(false);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleApplyVoucher = async () => {
-    try {
-      const { data, success, message } = await voucherAPI.saveVoucher(voucher);
-      if (success) {
-        setPromotion(data.value);
-        toast.success(message);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-      setPromotion(0);
-    }
   };
 
   const buyProducts = async (values: any) => {
@@ -68,8 +53,9 @@ const CheckoutPage = () => {
       shippingTo: currentUser?.address,
       price,
       shippingFee,
-      promotion,
+      promotion: appliedVoucher.value || 0,
       total,
+      voucherCode: appliedVoucher.code,
     };
     buyProducts(values);
   };
@@ -88,8 +74,9 @@ const CheckoutPage = () => {
   }, [shopInfo?.cityId, currentUser?.cityId]);
 
   useEffect(() => {
-    setTotal(price + shippingFee - promotion);
-  }, [price, shippingFee, promotion]);
+    const totalPrice = price + shippingFee - (appliedVoucher.value || 0);
+    setTotal(totalPrice > 0 ? totalPrice : 0);
+  }, [price, shippingFee, appliedVoucher.value]);
 
   const payments = [
     {
@@ -102,7 +89,7 @@ const CheckoutPage = () => {
     },
     {
       label: "Voucher từ Shopbee",
-      value: -promotion,
+      value: -appliedVoucher.value || 0,
     },
     {
       label: "Tổng thanh toán",
@@ -188,9 +175,14 @@ const CheckoutPage = () => {
         </div>
         <div className='flex p-4 items-center justify-between border-dotted border border-[rgba(0,0,0,.09)] bg-[#fff]'>
           <h3>Voucher Shopbee</h3>
-          <button type='button' className='text-[#05a] text-[15px]' onClick={openModalVoucher}>
-            Chọn Voucher
-          </button>
+          <div className='flex gap-x-5'>
+            {appliedVoucher?.code && (
+              <span className='text-[#23c27f]'>Đã chọn 1 mã giảm giá: {appliedVoucher.code}</span>
+            )}
+            <button type='button' className='text-[#05a] text-[15px]' onClick={openModalVoucher}>
+              Chọn Voucher
+            </button>
+          </div>
         </div>
 
         <OrderPayment payments={payments} />
@@ -203,7 +195,12 @@ const CheckoutPage = () => {
           </Button>
         </div>
       </main>
-      <ModalApplyVoucher isOpen={showModalVoucher} closeModal={closeModalVoucher} />
+      <ModalApplyVoucher
+        isOpen={showModalVoucher}
+        closeModal={closeModalVoucher}
+        appliedVoucher={appliedVoucher}
+        setAppliedVoucher={setAppliedVoucher}
+      />
     </div>
   );
 };
