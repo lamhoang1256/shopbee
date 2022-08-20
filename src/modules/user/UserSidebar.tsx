@@ -3,25 +3,28 @@ import { path } from "constants/path";
 import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
+import { v4 as uuidv4 } from "uuid";
 
 const sidebarLinks = [
   {
-    id: 1,
     icon: "https://cf.shopee.vn/file/ba61750a46794d8847c3f463c5e71cc4",
     path: path.profile,
     display: "Tài khoản của tôi",
   },
   {
-    id: 2,
     icon: "/images/icon-password.png",
     path: path.password,
     display: "Đổi mật khẩu",
   },
   {
-    id: 3,
     icon: "https://cf.shopee.vn/file/f0049e9df4e536bc3e7f140d071e9078",
     path: path.order,
     display: "Đơn mua",
+  },
+  {
+    icon: "https://cf.shopee.vn/file/84feaa363ce325071c0a66d3c9a88748",
+    path: path.voucher,
+    display: "Ví voucher",
   },
 ];
 
@@ -42,7 +45,7 @@ const UserSidebar = () => {
       </div>
       <ul className='mt-7'>
         {sidebarLinks.map((link: any) => (
-          <li key={link.id} className='mb-4'>
+          <li key={uuidv4()} className='mb-4'>
             <Link to={link.path} className='flex gap-x-3'>
               <img src={link.icon} alt='' className='w-5 h-5' />
               <span>{link.display}</span>

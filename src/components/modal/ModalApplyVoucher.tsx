@@ -1,8 +1,9 @@
 import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import { Button } from "components/button";
-import { SectionGray, VoucherItem } from "components/common";
+import { SectionGray } from "components/common";
 import { Input } from "components/input";
+import { VoucherApplyItem, VoucherEmpty } from "modules/voucher";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
@@ -74,14 +75,16 @@ const ModalApplyVoucher = ({
           </div>
         </SectionGray>
         <div className='overflow-y-auto max-h-64'>
-          {vouchers.map((voucher) => (
-            <VoucherItem
-              key={voucher._id}
-              appliedVoucher={appliedVoucher}
-              voucher={voucher}
-              setAppliedVoucher={setAppliedVoucher}
-            />
-          ))}
+          {vouchers.length === 0 && <VoucherEmpty />}
+          {vouchers.length > 0 &&
+            vouchers.map((voucher) => (
+              <VoucherApplyItem
+                key={voucher._id}
+                appliedVoucher={appliedVoucher}
+                voucher={voucher}
+                setAppliedVoucher={setAppliedVoucher}
+              />
+            ))}
         </div>
         <div className='flex justify-end mt-4 gap-x-2'>
           <Button

@@ -1,13 +1,17 @@
 import { IVoucher } from "@types";
 import { formatDateVNFull } from "utils/helper";
 
-interface VoucherItemProps {
+interface VoucherApplyItemProps {
   voucher: IVoucher;
   appliedVoucher: IVoucher;
   setAppliedVoucher: React.Dispatch<React.SetStateAction<IVoucher>>;
 }
 
-const VoucherItem = ({ voucher, appliedVoucher, setAppliedVoucher }: VoucherItemProps) => {
+const VoucherApplyItem = ({
+  voucher,
+  appliedVoucher,
+  setAppliedVoucher,
+}: VoucherApplyItemProps) => {
   return (
     <div className='flex items-center my-4 overflow-hidden rounded-md gap-x-2 md:gap-x-5 shadow1'>
       <div className='w-[70px] h-[70px] md:w-24 md:h-24 bg-orangeee4 flex items-center justify-center'>
@@ -30,4 +34,4 @@ const VoucherItem = ({ voucher, appliedVoucher, setAppliedVoucher }: VoucherItem
   );
 };
 
-export default VoucherItem;
+export default VoucherApplyItem;

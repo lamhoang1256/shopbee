@@ -7,6 +7,7 @@ export const path = {
   purchase: "user/purchase",
   profile: "/user/profile",
   order: "/user/order",
+  voucher: "/user/voucher",
   user: "/user",
   payment: "/payment",
   userUpdate: "/dashboard/user/update",

@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useStore } from "store/configStore";
 import Modal from "react-modal";
+import { VoucherMe } from "modules/voucher";
 
 Modal.setAppElement("#root");
 
@@ -62,6 +63,7 @@ const App = () => {
           <Route path={`${path.order}/:id`} element={<OrderDetailsPage />} />
           <Route path={path.profile} element={<ProfilePage />} />
           <Route path={path.password} element={<UserChangePassword />} />
+          <Route path={path.voucher} element={<VoucherMe />} />
         </Route>
         <Route path='/dashboard' element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
