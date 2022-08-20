@@ -12,11 +12,12 @@ const VoucherItem = ({ voucher, active }: VoucherItemProps) => {
     <div className='flex items-center overflow-hidden bg-white rounded-md gap-x-2 md:gap-x-5 shadow1'>
       <div
         className={classNames(
-          "w-[70px] h-[70px] md:w-24 md:h-24 flex items-center justify-center",
+          "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center",
           active ? "bg-orangeee4" : "bg-[#bdbdbd]",
         )}
       >
         <img src='/images/voucher.png' className='w-3/5 h-3/5' alt='voucher' />
+        <span className='text-white'>Shopbee</span>
       </div>
       <div
         className={classNames(

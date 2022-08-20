@@ -18,11 +18,27 @@ import IconUp from "./IconUp";
 import IconDown from "./IconDown";
 import IconGPS from "./IconGPS";
 import IconCube from "./IconCube";
+import IconPicture from "./IconPicture";
 import IconShowPassword from "./IconShowPassword";
 import IconHiddenPassword from "./IconHiddenPassword";
+import IconAddProduct from "./IconAddProduct";
+import IconAddUser from "./IconAddUser";
+import IconCash from "./IconCash";
+import IconIdentification from "./IconIdentification";
+import IconUserGroup from "./IconUserGroup";
+import IconTemplate from "./IconTemplate";
+import IconVoucher from "./IconVoucher";
 
 export {
+  IconTemplate,
+  IconVoucher,
+  IconAddUser,
+  IconCash,
+  IconIdentification,
+  IconUserGroup,
+  IconAddProduct,
   IconGPS,
+  IconPicture,
   IconPrev,
   IconNext,
   IconShipping,

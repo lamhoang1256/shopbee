@@ -3,21 +3,31 @@ import { v4 as uuidv4 } from "uuid";
 import { Sidebar } from "layouts";
 import { path } from "constants/path";
 import { DashboardHeader } from "modules/dashboard";
-import { IconCube } from "components/icons";
+import {
+  IconAddProduct,
+  IconAddUser,
+  IconCash,
+  IconCube,
+  IconIdentification,
+  IconPicture,
+  IconTemplate,
+  IconUserGroup,
+  IconVoucher,
+} from "components/icons";
 
 const sidebarLinks = [
   {
-    icon: <IconCube />,
+    icon: <IconTemplate />,
     display: "Tổng quan",
     path: path.dashboard,
   },
   {
-    icon: <IconCube />,
+    icon: <IconPicture />,
     display: "Tất cả banner",
     path: path.banner,
   },
   {
-    icon: <IconCube />,
+    icon: <IconCash />,
     display: "Tất cả đơn hàng",
     path: path.orderManage,
   },
@@ -27,24 +37,29 @@ const sidebarLinks = [
     path: path.productManage,
   },
   {
-    icon: <IconCube />,
+    icon: <IconAddProduct />,
     display: "Thêm sản phẩm",
     path: path.productAddNew,
   },
   {
-    icon: <IconCube />,
+    icon: <IconUserGroup />,
     display: "Tất cả người dùng",
     path: path.userManage,
   },
   {
-    icon: <IconCube />,
+    icon: <IconAddUser />,
     display: "Thêm người dùng mới",
     path: path.userAddNew,
   },
   {
-    icon: <IconCube />,
+    icon: <IconIdentification />,
     display: "Thông tin shop",
     path: path.shop,
+  },
+  {
+    icon: <IconVoucher />,
+    display: "Tất cả voucher",
+    path: path.voucher,
   },
 ];
 

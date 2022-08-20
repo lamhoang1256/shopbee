@@ -29,7 +29,7 @@ const VoucherSave = ({ fetchReloadVoucher }: VoucherSaveProps) => {
         <Input
           value={newVoucher}
           className='flex-1 maxsm:w-[160px] !h-11'
-          placeholder='Mã Voucher Shopbee'
+          placeholder='Nhập mã voucher tại đây'
           onChange={(e) => setNewVoucher(e.target.value)}
         />
         <button
