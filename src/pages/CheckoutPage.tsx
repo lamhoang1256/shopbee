@@ -19,6 +19,7 @@ const CheckoutPage = () => {
   const { currentUser, carts, setCart } = useStore((state) => state);
   const price = calcTotalCart(carts, "price");
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
+  const [note, setNote] = useState("");
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [appliedVoucher, setAppliedVoucher] = useState<IVoucher>(Object);
@@ -52,6 +53,7 @@ const CheckoutPage = () => {
       orderItems,
       shippingTo: currentUser?.address,
       price,
+      note,
       shippingFee,
       promotion: appliedVoucher.value || 0,
       total,
@@ -155,7 +157,12 @@ const CheckoutPage = () => {
         <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex gap-x-8 gap-y-4 justify-between flex-col md:flex-row'>
           <div className='flex flex-col flex-1 md:items-center md:flex-row gap-x-3 gap-y-2'>
             <span>Lời nhắn: </span>
-            <Input placeholder='Lưu ý cho người bán' className='md:flex-1' />
+            <Input
+              value={note}
+              className='md:flex-1'
+              placeholder='Lưu ý cho người bán'
+              onChange={(e) => setNote(e.target.value)}
+            />
           </div>
           <div className='flex flex-col md:flex-row gap-x-4'>
             <span className='text-green00b'>Đơn vị vận chuyển:</span>

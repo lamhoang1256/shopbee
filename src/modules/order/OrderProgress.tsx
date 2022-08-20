@@ -24,17 +24,21 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
 
   if (order.status === OrderStatusEnum.canceled)
     return (
-      <div className='mt-10 md:text-center'>
+      <div className='grid mt-10 gap-x-6 gap-y-4 md:grid-cols-2'>
         <div className='flex items-center gap-3 md:flex-col'>
           <div className={classNames("order-status", "border-redff4 text-redff4")}>
             <IconCheck />
           </div>
-          <div>
+          <div className='md:text-center'>
             <h3>{OrderStatusLabelEnum.canceled}</h3>
             <span className='text-[#00000042] text-xs block mt-1'>
               {formatDateVNFull(order?.canceledAt)}
             </span>
           </div>
+        </div>
+        <div>
+          <h3 className='mb-1 text-lg'>Lý do hủy đơn hàng</h3>
+          <p className='text-xs md:text-sm'>{order.reasonCancel}</p>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ interface OrderOverviewProps {
 const OrderOverview = ({ order }: OrderOverviewProps) => {
   return (
     <>
-      <div className='mt-14 gradient-line' />
+      <div className='mt-6 md:mt-14 gradient-line' />
       <div className='grid grid-cols-1 pt-5 text-xs md:text-sm gap-x-6 gap-y-3 lg:grid-cols-2'>
         <div>
           <h3 className='mb-1 text-lg'>Chi tiết đơn hàng</h3>
@@ -21,6 +21,7 @@ const OrderOverview = ({ order }: OrderOverviewProps) => {
           <p>Người nhận: {order?.user?.fullname}</p>
           <p>Email: {order?.user?.email}</p>
           <p>Địa chỉ nhận hàng: {order?.shippingTo}</p>
+          {order.note && <p>Lời nhắn: {order.note}</p>}
         </div>
       </div>
     </>

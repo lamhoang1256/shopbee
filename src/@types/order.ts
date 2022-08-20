@@ -35,6 +35,7 @@ export interface IOrder {
   price: number;
   promotion: number;
   total: number;
+  note: string;
   status: OrderStatusEnum;
   statusCode: OrderStatusCodeEnum;
   shippingAt: string;
@@ -42,6 +43,7 @@ export interface IOrder {
   canceledAt: string;
   createdAt: string;
   updatedAt: string;
+  reasonCancel: string;
   user: {
     _id: string;
     email: string;
