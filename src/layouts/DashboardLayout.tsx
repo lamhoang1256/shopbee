@@ -59,7 +59,7 @@ const sidebarLinks = [
   {
     icon: <IconVoucher />,
     display: "Tất cả voucher",
-    path: path.voucher,
+    path: path.voucherManage,
   },
 ];
 

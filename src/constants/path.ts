@@ -13,6 +13,7 @@ export const path = {
   userUpdate: "/dashboard/user/update",
   userAddNew: "/dashboard/user/add",
   userManage: "/dashboard/user/manage",
+  voucherManage: "/dashboard/voucher",
   password: "/user/password",
   search: "/search",
   dashboard: "/dashboard",

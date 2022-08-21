@@ -22,7 +22,7 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useStore } from "store/configStore";
 import Modal from "react-modal";
-import { VoucherMe } from "modules/voucher";
+import { VoucherManage, VoucherMe } from "modules/voucher";
 
 Modal.setAppElement("#root");
 
@@ -77,6 +77,7 @@ const App = () => {
           <Route path={path.userManage} element={<UserManage />} />
           <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
           <Route path={path.userAddNew} element={<UserAddNew />} />
+          <Route path={path.voucherManage} element={<VoucherManage />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>

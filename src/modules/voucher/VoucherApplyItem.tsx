@@ -18,7 +18,7 @@ const VoucherApplyItem = ({
         <img src='/images/voucher.png' className='w-3/5 h-3/5' alt='voucher' />
       </div>
       <div className='flex flex-col justify-center flex-1 text-xs md:text-sm'>
-        <h3 className='md:text-base'>{voucher.description}</h3>
+        <h3 className='md:text-base'>{voucher.title}</h3>
         <span>HSD: {formatDateVNFull(Number(voucher.expirationDate) * 1000)}</span>
       </div>
       <div className='pr-2 md:pr-4'>

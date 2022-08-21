@@ -1,9 +1,8 @@
 export interface IVoucher {
   code: string;
   createdAt: string;
-  description: string;
+  title: string;
   expirationDate: string;
-  image: string;
   updatedAt: string;
   userUsed: string[];
   value: number;
