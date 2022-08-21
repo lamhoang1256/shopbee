@@ -10,12 +10,12 @@ import { Review } from "components/review";
 import { Option, Select } from "components/select";
 import {
   ProductDesc,
-  ProductImage,
   ProductCard,
   ProductNotFound,
   ProductPriceOld,
   ProductPriceSale,
   ProductTitle,
+  ProductImageSlider,
 } from "modules/product";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState } from "react";
@@ -116,7 +116,8 @@ const ProductDetailsPage = () => {
       <section>
         <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
           <div className='flex-shrink-0 lg:w-[400px]'>
-            <ProductImage imageUrl={productInfo.image} />
+            <ProductImageSlider />
+            {/* <ProductImage imageUrl={productInfo.image} /> */}
           </div>
           <div>
             <ProductTitle className='text-[#242424] text-base lg:text-2xl'>

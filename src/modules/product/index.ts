@@ -8,11 +8,13 @@ import ProductAddNew from "./ProductAddNew";
 import ProductUpdate from "./ProductUpdate";
 import ProductManage from "./ProductManage";
 import ProductNotFound from "./ProductNotFound";
+import ProductImageSlider from "./ProductImageSlider";
 
 export {
   ProductPriceOld,
   ProductPriceSale,
   ProductCard,
+  ProductImageSlider,
   ProductUpdate,
   ProductAddNew,
   ProductTitle,
