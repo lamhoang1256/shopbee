@@ -2,7 +2,7 @@ import { bannerAPI } from "apis";
 import { ActionDelete } from "components/action";
 import { ImageUpload } from "components/image";
 import { Loading } from "components/loading";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
@@ -69,10 +69,7 @@ const BannerManage = () => {
   }, []);
 
   return (
-    <HeaderTemplate
-      label='Quản lí banner'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
+    <Template label='Quản lí banner' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       {loading && <Loading />}
       {!loading && (
         <div className='grid gap-4 mt-4 lg:grid-cols-2'>
@@ -96,7 +93,7 @@ const BannerManage = () => {
           ))}
         </div>
       )}
-    </HeaderTemplate>
+    </Template>
   );
 };
 

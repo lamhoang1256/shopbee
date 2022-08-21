@@ -4,7 +4,7 @@ import { FormGroup, Label, MessageError } from "components/form";
 import { InputPassword } from "components/input";
 import { UserPasswordSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { toast } from "react-toastify";
 
 const UserChangePassword = () => {
@@ -25,7 +25,7 @@ const UserChangePassword = () => {
     },
   });
   return (
-    <HeaderTemplate
+    <Template
       label='Đổi Mật Khẩu'
       desc='Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác'
     >
@@ -65,7 +65,7 @@ const UserChangePassword = () => {
           Lưu
         </Button>
       </form>
-    </HeaderTemplate>
+    </Template>
   );
 };
 

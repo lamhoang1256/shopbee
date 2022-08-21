@@ -6,7 +6,7 @@ import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { ProfileSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -67,7 +67,7 @@ const UserUpdate = () => {
   }, []);
 
   return (
-    <HeaderTemplate
+    <Template
       label='Chỉnh sửa thông tin người dùng'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
@@ -136,7 +136,7 @@ const UserUpdate = () => {
         </form>
         <UserChangeAvatar avatar={formik.values.avatar} handleChangeAvatar={handleChangeAvatar} />
       </div>
-    </HeaderTemplate>
+    </Template>
   );
 };
 

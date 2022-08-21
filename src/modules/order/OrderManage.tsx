@@ -6,7 +6,7 @@ import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import OrderEmpty from "./OrderEmpty";
@@ -50,10 +50,7 @@ const OrderManage = () => {
   }, [searchParams]);
 
   return (
-    <HeaderTemplate
-      label='Quản lí đơn hàng'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
+    <Template label='Quản lí đơn hàng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <Tabs tabs={tabs} query={status} className='border-[#efefef] border-b' />
       <form
         autoComplete='off'
@@ -78,7 +75,7 @@ const OrderManage = () => {
         ) : (
           orders.map((order) => <OrderItem key={order?._id} order={order} />)
         ))}
-    </HeaderTemplate>
+    </Template>
   );
 };
 

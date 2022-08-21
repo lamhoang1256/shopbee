@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { toast } from "react-toastify";
 // import { formatDatetimeLocal } from "utils/helper";
 
@@ -30,10 +30,7 @@ const VoucherAddNew = () => {
   });
 
   return (
-    <HeaderTemplate
-      label='Thêm mới voucher'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
+    <Template label='Thêm mới voucher' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
@@ -73,7 +70,7 @@ const VoucherAddNew = () => {
           </Button>
         </form>
       </div>
-    </HeaderTemplate>
+    </Template>
   );
 };
 

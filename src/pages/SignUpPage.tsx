@@ -5,15 +5,11 @@ import { Input, InputPassword } from "components/input";
 import { path } from "constants/path";
 import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
-import { useCheckLoggedIn } from "hooks/useCheckLoggedIn";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const currentUser = useStore((state: any) => state.currentUser);
-  useCheckLoggedIn(currentUser);
   const handleSignUp = async (values: any) => {
     try {
       const response: any = await authAPI.signUp(values);

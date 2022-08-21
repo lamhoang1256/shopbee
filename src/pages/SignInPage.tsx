@@ -5,7 +5,6 @@ import { Input, InputPassword } from "components/input";
 import { path } from "constants/path";
 import { SignInYup } from "constants/yup";
 import { useFormik } from "formik";
-import { useCheckLoggedIn } from "hooks/useCheckLoggedIn";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
@@ -13,8 +12,7 @@ import { setCurrentUserLocalStorage } from "utils/localStorage";
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const { setCurrentUser, currentUser } = useStore((state) => state);
-  useCheckLoggedIn(currentUser);
+  const { setCurrentUser } = useStore((state) => state);
 
   const handleSignIn = async (values: any) => {
     try {

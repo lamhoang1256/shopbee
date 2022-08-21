@@ -7,7 +7,7 @@ import { Pagination } from "components/pagination";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -69,7 +69,7 @@ const VoucherManage = () => {
   }, [searchParams]);
 
   return (
-    <HeaderTemplate label='Quản lí voucher' desc='Khám phá kho voucher'>
+    <Template label='Quản lí voucher' desc='Khám phá kho voucher'>
       <Tabs tabs={tabs} query={status} className='my-4' />
       {loading && <Loading />}
       {!loading &&
@@ -129,7 +129,7 @@ const VoucherManage = () => {
             </div>
           </>
         ))}
-    </HeaderTemplate>
+    </Template>
   );
 };
 

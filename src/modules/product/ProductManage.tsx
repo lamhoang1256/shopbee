@@ -6,7 +6,7 @@ import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -59,10 +59,7 @@ const ProductManage = () => {
   }, [searchParams]);
 
   return (
-    <HeaderTemplate
-      label='Quản lí sản phẩm'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
+    <Template label='Quản lí sản phẩm' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}
@@ -130,7 +127,7 @@ const ProductManage = () => {
         </>
       )}
       {!loading && products.length === 0 && <ProductNotFound />}
-    </HeaderTemplate>
+    </Template>
   );
 };
 

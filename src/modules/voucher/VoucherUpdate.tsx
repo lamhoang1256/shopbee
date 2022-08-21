@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -50,7 +50,7 @@ const VoucherUpdate = () => {
   }, []);
 
   return (
-    <HeaderTemplate
+    <Template
       label='Chỉnh sửa thông tin voucher'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
@@ -93,7 +93,7 @@ const VoucherUpdate = () => {
           </Button>
         </form>
       </div>
-    </HeaderTemplate>
+    </Template>
   );
 };
 

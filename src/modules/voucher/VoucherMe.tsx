@@ -3,7 +3,7 @@ import { voucherAPI } from "apis";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { path } from "constants/path";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import VoucherEmpty from "./VoucherEmpty";
@@ -44,7 +44,7 @@ const VoucherMe = () => {
   }, [status]);
 
   return (
-    <HeaderTemplate label='Ví voucher' desc='Khám phá kho voucher'>
+    <Template label='Ví voucher' desc='Khám phá kho voucher'>
       <VoucherSave fetchReloadVoucher={fetchMyVoucher} />
       <Tabs tabs={tabs} query={status} className='my-4' />
       {loading && <Loading />}
@@ -62,7 +62,7 @@ const VoucherMe = () => {
             ))}
           </div>
         ))}
-    </HeaderTemplate>
+    </Template>
   );
 };
 

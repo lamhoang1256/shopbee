@@ -6,7 +6,7 @@ import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -58,10 +58,7 @@ const UserManage = () => {
   }, [searchParams]);
 
   return (
-    <HeaderTemplate
-      label='Quản lí người dùng'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
+    <Template label='Quản lí người dùng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <form
         onSubmit={formik.handleSubmit}
         autoComplete='off'
@@ -139,7 +136,7 @@ const UserManage = () => {
           <span className='text-[#bababa]'>Không tìm thấy người dùng</span>
         </div>
       )}
-    </HeaderTemplate>
+    </Template>
   );
 };
 

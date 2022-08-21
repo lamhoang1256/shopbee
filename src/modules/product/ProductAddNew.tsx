@@ -7,7 +7,7 @@ import { Input } from "components/input";
 import { Select } from "components/select";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -61,7 +61,7 @@ const ProductAddNew = () => {
   }, []);
 
   return (
-    <HeaderTemplate
+    <Template
       label='Thêm 1 sản phẩm mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
@@ -140,7 +140,7 @@ const ProductAddNew = () => {
           <MessageError>{formik.touched.image && formik.errors?.image}</MessageError>
         </FormGroup>
       </form>
-    </HeaderTemplate>
+    </Template>
   );
 };
 

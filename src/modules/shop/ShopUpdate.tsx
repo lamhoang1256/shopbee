@@ -5,7 +5,7 @@ import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { AddressSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -72,7 +72,7 @@ const ShopUpdate = () => {
   }, []);
 
   return (
-    <HeaderTemplate
+    <Template
       label='Quản lí thông tin shop'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
@@ -99,7 +99,7 @@ const ShopUpdate = () => {
         </form>
         <UserChangeAvatar avatar={formik.values.avatar} handleChangeAvatar={handleChangeAvatar} />
       </div>
-    </HeaderTemplate>
+    </Template>
   );
 };
 

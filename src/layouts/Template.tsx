@@ -4,7 +4,7 @@ interface HeaderTemplateProps {
   desc: string;
 }
 
-const HeaderTemplate = ({ label, desc, children }: HeaderTemplateProps) => {
+const Template = ({ label, desc, children }: HeaderTemplateProps) => {
   return (
     <div className='p-5 pb-10 bg-white rounded'>
       <div className='border-b-[1px] pb-5 border-[#efefef]'>
@@ -16,4 +16,4 @@ const HeaderTemplate = ({ label, desc, children }: HeaderTemplateProps) => {
   );
 };
 
-export default HeaderTemplate;
+export default Template;

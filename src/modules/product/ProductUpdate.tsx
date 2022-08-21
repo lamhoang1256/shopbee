@@ -7,7 +7,7 @@ import { Input } from "components/input";
 import { Select } from "components/select";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
-import { HeaderTemplate } from "layouts";
+import { Template } from "layouts";
 import PageNotFound from "pages/PageNotFound";
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
@@ -80,7 +80,7 @@ const ProductUpdate = () => {
 
   if (!id) return <PageNotFound />;
   return (
-    <HeaderTemplate
+    <Template
       label='Sửa thông tin sản phẩm'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
@@ -163,7 +163,7 @@ const ProductUpdate = () => {
           <MessageError>{formik.touched.image && formik.errors?.image}</MessageError>
         </FormGroup>
       </form>
-    </HeaderTemplate>
+    </Template>
   );
 };
 
