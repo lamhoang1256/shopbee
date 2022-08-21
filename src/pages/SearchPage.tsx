@@ -1,7 +1,7 @@
 import { IPagination, IProduct, ISearchParams } from "@types";
 import { productAPI } from "apis";
 import { Pagination } from "components/pagination";
-import { ProductItem } from "modules/product";
+import { ProductCard } from "modules/product";
 import { SearchSidebar, SearchSortBar } from "modules/search";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -33,7 +33,7 @@ const SearchPage = () => {
         <SearchSortBar pagination={pagination} />
         <div className='mt-5 product-grid'>
           {results?.map((product) => (
-            <ProductItem product={product} key={product._id} />
+            <ProductCard product={product} key={product._id} />
           ))}
         </div>
         {results.length > 0 && <Pagination pagination={pagination} />}

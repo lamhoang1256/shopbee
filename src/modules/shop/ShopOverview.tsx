@@ -1,6 +1,5 @@
 import { IShop } from "@types";
 import { Button } from "components/button";
-import { SectionWhite } from "components/common";
 import { path } from "constants/path";
 
 interface ShopOverviewProps {
@@ -36,7 +35,7 @@ const overview = [
 
 const ShopOverview = ({ shopInfo }: ShopOverviewProps) => {
   return (
-    <SectionWhite className='mt-4'>
+    <>
       <div className='flex flex-col lg:flex-row gap-y-4 md:gap-x-20 lg:items-center'>
         <div className='flex items-center gap-x-4'>
           <img src={shopInfo.avatar} alt='shop avatar' className='w-20 h-20 rounded-full' />
@@ -61,7 +60,7 @@ const ShopOverview = ({ shopInfo }: ShopOverviewProps) => {
         </div>
       </div>
       <p className='mt-4'>Địa chỉ: {shopInfo.address}</p>
-    </SectionWhite>
+    </>
   );
 };
 

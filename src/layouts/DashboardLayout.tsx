@@ -6,6 +6,7 @@ import { DashboardHeader } from "modules/dashboard";
 import {
   IconAddProduct,
   IconAddUser,
+  IconAddVoucher,
   IconCash,
   IconCube,
   IconIdentification,
@@ -60,6 +61,11 @@ const sidebarLinks = [
     icon: <IconVoucher />,
     display: "Tất cả voucher",
     path: path.voucherManage,
+  },
+  {
+    icon: <IconAddVoucher />,
+    display: "Thêm voucher mới",
+    path: path.voucherAddNew,
   },
 ];
 

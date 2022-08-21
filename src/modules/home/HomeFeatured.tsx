@@ -4,7 +4,7 @@ import { IPagination, IProduct } from "@types";
 import { productAPI } from "apis";
 import { SectionHeader } from "components/common";
 import { Pagination } from "components/pagination";
-import { ProductItem } from "modules/product";
+import { ProductCard } from "modules/product";
 
 const initialPagination = { limit: 30, page: 1, pageCount: 1 };
 const HomeFeatured = () => {
@@ -31,7 +31,7 @@ const HomeFeatured = () => {
       </SectionHeader>
       <div className='my-3 product-grid'>
         {products?.map((product: IProduct) => (
-          <ProductItem product={product} key={product._id} />
+          <ProductCard product={product} key={product._id} />
         ))}
       </div>
       {products.length > 0 && <Pagination pagination={pagination} />}

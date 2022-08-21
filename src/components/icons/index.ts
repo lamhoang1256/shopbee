@@ -7,6 +7,7 @@ import IconMinus from "./IconMinus";
 import IconTrash from "./IconTrash";
 import IconClose from "./IconClose";
 import IconClipboard from "./IconClipboard";
+import IconAddVoucher from "./IconAddVoucher";
 import IconMoney from "./IconMoney";
 import IconShipping from "./IconShipping";
 import IconCheck from "./IconCheck";
@@ -33,6 +34,7 @@ export {
   IconTemplate,
   IconVoucher,
   IconAddUser,
+  IconAddVoucher,
   IconCash,
   IconIdentification,
   IconUserGroup,

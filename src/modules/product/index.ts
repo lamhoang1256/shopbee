@@ -1,6 +1,6 @@
 import ProductPriceOld from "./ProductPriceOld";
 import ProductPriceSale from "./ProductPriceSale";
-import ProductItem from "./ProductItem";
+import ProductCard from "./ProductCard";
 import ProductTitle from "./ProductTitle";
 import ProductImage from "./ProductImage";
 import ProductDesc from "./ProductDesc";
@@ -12,7 +12,7 @@ import ProductNotFound from "./ProductNotFound";
 export {
   ProductPriceOld,
   ProductPriceSale,
-  ProductItem,
+  ProductCard,
   ProductUpdate,
   ProductAddNew,
   ProductTitle,

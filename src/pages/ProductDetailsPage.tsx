@@ -11,7 +11,7 @@ import { Option, Select } from "components/select";
 import {
   ProductDesc,
   ProductImage,
-  ProductItem,
+  ProductCard,
   ProductNotFound,
   ProductPriceOld,
   ProductPriceSale,
@@ -146,7 +146,6 @@ const ProductDetailsPage = () => {
               <div className='my-1'>
                 <span>Vận chuyển tới:</span>
                 <Select
-                  name='city'
                   value={cityId}
                   className='px-1 ml-1 h-7'
                   onChange={(e) => setCityId(e.target.value)}
@@ -166,22 +165,26 @@ const ProductDetailsPage = () => {
               <QuantityController onChangeValue={handleChangeQuantityController} />
               <span>{productInfo.stock} sản phẩm có sẵn</span>
             </div>
-            <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
-              <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
-                <IconCartOutline className='w-4 h-4 mr-2' />
-                <span className='text-sm'>Thêm vào giỏ hàng</span>
-              </ButtonOutline>
-              <Button primary className='h-10 rounded-sm lg:h-12'>
-                Mua ngay
-              </Button>
-            </div>
+            {productInfo.stock > 0 ? (
+              <div className='flex flex-col gap-2 mt-4 md:flex-row md:items-center'>
+                <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
+                  <IconCartOutline className='w-4 h-4 mr-2' />
+                  <span className='text-sm'>Thêm vào giỏ hàng</span>
+                </ButtonOutline>
+                <Button primary className='h-10 rounded-sm lg:h-12'>
+                  Mua ngay
+                </Button>
+              </div>
+            ) : (
+              <span className='block mt-4 text-lg text-redff4'>Sản phẩm đã hết hàng</span>
+            )}
           </div>
         </div>
-
-        <ShopOverview shopInfo={shopInfo} />
-
         <SectionWhite className='mt-4'>
-          <SectionGray>MÔ TẢ SẢN PHẨM</SectionGray>
+          <ShopOverview shopInfo={shopInfo} />
+        </SectionWhite>
+        <SectionWhite className='mt-4'>
+          <SectionGray>CHI TIẾT SẢN PHẨM</SectionGray>
           <ProductDesc description={productInfo.description} />
         </SectionWhite>
         <SectionWhite className='mt-4'>
@@ -194,7 +197,7 @@ const ProductDetailsPage = () => {
           <h3 className='text-[#0000008a] text-base font-medium'>SẢN PHẨM TƯƠNG TỰ</h3>
           <div className='my-3 product-grid'>
             {relatedProduct?.map((product: IProduct) => (
-              <ProductItem product={product} key={product._id} />
+              <ProductCard product={product} key={product._id} />
             ))}
           </div>
         </div>
