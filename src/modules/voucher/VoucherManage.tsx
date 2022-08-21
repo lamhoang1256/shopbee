@@ -11,7 +11,7 @@ import { HeaderTemplate } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatDateVNFull } from "utils/helper";
+import { formatDateVNFull, formatMoney } from "utils/helper";
 import VoucherEmpty from "./VoucherEmpty";
 
 const tabs = [
@@ -111,7 +111,7 @@ const VoucherManage = () => {
                     <tr key={voucher._id}>
                       <td>{index + 1}</td>
                       <td>{voucher.code}</td>
-                      <td>{voucher.value}</td>
+                      <td>{formatMoney(voucher.value)}</td>
                       <td>{voucher.userUsed.length}</td>
                       <td>{formatDateVNFull(voucher.createdAt)}</td>
                       <td>{formatDateVNFull(voucher.expirationDate)}</td>

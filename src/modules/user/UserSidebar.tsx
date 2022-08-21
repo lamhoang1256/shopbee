@@ -26,6 +26,11 @@ const sidebarLinks = [
     path: path.voucher,
     display: "Ví voucher",
   },
+  {
+    icon: "/images/icon-history.png",
+    path: path.history,
+    display: "Đã xem gần đây",
+  },
 ];
 
 const UserSidebar = () => {

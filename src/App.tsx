@@ -18,6 +18,7 @@ import ProfilePage from "pages/ProfilePage";
 import SearchPage from "pages/SearchPage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
+import HistoryPage from "pages/HistoryPage";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useStore } from "store/configStore";
@@ -64,6 +65,7 @@ const App = () => {
           <Route path={path.profile} element={<ProfilePage />} />
           <Route path={path.password} element={<UserChangePassword />} />
           <Route path={path.voucher} element={<VoucherMe />} />
+          <Route path={path.history} element={<HistoryPage />} />
         </Route>
         <Route path='/dashboard' element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
