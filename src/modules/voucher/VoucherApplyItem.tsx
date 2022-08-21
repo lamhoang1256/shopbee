@@ -19,7 +19,7 @@ const VoucherApplyItem = ({
       </div>
       <div className='flex flex-col justify-center flex-1 text-xs md:text-sm'>
         <h3 className='md:text-base'>{voucher.title}</h3>
-        <span>HSD: {formatDateVNFull(Number(voucher.expirationDate) * 1000)}</span>
+        <span>HSD: {formatDateVNFull(voucher.expirationDate)}</span>
       </div>
       <div className='pr-2 md:pr-4'>
         <input

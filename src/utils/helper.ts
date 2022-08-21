@@ -54,3 +54,7 @@ export const scrollToTop = (top: number = 0) => {
 export function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function formatDatetimeLocal(date: Date) {
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().substring(0, 19);
+}

@@ -26,7 +26,7 @@ const VoucherItem = ({ voucher, active }: VoucherItemProps) => {
         )}
       >
         <h3 className='md:text-base'>{voucher.title}</h3>
-        <span>HSD: {formatDateVNFull(Number(voucher.expirationDate) * 1000)}</span>
+        <span>HSD: {formatDateVNFull(voucher.expirationDate)}</span>
       </div>
     </div>
   );

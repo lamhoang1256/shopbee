@@ -14,6 +14,8 @@ export const path = {
   userAddNew: "/dashboard/user/add",
   userManage: "/dashboard/user/manage",
   voucherManage: "/dashboard/voucher",
+  voucherUpdate: "/dashboard/voucher/update",
+  voucherAddNew: "/dashboard/voucher/add",
   password: "/user/password",
   search: "/search",
   dashboard: "/dashboard",
