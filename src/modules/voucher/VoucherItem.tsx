@@ -1,15 +1,21 @@
-import { IVoucher } from "@types";
 import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
 
 interface VoucherItemProps {
-  voucher: IVoucher;
+  title: string;
+  expirationDate: number;
   active?: boolean;
+  className?: string;
 }
 
-const VoucherItem = ({ voucher, active }: VoucherItemProps) => {
+const VoucherItem = ({ title, active, className, expirationDate }: VoucherItemProps) => {
   return (
-    <div className='flex items-center overflow-hidden bg-white rounded-md gap-x-2 md:gap-x-5 shadow1'>
+    <div
+      className={classNames(
+        "flex items-center overflow-hidden bg-white rounded-md gap-x-2 md:gap-x-5 shadow1",
+        className,
+      )}
+    >
       <div
         className={classNames(
           "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center",
@@ -25,8 +31,8 @@ const VoucherItem = ({ voucher, active }: VoucherItemProps) => {
           !active && "opacity-50",
         )}
       >
-        <h3 className='md:text-base'>{voucher.title}</h3>
-        <span>HSD: {formatDateVNFull(voucher.expirationDate)}</span>
+        <h3 className='md:text-base'>{title}</h3>
+        {expirationDate !== 0 && <span>HSD: {formatDateVNFull(expirationDate)}</span>}
       </div>
     </div>
   );
@@ -34,6 +40,7 @@ const VoucherItem = ({ voucher, active }: VoucherItemProps) => {
 
 VoucherItem.defaultProps = {
   active: true,
+  className: "",
 };
 
 export default VoucherItem;

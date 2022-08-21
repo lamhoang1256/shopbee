@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDatetimeLocal } from "utils/helper";
+import VoucherItem from "./VoucherItem";
 
 const VoucherUpdate = () => {
   const { id = "" } = useParams();
@@ -15,7 +16,7 @@ const VoucherUpdate = () => {
     initialValues: {
       code: "",
       title: "",
-      expirationDate: "",
+      expirationDate: 0,
       value: 0,
     },
     onSubmit: async (values) => {
@@ -87,11 +88,20 @@ const VoucherUpdate = () => {
               onChange={formik.handleChange}
             />
           </FormGroup>
-
           <Button type='submit' primary className='w-full h-10'>
             Lưu
           </Button>
         </form>
+        <div className='flex-1'>
+          <FormGroup>
+            <Label htmlFor='voucher'>Preview</Label>
+            <VoucherItem
+              title={formik.values.title}
+              expirationDate={formik.values.expirationDate}
+              className='max-w-[460px]'
+            />
+          </FormGroup>
+        </div>
       </div>
     </Template>
   );

@@ -40,7 +40,7 @@ const SignUpPage = lazy(() => import("pages/SignUpPage"));
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<>Error</>}>
+    <Suspense fallback={null}>
       <Router>
         <Routes>
           <Route path='/' element={<MainLayout />}>

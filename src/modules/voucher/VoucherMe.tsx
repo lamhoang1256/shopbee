@@ -53,11 +53,12 @@ const VoucherMe = () => {
           <VoucherEmpty />
         ) : (
           <div className='grid gap-4 mt-6 md:grid-cols-2'>
-            {vouchers.map((order) => (
+            {vouchers.map((voucher) => (
               <VoucherItem
                 active={!(status === "expiration" || status === "used")}
-                key={order?._id}
-                voucher={order}
+                key={voucher?._id}
+                title={voucher.title}
+                expirationDate={voucher.expirationDate}
               />
             ))}
           </div>
