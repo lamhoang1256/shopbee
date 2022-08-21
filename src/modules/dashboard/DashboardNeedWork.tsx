@@ -28,7 +28,10 @@ const DashboardNeedWork = () => {
       <span className='text-xs text-gray999'>Những việc bạn sẽ phải làm</span>
       <div className='grid grid-cols-4 gap-y-2 mt-6 max-w-[736px]'>
         {works.map((work) => (
-          <div className='flex p-2 flex-col items-center justify-center hover:bg-[#0000000a] duration-100 rounded transition-all'>
+          <div
+            className='flex p-2 flex-col items-center justify-center hover:bg-[#0000000a] duration-100 rounded transition-all'
+            key={work.label}
+          >
             <span className='text-[#2673dd] text-lg font-medium'>{work.value}</span>
             <span className=''>{work.label}</span>
           </div>

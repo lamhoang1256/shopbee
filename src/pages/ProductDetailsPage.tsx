@@ -177,9 +177,9 @@ const ProductDetailsPage = () => {
             </div>
           </div>
         </div>
-        <SectionWhite className='mt-4'>
-          <ShopOverview shopInfo={shopInfo} />
-        </SectionWhite>
+
+        <ShopOverview shopInfo={shopInfo} />
+
         <SectionWhite className='mt-4'>
           <SectionGray>MÔ TẢ SẢN PHẨM</SectionGray>
           <ProductDesc description={productInfo.description} />
