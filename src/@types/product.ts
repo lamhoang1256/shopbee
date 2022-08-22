@@ -28,4 +28,5 @@ export interface IProduct {
   sold: number;
   view: number;
   reviews: IReview[];
+  images: string[];
 }

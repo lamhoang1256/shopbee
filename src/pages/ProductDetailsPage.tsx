@@ -116,7 +116,7 @@ const ProductDetailsPage = () => {
       <section>
         <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
           <div className='flex-shrink-0 lg:w-[400px]'>
-            <ProductImageSlider />
+            <ProductImageSlider images={productInfo.images} />
             {/* <ProductImage imageUrl={productInfo.image} /> */}
           </div>
           <div>
