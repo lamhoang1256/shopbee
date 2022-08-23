@@ -1,6 +1,7 @@
 import { IOrderItem } from "@types";
 import { path } from "constants/path";
-import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/product";
+import { PriceOld, PriceSale } from "components/price";
 
 interface OrderProductItemProps {
   order: IOrderItem;
@@ -25,8 +26,8 @@ const OrderProduct = ({ order }: OrderProductItemProps) => {
         </div>
       </div>
       <div className='flex items-center gap-x-2'>
-        <ProductPriceOld>{order.product.oldPrice}</ProductPriceOld>
-        <ProductPriceSale>{order.product.price}</ProductPriceSale>
+        <PriceOld>{order.product.oldPrice}</PriceOld>
+        <PriceSale>{order.product.price}</PriceSale>
       </div>
     </div>
   );

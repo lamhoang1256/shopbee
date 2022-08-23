@@ -1,5 +1,3 @@
-import ProductPriceOld from "./ProductPriceOld";
-import ProductPriceSale from "./ProductPriceSale";
 import ProductCard from "./ProductCard";
 import ProductTitle from "./ProductTitle";
 import ProductImage from "./ProductImage";
@@ -14,8 +12,6 @@ import ProductShipping from "./ProductShipping";
 import ProductAction from "./ProductAction";
 
 export {
-  ProductPriceOld,
-  ProductPriceSale,
   ProductCard,
   ProductImageSlider,
   ProductAction,

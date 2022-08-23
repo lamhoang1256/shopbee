@@ -9,9 +9,9 @@ import useFetchProducts from "hooks/useFetchProducts";
 import { Template } from "layouts";
 import { toast } from "react-toastify";
 import { formatMoney } from "utils/helper";
+import { PriceSale } from "components/price";
 import ProductImage from "./ProductImage";
 import ProductNotFound from "./ProductNotFound";
-import ProductPriceSale from "./ProductPriceSale";
 
 const ProductManage = () => {
   const { products, loading, pagination, fetchProducts, setSearchParams } = useFetchProducts();
@@ -84,7 +84,7 @@ const ProductManage = () => {
                     <td>{product.stock}</td>
                     <td>{formatMoney(product.oldPrice)}</td>
                     <td>
-                      <ProductPriceSale className='text-sm'>{product.price}</ProductPriceSale>
+                      <PriceSale className='text-sm'>{product.price}</PriceSale>
                     </td>
                     <td>
                       <div className='flex gap-x-1'>

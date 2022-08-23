@@ -3,7 +3,8 @@ import { IconCartOutline } from "components/icons";
 import { Popover } from "components/popover";
 import { path } from "constants/path";
 import usePopover from "hooks/usePopover";
-import { ProductImage, ProductPriceSale, ProductTitle } from "modules/product";
+import { PriceSale } from "components/price";
+import { ProductImage, ProductTitle } from "modules/product";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
 
@@ -43,9 +44,7 @@ const HeaderCart = () => {
                     className='border h-11 w-11 border-[#00000017]'
                   />
                   <ProductTitle className='line-clamp-1'>{cart.product.name}</ProductTitle>
-                  <ProductPriceSale className='flex-shrink-0 ml-2'>
-                    {cart.product.price}
-                  </ProductPriceSale>
+                  <PriceSale className='flex-shrink-0 ml-2'>{cart.product.price}</PriceSale>
                 </Link>
               ))}
             <div className='flex items-center justify-between px-3 mt-7'>

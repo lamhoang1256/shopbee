@@ -1,7 +1,6 @@
 import { IProduct, IShop } from "@types";
 import { productAPI, shopAPI } from "apis";
-import { SectionGray, SectionWhite } from "components/common";
-import SaveWishlist from "components/common/SaveWishlist";
+import { SaveWishlist, SectionGray, SectionWhite } from "components/common";
 import { Loading } from "components/loading";
 import { Rating } from "components/rating";
 import { Review } from "components/review";
@@ -12,11 +11,10 @@ import {
   ProductGrid,
   ProductImageSlider,
   ProductNotFound,
-  ProductPriceOld,
-  ProductPriceSale,
   ProductShipping,
   ProductTitle,
 } from "modules/product";
+import { PriceSale, PriceOld } from "components/price";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -72,30 +70,30 @@ const ProductDetailsPage = () => {
       <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
         <div className='flex-shrink-0 lg:w-[400px]'>
           <ProductImageSlider images={product.images} />
-          <SaveWishlist />
         </div>
-        <div>
+        <div className='flex-1'>
           <ProductTitle className='text-[#242424] text-base lg:text-2xl'>
             {product.name}
           </ProductTitle>
-          <div className='flex items-center my-4 gap-x-3'>
+          <div className='flex flex-wrap items-center my-4 gap-x-4'>
             <span className='font-medium'>{product.rating}</span>
-            <Rating rating={product.rating} />
-            <div className='pl-4 border-l border-[#00000024]'>
+            <span className='pr-4 border-r'>
+              <Rating rating={product.rating} />
+            </span>
+            <div className='pr-4 border-r border-[#00000024]'>
               {product.sold}
               <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>
             </div>
+            <SaveWishlist />
           </div>
           <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
-            <ProductPriceOld className='text-[#929292]'>{product.oldPrice}</ProductPriceOld>
-            <ProductPriceSale className='text-lg font-medium lg:text-3xl'>
-              {product.price}
-            </ProductPriceSale>
+            <PriceOld className='text-[#929292]'>{product.oldPrice}</PriceOld>
+            <PriceSale className='text-lg font-medium lg:text-3xl'>{product.price}</PriceSale>
             <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
               -{percentSale}%
             </span>
           </SectionGray>
-          <ProductShipping />
+          <ProductShipping shopCityId={shopInfo.cityId} />
           <ProductAction product={product} />
         </div>
       </div>

@@ -1,23 +1,21 @@
-import { shopAPI } from "apis";
 import { Option, Select } from "components/select";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 import { useEffect, useState } from "react";
 import { useStore } from "store/configStore";
 import { calcShippingFee, formatMoney } from "utils/helper";
 
-const ProductShipping = () => {
+interface ProductShippingProps {
+  shopCityId: string;
+}
+
+const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
   const { citys } = useFetchAdministrative();
   const { currentUser } = useStore((state) => state);
   const [cityId, setCityId] = useState(currentUser.cityId);
   const [shippingFee, setShippingFee] = useState(0);
   useEffect(() => {
-    const fetchShopInfo = () => {
-      shopAPI.getShopInfo().then((res) => {
-        setShippingFee(calcShippingFee(res.data.cityId, cityId));
-      });
-    };
-    fetchShopInfo();
-  }, [cityId]);
+    if (shopCityId) setShippingFee(calcShippingFee(shopCityId, cityId));
+  }, [shopCityId, cityId]);
   return (
     <div className='mt-3'>
       <div className='my-1'>

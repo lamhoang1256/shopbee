@@ -33,7 +33,7 @@ const SaveWishlist = () => {
   };
 
   return (
-    <div className='flex items-center my-3 gap-x-2'>
+    <div className='flex items-center gap-x-2'>
       {isAddedWishlist ? (
         <button type='button' onClick={handleRemoveFromWishlist}>
           <IconHeart active />

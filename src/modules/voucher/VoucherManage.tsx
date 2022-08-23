@@ -100,7 +100,7 @@ const VoucherManage = () => {
                     <th>STT</th>
                     <th>Mã code</th>
                     <th>Giá trị</th>
-                    <th>Lượt dùng</th>
+                    <th>Đã dùng</th>
                     <th>Ngày tạo</th>
                     <th>Hạn sử dụng</th>
                     <th>Hành động</th>
@@ -112,7 +112,7 @@ const VoucherManage = () => {
                       <td>{index + 1}</td>
                       <td>{voucher.code}</td>
                       <td>{formatMoney(voucher.value)}</td>
-                      <td>{voucher.userUsed.length}</td>
+                      <td>{voucher.userUsed.length} lượt</td>
                       <td>{formatDateVNFull(voucher.createdAt)}</td>
                       <td>{formatDateVNFull(voucher.expirationDate)}</td>
                       <td>

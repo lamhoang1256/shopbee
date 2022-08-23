@@ -1,6 +1,6 @@
 import { IOrder, OrderStatusCodeEnum } from "@types";
 import { Button } from "components/button";
-import { ProductPriceSale } from "modules/product";
+import { PriceSale } from "components/price";
 import { Link } from "react-router-dom";
 import OrderProduct from "./OrderProduct";
 
@@ -44,7 +44,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
         </Link>
         <div>
           <span>Tổng số tiền: </span>
-          <ProductPriceSale className='pl-1 text-2xl'>{order?.total}</ProductPriceSale>
+          <PriceSale className='pl-1 text-2xl'>{order?.total}</PriceSale>
         </div>
       </div>
     </div>

@@ -1,17 +1,17 @@
 import classNames from "utils/className";
 import { formatMoney } from "utils/helper";
 
-interface ProductPriceOldProps {
+interface PriceOldProps {
   children: number;
   className?: string;
 }
 
-const ProductPriceOld = ({ children, className }: ProductPriceOldProps) => {
+const PriceOld = ({ children, className }: PriceOldProps) => {
   return <span className={classNames("line-through", className)}>{formatMoney(children)}</span>;
 };
 
-ProductPriceOld.defaultProps = {
+PriceOld.defaultProps = {
   className: "text-[#666]",
 };
 
-export default ProductPriceOld;
+export default PriceOld;

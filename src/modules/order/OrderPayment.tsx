@@ -1,5 +1,5 @@
 import { IPayment } from "@types";
-import { ProductPriceSale } from "modules/product";
+import { PriceSale } from "components/price";
 import { formatMoney } from "utils/helper";
 
 interface OrderPaymentProps {
@@ -14,7 +14,7 @@ const OrderPayment = ({ payments }: OrderPaymentProps) => {
           <div className='flex-1 py-2'>{label}</div>
           <div className='w-1/2 py-2 md:w-48'>
             {label === "Tổng thanh toán" && (
-              <ProductPriceSale className='text-lg font-medium'>{value}</ProductPriceSale>
+              <PriceSale className='text-lg font-medium'>{value}</PriceSale>
             )}
             {label !== "Tổng thanh toán" && formatMoney(value)}
           </div>
