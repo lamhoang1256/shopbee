@@ -26,7 +26,7 @@ import { calcShippingFee, formatMoney } from "utils/helper";
 import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
-  const { id } = useParams();
+  const { id = "" } = useParams();
   const { setCart, carts, currentUser, setCurrentUser } = useStore((state) => state);
   const [loading, setLoading] = useState(true);
   const [citys, setCitys] = useState<ICity[]>([]);
@@ -36,6 +36,7 @@ const ProductDetailsPage = () => {
   const [shippingFee, setShippingFee] = useState(0);
   const [quantityAdd, setQuantityAdd] = useState(1);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
+  const [isAddedWishlist, setIsAddedWishlist] = useState(currentUser.wishlist?.indexOf(id) !== -1);
 
   const handleChangeQuantityController = (value: number) => {
     setQuantityAdd(() => value);
@@ -43,6 +44,7 @@ const ProductDetailsPage = () => {
 
   const handleAddToHistory = (product: IProduct) => {
     const history = JSON.parse(localStorage.getItem("history") || "[]");
+    if (history.length >= 20) history.splice(19, 1);
     const index = history.findIndex((item: IProduct) => item._id === id);
     if (index === -1) history.unshift(product);
     if (index !== -1) {
@@ -96,11 +98,21 @@ const ProductDetailsPage = () => {
 
   const handleAddToWishlist = async () => {
     try {
-      const { message, success, data } = await userAPI.addToWishlist({ productId: id });
-      if (success) {
-        toast.success(message);
-        setCurrentUser(data);
-      }
+      const { message, data } = await userAPI.addToWishlist({ productId: id });
+      toast.success(message);
+      setCurrentUser(data);
+      setIsAddedWishlist(true);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
+  };
+
+  const handleRemoveFromWishlist = async () => {
+    try {
+      const { message, data } = await userAPI.removeFromWishlist({ productId: id });
+      toast.success(message);
+      setCurrentUser(data);
+      setIsAddedWishlist(false);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -134,91 +146,95 @@ const ProductDetailsPage = () => {
 
   return (
     <div className='layout-container'>
-      <section>
-        <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
-          <div className='flex-shrink-0 lg:w-[400px]'>
-            <ProductImageSlider images={productInfo.images} />
-            <div className='flex items-center my-3 gap-x-2'>
-              <button type='button' onClick={handleAddToWishlist}>
-                <IconHeart active={currentUser.wishlist?.indexOf(id) !== -1} />
+      <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
+        <div className='flex-shrink-0 lg:w-[400px]'>
+          <ProductImageSlider images={productInfo.images} />
+          <div className='flex items-center my-3 gap-x-2'>
+            {isAddedWishlist ? (
+              <button type='button' onClick={handleRemoveFromWishlist}>
+                <IconHeart active />
               </button>
-              <span className='text-base'>Đã thích (198)</span>
-            </div>
-          </div>
-          <div>
-            <ProductTitle className='text-[#242424] text-base lg:text-2xl'>
-              {productInfo.name}
-            </ProductTitle>
-            <div className='flex items-center my-4 gap-x-3'>
-              <span className='font-medium'>{productInfo.rating}</span>
-              <Rating rating={productInfo.rating} />
-              <div className='pl-4 border-l border-[#00000024]'>
-                {productInfo.sold}
-                <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>
-              </div>
-            </div>
-            <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
-              <ProductPriceOld className='text-[#929292]'>
-                {formatMoney(productInfo.oldPrice)}
-              </ProductPriceOld>
-              <ProductPriceSale className='text-lg font-medium lg:text-3xl'>
-                {formatMoney(productInfo.price)}
-              </ProductPriceSale>
-              <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
-                -{percentSale}%
-              </span>
-            </SectionGray>
-            <div className='mt-3'>
-              <span>Vận chuyển từ: {shopInfo.administrative}</span>
-              <div className='my-1'>
-                <span>Vận chuyển tới:</span>
-                <Select
-                  value={cityId}
-                  className='px-1 ml-1 h-7'
-                  onChange={(e) => setCityId(e.target.value)}
-                >
-                  <Option value='01'>Chọn Tỉnh/Thành Phố</Option>
-                  {citys?.map((city) => (
-                    <Option value={city.cityId} key={city.cityId}>
-                      {city.name}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-            </div>
-            <span>Phí vận chuyển: {formatMoney(shippingFee)}</span>
-            <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
-              <span>Số lượng</span>
-              <QuantityController onChangeValue={handleChangeQuantityController} />
-              <span>{productInfo.stock} sản phẩm có sẵn</span>
-            </div>
-            {productInfo.stock > 0 ? (
-              <div className='flex flex-col gap-2 mt-4 md:flex-row md:items-center'>
-                <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
-                  <IconCartOutline className='w-4 h-4 mr-2' />
-                  <span className='text-sm'>Thêm vào giỏ hàng</span>
-                </ButtonOutline>
-                <Button primary className='h-10 rounded-sm lg:h-12'>
-                  Mua ngay
-                </Button>
-              </div>
             ) : (
-              <span className='block mt-4 text-lg text-redff4'>Sản phẩm đã hết hàng</span>
+              <button type='button' onClick={handleAddToWishlist}>
+                <IconHeart active={false} />
+              </button>
             )}
+            <span className='text-base'>Đã thích</span>
           </div>
         </div>
-        <SectionWhite className='mt-4'>
-          <ShopOverview shopInfo={shopInfo} />
-        </SectionWhite>
-        <SectionWhite className='mt-4'>
-          <SectionGray>CHI TIẾT SẢN PHẨM</SectionGray>
-          <ProductDesc description={productInfo.description} />
-        </SectionWhite>
-        <SectionWhite className='mt-4'>
-          <SectionGray>ĐÁNH GIÁ SẢN PHẨM</SectionGray>
-          <Review reviews={productInfo.reviews} />
-        </SectionWhite>
-      </section>
+        <div>
+          <ProductTitle className='text-[#242424] text-base lg:text-2xl'>
+            {productInfo.name}
+          </ProductTitle>
+          <div className='flex items-center my-4 gap-x-3'>
+            <span className='font-medium'>{productInfo.rating}</span>
+            <Rating rating={productInfo.rating} />
+            <div className='pl-4 border-l border-[#00000024]'>
+              {productInfo.sold}
+              <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>
+            </div>
+          </div>
+          <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
+            <ProductPriceOld className='text-[#929292]'>
+              {formatMoney(productInfo.oldPrice)}
+            </ProductPriceOld>
+            <ProductPriceSale className='text-lg font-medium lg:text-3xl'>
+              {formatMoney(productInfo.price)}
+            </ProductPriceSale>
+            <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
+              -{percentSale}%
+            </span>
+          </SectionGray>
+          <div className='mt-3'>
+            <span>Vận chuyển từ: {shopInfo.administrative}</span>
+            <div className='my-1'>
+              <span>Vận chuyển tới:</span>
+              <Select
+                value={cityId}
+                className='px-1 ml-1 h-7'
+                onChange={(e) => setCityId(e.target.value)}
+              >
+                <Option value='01'>Chọn Tỉnh/Thành Phố</Option>
+                {citys?.map((city) => (
+                  <Option value={city.cityId} key={city.cityId}>
+                    {city.name}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+          </div>
+          <span>Phí vận chuyển: {formatMoney(shippingFee)}</span>
+          <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
+            <span>Số lượng</span>
+            <QuantityController onChangeValue={handleChangeQuantityController} />
+            <span>{productInfo.stock} sản phẩm có sẵn</span>
+          </div>
+          {productInfo.stock > 0 ? (
+            <div className='flex flex-col gap-2 mt-4 md:flex-row md:items-center'>
+              <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
+                <IconCartOutline className='w-4 h-4 mr-2' />
+                <span className='text-sm'>Thêm vào giỏ hàng</span>
+              </ButtonOutline>
+              <Button primary className='h-10 rounded-sm lg:h-12'>
+                Mua ngay
+              </Button>
+            </div>
+          ) : (
+            <span className='block mt-4 text-lg text-redff4'>Sản phẩm đã hết hàng</span>
+          )}
+        </div>
+      </div>
+      <SectionWhite className='mt-4'>
+        <ShopOverview shopInfo={shopInfo} />
+      </SectionWhite>
+      <SectionWhite className='mt-4'>
+        <SectionGray>CHI TIẾT SẢN PHẨM</SectionGray>
+        <ProductDesc description={productInfo.description} />
+      </SectionWhite>
+      <SectionWhite className='mt-4'>
+        <SectionGray>ĐÁNH GIÁ SẢN PHẨM</SectionGray>
+        <Review reviews={productInfo.reviews} />
+      </SectionWhite>
       {relatedProduct?.length > 0 && (
         <div className='mt-5'>
           <h3 className='text-[#0000008a] text-base font-medium'>SẢN PHẨM TƯƠNG TỰ</h3>

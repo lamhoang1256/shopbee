@@ -1,6 +1,5 @@
 import { useState } from "react";
 import classNames from "utils/className";
-import { v4 as uuidv4 } from "uuid";
 
 interface ProductImageSliderProps {
   images: string[];
@@ -16,8 +15,8 @@ const ProductImageSlider = ({ images }: ProductImageSliderProps) => {
         {images.map((image, index) => (
           <img
             src={image}
+            key={image}
             alt='product'
-            key={uuidv4()}
             className={classNames(
               "inline-block object-cover w-1/5 border-2 aspect-square transition-all duration-200 cursor-pointer p-1",
               indexActive === index ? " border-orangeee4" : "border-transparent",
