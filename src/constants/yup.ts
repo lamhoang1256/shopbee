@@ -50,6 +50,6 @@ export const ProductSchemaYup = Yup.object({
   description: Yup.string().required("Vui lòng nhập mô tả sản phẩm!"),
   category: Yup.string().required("Vui lòng chọn danh mục!"),
   oldPrice: Yup.number().required("Vui lòng chọn giá sản phẩm!"),
-  price: Yup.number().max(Yup.ref("oldPrice"), "Giá đã giảm không được lớn hơn giá gốc"),
+  price: Yup.number().required().max(Yup.ref("oldPrice"), "Giá đã giảm không được lớn hơn giá gốc"),
   stock: Yup.number().required("Vui lòng chọn số lượng!"),
 });

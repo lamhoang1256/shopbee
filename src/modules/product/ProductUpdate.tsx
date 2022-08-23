@@ -1,5 +1,4 @@
-import { ICategory, IProduct } from "@types";
-import { categoryAPI, productAPI } from "apis";
+import { productAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
@@ -7,9 +6,11 @@ import { Input } from "components/input";
 import { Select } from "components/select";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
+import useFetchCategories from "hooks/useFetchCategories";
+import useFetchProduct from "hooks/useFetchProduct";
 import { Template } from "layouts";
 import PageNotFound from "pages/PageNotFound";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
@@ -19,7 +20,8 @@ import { uploadImage } from "utils/uploadImage";
 
 const ProductUpdate = () => {
   const { id = "" } = useParams();
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const { categories } = useFetchCategories();
+  const { product } = useFetchProduct(id);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -35,11 +37,9 @@ const ProductUpdate = () => {
     },
     validationSchema: ProductSchemaYup,
     onSubmit: async (values) => {
-      const payload: Partial<IProduct> = values;
-      if (payload.price === 0) payload.price = payload.oldPrice;
       try {
-        const { success, message } = await productAPI.updateProduct(id || "", payload);
-        if (success) toast.success(message);
+        const { message } = await productAPI.updateProduct(id, values);
+        toast.success(message);
       } catch (error: any) {
         toast.error(error?.message);
       }
@@ -48,35 +48,14 @@ const ProductUpdate = () => {
 
   const handleSelectImage = async (e: any) => {
     const urlImage = await uploadImage(e);
-    formik?.setFieldValue("image", urlImage);
+    formik.setFieldValue("image", urlImage);
   };
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await categoryAPI.getAllCategory();
-        setCategories(data);
-      } catch (error) {
-        console.log("Failed to fetch categories: ", error);
-      }
-    };
-    fetchCategories();
-  }, [id]);
-
-  useEffect(() => {
-    const fetchProductNeedUpdate = async () => {
-      try {
-        const { data } = await productAPI.getSingleProduct(id);
-        formik.resetForm({
-          values: data,
-        });
-        formik?.setFieldValue("category", data?.category._id);
-      } catch (error) {
-        console.log("Failed to fetch data: ", error);
-      }
-    };
-    fetchProductNeedUpdate();
-  }, [id]);
+    if (!product?.name) return;
+    formik.resetForm({ values: product });
+    formik.setFieldValue("category", product.category);
+  }, [product, id]);
 
   if (!id) return <PageNotFound />;
   return (
@@ -92,12 +71,7 @@ const ProductUpdate = () => {
         <div className='max-w-[600px]'>
           <FormGroup>
             <Label htmlFor='name'>Tên sản phẩm</Label>
-            <Input
-              name='name'
-              type='text'
-              value={formik.values.name}
-              onChange={formik.handleChange}
-            />
+            <Input name='name' value={formik.values.name} onChange={formik.handleChange} />
             <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
           </FormGroup>
           <FormGroup>

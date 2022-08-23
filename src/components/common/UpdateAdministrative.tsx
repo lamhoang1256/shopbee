@@ -1,8 +1,7 @@
-import { ICity, IDistrict, IWard } from "@types";
-import { addressAPI } from "apis";
 import { FormGroup, MessageError } from "components/form";
 import { Select } from "components/select";
 import { initAdministrative } from "constants/initialValue";
+import useFetchAdministrative from "hooks/useFetchAdministrative";
 import { useEffect, useState } from "react";
 
 interface UpdateAdministrativeProps {
@@ -12,19 +11,7 @@ interface UpdateAdministrativeProps {
 const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   const { cityId, districtId, wardId, street } = formik.values;
   const [addressState, setAddressState] = useState(initAdministrative);
-  const [citys, setCitys] = useState<ICity[]>([]);
-  const [districts, setDistricts] = useState<IDistrict[]>([]);
-  const [wards, setWards] = useState<IWard[]>([]);
-
-  const fetchAllCity = () => {
-    addressAPI.getAllCity().then((res) => setCitys(res.data));
-  };
-  const fetchAllDistrict = () => {
-    addressAPI.getAllDistrict({ cityId }).then((res) => setDistricts(res.data));
-  };
-  const fetchAllWard = () => {
-    addressAPI.getAllWard({ districtId }).then((res) => setWards(res.data));
-  };
+  const { citys, districts, wards } = useFetchAdministrative(cityId, districtId);
 
   const handleChangeCity = async (e: any) => {
     const city = e.target.options[e.target.selectedIndex].text;
@@ -52,15 +39,6 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
     formik?.setFieldValue("address", `${street}, ${administrative}`);
   };
 
-  useEffect(() => {
-    fetchAllCity();
-  }, []);
-  useEffect(() => {
-    fetchAllDistrict();
-  }, [cityId]);
-  useEffect(() => {
-    fetchAllWard();
-  }, [districtId]);
   useEffect(() => {
     handleUpdateAddress();
   }, [wardId]);

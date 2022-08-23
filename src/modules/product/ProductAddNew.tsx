@@ -1,5 +1,5 @@
-import { ICategory, IProduct } from "@types";
-import { categoryAPI, productAPI } from "apis";
+import { IProduct } from "@types";
+import { productAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
@@ -7,8 +7,8 @@ import { Input } from "components/input";
 import { Select } from "components/select";
 import { ProductSchemaYup } from "constants/yup";
 import { useFormik } from "formik";
+import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
-import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ import { getRandomInt } from "utils/helper";
 import { uploadImage } from "utils/uploadImage";
 
 const ProductAddNew = () => {
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const { categories } = useFetchCategories();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -35,8 +35,8 @@ const ProductAddNew = () => {
       const payload: Partial<IProduct> = values;
       if (payload.price === 0) payload.price = payload.oldPrice;
       try {
-        const { success, message } = await productAPI.addNewProduct(payload);
-        if (success) toast.success(message);
+        const { message } = await productAPI.addNewProduct(payload);
+        toast.success(message);
       } catch (error: any) {
         toast.error(error?.message);
       }
@@ -48,27 +48,15 @@ const ProductAddNew = () => {
     formik?.setFieldValue("image", urlImage);
   };
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await categoryAPI.getAllCategory();
-        setCategories(data);
-      } catch (error) {
-        console.log("error: ", error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
   return (
     <Template
       label='Thêm 1 sản phẩm mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <form
-        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
-        onSubmit={formik.handleSubmit}
         autoComplete='off'
+        onSubmit={formik.handleSubmit}
+        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
       >
         <div className='max-w-[600px]'>
           <FormGroup>
