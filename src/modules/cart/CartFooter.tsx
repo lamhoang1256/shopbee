@@ -1,10 +1,9 @@
-import { toast } from "react-toastify";
 import { cartAPI } from "apis";
-import { path } from "constants/path";
-import { formatMoney } from "utils/helper";
-import { useStore } from "store/configStore";
 import { Button } from "components/button";
+import { path } from "constants/path";
 import { ProductPriceSale } from "modules/product";
+import { toast } from "react-toastify";
+import { useStore } from "store/configStore";
 
 interface CartFooterProps {
   total: number;
@@ -31,13 +30,11 @@ const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
       <div>
         <div>
           Tổng ({count} sản phẩm):
-          <ProductPriceSale className='ml-1 text-xl font-medium'>
-            {formatMoney(total)}
-          </ProductPriceSale>
+          <ProductPriceSale className='ml-1 text-xl font-medium'>{total}</ProductPriceSale>
         </div>
         <div>
           Tiết kiệm:
-          <ProductPriceSale className='ml-1'>{formatMoney(totalNotSale - total)}</ProductPriceSale>
+          <ProductPriceSale className='ml-1'>{totalNotSale - total}</ProductPriceSale>
         </div>
       </div>
       <div className='flex gap-3'>

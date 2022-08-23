@@ -3,7 +3,7 @@ import { Rating } from "components/rating";
 import { path } from "constants/path";
 import { ProductImage, ProductPriceSale, ProductTitle } from "modules/product";
 import { Link } from "react-router-dom";
-import { formatCash, formatMoney } from "utils/helper";
+import { formatCash } from "utils/helper";
 
 interface ProductCardProps {
   product: IProduct;
@@ -25,7 +25,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <span className='text-[#787878] text-xs'>Đã bán {formatCash(product.sold)}</span>
         </div>
         <div className='flex items-center gap-x-2'>
-          <ProductPriceSale>{formatMoney(product.price)}</ProductPriceSale>
+          <ProductPriceSale>{product.price}</ProductPriceSale>
           <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
             -{precentSale}%
           </span>

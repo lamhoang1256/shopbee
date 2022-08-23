@@ -14,9 +14,7 @@ const OrderPayment = ({ payments }: OrderPaymentProps) => {
           <div className='flex-1 py-2'>{label}</div>
           <div className='w-1/2 py-2 md:w-48'>
             {label === "Tổng thanh toán" && (
-              <ProductPriceSale className='text-lg font-medium'>
-                {formatMoney(value)}
-              </ProductPriceSale>
+              <ProductPriceSale className='text-lg font-medium'>{value}</ProductPriceSale>
             )}
             {label !== "Tổng thanh toán" && formatMoney(value)}
           </div>

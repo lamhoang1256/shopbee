@@ -84,9 +84,7 @@ const ProductManage = () => {
                     <td>{product.stock}</td>
                     <td>{formatMoney(product.oldPrice)}</td>
                     <td>
-                      <ProductPriceSale className='text-sm'>
-                        {formatMoney(product.price)}
-                      </ProductPriceSale>
+                      <ProductPriceSale className='text-sm'>{product.price}</ProductPriceSale>
                     </td>
                     <td>
                       <div className='flex gap-x-1'>

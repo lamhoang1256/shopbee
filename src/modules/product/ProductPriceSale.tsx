@@ -1,12 +1,13 @@
 import classNames from "utils/className";
+import { formatMoney } from "utils/helper";
 
 interface ProductPriceSaleProps {
-  children: React.ReactNode;
+  children: number;
   className?: string;
 }
 
 const ProductPriceSale = ({ children, className }: ProductPriceSaleProps) => {
-  return <span className={classNames("text-redff4 ", className)}>{children}</span>;
+  return <span className={classNames("text-redff4 ", className)}>{formatMoney(children)}</span>;
 };
 
 ProductPriceSale.defaultProps = {

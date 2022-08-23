@@ -178,7 +178,7 @@ const CheckoutPage = () => {
         </div>
         <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center'>
           <span>Tổng số tiền ({carts.length} sản phẩm):</span>
-          <ProductPriceSale className='text-lg font-medium'>{formatMoney(price)}</ProductPriceSale>
+          <ProductPriceSale className='text-lg font-medium'>{price}</ProductPriceSale>
         </div>
         <div className='flex p-4 items-center justify-between border-dotted border border-[rgba(0,0,0,.09)] bg-[#fff]'>
           <h3>Voucher Shopbee</h3>

@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import { IOrder, OrderStatusCodeEnum } from "@types";
-import { formatMoney } from "utils/helper";
 import { Button } from "components/button";
 import { ProductPriceSale } from "modules/product";
+import { Link } from "react-router-dom";
 import OrderProduct from "./OrderProduct";
 
 interface OrderItemProps {
@@ -45,7 +44,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
         </Link>
         <div>
           <span>Tổng số tiền: </span>
-          <ProductPriceSale className='pl-1 text-2xl'>{formatMoney(order?.total)}</ProductPriceSale>
+          <ProductPriceSale className='pl-1 text-2xl'>{order?.total}</ProductPriceSale>
         </div>
       </div>
     </div>

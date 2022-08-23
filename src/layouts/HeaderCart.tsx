@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
-import { useStore } from "store/configStore";
-import { formatMoney } from "utils/helper";
+import { Button } from "components/button";
+import { IconCartOutline } from "components/icons";
 import { Popover } from "components/popover";
 import { path } from "constants/path";
 import usePopover from "hooks/usePopover";
-import { Button } from "components/button";
-import { IconCartOutline } from "components/icons";
 import { ProductImage, ProductPriceSale, ProductTitle } from "modules/product";
+import { Link } from "react-router-dom";
+import { useStore } from "store/configStore";
 
 const HeaderCart = () => {
   const { carts } = useStore((state) => state);
@@ -45,7 +44,7 @@ const HeaderCart = () => {
                   />
                   <ProductTitle className='line-clamp-1'>{cart.product.name}</ProductTitle>
                   <ProductPriceSale className='flex-shrink-0 ml-2'>
-                    {formatMoney(cart.product.price)}
+                    {cart.product.price}
                   </ProductPriceSale>
                 </Link>
               ))}

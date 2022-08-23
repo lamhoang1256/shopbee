@@ -1,11 +1,10 @@
-import { toast } from "react-toastify";
 import { ICart } from "@types";
 import { cartAPI } from "apis";
-import { path } from "constants/path";
-import { useStore } from "store/configStore";
-import { formatMoney } from "utils/helper";
 import { QuantityController } from "components/quantityController";
+import { path } from "constants/path";
 import { ProductImage, ProductPriceOld, ProductPriceSale, ProductTitle } from "modules/product";
+import { toast } from "react-toastify";
+import { useStore } from "store/configStore";
 
 const CartItem = ({ cartItem }: { cartItem: ICart }) => {
   const { carts, setCart } = useStore((state) => state);
@@ -53,8 +52,8 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
         </ProductTitle>
         <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2'>
-            <ProductPriceOld> {formatMoney(cartItem?.product?.oldPrice)}</ProductPriceOld>
-            <ProductPriceSale>{formatMoney(cartItem?.product?.price)}</ProductPriceSale>
+            <ProductPriceOld>{cartItem?.product?.oldPrice}</ProductPriceOld>
+            <ProductPriceSale>{cartItem?.product?.price}</ProductPriceSale>
           </div>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
             <QuantityController
