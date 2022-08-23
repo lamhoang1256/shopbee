@@ -9,12 +9,14 @@ import ProductUpdate from "./ProductUpdate";
 import ProductManage from "./ProductManage";
 import ProductNotFound from "./ProductNotFound";
 import ProductImageSlider from "./ProductImageSlider";
+import ProductGrid from "./ProductGrid";
 
 export {
   ProductPriceOld,
   ProductPriceSale,
   ProductCard,
   ProductImageSlider,
+  ProductGrid,
   ProductUpdate,
   ProductAddNew,
   ProductTitle,

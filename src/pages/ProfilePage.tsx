@@ -10,12 +10,10 @@ const ProfilePage = () => {
   const handleChangeAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
-      const { data, success, message } = await userAPI.updateMe({ avatar });
-      if (success) {
-        const newCurrentUser = { ...currentUser, ...data };
-        setCurrentUser(newCurrentUser);
-        toast.success(message);
-      }
+      const { data, message } = await userAPI.updateMe({ avatar });
+      const newCurrentUser = { ...currentUser, ...data };
+      setCurrentUser(newCurrentUser);
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }

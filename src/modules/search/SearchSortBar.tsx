@@ -15,8 +15,6 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
   const currentParams = Object.fromEntries(searchParams);
   const currentPage = Number(searchParams.get("page"));
   const sortBy = searchParams.get("sort_by");
-  console.log("sortBy: ", sortBy);
-
   const handleSortByPrice = (e: any) => {
     handleFilter({ order: e.target.value, sort_by: "price" });
   };
@@ -34,14 +32,14 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
         </Button>
         <Button
           primary={sortBy === "createdAt"}
-          className='py-0 bg-white rounded-sm h-9'
+          className='py-0 rounded-sm h-9'
           onClick={() => setSearchParams({ ...currentParams, sort_by: "createdAt" })}
         >
           Mới nhất
         </Button>
         <Button
           primary={sortBy === "sold"}
-          className='py-0 bg-white rounded-sm h-9'
+          className='py-0 rounded-sm h-9'
           onClick={() => setSearchParams({ ...currentParams, sort_by: "sold" })}
         >
           Bán chạy

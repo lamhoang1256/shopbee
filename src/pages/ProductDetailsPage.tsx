@@ -10,12 +10,12 @@ import { Review } from "components/review";
 import { Option, Select } from "components/select";
 import {
   ProductDesc,
-  ProductCard,
+  ProductGrid,
+  ProductImageSlider,
   ProductNotFound,
   ProductPriceOld,
   ProductPriceSale,
   ProductTitle,
-  ProductImageSlider,
 } from "modules/product";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState } from "react";
@@ -130,8 +130,7 @@ const ProductDetailsPage = () => {
       quantity,
     };
     try {
-      const { message, success, data } = await cartAPI.addToCart(values);
-      if (!success) return;
+      const { message, data } = await cartAPI.addToCart(values);
       if (existCartItem) {
         const cartsWithoutExistCartItem = carts?.filter((cart) => cart?._id !== existCartItem?._id);
         setCart([...cartsWithoutExistCartItem, existCartItem]);
@@ -236,14 +235,7 @@ const ProductDetailsPage = () => {
         <Review reviews={productInfo.reviews} />
       </SectionWhite>
       {relatedProduct?.length > 0 && (
-        <div className='mt-5'>
-          <h3 className='text-[#0000008a] text-base font-medium'>SẢN PHẨM TƯƠNG TỰ</h3>
-          <div className='my-3 product-grid'>
-            {relatedProduct?.map((product: IProduct) => (
-              <ProductCard product={product} key={product._id} />
-            ))}
-          </div>
-        </div>
+        <ProductGrid title='SẢN PHẨM TƯƠNG TỰ' products={relatedProduct} />
       )}
     </div>
   );

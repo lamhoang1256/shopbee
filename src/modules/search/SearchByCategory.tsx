@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { ICategory } from "@types";
-import { categoryAPI } from "apis";
-import { path } from "constants/path";
 import { IconMenu } from "components/icons";
+import { path } from "constants/path";
+import useFetchCategories from "hooks/useFetchCategories";
+import { Link, useSearchParams } from "react-router-dom";
 
 const SearchByCategory = () => {
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get("category");
-  const [categories, setCategories] = useState<ICategory[]>([]);
-
-  const fetchAllCategory = async () => {
-    try {
-      const { data } = await categoryAPI.getAllCategory();
-      setCategories(data);
-    } catch (error) {
-      console.log(`Failed to fetch categories:`, error);
-    }
-  };
-  useEffect(() => {
-    fetchAllCategory();
-  }, []);
-
+  const { categories } = useFetchCategories();
   return (
     <>
       <div className='search-catelog-header'>
@@ -30,12 +15,10 @@ const SearchByCategory = () => {
       </div>
       <ul className='mt-2'>
         {categories.map(({ _id, name }) => (
-          <li className='px-3 py-[6px]' key={_id}>
+          <li className='px-3 py-[6px] line-clamp-1' key={_id}>
             <Link
               to={`${path.search}?category=${_id}`}
-              className={
-                categoryId === _id ? "text-orangeee4 line-clamp-1" : "text-[#000000cc] line-clamp-1"
-              }
+              className={categoryId === _id ? "text-orangeee4" : "text-[#000000cc]"}
             >
               {name}
             </Link>

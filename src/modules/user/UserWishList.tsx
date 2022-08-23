@@ -1,6 +1,6 @@
 import { IProduct } from "@types";
 import { userAPI } from "apis";
-import { ProductCard } from "modules/product";
+import { ProductGrid } from "modules/product";
 import { useEffect, useState } from "react";
 
 const UserWishList = () => {
@@ -16,13 +16,7 @@ const UserWishList = () => {
     };
     fetchMyWishlist();
   }, []);
-  return (
-    <div className='my-3 product-grid'>
-      {wishlist?.map((product: IProduct) => (
-        <ProductCard product={product} key={product._id} />
-      ))}
-    </div>
-  );
+  return <ProductGrid products={wishlist} />;
 };
 
 export default UserWishList;

@@ -1,4 +1,3 @@
-import { IPagination, IProduct } from "@types";
 import { productAPI } from "apis";
 import { Button } from "components/button";
 import { Input } from "components/input";
@@ -6,21 +5,16 @@ import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
 import { path } from "constants/path";
 import { useFormik } from "formik";
+import useFetchProducts from "hooks/useFetchProducts";
 import { Template } from "layouts";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatMoney, scrollToTop } from "utils/helper";
+import { formatMoney } from "utils/helper";
 import ProductImage from "./ProductImage";
 import ProductNotFound from "./ProductNotFound";
 import ProductPriceSale from "./ProductPriceSale";
 
 const ProductManage = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState<IPagination>(Object);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams);
+  const { products, loading, pagination, fetchProducts, setSearchParams } = useFetchProducts();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -30,33 +24,15 @@ const ProductManage = () => {
     },
   });
 
-  const fetchAllProduct = async () => {
-    setLoading(true);
-    try {
-      const { data } = await productAPI.getAllProduct({ ...params, limit: "10" });
-      setProducts(data?.products);
-      setPagination(data.pagination);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
-
   const handleDeleteProduct = async (productId: string) => {
     try {
-      const { success, message } = await productAPI.deleteProduct(productId);
-      if (success) {
-        toast.success(message);
-        fetchAllProduct();
-      }
+      const { message } = await productAPI.deleteProduct(productId);
+      toast.success(message);
+      fetchProducts();
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
-  useEffect(() => {
-    fetchAllProduct();
-    scrollToTop();
-  }, [searchParams]);
 
   return (
     <Template label='Quản lí sản phẩm' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
