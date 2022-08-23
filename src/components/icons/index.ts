@@ -4,6 +4,7 @@ import IconCartOutline from "./IconCartOutline";
 import IconStar from "./IconStar";
 import IconPlus from "./IconPlus";
 import IconMinus from "./IconMinus";
+import IconHeart from "./IconHeart";
 import IconTrash from "./IconTrash";
 import IconClose from "./IconClose";
 import IconClipboard from "./IconClipboard";
@@ -34,6 +35,7 @@ export {
   IconTemplate,
   IconVoucher,
   IconAddUser,
+  IconHeart,
   IconAddVoucher,
   IconCash,
   IconIdentification,

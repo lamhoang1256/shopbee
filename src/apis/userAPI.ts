@@ -30,4 +30,16 @@ export const userAPI = {
     const path = `api/user/change-password`;
     return axiosClient.put(path, values);
   },
+  getMyWishlist: (): Promise<IResponse> => {
+    const path = `api/user/wishlist`;
+    return axiosClient.get(path);
+  },
+  addToWishlist: (payload: { productId: string }): Promise<IResponse> => {
+    const path = `api/user/wishlist`;
+    return axiosClient.post(path, payload);
+  },
+  removeFromWishlist: (payload: { productId: string }): Promise<IResponse> => {
+    const path = `api/user/wishlist`;
+    return axiosClient.put(path, payload);
+  },
 };

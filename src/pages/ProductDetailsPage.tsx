@@ -1,8 +1,8 @@
 import { ICity, IProduct, IShop } from "@types";
-import { addressAPI, cartAPI, productAPI, shopAPI } from "apis";
+import { addressAPI, cartAPI, productAPI, shopAPI, userAPI } from "apis";
 import { Button, ButtonOutline } from "components/button";
 import { SectionGray, SectionWhite } from "components/common";
-import { IconCartOutline } from "components/icons";
+import { IconCartOutline, IconHeart } from "components/icons";
 import { Loading } from "components/loading";
 import { QuantityController } from "components/quantityController";
 import { Rating } from "components/rating";
@@ -26,8 +26,8 @@ import { calcShippingFee, formatMoney } from "utils/helper";
 import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
-  const { setCart, carts, currentUser } = useStore((state) => state);
   const { id } = useParams();
+  const { setCart, carts, currentUser, setCurrentUser } = useStore((state) => state);
   const [loading, setLoading] = useState(true);
   const [citys, setCitys] = useState<ICity[]>([]);
   const [cityId, setCityId] = useState(currentUser.cityId);
@@ -41,6 +41,17 @@ const ProductDetailsPage = () => {
     setQuantityAdd(() => value);
   };
 
+  const handleAddToHistory = (product: IProduct) => {
+    const history = JSON.parse(localStorage.getItem("history") || "[]");
+    const index = history.findIndex((item: IProduct) => item._id === id);
+    if (index === -1) history.unshift(product);
+    if (index !== -1) {
+      history.splice(index, 1);
+      history.unshift(product);
+    }
+    localStorage.setItem("history", JSON.stringify(history));
+  };
+
   useEffect(() => {
     const fetchRelatedProduct = async (params: { category: string }) => {
       productAPI.getAllProduct(params).then((res) => setRelatedProduct(res.data.products));
@@ -48,12 +59,10 @@ const ProductDetailsPage = () => {
     const fetchProductDetail = async () => {
       setLoading(true);
       try {
-        const { data, success } = await productAPI.getSingleProduct(id || "");
-        if (success) {
-          const params = { category: data.category._id };
-          fetchRelatedProduct(params);
-          setProductInfo(data);
-        }
+        const { data } = await productAPI.getSingleProduct(id || "");
+        fetchRelatedProduct({ category: data.category._id });
+        setProductInfo(data);
+        handleAddToHistory(data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -84,6 +93,18 @@ const ProductDetailsPage = () => {
   if (loading) return <Loading />;
   if (!productInfo.name) return <ProductNotFound />;
   const percentSale = Math.ceil(100 - (productInfo.price / productInfo.oldPrice) * 100);
+
+  const handleAddToWishlist = async () => {
+    try {
+      const { message, success, data } = await userAPI.addToWishlist({ productId: id });
+      if (success) {
+        toast.success(message);
+        setCurrentUser(data);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
+  };
 
   const handleAddToCart = async () => {
     let quantity = quantityAdd;
@@ -117,7 +138,12 @@ const ProductDetailsPage = () => {
         <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
           <div className='flex-shrink-0 lg:w-[400px]'>
             <ProductImageSlider images={productInfo.images} />
-            {/* <ProductImage imageUrl={productInfo.image} /> */}
+            <div className='flex items-center my-3 gap-x-2'>
+              <button type='button' onClick={handleAddToWishlist}>
+                <IconHeart active={currentUser.wishlist?.indexOf(id) !== -1} />
+              </button>
+              <span className='text-base'>Đã thích (198)</span>
+            </div>
           </div>
           <div>
             <ProductTitle className='text-[#242424] text-base lg:text-2xl'>

@@ -5,6 +5,7 @@ export const path = {
   signUp: "/sign-up",
   signIn: "/sign-in",
   purchase: "user/purchase",
+  wishlist: "user/wishlist",
   pageNotFound: "*",
   profile: "/user/profile",
   history: "/user/history",

@@ -27,6 +27,7 @@ const UserAddNew = lazy(() => import("modules/user/UserAddNew"));
 const UserChangePassword = lazy(() => import("modules/user/UserChangePassword"));
 const UserManage = lazy(() => import("modules/user/UserManage"));
 const UserUpdate = lazy(() => import("modules/user/UserUpdate"));
+const UserWishList = lazy(() => import("modules/user/UserWishList"));
 const ProfilePage = lazy(() => import("pages/ProfilePage"));
 const CartPage = lazy(() => import("pages/CartPage"));
 const CheckoutPage = lazy(() => import("pages/CheckoutPage"));
@@ -67,6 +68,7 @@ const AppRoutes = () => {
               <Route path={path.profile} element={<ProfilePage />} />
               <Route path={path.password} element={<UserChangePassword />} />
               <Route path={path.voucher} element={<VoucherMe />} />
+              <Route path={path.wishlist} element={<UserWishList />} />
               <Route path={path.history} element={<HistoryPage />} />
             </Route>
             <Route path={path.payment} element={<CheckoutPage />} />

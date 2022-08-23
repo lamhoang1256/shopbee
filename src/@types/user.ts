@@ -16,6 +16,7 @@ export interface ICurrentUser {
   createdAt: string;
   updatedAt: string;
   vouchersSave: [];
+  wishlist: string[];
   __v: number;
 }
 

@@ -31,6 +31,11 @@ const sidebarLinks = [
     path: path.history,
     display: "Đã xem gần đây",
   },
+  {
+    icon: "/images/icon-heart.png",
+    path: path.wishlist,
+    display: "Đã thích",
+  },
 ];
 
 const UserSidebar = () => {
