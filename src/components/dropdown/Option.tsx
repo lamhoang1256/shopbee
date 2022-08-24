@@ -11,7 +11,7 @@ const Option = ({ onClick, children }: OptionProps) => {
   return (
     <div
       aria-hidden
-      className='flex items-center justify-between px-5 py-4 text-sm transition-all cursor-pointer hover:text-primary'
+      className='flex items-center justify-between px-4 py-2 overflow-hidden text-sm whitespace-pre transition-all cursor-pointer hover:text-orangeee4 line-clamp-1'
       onClick={handleClick}
     >
       {children}

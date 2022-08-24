@@ -3,6 +3,7 @@ import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
+import { userSchema } from "constants/yup";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -20,14 +21,15 @@ const UserUpdateMe = () => {
       district: { id: "", name: "" },
       ward: { id: "", name: "" },
     },
-    // validationSchema: ProfileSchemaYup,
+    validationSchema: userSchema,
     onSubmit: async (values: any) => {
+      const payload = values;
+      const { street, city, district, ward } = values;
+      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
-        const { data, success, message } = await userAPI.updateMe(values);
-        if (success) {
-          setCurrentUser({ ...currentUser, ...data });
-          toast.success(message);
-        }
+        const { data, message } = await userAPI.updateMe(payload);
+        setCurrentUser({ ...currentUser, ...data });
+        toast.success(message);
       } catch (error: any) {
         toast.error(error?.message);
       }
@@ -35,18 +37,16 @@ const UserUpdateMe = () => {
   });
 
   useEffect(() => {
-    const fetchProfileNeedUpdate = async () => {
+    const fetchProfile = async () => {
       try {
         const { data } = await userAPI.getSingleUser(currentUser?._id);
-        formik.resetForm({
-          values: data,
-        });
+        formik.resetForm({ values: data });
       } catch (error) {
-        console.log("Failed to fetch address: ", error);
+        console.log("Failed to fetch user: ", error);
       }
     };
-    fetchProfileNeedUpdate();
-  }, []);
+    fetchProfile();
+  }, [currentUser?._id]);
 
   return (
     <form className='w-full max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>

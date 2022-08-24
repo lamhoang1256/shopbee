@@ -8,7 +8,7 @@ const Select = ({ placeholder, className }: SelectProps) => {
   return (
     <div
       aria-hidden
-      className={`flex items-center justify-between px-4 rounded-sm outline-none h-10 border border-[#00000024] focus:border focus:border-[#0000008a] shadow-input cursor-pointer ${className}`}
+      className={`dropdown-select transition-all duration-200 flex items-center justify-between px-4 rounded-sm outline-none h-10 border border-[#00000024] shadow-input cursor-pointer ${className}`}
       onClick={toggle}
     >
       <span className='capitalize'>{placeholder}</span>

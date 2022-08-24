@@ -8,11 +8,7 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ children, ...props }: DropdownProps) => {
-  return (
-    <DropdownProvider {...props}>
-      <div className='relative inline-block w-full'>{children}</div>
-    </DropdownProvider>
-  );
+  return <DropdownProvider {...props}>{children}</DropdownProvider>;
 };
 
 Dropdown.Option = Option;

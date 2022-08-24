@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-shadow */
+import { ICity, IDistrict, IWard } from "@types";
 import { Dropdown } from "components/dropdown";
 import { FormGroup, MessageError } from "components/form";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
-import { useEffect } from "react";
 
 interface UpdateAdministrativeProps {
   formik: any;
@@ -10,47 +10,28 @@ interface UpdateAdministrativeProps {
 
 const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   const { city, district, ward } = formik.values;
-  console.log("ward formik: ", ward);
   const { citys, districts, wards } = useFetchAdministrative(city.id, district.id);
-
-  const handleChangeCity = async (city: any) => {
-    formik?.setFieldValue("city", { id: city.cityId, name: city.name });
-    formik?.setFieldValue("district", { id: "", name: "" });
-    formik?.setFieldValue("ward", { id: "", name: "" });
+  const handleChangeCity = (city: ICity) => {
+    formik.setFieldValue("city", { id: city.cityId, name: city.name });
+    formik.setFieldValue("district", { id: "", name: "" });
+    formik.setFieldValue("ward", { id: "", name: "" });
   };
-  const handleChangeDistrict = async (district: any) => {
-    formik?.setFieldValue("district", { id: district.districtId, name: district.name });
-    formik?.setFieldValue("ward", { id: "", name: "" });
+  const handleChangeDistrict = (district: IDistrict) => {
+    formik.setFieldValue("district", { id: district.districtId, name: district.name });
+    formik.setFieldValue("ward", { id: "", name: "" });
   };
-  const handleChangeWard = (ward: any) => {
-    console.log("ward: ", ward);
-    formik?.setFieldValue("ward", { id: ward.wardId, name: ward.name });
+  const handleChangeWard = (ward: IWard) => {
+    formik.setFieldValue("ward", { id: ward.wardId, name: ward.name });
   };
-
-  const handleUpdateAddress = () => {
-    console.log("address");
-  };
-
-  useEffect(() => {
-    handleUpdateAddress();
-  }, [ward.id]);
 
   return (
-    <div className='w-full'>
+    <div className='grid gap-2 md:grid-cols-3'>
       <FormGroup>
-        {/* <Select name='city' value={cityId} onChange={handleChangeCity}>
-          <option value=''>Chọn Tỉnh/Thành Phố</option>
-          {citys?.map((city) => (
-            <option value={city.cityId} key={city.cityId}>
-              {city.name}
-            </option>
-          ))}
-        </Select> */}
         <Dropdown>
           <Dropdown.Select placeholder={city.name || "Chọn Tỉnh/Thành Phố"} />
           <Dropdown.List>
             {citys.length > 0 &&
-              citys.map((city: any) => (
+              citys.map((city: ICity) => (
                 <Dropdown.Option key={city.cityId} onClick={() => handleChangeCity(city)}>
                   {city.name}
                 </Dropdown.Option>
@@ -64,7 +45,7 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
           <Dropdown.Select placeholder={district.name || "Chọn Quận/Huyện"} />
           <Dropdown.List>
             {districts.length > 0 &&
-              districts.map((district: any) => (
+              districts.map((district: IDistrict) => (
                 <Dropdown.Option
                   key={district.districtId}
                   onClick={() => handleChangeDistrict(district)}
@@ -80,13 +61,12 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
         <Dropdown>
           <Dropdown.Select placeholder={ward.name || "Chọn Phường/Xã"} />
           <Dropdown.List>
-            {wards.length > 0
-              ? wards.map((ward: any) => (
-                  <Dropdown.Option key={ward.wardId} onClick={() => handleChangeWard(ward)}>
-                    {ward.name}
-                  </Dropdown.Option>
-                ))
-              : "not"}
+            {wards.length > 0 &&
+              wards.map((ward: IWard) => (
+                <Dropdown.Option key={ward.wardId} onClick={() => handleChangeWard(ward)}>
+                  {ward.name}
+                </Dropdown.Option>
+              ))}
           </Dropdown.List>
         </Dropdown>
         <MessageError>{formik.touched.ward && formik.errors?.ward}</MessageError>

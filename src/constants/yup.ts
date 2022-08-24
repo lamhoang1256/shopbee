@@ -13,15 +13,24 @@ export const SignInYup = Yup.object({
   password: Yup.string().required("Vui lòng nhập mật khẩu!"),
 });
 
-export const ProfileSchemaYup = Yup.object({
+export const userSchema = Yup.object({
   fullname: Yup.string().required("Vui lòng nhập họ và tên!"),
   phone: Yup.string()
     .required("Vui lòng nhập số điện thoại!")
     .max(20, "Số điện thoại tối đa là 20 kí tự!"),
-  street: Yup.string().required("Vui lòng nhập địa chỉ giao hàng!"),
-  cityId: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
-  districtId: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
-  wardId: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+  street: Yup.string().required("Vui lòng nhập địa chỉ cụ thể!"),
+  city: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+    name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+  }),
+  district: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+    name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+  }),
+  ward: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+    name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+  }),
 });
 
 export const AddressSchemaYup = Yup.object({

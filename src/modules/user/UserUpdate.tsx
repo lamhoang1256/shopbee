@@ -4,7 +4,7 @@ import { Switch } from "components/checkbox";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
-import { ProfileSchemaYup } from "constants/yup";
+import { userSchema } from "constants/yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect } from "react";
@@ -28,7 +28,7 @@ const UserUpdate = () => {
       address: "",
       isAdmin: false,
     },
-    validationSchema: ProfileSchemaYup,
+    validationSchema: userSchema,
     onSubmit: async (values) => {
       try {
         const { success, message } = await userAPI.updateUser(values);
