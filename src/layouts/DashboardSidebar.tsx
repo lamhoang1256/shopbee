@@ -1,0 +1,103 @@
+import {
+  IconAddProduct,
+  IconAddUser,
+  IconAddVoucher,
+  IconCash,
+  IconCategoryManage,
+  IconCube,
+  IconIdentification,
+  IconPicture,
+  IconTag,
+  IconTemplate,
+  IconUserGroup,
+  IconVoucher,
+} from "components/icons";
+import { path } from "constants/path";
+import { NavLink } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
+const sidebarLinks = [
+  {
+    icon: <IconTemplate />,
+    display: "Tổng quan",
+    path: path.dashboard,
+  },
+  {
+    icon: <IconPicture />,
+    display: "Tất cả banner",
+    path: path.banner,
+  },
+  {
+    icon: <IconCategoryManage />,
+    display: "Tất cả danh mục",
+    path: path.categoryManage,
+  },
+  {
+    icon: <IconTag />,
+    display: "Thêm danh mục mới",
+    path: path.categoryAddNew,
+  },
+  {
+    icon: <IconCash />,
+    display: "Tất cả đơn hàng",
+    path: path.orderManage,
+  },
+  {
+    icon: <IconCube />,
+    display: "Tất cả sản phẩm",
+    path: path.productManage,
+  },
+  {
+    icon: <IconAddProduct />,
+    display: "Thêm sản phẩm",
+    path: path.productAddNew,
+  },
+  {
+    icon: <IconUserGroup />,
+    display: "Tất cả người dùng",
+    path: path.userManage,
+  },
+  {
+    icon: <IconAddUser />,
+    display: "Thêm người dùng mới",
+    path: path.userAddNew,
+  },
+  {
+    icon: <IconIdentification />,
+    display: "Thông tin shop",
+    path: path.shop,
+  },
+  {
+    icon: <IconVoucher />,
+    display: "Tất cả voucher",
+    path: path.voucherManage,
+  },
+  {
+    icon: <IconAddVoucher />,
+    display: "Thêm voucher mới",
+    path: path.voucherAddNew,
+  },
+];
+
+const stylesLink = "flex gap-x-2 items-center p-3";
+const stylesLinkActive = "flex gap-x-2 items-center p-3 bg-orangeee4 text-white rounded-lg";
+const DashboardSidebar = () => {
+  return (
+    <ul>
+      {sidebarLinks.map((link) => (
+        <li key={uuidv4()}>
+          <NavLink
+            end
+            to={link.path}
+            className={({ isActive }) => (isActive ? stylesLinkActive : stylesLink)}
+          >
+            {link.icon}
+            {link.display}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default DashboardSidebar;
