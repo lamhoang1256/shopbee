@@ -9,7 +9,7 @@ const ButtonOutline = ({ children, className = "", onClick }: ButtonOutlineProps
       type='button'
       onClick={onClick}
       className={classNames(
-        "flex justify-center px-3 items-center border border-orangeee4 text-orangeee4 bg-[#ff57221a] rounded-sm",
+        "flex justify-center px-3 items-center border border-orangeee4 text-orangeee4 bg-[#ff57221a] rounded-sm transition-all duration-200 hover:bg-[#ffc5b22e]",
         className,
       )}
     >

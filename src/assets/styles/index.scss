@@ -227,8 +227,10 @@
   }
 }
 
-.dropdown:hover {
-  .dropdown-select {
-    border: 1px solid #0000008a;
-  }
+.dropdown:hover .dropdown-select {
+  border-color: #0000008a;
+}
+.dropdown-outline .dropdown-select {
+  border: 0;
+  box-shadow: none;
 }

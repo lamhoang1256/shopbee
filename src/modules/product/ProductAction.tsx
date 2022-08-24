@@ -1,6 +1,6 @@
 import { IProduct } from "@types";
 import { cartAPI } from "apis";
-import { Button, ButtonOutline } from "components/button";
+import { ButtonOutline } from "components/button";
 import { IconCartOutline } from "components/icons";
 import { QuantityController } from "components/quantityController";
 import { useState } from "react";
@@ -41,20 +41,17 @@ const ProductAction = ({ product }: ProductActionProps) => {
 
   return (
     <>
-      <div className='flex flex-col mt-6 gap-y-2 md:items-center md:flex-row gap-x-4'>
+      <div className='flex flex-col gap-y-2 md:items-center md:flex-row gap-x-4'>
         <span>Số lượng</span>
         <QuantityController onChangeValue={handleChangeQuantity} />
         <span>{product.stock} sản phẩm có sẵn</span>
       </div>
       {product.stock > 0 ? (
-        <div className='flex flex-col gap-2 mt-4 md:flex-row md:items-center'>
+        <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
           <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
             <IconCartOutline className='w-4 h-4 mr-2' />
             <span className='text-sm'>Thêm vào giỏ hàng</span>
           </ButtonOutline>
-          <Button primary className='h-10 rounded-sm lg:h-12'>
-            Mua ngay
-          </Button>
         </div>
       ) : (
         <span className='block mt-4 text-lg text-redff4'>Sản phẩm đã hết hàng</span>

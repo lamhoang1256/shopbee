@@ -21,9 +21,7 @@ const DropdownProvider = ({ children, ...props }: IDropdownProviderProps) => {
   useOnClickOutside(dropdownRef, () => setShow(() => false));
   return (
     <DropdownContext.Provider value={values} {...props}>
-      <div className='relative inline-block w-full dropdown' ref={dropdownRef}>
-        {children}
-      </div>
+      <div ref={dropdownRef}>{children}</div>
     </DropdownContext.Provider>
   );
 };
