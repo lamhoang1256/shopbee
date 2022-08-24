@@ -4,7 +4,7 @@ export const formatMoney = (money: number) => {
   return money?.toLocaleString("vi", { style: "currency", currency: "VND" });
 };
 
-export const formatDateVN = (timestamp: string) => {
+export const formatDateVN = (timestamp: string | number) => {
   return new Date(timestamp).toLocaleDateString();
 };
 

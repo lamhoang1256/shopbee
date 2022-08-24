@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
-import { AddressSchemaYup } from "constants/yup";
+import { shopSchema } from "constants/yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
@@ -18,23 +18,19 @@ const ShopUpdate = () => {
       name: "",
       avatar: "",
       street: "",
-      administrative: "",
       address: "",
-      cityId: "",
-      districtId: "",
-      wardId: "",
+      city: { id: "", name: "" },
+      district: { id: "", name: "" },
+      ward: { id: "", name: "" },
     },
-    validationSchema: AddressSchemaYup,
+    validationSchema: shopSchema,
     onSubmit: async (values: any) => {
-      const payload = {
-        ...values,
-        address: `${values.street}, ${values.administrative}`,
-      };
+      const payload = values;
+      const { street, city, district, ward } = values;
+      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
-        const { success, message } = await shopAPI.updateShopInfo(formik.values._id, payload);
-        if (success) {
-          toast.success(message);
-        }
+        const { message } = await shopAPI.updateShopInfo(formik.values._id, payload);
+        toast.success(message);
       } catch (error: any) {
         toast.error(error?.message);
       }
@@ -44,9 +40,7 @@ const ShopUpdate = () => {
   const fetchShopInfo = async () => {
     try {
       const { data } = await shopAPI.getShopInfo();
-      formik.resetForm({
-        values: data,
-      });
+      formik.resetForm({ values: data });
     } catch (error) {
       console.log("Failed to fetch address: ", error);
     }
@@ -55,13 +49,11 @@ const ShopUpdate = () => {
   const handleChangeAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
-      const { success, message, data } = await shopAPI.updateShopInfo(formik.values._id, {
+      const { message, data } = await shopAPI.updateShopInfo(formik.values._id, {
         avatar,
       });
-      if (success) {
-        formik.setFieldValue("avatar", data?.avatar);
-        toast.success(message);
-      }
+      formik.setFieldValue("avatar", data?.avatar);
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }

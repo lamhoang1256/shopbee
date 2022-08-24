@@ -21,16 +21,19 @@ const UserAddNew = () => {
       confirm_password: "",
       avatar: "",
       street: "",
-      cityId: "",
-      districtId: "",
-      wardId: "",
+      city: { id: "", name: "" },
+      district: { id: "", name: "" },
+      ward: { id: "", name: "" },
       address: "",
       isAdmin: false,
     },
     validationSchema: SignUpYup,
     onSubmit: async (values) => {
+      const payload = values;
+      const { street, city, district, ward } = values;
+      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
-        const { success, message } = await userAPI.addNewUser(values);
+        const { success, message } = await userAPI.addNewUser(payload);
         if (success) toast.success(message);
       } catch (error: any) {
         toast.error(error?.message);

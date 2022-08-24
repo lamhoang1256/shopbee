@@ -33,11 +33,21 @@ export const userSchema = Yup.object({
   }),
 });
 
-export const AddressSchemaYup = Yup.object({
+export const shopSchema = Yup.object({
+  name: Yup.string().required("Vui lòng nhập tên shop!"),
   street: Yup.string().required("Vui lòng nhập địa chỉ lấy hàng!"),
-  cityId: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
-  districtId: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
-  wardId: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+  city: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+    name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+  }),
+  district: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+    name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+  }),
+  ward: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+    name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+  }),
 });
 
 export const UserPasswordSchemaYup = Yup.object({

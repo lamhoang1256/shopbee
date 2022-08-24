@@ -22,14 +22,17 @@ const UserUpdate = () => {
       email: "",
       avatar: "",
       street: "",
-      cityId: "",
-      districtId: "",
-      wardId: "",
+      city: { id: "", name: "" },
+      district: { id: "", name: "" },
+      ward: { id: "", name: "" },
       address: "",
       isAdmin: false,
     },
     validationSchema: userSchema,
     onSubmit: async (values) => {
+      const payload = values;
+      const { street, city, district, ward } = values;
+      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
         const { success, message } = await userAPI.updateUser(values);
         if (success) toast.success(message);
