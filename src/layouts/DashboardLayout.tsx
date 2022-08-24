@@ -8,9 +8,11 @@ import {
   IconAddUser,
   IconAddVoucher,
   IconCash,
+  IconCategoryManage,
   IconCube,
   IconIdentification,
   IconPicture,
+  IconTag,
   IconTemplate,
   IconUserGroup,
   IconVoucher,
@@ -26,6 +28,16 @@ const sidebarLinks = [
     icon: <IconPicture />,
     display: "Tất cả banner",
     path: path.banner,
+  },
+  {
+    icon: <IconCategoryManage />,
+    display: "Tất cả danh mục",
+    path: path.categoryManage,
+  },
+  {
+    icon: <IconTag />,
+    display: "Thêm danh mục mới",
+    path: path.categoryAddNew,
   },
   {
     icon: <IconCash />,

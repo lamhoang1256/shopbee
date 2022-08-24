@@ -30,11 +30,15 @@ import IconIdentification from "./IconIdentification";
 import IconUserGroup from "./IconUserGroup";
 import IconTemplate from "./IconTemplate";
 import IconVoucher from "./IconVoucher";
+import IconCategoryManage from "./IconCategoryManage";
+import IconTag from "./IconTag";
 
 export {
   IconTemplate,
   IconVoucher,
+  IconTag,
   IconAddUser,
+  IconCategoryManage,
   IconHeart,
   IconAddVoucher,
   IconCash,

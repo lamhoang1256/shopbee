@@ -1,4 +1,7 @@
 import { path } from "constants/path";
+import CategoryAddNew from "modules/category/CategoryAddNew";
+import CategoryManage from "modules/category/CategoryManage";
+import CategoryUpdate from "modules/category/CategoryUpdate";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -78,6 +81,9 @@ const AppRoutes = () => {
                 <Route index element={<DashboardPage />} />
                 <Route path={path.orderManage} element={<OrderManage />} />
                 <Route path={`${path.orderManage}/:id`} element={<OrderUpdate />} />
+                <Route path={path.categoryManage} element={<CategoryManage />} />
+                <Route path={path.categoryAddNew} element={<CategoryAddNew />} />
+                <Route path={`${path.categoryUpdate}/:id`} element={<CategoryUpdate />} />
                 <Route path={path.productManage} element={<ProductManage />} />
                 <Route path={path.productAddNew} element={<ProductAddNew />} />
                 <Route path={`${path.productUpdate}/:id`} element={<ProductUpdate />} />
