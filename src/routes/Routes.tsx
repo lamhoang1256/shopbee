@@ -5,10 +5,10 @@ import CategoryUpdate from "modules/category/CategoryUpdate";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const AuthLayout = lazy(() => import("layouts/AuthLayout"));
-const MainLayout = lazy(() => import("layouts/MainLayout"));
-const UserLayout = lazy(() => import("layouts/UserLayout"));
-const DashboardLayout = lazy(() => import("layouts/DashboardLayout"));
+const LayoutAuth = lazy(() => import("layouts/LayoutAuth"));
+const LayoutHome = lazy(() => import("layouts/LayoutHome"));
+const LayoutUser = lazy(() => import("layouts/LayoutUser"));
+const LayoutDashboard = lazy(() => import("layouts/LayoutDashboard"));
 const CheckLoggedIn = lazy(() => import("routes/CheckLoggedIn"));
 const ProtectedRoute = lazy(() => import("routes/ProtectedRoute"));
 const CheckAdmin = lazy(() => import("routes/CheckAdmin"));
@@ -47,7 +47,7 @@ const AppRoutes = () => {
     <Suspense fallback={null}>
       <Router>
         <Routes>
-          <Route path='/' element={<MainLayout />}>
+          <Route path='/' element={<LayoutHome />}>
             <Route index element={<HomePage />} />
             <Route path={path.cart} element={<CartPage />} />
             <Route path={`${path.product}/:id`} element={<ProductDetailsPage />} />
@@ -55,17 +55,17 @@ const AppRoutes = () => {
           </Route>
 
           <Route element={<CheckLoggedIn />}>
-            <Route path='/' element={<AuthLayout title='Đăng ký' />}>
+            <Route path='/' element={<LayoutAuth title='Đăng ký' />}>
               <Route path={path.signUp} element={<SignUpPage />} />
             </Route>
-            <Route path='/' element={<AuthLayout title='Đăng nhập' />}>
+            <Route path='/' element={<LayoutAuth title='Đăng nhập' />}>
               <Route path={path.signIn} element={<SignInPage />} />
             </Route>
           </Route>
 
           <Route element={<ProtectedRoute />}>
             {/* User Routes */}
-            <Route element={<UserLayout />}>
+            <Route element={<LayoutUser />}>
               <Route path={path.order} element={<OrderPage />} />
               <Route path={`${path.order}/:id`} element={<OrderDetailsPage />} />
               <Route path={path.profile} element={<ProfilePage />} />
@@ -77,7 +77,7 @@ const AppRoutes = () => {
             <Route path={path.payment} element={<CheckoutPage />} />
             {/* Admin Routes */}
             <Route element={<CheckAdmin />}>
-              <Route path='/dashboard' element={<DashboardLayout />}>
+              <Route path='/dashboard' element={<LayoutDashboard />}>
                 <Route index element={<DashboardPage />} />
                 <Route path={path.orderManage} element={<OrderManage />} />
                 <Route path={`${path.orderManage}/:id`} element={<OrderUpdate />} />

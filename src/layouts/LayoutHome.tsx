@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const MainLayout = () => {
+const LayoutHome = () => {
   return (
     <div className='flex flex-col justify-between min-h-screen'>
       <Header />
@@ -14,4 +14,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout;
+export default LayoutHome;

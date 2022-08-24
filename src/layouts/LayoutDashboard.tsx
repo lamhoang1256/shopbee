@@ -1,3 +1,8 @@
+import { NavLink, Outlet } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { Sidebar } from "layouts";
+import { path } from "constants/path";
+import { DashboardHeader } from "modules/dashboard";
 import {
   IconAddProduct,
   IconAddUser,
@@ -12,9 +17,6 @@ import {
   IconUserGroup,
   IconVoucher,
 } from "components/icons";
-import { path } from "constants/path";
-import { NavLink } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 const sidebarLinks = [
   {
@@ -81,23 +83,33 @@ const sidebarLinks = [
 
 const stylesLink = "flex gap-x-2 items-center p-3";
 const stylesLinkActive = "flex gap-x-2 items-center p-3 bg-orangeee4 text-white rounded-lg";
-const DashboardSidebar = () => {
+const LayoutDashboard = () => {
   return (
-    <ul>
-      {sidebarLinks.map((link) => (
-        <li key={uuidv4()}>
-          <NavLink
-            end
-            to={link.path}
-            className={({ isActive }) => (isActive ? stylesLinkActive : stylesLink)}
-          >
-            {link.icon}
-            {link.display}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+    <>
+      <DashboardHeader />
+      <main className='flex flex-col gap-6 lg:flex-row'>
+        <Sidebar className='lg:w-[280px] lg:p-4 lg:bg-white shadow1'>
+          <ul>
+            {sidebarLinks.map((link) => (
+              <li key={uuidv4()}>
+                <NavLink
+                  end
+                  to={link.path}
+                  className={({ isActive }) => (isActive ? stylesLinkActive : stylesLink)}
+                >
+                  {link.icon}
+                  {link.display}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </Sidebar>
+        <div className='flex-1 mt-6 px-[15px] mb-10 max-w-[1140px]'>
+          <Outlet />
+        </div>
+      </main>
+    </>
   );
 };
 
-export default DashboardSidebar;
+export default LayoutDashboard;

@@ -1,11 +1,11 @@
 import { Logo } from "components/logo";
 import { Outlet } from "react-router-dom";
 
-interface AuthLayoutProps {
+interface LayoutAuthProps {
   title: string;
 }
 
-const AuthLayout = ({ title }: AuthLayoutProps) => {
+const LayoutAuth = ({ title }: LayoutAuthProps) => {
   return (
     <div className='flex flex-col justify-between'>
       <header className='bg-white'>
@@ -43,4 +43,4 @@ const AuthLayout = ({ title }: AuthLayoutProps) => {
   );
 };
 
-export default AuthLayout;
+export default LayoutAuth;

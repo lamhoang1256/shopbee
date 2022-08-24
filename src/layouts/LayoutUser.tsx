@@ -3,7 +3,7 @@ import { UserSidebar } from "modules/user";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const UserLayout = () => {
+const LayoutUser = () => {
   return (
     <div className='flex flex-col justify-between min-h-screen'>
       <Header />
@@ -22,4 +22,4 @@ const UserLayout = () => {
   );
 };
 
-export default UserLayout;
+export default LayoutUser;
