@@ -40,7 +40,7 @@ const SignInPage = () => {
   });
   return (
     <div className='layout-container'>
-      <div className='px-4 py-8 lg:p-10 ml-auto max-w-[500px] lg:mr-8 bg-white w-full rounded'>
+      <div className='px-4 py-8 lg:p-10 max-w-[500px] mx-auto bg-white w-full rounded'>
         <h1 className='text-[22px]'>Đăng nhập</h1>
         <form onSubmit={formik.handleSubmit}>
           <FormGroup className='mt-4'>
@@ -56,7 +56,7 @@ const SignInPage = () => {
           <FormGroup className='mt-4'>
             <Label htmlFor='password'>Mật khẩu</Label>
             <InputPassword
-              placeholder='Password'
+              placeholder='Mật khẩu'
               name='password'
               onChange={formik.handleChange}
               value={formik.values.password}

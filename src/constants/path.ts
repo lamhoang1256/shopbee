@@ -4,6 +4,7 @@ export const path = {
   cart: "/cart",
   signUp: "/sign-up",
   signIn: "/sign-in",
+  forgot: "/forgot",
   purchase: "user/purchase",
   wishlist: "user/wishlist",
   pageNotFound: "*",

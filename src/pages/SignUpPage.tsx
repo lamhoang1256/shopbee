@@ -36,7 +36,7 @@ const SignUpPage = () => {
 
   return (
     <div className='layout-container'>
-      <div className='px-4 py-8 lg:p-10 ml-auto max-w-[500px] lg:mr-8 bg-white w-full rounded'>
+      <div className='px-4 py-8 lg:p-10 mx-auto max-w-[500px] bg-white w-full rounded'>
         <h1 className='text-[22px]'>Đăng ký</h1>
         <form onSubmit={formik.handleSubmit}>
           <FormGroup className='mt-4'>
