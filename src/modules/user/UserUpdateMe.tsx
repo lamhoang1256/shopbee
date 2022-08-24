@@ -1,13 +1,12 @@
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import { useFormik } from "formik";
 import { userAPI } from "apis";
-import { useStore } from "store/configStore";
-import { ProfileSchemaYup } from "constants/yup";
-import { Input } from "components/input";
 import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
+import { Input } from "components/input";
+import { useFormik } from "formik";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { useStore } from "store/configStore";
 
 const UserUpdateMe = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
@@ -17,11 +16,11 @@ const UserUpdateMe = () => {
       phone: "",
       street: "",
       address: "",
-      cityId: "",
-      districtId: "",
-      wardId: "",
+      city: { id: "", name: "" },
+      district: { id: "", name: "" },
+      ward: { id: "", name: "" },
     },
-    validationSchema: ProfileSchemaYup,
+    // validationSchema: ProfileSchemaYup,
     onSubmit: async (values: any) => {
       try {
         const { data, success, message } = await userAPI.updateMe(values);
@@ -50,7 +49,7 @@ const UserUpdateMe = () => {
   }, []);
 
   return (
-    <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
+    <form className='w-full max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
       <FormGroup>
         <Label htmlFor='email'>Email</Label>
         <span>{currentUser?.email}</span>

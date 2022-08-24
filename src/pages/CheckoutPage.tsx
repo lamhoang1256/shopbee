@@ -72,8 +72,8 @@ const CheckoutPage = () => {
   }, []);
 
   useEffect(() => {
-    setShippingFee(calcShippingFee(shopInfo.cityId, currentUser.cityId));
-  }, [shopInfo?.cityId, currentUser?.cityId]);
+    setShippingFee(calcShippingFee(shopInfo.city.id, currentUser.city.id));
+  }, [shopInfo?.city.id, currentUser?.city.id]);
 
   useEffect(() => {
     const totalPrice = price + shippingFee - (appliedVoucher.value || 0);

@@ -1,4 +1,4 @@
-import { Option, Select } from "components/select";
+import { Dropdown } from "components/dropdown";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 import { useEffect, useState } from "react";
 import { useStore } from "store/configStore";
@@ -11,27 +11,29 @@ interface ProductShippingProps {
 const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
   const { citys } = useFetchAdministrative();
   const { currentUser } = useStore((state) => state);
-  const [cityId, setCityId] = useState(currentUser.cityId);
+  const [selectedCity, setSelectedCity] = useState({
+    cityId: currentUser.city.id,
+    cityName: currentUser.city.name,
+  });
   const [shippingFee, setShippingFee] = useState(0);
   useEffect(() => {
-    if (shopCityId) setShippingFee(calcShippingFee(shopCityId, cityId));
-  }, [shopCityId, cityId]);
+    if (shopCityId) setShippingFee(calcShippingFee(shopCityId, selectedCity.cityId));
+  }, [shopCityId, selectedCity]);
   return (
     <div className='mt-3'>
       <div className='my-1'>
         <span>Vận chuyển tới:</span>
-        <Select
-          value={cityId}
-          className='px-1 ml-1 h-7'
-          onChange={(e) => setCityId(e.target.value)}
-        >
-          <Option value='01'>Chọn Tỉnh/Thành Phố</Option>
-          {citys?.map((city) => (
-            <Option value={city.cityId} key={city.cityId}>
-              {city.name}
-            </Option>
-          ))}
-        </Select>
+        <Dropdown>
+          <Dropdown.Select placeholder={selectedCity?.cityName || "Vận chuyển tới"} />
+          <Dropdown.List>
+            {citys.length > 0 &&
+              citys.map((city: any) => (
+                <Dropdown.Option key={city.id} onClick={() => setSelectedCity(city)}>
+                  {city.name}
+                </Dropdown.Option>
+              ))}
+          </Dropdown.List>
+        </Dropdown>
       </div>
       <span>Phí vận chuyển: {formatMoney(shippingFee)}</span>
     </div>

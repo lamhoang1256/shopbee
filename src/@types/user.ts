@@ -4,9 +4,9 @@ export interface ICurrentUser {
   refreshToken: string;
   street: string;
   address: string;
-  cityId: string;
-  districtId: string;
-  wardId: string;
+  city: { id: string; name: string };
+  district: { id: string; name: string };
+  ward: { id: string; name: string };
   fullname: string;
   email: string;
   avatar: string;

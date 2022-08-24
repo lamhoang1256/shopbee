@@ -6,7 +6,6 @@ export default function useFetchAdministrative(cityId?: string, districtId?: str
   const [citys, setCitys] = useState<ICity[]>([]);
   const [districts, setDistricts] = useState<IDistrict[]>([]);
   const [wards, setWards] = useState<IWard[]>([]);
-
   const fetchAllCity = () => {
     addressAPI.getAllCity().then((res) => setCitys(res.data));
   };

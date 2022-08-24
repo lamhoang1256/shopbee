@@ -1,9 +1,9 @@
 export interface IShop {
   name: string;
   avatar: string;
-  cityId: string;
-  districtId: string;
-  wardId: string;
+  city: { id: string; name: string };
+  district: { id: string; name: string };
+  ward: { id: string; name: string };
   street: string;
   administrative: string;
   address: string;

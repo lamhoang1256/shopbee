@@ -93,7 +93,7 @@ const ProductDetailsPage = () => {
               -{percentSale}%
             </span>
           </SectionGray>
-          <ProductShipping shopCityId={shopInfo.cityId} />
+          <ProductShipping shopCityId={shopInfo.city.id} />
           <ProductAction product={product} />
         </div>
       </div>
