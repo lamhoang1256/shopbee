@@ -17,8 +17,9 @@ const Review = ({ reviews }: ReviewProps) => {
   const handleChangePage = (pageNumber: number) => setCurrentPage(pageNumber);
   return (
     <div>
-      {currentReviews.length === 0 && <ReviewEmpty />}
-      {currentReviews.length > 0 &&
+      {currentReviews.length === 0 ? (
+        <ReviewEmpty />
+      ) : (
         currentReviews.map((review) => (
           <ReviewItem
             key={review._id}
@@ -29,7 +30,8 @@ const Review = ({ reviews }: ReviewProps) => {
           >
             {review.comment}
           </ReviewItem>
-        ))}
+        ))
+      )}
       {currentReviews.length > 0 && (
         <PaginationV2
           className='mt-6 mb-2'

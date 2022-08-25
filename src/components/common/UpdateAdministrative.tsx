@@ -44,7 +44,7 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
         <Dropdown>
           <Dropdown.Select placeholder={district.name || "Chọn Quận/Huyện"} />
           <Dropdown.List>
-            {districts.length > 0 &&
+            {districts.length > 0 ? (
               districts.map((district: IDistrict) => (
                 <Dropdown.Option
                   key={district.districtId}
@@ -52,7 +52,12 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
                 >
                   {district.name}
                 </Dropdown.Option>
-              ))}
+              ))
+            ) : (
+              <span className='inline-block p-2 text-sm line-clamp-1'>
+                Chưa chọn Tỉnh/Thành Phố
+              </span>
+            )}
           </Dropdown.List>
         </Dropdown>
         <MessageError>{formik.touched.district && formik.errors?.district}</MessageError>
@@ -61,12 +66,15 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
         <Dropdown>
           <Dropdown.Select placeholder={ward.name || "Chọn Phường/Xã"} />
           <Dropdown.List>
-            {wards.length > 0 &&
+            {wards.length > 0 ? (
               wards.map((ward: IWard) => (
                 <Dropdown.Option key={ward.wardId} onClick={() => handleChangeWard(ward)}>
                   {ward.name}
                 </Dropdown.Option>
-              ))}
+              ))
+            ) : (
+              <span className='inline-block p-2 text-sm line-clamp-1'>Chưa chọn Quận/Huyện</span>
+            )}
           </Dropdown.List>
         </Dropdown>
         <MessageError>{formik.touched.ward && formik.errors?.ward}</MessageError>

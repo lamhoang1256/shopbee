@@ -10,10 +10,14 @@ import ProductImageSlider from "./ProductImageSlider";
 import ProductGrid from "./ProductGrid";
 import ProductShipping from "./ProductShipping";
 import ProductAction from "./ProductAction";
+import ProductAddToCart from "./ProductAddToCart";
+import ProductRelated from "./ProductRelated";
 
 export {
   ProductCard,
+  ProductRelated,
   ProductImageSlider,
+  ProductAddToCart,
   ProductAction,
   ProductGrid,
   ProductShipping,

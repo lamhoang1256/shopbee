@@ -12,7 +12,11 @@ const HeaderCart = () => {
   const { carts } = useStore((state) => state);
   const { activePopover, hidePopover, showPopover } = usePopover();
   return (
-    <div className='relative p-5 max5se:p-0' onMouseEnter={showPopover} onMouseLeave={hidePopover}>
+    <div
+      className='relative flex-shrink-0 p-5 max5se:p-0'
+      onMouseEnter={showPopover}
+      onMouseLeave={hidePopover}
+    >
       <Link to={path.cart}>
         <IconCartOutline className='text-white' />
         <span className='absolute flex items-center justify-center w-6 h-[18px] text-xs font-medium bg-white rounded-full max5se:-top-3 max5se:-right-3 top-2 right-2 text-orangeee4'>

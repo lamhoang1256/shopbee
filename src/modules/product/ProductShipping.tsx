@@ -14,8 +14,8 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
   const { citys } = useFetchAdministrative();
   const { currentUser } = useStore((state) => state);
   const [selectedCity, setSelectedCity] = useState({
-    id: currentUser.city.id,
-    name: currentUser.city.name,
+    id: currentUser?.city?.id || "46",
+    name: currentUser?.city?.name || "TP. Hồ Chí Minh",
   });
   const [shippingFee, setShippingFee] = useState(0);
   useEffect(() => {
@@ -32,14 +32,16 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
           />
           <span>Miễn phí vận chuyển</span>
         </div>
-        <p className='pl-8 mt-1 text-[#0000008a]'>Miễn phí vận chuyển cho đơn hàng trên ₫50.000</p>
+        <span className='pl-8 mt-1 text-[#0000008a]'>
+          Miễn phí vận chuyển cho đơn hàng trên ₫50.000
+        </span>
       </div>
-      <div className='flex items-center'>
+      <div className='flex flex-wrap items-center'>
         <div className='flex items-center gap-x-1'>
           <IconShipping className='w-6 h-5' />
           <span>Vận chuyển tới:</span>
         </div>
-        <Dropdown className='w-[205px] dropdown-outline'>
+        <Dropdown className='maxsm:ml-[14px] maxsm:-mb-1 maxsm:-mt-2 w-[205px] dropdown-outline'>
           <Dropdown.Select placeholder={selectedCity?.name || "Vận chuyển tới"} />
           <Dropdown.List>
             {citys.length > 0 &&
@@ -54,9 +56,9 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
           </Dropdown.List>
         </Dropdown>
       </div>
-      <p className='pl-8 -mt-1'>
+      <p className='-mt-1 pl-7'>
         Phí vận chuyển:
-        <span className='pl-[10px]'>{formatMoney(shippingFee)}</span>
+        <span className='pl-[14px]'>{formatMoney(shippingFee)}</span>
       </p>
     </div>
   );

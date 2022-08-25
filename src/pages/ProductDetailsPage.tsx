@@ -1,20 +1,21 @@
 import { IProduct, IShop } from "@types";
-import { productAPI, shopAPI } from "apis";
+import { shopAPI } from "apis";
 import { SaveWishlist, SectionGray, SectionWhite } from "components/common";
 import { Loading } from "components/loading";
+import { PriceOld, PriceSale } from "components/price";
+import { QuantityController } from "components/quantityController";
 import { Rating } from "components/rating";
 import { Review } from "components/review";
 import useFetchProduct from "hooks/useFetchProduct";
 import {
-  ProductAction,
+  ProductAddToCart,
   ProductDesc,
-  ProductGrid,
   ProductImageSlider,
   ProductNotFound,
+  ProductRelated,
   ProductShipping,
   ProductTitle,
 } from "modules/product";
-import { PriceSale, PriceOld } from "components/price";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -24,28 +25,23 @@ const ProductDetailsPage = () => {
   const { id = "" } = useParams();
   const { loading, product } = useFetchProduct(id);
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
-  const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
   const percentSale = Math.ceil(100 - (product.price / product.oldPrice) * 100);
+  const [quantityAdd, setQuantityAdd] = useState(0);
 
+  const handleChangeQuantity = (quantity: number) => setQuantityAdd(() => quantity);
   const handleAddToHistory = (prod: IProduct) => {
     const history = JSON.parse(localStorage.getItem("history") || "[]");
     if (history.length >= 20) history.splice(19, 1);
     const index = history.findIndex((item: IProduct) => item._id === id);
-    if (index === -1) history.unshift(prod);
-    if (index !== -1) {
+    if (index === -1) {
+      history.unshift(prod);
+    } else {
       history.splice(index, 1);
       history.unshift(prod);
     }
     localStorage.setItem("history", JSON.stringify(history));
   };
-  const fetchRelatedProduct = async (params: { category: string }) => {
-    try {
-      const { data } = await productAPI.getAllProduct(params);
-      setRelatedProduct(data.products);
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
+
   const fetchShopInfo = async () => {
     try {
       const { data } = await shopAPI.getShopInfo();
@@ -57,7 +53,6 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     if (!product?.name) return;
     fetchShopInfo();
-    fetchRelatedProduct({ category: product.category });
     handleAddToHistory(product);
   }, [product, id]);
 
@@ -68,20 +63,18 @@ const ProductDetailsPage = () => {
   return (
     <div className='layout-container'>
       <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
-        <div className='flex-shrink-0 lg:w-[400px]'>
-          <ProductImageSlider images={product.images} />
-        </div>
+        <ProductImageSlider images={product.images} />
         <div className='flex-1'>
           <ProductTitle className='text-[#242424] text-base lg:text-2xl'>
             {product.name}
           </ProductTitle>
-          <div className='flex flex-wrap items-center my-4 gap-x-4'>
+          <div className='flex flex-wrap items-center my-4 gap-x-4 gap-y-2'>
             <span className='font-medium'>{product.rating}</span>
             <span className='pr-4 border-r'>
               <Rating rating={product.rating} />
             </span>
             <div className='pr-4 border-r border-[#00000024]'>
-              {product.sold}
+              <span>{product.sold}</span>
               <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>
             </div>
             <SaveWishlist />
@@ -94,7 +87,12 @@ const ProductDetailsPage = () => {
             </span>
           </SectionGray>
           <ProductShipping shopCityId={shopInfo?.city?.id} />
-          <ProductAction product={product} />
+          <div className='flex flex-col gap-y-2 md:items-center md:flex-row gap-x-4'>
+            <span>Số lượng</span>
+            <QuantityController onChangeValue={handleChangeQuantity} />
+            <span>{product.stock} sản phẩm có sẵn</span>
+          </div>
+          <ProductAddToCart stock={product.stock} quantityAdd={quantityAdd} />
         </div>
       </div>
       <SectionWhite className='mt-4'>
@@ -108,9 +106,7 @@ const ProductDetailsPage = () => {
         <SectionGray>ĐÁNH GIÁ SẢN PHẨM</SectionGray>
         <Review reviews={product.reviews} />
       </SectionWhite>
-      {relatedProduct?.length > 0 && (
-        <ProductGrid title='SẢN PHẨM TƯƠNG TỰ' products={relatedProduct} />
-      )}
+      <ProductRelated categoryId={product.category} />
     </div>
   );
 };

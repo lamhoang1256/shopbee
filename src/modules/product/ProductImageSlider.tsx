@@ -9,7 +9,7 @@ const ProductImageSlider = ({ images }: ProductImageSliderProps) => {
   const [indexActive, setIndexActive] = useState(0);
   const handleChooseActive = (index: number) => setIndexActive(index);
   return (
-    <>
+    <div className='flex-shrink-0 lg:w-[400px]'>
       <img src={images[indexActive]} alt='product-active' />
       <div className='relative flex my-1 -mx-1 overflow-hidden'>
         {images.map((image, index) => (
@@ -25,7 +25,7 @@ const ProductImageSlider = ({ images }: ProductImageSliderProps) => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

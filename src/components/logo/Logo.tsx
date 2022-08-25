@@ -10,10 +10,8 @@ interface LogoProps {
 
 const Logo = ({ to = path.home, className, children, primary }: LogoProps) => {
   return (
-    <Link to={to}>
-      <h1
-        className={`text-2xl font-medium ${primary ? "text-orangeee4" : "text-white"} ${className}`}
-      >
+    <Link to={to} className={className}>
+      <h1 className={`text-2xl font-medium ${primary ? "text-orangeee4" : "text-white"} $`}>
         {children}
       </h1>
     </Link>

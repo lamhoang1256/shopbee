@@ -14,7 +14,7 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSearchWithKeyword}
-      className='flex items-center justify-between max-w-[860px] sm:flex-1 px-2 lg:px-3 bg-white rounded'
+      className='flex items-center justify-between max-w-[860px] flex-1 max5se:flex-grow-0 px-2 lg:px-3 bg-white rounded'
     >
       <input
         type='text'
