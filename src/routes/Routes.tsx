@@ -38,7 +38,6 @@ const PageNotFound = lazy(() => import("pages/PageNotFound"));
 const SearchPage = lazy(() => import("pages/SearchPage"));
 const SignInPage = lazy(() => import("pages/SignInPage"));
 const SignUpPage = lazy(() => import("pages/SignUpPage"));
-const UserForgotPassword = lazy(() => import("modules/user/UserForgotPassword"));
 const CategoryAddNew = lazy(() => import("modules/category/CategoryAddNew"));
 const CategoryManage = lazy(() => import("modules/category/CategoryManage"));
 const CategoryUpdate = lazy(() => import("modules/category/CategoryUpdate"));
@@ -61,9 +60,6 @@ const AppRoutes = () => {
             </Route>
             <Route path='/' element={<LayoutAuth title='Đăng nhập' />}>
               <Route path={path.signIn} element={<SignInPage />} />
-            </Route>
-            <Route path='/' element={<LayoutAuth title='Đặt lại mật khẩu' />}>
-              <Route path={path.forgot} element={<UserForgotPassword />} />
             </Route>
           </Route>
 
