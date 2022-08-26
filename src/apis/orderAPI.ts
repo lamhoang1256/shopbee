@@ -7,7 +7,7 @@ export const orderAPI = {
     return axiosClient.get(path, { params });
   },
   getAllOrderByAdmin: (params: any): Promise<IResponse> => {
-    const path = `api/order/admin`;
+    const path = `api/order`;
     return axiosClient.get(path, { params });
   },
   getSingleOrder: (orderId: string): Promise<IResponse> => {

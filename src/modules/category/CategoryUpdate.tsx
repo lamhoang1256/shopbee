@@ -17,7 +17,7 @@ const CategoryUpdate = () => {
     initialValues: {
       name: "",
       slug: "",
-      thumb: "",
+      image: "",
     },
     validationSchema: CategorySchema,
     onSubmit: async (values: any) => {
@@ -32,8 +32,8 @@ const CategoryUpdate = () => {
 
   const handleUploadThumb = async (e: any) => {
     try {
-      const thumb = await uploadImage(e);
-      formik.setFieldValue("thumb", thumb);
+      const image = await uploadImage(e);
+      formik.setFieldValue("image", image);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -73,7 +73,7 @@ const CategoryUpdate = () => {
             Lưu
           </Button>
         </div>
-        <UserChangeAvatar avatar={formik.values.thumb} handleChangeAvatar={handleUploadThumb} />
+        <UserChangeAvatar avatar={formik.values.image} handleChangeAvatar={handleUploadThumb} />
       </form>
     </Template>
   );

@@ -42,7 +42,7 @@ const CategoryManage = () => {
                   </td>
                   <td>
                     <img
-                      src={category.thumb}
+                      src={category.image}
                       alt={category.slug}
                       className='border rounded w-14 h-14 border-slate-200'
                     />

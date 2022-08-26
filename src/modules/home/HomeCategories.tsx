@@ -22,13 +22,13 @@ const HomeCategories = () => {
                 </div>
               ))}
           {!loading &&
-            categories?.map(({ _id, thumb, name }) => (
+            categories?.map(({ _id, image, name }) => (
               <Link
                 key={_id}
                 to={`${path.search}?category=${_id}`}
                 className='flex flex-col items-center p-1 transition-all duration-300 bg-white hover:text-orangeee4 hover:opacity-80'
               >
-                <img src={thumb} className='w-[88px] h-[88px]' alt='category' />
+                <img src={image} className='w-[88px] h-[88px]' alt='category' />
                 <span className='text-center'>{name}</span>
               </Link>
             ))}

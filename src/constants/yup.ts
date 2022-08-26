@@ -76,5 +76,5 @@ export const ProductSchemaYup = Yup.object({
 export const CategorySchema = Yup.object({
   name: Yup.string().required("Vui lòng nhập tên danh mục!"),
   slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
-  thumb: Yup.string().required("Vui lòng chọn hình ảnh!"),
+  image: Yup.string().required("Vui lòng chọn hình ảnh!"),
 });
