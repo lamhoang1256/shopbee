@@ -6,8 +6,8 @@ export const shopAPI = {
     const path = `api/shop`;
     return axiosClient.get(path);
   },
-  updateShopInfo: (id: string, payload: Partial<IShop>): Promise<IResponse> => {
-    const path = `api/shop/${id}`;
+  updateShopInfo: (payload: Partial<IShop>): Promise<IResponse> => {
+    const path = `api/shop`;
     return axiosClient.put(path, payload);
   },
 };

@@ -29,7 +29,7 @@ const ShopUpdate = () => {
       const { street, city, district, ward } = values;
       payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
-        const { message } = await shopAPI.updateShopInfo(formik.values._id, payload);
+        const { message } = await shopAPI.updateShopInfo(payload);
         toast.success(message);
       } catch (error: any) {
         toast.error(error?.message);
@@ -49,9 +49,7 @@ const ShopUpdate = () => {
   const handleChangeAvatar = async (e: any) => {
     try {
       const avatar = await uploadImage(e);
-      const { message, data } = await shopAPI.updateShopInfo(formik.values._id, {
-        avatar,
-      });
+      const { message, data } = await shopAPI.updateShopInfo({ avatar });
       formik.setFieldValue("avatar", data?.avatar);
       toast.success(message);
     } catch (error: any) {

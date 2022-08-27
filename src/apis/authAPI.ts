@@ -11,7 +11,7 @@ export const authAPI = {
     return axiosClient.post(path, user);
   },
   logout: (refreshToken: IRefreshToken): Promise<IResponse> => {
-    const path = `api/auth/logout`;
-    return axiosClient.post(path, refreshToken);
+    const path = `api/auth/logout?refreshToken=${refreshToken}`;
+    return axiosClient.post(path);
   },
 };
