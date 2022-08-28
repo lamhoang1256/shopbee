@@ -4,7 +4,8 @@ export interface IVoucher {
   title: string;
   expirationDate: number;
   updatedAt: string;
-  userUsed: string[];
+  usersUsed: string[];
+  usersSave: string[];
   value: number;
   _id: string;
 }

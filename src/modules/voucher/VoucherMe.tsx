@@ -29,14 +29,12 @@ const VoucherMe = () => {
   const fetchMyVoucher = async () => {
     setLoading(true);
     try {
-      const { data, success } = await voucherAPI.getMyVoucher({ status });
-      if (success) {
-        setVouchers(data);
-      }
-      setLoading(false);
+      const { data } = await voucherAPI.getMyVoucher({ status });
+      setVouchers(data);
     } catch (error: any) {
-      setLoading(false);
       console.log("error: ", error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {

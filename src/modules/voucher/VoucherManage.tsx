@@ -31,9 +31,7 @@ const VoucherManage = () => {
   const params = Object.fromEntries(searchParams);
   const [vouchers, setVouchers] = useState<IVoucher[]>(Object);
   const formik = useFormik({
-    initialValues: {
-      code: "",
-    },
+    initialValues: { code: "" },
     onSubmit: (values) => {
       setSearchParams({ ...params, ...values });
     },
@@ -112,7 +110,7 @@ const VoucherManage = () => {
                       <td>{index + 1}</td>
                       <td>{voucher.code}</td>
                       <td>{formatMoney(voucher.value)}</td>
-                      <td>{voucher.userUsed.length} lượt</td>
+                      <td>{voucher.usersUsed.length} lượt</td>
                       <td>{formatDateVNFull(voucher.createdAt)}</td>
                       <td>{formatDateVNFull(voucher.expirationDate)}</td>
                       <td>
