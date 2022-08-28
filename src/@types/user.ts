@@ -15,7 +15,6 @@ export interface ICurrentUser {
   password?: string;
   createdAt: string;
   updatedAt: string;
-  wishlist: string[];
   __v: number;
 }
 

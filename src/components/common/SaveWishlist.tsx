@@ -1,32 +1,40 @@
-import { userAPI } from "apis";
+import { IProduct } from "@types";
+import { wishlistAPI } from "apis";
 import { IconHeart } from "components/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
 
 const SaveWishlist = () => {
   const { id = "" } = useParams();
-  const { currentUser, setCurrentUser } = useStore((state) => state);
-  const indexProductInWishlist = currentUser.wishlist?.indexOf(id);
-  const [isAddedWishlist, setIsAddedWishlist] = useState(indexProductInWishlist !== -1);
+  const [isSaved, setIsSaved] = useState(false);
+  useEffect(() => {
+    const fetchMyWishlist = async () => {
+      try {
+        const { data } = await wishlistAPI.getMyWishlist();
+        const index = data.findIndex((product: IProduct) => product._id === id);
+        setIsSaved(index !== -1);
+      } catch (error) {
+        console.log(`Failed to fetch wishlist:`, error);
+      }
+    };
+    fetchMyWishlist();
+  }, [id]);
 
   const handleAddToWishlist = async () => {
     try {
-      const { message, data } = await userAPI.addToWishlist({ productId: id });
+      const { message } = await wishlistAPI.addToWishlist({ productId: id });
       toast.success(message);
-      setCurrentUser(data);
-      setIsAddedWishlist(true);
+      setIsSaved(true);
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
   const handleRemoveFromWishlist = async () => {
     try {
-      const { message, data } = await userAPI.removeFromWishlist({ productId: id });
+      const { message } = await wishlistAPI.removeFromWishlist({ productId: id });
       toast.success(message);
-      setCurrentUser(data);
-      setIsAddedWishlist(false);
+      setIsSaved(false);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -34,7 +42,7 @@ const SaveWishlist = () => {
 
   return (
     <div className='flex items-center gap-x-2'>
-      {isAddedWishlist ? (
+      {isSaved ? (
         <button type='button' onClick={handleRemoveFromWishlist}>
           <IconHeart active />
         </button>

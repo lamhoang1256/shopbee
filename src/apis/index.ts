@@ -9,3 +9,4 @@ export * from "./productAPI";
 export * from "./userAPI";
 export * from "./shopAPI";
 export * from "./voucherAPI";
+export * from "./wishlistAPI";

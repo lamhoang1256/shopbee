@@ -1,5 +1,5 @@
 import { IProduct } from "@types";
-import { userAPI } from "apis";
+import { wishlistAPI } from "apis";
 import { ProductGrid } from "modules/product";
 import { useEffect, useState } from "react";
 
@@ -8,8 +8,8 @@ const UserWishList = () => {
   useEffect(() => {
     const fetchMyWishlist = async () => {
       try {
-        const { data } = await userAPI.getMyWishlist();
-        setWishlist(data.wishlist);
+        const { data } = await wishlistAPI.getMyWishlist();
+        setWishlist(data);
       } catch (error) {
         console.log(`Failed to fetch wishlist:`, error);
       }
