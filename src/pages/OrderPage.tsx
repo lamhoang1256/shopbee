@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { orderAPI } from "apis";
 import { IOrder, IPagination } from "@types";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { InputSearch } from "components/input";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
@@ -11,11 +11,11 @@ import { OrderEmpty, OrderItem } from "modules/order";
 import { Pagination } from "components/pagination";
 
 const tabs = [
-  { key: "", display: "Tất cả", to: path.order },
-  { key: "processing", display: "Đã thanh toán", to: `${path.order}?status=processing` },
-  { key: "shipping", display: "Đang giao hàng", to: `${path.order}?status=shipping` },
-  { key: "delivered", display: "Đã giao hàng", to: `${path.order}?status=delivered` },
-  { key: "canceled", display: "Đã hủy", to: `${path.order}?status=canceled` },
+  { key: "", display: "Tất cả", to: PATH.order },
+  { key: "processing", display: "Đã thanh toán", to: `${PATH.order}?status=processing` },
+  { key: "shipping", display: "Đang giao hàng", to: `${PATH.order}?status=shipping` },
+  { key: "delivered", display: "Đã giao hàng", to: `${PATH.order}?status=delivered` },
+  { key: "canceled", display: "Đã hủy", to: `${PATH.order}?status=canceled` },
 ];
 
 const OrderPage = () => {

@@ -2,7 +2,7 @@ import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -11,12 +11,12 @@ import VoucherItem from "./VoucherItem";
 import VoucherSave from "./VoucherSave";
 
 const tabs = [
-  { key: "", display: "Tất cả", to: path.voucher },
-  { key: "used", display: "Đã sử dụng", to: `${path.voucher}?status=used` },
+  { key: "", display: "Tất cả", to: PATH.voucher },
+  { key: "used", display: "Đã sử dụng", to: `${PATH.voucher}?status=used` },
   {
     key: "expiration",
     display: "Hết hiệu lực",
-    to: `${path.voucher}?status=expiration`,
+    to: `${PATH.voucher}?status=expiration`,
   },
 ];
 

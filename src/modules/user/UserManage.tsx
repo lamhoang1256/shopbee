@@ -4,7 +4,7 @@ import { Button } from "components/button";
 import { Input } from "components/input";
 import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
@@ -118,7 +118,7 @@ const UserManage = () => {
                     <td>{user.isAdmin ? "Admin" : "User"}</td>
                     <td>
                       <div className='flex gap-x-1'>
-                        <Button to={`${path.userUpdate}/${user._id}`}>Sửa</Button>
+                        <Button to={`${PATH.userUpdate}/${user._id}`}>Sửa</Button>
                         <Button onClick={() => handleDeleteUser(user._id)}>Xóa</Button>
                       </div>
                     </td>

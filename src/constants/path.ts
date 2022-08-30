@@ -1,4 +1,4 @@
-export const path = {
+export const PATH = {
   home: "/",
   product: "/product",
   cart: "/cart",

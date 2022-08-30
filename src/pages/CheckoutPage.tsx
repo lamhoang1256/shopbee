@@ -5,7 +5,7 @@ import { SectionWhite } from "components/common";
 import { IconGPS } from "components/icons";
 import { Input } from "components/input";
 import { ModalApplyVoucher } from "components/modal";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { OrderPayment, OrderProduct } from "modules/order";
 import { PriceSale } from "components/price";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ const CheckoutPage = () => {
       const { data, message } = await productAPI.buyProducts(values);
       toast.success(message);
       setCart([]);
-      navigate(`${path.order}/${data?._id}`);
+      navigate(`${PATH.order}/${data?._id}`);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -117,7 +117,7 @@ const CheckoutPage = () => {
           <p>Họ tên: {currentUser.fullname}</p>
           <p>Số điện thoại: {currentUser.phone}</p>
           <p>Địa chỉ nhận hàng: {currentUser.address}</p>
-          <Link to={path.profile} className='font-medium text-blue08f'>
+          <Link to={PATH.profile} className='font-medium text-blue08f'>
             Thay đổi địa chỉ giao hàng
           </Link>
         </SectionWhite>

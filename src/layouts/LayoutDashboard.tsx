@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { Sidebar } from "layouts";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { DashboardHeader } from "modules/dashboard";
 import {
   IconAddProduct,
@@ -22,62 +22,62 @@ const sidebarLinks = [
   {
     icon: <IconTemplate />,
     display: "Tổng quan",
-    path: path.dashboard,
+    path: PATH.dashboard,
   },
   {
     icon: <IconPicture />,
     display: "Tất cả banner",
-    path: path.banner,
+    path: PATH.banner,
   },
   {
     icon: <IconCategoryManage />,
     display: "Tất cả danh mục",
-    path: path.categoryManage,
+    path: PATH.categoryManage,
   },
   {
     icon: <IconTag />,
     display: "Thêm danh mục mới",
-    path: path.categoryAddNew,
+    path: PATH.categoryAddNew,
   },
   {
     icon: <IconCash />,
     display: "Tất cả đơn hàng",
-    path: path.orderManage,
+    path: PATH.orderManage,
   },
   {
     icon: <IconCube />,
     display: "Tất cả sản phẩm",
-    path: path.productManage,
+    path: PATH.productManage,
   },
   {
     icon: <IconAddProduct />,
     display: "Thêm sản phẩm",
-    path: path.productAddNew,
+    path: PATH.productAddNew,
   },
   {
     icon: <IconUserGroup />,
     display: "Tất cả người dùng",
-    path: path.userManage,
+    path: PATH.userManage,
   },
   {
     icon: <IconAddUser />,
     display: "Thêm người dùng mới",
-    path: path.userAddNew,
+    path: PATH.userAddNew,
   },
   {
     icon: <IconIdentification />,
     display: "Thông tin shop",
-    path: path.shop,
+    path: PATH.shop,
   },
   {
     icon: <IconVoucher />,
     display: "Tất cả voucher",
-    path: path.voucherManage,
+    path: PATH.voucherManage,
   },
   {
     icon: <IconAddVoucher />,
     display: "Thêm voucher mới",
-    path: path.voucherAddNew,
+    path: PATH.voucherAddNew,
   },
 ];
 

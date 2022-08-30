@@ -5,7 +5,7 @@ import { Input } from "components/input";
 import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
 import { Tabs } from "components/tabs";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
@@ -15,11 +15,11 @@ import { formatDateVNFull, formatMoney } from "utils/helper";
 import VoucherEmpty from "./VoucherEmpty";
 
 const tabs = [
-  { key: "", display: "Tất cả", to: path.voucherManage },
+  { key: "", display: "Tất cả", to: PATH.voucherManage },
   {
     key: "expiration",
     display: "Hết hiệu lực",
-    to: `${path.voucherManage}?status=expiration`,
+    to: `${PATH.voucherManage}?status=expiration`,
   },
 ];
 
@@ -115,7 +115,7 @@ const VoucherManage = () => {
                       <td>{formatDateVNFull(voucher.expirationDate)}</td>
                       <td>
                         <div className='flex gap-x-1'>
-                          <Button to={`${path.voucherUpdate}/${voucher._id}`}>Sửa</Button>
+                          <Button to={`${PATH.voucherUpdate}/${voucher._id}`}>Sửa</Button>
                           <Button onClick={() => handleDeleteVoucher(voucher._id)}>Xóa</Button>
                         </div>
                       </td>

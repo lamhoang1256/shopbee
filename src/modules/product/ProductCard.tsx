@@ -1,6 +1,6 @@
 import { IProduct } from "@types";
 import { Rating } from "components/rating";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { ProductImage, ProductTitle } from "modules/product";
 import { PriceSale } from "components/price";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       key={product._id}
-      to={`${path.product}/${product._id}`}
+      to={`${PATH.product}/${product._id}`}
       className='transition-all rounded overflow-hidden duration-300 border bg-white shadow-product hover:-translate-y-[3px] border-transparent hover:shadow-product-hover'
     >
       <ProductImage imageUrl={product.image} />

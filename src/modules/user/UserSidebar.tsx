@@ -1,5 +1,5 @@
 import { defaultUserAvatar } from "constants/global";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
@@ -8,32 +8,32 @@ import { v4 as uuidv4 } from "uuid";
 const sidebarLinks = [
   {
     icon: "https://cf.shopee.vn/file/ba61750a46794d8847c3f463c5e71cc4",
-    path: path.profile,
+    path: PATH.profile,
     display: "Tài khoản của tôi",
   },
   {
     icon: "/images/icon-password.png",
-    path: path.password,
+    path: PATH.password,
     display: "Đổi mật khẩu",
   },
   {
     icon: "https://cf.shopee.vn/file/f0049e9df4e536bc3e7f140d071e9078",
-    path: path.order,
+    path: PATH.order,
     display: "Đơn mua",
   },
   {
     icon: "https://cf.shopee.vn/file/84feaa363ce325071c0a66d3c9a88748",
-    path: path.voucher,
+    path: PATH.voucher,
     display: "Ví voucher",
   },
   {
     icon: "/images/icon-history.png",
-    path: path.history,
+    path: PATH.history,
     display: "Đã xem gần đây",
   },
   {
     icon: "/images/icon-heart.png",
-    path: path.wishlist,
+    path: PATH.wishlist,
     display: "Đã thích",
   },
 ];
@@ -50,7 +50,7 @@ const UserSidebar = () => {
         />
         <div>
           <h3 className='font-semibold'>User</h3>
-          <Link to={path.profile}>Sửa hồ sơ</Link>
+          <Link to={PATH.profile}>Sửa hồ sơ</Link>
         </div>
       </div>
       <ul className='mt-7'>

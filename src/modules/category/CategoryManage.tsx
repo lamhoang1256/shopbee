@@ -1,7 +1,7 @@
 import { categoryAPI } from "apis";
 import { Button } from "components/button";
 import { Loading } from "components/loading";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
 import { toast } from "react-toastify";
@@ -50,7 +50,7 @@ const CategoryManage = () => {
                   <td>{category.slug}</td>
                   <td>
                     <div className='flex gap-x-1'>
-                      <Button to={`${path.categoryUpdate}/${category._id}`}>Sửa</Button>
+                      <Button to={`${PATH.categoryUpdate}/${category._id}`}>Sửa</Button>
                       <Button onClick={() => handleDeleteCategory(category._id)}>Xóa</Button>
                     </div>
                   </td>

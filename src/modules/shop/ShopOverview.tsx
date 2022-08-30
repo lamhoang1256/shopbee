@@ -1,6 +1,6 @@
 import { IShop } from "@types";
 import { Button } from "components/button";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 
 interface ShopOverviewProps {
   shopInfo: IShop;
@@ -41,7 +41,7 @@ const ShopOverview = ({ shopInfo }: ShopOverviewProps) => {
         <div>
           <h3 className='text-base font-medium'>{shopInfo.name}</h3>
           <p className='-mt-1'>Online 2 giờ trước</p>
-          <Button to={path.search} className='py-0 mt-1 h-[34px] border-orangeee4 !text-orangeee4'>
+          <Button to={PATH.search} className='py-0 mt-1 h-[34px] border-orangeee4 !text-orangeee4'>
             Xem shop
           </Button>
         </div>

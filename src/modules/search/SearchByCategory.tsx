@@ -1,5 +1,5 @@
 import { IconMenu } from "components/icons";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const SearchByCategory = () => {
         {categories.map(({ _id, name }) => (
           <li className='px-3 py-[6px] line-clamp-1' key={_id}>
             <Link
-              to={`${path.search}?category=${_id}`}
+              to={`${PATH.search}?category=${_id}`}
               className={categoryId === _id ? "text-orangeee4" : "text-[#000000cc]"}
             >
               {name}

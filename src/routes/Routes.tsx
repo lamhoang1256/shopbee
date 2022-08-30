@@ -1,4 +1,4 @@
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -49,52 +49,52 @@ const AppRoutes = () => {
         <Routes>
           <Route path='/' element={<LayoutHome />}>
             <Route index element={<HomePage />} />
-            <Route path={path.cart} element={<CartPage />} />
-            <Route path={`${path.product}/:id`} element={<ProductDetailsPage />} />
-            <Route path={path.search} element={<SearchPage />} />
+            <Route path={PATH.cart} element={<CartPage />} />
+            <Route path={`${PATH.product}/:id`} element={<ProductDetailsPage />} />
+            <Route path={PATH.search} element={<SearchPage />} />
           </Route>
 
           <Route element={<CheckLoggedIn />}>
             <Route path='/' element={<LayoutAuth title='Đăng ký' />}>
-              <Route path={path.signUp} element={<SignUpPage />} />
+              <Route path={PATH.signUp} element={<SignUpPage />} />
             </Route>
             <Route path='/' element={<LayoutAuth title='Đăng nhập' />}>
-              <Route path={path.signIn} element={<SignInPage />} />
+              <Route path={PATH.signIn} element={<SignInPage />} />
             </Route>
           </Route>
 
           <Route element={<ProtectedRoute />}>
             {/* User Routes */}
             <Route element={<LayoutUser />}>
-              <Route path={path.order} element={<OrderPage />} />
-              <Route path={`${path.order}/:id`} element={<OrderDetailsPage />} />
-              <Route path={path.profile} element={<ProfilePage />} />
-              <Route path={path.password} element={<UserChangePassword />} />
-              <Route path={path.voucher} element={<VoucherMe />} />
-              <Route path={path.wishlist} element={<UserWishList />} />
-              <Route path={path.history} element={<HistoryPage />} />
+              <Route path={PATH.order} element={<OrderPage />} />
+              <Route path={`${PATH.order}/:id`} element={<OrderDetailsPage />} />
+              <Route path={PATH.profile} element={<ProfilePage />} />
+              <Route path={PATH.password} element={<UserChangePassword />} />
+              <Route path={PATH.voucher} element={<VoucherMe />} />
+              <Route path={PATH.wishlist} element={<UserWishList />} />
+              <Route path={PATH.history} element={<HistoryPage />} />
             </Route>
-            <Route path={path.payment} element={<CheckoutPage />} />
+            <Route path={PATH.payment} element={<CheckoutPage />} />
             {/* Admin Routes */}
             <Route element={<CheckAdmin />}>
               <Route path='/dashboard' element={<LayoutDashboard />}>
                 <Route index element={<DashboardPage />} />
-                <Route path={path.orderManage} element={<OrderManage />} />
-                <Route path={`${path.orderManage}/:id`} element={<OrderUpdate />} />
-                <Route path={path.categoryManage} element={<CategoryManage />} />
-                <Route path={path.categoryAddNew} element={<CategoryAddNew />} />
-                <Route path={`${path.categoryUpdate}/:id`} element={<CategoryUpdate />} />
-                <Route path={path.productManage} element={<ProductManage />} />
-                <Route path={path.productAddNew} element={<ProductAddNew />} />
-                <Route path={`${path.productUpdate}/:id`} element={<ProductUpdate />} />
-                <Route path={path.banner} element={<BannerManage />} />
-                <Route path={path.shop} element={<ShopUpdate />} />
-                <Route path={path.userManage} element={<UserManage />} />
-                <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
-                <Route path={path.userAddNew} element={<UserAddNew />} />
-                <Route path={path.voucherManage} element={<VoucherManage />} />
-                <Route path={path.voucherAddNew} element={<VoucherAddNew />} />
-                <Route path={`${path.voucherUpdate}/:id`} element={<VoucherUpdate />} />
+                <Route path={PATH.orderManage} element={<OrderManage />} />
+                <Route path={`${PATH.orderManage}/:id`} element={<OrderUpdate />} />
+                <Route path={PATH.categoryManage} element={<CategoryManage />} />
+                <Route path={PATH.categoryAddNew} element={<CategoryAddNew />} />
+                <Route path={`${PATH.categoryUpdate}/:id`} element={<CategoryUpdate />} />
+                <Route path={PATH.productManage} element={<ProductManage />} />
+                <Route path={PATH.productAddNew} element={<ProductAddNew />} />
+                <Route path={`${PATH.productUpdate}/:id`} element={<ProductUpdate />} />
+                <Route path={PATH.banner} element={<BannerManage />} />
+                <Route path={PATH.shop} element={<ShopUpdate />} />
+                <Route path={PATH.userManage} element={<UserManage />} />
+                <Route path={`${PATH.userUpdate}/:id`} element={<UserUpdate />} />
+                <Route path={PATH.userAddNew} element={<UserAddNew />} />
+                <Route path={PATH.voucherManage} element={<VoucherManage />} />
+                <Route path={PATH.voucherAddNew} element={<VoucherAddNew />} />
+                <Route path={`${PATH.voucherUpdate}/:id`} element={<VoucherUpdate />} />
               </Route>
             </Route>
           </Route>

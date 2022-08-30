@@ -2,7 +2,7 @@ import { authAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input, InputPassword } from "components/input";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const SignUpPage = () => {
     try {
       const response: any = await authAPI.signUp(values);
       if (response.success) {
-        navigate(path.signIn);
+        navigate(PATH.signIn);
         toast.success(response.message);
       }
     } catch (error: any) {
@@ -77,7 +77,7 @@ const SignUpPage = () => {
         </form>
         <div className='mt-6 text-center'>
           <span className='text-[#00000042]'>Bạn đã có tài khoản ? </span>
-          <Link to={path.signIn} className='text-orangeee4'>
+          <Link to={PATH.signIn} className='text-orangeee4'>
             Đăng nhập
           </Link>
         </div>

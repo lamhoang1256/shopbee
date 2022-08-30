@@ -2,7 +2,7 @@ import { ICurrentUser } from "@types";
 import { authAPI } from "apis";
 import { Popover } from "components/popover";
 import { defaultUserAvatar } from "constants/global";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { UserAvatar } from "modules/user";
 import { Link } from "react-router-dom";
@@ -31,11 +31,11 @@ const Navbar = () => {
     "text-[#000000cc] block px-5 py-2 hover:bg-[#fafafa] transition-all duration-300 hover:text-[#00bfa5]";
   return (
     <div className='flex items-center justify-between h-12 text-white'>
-      <Link to={path.order}>Kiểm tra đơn hàng</Link>
+      <Link to={PATH.order}>Kiểm tra đơn hàng</Link>
       {!currentUser?.email && (
         <div className='flex gap-x-4'>
-          <Link to={path.signUp}>Đăng kí</Link>
-          <Link to={path.signIn}>Đăng nhập</Link>
+          <Link to={PATH.signUp}>Đăng kí</Link>
+          <Link to={PATH.signIn}>Đăng nhập</Link>
         </div>
       )}
       {currentUser?.email && (
@@ -52,14 +52,14 @@ const Navbar = () => {
             <span className='font-medium max5se:line-clamp-1 '>{currentUser?.fullname}</span>
           </div>
           <Popover active={activePopover} className='min-w-[150px]'>
-            <Link to={path.profile} className={stylesPopoverLink}>
+            <Link to={PATH.profile} className={stylesPopoverLink}>
               Tài khoản của tôi
             </Link>
-            <Link to={path.order} className={stylesPopoverLink}>
+            <Link to={PATH.order} className={stylesPopoverLink}>
               Đơn mua
             </Link>
             {currentUser.isAdmin && (
-              <Link to={path.dashboard} className={stylesPopoverLink}>
+              <Link to={PATH.dashboard} className={stylesPopoverLink}>
                 Dashboard
               </Link>
             )}

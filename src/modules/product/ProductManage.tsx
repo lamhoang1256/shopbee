@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { Input } from "components/input";
 import { Loading } from "components/loading";
 import { Pagination } from "components/pagination";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import useFetchProducts from "hooks/useFetchProducts";
 import { Template } from "layouts";
@@ -88,7 +88,7 @@ const ProductManage = () => {
                     </td>
                     <td>
                       <div className='flex gap-x-1'>
-                        <Button to={`${path.productUpdate}/${product._id}`}>Sửa</Button>
+                        <Button to={`${PATH.productUpdate}/${product._id}`}>Sửa</Button>
                         <Button onClick={() => handleDeleteProduct(product._id)}>Xóa</Button>
                       </div>
                     </td>

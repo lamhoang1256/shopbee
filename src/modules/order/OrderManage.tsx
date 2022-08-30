@@ -4,7 +4,7 @@ import { Button } from "components/button";
 import { Input } from "components/input";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
@@ -13,11 +13,11 @@ import OrderEmpty from "./OrderEmpty";
 import OrderItem from "./OrderItem";
 
 const tabs = [
-  { key: "", display: "Tất cả", to: path.orderManage },
-  { key: "processing", display: "Đã thanh toán", to: `${path.orderManage}?status=processing` },
-  { key: "shipping", display: "Đang giao hàng", to: `${path.orderManage}?status=shipping` },
-  { key: "delivered", display: "Đã giao hàng", to: `${path.orderManage}?status=delivered` },
-  { key: "canceled", display: "Đã hủy", to: `${path.orderManage}?status=canceled` },
+  { key: "", display: "Tất cả", to: PATH.orderManage },
+  { key: "processing", display: "Đã thanh toán", to: `${PATH.orderManage}?status=processing` },
+  { key: "shipping", display: "Đang giao hàng", to: `${PATH.orderManage}?status=shipping` },
+  { key: "delivered", display: "Đã giao hàng", to: `${PATH.orderManage}?status=delivered` },
+  { key: "canceled", display: "Đã hủy", to: `${PATH.orderManage}?status=canceled` },
 ];
 
 const OrderManage = () => {

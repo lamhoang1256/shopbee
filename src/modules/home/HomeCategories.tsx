@@ -1,4 +1,4 @@
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -25,7 +25,7 @@ const HomeCategories = () => {
             categories?.map(({ _id, image, name }) => (
               <Link
                 key={_id}
-                to={`${path.search}?category=${_id}`}
+                to={`${PATH.search}?category=${_id}`}
                 className='flex flex-col items-center p-1 transition-all duration-300 bg-white hover:text-orangeee4 hover:opacity-80'
               >
                 <img src={image} className='w-[88px] h-[88px]' alt='category' />

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "components/button";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 
 const SearchRemoveAll = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const SearchRemoveAll = () => {
       <Button
         primary
         className='w-full py-[6px] mt-4 rounded-sm'
-        onClick={() => navigate(path.search)}
+        onClick={() => navigate(PATH.search)}
       >
         XÓA TẤT CẢ
       </Button>

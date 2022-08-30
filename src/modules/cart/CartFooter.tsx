@@ -1,6 +1,6 @@
 import { cartAPI } from "apis";
 import { Button } from "components/button";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { PriceSale } from "components/price";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
@@ -39,7 +39,7 @@ const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
       </div>
       <div className='flex gap-3'>
         <Button onClick={handleRemoveAllCart}>Xóa tất cả</Button>
-        <Button primary to={path.payment}>
+        <Button primary to={PATH.payment}>
           Thanh toán
         </Button>
       </div>

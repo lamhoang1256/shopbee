@@ -1,4 +1,4 @@
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
 
 interface LogoProps {
@@ -8,7 +8,7 @@ interface LogoProps {
   className?: string;
 }
 
-const Logo = ({ to = path.home, className, children, primary }: LogoProps) => {
+const Logo = ({ to = PATH.home, className, children, primary }: LogoProps) => {
   return (
     <Link to={to} className={className}>
       <h1 className={`text-2xl font-medium ${primary ? "text-orangeee4" : "text-white"} $`}>
@@ -19,7 +19,7 @@ const Logo = ({ to = path.home, className, children, primary }: LogoProps) => {
 };
 
 Logo.defaultProps = {
-  to: path.home,
+  to: PATH.home,
   primary: false,
   className: "",
 };

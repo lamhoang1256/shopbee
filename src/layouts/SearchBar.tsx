@@ -1,5 +1,5 @@
 import { IconSearch } from "components/icons";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const SearchBar = () => {
   const [keyword, setKeyword] = useState("");
   const handleSearchWithKeyword = (e: any) => {
     e.preventDefault();
-    navigate(`${path.search}?name=${keyword}`);
+    navigate(`${PATH.search}?name=${keyword}`);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { IOrderItem } from "@types";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { ProductImage, ProductTitle } from "modules/product";
 import { PriceOld, PriceSale } from "components/price";
 
@@ -18,7 +18,7 @@ const OrderProduct = ({ order }: OrderProductItemProps) => {
         <div>
           <ProductTitle
             className='text-sm line-clamp-2'
-            to={`${path.product}/${order?.product._id}`}
+            to={`${PATH.product}/${order?.product._id}`}
           >
             {order.product.name}
           </ProductTitle>

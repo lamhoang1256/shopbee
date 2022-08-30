@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { IconStar } from "components/icons";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import classNames from "utils/className";
 
 const renderStarRating = (score: number) => {
@@ -23,13 +23,13 @@ const SearchByRating = () => {
         {[5, 4, 3, 2, 1].map((num) => {
           if (num === 5) {
             return (
-              <Link to={`${path.search}?rating=${num}`} className='flex mt-2' key={num}>
+              <Link to={`${PATH.search}?rating=${num}`} className='flex mt-2' key={num}>
                 {renderStarRating(num)}
               </Link>
             );
           }
           return (
-            <Link to={`${path.search}?rating=${num}`} className='flex mt-2' key={num}>
+            <Link to={`${PATH.search}?rating=${num}`} className='flex mt-2' key={num}>
               {renderStarRating(num)}
               <span className='text-[#000000cc] ml-2'>Trở lên</span>
             </Link>

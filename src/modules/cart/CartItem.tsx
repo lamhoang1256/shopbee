@@ -1,7 +1,7 @@
 import { ICart } from "@types";
 import { cartAPI } from "apis";
 import { QuantityController } from "components/quantityController";
-import { path } from "constants/path";
+import { PATH } from "constants/path";
 import { PriceSale, PriceOld } from "components/price";
 import { ProductImage, ProductTitle } from "modules/product";
 import { toast } from "react-toastify";
@@ -45,7 +45,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-3'>
       <ProductImage className='w-24 lg:w-20' imageUrl={cartItem?.product?.image} />
       <div className='flex flex-col flex-1 md:flex-row'>
-        <ProductTitle styleLink='md:w-[40%]' to={`${path.product}/${cartItem?.product?._id}`}>
+        <ProductTitle styleLink='md:w-[40%]' to={`${PATH.product}/${cartItem?.product?._id}`}>
           {cartItem?.product?.name}
         </ProductTitle>
         <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>
