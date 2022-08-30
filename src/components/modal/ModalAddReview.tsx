@@ -1,6 +1,7 @@
 import { IProduct } from "@types";
 import { reviewAPI } from "apis";
 import { Button } from "components/button";
+import { ReviewSelectStar } from "components/review";
 import { ProductImage, ProductTitle } from "modules/product";
 import { useState } from "react";
 import Modal from "react-modal";
@@ -16,14 +17,20 @@ interface ModalAddReviewProps {
 
 const ModalAddReview = ({ isOpen, closeModal, product, fetchReviews }: ModalAddReviewProps) => {
   const { id = "" } = useParams();
-  const [rating] = useState(4);
+  const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const handleAddNewReview = async () => {
     try {
+      if (rating === 0) {
+        toast.error("Vui lòng chọn điểm đánh giá");
+        return;
+      }
       const payload = { rating, comment, productId: product._id, orderId: id };
       const { message } = await reviewAPI.addNewReview(payload);
       toast.success(message);
       fetchReviews();
+      setRating(0);
+      setComment("");
       closeModal();
     } catch (error: any) {
       toast.error(error?.message);
@@ -52,6 +59,7 @@ const ModalAddReview = ({ isOpen, closeModal, product, fetchReviews }: ModalAddR
       </div>
       <div>
         <h2 className='mt-4 text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
+        <ReviewSelectStar rating={rating} setRating={setRating} />
         <textarea
           rows={5}
           value={comment}

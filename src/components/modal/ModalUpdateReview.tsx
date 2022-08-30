@@ -1,6 +1,7 @@
 import { IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
 import { Button } from "components/button";
+import { ReviewSelectStar } from "components/review";
 import { ProductImage, ProductTitle } from "modules/product";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
@@ -9,26 +10,30 @@ import { toast } from "react-toastify";
 
 interface ModalUpdateReviewProps {
   isOpen: boolean;
-  product: IProduct;
   closeModal: () => void;
-  updateReview: IReview;
+  productReview: IProduct;
+  dataReview: IReview;
   fetchReviews: () => Promise<void>;
 }
 
 const ModalUpdateReview = ({
   isOpen,
   closeModal,
-  product,
-  updateReview,
+  productReview,
+  dataReview,
   fetchReviews,
 }: ModalUpdateReviewProps) => {
   const { id = "" } = useParams();
-  const [rating] = useState(4);
+  const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const handleUpdateReview = async () => {
     try {
-      const payload = { rating, comment, productId: product._id, orderId: id };
-      const { message } = await reviewAPI.updateReview(updateReview._id, payload);
+      if (rating === 0) {
+        toast.error("Vui lòng chọn điểm đánh giá");
+        return;
+      }
+      const payload = { rating, comment, productId: productReview._id, orderId: id };
+      const { message } = await reviewAPI.updateReview(dataReview._id, payload);
       toast.success(message);
       fetchReviews();
       closeModal();
@@ -38,8 +43,9 @@ const ModalUpdateReview = ({
   };
 
   useEffect(() => {
-    if (updateReview?.comment) setComment(updateReview?.comment);
-  }, [updateReview]);
+    setRating(dataReview.rating);
+    setComment(dataReview?.comment);
+  }, [dataReview]);
 
   return (
     <Modal
@@ -56,14 +62,15 @@ const ModalUpdateReview = ({
     >
       <div>
         <div className='flex gap-x-2'>
-          <ProductImage imageUrl={product.image} className='w-10 h-10' />
+          <ProductImage imageUrl={productReview.image} className='w-10 h-10' />
           <div>
-            <ProductTitle className='font-medium line-clamp-1'>{product.name}</ProductTitle>
+            <ProductTitle className='font-medium line-clamp-1'>{productReview.name}</ProductTitle>
             <span>Shopbee</span>
           </div>
         </div>
         <div>
           <h2 className='mt-4 text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
+          <ReviewSelectStar rating={rating} setRating={setRating} />
           <textarea
             rows={5}
             value={comment}

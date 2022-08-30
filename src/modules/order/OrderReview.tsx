@@ -17,7 +17,7 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [productReview, setProductReview] = useState<IProduct>(Object);
-  const [updateReview, setUpdateReview] = useState<IReview>();
+  const [dataReview, setDataReview] = useState<IReview>();
 
   const openModalAdd = (product: IProduct) => {
     setShowModalAdd(true);
@@ -29,27 +29,27 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
   const openModalUpdate = (product: IProduct, review: IReview) => {
     setShowModalUpdate(true);
     setProductReview(product);
-    setUpdateReview(review);
+    setDataReview(review);
   };
   const closeModalUpdate = () => {
     setShowModalUpdate(false);
+  };
+  const fetchReviews = async () => {
+    try {
+      const { data } = await reviewAPI.getAllReviewOrder(id);
+      setReviews(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDeleteReview = async (orderId: string) => {
     try {
       const { message } = await reviewAPI.deleteReview(orderId);
+      fetchReviews();
       toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
-    }
-  };
-  const fetchReviews = async () => {
-    try {
-      const { data } = await reviewAPI.getAllReviewOrder(id);
-      console.log("data: ", data);
-      setReviews(data);
-    } catch (err) {
-      console.log(err);
     }
   };
   useEffect(() => {
@@ -83,12 +83,12 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
         product={productReview}
         fetchReviews={fetchReviews}
       />
-      {updateReview && (
+      {dataReview && (
         <ModalUpdateReview
           isOpen={showModalUpdate}
           closeModal={closeModalUpdate}
-          product={productReview}
-          updateReview={updateReview}
+          productReview={productReview}
+          dataReview={dataReview}
           fetchReviews={fetchReviews}
         />
       )}
