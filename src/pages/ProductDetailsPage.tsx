@@ -26,7 +26,7 @@ const ProductDetailsPage = () => {
   const { loading, product } = useFetchProduct(id);
   const [shopInfo, setShopInfo] = useState<IShop>(Object);
   const percentSale = Math.ceil(100 - (product.price / product.oldPrice) * 100);
-  const [quantityAdd, setQuantityAdd] = useState(0);
+  const [quantityAdd, setQuantityAdd] = useState(1);
 
   const handleChangeQuantity = (quantity: number) => setQuantityAdd(() => quantity);
   const handleAddToHistory = (prod: IProduct) => {
@@ -89,7 +89,10 @@ const ProductDetailsPage = () => {
           <ProductShipping shopCityId={shopInfo?.city?.id} />
           <div className='flex flex-col gap-y-2 md:items-center md:flex-row gap-x-4'>
             <span>Số lượng</span>
-            <QuantityController onChangeValue={handleChangeQuantity} />
+            <QuantityController
+              defaultQuantity={quantityAdd}
+              onChangeValue={handleChangeQuantity}
+            />
             <span>{product.stock} sản phẩm có sẵn</span>
           </div>
           <ProductAddToCart stock={product.stock} quantityAdd={quantityAdd} />
@@ -104,7 +107,7 @@ const ProductDetailsPage = () => {
       </SectionWhite>
       <SectionWhite className='mt-4'>
         <SectionGray>ĐÁNH GIÁ SẢN PHẨM</SectionGray>
-        <Review reviews={product.reviews} />
+        <Review productId={id} />
       </SectionWhite>
       <ProductRelated categoryId={product.category} />
     </div>

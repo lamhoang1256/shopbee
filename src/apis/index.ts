@@ -9,4 +9,5 @@ export * from "./productAPI";
 export * from "./userAPI";
 export * from "./shopAPI";
 export * from "./voucherAPI";
+export * from "./reviewAPI";
 export * from "./wishlistAPI";

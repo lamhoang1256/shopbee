@@ -62,7 +62,7 @@ const OrderDetailsPage = () => {
         <OrderOverview order={order} />
       </div>
       <OrderCancel statusCode={order.statusCode} fetchDetailsOrder={fetchDetailsOrder} />
-      <OrderReview orderItems={order.orderItems} fetchDetailsOrder={fetchDetailsOrder} />
+      <OrderReview orderItems={order.orderItems} />
       <OrderPayment payments={payments} />
     </>
   );

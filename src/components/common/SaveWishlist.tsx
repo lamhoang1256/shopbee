@@ -23,7 +23,7 @@ const SaveWishlist = () => {
 
   const handleAddToWishlist = async () => {
     try {
-      const { message } = await wishlistAPI.addToWishlist({ productId: id });
+      const { message } = await wishlistAPI.addToWishlist(id);
       toast.success(message);
       setIsSaved(true);
     } catch (error: any) {
@@ -32,7 +32,7 @@ const SaveWishlist = () => {
   };
   const handleRemoveFromWishlist = async () => {
     try {
-      const { message } = await wishlistAPI.removeFromWishlist({ productId: id });
+      const { message } = await wishlistAPI.removeFromWishlist(id);
       toast.success(message);
       setIsSaved(false);
     } catch (error: any) {

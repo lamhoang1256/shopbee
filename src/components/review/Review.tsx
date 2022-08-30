@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IReview } from "@types";
 import { PaginationV2 } from "components/pagination";
+import { reviewAPI } from "apis";
 import ReviewItem from "./ReviewItem";
 import ReviewEmpty from "./ReviewEmpty";
 
 interface ReviewProps {
-  reviews: IReview[];
+  productId: string;
 }
 
-const Review = ({ reviews }: ReviewProps) => {
+const reviewsPerPage = 5;
+const Review = ({ productId }: ReviewProps) => {
+  const [reviews, setReviews] = useState<IReview[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const reviewsPerPage = 5;
   const indexOfLastPost = currentPage * reviewsPerPage;
   const indexOfFirstPost = indexOfLastPost - reviewsPerPage;
   const currentReviews = reviews.slice(indexOfFirstPost, indexOfLastPost);
   const handleChangePage = (pageNumber: number) => setCurrentPage(pageNumber);
+  useEffect(() => {
+    const fetchReviewProduct = async () => {
+      try {
+        const { data } = await reviewAPI.getAllReviewProduct(productId);
+        setReviews(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchReviewProduct();
+  }, [productId]);
+
   return (
     <div>
       {currentReviews.length === 0 ? (

@@ -1,35 +1,30 @@
 import { IProduct } from "@types";
-import { productAPI } from "apis";
+import { reviewAPI } from "apis";
 import { Button } from "components/button";
 import { ProductImage, ProductTitle } from "modules/product";
 import { useState } from "react";
 import Modal from "react-modal";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface ModalAddReviewProps {
   isOpen: boolean;
   product: IProduct;
   closeModal: () => void;
-  fetchDetailsOrder: () => Promise<void>;
+  fetchReviews: () => Promise<void>;
 }
 
-const ModalAddReview = ({
-  isOpen,
-  closeModal,
-  product,
-  fetchDetailsOrder,
-}: ModalAddReviewProps) => {
+const ModalAddReview = ({ isOpen, closeModal, product, fetchReviews }: ModalAddReviewProps) => {
+  const { id = "" } = useParams();
   const [rating] = useState(4);
   const [comment, setComment] = useState("");
   const handleAddNewReview = async () => {
     try {
-      const payload = { rating, comment };
-      const { success, message } = await productAPI.addNewReview(product._id, payload);
-      if (success) {
-        toast.success(message);
-        fetchDetailsOrder();
-        closeModal();
-      }
+      const payload = { rating, comment, productId: product._id, orderId: id };
+      const { message } = await reviewAPI.addNewReview(payload);
+      toast.success(message);
+      fetchReviews();
+      closeModal();
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -48,38 +43,36 @@ const ModalAddReview = ({
         },
       }}
     >
-      <div>
-        <div className='flex gap-x-2'>
-          <ProductImage imageUrl={product.image} className='w-10 h-10' />
-          <div>
-            <ProductTitle className='font-medium line-clamp-1'>{product.name}</ProductTitle>
-            <span>Shopbee</span>
-          </div>
-        </div>
+      <div className='flex gap-x-2'>
+        <ProductImage imageUrl={product.image} className='w-10 h-10' />
         <div>
-          <h2 className='mt-4 text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
-          <textarea
-            rows={5}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
-            className='border-[#00000024] focus:border-[#0000008a] border mt-6 p-3 w-full outline-none resize-none rounded'
-          />
+          <ProductTitle className='font-medium line-clamp-1'>{product.name}</ProductTitle>
+          <span>Shopbee</span>
         </div>
-        <div className='flex mt-4 gap-x-2'>
-          <Button
-            className='w-full'
-            onClick={() => {
-              closeModal();
-              setComment("");
-            }}
-          >
-            Hủy
-          </Button>
-          <Button primary className='w-full' onClick={handleAddNewReview}>
-            Gửi đánh giá
-          </Button>
-        </div>
+      </div>
+      <div>
+        <h2 className='mt-4 text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
+        <textarea
+          rows={5}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
+          className='border-[#00000024] focus:border-[#0000008a] border mt-6 p-3 w-full outline-none resize-none rounded'
+        />
+      </div>
+      <div className='flex mt-4 gap-x-2'>
+        <Button
+          className='w-full'
+          onClick={() => {
+            closeModal();
+            setComment("");
+          }}
+        >
+          Hủy
+        </Button>
+        <Button primary className='w-full' onClick={handleAddNewReview}>
+          Gửi đánh giá
+        </Button>
       </div>
     </Modal>
   );

@@ -10,12 +10,12 @@ export const cartAPI = {
     const path = `api/cart/add-to-cart`;
     return axiosClient.post(path, values);
   },
-  deleteSingleCart: (values: any): Promise<IResponse> => {
-    const path = `api/cart`;
-    return axiosClient.delete(path, { data: values });
+  deleteSingleCart: (cardId: any): Promise<IResponse> => {
+    const path = `api/cart/${cardId}`;
+    return axiosClient.delete(path);
   },
   deleteAllCart: (): Promise<IResponse> => {
-    const path = `api/cart/all`;
+    const path = `api/cart`;
     return axiosClient.delete(path);
   },
 };

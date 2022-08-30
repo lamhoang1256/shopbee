@@ -15,6 +15,7 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
   const { setCart, carts } = useStore((state) => state);
   const handleAddToCart = async () => {
     let quantity = quantityAdd;
+    if (quantity < 1) return;
     const existItem = carts?.find((cart) => cart.product._id === id);
     if (existItem) {
       quantity = existItem.quantity + quantityAdd;
@@ -25,9 +26,7 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
       if (existItem) {
         const cartsRemoveExist = carts?.filter((cart) => cart?._id !== existItem?._id);
         setCart([...cartsRemoveExist, existItem]);
-      } else {
-        setCart([...carts, data]);
-      }
+      } else setCart([...carts, data]);
       toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);

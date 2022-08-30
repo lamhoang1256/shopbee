@@ -1,18 +1,14 @@
 import { ICurrentUser } from "./user";
 
-export interface IPayloadReview {
-  reviewId?: string;
-  comment: string;
-  rating: number;
-}
-
 export interface IReview {
   _id: string;
+  productId: string;
+  orderId: string;
   comment: string;
   rating: number;
   user: ICurrentUser;
-  updatedAt: string;
   createdAt: string;
+  updatedAt: string;
 }
 
 export interface IProduct {

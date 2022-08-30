@@ -7,12 +7,12 @@ import OrderUpdate from "./OrderUpdate";
 import OrderProduct from "./OrderProduct";
 import OrderEmpty from "./OrderEmpty";
 import OrderHeader from "./OrderHeader";
-import OrderReview from "./OrderReview";
 import OrderCancel from "./OrderCancel";
+import OrderReview from "./OrderReview";
 
 export {
-  OrderReview,
   OrderCancel,
+  OrderReview,
   OrderItem,
   OrderPayment,
   OrderProgress,

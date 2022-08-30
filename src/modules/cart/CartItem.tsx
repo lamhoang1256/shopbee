@@ -26,11 +26,8 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
     }
   };
   const handleRemoveCartItem = async () => {
-    const payload = {
-      cartId: cartItem?._id,
-    };
     try {
-      const { success, message } = await cartAPI.deleteSingleCart(payload);
+      const { success, message } = await cartAPI.deleteSingleCart(cartItem?._id);
       if (success) {
         const updatedCarts = carts.filter((item) => item._id !== cartItem?._id);
         setCart(updatedCarts);

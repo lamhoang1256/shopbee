@@ -6,12 +6,12 @@ export const wishlistAPI = {
     const path = `api/wishlist`;
     return axiosClient.get(path);
   },
-  addToWishlist: (payload: { productId: string }): Promise<IResponse> => {
-    const path = `api/wishlist`;
-    return axiosClient.post(path, payload);
+  addToWishlist: (id: string): Promise<IResponse> => {
+    const path = `api/wishlist/${id}`;
+    return axiosClient.post(path);
   },
-  removeFromWishlist: (payload: { productId: string }): Promise<IResponse> => {
-    const path = `api/wishlist`;
-    return axiosClient.put(path, payload);
+  removeFromWishlist: (id: string): Promise<IResponse> => {
+    const path = `api/wishlist/${id}`;
+    return axiosClient.delete(path);
   },
 };

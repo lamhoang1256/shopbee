@@ -1,43 +1,45 @@
-import { IProduct } from "@types";
-import { productAPI } from "apis";
+import { IProduct, IReview } from "@types";
+import { reviewAPI } from "apis";
 import { Button } from "components/button";
 import { ProductImage, ProductTitle } from "modules/product";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
 
 interface ModalUpdateReviewProps {
   isOpen: boolean;
   product: IProduct;
   closeModal: () => void;
+  updateReview: IReview;
+  fetchReviews: () => Promise<void>;
 }
 
-const ModalUpdateReview = ({ isOpen, closeModal, product }: ModalUpdateReviewProps) => {
-  const { currentUser } = useStore((state) => state);
+const ModalUpdateReview = ({
+  isOpen,
+  closeModal,
+  product,
+  updateReview,
+  fetchReviews,
+}: ModalUpdateReviewProps) => {
+  const { id = "" } = useParams();
   const [rating] = useState(4);
   const [comment, setComment] = useState("");
-  const myReview = product.reviews?.find((review) => review.user._id === currentUser._id);
-
   const handleUpdateReview = async () => {
     try {
-      const { success, message } = await productAPI.updateReview(product._id, {
-        reviewId: myReview?._id,
-        rating,
-        comment,
-      });
-      if (success) {
-        toast.success(message);
-        closeModal();
-      }
+      const payload = { rating, comment, productId: product._id, orderId: id };
+      const { message } = await reviewAPI.updateReview(updateReview._id, payload);
+      toast.success(message);
+      fetchReviews();
+      closeModal();
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
 
   useEffect(() => {
-    if (myReview?.comment) setComment(myReview?.comment);
-  }, [myReview]);
+    if (updateReview?.comment) setComment(updateReview?.comment);
+  }, [updateReview]);
 
   return (
     <Modal
