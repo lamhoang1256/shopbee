@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
 import { calcShippingFee, calcTotalCart, formatMoney, formatDateVN } from "utils/helper";
 import { Logo } from "components/logo";
+import useModal from "hooks/useModal";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -24,13 +25,7 @@ const CheckoutPage = () => {
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [appliedVoucher, setAppliedVoucher] = useState<IVoucher>(Object);
-  const [showModalVoucher, setShowModalVoucher] = useState(false);
-  const openModalVoucher = () => {
-    setShowModalVoucher(true);
-  };
-  const closeModalVoucher = () => {
-    setShowModalVoucher(false);
-  };
+  const { isShow, toggleModal } = useModal();
 
   const buyProducts = async (values: any) => {
     try {
@@ -169,7 +164,7 @@ const CheckoutPage = () => {
             {appliedVoucher?.code && (
               <span className='text-[#23c27f]'>Đã chọn 1 mã giảm giá: {appliedVoucher.code}</span>
             )}
-            <button type='button' className='text-[#05a] text-[15px]' onClick={openModalVoucher}>
+            <button type='button' className='text-[#05a] text-[15px]' onClick={toggleModal}>
               Chọn Voucher
             </button>
           </div>
@@ -185,8 +180,8 @@ const CheckoutPage = () => {
         </div>
       </main>
       <ModalApplyVoucher
-        isOpen={showModalVoucher}
-        closeModal={closeModalVoucher}
+        isOpen={isShow}
+        closeModal={toggleModal}
         appliedVoucher={appliedVoucher}
         setAppliedVoucher={setAppliedVoucher}
       />

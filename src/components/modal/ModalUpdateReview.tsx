@@ -2,6 +2,7 @@ import { IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
 import { Button } from "components/button";
 import { ReviewSelectStar } from "components/review";
+import { Textarea } from "components/textarea";
 import { ProductImage, ProductTitle } from "modules/product";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
@@ -28,6 +29,10 @@ const ModalUpdateReview = ({
   const [comment, setComment] = useState("");
   const handleUpdateReview = async () => {
     try {
+      if (comment === "") {
+        toast.error("Vui lòng thêm nhận xét");
+        return;
+      }
       if (rating === 0) {
         toast.error("Vui lòng chọn điểm đánh giá");
         return;
@@ -53,45 +58,31 @@ const ModalUpdateReview = ({
       onRequestClose={closeModal}
       contentLabel='Chỉnh sửa nhận xét'
       className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
-      style={{
-        overlay: {
-          backgroundColor: "#2424247f",
-          zIndex: "100",
-        },
-      }}
+      style={{ overlay: { backgroundColor: "#2424247f", zIndex: "100" } }}
     >
-      <div>
-        <div className='flex gap-x-2'>
-          <ProductImage imageUrl={productReview.image} className='w-10 h-10' />
-          <div>
-            <ProductTitle className='font-medium line-clamp-1'>{productReview.name}</ProductTitle>
-            <span>Shopbee</span>
-          </div>
-        </div>
+      <div className='flex gap-x-2'>
+        <ProductImage imageUrl={productReview.image} className='w-10 h-10' />
         <div>
-          <h2 className='mt-4 text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
-          <ReviewSelectStar rating={rating} setRating={setRating} />
-          <textarea
-            rows={5}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
-            className='border-[#00000024] focus:border-[#0000008a] border mt-6 p-3 w-full outline-none resize-none rounded'
-          />
+          <ProductTitle className='font-medium line-clamp-1'>{productReview.name}</ProductTitle>
+          <span>Shopbee</span>
         </div>
-        <div className='flex mt-4 gap-x-2'>
-          <Button
-            className='w-full'
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            Hủy
-          </Button>
-          <Button primary className='w-full' onClick={handleUpdateReview}>
-            Chỉnh sửa nhận xét
-          </Button>
-        </div>
+      </div>
+      <div className='my-3'>
+        <h2 className='text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
+        <ReviewSelectStar rating={rating} setRating={setRating} />
+        <Textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
+        />
+      </div>
+      <div className='flex gap-x-2'>
+        <Button className='w-full' onClick={closeModal}>
+          Hủy
+        </Button>
+        <Button primary className='w-full' onClick={handleUpdateReview}>
+          Chỉnh sửa
+        </Button>
       </div>
     </Modal>
   );

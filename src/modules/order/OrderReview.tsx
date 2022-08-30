@@ -2,6 +2,7 @@ import { IOrderItem, IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
 import { Button } from "components/button";
 import { ModalAddReview, ModalUpdateReview } from "components/modal";
+import useModal from "hooks/useModal";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -13,27 +14,23 @@ interface OrderReviewProps {
 
 const OrderReview = ({ orderItems }: OrderReviewProps) => {
   const { id = "" } = useParams();
-  const [showModalAdd, setShowModalAdd] = useState(false);
-  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const { isShow: isShowAdd, toggleModal: toggleModalAdd } = useModal();
+  const { isShow: isShowUpdate, toggleModal: toggleModalUpdate } = useModal();
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [productReview, setProductReview] = useState<IProduct>(Object);
   const [dataReview, setDataReview] = useState<IReview>();
 
   const openModalAdd = (product: IProduct) => {
-    setShowModalAdd(true);
+    toggleModalAdd();
     setProductReview(product);
   };
-  const closeModalAdd = () => {
-    setShowModalAdd(false);
-  };
+
   const openModalUpdate = (product: IProduct, review: IReview) => {
-    setShowModalUpdate(true);
+    toggleModalUpdate();
     setProductReview(product);
     setDataReview(review);
   };
-  const closeModalUpdate = () => {
-    setShowModalUpdate(false);
-  };
+
   const fetchReviews = async () => {
     try {
       const { data } = await reviewAPI.getAllReviewOrder(id);
@@ -78,15 +75,15 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
         );
       })}
       <ModalAddReview
-        isOpen={showModalAdd}
-        closeModal={closeModalAdd}
-        product={productReview}
+        isOpen={isShowAdd}
+        closeModal={toggleModalAdd}
+        productReview={productReview}
         fetchReviews={fetchReviews}
       />
       {dataReview && (
         <ModalUpdateReview
-          isOpen={showModalUpdate}
-          closeModal={closeModalUpdate}
+          isOpen={isShowUpdate}
+          closeModal={toggleModalUpdate}
           productReview={productReview}
           dataReview={dataReview}
           fetchReviews={fetchReviews}

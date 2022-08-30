@@ -7,11 +7,11 @@ export const wishlistAPI = {
     return axiosClient.get(path);
   },
   addToWishlist: (id: string): Promise<IResponse> => {
-    const path = `api/wishlist/${id}`;
+    const path = `api/wishlist?productId=${id}`;
     return axiosClient.post(path);
   },
   removeFromWishlist: (id: string): Promise<IResponse> => {
-    const path = `api/wishlist/${id}`;
+    const path = `api/wishlist?productId=${id}`;
     return axiosClient.delete(path);
   },
 };
