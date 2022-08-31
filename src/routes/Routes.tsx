@@ -1,4 +1,5 @@
 import { PATH } from "constants/path";
+import { UserCreditCard } from "modules/user";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -73,6 +74,7 @@ const AppRoutes = () => {
               <Route path={PATH.voucher} element={<VoucherMe />} />
               <Route path={PATH.wishlist} element={<UserWishList />} />
               <Route path={PATH.history} element={<HistoryPage />} />
+              <Route path={PATH.creditCard} element={<UserCreditCard />} />
             </Route>
             <Route path={PATH.payment} element={<CheckoutPage />} />
             {/* Admin Routes */}

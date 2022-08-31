@@ -36,6 +36,11 @@ const sidebarLinks = [
     path: PATH.wishlist,
     display: "Đã thích",
   },
+  {
+    icon: "/images/icon-credit-card.png",
+    path: PATH.creditCard,
+    display: "Ngân hàng",
+  },
 ];
 
 const UserSidebar = () => {
@@ -56,7 +61,7 @@ const UserSidebar = () => {
       <ul className='mt-7'>
         {sidebarLinks.map((link: any) => (
           <li key={uuidv4()} className='mb-4'>
-            <Link to={link.path} className='flex gap-x-3'>
+            <Link to={link.path} className='flex items-center gap-x-3'>
               <img src={link.icon} alt='' className='w-5 h-5' />
               <span>{link.display}</span>
             </Link>

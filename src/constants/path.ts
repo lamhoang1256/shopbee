@@ -10,6 +10,7 @@ export const PATH = {
   pageNotFound: "*",
   profile: "/user/profile",
   history: "/user/history",
+  creditCard: "/user/credit-card",
   order: "/user/order",
   voucher: "/user/voucher",
   user: "/user",

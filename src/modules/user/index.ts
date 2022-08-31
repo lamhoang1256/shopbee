@@ -6,6 +6,7 @@ import UserSidebar from "./UserSidebar";
 import UserManage from "./UserManage";
 import UserAvatar from "./UserAvatar";
 import UserAddNew from "./UserAddNew";
+import UserCreditCard from "./UserCreditCard";
 
 export {
   UserChangeAvatar,
@@ -15,5 +16,6 @@ export {
   UserManage,
   UserUpdateMe,
   UserSidebar,
+  UserCreditCard,
   UserChangePassword,
 };

@@ -15,6 +15,12 @@ export interface ICurrentUser {
   password?: string;
   createdAt: string;
   updatedAt: string;
+  creditCard: {
+    number: string;
+    name: string;
+    expiry: string;
+    cvc: string;
+  };
   __v: number;
 }
 

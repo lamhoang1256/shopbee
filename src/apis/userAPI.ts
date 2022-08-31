@@ -22,6 +22,10 @@ export const userAPI = {
     const path = `api/user`;
     return axiosClient.put(path, values);
   },
+  updateCreditCard: (values: any): Promise<IResponse> => {
+    const path = `api/user/credit-card`;
+    return axiosClient.put(path, values);
+  },
   updateMe: (values: any): Promise<IResponse> => {
     const path = `api/user/me`;
     return axiosClient.put(path, values);

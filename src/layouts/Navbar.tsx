@@ -17,9 +17,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const { success, message } = await authAPI.logout({
-        refreshToken: currentUser?.refreshToken,
-      });
+      const { success, message } = await authAPI.logout(currentUser?.refreshToken);
       setCurrentUser({} as ICurrentUser);
       removeCurrentUserLocalStorage();
       if (success) toast.success(message);
