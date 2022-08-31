@@ -236,8 +236,11 @@
 }
 .rccs {
   width: 340px;
+  max-width: 100%;
 }
 .rccs__card {
+  max-width: 100%;
   width: 340px;
-  height: 202px;
+  aspect-ratio: 1.69;
+  height: unset;
 }

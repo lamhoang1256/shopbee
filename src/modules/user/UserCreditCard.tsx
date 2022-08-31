@@ -69,16 +69,6 @@ const UserCreditCard = () => {
           </FormGroup>
           <div className='grid lg:grid-cols-2 gap-x-3'>
             <FormGroup>
-              <Label htmlFor='cvc'>CVG</Label>
-              <Input
-                name='cvc'
-                value={formik.values.cvc}
-                onChange={formik.handleChange}
-                onFocus={handleInputFocus}
-              />
-              <MessageError>{formik.touched.cvc && formik.errors?.cvc}</MessageError>
-            </FormGroup>
-            <FormGroup>
               <Label htmlFor='expiry'>Hết hạn</Label>
               <Input
                 name='expiry'
@@ -87,6 +77,16 @@ const UserCreditCard = () => {
                 onFocus={handleInputFocus}
               />
               <MessageError>{formik.touched.expiry && formik.errors?.expiry}</MessageError>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='cvc'>CVG</Label>
+              <Input
+                name='cvc'
+                value={formik.values.cvc}
+                onChange={formik.handleChange}
+                onFocus={handleInputFocus}
+              />
+              <MessageError>{formik.touched.cvc && formik.errors?.cvc}</MessageError>
             </FormGroup>
           </div>
           <Button type='submit' primary className='w-full h-10'>
