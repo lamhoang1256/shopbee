@@ -37,7 +37,7 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
   }
   return (
     <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
-      <ButtonOutline className='h-10 lg:h-12' onClick={handleAddToCart}>
+      <ButtonOutline primary className='flex items-center h-10 lg:h-12' onClick={handleAddToCart}>
         <IconCartOutline className='w-4 h-4 mr-2' />
         <span className='text-sm'>Thêm vào giỏ hàng</span>
       </ButtonOutline>

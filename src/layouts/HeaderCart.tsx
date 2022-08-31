@@ -47,7 +47,7 @@ const HeaderCart = () => {
                     imageUrl={cart.product.image}
                     className='border h-11 w-11 border-[#00000017]'
                   />
-                  <ProductTitle className='line-clamp-1'>{cart.product.name}</ProductTitle>
+                  <ProductTitle className='flex-1 line-clamp-1'>{cart.product.name}</ProductTitle>
                   <PriceSale className='flex-shrink-0 ml-2'>{cart.product.price}</PriceSale>
                 </Link>
               ))}

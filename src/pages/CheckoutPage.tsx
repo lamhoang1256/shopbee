@@ -1,20 +1,20 @@
 import { ICart, IShop, IVoucher } from "@types";
 import { productAPI, shopAPI } from "apis";
-import { Button } from "components/button";
+import { Button, ButtonOutline } from "components/button";
 import { SectionWhite } from "components/common";
 import { IconGPS } from "components/icons";
 import { Input } from "components/input";
+import { Logo } from "components/logo";
 import { ModalApplyVoucher } from "components/modal";
-import { PATH } from "constants/path";
-import { OrderPayment, OrderProduct } from "modules/order";
 import { PriceSale } from "components/price";
+import { PATH } from "constants/path";
+import useModal from "hooks/useModal";
+import { OrderPayment, OrderProduct } from "modules/order";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import { calcShippingFee, calcTotalCart, formatMoney, formatDateVN } from "utils/helper";
-import { Logo } from "components/logo";
-import useModal from "hooks/useModal";
+import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils/helper";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ const CheckoutPage = () => {
   const [shippingFee, setShippingFee] = useState(0);
   const [appliedVoucher, setAppliedVoucher] = useState<IVoucher>(Object);
   const { isShow, toggleModal } = useModal();
+  const [methodPayment, setMethodPayment] = useState("money");
 
   const buyProducts = async (values: any) => {
     try {
@@ -52,6 +53,7 @@ const CheckoutPage = () => {
       promotion: appliedVoucher.value || 0,
       total,
       voucherCode: appliedVoucher.code,
+      methodPayment,
     };
     buyProducts(values);
   };
@@ -158,7 +160,7 @@ const CheckoutPage = () => {
           <span>Tổng số tiền ({carts.length} sản phẩm):</span>
           <PriceSale className='text-lg font-medium'>{price}</PriceSale>
         </div>
-        <div className='flex p-4 items-center justify-between border-dotted border border-[rgba(0,0,0,.09)] bg-[#fff]'>
+        <div className='flex p-4 items-center justify-between border-dotted border border-[#00000017] bg-[#fff]'>
           <h3>Voucher Shopbee</h3>
           <div className='flex gap-x-5'>
             {appliedVoucher?.code && (
@@ -168,6 +170,46 @@ const CheckoutPage = () => {
               Chọn Voucher
             </button>
           </div>
+        </div>
+        <div className='flex mt-3 p-4 lg:items-center gap-x-4 gap-y-2 border-dotted border border-[#00000017] bg-[#fff] lg:flex-row flex-col'>
+          <h3 className='text-base font-medium'>Phương thức thanh toán</h3>
+          <ButtonOutline
+            disabled={!currentUser.creditCard.name}
+            primary={methodPayment === "credit-card"}
+            onClick={() => setMethodPayment("credit-card")}
+          >
+            Thẻ Tín Dụng/Ghi Nợ
+          </ButtonOutline>
+          <ButtonOutline
+            primary={methodPayment === "money"}
+            onClick={() => setMethodPayment("money")}
+          >
+            Thanh toán khi nhận hàng
+          </ButtonOutline>
+        </div>
+        <div className='flex p-4 items-center gap-x-4 border-dotted border border-[#00000017] bg-[#fff]'>
+          {methodPayment === "money" && (
+            <div>
+              <p>Thanh toán khi nhận hàng</p>
+              <p>
+                Phí thu hộ: ₫0 VNĐ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu hộ.
+              </p>
+            </div>
+          )}
+          {methodPayment === "credit-card" && (
+            <div className='flex flex-wrap items-center gap-x-4 gap-y-2'>
+              <div className='w-14 rounded-sm border border-[#00000024]'>
+                <img
+                  alt='credit-card'
+                  className='h-8 mx-auto w-11'
+                  src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/9f6f1831fb61c65952c4cdb1189d7cb8.png'
+                />
+              </div>
+              <span>Họ tên: {currentUser.creditCard.name}</span>
+              <span>Số thẻ: {currentUser.creditCard.number}</span>
+              <span>Hết hạn: {currentUser.creditCard.expiry}</span>
+            </div>
+          )}
         </div>
         <OrderPayment payments={payments} />
         <div className='bg-[#fffcf5] border-dotted border border-[rgba(0,0,0,.09)] flex flex-wrap-reverse justify-end px-4 py-6 gap-y-3 lg:items-center lg:justify-between'>

@@ -44,6 +44,7 @@ export interface IOrder {
   createdAt: string;
   updatedAt: string;
   reasonCancel: string;
+  methodPayment: string;
   user: {
     _id: string;
     email: string;

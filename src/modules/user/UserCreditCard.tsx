@@ -9,6 +9,7 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/lib/styles.scss";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
+import * as Yup from "yup";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
 
 enum InputFocus {
@@ -27,6 +28,21 @@ const UserCreditCard = () => {
       expiry: "",
       cvc: "",
     },
+    validationSchema: Yup.object({
+      number: Yup.string()
+        .required("Vui lòng nhập số thẻ!")
+        .min(16, "Số thẻ tối thiểu bao gồm 16 chữ số!")
+        .max(19, "Số thẻ tối thiểu bao gồm 19 chữ số!"),
+      name: Yup.string()
+        .required("Vui lòng họ và tên!")
+        .min(12, "Họ và tên tối thiểu bao gồm 12 kí tự!")
+        .max(22, "Họ và tên tối thiểu bao gồm 22 kí tự!"),
+      expiry: Yup.string().required("Vui lòng thời hạn thẻ!"),
+      cvc: Yup.string()
+        .required("Vui lòng mã bảo vệ CVC!")
+        .min(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!")
+        .max(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!"),
+    }),
     onSubmit: async (values: any) => {
       try {
         const { data, message } = await userAPI.updateCreditCard(values);
@@ -95,9 +111,9 @@ const UserCreditCard = () => {
         </form>
         <div className='lg:mt-6'>
           <Cards
+            focused={focus}
             number={formik.values.number}
             expiry={formik.values.expiry}
-            focused={focus}
             name={formik.values.name}
             cvc={formik.values.cvc}
           />

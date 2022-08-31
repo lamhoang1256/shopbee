@@ -17,10 +17,10 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const { success, message } = await authAPI.logout(currentUser?.refreshToken);
+      const { message } = await authAPI.logout(currentUser?.refreshToken);
       setCurrentUser({} as ICurrentUser);
       removeCurrentUserLocalStorage();
-      if (success) toast.success(message);
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -47,20 +47,22 @@ const Navbar = () => {
               urlAvatar={currentUser?.avatar || defaultUserAvatar}
               className='object-cover w-5 h-5 rounded-full'
             />
-            <span className='font-medium max5se:line-clamp-1 '>{currentUser?.fullname}</span>
+            <span className='font-medium max5se:line-clamp-1 '>
+              {currentUser?.fullname || "User"}
+            </span>
           </div>
           <Popover active={activePopover} className='min-w-[150px]'>
+            {currentUser.isAdmin && (
+              <Link to={PATH.dashboard} className={stylesPopoverLink}>
+                Dashboard
+              </Link>
+            )}
             <Link to={PATH.profile} className={stylesPopoverLink}>
               Tài khoản của tôi
             </Link>
             <Link to={PATH.order} className={stylesPopoverLink}>
               Đơn mua
             </Link>
-            {currentUser.isAdmin && (
-              <Link to={PATH.dashboard} className={stylesPopoverLink}>
-                Dashboard
-              </Link>
-            )}
             <button
               type='button'
               onClick={handleLogout}

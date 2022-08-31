@@ -39,7 +39,7 @@ const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
       </div>
       <div className='flex gap-3'>
         <Button onClick={handleRemoveAllCart}>Xóa tất cả</Button>
-        <Button primary to={PATH.payment}>
+        <Button primary to={PATH.checkout}>
           Thanh toán
         </Button>
       </div>

@@ -76,7 +76,7 @@ const AppRoutes = () => {
               <Route path={PATH.history} element={<HistoryPage />} />
               <Route path={PATH.creditCard} element={<UserCreditCard />} />
             </Route>
-            <Route path={PATH.payment} element={<CheckoutPage />} />
+            <Route path={PATH.checkout} element={<CheckoutPage />} />
             {/* Admin Routes */}
             <Route element={<CheckAdmin />}>
               <Route path='/dashboard' element={<LayoutDashboard />}>
