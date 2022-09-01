@@ -1,4 +1,4 @@
-import { IOrder, OrderStatusLabel } from "@types";
+import { IOrder, OrderStatusVietnamese } from "@types";
 import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { SectionWhite } from "components/common";
@@ -36,7 +36,7 @@ const OrderUpdate = () => {
   return (
     <>
       <SectionWhite>
-        <OrderHeader orderId={order._id}>{OrderStatusLabel[order.status]}</OrderHeader>
+        <OrderHeader orderId={order._id}>{OrderStatusVietnamese[order.status]}</OrderHeader>
         <OrderProgress order={order} />
         <OrderOverview order={order} />
       </SectionWhite>

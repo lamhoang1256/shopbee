@@ -1,4 +1,4 @@
-import { ICart, IVoucher } from "@types";
+import { ICart, IOrder, IVoucher } from "@types";
 import { productAPI } from "apis";
 import { Button, ButtonOutline } from "components/button";
 import { SectionWhite } from "components/common";
@@ -30,7 +30,7 @@ const CheckoutPage = () => {
   const { isShow, toggleModal } = useModal();
   const [methodPayment, setMethodPayment] = useState("money");
 
-  const buyProducts = async (values: any) => {
+  const buyProducts = async (values: Partial<IOrder>) => {
     try {
       const { data, message } = await productAPI.buyProducts(values);
       toast.success(message);

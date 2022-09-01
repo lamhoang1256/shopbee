@@ -7,7 +7,7 @@ export enum OrderStatus {
   delivered = "delivered",
   canceled = "canceled",
 }
-export enum OrderStatusLabel {
+export enum OrderStatusVietnamese {
   waiting = "Đang chờ",
   processing = "Đang xử lí",
   shipping = "Đang giao hàng",
@@ -54,7 +54,7 @@ export interface IOrder {
 
 export interface IStatusOrder {
   active: boolean;
-  icon: any;
+  icon: React.ReactNode;
   date: string;
   status: string;
 }

@@ -1,3 +1,4 @@
+import { IBanner } from "@types";
 import { bannerAPI } from "apis";
 import { ActionDelete } from "components/action";
 import { ImageUpload } from "components/image";
@@ -9,9 +10,8 @@ import { swalDelete } from "utils/swal";
 import { uploadImage } from "utils/uploadImage";
 
 const BannerManage = () => {
-  const [banners, setBanners] = useState([]);
+  const [banners, setBanners] = useState<IBanner[]>([]);
   const [loading, setLoading] = useState(true);
-
   const fetchBanners = async () => {
     try {
       setLoading(true);
@@ -35,7 +35,6 @@ const BannerManage = () => {
       toast.error(error?.message);
     }
   };
-
   const handleUpdateBanner = async (e: ChangeEvent<HTMLInputElement>, bannerId: string) => {
     try {
       const newBannerUrl = await uploadImage(e);
@@ -47,7 +46,6 @@ const BannerManage = () => {
       toast.error(error?.message);
     }
   };
-
   const handleDeleteBanner = async (bannerId: string) => {
     try {
       const { message } = await bannerAPI.deleteBanner(bannerId);
@@ -72,7 +70,7 @@ const BannerManage = () => {
             previewImage=''
             className='!w-full aspect-auto'
           />
-          {banners.map((banner: any) => (
+          {banners.map((banner) => (
             <div className='relative' key={banner._id}>
               <img src={banner.bannerUrl} alt='banner' className='rounded-md' />
               <div className='absolute inset-0'>

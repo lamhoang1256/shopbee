@@ -40,7 +40,7 @@ const ShopUpdate = () => {
         name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
       }),
     }),
-    onSubmit: async (values: any) => {
+    onSubmit: async (values) => {
       try {
         const { street, city, district, ward } = values;
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;

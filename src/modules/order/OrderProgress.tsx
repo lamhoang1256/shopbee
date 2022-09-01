@@ -1,4 +1,4 @@
-import { IOrder, IStatusOrder, OrderStatusCode, OrderStatus, OrderStatusLabel } from "@types";
+import { IOrder, IStatusOrder, OrderStatusCode, OrderStatus, OrderStatusVietnamese } from "@types";
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
 import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
@@ -23,7 +23,7 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
             <IconCheck />
           </div>
           <div className='md:text-center'>
-            <h3>{OrderStatusLabel.canceled}</h3>
+            <h3>{OrderStatusVietnamese.canceled}</h3>
             <span className='text-[#00000042] text-xs block mt-1'>
               {formatDateVNFull(order?.canceledAt)}
             </span>
@@ -41,25 +41,25 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
     {
       icon: <IconClipboard />,
       active: order.statusCode >= OrderStatusCode.waiting,
-      status: OrderStatusLabel.waiting,
+      status: OrderStatusVietnamese.waiting,
       date: formatDateVNFull(order?.createdAt),
     },
     {
       icon: <IconMoney />,
       active: order.statusCode >= OrderStatusCode.processing,
-      status: OrderStatusLabel.processing,
+      status: OrderStatusVietnamese.processing,
       date: formatDateVNFull(order?.createdAt),
     },
     {
       icon: <IconShipping />,
       active: order.statusCode >= OrderStatusCode.shipping,
-      status: OrderStatusLabel.shipping,
+      status: OrderStatusVietnamese.shipping,
       date: order?.shippingAt ? formatDateVNFull(order?.shippingAt) : "Đang chờ",
     },
     {
       icon: <IconCheck />,
       active: order.statusCode >= OrderStatusCode.delivered,
-      status: OrderStatusLabel.delivered,
+      status: OrderStatusVietnamese.delivered,
       date: order?.deliveredAt ? formatDateVNFull(order?.deliveredAt) : "Đang chờ",
     },
   ];

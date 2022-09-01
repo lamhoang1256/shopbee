@@ -3,9 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { bannerAPI } from "apis";
 import "swiper/css";
 import { toast } from "react-toastify";
+import { IBanner } from "@types";
 
 const HomeBanner = () => {
-  const [banners, setBanners] = useState([]);
+  const [banners, setBanners] = useState<IBanner[]>([]);
   const [loading, setLoading] = useState(true);
   const fetchHomeBanner = async () => {
     setLoading(true);
@@ -35,7 +36,7 @@ const HomeBanner = () => {
   return (
     <div className='layout-container mt-7'>
       <Swiper slidesPerView={1} className='overflow-hidden rounded-md'>
-        {banners?.map((banner: any) => (
+        {banners?.map((banner) => (
           <SwiperSlide key={banner._id}>
             <img src={banner.bannerUrl} alt='banner' />
           </SwiperSlide>

@@ -1,18 +1,18 @@
 import { ICategory } from "@types";
 import { categoryAPI } from "apis";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function useFetchCategories() {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
   const fetchCategories = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await categoryAPI.getAllCategory();
       setCategories(data);
-    } catch (err) {
-      setError(err);
+    } catch (error) {
+      toast.error(error);
     } finally {
       setLoading(false);
     }
@@ -22,7 +22,6 @@ export default function useFetchCategories() {
   }, []);
   return {
     loading,
-    error,
     categories,
     fetchCategories,
   };
