@@ -5,6 +5,7 @@ import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
 import { toast } from "react-toastify";
+import { swalDelete } from "utils/swal";
 
 const CategoryManage = () => {
   const { categories, loading, fetchCategories } = useFetchCategories();
@@ -51,7 +52,9 @@ const CategoryManage = () => {
                   <td>
                     <div className='flex gap-x-1'>
                       <Button to={`${PATH.categoryUpdate}/${category._id}`}>Sửa</Button>
-                      <Button onClick={() => handleDeleteCategory(category._id)}>Xóa</Button>
+                      <Button onClick={() => swalDelete(() => handleDeleteCategory(category._id))}>
+                        Xóa
+                      </Button>
                     </div>
                   </td>
                 </tr>

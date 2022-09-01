@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVN, scrollToTop } from "utils/helper";
+import { swalDelete } from "utils/swal";
 import UserAvatar from "./UserAvatar";
 
 const UserManage = () => {
@@ -20,38 +21,36 @@ const UserManage = () => {
   const params = Object.fromEntries(searchParams);
   const [loading, setLoading] = useState(true);
   const formik = useFormik({
-    initialValues: {
-      email: "",
-    },
+    initialValues: { email: "" },
     onSubmit: (values) => {
       setSearchParams(values);
     },
   });
 
   const fetchAllUser = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await userAPI.getAllUser({ ...params, limit: "10" });
       setUsers(data.users);
       setPagination(data.pagination);
       setLoading(false);
-    } catch (error) {
+    } catch (err: any) {
+      toast.error(err?.message);
+    } finally {
       setLoading(false);
-      console.log("Failed to fetch users: ", error);
     }
   };
 
   const handleDeleteUser = async (usedId: string) => {
     try {
-      const { success, message } = await userAPI.deleteUser(usedId);
-      if (success) {
-        toast.success(message);
-        fetchAllUser();
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
+      const { message } = await userAPI.deleteUser(usedId);
+      fetchAllUser();
+      toast.success(message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
+
   useEffect(() => {
     fetchAllUser();
     scrollToTop();
@@ -119,7 +118,9 @@ const UserManage = () => {
                     <td>
                       <div className='flex gap-x-1'>
                         <Button to={`${PATH.userUpdate}/${user._id}`}>Sửa</Button>
-                        <Button onClick={() => handleDeleteUser(user._id)}>Xóa</Button>
+                        <Button onClick={() => swalDelete(() => handleDeleteUser(user._id))}>
+                          Xóa
+                        </Button>
                       </div>
                     </td>
                   </tr>

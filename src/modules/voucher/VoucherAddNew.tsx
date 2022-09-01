@@ -6,7 +6,6 @@ import { useFormik } from "formik";
 import { Template } from "layouts";
 import { toast } from "react-toastify";
 import VoucherItem from "./VoucherItem";
-// import { formatDatetimeLocal } from "utils/helper";
 
 const VoucherAddNew = () => {
   const formik = useFormik({
@@ -22,10 +21,10 @@ const VoucherAddNew = () => {
         expirationDate: new Date(values.expirationDate).getTime(),
       };
       try {
-        const { success, message } = await voucherAPI.addNewVoucher(payload);
-        if (success) toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+        const { message } = await voucherAPI.addNewVoucher(payload);
+        toast.success(message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });

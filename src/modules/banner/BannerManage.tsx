@@ -5,6 +5,8 @@ import { Loading } from "components/loading";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { swalDelete } from "utils/swal";
 import { uploadImage } from "utils/uploadImage";
 
 const BannerManage = () => {
@@ -50,13 +52,26 @@ const BannerManage = () => {
   };
 
   const handleDeleteBanner = async (bannerId: string) => {
-    try {
-      const { message } = await bannerAPI.deleteBanner(bannerId);
-      fetchBanners();
-      toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
+    Swal.fire({
+      title: "Xác nhận",
+      text: "Bạn có chắc chắc muốn xóa banner này?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Đồng ý!",
+      cancelButtonText: "Hủy!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { message } = await bannerAPI.deleteBanner(bannerId);
+          fetchBanners();
+          toast.success(message);
+        } catch (error: any) {
+          toast.error(error?.message);
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -83,7 +98,7 @@ const BannerManage = () => {
                   onChange={(e) => handleUpdateBanner(e, banner._id)}
                 />
               </div>
-              <ActionDelete onClick={() => handleDeleteBanner(banner._id)} />
+              <ActionDelete onClick={() => swalDelete(() => handleDeleteBanner(banner._id))} />
             </div>
           ))}
         </div>

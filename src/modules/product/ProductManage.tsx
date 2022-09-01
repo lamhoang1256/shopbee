@@ -10,6 +10,7 @@ import { Template } from "layouts";
 import { toast } from "react-toastify";
 import { formatMoney } from "utils/helper";
 import { PriceSale } from "components/price";
+import { swalDelete } from "utils/swal";
 import ProductImage from "./ProductImage";
 import ProductNotFound from "./ProductNotFound";
 
@@ -89,7 +90,9 @@ const ProductManage = () => {
                     <td>
                       <div className='flex gap-x-1'>
                         <Button to={`${PATH.productUpdate}/${product._id}`}>Sửa</Button>
-                        <Button onClick={() => handleDeleteProduct(product._id)}>Xóa</Button>
+                        <Button onClick={() => swalDelete(() => handleDeleteProduct(product._id))}>
+                          Xóa
+                        </Button>
                       </div>
                     </td>
                   </tr>

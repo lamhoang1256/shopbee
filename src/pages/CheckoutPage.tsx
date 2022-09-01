@@ -57,7 +57,7 @@ const CheckoutPage = () => {
       methodPayment,
     };
     Swal.fire({
-      title: "Xác nhận thanh toán",
+      title: "Xác nhận",
       text: "Bạn có chắc chắc muốn xác nhận thanh toán?",
       icon: "question",
       showCancelButton: true,
@@ -75,8 +75,8 @@ const CheckoutPage = () => {
       try {
         const { data } = await shopAPI.getShopInfo();
         setShopInfo(data);
-      } catch (error) {
-        console.log("Failed to fetch address: ", error);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
     fetchShopInfo();

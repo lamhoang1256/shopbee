@@ -12,13 +12,11 @@ const VoucherSave = ({ fetchReloadVoucher }: VoucherSaveProps) => {
   const [newVoucher, setNewVoucher] = useState("");
   const handleSaveVoucher = async () => {
     try {
-      const { success, message } = await voucherAPI.saveVoucher(newVoucher);
-      if (success) {
-        toast.success(message);
-        fetchReloadVoucher();
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
+      const { message } = await voucherAPI.saveVoucher(newVoucher);
+      fetchReloadVoucher();
+      toast.success(message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
