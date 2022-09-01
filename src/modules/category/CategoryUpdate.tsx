@@ -2,7 +2,7 @@ import { categoryAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
-import { CategorySchema } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
@@ -19,7 +19,11 @@ const CategoryUpdate = () => {
       slug: "",
       image: "",
     },
-    validationSchema: CategorySchema,
+    validationSchema: Yup.object({
+      name: Yup.string().required("Vui lòng nhập tên danh mục!"),
+      slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
+      image: Yup.string().required("Vui lòng chọn hình ảnh!"),
+    }),
     onSubmit: async (values: any) => {
       try {
         const { message } = await categoryAPI.updateCategory(id, values);
@@ -32,8 +36,8 @@ const CategoryUpdate = () => {
 
   const handleUploadThumb = async (e: any) => {
     try {
-      const image = await uploadImage(e);
-      formik.setFieldValue("image", image);
+      const newImgUrl = await uploadImage(e);
+      formik.setFieldValue("image", newImgUrl);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -52,11 +56,11 @@ const CategoryUpdate = () => {
   }, [id]);
 
   return (
-    <Template title='Sửa danh mục' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Sửa danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
       <form
-        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
-        onSubmit={formik.handleSubmit}
         autoComplete='off'
+        onSubmit={formik.handleSubmit}
+        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
       >
         <div className='w-full max-w-[600px]'>
           <FormGroup>
@@ -70,7 +74,7 @@ const CategoryUpdate = () => {
             <MessageError>{formik.touched.slug && formik.errors?.slug}</MessageError>
           </FormGroup>
           <Button type='submit' primary className='w-full h-10'>
-            Lưu
+            Cập nhật danh mục
           </Button>
         </div>
         <UserChangeAvatar avatar={formik.values.image} handleChangeAvatar={handleUploadThumb} />

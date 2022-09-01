@@ -24,7 +24,7 @@ const CategoryManage = () => {
       {!loading && categories.length > 0 && (
         <div className='tables'>
           <table>
-            <thead className=''>
+            <thead>
               <tr>
                 <th>STT</th>
                 <th>Tên danh mục</th>

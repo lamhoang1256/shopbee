@@ -2,7 +2,7 @@ import { categoryAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
-import { CategorySchema } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
@@ -16,7 +16,11 @@ const CategoryAddNew = () => {
       slug: "",
       image: "",
     },
-    validationSchema: CategorySchema,
+    validationSchema: Yup.object({
+      name: Yup.string().required("Vui lòng nhập tên danh mục!"),
+      slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
+      image: Yup.string().required("Vui lòng chọn hình ảnh!"),
+    }),
     onSubmit: async (values: any) => {
       try {
         const { message } = await categoryAPI.addNewCategory(values);
@@ -27,10 +31,10 @@ const CategoryAddNew = () => {
     },
   });
 
-  const handleUploadThumb = async (e: any) => {
+  const handleUploadImage = async (e: any) => {
     try {
-      const image = await uploadImage(e);
-      formik.setFieldValue("image", image);
+      const newImgUrl = await uploadImage(e);
+      formik.setFieldValue("image", newImgUrl);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -55,10 +59,10 @@ const CategoryAddNew = () => {
             <MessageError>{formik.touched.slug && formik.errors?.slug}</MessageError>
           </FormGroup>
           <Button type='submit' primary className='w-full h-10'>
-            Lưu
+            Thêm danh mục
           </Button>
         </div>
-        <UserChangeAvatar avatar={formik.values.image} handleChangeAvatar={handleUploadThumb} />
+        <UserChangeAvatar avatar={formik.values.image} handleChangeAvatar={handleUploadImage} />
       </form>
     </Template>
   );
