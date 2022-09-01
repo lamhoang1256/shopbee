@@ -5,7 +5,7 @@ import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
 import { Input } from "components/input";
 import { Option, Select } from "components/select";
-import { ProductSchemaYup } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
@@ -31,15 +31,25 @@ const ProductAddNew = () => {
       sold: 0,
       view: getRandomInt(0, 10000),
     },
-    validationSchema: ProductSchemaYup,
+    validationSchema: Yup.object({
+      name: Yup.string().required("Vui lòng nhập tên sản phẩm!"),
+      image: Yup.string().required("Vui lòng chọn hình ảnh!"),
+      description: Yup.string().required("Vui lòng nhập mô tả sản phẩm!"),
+      category: Yup.string().required("Vui lòng chọn danh mục!"),
+      oldPrice: Yup.number().required("Vui lòng chọn giá sản phẩm!"),
+      price: Yup.number()
+        .required()
+        .max(Yup.ref("oldPrice"), "Giá đã giảm không được lớn hơn giá gốc"),
+      stock: Yup.number().required("Vui lòng chọn số lượng!"),
+    }),
     onSubmit: async (values) => {
       try {
         const images = values.images.filter((image) => image);
         const payload = { ...values, image: images[0], images };
         const { message } = await productAPI.addNewProduct(payload);
         toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });

@@ -19,7 +19,7 @@ const ProductTitle = ({ children, className, styleLink, to }: ProductTitleProps)
 };
 
 ProductTitle.defaultProps = {
-  className: "text-[13px] text-black33 line-clamp-2",
+  className: "text-sm text-black33 line-clamp-2",
   to: "",
   styleLink: "",
 };

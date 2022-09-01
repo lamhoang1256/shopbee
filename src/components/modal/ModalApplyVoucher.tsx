@@ -23,12 +23,14 @@ const ModalApplyVoucher = ({
 }: ModalApplyVoucherProps) => {
   const [newVoucher, setNewVoucher] = useState("");
   const [vouchers, setVouchers] = useState<IVoucher[]>([]);
-  const fetchMyVoucher = () => {
-    voucherAPI.getMyVoucher().then((res) => {
-      setVouchers(res.data.reverse());
-    });
+  const fetchMyVoucher = async () => {
+    try {
+      const { data } = await voucherAPI.getMyVoucher();
+      setVouchers(data.reverse());
+    } catch (err: any) {
+      toast.error(err?.message);
+    }
   };
-
   const handleSaveVoucher = async () => {
     try {
       const { message } = await voucherAPI.saveVoucher(newVoucher);
@@ -38,7 +40,6 @@ const ModalApplyVoucher = ({
       toast.error(error?.message);
     }
   };
-
   useEffect(() => {
     fetchMyVoucher();
   }, []);

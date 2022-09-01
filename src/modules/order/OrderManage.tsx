@@ -30,9 +30,7 @@ const OrderManage = () => {
   const status = searchParams.get("status") || "";
   const params = Object.fromEntries(searchParams);
   const formik = useFormik({
-    initialValues: {
-      orderId: "",
-    },
+    initialValues: { orderId: "" },
     onSubmit: (values) => {
       setSearchParams(values);
     },

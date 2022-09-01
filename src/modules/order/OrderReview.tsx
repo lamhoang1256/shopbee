@@ -6,6 +6,7 @@ import useModal from "hooks/useModal";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { swalDelete } from "utils/swal";
 import OrderProduct from "./OrderProduct";
 
 interface OrderReviewProps {
@@ -62,7 +63,9 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
                 <Button onClick={() => openModalUpdate(orderItem.product, review)}>
                   Chỉnh sửa nhận xét
                 </Button>
-                <Button onClick={() => handleDeleteReview(review._id)}>Xóa nhận xét</Button>
+                <Button onClick={() => swalDelete(() => handleDeleteReview(review._id))}>
+                  Xóa nhận xét
+                </Button>
               </div>
             ) : (
               <Button onClick={() => openModalAdd(orderItem.product)}>Viết nhận xét</Button>

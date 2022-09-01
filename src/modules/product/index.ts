@@ -8,17 +8,15 @@ import ProductManage from "./ProductManage";
 import ProductNotFound from "./ProductNotFound";
 import ProductImageSlider from "./ProductImageSlider";
 import ProductGrid from "./ProductGrid";
-import ProductShipping from "./ProductShipping";
-import ProductAction from "./ProductAction";
 import ProductAddToCart from "./ProductAddToCart";
 import ProductRelated from "./ProductRelated";
+import ProductShipping from "./ProductShipping";
 
 export {
   ProductCard,
   ProductRelated,
   ProductImageSlider,
   ProductAddToCart,
-  ProductAction,
   ProductGrid,
   ProductShipping,
   ProductUpdate,

@@ -1,5 +1,6 @@
 import { orderAPI } from "apis";
 import { Button } from "components/button";
+import { Textarea } from "components/textarea";
 import { useState } from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
@@ -16,6 +17,10 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
   const [reasonCancel, setReasonCancel] = useState("");
   const handleCancelOrder = async () => {
     try {
+      if (!reasonCancel) {
+        toast.error("Vui lòng nhập lí do hủy đơn hàng");
+        return;
+      }
       const { message } = await orderAPI.cancelOrder(id, { reasonCancel });
       setReasonCancel("");
       fetchDetailsOrder();
@@ -37,12 +42,10 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
         <h2 className='mt-4 text-lg font-semibold text-center'>
           Vui lòng cho Shopbee biết lý do bạn hủy đơn
         </h2>
-        <textarea
-          rows={5}
+        <Textarea
           value={reasonCancel}
           onChange={(e) => setReasonCancel(e.target.value)}
           placeholder='Hãy chia sẻ lý do bạn muốn hủy đơn hàng này nhé.'
-          className='border-[#00000024] focus:border-[#0000008a] border mt-6 p-3 w-full outline-none resize-none rounded'
         />
       </div>
       <div className='flex mt-4 gap-x-2'>

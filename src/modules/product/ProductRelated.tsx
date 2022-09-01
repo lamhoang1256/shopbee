@@ -1,6 +1,7 @@
 import { IProduct } from "@types";
 import { productAPI } from "apis";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import ProductGrid from "./ProductGrid";
 
 interface ProductRelatedProps {
@@ -14,8 +15,8 @@ const ProductRelated = ({ categoryId }: ProductRelatedProps) => {
       try {
         const { data } = await productAPI.getAllProduct(params);
         setRelatedProduct(data.products);
-      } catch (error) {
-        console.log("error: ", error);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
     fetchRelatedProduct({ category: categoryId });

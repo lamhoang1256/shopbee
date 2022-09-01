@@ -192,11 +192,7 @@ const CheckoutPage = () => {
           {methodPayment === "credit-card" && (
             <div className='flex flex-col items-center lg:flex-row gap-x-4 gap-y-2'>
               <div className='w-14 rounded-sm border border-[#00000024]'>
-                <img
-                  alt='credit-card'
-                  className='h-8 mx-auto w-11'
-                  src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/9f6f1831fb61c65952c4cdb1189d7cb8.png'
-                />
+                <img alt='visa' className='h-8 mx-auto w-11' src='/images/icon-visa.png' />
               </div>
               <span>Họ tên: {currentUser.creditCard.name}</span>
               <span>Số thẻ: {currentUser.creditCard.number}</span>

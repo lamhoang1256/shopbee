@@ -19,7 +19,7 @@ const VoucherUpdate = lazy(() => import("modules/voucher/VoucherUpdate"));
 const OrderManage = lazy(() => import("modules/order/OrderManage"));
 const OrderUpdate = lazy(() => import("modules/order/OrderUpdate"));
 const OrderDetailsPage = lazy(() => import("pages/OrderDetailsPage"));
-const OrderPage = lazy(() => import("pages/OrderPage"));
+const OrderMe = lazy(() => import("modules/order/OrderMe"));
 const ProductAddNew = lazy(() => import("modules/product/ProductAddNew"));
 const ProductManage = lazy(() => import("modules/product/ProductManage"));
 const ProductUpdate = lazy(() => import("modules/product/ProductUpdate"));
@@ -67,7 +67,7 @@ const AppRoutes = () => {
           <Route element={<ProtectedRoute />}>
             {/* User Routes */}
             <Route element={<LayoutUser />}>
-              <Route path={PATH.order} element={<OrderPage />} />
+              <Route path={PATH.order} element={<OrderMe />} />
               <Route path={`${PATH.order}/:id`} element={<OrderDetailsPage />} />
               <Route path={PATH.profile} element={<ProfilePage />} />
               <Route path={PATH.password} element={<UserChangePassword />} />
