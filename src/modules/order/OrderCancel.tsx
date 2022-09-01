@@ -1,38 +1,29 @@
-import { OrderStatusCodeEnum } from "@types";
+import { OrderStatus } from "@types";
 import { Button } from "components/button";
 import { ModalCancelOrder } from "components/modal";
-import { useState } from "react";
+import useModal from "hooks/useModal";
 
 interface OrderCancelProps {
-  statusCode: OrderStatusCodeEnum;
+  status: OrderStatus;
   fetchDetailsOrder: () => void;
 }
 
-const OrderCancel = ({ statusCode, fetchDetailsOrder }: OrderCancelProps) => {
-  const [showModalCancel, setShowModalCancel] = useState(false);
-  const openModalCancel = () => {
-    setShowModalCancel(true);
-  };
-  const closeModalCancel = () => {
-    setShowModalCancel(false);
-  };
-
+const OrderCancel = ({ status, fetchDetailsOrder }: OrderCancelProps) => {
+  const { isShow, toggleModal } = useModal();
+  const isCanceled = status !== OrderStatus.delivered && status !== OrderStatus.canceled;
   return (
-    <div className='bg-[#fafdff] p-3 flex gap-y-3 md:justify-between flex-col md:flex-row border-dotted border border-[#00000017]'>
+    <div className='bg-[#fafdff] p-4 flex gap-y-3 md:justify-between flex-col md:flex-row border-dotted border-[#00000017] shadow2 border -mx-[1px]'>
       <span className='leading-10 text-xs text-[#0000008a]'>
         Cảm ơn bạn đã mua sắm tại Shopbee!
       </span>
-      <div className='flex flex-wrap gap-2'>
-        {statusCode !== OrderStatusCodeEnum.delivered &&
-          statusCode !== OrderStatusCodeEnum.canceled && (
-            <Button primary onClick={openModalCancel}>
-              Hủy đơn hàng
-            </Button>
-          )}
-      </div>
+      {isCanceled && (
+        <Button primary onClick={toggleModal}>
+          Hủy đơn hàng
+        </Button>
+      )}
       <ModalCancelOrder
-        isOpen={showModalCancel}
-        closeModal={closeModalCancel}
+        isOpen={isShow}
+        closeModal={toggleModal}
         fetchDetailsOrder={fetchDetailsOrder}
       />
     </div>

@@ -80,25 +80,6 @@ const CheckoutPage = () => {
     setTotal(totalPrice > 0 ? totalPrice : 0);
   }, [price, shippingFee, appliedVoucher.value]);
 
-  const payments = [
-    {
-      label: "Tổng tiền hàng",
-      value: price,
-    },
-    {
-      label: "Phí vận chuyển",
-      value: shippingFee,
-    },
-    {
-      label: "Voucher từ Shopbee",
-      value: -appliedVoucher.value || 0,
-    },
-    {
-      label: "Tổng thanh toán",
-      value: total,
-    },
-  ];
-
   return (
     <>
       <header className='bg-white'>
@@ -197,7 +178,7 @@ const CheckoutPage = () => {
             </div>
           )}
           {methodPayment === "credit-card" && (
-            <div className='flex flex-wrap items-center gap-x-4 gap-y-2'>
+            <div className='flex flex-col items-center lg:flex-row gap-x-4 gap-y-2'>
               <div className='w-14 rounded-sm border border-[#00000024]'>
                 <img
                   alt='credit-card'
@@ -211,7 +192,12 @@ const CheckoutPage = () => {
             </div>
           )}
         </div>
-        <OrderPayment payments={payments} />
+        <OrderPayment
+          price={price}
+          shippingFee={shippingFee}
+          promotion={appliedVoucher.value || 0}
+          total={total}
+        />
         <div className='bg-[#fffcf5] border-dotted border border-[rgba(0,0,0,.09)] flex flex-wrap-reverse justify-end px-4 py-6 gap-y-3 lg:items-center lg:justify-between'>
           <span className='maxsm:hidden'>
             Nhấn Đặt hàng đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopbee

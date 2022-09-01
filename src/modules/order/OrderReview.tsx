@@ -18,35 +18,32 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
   const { isShow: isShowUpdate, toggleModal: toggleModalUpdate } = useModal();
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [productReview, setProductReview] = useState<IProduct>(Object);
-  const [dataReview, setDataReview] = useState<IReview>();
+  const [dataReview, setDataReview] = useState<IReview>(Object);
 
   const openModalAdd = (product: IProduct) => {
     toggleModalAdd();
     setProductReview(product);
   };
-
   const openModalUpdate = (product: IProduct, review: IReview) => {
     toggleModalUpdate();
     setProductReview(product);
     setDataReview(review);
   };
-
   const fetchReviews = async () => {
     try {
       const { data } = await reviewAPI.getAllReviewOrder(id);
       setReviews(data);
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
-
   const handleDeleteReview = async (orderId: string) => {
     try {
       const { message } = await reviewAPI.deleteReview(orderId);
       fetchReviews();
       toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
   useEffect(() => {
@@ -56,20 +53,19 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
   return (
     <div className='p-4 mt-4 bg-white rounded-md'>
       {orderItems.map((orderItem) => {
-        const { product } = orderItem;
-        const myReview = reviews?.find((review) => review.productId === product._id);
+        const review = reviews?.find((item) => item.productId === orderItem.product._id);
         return (
           <div className='my-3' key={orderItem.product._id}>
             <OrderProduct order={orderItem} />
-            {myReview?._id ? (
+            {review?._id ? (
               <div className='flex gap-x-2'>
-                <Button onClick={() => openModalUpdate(product, myReview)}>
+                <Button onClick={() => openModalUpdate(orderItem.product, review)}>
                   Chỉnh sửa nhận xét
                 </Button>
-                <Button onClick={() => handleDeleteReview(myReview._id)}>Xóa nhận xét</Button>
+                <Button onClick={() => handleDeleteReview(review._id)}>Xóa nhận xét</Button>
               </div>
             ) : (
-              <Button onClick={() => openModalAdd(product)}>Viết nhận xét</Button>
+              <Button onClick={() => openModalAdd(orderItem.product)}>Viết nhận xét</Button>
             )}
           </div>
         );

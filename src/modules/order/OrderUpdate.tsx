@@ -1,58 +1,42 @@
+import { IOrder, OrderStatusLabel } from "@types";
 import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { SectionWhite } from "components/common";
 import { Loading } from "components/loading";
-import { Select } from "components/select";
-import { IOrder } from "@types";
+import { Option, Select } from "components/select";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { orderStatusLabel } from "constants/global";
+import { toast } from "react-toastify";
+import OrderHeader from "./OrderHeader";
 import OrderOverview from "./OrderOverview";
 import OrderPayment from "./OrderPayment";
 import OrderProduct from "./OrderProduct";
 import OrderProgress from "./OrderProgress";
-import OrderHeader from "./OrderHeader";
 
 const OrderUpdate = () => {
   const { id } = useParams();
-  const [order, setOrder] = useState<IOrder>(Object);
   const [loading, setLoading] = useState(true);
+  const [order, setOrder] = useState<IOrder>(Object);
   const fetchDetailsOrder = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await orderAPI.getSingleOrder(id || "");
       setOrder(data);
-      setLoading(false);
-    } catch (error) {
+    } catch (err: any) {
+      toast.error(err?.message);
+    } finally {
       setLoading(false);
     }
   };
   useEffect(() => {
     fetchDetailsOrder();
   }, [id]);
+
   if (loading) return <Loading />;
-  const payments = [
-    {
-      label: "Tổng tiền hàng",
-      value: order.price,
-    },
-    {
-      label: "Phí vận chuyển",
-      value: order.shippingFee,
-    },
-    {
-      label: "Voucher từ Shopbee",
-      value: order.promotion * -1,
-    },
-    {
-      label: "Tổng thanh toán",
-      value: order.total,
-    },
-  ];
   return (
     <>
       <SectionWhite>
-        <OrderHeader id={order._id}>{orderStatusLabel[order.statusCode]}</OrderHeader>
+        <OrderHeader orderId={order._id}>{OrderStatusLabel[order.status]}</OrderHeader>
         <OrderProgress order={order} />
         <OrderOverview order={order} />
       </SectionWhite>
@@ -60,10 +44,10 @@ const OrderUpdate = () => {
         <div className='flex items-center gap-x-5'>
           <span>Trạng thái đơn hàng</span>
           <Select name='status'>
-            <option value='1'>Chờ xác nhận</option>
-            <option value='2'>Đã thanh toán</option>
-            <option value='3'>Đang vận chuyển</option>
-            <option value='4'>Đã giao hàng</option>
+            <Option value='1'>Chờ xác nhận</Option>
+            <Option value='2'>Đã thanh toán</Option>
+            <Option value='3'>Đang vận chuyển</Option>
+            <Option value='4'>Đã giao hàng</Option>
           </Select>
           <Button primary>Chỉnh sửa trạng thái</Button>
         </div>
@@ -73,7 +57,12 @@ const OrderUpdate = () => {
           <OrderProduct order={orderItem} key={orderItem.product._id} />
         ))}
       </SectionWhite>
-      <OrderPayment payments={payments} />
+      <OrderPayment
+        price={order.price}
+        shippingFee={order.shippingFee}
+        promotion={order.promotion}
+        total={order.total}
+      />
     </>
   );
 };

@@ -1,14 +1,14 @@
-import { OrderStatusCodeEnum } from "@types";
+import { OrderStatusCode } from "@types";
 
 export const renderStatusOrder = (statusCode: number) => {
   switch (statusCode) {
-    case OrderStatusCodeEnum.processing:
+    case OrderStatusCode.processing:
       return "Đang xử lí";
-    case OrderStatusCodeEnum.shipping:
+    case OrderStatusCode.shipping:
       return "Đang giao hàng";
-    case OrderStatusCodeEnum.delivered:
+    case OrderStatusCode.delivered:
       return "Đã giao hàng";
-    case OrderStatusCodeEnum.canceled:
+    case OrderStatusCode.canceled:
       return "Đã hủy";
     default:
       return "Đang chờ";

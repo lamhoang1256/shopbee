@@ -1,10 +1,4 @@
-import {
-  IOrder,
-  IStatusOrder,
-  OrderStatusCodeEnum,
-  OrderStatusEnum,
-  OrderStatusLabelEnum,
-} from "@types";
+import { IOrder, IStatusOrder, OrderStatusCode, OrderStatus, OrderStatusLabel } from "@types";
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
 import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
@@ -16,13 +10,12 @@ interface OrderStatusProps {
 
 const OrderProgress = ({ order }: OrderStatusProps) => {
   const calcWidthActiveStatusBar = () => {
-    if (order.statusCode >= OrderStatusCodeEnum.delivered) return "after:w-[100%]";
-    if (order.statusCode >= OrderStatusCodeEnum.shipping) return "after:w-[66%]";
-    if (order.statusCode >= OrderStatusCodeEnum.processing) return "after:w-[33%]";
+    if (order.statusCode >= OrderStatusCode.delivered) return "after:w-[100%]";
+    if (order.statusCode >= OrderStatusCode.shipping) return "after:w-[66%]";
+    if (order.statusCode >= OrderStatusCode.processing) return "after:w-[33%]";
     return "after:w-0";
   };
-
-  if (order.status === OrderStatusEnum.canceled)
+  if (order.status === OrderStatus.canceled) {
     return (
       <div className='grid mt-10 gap-x-6 gap-y-4 md:grid-cols-2'>
         <div className='flex items-center gap-3 md:flex-col'>
@@ -30,7 +23,7 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
             <IconCheck />
           </div>
           <div className='md:text-center'>
-            <h3>{OrderStatusLabelEnum.canceled}</h3>
+            <h3>{OrderStatusLabel.canceled}</h3>
             <span className='text-[#00000042] text-xs block mt-1'>
               {formatDateVNFull(order?.canceledAt)}
             </span>
@@ -42,34 +35,34 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
         </div>
       </div>
     );
+  }
 
   const statusList: IStatusOrder[] = [
     {
       icon: <IconClipboard />,
-      active: order.statusCode >= OrderStatusCodeEnum.waiting,
-      status: OrderStatusLabelEnum.waiting,
+      active: order.statusCode >= OrderStatusCode.waiting,
+      status: OrderStatusLabel.waiting,
       date: formatDateVNFull(order?.createdAt),
     },
     {
       icon: <IconMoney />,
-      active: order.statusCode >= OrderStatusCodeEnum.processing,
-      status: OrderStatusLabelEnum.processing,
+      active: order.statusCode >= OrderStatusCode.processing,
+      status: OrderStatusLabel.processing,
       date: formatDateVNFull(order?.createdAt),
     },
     {
       icon: <IconShipping />,
-      active: order.statusCode >= OrderStatusCodeEnum.shipping,
-      status: OrderStatusLabelEnum.shipping,
+      active: order.statusCode >= OrderStatusCode.shipping,
+      status: OrderStatusLabel.shipping,
       date: order?.shippingAt ? formatDateVNFull(order?.shippingAt) : "Đang chờ",
     },
     {
       icon: <IconCheck />,
-      active: order.statusCode >= OrderStatusCodeEnum.delivered,
-      status: OrderStatusLabelEnum.delivered,
+      active: order.statusCode >= OrderStatusCode.delivered,
+      status: OrderStatusLabel.delivered,
       date: order?.deliveredAt ? formatDateVNFull(order?.deliveredAt) : "Đang chờ",
     },
   ];
-
   return (
     <div className='mt-10 relative gap-4 mx-auto max-w-[800px] md:text-center'>
       <div
@@ -79,19 +72,21 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
         )}
       />
       <div className='grid grid-cols-1 gap-5 md:grid-cols-4'>
-        {statusList.map(({ active, icon, status, date }) => (
+        {statusList.map((statusItem) => (
           <div className='flex items-center gap-3 md:flex-col' key={uuidv4()}>
             <div
               className={classNames(
                 "order-status",
-                active ? "border-[#2dc258] text-[#2dc258]" : " border-[#dbdbdb] text-[#dbdbdb]",
+                statusItem.active
+                  ? "border-[#2dc258] text-[#2dc258]"
+                  : " border-[#dbdbdb] text-[#dbdbdb]",
               )}
             >
-              {icon}
+              {statusItem.icon}
             </div>
             <div>
-              <h3>{status}</h3>
-              <span className='text-[#00000042] text-xs block mt-1'>{date}</span>
+              <h3>{statusItem.status}</h3>
+              <span className='text-[#00000042] text-xs block mt-1'>{statusItem.date}</span>
             </div>
           </div>
         ))}

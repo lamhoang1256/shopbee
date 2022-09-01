@@ -10,6 +10,7 @@ import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import OrderEmpty from "./OrderEmpty";
 import OrderItem from "./OrderItem";
 
@@ -38,13 +39,14 @@ const OrderManage = () => {
   });
 
   const fetchAllOrder = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await orderAPI.getAllOrderByAdmin(params);
       setOrders(data.orders);
       setPagination(data.pagination);
-      setLoading(false);
-    } catch (error) {
+    } catch (err: any) {
+      toast.error(err?.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -72,17 +74,17 @@ const OrderManage = () => {
         </Button>
       </form>
       {loading && <Loading />}
-      {!loading &&
-        (orders.length === 0 ? (
-          <OrderEmpty />
-        ) : (
-          <>
+      {!loading && orders.length === 0 && <OrderEmpty />}
+      {!loading && orders.length !== 0 && (
+        <>
+          <div>
             {orders.map((order) => (
               <OrderItem key={order?._id} order={order} />
             ))}
-            <Pagination pagination={pagination} />
-          </>
-        ))}
+          </div>
+          <Pagination pagination={pagination} />
+        </>
+      )}
     </Template>
   );
 };
