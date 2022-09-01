@@ -2,7 +2,7 @@ import { IProduct } from "@types";
 import { productAPI } from "apis";
 import { useEffect, useState } from "react";
 
-export default function useFetchProduct(id = "", top = 0) {
+export default function useFetchProduct(id = "") {
   const [product, setProduct] = useState<IProduct>(Object);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
@@ -19,10 +19,6 @@ export default function useFetchProduct(id = "", top = 0) {
   };
   useEffect(() => {
     fetchProduct();
-    window.scrollTo({
-      top,
-      behavior: "smooth",
-    });
   }, [id]);
   return {
     loading,

@@ -76,7 +76,7 @@ const BannerManage = () => {
           <ImageUpload
             onChange={handleUploadNewBanner}
             previewImage=''
-            className='max-w-full aspect-auto'
+            className='!w-full aspect-auto'
           />
           {banners.map((banner: any) => (
             <div className='relative' key={banner._id}>

@@ -1,8 +1,9 @@
-import { IOrder } from "@types";
+import { IOrder, IPagination } from "@types";
 import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { Input } from "components/input";
 import { Loading } from "components/loading";
+import { Pagination } from "components/pagination";
 import { Tabs } from "components/tabs";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
@@ -23,6 +24,7 @@ const tabs = [
 const OrderManage = () => {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState<IOrder[]>([]);
+  const [pagination, setPagination] = useState<IPagination>(Object);
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status") || "";
   const params = Object.fromEntries(searchParams);
@@ -39,7 +41,8 @@ const OrderManage = () => {
     setLoading(true);
     try {
       const { data } = await orderAPI.getAllOrderByAdmin(params);
-      setOrders(data);
+      setOrders(data.orders);
+      setPagination(data.pagination);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -73,7 +76,12 @@ const OrderManage = () => {
         (orders.length === 0 ? (
           <OrderEmpty />
         ) : (
-          orders.map((order) => <OrderItem key={order?._id} order={order} />)
+          <>
+            {orders.map((order) => (
+              <OrderItem key={order?._id} order={order} />
+            ))}
+            <Pagination pagination={pagination} />
+          </>
         ))}
     </Template>
   );

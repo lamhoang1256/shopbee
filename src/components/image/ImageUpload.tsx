@@ -25,9 +25,9 @@ const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) =>
       />
       <div className='flex flex-col items-center justify-center h-full gap-y-2'>
         <img
-          src='https://easy-cinema-booking.vercel.app/images/img-upload.png'
           alt='upload'
-          className='w-3/5 mx-auto h-3/5'
+          src='https://easy-cinema-booking.vercel.app/images/img-upload.png'
+          className='w-3/5 mx-auto aspect-square max-w-[80px]'
         />
         <span className='font-medium whitespace-pre'>Chọn ảnh</span>
       </div>
