@@ -42,8 +42,8 @@ const OrderManage = () => {
       const { data } = await orderAPI.getAllOrderByAdmin(params);
       setOrders(data.orders);
       setPagination(data.pagination);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }

@@ -44,8 +44,8 @@ const VoucherManage = () => {
       const { data } = await voucherAPI.getAllVoucher({ ...params });
       setVouchers(data.vouchers);
       setPagination(data.pagination);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }
@@ -56,8 +56,8 @@ const VoucherManage = () => {
       const { message } = await voucherAPI.deleteVoucher(voucherId);
       fetchMyVoucher();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
   useEffect(() => {

@@ -36,8 +36,8 @@ const CheckoutPage = () => {
       toast.success(message);
       setCart([]);
       navigate(`${PATH.order}/${data?._id}`);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

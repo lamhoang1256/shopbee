@@ -14,7 +14,7 @@ const CategoryManage = () => {
       const { message } = await categoryAPI.deleteCategory(categoryId);
       toast.success(message);
       fetchCategories();
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

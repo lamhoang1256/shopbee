@@ -27,8 +27,8 @@ const ModalApplyVoucher = ({
     try {
       const { data } = await voucherAPI.getMyVoucher();
       setVouchers(data.reverse());
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
   const handleSaveVoucher = async () => {
@@ -36,7 +36,7 @@ const ModalApplyVoucher = ({
       const { message } = await voucherAPI.saveVoucher(newVoucher);
       toast.success(message);
       fetchMyVoucher();
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

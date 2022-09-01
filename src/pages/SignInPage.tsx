@@ -29,8 +29,8 @@ const SignInPage = () => {
         setCurrentUserLocalStorage(data);
         toast.success(message);
         navigate(PATH.home);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

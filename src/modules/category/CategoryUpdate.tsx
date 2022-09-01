@@ -28,8 +28,8 @@ const CategoryUpdate = () => {
       try {
         const { message } = await categoryAPI.updateCategory(id, values);
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });
@@ -38,8 +38,8 @@ const CategoryUpdate = () => {
     try {
       const newImgUrl = await uploadImage(e);
       formik.setFieldValue("image", newImgUrl);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 
@@ -48,8 +48,8 @@ const CategoryUpdate = () => {
       try {
         const { data } = await categoryAPI.getSingleCategory(id);
         formik.resetForm({ values: data });
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     };
     fetchCategoryData();

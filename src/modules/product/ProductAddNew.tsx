@@ -49,8 +49,8 @@ const ProductAddNew = () => {
         const payload = { ...values, image: images[0], images };
         const { message } = await productAPI.addNewProduct(payload);
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

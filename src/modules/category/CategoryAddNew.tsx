@@ -26,8 +26,8 @@ const CategoryAddNew = () => {
       try {
         const { message } = await categoryAPI.addNewCategory(values);
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });
@@ -36,8 +36,8 @@ const CategoryAddNew = () => {
     try {
       const newImgUrl = await uploadImage(e);
       formik.setFieldValue("image", newImgUrl);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

@@ -15,8 +15,8 @@ const VoucherSave = ({ fetchReloadVoucher }: VoucherSaveProps) => {
       const { message } = await voucherAPI.saveVoucher(newVoucher);
       fetchReloadVoucher();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

@@ -22,8 +22,8 @@ const OrderUpdate = () => {
       setLoading(true);
       const { data } = await orderAPI.getSingleOrder(id || "");
       setOrder(data);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }

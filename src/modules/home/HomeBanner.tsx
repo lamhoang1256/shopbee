@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { bannerAPI } from "apis";
 import "swiper/css";
+import { toast } from "react-toastify";
 
 const HomeBanner = () => {
   const [banners, setBanners] = useState([]);
@@ -13,6 +14,8 @@ const HomeBanner = () => {
       setBanners(data);
       setLoading(false);
     } catch (error) {
+      toast.error(error?.message);
+    } finally {
       setLoading(false);
     }
   };

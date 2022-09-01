@@ -49,8 +49,8 @@ const UserCreditCard = () => {
         setCurrentUser({ ...currentUser, ...data });
         setCurrentUserLocalStorage({ ...currentUser, ...data });
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

@@ -21,7 +21,7 @@ const Navbar = () => {
       setCurrentUser({} as ICurrentUser);
       removeCurrentUserLocalStorage();
       toast.success(message);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

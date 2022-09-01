@@ -9,8 +9,8 @@ export default function useFetchShopInfo() {
     try {
       const { data } = await shopAPI.getShopInfo();
       setShopInfo(data);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
   useEffect(() => {

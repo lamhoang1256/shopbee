@@ -28,7 +28,7 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
         setCart([...cartsRemoveExist, cartExist]);
       } else setCart([...carts, data]);
       toast.success(message);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

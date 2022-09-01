@@ -30,7 +30,7 @@ const ProductManage = () => {
       const { message } = await productAPI.deleteProduct(productId);
       toast.success(message);
       fetchProducts();
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

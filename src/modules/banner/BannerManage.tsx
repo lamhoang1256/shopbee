@@ -17,8 +17,8 @@ const BannerManage = () => {
       setLoading(true);
       const { data } = await bannerAPI.getAllBanner();
       setBanners(data);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }
@@ -31,8 +31,8 @@ const BannerManage = () => {
       const { message } = await bannerAPI.addNewBanner({ bannerUrl: newBannerUrl });
       fetchBanners();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 
@@ -43,8 +43,8 @@ const BannerManage = () => {
       const { message } = await bannerAPI.updateBanner(bannerId, { bannerUrl: newBannerUrl });
       fetchBanners();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 
@@ -53,8 +53,8 @@ const BannerManage = () => {
       const { message } = await bannerAPI.deleteBanner(bannerId);
       fetchBanners();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

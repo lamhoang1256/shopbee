@@ -15,8 +15,8 @@ const ProfilePage = () => {
       const newCurrentUser = { ...currentUser, ...data };
       setCurrentUser(newCurrentUser);
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

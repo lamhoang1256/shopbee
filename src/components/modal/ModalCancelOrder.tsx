@@ -25,8 +25,8 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
       setReasonCancel("");
       fetchDetailsOrder();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

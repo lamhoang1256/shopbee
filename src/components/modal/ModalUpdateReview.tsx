@@ -41,8 +41,8 @@ const ModalUpdateReview = ({
       const { message } = await reviewAPI.updateReview(dataReview._id, payload);
       toast.success(message);
       fetchReviews();
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       closeModal();
     }

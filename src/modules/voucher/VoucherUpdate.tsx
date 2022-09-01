@@ -24,8 +24,8 @@ const VoucherUpdate = () => {
         const expirationDate = new Date(values.expirationDate).getTime();
         const { message } = await voucherAPI.updateVoucher(id, { ...values, expirationDate });
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });
@@ -36,8 +36,8 @@ const VoucherUpdate = () => {
         const { data } = await voucherAPI.getSingleVoucher(id);
         const expirationDate = formatDatetimeLocal(new Date(data.expirationDate));
         formik.resetForm({ values: { ...data, expirationDate } });
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     };
     fetchData();

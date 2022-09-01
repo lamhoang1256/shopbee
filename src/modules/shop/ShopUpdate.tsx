@@ -46,8 +46,8 @@ const ShopUpdate = () => {
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
         const { message } = await shopAPI.updateShopInfo({ ...values, address });
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });
@@ -57,8 +57,8 @@ const ShopUpdate = () => {
       const { message, data } = await shopAPI.updateShopInfo({ avatar: newAvatarUrl });
       formik.setFieldValue("avatar", data?.avatar);
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
   useEffect(() => {

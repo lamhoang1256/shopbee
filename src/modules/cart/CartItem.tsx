@@ -16,7 +16,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
       const indexNewItem = carts.findIndex((cart: ICart) => data._id === cart._id);
       carts[indexNewItem].quantity = quantity;
       setCart([...carts]);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };
@@ -26,7 +26,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
       const newCarts = carts.filter((item) => item._id !== cartItem._id);
       setCart(newCarts);
       toast.success(message);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

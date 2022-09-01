@@ -25,8 +25,8 @@ const UserChangePassword = () => {
       try {
         const { message } = await userAPI.changePasswordMe(values);
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

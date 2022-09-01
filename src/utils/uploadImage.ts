@@ -14,8 +14,8 @@ export const uploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
   try {
     const { url } = await configCloudinaryAPI.uploadImage(formData);
     if (url) urlUploaded = url;
-  } catch (err: any) {
-    toast.error(err?.message);
+  } catch (error) {
+    toast.error(error?.message);
   }
   return urlUploaded;
 };

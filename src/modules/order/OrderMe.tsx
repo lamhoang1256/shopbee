@@ -40,8 +40,8 @@ const OrderPage = () => {
         const { data } = await orderAPI.getAllOrder(params);
         setOrders(data.orders);
         setPagination(data.pagination);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       } finally {
         setLoading(false);
       }

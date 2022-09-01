@@ -15,8 +15,8 @@ const ProductRelated = ({ categoryId }: ProductRelatedProps) => {
       try {
         const { data } = await productAPI.getAllProduct(params);
         setRelatedProduct(data.products);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     };
     fetchRelatedProduct({ category: categoryId });

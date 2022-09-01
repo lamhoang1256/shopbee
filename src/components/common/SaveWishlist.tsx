@@ -26,7 +26,7 @@ const SaveWishlist = () => {
       const { message } = await wishlistAPI.addToWishlist(id);
       toast.success(message);
       setIsSaved(true);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };
@@ -35,7 +35,7 @@ const SaveWishlist = () => {
       const { message } = await wishlistAPI.removeFromWishlist(id);
       toast.success(message);
       setIsSaved(false);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

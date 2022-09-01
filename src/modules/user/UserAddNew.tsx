@@ -35,8 +35,8 @@ const UserAddNew = () => {
       try {
         const { message } = await userAPI.addNewUser({ ...values, address });
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

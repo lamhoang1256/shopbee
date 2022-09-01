@@ -29,7 +29,7 @@ const UserUpdateMe = () => {
         const { data, message } = await userAPI.updateMe({ ...values, address });
         setCurrentUser({ ...currentUser, ...data });
         toast.success(message);
-      } catch (error: any) {
+      } catch (error) {
         toast.error(error?.message);
       }
     },
@@ -40,8 +40,8 @@ const UserUpdateMe = () => {
       try {
         const { data } = await userAPI.getSingleUser(currentUser?._id);
         formik.resetForm({ values: data });
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     };
     fetchDataUser();

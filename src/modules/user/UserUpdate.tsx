@@ -53,8 +53,8 @@ const UserUpdate = () => {
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
         const { message } = await userAPI.updateUser({ ...values, address });
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });
@@ -65,8 +65,8 @@ const UserUpdate = () => {
       const { message, data } = await userAPI.updateMe({ avatar: newAvatarUrl });
       formik.setFieldValue("avatar", data?.avatar);
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 
@@ -75,8 +75,8 @@ const UserUpdate = () => {
       try {
         const { data } = await userAPI.getSingleUser(id);
         formik.resetForm({ values: data });
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     };
     fetchDataUser();

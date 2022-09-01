@@ -28,8 +28,8 @@ const SignUpPage = () => {
         const { message } = await authAPI.signUp(values);
         navigate(PATH.signIn);
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

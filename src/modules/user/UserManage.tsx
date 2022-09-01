@@ -34,8 +34,8 @@ const UserManage = () => {
       setUsers(data.users);
       setPagination(data.pagination);
       setLoading(false);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }
@@ -46,8 +46,8 @@ const UserManage = () => {
       const { message } = await userAPI.deleteUser(usedId);
       fetchAllUser();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 

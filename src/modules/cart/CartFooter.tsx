@@ -18,7 +18,7 @@ const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
       const { message } = await cartAPI.deleteAllCart();
       setCart([]);
       toast.success(message);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

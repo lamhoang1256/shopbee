@@ -20,8 +20,8 @@ const VoucherAddNew = () => {
         const expirationDate = new Date(values.expirationDate).getTime();
         const { message } = await voucherAPI.addNewVoucher({ ...values, expirationDate });
         toast.success(message);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     },
   });

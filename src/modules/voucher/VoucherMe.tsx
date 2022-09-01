@@ -32,8 +32,8 @@ const VoucherMe = () => {
       setLoading(true);
       const { data } = await voucherAPI.getMyVoucher({ status });
       setVouchers(data);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }

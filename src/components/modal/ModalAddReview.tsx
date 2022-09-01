@@ -42,7 +42,7 @@ const ModalAddReview = ({
       setRating(0);
       setComment("");
       closeModal();
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error?.message);
     }
   };

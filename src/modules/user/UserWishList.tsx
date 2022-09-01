@@ -11,8 +11,8 @@ const UserWishList = () => {
       try {
         const { data } = await wishlistAPI.getMyWishlist();
         setWishlist(data);
-      } catch (err: any) {
-        toast.error(err?.message);
+      } catch (error) {
+        toast.error(error?.message);
       }
     };
     fetchMyWishlist();

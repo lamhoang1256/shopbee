@@ -34,8 +34,8 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
     try {
       const { data } = await reviewAPI.getAllReviewOrder(id);
       setReviews(data);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
   const handleDeleteReview = async (orderId: string) => {
@@ -43,8 +43,8 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
       const { message } = await reviewAPI.deleteReview(orderId);
       fetchReviews();
       toast.success(message);
-    } catch (err: any) {
-      toast.error(err?.message);
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
   useEffect(() => {
