@@ -12,18 +12,16 @@ interface ModalCancelOrderProps {
 }
 
 const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancelOrderProps) => {
-  const { id } = useParams();
+  const { id = "" } = useParams();
   const [reasonCancel, setReasonCancel] = useState("");
   const handleCancelOrder = async () => {
     try {
-      const { message, success } = await orderAPI.cancelOrder(id || "", { reasonCancel });
-      if (success) {
-        setReasonCancel("");
-        fetchDetailsOrder();
-        toast.success(message);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
+      const { message } = await orderAPI.cancelOrder(id, { reasonCancel });
+      setReasonCancel("");
+      fetchDetailsOrder();
+      toast.success(message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
@@ -33,12 +31,7 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
       onRequestClose={closeModal}
       contentLabel='Hủy đơn hàng'
       className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
-      style={{
-        overlay: {
-          backgroundColor: "#2424247f",
-          zIndex: "100",
-        },
-      }}
+      style={{ overlay: { backgroundColor: "#2424247f", zIndex: "100" } }}
     >
       <div>
         <h2 className='mt-4 text-lg font-semibold text-center'>
@@ -48,7 +41,7 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
           rows={5}
           value={reasonCancel}
           onChange={(e) => setReasonCancel(e.target.value)}
-          placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
+          placeholder='Hãy chia sẻ lý do bạn muốn hủy đơn hàng này nhé.'
           className='border-[#00000024] focus:border-[#0000008a] border mt-6 p-3 w-full outline-none resize-none rounded'
         />
       </div>

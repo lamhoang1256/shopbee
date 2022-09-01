@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
+import Swal from "sweetalert2";
 import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils/helper";
 
 const CheckoutPage = () => {
@@ -55,7 +56,18 @@ const CheckoutPage = () => {
       voucherCode: appliedVoucher.code,
       methodPayment,
     };
-    buyProducts(values);
+    Swal.fire({
+      title: "Xác nhận thanh toán",
+      text: "Bạn có chắc chắc muốn xác nhận thanh toán?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Đồng ý!",
+      cancelButtonText: "Hủy!",
+    }).then((result) => {
+      if (result.isConfirmed) buyProducts(values);
+    });
   };
 
   useEffect(() => {

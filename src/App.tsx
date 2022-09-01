@@ -4,7 +4,6 @@ import AppRoutes from "routes/Routes";
 import { ToastContainer } from "react-toastify";
 import { useStore } from "store/configStore";
 import { cartAPI } from "apis";
-import "react-toastify/dist/ReactToastify.css";
 
 Modal.setAppElement("#root");
 
