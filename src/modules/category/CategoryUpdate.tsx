@@ -52,7 +52,7 @@ const CategoryUpdate = () => {
   }, [id]);
 
   return (
-    <Template label='Sửa danh mục' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Sửa danh mục' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <form
         className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
         onSubmit={formik.handleSubmit}

@@ -37,7 +37,7 @@ const CategoryAddNew = () => {
   };
 
   return (
-    <Template label='Thêm danh mục mới' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Thêm danh mục mới' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

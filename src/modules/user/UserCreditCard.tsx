@@ -60,7 +60,7 @@ const UserCreditCard = () => {
   }, [currentUser]);
 
   return (
-    <Template label='Thẻ Tín Dụng/Ghi Nợ' desc='Thêm tài khoản ngân hàng'>
+    <Template title='Thẻ Tín Dụng/Ghi Nợ' desc='Thêm tài khoản ngân hàng'>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <form className='w-full max-w-[500px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>

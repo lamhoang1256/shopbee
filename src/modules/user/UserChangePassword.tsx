@@ -26,7 +26,7 @@ const UserChangePassword = () => {
   });
   return (
     <Template
-      label='Đổi Mật Khẩu'
+      title='Đổi Mật Khẩu'
       desc='Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác'
     >
       <form className='max-w-[470px] mt-4' onSubmit={formik.handleSubmit} autoComplete='off'>

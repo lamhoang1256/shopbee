@@ -69,7 +69,7 @@ const BannerManage = () => {
   }, []);
 
   return (
-    <Template label='Quản lí banner' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí banner' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       {loading && <Loading />}
       {!loading && (
         <div className='grid gap-4 mt-4 lg:grid-cols-2'>

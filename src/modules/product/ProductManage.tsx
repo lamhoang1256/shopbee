@@ -35,7 +35,7 @@ const ProductManage = () => {
   };
 
   return (
-    <Template label='Quản lí sản phẩm' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí sản phẩm' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

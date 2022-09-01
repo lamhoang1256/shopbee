@@ -63,7 +63,7 @@ const ShopUpdate = () => {
 
   return (
     <Template
-      label='Quản lí thông tin shop'
+      title='Quản lí thông tin shop'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>

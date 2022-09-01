@@ -57,7 +57,7 @@ const ProductAddNew = () => {
 
   return (
     <Template
-      label='Thêm 1 sản phẩm mới'
+      title='Thêm 1 sản phẩm mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <form autoComplete='off' onSubmit={formik.handleSubmit}>

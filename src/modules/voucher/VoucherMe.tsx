@@ -42,7 +42,7 @@ const VoucherMe = () => {
   }, [status]);
 
   return (
-    <Template label='Ví voucher' desc='Khám phá kho voucher'>
+    <Template title='Ví voucher' desc='Khám phá kho voucher'>
       <VoucherSave fetchReloadVoucher={fetchMyVoucher} />
       <Tabs tabs={tabs} query={status} className='my-4' />
       {loading && <Loading />}

@@ -53,7 +53,7 @@ const OrderManage = () => {
   }, [searchParams]);
 
   return (
-    <Template label='Quản lí đơn hàng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí đơn hàng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <Tabs tabs={tabs} query={status} className='border-[#efefef] border-b' />
       <form
         autoComplete='off'

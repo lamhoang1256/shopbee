@@ -58,7 +58,7 @@ const UserManage = () => {
   }, [searchParams]);
 
   return (
-    <Template label='Quản lí người dùng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí người dùng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
       <form
         onSubmit={formik.handleSubmit}
         autoComplete='off'

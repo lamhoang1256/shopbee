@@ -67,7 +67,7 @@ const ProductUpdate = () => {
   if (!id) return <PageNotFound />;
   return (
     <Template
-      label='Sửa thông tin sản phẩm'
+      title='Sửa thông tin sản phẩm'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
       <form onSubmit={formik.handleSubmit} autoComplete='off'>

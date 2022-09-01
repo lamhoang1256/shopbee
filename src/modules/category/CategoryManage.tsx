@@ -19,7 +19,7 @@ const CategoryManage = () => {
   };
 
   return (
-    <Template label='Quản lí danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
+    <Template title='Quản lí danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
       {loading && <Loading />}
       {!loading && categories.length > 0 && (
         <div className='tables'>

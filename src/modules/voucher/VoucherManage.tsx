@@ -67,7 +67,7 @@ const VoucherManage = () => {
   }, [searchParams]);
 
   return (
-    <Template label='Quản lí voucher' desc='Khám phá kho voucher'>
+    <Template title='Quản lí voucher' desc='Khám phá kho voucher'>
       <Tabs tabs={tabs} query={status} className='my-4' />
       {loading && <Loading />}
       {!loading &&
