@@ -1,5 +1,4 @@
-import { IProduct, IShop } from "@types";
-import { shopAPI } from "apis";
+import { IProduct } from "@types";
 import { SaveWishlist, SectionGray, SectionWhite } from "components/common";
 import { Loading } from "components/loading";
 import { PriceOld, PriceSale } from "components/price";
@@ -7,6 +6,7 @@ import { QuantityController } from "components/quantityController";
 import { Rating } from "components/rating";
 import { Review } from "components/review";
 import useFetchProduct from "hooks/useFetchProduct";
+import useFetchShopInfo from "hooks/useFetchShopInfo";
 import {
   ProductAddToCart,
   ProductDesc,
@@ -24,42 +24,31 @@ import PageNotFound from "./PageNotFound";
 const ProductDetailsPage = () => {
   const { id = "" } = useParams();
   const { loading, product } = useFetchProduct(id);
-  const [shopInfo, setShopInfo] = useState<IShop>(Object);
+  const { shopInfo } = useFetchShopInfo();
   const percentSale = Math.ceil(100 - (product.price / product.oldPrice) * 100);
   const [quantityAdd, setQuantityAdd] = useState(1);
-
   const handleChangeQuantity = (quantity: number) => setQuantityAdd(() => quantity);
-  const handleAddToHistory = (prod: IProduct) => {
-    const history = JSON.parse(localStorage.getItem("history") || "[]");
-    if (history.length >= 20) history.splice(19, 1);
-    const index = history.findIndex((item: IProduct) => item._id === id);
-    if (index === -1) {
-      history.unshift(prod);
-    } else {
-      history.splice(index, 1);
-      history.unshift(prod);
-    }
-    localStorage.setItem("history", JSON.stringify(history));
-  };
 
-  const fetchShopInfo = async () => {
-    try {
-      const { data } = await shopAPI.getShopInfo();
-      setShopInfo(data);
-    } catch (error) {
-      console.log("Failed to fetch address: ", error);
-    }
-  };
   useEffect(() => {
     if (!product?.name) return;
-    fetchShopInfo();
+    const handleAddToHistory = (prod: IProduct) => {
+      const history = JSON.parse(localStorage.getItem("history") || "[]");
+      if (history.length >= 20) history.splice(19, 1);
+      const index = history.findIndex((item: IProduct) => item._id === id);
+      if (index === -1) {
+        history.unshift(prod);
+      } else {
+        history.splice(index, 1);
+        history.unshift(prod);
+      }
+      localStorage.setItem("history", JSON.stringify(history));
+    };
     handleAddToHistory(product);
   }, [product, id]);
 
   if (!id) return <PageNotFound />;
   if (loading) return <Loading />;
   if (!product.name) return <ProductNotFound />;
-
   return (
     <div className='layout-container'>
       <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>

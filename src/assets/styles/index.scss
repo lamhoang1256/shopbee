@@ -244,3 +244,6 @@
   aspect-ratio: 1.69;
   height: unset;
 }
+.section-dotted {
+  @apply border-dotted border border-[#00000017] bg-[#fff] p-4;
+}

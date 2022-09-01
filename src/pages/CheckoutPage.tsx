@@ -1,5 +1,5 @@
-import { ICart, IShop, IVoucher } from "@types";
-import { productAPI, shopAPI } from "apis";
+import { ICart, IVoucher } from "@types";
+import { productAPI } from "apis";
 import { Button, ButtonOutline } from "components/button";
 import { SectionWhite } from "components/common";
 import { IconGPS } from "components/icons";
@@ -8,6 +8,7 @@ import { Logo } from "components/logo";
 import { ModalApplyVoucher } from "components/modal";
 import { PriceSale } from "components/price";
 import { PATH } from "constants/path";
+import useFetchShopInfo from "hooks/useFetchShopInfo";
 import useModal from "hooks/useModal";
 import { OrderPayment, OrderProduct } from "modules/order";
 import { useEffect, useState } from "react";
@@ -20,8 +21,8 @@ import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCart } = useStore((state) => state);
+  const { shopInfo } = useFetchShopInfo();
   const price = calcTotalCart(carts, "price");
-  const [shopInfo, setShopInfo] = useState<IShop>(Object);
   const [note, setNote] = useState("");
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
@@ -35,12 +36,12 @@ const CheckoutPage = () => {
       toast.success(message);
       setCart([]);
       navigate(`${PATH.order}/${data?._id}`);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
-  const handleBuyProducts = () => {
+  const handleCheckout = () => {
     const orderItems = carts.map((cart: ICart) => ({
       quantity: cart.quantity,
       product: cart.product,
@@ -69,18 +70,6 @@ const CheckoutPage = () => {
       if (result.isConfirmed) buyProducts(values);
     });
   };
-
-  useEffect(() => {
-    const fetchShopInfo = async () => {
-      try {
-        const { data } = await shopAPI.getShopInfo();
-        setShopInfo(data);
-      } catch (err: any) {
-        toast.error(err?.message);
-      }
-    };
-    fetchShopInfo();
-  }, []);
 
   useEffect(() => {
     if (!shopInfo.city || !currentUser.city) return;
@@ -149,11 +138,11 @@ const CheckoutPage = () => {
             <span className='text-base'>{formatMoney(shippingFee)}</span>
           </div>
         </div>
-        <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center'>
+        <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[#00000017] flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center'>
           <span>Tổng số tiền ({carts.length} sản phẩm):</span>
           <PriceSale className='text-lg font-medium'>{price}</PriceSale>
         </div>
-        <div className='flex p-4 items-center justify-between border-dotted border border-[#00000017] bg-[#fff]'>
+        <div className='flex items-center justify-between section-dotted'>
           <h3>Voucher Shopbee</h3>
           <div className='flex gap-x-5'>
             {appliedVoucher?.code && (
@@ -164,7 +153,7 @@ const CheckoutPage = () => {
             </button>
           </div>
         </div>
-        <div className='flex mt-3 p-4 lg:items-center gap-x-4 gap-y-2 border-dotted border border-[#00000017] bg-[#fff] lg:flex-row flex-col'>
+        <div className='flex flex-col mt-3 lg:items-center gap-x-4 gap-y-2 section-dotted lg:flex-row'>
           <h3 className='text-base font-medium'>Phương thức thanh toán</h3>
           <ButtonOutline
             disabled={!currentUser.creditCard.name}
@@ -210,7 +199,7 @@ const CheckoutPage = () => {
           <span className='maxsm:hidden'>
             Nhấn Đặt hàng đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Shopbee
           </span>
-          <Button primary onClick={handleBuyProducts} className='py-3 text-base px-14'>
+          <Button primary onClick={handleCheckout} className='py-3 text-base px-14'>
             Đặt hàng
           </Button>
         </div>

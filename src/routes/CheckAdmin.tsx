@@ -7,7 +7,7 @@ const CheckAdmin = () => {
   const { currentUser } = useStore();
   const { accessToken } = currentUser;
   const decodedJwt: IDecodedToken = jwtDecode(accessToken);
-  if (currentUser && decodedJwt.isAdmin === false) {
+  if (currentUser && decodedJwt.isAdmin) {
     return <Navigate to='/404' />;
   }
   return <Outlet />;

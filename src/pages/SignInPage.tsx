@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input, InputPassword } from "components/input";
 import { PATH } from "constants/path";
-import { SignInYup } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -13,31 +13,28 @@ import { setCurrentUserLocalStorage } from "utils/localStorage";
 const SignInPage = () => {
   const navigate = useNavigate();
   const { setCurrentUser } = useStore((state) => state);
-
-  const handleSignIn = async (values: any) => {
-    try {
-      const { success, data, message } = await authAPI.signIn(values);
-      if (success) {
-        setCurrentUser(data);
-        setCurrentUserLocalStorage(data);
-        toast.success(message);
-        navigate(PATH.home);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: SignInYup,
-    onSubmit: (values) => {
-      handleSignIn(values);
+    validationSchema: Yup.object({
+      email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
+      password: Yup.string().required("Vui lòng nhập mật khẩu!"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        const { data, message } = await authAPI.signIn(values);
+        setCurrentUser(data);
+        setCurrentUserLocalStorage(data);
+        toast.success(message);
+        navigate(PATH.home);
+      } catch (err: any) {
+        toast.error(err?.message);
+      }
     },
   });
+
   return (
     <div className='layout-container'>
       <div className='px-4 py-8 lg:p-10 max-w-[500px] mx-auto bg-white w-full rounded'>
@@ -46,8 +43,8 @@ const SignInPage = () => {
           <FormGroup className='mt-4'>
             <Label htmlFor='email'>Email</Label>
             <Input
-              placeholder='Email'
               name='email'
+              placeholder='Email'
               onChange={formik.handleChange}
               value={formik.values.email}
             />
@@ -56,8 +53,8 @@ const SignInPage = () => {
           <FormGroup className='mt-4'>
             <Label htmlFor='password'>Mật khẩu</Label>
             <InputPassword
-              placeholder='Mật khẩu'
               name='password'
+              placeholder='Mật khẩu'
               onChange={formik.handleChange}
               value={formik.values.password}
             />

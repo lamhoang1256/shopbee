@@ -9,13 +9,13 @@ const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const handleChangeAvatar = async (e: any) => {
     try {
-      const avatar = await uploadImage(e);
-      const { data, message } = await userAPI.updateMe({ avatar });
+      const newAvatarUrl = await uploadImage(e);
+      const { data, message } = await userAPI.updateMe({ avatar: newAvatarUrl });
       const newCurrentUser = { ...currentUser, ...data };
       setCurrentUser(newCurrentUser);
       toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 

@@ -3,34 +3,34 @@ import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input, InputPassword } from "components/input";
 import { PATH } from "constants/path";
-import { SignUpYup } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const handleSignUp = async (values: any) => {
-    try {
-      const response: any = await authAPI.signUp(values);
-      if (response.success) {
-        navigate(PATH.signIn);
-        toast.success(response.message);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
       confirm_password: "",
     },
-    validationSchema: SignUpYup,
-    onSubmit: (values) => {
-      handleSignUp(values);
+    validationSchema: Yup.object({
+      email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
+      password: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      confirm_password: Yup.string()
+        .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
+        .required("Vui lòng nhập xác nhận mật khẩu!"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        const { message } = await authAPI.signUp(values);
+        navigate(PATH.signIn);
+        toast.success(message);
+      } catch (err: any) {
+        toast.error(err?.message);
+      }
     },
   });
 
@@ -42,8 +42,8 @@ const SignUpPage = () => {
           <FormGroup className='mt-4'>
             <Label htmlFor='email'>Email</Label>
             <Input
-              placeholder='Email'
               name='email'
+              placeholder='Email'
               onChange={formik.handleChange}
               value={formik.values.email}
             />
@@ -52,8 +52,8 @@ const SignUpPage = () => {
           <FormGroup className='mt-4'>
             <Label htmlFor='password'>Mật khẩu</Label>
             <InputPassword
-              placeholder='Mật khẩu'
               name='password'
+              placeholder='Mật khẩu'
               onChange={formik.handleChange}
               value={formik.values.password}
             />
@@ -62,8 +62,8 @@ const SignUpPage = () => {
           <FormGroup className='mt-4'>
             <Label htmlFor='confirm_password'>Xác nhận mật khẩu</Label>
             <InputPassword
-              placeholder='Xác nhận mật khẩu'
               name='confirm_password'
+              placeholder='Xác nhận mật khẩu'
               onChange={formik.handleChange}
               value={formik.values.confirm_password}
             />
