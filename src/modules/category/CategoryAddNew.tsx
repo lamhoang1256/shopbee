@@ -8,6 +8,7 @@ import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
+import { ChangeEvent } from "react";
 
 const CategoryAddNew = () => {
   const formik = useFormik({
@@ -21,22 +22,22 @@ const CategoryAddNew = () => {
       slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
       image: Yup.string().required("Vui lòng chọn hình ảnh!"),
     }),
-    onSubmit: async (values: any) => {
+    onSubmit: async (values) => {
       try {
         const { message } = await categoryAPI.addNewCategory(values);
         toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
 
-  const handleUploadImage = async (e: any) => {
+  const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       const newImgUrl = await uploadImage(e);
       formik.setFieldValue("image", newImgUrl);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 

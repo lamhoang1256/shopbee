@@ -4,10 +4,11 @@ import { Template } from "layouts";
 import { uploadImage } from "utils/uploadImage";
 import { useStore } from "store/configStore";
 import { UserChangeAvatar, UserUpdateMe } from "modules/user";
+import { ChangeEvent } from "react";
 
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
-  const handleChangeAvatar = async (e: any) => {
+  const handleChangeAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       const newAvatarUrl = await uploadImage(e);
       const { data, message } = await userAPI.updateMe({ avatar: newAvatarUrl });

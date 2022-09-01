@@ -2,7 +2,7 @@ import { userAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { InputPassword } from "components/input";
-import { UserPasswordSchemaYup } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { toast } from "react-toastify";
@@ -14,13 +14,19 @@ const UserChangePassword = () => {
       newPassword: "",
       confirmPassword: "",
     },
-    validationSchema: UserPasswordSchemaYup,
+    validationSchema: Yup.object({
+      currentPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      newPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("newPassword")], "Xác nhận mật khẩu không khớp!")
+        .required("Vui lòng nhập xác nhận mật khẩu!"),
+    }),
     onSubmit: async (values) => {
       try {
-        const { success, message } = await userAPI.changePasswordMe(values);
-        if (success) toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+        const { message } = await userAPI.changePasswordMe(values);
+        toast.success(message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });

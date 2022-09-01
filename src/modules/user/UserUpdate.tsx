@@ -4,10 +4,10 @@ import { Switch } from "components/checkbox";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
-import { userSchema } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
@@ -28,45 +28,58 @@ const UserUpdate = () => {
       address: "",
       isAdmin: false,
     },
-    validationSchema: userSchema,
+    validationSchema: Yup.object({
+      fullname: Yup.string().required("Vui lòng nhập họ và tên!"),
+      phone: Yup.string()
+        .required("Vui lòng nhập số điện thoại!")
+        .max(20, "Số điện thoại tối đa là 20 kí tự!"),
+      street: Yup.string().required("Vui lòng nhập địa chỉ cụ thể!"),
+      city: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+      }),
+      district: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+        name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+      }),
+      ward: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+        name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+      }),
+    }),
     onSubmit: async (values) => {
-      const payload = values;
-      const { street, city, district, ward } = values;
-      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
-        const { success, message } = await userAPI.updateUser(values);
-        if (success) toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+        const { street, city, district, ward } = values;
+        const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
+        const { message } = await userAPI.updateUser({ ...values, address });
+        toast.success(message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
 
-  const handleChangeAvatar = async (e: any) => {
+  const handleChangeAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
-      const avatar = await uploadImage(e);
-      const { success, message, data } = await userAPI.updateMe({ avatar });
-      if (success) {
-        formik.setFieldValue("avatar", data?.avatar);
-        toast.success(message);
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
+      const newAvatarUrl = await uploadImage(e);
+      const { message, data } = await userAPI.updateMe({ avatar: newAvatarUrl });
+      formik.setFieldValue("avatar", data?.avatar);
+      toast.success(message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
   useEffect(() => {
-    const fetchUserNeedUpdate = async () => {
+    const fetchDataUser = async () => {
       try {
         const { data } = await userAPI.getSingleUser(id);
-        formik.resetForm({
-          values: data,
-        });
-      } catch (error) {
-        console.log("Failed to fetch user: ", error);
+        formik.resetForm({ values: data });
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
-    fetchUserNeedUpdate();
+    fetchDataUser();
   }, []);
 
   return (
@@ -127,9 +140,7 @@ const UserUpdate = () => {
             <Label htmlFor='isAdmin'>Quyền quản trị (Admin)</Label>
             <Switch
               checked={formik.values.isAdmin}
-              handleOnChangeSwitch={(checked) => {
-                formik.setFieldValue("isAdmin", checked);
-              }}
+              handleOnChangeSwitch={(checked) => formik.setFieldValue("isAdmin", checked)}
             />
             <MessageError>{formik.touched.isAdmin && formik.errors?.isAdmin}</MessageError>
           </FormGroup>

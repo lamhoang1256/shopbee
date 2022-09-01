@@ -6,6 +6,7 @@ import { PATH } from "constants/path";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import VoucherEmpty from "./VoucherEmpty";
 import VoucherItem from "./VoucherItem";
 import VoucherSave from "./VoucherSave";
@@ -27,12 +28,12 @@ const VoucherMe = () => {
   const [vouchers, setVouchers] = useState<IVoucher[]>(Object);
 
   const fetchMyVoucher = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await voucherAPI.getMyVoucher({ status });
       setVouchers(data);
-    } catch (error: any) {
-      console.log("error: ", error);
+    } catch (err: any) {
+      toast.error(err?.message);
     } finally {
       setLoading(false);
     }

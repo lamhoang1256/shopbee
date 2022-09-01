@@ -3,9 +3,8 @@ import { ActionDelete } from "components/action";
 import { ImageUpload } from "components/image";
 import { Loading } from "components/loading";
 import { Template } from "layouts";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
 import { swalDelete } from "utils/swal";
 import { uploadImage } from "utils/uploadImage";
 
@@ -25,53 +24,38 @@ const BannerManage = () => {
     }
   };
 
-  const handleAddNewBanner = async (e: any) => {
+  const handleAddNewBanner = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       const newBannerUrl = await uploadImage(e);
       if (!newBannerUrl) return;
-      const payload = { bannerUrl: newBannerUrl };
-      const { message } = await bannerAPI.addNewBanner(payload);
+      const { message } = await bannerAPI.addNewBanner({ bannerUrl: newBannerUrl });
       fetchBanners();
       toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
-  const handleUpdateBanner = async (e: any, bannerId: string) => {
+  const handleUpdateBanner = async (e: ChangeEvent<HTMLInputElement>, bannerId: string) => {
     try {
       const newBannerUrl = await uploadImage(e);
       if (!newBannerUrl) return;
-      const payload = { bannerUrl: newBannerUrl };
-      const { message } = await bannerAPI.updateBanner(bannerId, payload);
+      const { message } = await bannerAPI.updateBanner(bannerId, { bannerUrl: newBannerUrl });
       fetchBanners();
       toast.success(message);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
   const handleDeleteBanner = async (bannerId: string) => {
-    Swal.fire({
-      title: "Xác nhận",
-      text: "Bạn có chắc chắc muốn xóa banner này?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Đồng ý!",
-      cancelButtonText: "Hủy!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const { message } = await bannerAPI.deleteBanner(bannerId);
-          fetchBanners();
-          toast.success(message);
-        } catch (error: any) {
-          toast.error(error?.message);
-        }
-      }
-    });
+    try {
+      const { message } = await bannerAPI.deleteBanner(bannerId);
+      fetchBanners();
+      toast.success(message);
+    } catch (err: any) {
+      toast.error(err?.message);
+    }
   };
 
   useEffect(() => {

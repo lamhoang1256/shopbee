@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import useFetchShopInfo from "hooks/useFetchShopInfo";
 import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 
@@ -46,25 +46,24 @@ const ShopUpdate = () => {
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
         const { message } = await shopAPI.updateShopInfo({ ...values, address });
         toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
-  useEffect(() => {
-    if (shopInfo?.name) formik.resetForm({ values: shopInfo });
-  }, [shopInfo]);
-
-  const handleChangeAvatar = async (e: any) => {
+  const handleChangeAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
-      const avatar = await uploadImage(e);
-      const { message, data } = await shopAPI.updateShopInfo({ avatar });
+      const newAvatarUrl = await uploadImage(e);
+      const { message, data } = await shopAPI.updateShopInfo({ avatar: newAvatarUrl });
       formik.setFieldValue("avatar", data?.avatar);
       toast.success(message);
     } catch (err: any) {
       toast.error(err?.message);
     }
   };
+  useEffect(() => {
+    if (shopInfo?.name) formik.resetForm({ values: shopInfo });
+  }, [shopInfo]);
 
   return (
     <Template title='Quản lí thông tin shop' desc='Vui lòng nhập đầy đủ thông tin shop'>

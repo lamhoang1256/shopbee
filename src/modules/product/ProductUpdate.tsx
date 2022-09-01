@@ -11,7 +11,7 @@ import useFetchCategories from "hooks/useFetchCategories";
 import useFetchProduct from "hooks/useFetchProduct";
 import { Template } from "layouts";
 import PageNotFound from "pages/PageNotFound";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
@@ -59,7 +59,7 @@ const ProductUpdate = () => {
       }
     },
   });
-  const handleUpdateImage = async (e: any, index: number) => {
+  const handleUpdateImage = async (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const newImgUrl = await uploadImage(e);
     const cloneImages = formik.values.images;
     cloneImages[index] = newImgUrl;
@@ -140,7 +140,7 @@ const ProductUpdate = () => {
                 <div className='relative' key={index}>
                   <ImageUpload
                     className='!w-24'
-                    onChange={(e: any) => handleUpdateImage(e, index)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateImage(e, index)}
                     previewImage={formik.values.images[index]}
                   />
                   {formik.values.images[index] && (

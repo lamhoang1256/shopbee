@@ -2,6 +2,7 @@ import { IProduct } from "@types";
 import { wishlistAPI } from "apis";
 import { ProductGrid } from "modules/product";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const UserWishList = () => {
   const [wishlist, setWishlist] = useState<IProduct[]>([]);
@@ -10,8 +11,8 @@ const UserWishList = () => {
       try {
         const { data } = await wishlistAPI.getMyWishlist();
         setWishlist(data);
-      } catch (error) {
-        console.log(`Failed to fetch wishlist:`, error);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
     fetchMyWishlist();

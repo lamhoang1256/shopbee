@@ -1,7 +1,8 @@
+import { ChangeEvent } from "react";
 import classNames from "utils/className";
 
 interface ImageUploadProps {
-  onChange: any;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
   previewImage: string;
   className?: string;
 }

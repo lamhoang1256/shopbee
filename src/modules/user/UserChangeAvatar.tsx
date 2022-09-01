@@ -1,10 +1,11 @@
 import { defaultUserAvatar } from "constants/global";
 import { Button } from "components/button";
+import { ChangeEvent } from "react";
 import UserAvatar from "./UserAvatar";
 
 interface UserChangeAvatarProps {
   avatar: string;
-  handleChangeAvatar: (e: any) => Promise<void>;
+  handleChangeAvatar: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
 const UserChangeAvatar = ({ avatar, handleChangeAvatar }: UserChangeAvatarProps) => {

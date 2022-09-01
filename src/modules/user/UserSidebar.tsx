@@ -4,6 +4,7 @@ import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
 import { useStore } from "store/configStore";
 import { v4 as uuidv4 } from "uuid";
+import UserAvatar from "./UserAvatar";
 
 const sidebarLinks = [
   {
@@ -48,21 +49,20 @@ const UserSidebar = () => {
   return (
     <Sidebar labelOpenSidebar='Tài khoản của tôi'>
       <div className='flex items-center gap-x-2'>
-        <img
-          src={currentUser?.avatar || defaultUserAvatar}
-          alt='avatar'
-          className='w-12 h-12 rounded-full'
+        <UserAvatar
+          className='w-10 h-10 rounded-full'
+          urlAvatar={currentUser?.avatar || defaultUserAvatar}
         />
         <div>
-          <h3 className='font-semibold'>User</h3>
+          <h3 className='font-semibold line-clamp-1'>{currentUser?.fullname || "User"}</h3>
           <Link to={PATH.profile}>Sửa hồ sơ</Link>
         </div>
       </div>
       <ul className='mt-7'>
-        {sidebarLinks.map((link: any) => (
+        {sidebarLinks.map((link) => (
           <li key={uuidv4()} className='mb-4'>
             <Link to={link.path} className='flex items-center gap-x-3'>
-              <img src={link.icon} alt='' className='w-5 h-5' />
+              <img src={link.icon} alt={link.display} className='w-5 h-5' />
               <span>{link.display}</span>
             </Link>
           </li>

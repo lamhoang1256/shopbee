@@ -247,3 +247,6 @@
 .section-dotted {
   @apply border-dotted border border-[#00000017] bg-[#fff] p-4;
 }
+.overflow-x-unset {
+  overflow-x: unset;
+}

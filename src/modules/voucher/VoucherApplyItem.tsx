@@ -1,10 +1,11 @@
 import { IVoucher } from "@types";
+import { SetStateAction, Dispatch } from "react";
 import { formatDateVNFull } from "utils/helper";
 
 interface VoucherApplyItemProps {
   voucher: IVoucher;
   appliedVoucher: IVoucher;
-  setAppliedVoucher: React.Dispatch<React.SetStateAction<IVoucher>>;
+  setAppliedVoucher: Dispatch<SetStateAction<IVoucher>>;
 }
 
 const VoucherApplyItem = ({

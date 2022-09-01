@@ -14,6 +14,7 @@ import "react-quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
 import { getRandomInt } from "utils/helper";
 import { uploadImage } from "utils/uploadImage";
+import { ChangeEvent } from "react";
 
 const ProductAddNew = () => {
   const { categories } = useFetchCategories();
@@ -53,7 +54,7 @@ const ProductAddNew = () => {
       }
     },
   });
-  const handleAddNewImage = async (e: any, index: number) => {
+  const handleAddNewImage = async (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const newImgUrl = await uploadImage(e);
     const cloneImages = formik.values.images;
     cloneImages[index] = newImgUrl;
@@ -130,7 +131,7 @@ const ProductAddNew = () => {
                 <div className='relative' key={index}>
                   <ImageUpload
                     className='!w-24'
-                    onChange={(e: any) => handleAddNewImage(e, index)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleAddNewImage(e, index)}
                     previewImage={formik.values.images[index]}
                   />
                   {formik.values.images[index] && (

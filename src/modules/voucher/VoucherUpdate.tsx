@@ -20,15 +20,12 @@ const VoucherUpdate = () => {
       value: 0,
     },
     onSubmit: async (values) => {
-      const payload = {
-        ...values,
-        expirationDate: new Date(values.expirationDate).getTime(),
-      };
       try {
-        const { success, message } = await voucherAPI.updateVoucher(id, payload);
-        if (success) toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+        const expirationDate = new Date(values.expirationDate).getTime();
+        const { message } = await voucherAPI.updateVoucher(id, { ...values, expirationDate });
+        toast.success(message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
@@ -37,26 +34,23 @@ const VoucherUpdate = () => {
     const fetchData = async () => {
       try {
         const { data } = await voucherAPI.getSingleVoucher(id);
-        formik.resetForm({
-          values: {
-            ...data,
-            expirationDate: formatDatetimeLocal(new Date(data.expirationDate)),
-          },
-        });
-      } catch (error) {
-        console.log("Failed to fetch voucher: ", error);
+        const expirationDate = formatDatetimeLocal(new Date(data.expirationDate));
+        formik.resetForm({ values: { ...data, expirationDate } });
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
-    <Template
-      title='Chỉnh sửa thông tin voucher'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
-      <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
-        <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
+    <Template title='Chỉnh sửa thông tin voucher' desc='Vui lòng nhập đầy đủ thông tin voucher'>
+      <form
+        autoComplete='off'
+        onSubmit={formik.handleSubmit}
+        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
+      >
+        <div className='max-w-[600px]'>
           <FormGroup>
             <Label htmlFor='title'>Tên mã giảm giá</Label>
             <Input name='title' value={formik.values.title} onChange={formik.handleChange} />
@@ -89,9 +83,9 @@ const VoucherUpdate = () => {
             />
           </FormGroup>
           <Button type='submit' primary className='w-full h-10'>
-            Lưu
+            Cập nhật
           </Button>
-        </form>
+        </div>
         <div className='flex-1'>
           <FormGroup>
             <Label htmlFor='voucher'>Preview</Label>
@@ -102,7 +96,7 @@ const VoucherUpdate = () => {
             />
           </FormGroup>
         </div>
-      </div>
+      </form>
     </Template>
   );
 };

@@ -7,6 +7,7 @@ import { Input, InputPassword } from "components/input";
 import { SignUpYup } from "constants/yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
+import { ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 import UserChangeAvatar from "./UserChangeAvatar";
@@ -29,19 +30,18 @@ const UserAddNew = () => {
     },
     validationSchema: SignUpYup,
     onSubmit: async (values) => {
-      const payload = values;
       const { street, city, district, ward } = values;
-      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
+      const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
       try {
-        const { success, message } = await userAPI.addNewUser(payload);
-        if (success) toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+        const { message } = await userAPI.addNewUser({ ...values, address });
+        toast.success(message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
 
-  const handleUploadAvatar = async (e: any) => {
+  const handleUploadAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     const avatar = await uploadImage(e);
     formik.setFieldValue("avatar", avatar);
   };

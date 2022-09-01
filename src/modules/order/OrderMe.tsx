@@ -9,6 +9,7 @@ import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { OrderEmpty, OrderItem } from "modules/order";
 import { Pagination } from "components/pagination";
+import { toast } from "react-toastify";
 
 const tabs = [
   { key: "", display: "Tất cả", to: PATH.order },
@@ -25,7 +26,6 @@ const OrderPage = () => {
   const [pagination, setPagination] = useState<IPagination>(Object);
   const params = Object.fromEntries(searchParams);
   const status = searchParams.get("status") || "";
-
   const formik = useFormik({
     initialValues: { orderId: "" },
     onSubmit: (values) => {
@@ -35,19 +35,20 @@ const OrderPage = () => {
 
   useEffect(() => {
     const fetchAllOrderMe = async () => {
-      setLoading(true);
       try {
+        setLoading(true);
         const { data } = await orderAPI.getAllOrder(params);
         setOrders(data.orders);
         setPagination(data.pagination);
-      } catch (error) {
-        console.log("error: ", error);
+      } catch (err: any) {
+        toast.error(err?.message);
       } finally {
         setLoading(false);
       }
     };
     fetchAllOrderMe();
   }, [searchParams]);
+
   return (
     <>
       <Tabs tabs={tabs} query={status} />

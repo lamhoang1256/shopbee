@@ -1,9 +1,11 @@
-interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement> {
+import { ChangeEvent, InputHTMLAttributes } from "react";
+
+interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   handleOnChangeSwitch?: (checked?: boolean) => void;
 }
 
 const Switch = ({ checked, handleOnChangeSwitch }: SwitchProps) => {
-  const onChangeSwitch = (e: any) => {
+  const onChangeSwitch = (e: ChangeEvent<HTMLInputElement>) => {
     if (handleOnChangeSwitch) handleOnChangeSwitch(e.target.checked);
   };
   return (
@@ -13,7 +15,7 @@ const Switch = ({ checked, handleOnChangeSwitch }: SwitchProps) => {
         id='default-toggle'
         className='sr-only peer'
         checked={checked}
-        onChange={(e) => onChangeSwitch(e)}
+        onChange={onChangeSwitch}
       />
       <div className="w-[52px] h-[28px] bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-orangeee4" />
     </label>

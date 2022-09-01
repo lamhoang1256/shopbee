@@ -22,12 +22,11 @@ const UserUpdateMe = () => {
       ward: { id: "", name: "" },
     },
     validationSchema: userSchema,
-    onSubmit: async (values: any) => {
-      const payload = values;
-      const { street, city, district, ward } = values;
-      payload.address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
+    onSubmit: async (values) => {
       try {
-        const { data, message } = await userAPI.updateMe(payload);
+        const { street, city, district, ward } = values;
+        const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
+        const { data, message } = await userAPI.updateMe({ ...values, address });
         setCurrentUser({ ...currentUser, ...data });
         toast.success(message);
       } catch (error: any) {
@@ -37,15 +36,15 @@ const UserUpdateMe = () => {
   });
 
   useEffect(() => {
-    const fetchProfile = async () => {
+    const fetchDataUser = async () => {
       try {
         const { data } = await userAPI.getSingleUser(currentUser?._id);
         formik.resetForm({ values: data });
-      } catch (error) {
-        console.log("Failed to fetch user: ", error);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
-    fetchProfile();
+    fetchDataUser();
   }, [currentUser?._id]);
 
   return (

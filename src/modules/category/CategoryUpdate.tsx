@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { UserChangeAvatar } from "modules/user";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
@@ -24,35 +24,35 @@ const CategoryUpdate = () => {
       slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
       image: Yup.string().required("Vui lòng chọn hình ảnh!"),
     }),
-    onSubmit: async (values: any) => {
+    onSubmit: async (values) => {
       try {
         const { message } = await categoryAPI.updateCategory(id, values);
         toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
 
-  const handleUploadThumb = async (e: any) => {
+  const handleUploadThumb = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       const newImgUrl = await uploadImage(e);
       formik.setFieldValue("image", newImgUrl);
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategoryData = async () => {
       try {
         const { data } = await categoryAPI.getSingleCategory(id);
         formik.resetForm({ values: data });
-      } catch (error: any) {
-        toast.error(error?.message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     };
-    fetchData();
+    fetchCategoryData();
   }, [id]);
 
   return (

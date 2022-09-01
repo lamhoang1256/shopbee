@@ -2,7 +2,9 @@ import { IPagination } from "@types";
 import { Button } from "components/button";
 import ButtonPagination from "components/button/ButtonPagination";
 import { IconNext, IconPrev } from "components/icons";
+import { Option, Select } from "components/select";
 import usePagination from "hooks/usePagination";
+import { ChangeEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 
 interface SearchSortBarProps {
@@ -15,7 +17,7 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
   const currentParams = Object.fromEntries(searchParams);
   const currentPage = Number(searchParams.get("page"));
   const sortBy = searchParams.get("sort_by");
-  const handleSortByPrice = (e: any) => {
+  const handleSortByPrice = (e: ChangeEvent<HTMLSelectElement>) => {
     handleFilter({ order: e.target.value, sort_by: "price" });
   };
 
@@ -44,16 +46,16 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
         >
           Bán chạy
         </Button>
-        <select
+        <Select
           name='sortPrice'
           id='sortPrice'
           className='h-9 py-0 px-2 border border-[#00000017] outline-none'
           onChange={handleSortByPrice}
         >
-          <option>Giá</option>
-          <option value='asc'>Giá: Thấp đến Cao</option>
-          <option value='desc'>Giá: Cao đến Thấp</option>
-        </select>
+          <Option>Giá</Option>
+          <Option value='asc'>Giá: Thấp đến Cao</Option>
+          <Option value='desc'>Giá: Cao đến Thấp</Option>
+        </Select>
       </div>
       <div className='flex items-center'>
         <div className='mr-3'>

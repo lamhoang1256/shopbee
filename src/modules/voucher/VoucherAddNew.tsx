@@ -16,12 +16,9 @@ const VoucherAddNew = () => {
       value: 0,
     },
     onSubmit: async (values) => {
-      const payload = {
-        ...values,
-        expirationDate: new Date(values.expirationDate).getTime(),
-      };
       try {
-        const { message } = await voucherAPI.addNewVoucher(payload);
+        const expirationDate = new Date(values.expirationDate).getTime();
+        const { message } = await voucherAPI.addNewVoucher({ ...values, expirationDate });
         toast.success(message);
       } catch (err: any) {
         toast.error(err?.message);
@@ -30,9 +27,13 @@ const VoucherAddNew = () => {
   });
 
   return (
-    <Template title='Thêm mới voucher' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
-      <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
-        <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
+    <Template title='Thêm mới voucher' desc='Vui lòng nhập đầy đủ thông tin voucher'>
+      <form
+        autoComplete='off'
+        onSubmit={formik.handleSubmit}
+        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
+      >
+        <div className='max-w-[600px]'>
           <FormGroup>
             <Label htmlFor='title'>Tên mã giảm giá</Label>
             <Input name='title' value={formik.values.title} onChange={formik.handleChange} />
@@ -67,7 +68,7 @@ const VoucherAddNew = () => {
           <Button type='submit' primary className='w-full h-10'>
             Lưu
           </Button>
-        </form>
+        </div>
         <div className='flex-1'>
           <FormGroup>
             <Label htmlFor='voucher'>Preview</Label>
@@ -78,7 +79,7 @@ const VoucherAddNew = () => {
             />
           </FormGroup>
         </div>
-      </div>
+      </form>
     </Template>
   );
 };

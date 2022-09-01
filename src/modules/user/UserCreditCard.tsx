@@ -9,8 +9,8 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/lib/styles.scss";
 import { toast } from "react-toastify";
 import { useStore } from "store/configStore";
-import * as Yup from "yup";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
+import * as Yup from "yup";
 
 enum InputFocus {
   name = "name",
@@ -43,14 +43,14 @@ const UserCreditCard = () => {
         .min(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!")
         .max(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!"),
     }),
-    onSubmit: async (values: any) => {
+    onSubmit: async (values) => {
       try {
         const { data, message } = await userAPI.updateCreditCard(values);
         setCurrentUser({ ...currentUser, ...data });
         setCurrentUserLocalStorage({ ...currentUser, ...data });
         toast.success(message);
-      } catch (error: any) {
-        toast.error(error?.message);
+      } catch (err: any) {
+        toast.error(err?.message);
       }
     },
   });
