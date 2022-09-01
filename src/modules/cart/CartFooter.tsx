@@ -15,11 +15,9 @@ const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
   const { setCart } = useStore((state) => state);
   const handleRemoveAllCart = async () => {
     try {
-      const { success, message } = await cartAPI.deleteAllCart();
-      if (success) {
-        setCart([]);
-        toast.success(message);
-      }
+      const { message } = await cartAPI.deleteAllCart();
+      setCart([]);
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }

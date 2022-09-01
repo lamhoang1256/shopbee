@@ -11,51 +11,42 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
   const { carts, setCart } = useStore((state) => state);
   const handleAddToCart = async (quantity: number) => {
     try {
-      const payload = {
-        productId: cartItem?.product?._id,
-        quantity,
-      };
-      const { data, success } = await cartAPI.addToCart(payload);
-      if (success) {
-        const index = carts.findIndex((cart: ICart) => data?._id === cart._id);
-        carts[index].quantity = quantity;
-        setCart([...carts]);
-      }
+      const payload = { productId: cartItem.product._id, quantity };
+      const { data } = await cartAPI.addToCart(payload);
+      const indexNewItem = carts.findIndex((cart: ICart) => data._id === cart._id);
+      carts[indexNewItem].quantity = quantity;
+      setCart([...carts]);
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
   const handleRemoveCartItem = async () => {
     try {
-      const { success, message } = await cartAPI.deleteSingleCart(cartItem?._id);
-      if (success) {
-        const updatedCarts = carts.filter((item) => item._id !== cartItem?._id);
-        setCart(updatedCarts);
-        toast.success(message);
-      }
+      const { message } = await cartAPI.deleteSingleCart(cartItem._id);
+      const newCarts = carts.filter((item) => item._id !== cartItem._id);
+      setCart(newCarts);
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }
   };
-  const onChangeQuantity = (value: number) => {
-    handleAddToCart(value);
-  };
+  const onChangeQuantity = (value: number) => handleAddToCart(value);
 
   return (
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-3'>
-      <ProductImage className='w-24 lg:w-20' imageUrl={cartItem?.product?.image} />
+      <ProductImage className='w-24 lg:w-20' imageUrl={cartItem.product.image} />
       <div className='flex flex-col flex-1 md:flex-row'>
-        <ProductTitle styleLink='md:w-[40%]' to={`${PATH.product}/${cartItem?.product?._id}`}>
-          {cartItem?.product?.name}
+        <ProductTitle styleLink='md:w-[40%]' to={`${PATH.product}/${cartItem.product._id}`}>
+          {cartItem.product.name}
         </ProductTitle>
         <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2'>
-            <PriceOld>{cartItem?.product?.oldPrice}</PriceOld>
-            <PriceSale>{cartItem?.product?.price}</PriceSale>
+            <PriceOld>{cartItem.product.oldPrice}</PriceOld>
+            <PriceSale>{cartItem.product.price}</PriceSale>
           </div>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
             <QuantityController
-              defaultQuantity={cartItem?.quantity}
+              defaultQuantity={cartItem.quantity}
               onChangeValue={onChangeQuantity}
             />
             <button type='button' onClick={handleRemoveCartItem}>

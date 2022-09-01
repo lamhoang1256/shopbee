@@ -12,26 +12,25 @@ const BannerManage = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchBanners = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await bannerAPI.getAllBanner();
       setBanners(data);
-      setLoading(false);
-    } catch (error) {
+    } catch (err: any) {
+      toast.error(err?.message);
+    } finally {
       setLoading(false);
     }
   };
 
-  const handleUploadNewBanner = async (e: any) => {
+  const handleAddNewBanner = async (e: any) => {
     try {
-      const bannerUrl = await uploadImage(e);
-      if (!bannerUrl) return;
-      const payload = { bannerUrl };
-      const { success, message } = await bannerAPI.addNewBanner(payload);
-      if (success) {
-        fetchBanners();
-        toast.success(message);
-      }
+      const newBannerUrl = await uploadImage(e);
+      if (!newBannerUrl) return;
+      const payload = { bannerUrl: newBannerUrl };
+      const { message } = await bannerAPI.addNewBanner(payload);
+      fetchBanners();
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -39,14 +38,12 @@ const BannerManage = () => {
 
   const handleUpdateBanner = async (e: any, bannerId: string) => {
     try {
-      const bannerUrl = await uploadImage(e);
-      if (!bannerUrl) return;
-      const payload = { bannerUrl };
-      const { success, message } = await bannerAPI.updateBanner(bannerId, payload);
-      if (success) {
-        fetchBanners();
-        toast.success(message);
-      }
+      const newBannerUrl = await uploadImage(e);
+      if (!newBannerUrl) return;
+      const payload = { bannerUrl: newBannerUrl };
+      const { message } = await bannerAPI.updateBanner(bannerId, payload);
+      fetchBanners();
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -54,11 +51,9 @@ const BannerManage = () => {
 
   const handleDeleteBanner = async (bannerId: string) => {
     try {
-      const { success, message } = await bannerAPI.deleteBanner(bannerId);
-      if (success) {
-        fetchBanners();
-        toast.success(message);
-      }
+      const { message } = await bannerAPI.deleteBanner(bannerId);
+      fetchBanners();
+      toast.success(message);
     } catch (error: any) {
       toast.error(error?.message);
     }
@@ -74,7 +69,7 @@ const BannerManage = () => {
       {!loading && (
         <div className='grid gap-4 mt-4 lg:grid-cols-2'>
           <ImageUpload
-            onChange={handleUploadNewBanner}
+            onChange={handleAddNewBanner}
             previewImage=''
             className='!w-full aspect-auto'
           />
