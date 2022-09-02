@@ -40,7 +40,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h3 className='text-[#000000de] font-semibold'>CHĂM SÓC KHÁCH HÀNG</h3>
+              <h3 className='text-[#000000de] font-semibold'>VỀ SHOPBEE</h3>
               <ul className='flex flex-col mt-5 gap-y-3'>
                 {abouts.map((item) => (
                   <li key={item} className='cursor-pointer'>

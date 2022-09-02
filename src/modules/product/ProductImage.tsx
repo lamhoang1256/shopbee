@@ -1,5 +1,4 @@
 import { Image } from "components/image";
-import { noProductFound } from "constants/global";
 import classNames from "utils/className";
 
 interface ProductImageProps {
@@ -8,14 +7,7 @@ interface ProductImageProps {
 }
 
 const ProductImage = ({ imageUrl, className }: ProductImageProps) => {
-  return (
-    <Image
-      src={imageUrl}
-      alt='product'
-      className={classNames("aspect-square", className)}
-      imageError={noProductFound}
-    />
-  );
+  return <Image src={imageUrl} alt='product' className={classNames("aspect-square", className)} />;
 };
 
 ProductImage.defaultProps = {
