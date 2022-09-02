@@ -14,7 +14,6 @@ import { removeCurrentUserLocalStorage } from "utils/localStorage";
 const Navbar = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const { activePopover, hidePopover, showPopover } = usePopover();
-
   const handleLogout = async () => {
     try {
       const { message } = await authAPI.logout(currentUser?.refreshToken);

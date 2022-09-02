@@ -1,7 +1,7 @@
 import { IconPrev } from "components/icons";
 
 interface SidebarCloseActionProps {
-  onCloseSidebar: () => boolean | null;
+  onCloseSidebar: () => void;
 }
 
 const SidebarCloseAction = ({ onCloseSidebar }: SidebarCloseActionProps) => {

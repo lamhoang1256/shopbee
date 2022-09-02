@@ -45,7 +45,7 @@ const CategoryUpdate = lazy(() => import("modules/category/CategoryUpdate"));
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={null}>
+    <Suspense>
       <Router>
         <Routes>
           <Route path='/' element={<LayoutHome />}>
