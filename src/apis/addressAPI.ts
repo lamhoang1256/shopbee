@@ -1,14 +1,11 @@
-import { IResponse } from "@types";
+import { IPayloadGetAllDistrict, IPayloadGetAllWard } from "@types";
 import axios from "axios";
 import queryString from "query-string";
-import axiosClient from "./axiosClient";
 
 const axiosClientAddress = axios.create({
-  baseURL: process.env.REACT_APP_ADMINISTRATION,
+  baseURL: process.env.REACT_APP_API_ADMINISTRATION_URL,
   paramsSerializer: (params) => queryString.stringify(params),
-  headers: {
-    "Content-Type": "application/json",
-  },
+  headers: { "Content-Type": "application/json" },
 });
 
 export const addressAPI = {
@@ -16,36 +13,12 @@ export const addressAPI = {
     const path = `/city`;
     return axiosClientAddress.get(path);
   },
-  getAllDistrict: (params: any) => {
+  getAllDistrict: (params: IPayloadGetAllDistrict) => {
     const path = `/district`;
     return axiosClientAddress.get(path, { params });
   },
-  getAllWard: (params: any) => {
+  getAllWard: (params: IPayloadGetAllWard) => {
     const path = `/ward`;
     return axiosClientAddress.get(path, { params });
-  },
-  getAllShop: (): Promise<IResponse> => {
-    const path = `/api/shop/address`;
-    return axiosClient.get(path);
-  },
-  getSingleShopAddress: (addressId: string): Promise<IResponse> => {
-    const path = `api/shop/address/${addressId}`;
-    return axiosClient.get(path);
-  },
-  getShopAddressDefault: (): Promise<IResponse> => {
-    const path = `api/shop/address?default=true`;
-    return axiosClient.get(path);
-  },
-  updateShopInfo: (values: any, addressId: string): Promise<IResponse> => {
-    const path = `api/shop/address/${addressId}`;
-    return axiosClient.put(path, values);
-  },
-  changeDefaultShopAddress: (addressId: string): Promise<IResponse> => {
-    const path = `api/shop/address/${addressId}/default`;
-    return axiosClient.put(path);
-  },
-  deleteShopAddress: (addressId: string): Promise<IResponse> => {
-    const path = `api/shop/address/${addressId}`;
-    return axiosClient.delete(path);
   },
 };

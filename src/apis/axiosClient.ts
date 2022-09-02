@@ -6,7 +6,7 @@ import {
   setCurrentUserLocalStorage,
 } from "utils/localStorage";
 
-const BASE_URL_API = process.env.REACT_APP_API;
+const BASE_URL_API = process.env.REACT_APP_API_URL;
 const axiosClient = axios.create({
   baseURL: BASE_URL_API,
   paramsSerializer: (params) => queryString.stringify(params),

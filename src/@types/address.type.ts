@@ -23,3 +23,9 @@ export interface IShopAddress {
   address: string;
   default: boolean;
 }
+export interface IPayloadGetAllDistrict {
+  cityId?: string;
+}
+export interface IPayloadGetAllWard {
+  districtId?: string;
+}
