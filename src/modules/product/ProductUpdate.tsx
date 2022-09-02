@@ -27,7 +27,7 @@ const ProductUpdate = () => {
     initialValues: {
       name: "",
       image: "",
-      images: ["", "", "", "", ""],
+      images: [""],
       description: "",
       category: "",
       oldPrice: 0,

@@ -1,4 +1,4 @@
-import { IProduct } from "./product";
+import { IProduct } from "./product.type";
 
 export interface ICart {
   _id: string;
@@ -7,4 +7,8 @@ export interface ICart {
   quantity: number;
   createdAt: string;
   updatedAt: string;
+}
+export interface IPayloadAddToCart {
+  productId: string;
+  quantity: number;
 }

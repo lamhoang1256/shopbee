@@ -66,8 +66,8 @@ const BannerManage = () => {
       {!loading && (
         <div className='grid gap-4 mt-4 lg:grid-cols-2'>
           <ImageUpload
-            onChange={handleAddNewBanner}
             previewImage=''
+            onChange={handleAddNewBanner}
             className='!w-full aspect-auto'
           />
           {banners.map((banner) => (

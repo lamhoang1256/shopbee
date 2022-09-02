@@ -17,7 +17,7 @@ axiosCloudinary.interceptors.response.use(
 );
 
 export const configCloudinaryAPI = {
-  uploadImage: (payload: any): Promise<ICloudinaryUpload> => {
+  uploadImage: (payload: FormData): Promise<ICloudinaryUpload> => {
     const path = `/image/upload`;
     return axiosCloudinary.post(path, payload);
   },

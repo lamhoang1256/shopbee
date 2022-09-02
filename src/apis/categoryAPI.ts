@@ -1,4 +1,4 @@
-import { IResponse } from "@types";
+import { IPayloadAddNewCategory, IPayloadUpdateCategory, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const categoryAPI = {
@@ -6,20 +6,20 @@ export const categoryAPI = {
     const path = `api/category`;
     return axiosClient.get(path);
   },
-  getSingleCategory: (categoryId: string): Promise<IResponse> => {
-    const path = `api/category/${categoryId}`;
+  getSingleCategory: (id: string): Promise<IResponse> => {
+    const path = `api/category/${id}`;
     return axiosClient.get(path);
   },
-  deleteCategory: (categoryId: string): Promise<IResponse> => {
-    const path = `api/category/${categoryId}`;
+  deleteCategory: (id: string): Promise<IResponse> => {
+    const path = `api/category/${id}`;
     return axiosClient.delete(path);
   },
-  addNewCategory: (payload: any): Promise<IResponse> => {
+  addNewCategory: (payload: IPayloadAddNewCategory): Promise<IResponse> => {
     const path = `api/category`;
     return axiosClient.post(path, payload);
   },
-  updateCategory: (categoryId: string, payload: any): Promise<IResponse> => {
-    const path = `api/category/${categoryId}`;
+  updateCategory: (id: string, payload: IPayloadUpdateCategory): Promise<IResponse> => {
+    const path = `api/category/${id}`;
     return axiosClient.put(path, payload);
   },
 };

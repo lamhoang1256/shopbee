@@ -1,14 +1,14 @@
-import { IResponse } from "@types";
+import { IPayloadSignIn, IPayloadSignUp, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const authAPI = {
-  signIn: (user: any): Promise<IResponse> => {
+  signIn: (payload: IPayloadSignIn): Promise<IResponse> => {
     const path = `api/auth/sign-in`;
-    return axiosClient.post(path, user);
+    return axiosClient.post(path, payload);
   },
-  signUp: (user: any): Promise<IResponse> => {
+  signUp: (payload: IPayloadSignUp): Promise<IResponse> => {
     const path = `api/auth/sign-up`;
-    return axiosClient.post(path, user);
+    return axiosClient.post(path, payload);
   },
   logout: (refreshToken: string): Promise<IResponse> => {
     const path = `api/auth/logout?refreshToken=${refreshToken}`;

@@ -1,29 +1,35 @@
-import { IProduct, IResponse, ISearchParams } from "@types";
+import {
+  IPayloadAddNewProduct,
+  IPayloadUpdateProduct,
+  IResponse,
+  IProductSearchParams,
+  IPayloadBuyProduct,
+} from "@types";
 import axiosClient from "./axiosClient";
 
 export const productAPI = {
-  addNewProduct: (product: Partial<IProduct>): Promise<IResponse> => {
+  addNewProduct: (payload: IPayloadAddNewProduct): Promise<IResponse> => {
     const path = `api/product`;
-    return axiosClient.post(path, product);
+    return axiosClient.post(path, payload);
   },
-  updateProduct: (productId: string, product: Partial<IProduct>): Promise<IResponse> => {
-    const path = `api/product/${productId}`;
-    return axiosClient.put(path, product);
+  updateProduct: (id: string, payload: IPayloadUpdateProduct): Promise<IResponse> => {
+    const path = `api/product/${id}`;
+    return axiosClient.put(path, payload);
   },
-  deleteProduct: (productId: string): Promise<IResponse> => {
-    const path = `api/product/${productId}`;
+  deleteProduct: (id: string): Promise<IResponse> => {
+    const path = `api/product/${id}`;
     return axiosClient.delete(path);
   },
-  getAllProduct: (params?: Partial<ISearchParams>): Promise<IResponse> => {
+  getAllProduct: (params?: Partial<IProductSearchParams>): Promise<IResponse> => {
     const path = `api/product`;
     return axiosClient.get(path, { params });
   },
-  getSingleProduct: (productId: string): Promise<IResponse> => {
-    const path = `api/product/${productId}`;
+  getSingleProduct: (id: string): Promise<IResponse> => {
+    const path = `api/product/${id}`;
     return axiosClient.get(path);
   },
-  buyProducts: (values: any): Promise<IResponse> => {
+  buyProducts: (payload: IPayloadBuyProduct): Promise<IResponse> => {
     const path = `api/order`;
-    return axiosClient.post(path, values);
+    return axiosClient.post(path, payload);
   },
 };

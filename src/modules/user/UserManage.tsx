@@ -30,7 +30,7 @@ const UserManage = () => {
   const fetchAllUser = async () => {
     try {
       setLoading(true);
-      const { data } = await userAPI.getAllUser({ ...params, limit: "10" });
+      const { data } = await userAPI.getAllUser({ ...params, limit: 10 });
       setUsers(data.users);
       setPagination(data.pagination);
       setLoading(false);

@@ -1,4 +1,4 @@
-import { IResponse } from "@types";
+import { IPayloadAddNewReview, IPayloadUpdateReview, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const reviewAPI = {
@@ -10,13 +10,13 @@ export const reviewAPI = {
     const path = `api/review/order/${orderId}`;
     return axiosClient.get(path);
   },
-  addNewReview: (review: any): Promise<IResponse> => {
+  addNewReview: (payload: IPayloadAddNewReview): Promise<IResponse> => {
     const path = `api/review`;
-    return axiosClient.post(path, review);
+    return axiosClient.post(path, payload);
   },
-  updateReview: (id: string, review: any): Promise<IResponse> => {
+  updateReview: (id: string, payload: IPayloadUpdateReview): Promise<IResponse> => {
     const path = `api/review/${id}`;
-    return axiosClient.put(path, review);
+    return axiosClient.put(path, payload);
   },
   deleteReview: (id: string): Promise<IResponse> => {
     const path = `api/review/${id}`;

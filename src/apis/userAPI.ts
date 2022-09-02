@@ -1,37 +1,45 @@
-import { IResponse } from "@types";
+import {
+  IPayloadAddNewUser,
+  IPayloadChangePassword,
+  IPayloadUpdateMe,
+  IPayloadUpdateUser,
+  IResponse,
+  IUserCreditCard,
+  IUserSearchParams,
+} from "@types";
 import axiosClient from "./axiosClient";
 
 export const userAPI = {
-  getAllUser: (params: any): Promise<IResponse> => {
+  getAllUser: (params: Partial<IUserSearchParams>): Promise<IResponse> => {
     const path = `api/user`;
     return axiosClient.get(path, { params });
   },
-  getSingleUser: (userId: string): Promise<IResponse> => {
-    const path = `api/user/${userId}`;
+  getSingleUser: (id: string): Promise<IResponse> => {
+    const path = `api/user/${id}`;
     return axiosClient.get(path);
   },
-  addNewUser: (payload: any): Promise<IResponse> => {
+  addNewUser: (payload: IPayloadAddNewUser): Promise<IResponse> => {
     const path = `api/user`;
     return axiosClient.post(path, payload);
   },
-  deleteUser: (userId: string): Promise<IResponse> => {
-    const path = `api/user/${userId}`;
+  deleteUser: (id: string): Promise<IResponse> => {
+    const path = `api/user/${id}`;
     return axiosClient.delete(path);
   },
-  updateUser: (values: any): Promise<IResponse> => {
+  updateUser: (payload: IPayloadUpdateUser): Promise<IResponse> => {
     const path = `api/user`;
-    return axiosClient.put(path, values);
+    return axiosClient.put(path, payload);
   },
-  updateCreditCard: (values: any): Promise<IResponse> => {
+  updateCreditCard: (payload: IUserCreditCard): Promise<IResponse> => {
     const path = `api/user/credit-card`;
-    return axiosClient.put(path, values);
+    return axiosClient.put(path, payload);
   },
-  updateMe: (values: any): Promise<IResponse> => {
+  updateMe: (payload: Partial<IPayloadUpdateMe>): Promise<IResponse> => {
     const path = `api/user/me`;
-    return axiosClient.put(path, values);
+    return axiosClient.put(path, payload);
   },
-  changePasswordMe: (values: any): Promise<IResponse> => {
+  changePasswordMe: (payload: IPayloadChangePassword): Promise<IResponse> => {
     const path = `api/user/change-password`;
-    return axiosClient.put(path, values);
+    return axiosClient.put(path, payload);
   },
 };

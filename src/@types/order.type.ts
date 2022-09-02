@@ -1,4 +1,4 @@
-import { IProduct } from "./product";
+import { IProduct } from "./product.type";
 
 export enum OrderStatus {
   waiting = "waiting",
@@ -51,15 +51,26 @@ export interface IOrder {
     fullname: string;
   };
 }
-
+export interface IPayloadBuyProduct {
+  orderItems: IOrderItem[];
+  shippingTo: string;
+  price: number;
+  note: string;
+  shippingFee: number;
+  promotion: number;
+  total: number;
+  voucherCode: string;
+  methodPayment: string;
+}
 export interface IStatusOrder {
   active: boolean;
   icon: React.ReactNode;
   date: string;
   status: string;
 }
-
-export interface IPayment {
-  label: string;
-  value: number;
+export interface IOrderParams {
+  [k: string]: string;
+}
+export interface IPayloadCancelOrder {
+  reasonCancel: string;
 }

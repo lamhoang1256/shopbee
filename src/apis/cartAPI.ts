@@ -1,4 +1,4 @@
-import { IResponse } from "@types";
+import { IPayloadAddToCart, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const cartAPI = {
@@ -6,12 +6,12 @@ export const cartAPI = {
     const path = `api/cart`;
     return axiosClient.get(path);
   },
-  addToCart: (values: any): Promise<IResponse> => {
+  addToCart: (payload: IPayloadAddToCart): Promise<IResponse> => {
     const path = `api/cart/add-to-cart`;
-    return axiosClient.post(path, values);
+    return axiosClient.post(path, payload);
   },
-  deleteSingleCart: (cardId: any): Promise<IResponse> => {
-    const path = `api/cart/${cardId}`;
+  deleteSingleCart: (cartId: string): Promise<IResponse> => {
+    const path = `api/cart/${cartId}`;
     return axiosClient.delete(path);
   },
   deleteAllCart: (): Promise<IResponse> => {

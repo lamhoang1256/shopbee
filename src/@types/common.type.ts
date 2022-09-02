@@ -1,5 +1,5 @@
-import { ICart } from "./cart";
-import { ICurrentUser } from "./user";
+import { ICart } from "./cart.type";
+import { ICurrentUser } from "./user.type";
 
 export interface IResponse {
   data?: any;
@@ -8,14 +8,12 @@ export interface IResponse {
   success: boolean;
   [key: string]: any;
 }
-
 export interface IUseStore {
   carts: ICart[];
   setCart: (carts: ICart[]) => void;
   currentUser: ICurrentUser;
   setCurrentUser: (currentUser: ICurrentUser) => void;
 }
-
 export interface ICloudinaryUpload {
   asset_id: string;
   bytes: number;
@@ -29,7 +27,6 @@ export interface ICloudinaryUpload {
   version_id: string;
   width: number;
 }
-
 export interface IPagination {
   limit: number;
   page: number;

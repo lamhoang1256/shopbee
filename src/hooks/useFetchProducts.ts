@@ -1,10 +1,10 @@
-import { IPagination, IProduct, ISearchParams } from "@types";
+import { IPagination, IProduct, IProductSearchParams } from "@types";
 import { productAPI } from "apis";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function useFetchProducts(params?: Partial<ISearchParams>) {
+export default function useFetchProducts(params?: Partial<IProductSearchParams>) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentParams = Object.fromEntries(searchParams);
   const [products, setProducts] = useState<IProduct[]>([]);

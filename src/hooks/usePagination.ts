@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { ISearchParams } from "@types";
+import { IProductSearchParams } from "@types";
 
 export default function usePagination() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +16,7 @@ export default function usePagination() {
   const handleClickNumberPage = (page: number) => {
     setSearchParams({ ...currentParams, page: page.toString() });
   };
-  const handleFilter = (filterParams: Partial<ISearchParams>) => {
+  const handleFilter = (filterParams: Partial<IProductSearchParams>) => {
     setSearchParams({ ...currentParams, ...filterParams });
   };
   return {
