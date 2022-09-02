@@ -1,5 +1,6 @@
 import { Logo } from "components/logo";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 
 interface LayoutAuthProps {
   title: string;
@@ -19,26 +20,7 @@ const LayoutAuth = ({ title }: LayoutAuthProps) => {
       <main className='flex-1 py-16 bg-orangeee4'>
         <Outlet />
       </main>
-      <footer className='text-[#000000a6] p-10'>
-        <div className='layout-container'>
-          <div className='flex flex-col items-center justify-between md:flex-row'>
-            <span>©2022 Shopbee. Tất cả các quyền được bảo lưu.</span>
-            <span>Ngôn ngữ: Tiếng Anh Tiếng Việt</span>
-          </div>
-          <div className='mt-8 text-xs text-center'>
-            <p className='mb-4'> Công ty TNHH Shoppee</p>
-            <p>
-              Địa chỉ: Tầng 22, Tòa nhà Inter Lotte Hà Nội, 54 Liễu Giai, phường Cống Vị, Quận Ba
-              Đình, Hà Nội. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.myshop.vn
-            </p>
-            <p>
-              Mã số doanh nghiệp: 01067111173786 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày
-              10/02/2016
-            </p>
-            <p>©2015 - Bản quyền thuộc về Công ty TNHH MyShop</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

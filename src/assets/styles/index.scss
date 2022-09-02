@@ -124,7 +124,7 @@
     @apply border-b-2 pb-3 font-semibold text-base border-[#0000000d] text-[#000000cc] flex gap-x-2 items-center;
   }
   .layout-sidebar {
-    @apply -translate-x-full z-[300] w-full max-w-[300px] fixed top-0 left-0 bottom-0 lg:translate-x-0 bg-[#f5f5f5] min-h-screen p-4 lg:p-0 transition-all duration-300 lg:static overflow-auto;
+    @apply -translate-x-full z-[300] w-full max-w-[300px] fixed top-0 left-0 bottom-0 lg:translate-x-0 bg-[#f5f5f5] p-4 lg:p-0 transition-all duration-300 lg:static overflow-auto;
   }
   .order-status {
     @apply relative z-20 flex items-center justify-center rounded-full md:w-14 md:h-14 w-12 h-12 border-4 bg-white;

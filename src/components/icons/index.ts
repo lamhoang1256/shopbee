@@ -32,12 +32,14 @@ import IconTemplate from "./IconTemplate";
 import IconVoucher from "./IconVoucher";
 import IconCategoryManage from "./IconCategoryManage";
 import IconTag from "./IconTag";
+import IconPaymentList from "./IconPaymentList";
 
 export {
   IconTemplate,
   IconVoucher,
   IconTag,
   IconAddUser,
+  IconPaymentList,
   IconCategoryManage,
   IconHeart,
   IconAddVoucher,
