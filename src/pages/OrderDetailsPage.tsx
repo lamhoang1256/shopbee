@@ -13,7 +13,6 @@ import {
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { scrollToTop } from "utils/helper";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -33,7 +32,6 @@ const OrderDetailsPage = () => {
   };
   useEffect(() => {
     fetchDetailsOrder();
-    scrollToTop(0);
   }, [id]);
 
   if (loading) return <Loading />;

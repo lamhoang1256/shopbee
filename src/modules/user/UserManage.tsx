@@ -10,7 +10,7 @@ import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatDateVN, scrollToTop } from "utils/helper";
+import { formatDateVN } from "utils/helper";
 import { swalDelete } from "utils/swal";
 import UserAvatar from "./UserAvatar";
 
@@ -53,7 +53,6 @@ const UserManage = () => {
 
   useEffect(() => {
     fetchAllUser();
-    scrollToTop();
   }, [searchParams]);
 
   return (
