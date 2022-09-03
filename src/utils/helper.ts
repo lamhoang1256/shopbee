@@ -42,6 +42,21 @@ export function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+export function scrollTo(top?: number, left?: number) {
+  window.scroll({
+    top: top || 0,
+    left: left || 0,
+    behavior: "smooth",
+  });
+}
+
 export function formatDatetimeLocal(date: Date) {
   return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().substring(0, 19);
+}
+export function removeEmptyStringValueObj(obj: { [key: string]: any }) {
+  const cloneObj = obj;
+  Object.keys(cloneObj).forEach((key) => {
+    if (cloneObj[key] === "") delete cloneObj[key];
+  });
+  return cloneObj;
 }

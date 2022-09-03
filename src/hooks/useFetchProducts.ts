@@ -31,5 +31,6 @@ export default function useFetchProducts(params?: Partial<IProductSearchParams>)
     pagination,
     fetchProducts,
     setSearchParams,
+    searchParams,
   };
 }

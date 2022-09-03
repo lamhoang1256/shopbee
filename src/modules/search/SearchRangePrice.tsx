@@ -19,7 +19,7 @@ const SearchRangePrice = () => {
       price_max: "",
     },
     validationSchema: Yup.object({
-      price_min: Yup.number().min(0),
+      price_min: Yup.number().min(0).default(0),
       price_max: Yup.number().min(Yup.ref("price_min"), "Vui lòng điền khoảng giá phù hợp"),
     }),
     onSubmit: (params: IParamsSearchByPrice) => {

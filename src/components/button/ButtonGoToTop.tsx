@@ -1,9 +1,11 @@
 import { IconUp } from "components/icons";
 import { useEffect, useState } from "react";
 import classNames from "utils/className";
+import { scrollTo } from "utils/helper";
 
 const ButtonGoToTop = () => {
   const [isShow, setIsShow] = useState(false);
+  const handleGoToTop = () => scrollTo();
   useEffect(() => {
     const handleScroll = () => {
       if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -17,13 +19,6 @@ const ButtonGoToTop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const handleGoToTop = () => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
   return (
     <button
       type='button'

@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { IProductSearchParams } from "@types";
+import { removeEmptyStringValueObj } from "utils/helper";
 
 export default function usePagination() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,7 +18,8 @@ export default function usePagination() {
     setSearchParams({ ...currentParams, page: page.toString() });
   };
   const handleFilter = (filterParams: Partial<IProductSearchParams>) => {
-    setSearchParams({ ...currentParams, ...filterParams });
+    const params = removeEmptyStringValueObj({ ...currentParams, ...filterParams });
+    setSearchParams(params);
   };
   return {
     goPrevPage,
