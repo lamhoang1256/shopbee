@@ -2,7 +2,7 @@ import { Button } from "components/button";
 import { MessageError } from "components/form";
 import { IconFilter } from "components/icons";
 import { InputRangePrice } from "components/input";
-import { SearchRangePriceYup } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import usePagination from "hooks/usePagination";
 
@@ -18,7 +18,10 @@ const SearchRangePrice = () => {
       price_min: "",
       price_max: "",
     },
-    validationSchema: SearchRangePriceYup,
+    validationSchema: Yup.object({
+      price_min: Yup.number().min(0),
+      price_max: Yup.number().min(Yup.ref("price_min"), "Vui lòng điền khoảng giá phù hợp"),
+    }),
     onSubmit: (params: IParamsSearchByPrice) => {
       handleFilter(params);
     },

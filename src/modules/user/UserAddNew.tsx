@@ -4,7 +4,7 @@ import { Switch } from "components/checkbox";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input, InputPassword } from "components/input";
-import { SignUpYup } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { ChangeEvent } from "react";
@@ -28,7 +28,30 @@ const UserAddNew = () => {
       address: "",
       isAdmin: false,
     },
-    validationSchema: SignUpYup,
+    validationSchema: Yup.object({
+      email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
+      fullname: Yup.string().required("Vui lòng nhập họ và tên!"),
+      phone: Yup.string()
+        .required("Vui lòng nhập số điện thoại!")
+        .max(20, "Số điện thoại tối đa là 20 kí tự!"),
+      password: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      confirm_password: Yup.string()
+        .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
+        .required("Vui lòng nhập xác nhận mật khẩu!"),
+      street: Yup.string().required("Vui lòng nhập địa chỉ cụ thể!"),
+      city: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+      }),
+      district: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+        name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+      }),
+      ward: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+        name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+      }),
+    }),
     onSubmit: async (values) => {
       const { street, city, district, ward } = values;
       const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;

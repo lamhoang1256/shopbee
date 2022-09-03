@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { UpdateAdministrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
-import { userSchema } from "constants/yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -21,7 +21,25 @@ const UserUpdateMe = () => {
       district: { id: "", name: "" },
       ward: { id: "", name: "" },
     },
-    validationSchema: userSchema,
+    validationSchema: Yup.object({
+      fullname: Yup.string().required("Vui lòng nhập họ và tên!"),
+      phone: Yup.string()
+        .required("Vui lòng nhập số điện thoại!")
+        .max(20, "Số điện thoại tối đa là 20 kí tự!"),
+      street: Yup.string().required("Vui lòng nhập địa chỉ cụ thể!"),
+      city: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+      }),
+      district: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+        name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+      }),
+      ward: Yup.object().shape({
+        id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+        name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+      }),
+    }),
     onSubmit: async (values) => {
       try {
         const { street, city, district, ward } = values;
