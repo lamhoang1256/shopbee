@@ -2,10 +2,12 @@ import { PATH } from "constants/path";
 import { UserCreditCard } from "modules/user";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Fallback } from "components/fallback";
+import { ErrorBoundary } from "components/errorBoundary";
 
 const LayoutAuth = lazy(() => import("layouts/LayoutAuth"));
-const LayoutHome = lazy(() => import("layouts/LayoutHome"));
 const LayoutUser = lazy(() => import("layouts/LayoutUser"));
+const LayoutHome = lazy(() => import("layouts/LayoutHome"));
 const LayoutDashboard = lazy(() => import("layouts/LayoutDashboard"));
 const CheckLoggedIn = lazy(() => import("routes/CheckLoggedIn"));
 const ProtectedRoute = lazy(() => import("routes/ProtectedRoute"));
@@ -45,66 +47,427 @@ const CategoryUpdate = lazy(() => import("modules/category/CategoryUpdate"));
 
 const AppRoutes = () => {
   return (
-    <Suspense>
-      <Router>
-        <Routes>
-          <Route path='/' element={<LayoutHome />}>
-            <Route index element={<HomePage />} />
-            <Route path={PATH.cart} element={<CartPage />} />
-            <Route path={`${PATH.product}/:id`} element={<ProductDetailsPage />} />
-            <Route path={PATH.search} element={<SearchPage />} />
-          </Route>
+    <Router>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <ErrorBoundary>
+              <LayoutHome />
+            </ErrorBoundary>
+          }
+        >
+          <Route
+            index
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <HomePage />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          />
+          <Route
+            path={PATH.cart}
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <CartPage />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          />
+          <Route
+            path={`${PATH.product}/:id`}
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <ProductDetailsPage />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          />
+          <Route
+            path={PATH.search}
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <SearchPage />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          />
+        </Route>
 
-          <Route element={<CheckLoggedIn />}>
-            <Route path='/' element={<LayoutAuth title='Đăng ký' />}>
-              <Route path={PATH.signUp} element={<SignUpPage />} />
-            </Route>
-            <Route path='/' element={<LayoutAuth title='Đăng nhập' />}>
-              <Route path={PATH.signIn} element={<SignInPage />} />
+        <Route
+          element={
+            <Suspense fallback={<Fallback />}>
+              <ErrorBoundary>
+                <CheckLoggedIn />
+              </ErrorBoundary>
+            </Suspense>
+          }
+        >
+          <Route
+            path='/'
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <LayoutAuth title='Đăng ký' />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          >
+            <Route
+              path={PATH.signUp}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <SignUpPage />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route
+            path='/'
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <LayoutAuth title='Đăng nhập' />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          >
+            <Route
+              path={PATH.signIn}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <SignInPage />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+          </Route>
+        </Route>
+
+        <Route
+          element={
+            <Suspense fallback={<Fallback />}>
+              <ErrorBoundary>
+                <ProtectedRoute />
+              </ErrorBoundary>
+            </Suspense>
+          }
+        >
+          {/* User Routes */}
+          <Route
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <LayoutUser />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          >
+            <Route
+              path={PATH.order}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <OrderMe />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={`${PATH.order}/:id`}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <OrderDetailsPage />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.profile}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <ProfilePage />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.password}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <UserChangePassword />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.voucher}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <VoucherMe />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.wishlist}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <UserWishList />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.history}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <HistoryPage />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.creditCard}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <UserCreditCard />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route
+            path={PATH.checkout}
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <CheckoutPage />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          />
+          {/* Admin Routes */}
+          <Route
+            element={
+              <Suspense fallback={<Fallback />}>
+                <ErrorBoundary>
+                  <CheckAdmin />
+                </ErrorBoundary>
+              </Suspense>
+            }
+          >
+            <Route
+              path='/dashboard'
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <LayoutDashboard />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            >
+              <Route
+                index
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <DashboardPage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.orderManage}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <OrderManage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={`${PATH.orderManage}/:id`}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <OrderUpdate />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.categoryManage}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <CategoryManage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.categoryAddNew}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <CategoryAddNew />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={`${PATH.categoryUpdate}/:id`}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <CategoryUpdate />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.productManage}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <ProductManage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.productAddNew}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <ProductAddNew />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={`${PATH.productUpdate}/:id`}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <ProductUpdate />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.banner}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <BannerManage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.shop}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <ShopUpdate />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.userManage}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <UserManage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={`${PATH.userUpdate}/:id`}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <UserUpdate />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.userAddNew}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <UserAddNew />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.voucherManage}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <VoucherManage />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.voucherAddNew}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <VoucherAddNew />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
+              <Route
+                path={`${PATH.voucherUpdate}/:id`}
+                element={
+                  <Suspense fallback={<Fallback />}>
+                    <ErrorBoundary>
+                      <VoucherUpdate />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
             </Route>
           </Route>
+        </Route>
 
-          <Route element={<ProtectedRoute />}>
-            {/* User Routes */}
-            <Route element={<LayoutUser />}>
-              <Route path={PATH.order} element={<OrderMe />} />
-              <Route path={`${PATH.order}/:id`} element={<OrderDetailsPage />} />
-              <Route path={PATH.profile} element={<ProfilePage />} />
-              <Route path={PATH.password} element={<UserChangePassword />} />
-              <Route path={PATH.voucher} element={<VoucherMe />} />
-              <Route path={PATH.wishlist} element={<UserWishList />} />
-              <Route path={PATH.history} element={<HistoryPage />} />
-              <Route path={PATH.creditCard} element={<UserCreditCard />} />
-            </Route>
-            <Route path={PATH.checkout} element={<CheckoutPage />} />
-            {/* Admin Routes */}
-            <Route element={<CheckAdmin />}>
-              <Route path='/dashboard' element={<LayoutDashboard />}>
-                <Route index element={<DashboardPage />} />
-                <Route path={PATH.orderManage} element={<OrderManage />} />
-                <Route path={`${PATH.orderManage}/:id`} element={<OrderUpdate />} />
-                <Route path={PATH.categoryManage} element={<CategoryManage />} />
-                <Route path={PATH.categoryAddNew} element={<CategoryAddNew />} />
-                <Route path={`${PATH.categoryUpdate}/:id`} element={<CategoryUpdate />} />
-                <Route path={PATH.productManage} element={<ProductManage />} />
-                <Route path={PATH.productAddNew} element={<ProductAddNew />} />
-                <Route path={`${PATH.productUpdate}/:id`} element={<ProductUpdate />} />
-                <Route path={PATH.banner} element={<BannerManage />} />
-                <Route path={PATH.shop} element={<ShopUpdate />} />
-                <Route path={PATH.userManage} element={<UserManage />} />
-                <Route path={`${PATH.userUpdate}/:id`} element={<UserUpdate />} />
-                <Route path={PATH.userAddNew} element={<UserAddNew />} />
-                <Route path={PATH.voucherManage} element={<VoucherManage />} />
-                <Route path={PATH.voucherAddNew} element={<VoucherAddNew />} />
-                <Route path={`${PATH.voucherUpdate}/:id`} element={<VoucherUpdate />} />
-              </Route>
-            </Route>
-          </Route>
-
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-      </Router>
-    </Suspense>
+        <Route
+          path='*'
+          element={
+            <Suspense fallback={<Fallback />}>
+              <ErrorBoundary>
+                <PageNotFound />
+              </ErrorBoundary>
+            </Suspense>
+          }
+        />
+      </Routes>
+    </Router>
   );
 };
 

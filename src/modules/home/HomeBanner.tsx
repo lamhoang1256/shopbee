@@ -9,8 +9,8 @@ const HomeBanner = () => {
   const [banners, setBanners] = useState<IBanner[]>([]);
   const [loading, setLoading] = useState(true);
   const fetchHomeBanner = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { data } = await bannerAPI.getAllBanner();
       setBanners(data);
       setLoading(false);

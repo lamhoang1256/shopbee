@@ -57,7 +57,7 @@ const Footer = () => {
               <h3 className='text-[#000000de] font-semibold'>THEO DÕI CHÚNG TÔI TRÊN</h3>
               <ul className='flex flex-col mt-5 gap-y-3'>
                 {socials.map((social) => (
-                  <li className='flex items-center gap-x-2'>
+                  <li className='flex items-center gap-x-2' key={social.display}>
                     <img
                       key={social.display}
                       alt={social.display}
@@ -96,7 +96,7 @@ const Footer = () => {
             <span>©2022 Shopbee. Tất cả các quyền được bảo lưu.</span>
             <span>Ngôn ngữ: Tiếng Anh Tiếng Việt</span>
           </div>
-          <div className='mt-8 text-xs text-center'>
+          <div className='mt-8 text-xs md:text-center'>
             <p className='mb-4'> Công ty TNHH Shoppee</p>
             <p>
               Địa chỉ: Tầng 22, Tòa nhà Inter Lotte Hà Nội, 54 Liễu Giai, phường Cống Vị, Quận Ba
