@@ -3,7 +3,7 @@ import { Dropdown } from "components/dropdown";
 import { IconShipping } from "components/icons";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 import { useEffect, useState } from "react";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { calcShippingFee, formatMoney } from "utils/helper";
 
 interface ProductShippingProps {

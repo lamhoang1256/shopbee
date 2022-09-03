@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 import AppRoutes from "routes/Routes";
 import { toast, ToastContainer } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { cartAPI } from "apis";
 
 Modal.setAppElement("#root");

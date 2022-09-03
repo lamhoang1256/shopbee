@@ -3,7 +3,7 @@ import { Button } from "components/button";
 import { PATH } from "constants/path";
 import { PriceSale } from "components/price";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 
 interface CartFooterProps {
   total: number;

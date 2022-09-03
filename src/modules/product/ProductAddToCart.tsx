@@ -3,7 +3,7 @@ import { ButtonOutline } from "components/button";
 import { IconCartOutline } from "components/icons";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 
 interface ProductAddToCartProps {
   stock: number;

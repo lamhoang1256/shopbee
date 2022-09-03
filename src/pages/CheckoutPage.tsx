@@ -14,7 +14,7 @@ import { OrderPayment, OrderProduct } from "modules/order";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import Swal from "sweetalert2";
 import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils/helper";
 

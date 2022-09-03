@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
 
 const SignInPage = () => {

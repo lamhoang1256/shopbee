@@ -7,7 +7,7 @@ import { userSchema } from "constants/yup";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 
 const UserUpdateMe = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);

@@ -7,7 +7,7 @@ import usePopover from "hooks/usePopover";
 import { UserAvatar } from "modules/user";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import classNames from "utils/className";
 import { removeCurrentUserLocalStorage } from "utils/localStorage";
 

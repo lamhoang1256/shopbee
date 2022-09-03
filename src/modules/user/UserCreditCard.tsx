@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/lib/styles.scss";
 import { toast } from "react-toastify";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
 import * as Yup from "yup";
 

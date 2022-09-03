@@ -2,7 +2,7 @@ import { defaultUserAvatar } from "constants/global";
 import { PATH } from "constants/path";
 import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { v4 as uuidv4 } from "uuid";
 import UserAvatar from "./UserAvatar";
 

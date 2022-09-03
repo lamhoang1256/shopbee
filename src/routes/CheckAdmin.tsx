@@ -1,7 +1,7 @@
 import { IDecodedToken } from "@types";
 import jwtDecode from "jwt-decode";
 import { Navigate, Outlet } from "react-router-dom";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 
 const CheckAdmin = () => {
   const { currentUser } = useStore();

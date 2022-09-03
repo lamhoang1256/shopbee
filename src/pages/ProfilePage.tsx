@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { userAPI } from "apis";
 import { Template } from "layouts";
 import { uploadImage } from "utils/uploadImage";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { UserChangeAvatar, UserUpdateMe } from "modules/user";
 import { ChangeEvent } from "react";
 

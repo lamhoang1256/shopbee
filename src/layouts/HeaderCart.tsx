@@ -6,7 +6,7 @@ import usePopover from "hooks/usePopover";
 import { PriceSale } from "components/price";
 import { ProductImage, ProductTitle } from "modules/product";
 import { Link } from "react-router-dom";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 
 const HeaderCart = () => {
   const { carts } = useStore((state) => state);

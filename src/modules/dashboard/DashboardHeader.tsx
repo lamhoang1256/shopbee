@@ -3,7 +3,7 @@ import { defaultUserAvatar } from "constants/global";
 import { PATH } from "constants/path";
 import { UserAvatar } from "modules/user";
 import { Link } from "react-router-dom";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 
 const DashboardHeader = () => {
   const { currentUser } = useStore((state) => state);

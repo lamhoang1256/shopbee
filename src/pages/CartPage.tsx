@@ -1,5 +1,5 @@
 import { ICart } from "@types";
-import { useStore } from "store/configStore";
+import { useStore } from "store/globalStore";
 import { calcTotalCart } from "utils/helper";
 import { CartBody, CartEmpty, CartFooter, CartHeader, CartItem } from "modules/cart";
 
