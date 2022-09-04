@@ -44,7 +44,7 @@ const CheckoutPage = () => {
   const handleCheckout = () => {
     const orderItems = carts.map((cart: ICart) => ({
       quantity: cart.quantity,
-      product: cart.product,
+      product: cart.product._id,
     }));
     const values = {
       orderItems,

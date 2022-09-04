@@ -32,7 +32,7 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
       toast.error(error?.message);
     }
   };
-  if (stock === 0) {
+  if (stock <= 0) {
     return <span className='block mt-4 text-lg text-redff4'>Sản phẩm đã hết hàng</span>;
   }
   return (

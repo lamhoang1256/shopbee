@@ -45,10 +45,14 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
             <PriceSale>{cartItem.product.price}</PriceSale>
           </div>
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
-            <QuantityController
-              defaultQuantity={cartItem.quantity}
-              onChangeValue={onChangeQuantity}
-            />
+            {cartItem.product.stock ? (
+              <QuantityController
+                defaultQuantity={cartItem.quantity}
+                onChangeValue={onChangeQuantity}
+              />
+            ) : (
+              <span className='text-base text-redff4'>Hết hàng</span>
+            )}
             <button type='button' onClick={handleRemoveCartItem}>
               Xóa
             </button>

@@ -52,7 +52,7 @@ export interface IOrder {
   };
 }
 export interface IPayloadBuyProduct {
-  orderItems: IOrderItem[];
+  orderItems: { product: string; quantity: number }[];
   shippingTo: string;
   price: number;
   note: string;
