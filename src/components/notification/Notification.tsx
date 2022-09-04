@@ -6,7 +6,7 @@ import usePopover from "hooks/usePopover";
 import { Link } from "react-router-dom";
 
 const stylesPopoverLink = "text-[#000000cc] flex gap-x-2 p-3 hover:bg-[#f8f8f8]";
-const Notify = () => {
+const Notification = () => {
   const { activePopover, hidePopover, showPopover } = usePopover();
   return (
     <div
@@ -35,14 +35,14 @@ const Notify = () => {
             </div>
           </div>
           <Link
-            to={PATH.notify}
+            to={PATH.notification}
             className='p-3 py-2 text-center text-[#000000cc] hover:bg-[#f8f8f8] block'
           >
             Xem tất cả
           </Link>
         </>
         {/* <div className='flex flex-col items-center justify-center gap-y-1 h-[200px]'>
-          <img src='/images/bell.png' alt='empty notify' className='w-24 h-24' />
+          <img src='/images/bell.png' alt='empty notification' className='w-24 h-24' />
           <h3 className='font-medium text-base text-[#00000066]'>Chưa có thông tin mới</h3>
         </div> */}
       </Popover>
@@ -50,4 +50,4 @@ const Notify = () => {
   );
 };
 
-export default Notify;
+export default Notification;

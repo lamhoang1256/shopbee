@@ -1,7 +1,7 @@
 import { Template } from "layouts";
 
 const stylesPopoverLink = "text-[#000000cc] flex gap-x-3 lg:gap-x-4 p-5 hover:bg-[#f8f8f8]";
-const NotifyPage = () => {
+const NotificationPage = () => {
   return (
     <Template title='Thông báo mới' desc='Quản lý tất cả thông báo của bạn'>
       <div className='-mx-5'>
@@ -26,4 +26,4 @@ const NotifyPage = () => {
   );
 };
 
-export default NotifyPage;
+export default NotificationPage;

@@ -1,5 +1,5 @@
 import { Menu } from "components/header";
-import { Notify } from "components/notify";
+import { Notification } from "components/notification";
 import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
@@ -16,7 +16,7 @@ const Navbar = () => {
         </div>
       )}
       <div className='flex items-center gap-x-6'>
-        <Notify />
+        <Notification />
         <Menu />
       </div>
     </div>

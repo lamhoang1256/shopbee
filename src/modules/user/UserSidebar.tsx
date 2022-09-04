@@ -34,7 +34,7 @@ const sidebarLinks = [
   },
   {
     icon: "https://cf.shopee.vn/file/e10a43b53ec8605f4829da5618e0717c",
-    path: PATH.notify,
+    path: PATH.notification,
     display: "Thông báo",
   },
   {

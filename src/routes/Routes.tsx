@@ -43,7 +43,7 @@ const PageNotFound = lazy(() => import("pages/PageNotFound"));
 const SearchPage = lazy(() => import("pages/SearchPage"));
 const SignInPage = lazy(() => import("pages/SignInPage"));
 const SignUpPage = lazy(() => import("pages/SignUpPage"));
-const NotifyPage = lazy(() => import("pages/NotifyPage"));
+const NotificationPage = lazy(() => import("pages/NotificationPage"));
 const CategoryAddNew = lazy(() => import("modules/category/CategoryAddNew"));
 const CategoryManage = lazy(() => import("modules/category/CategoryManage"));
 const CategoryUpdate = lazy(() => import("modules/category/CategoryUpdate"));
@@ -237,11 +237,11 @@ const AppRoutes = () => {
                 }
               />
               <Route
-                path={PATH.notify}
+                path={PATH.notification}
                 element={
                   <Suspense fallback={<Fallback />}>
                     <ErrorBoundary>
-                      <NotifyPage />
+                      <NotificationPage />
                     </ErrorBoundary>
                   </Suspense>
                 }
