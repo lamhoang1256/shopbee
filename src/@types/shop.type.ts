@@ -10,3 +10,15 @@ export interface IShop {
   createdAt: string;
   updatedAt: string;
 }
+export interface IDashboardOverview {
+  totalOrders: number;
+  totalOrdersWaiting: number;
+  totalOrdersProcessing: number;
+  totalOrdersShipping: number;
+  totalOrdersCanceled: number;
+  totalOrdersDelivered: number;
+  totalProducts: number;
+  totalUsers: number;
+  totalVouchers: number;
+  totalRevenue: number;
+}

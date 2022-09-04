@@ -6,6 +6,10 @@ export const shopAPI = {
     const path = `api/shop`;
     return axiosClient.get(path);
   },
+  getOverviewDashboard: (): Promise<IResponse> => {
+    const path = `api/shop/overview`;
+    return axiosClient.get(path);
+  },
   updateShopInfo: (payload: Partial<IShop>): Promise<IResponse> => {
     const path = `api/shop`;
     return axiosClient.put(path, payload);
