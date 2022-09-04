@@ -12,6 +12,7 @@ export const PATH = {
   creditCard: "/user/credit-card",
   order: "/user/order",
   voucher: "/user/voucher",
+  notify: "/user/notify",
   user: "/user",
   checkout: "/checkout",
   userUpdate: "/dashboard/user/update",

@@ -33,9 +33,11 @@ import IconVoucher from "./IconVoucher";
 import IconCategoryManage from "./IconCategoryManage";
 import IconTag from "./IconTag";
 import IconPaymentList from "./IconPaymentList";
+import IconBell from "./IconBell";
 
 export {
   IconTemplate,
+  IconBell,
   IconVoucher,
   IconTag,
   IconAddUser,
