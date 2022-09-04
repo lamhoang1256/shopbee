@@ -19,8 +19,8 @@ const Notify = () => {
         <span>Thông báo</span>
       </div>
       <Popover active={activePopover} className='min-w-[400px]'>
-        <h3 className='px-3 py-2 text-black'>Thông báo mới nhận</h3>
-        {/* <>
+        <h3 className='px-3 py-2 text-[#000000cc]'>Thông báo mới nhận</h3>
+        <>
           <div className={stylesPopoverLink}>
             <img
               src='https://source.unsplash.com/random'
@@ -29,22 +29,22 @@ const Notify = () => {
             />
             <div>
               <h4 className='text-[13px] font-medium uppercase'>Đã được thanh toán</h4>
-              <p className='text-[13px] font-light line-clamp-3 leading-4 text-[#737474]'>
+              <p className='text-[13px] line-clamp-3 leading-4 text-[#0000008a]'>
                 Đơn hàng đã được thanh toán Đơn hàng đã được thanh toán
               </p>
             </div>
           </div>
           <Link
             to={PATH.notify}
-            className='p-3 py-2 text-center text-black hover:bg-[#f8f8f8] block'
+            className='p-3 py-2 text-center text-[#000000cc] hover:bg-[#f8f8f8] block'
           >
             Xem tất cả
           </Link>
-        </> */}
-        <div className='flex flex-col items-center justify-center gap-y-1 h-[200px]'>
+        </>
+        {/* <div className='flex flex-col items-center justify-center gap-y-1 h-[200px]'>
           <img src='/images/bell.png' alt='empty notify' className='w-24 h-24' />
-          <h3 className='font-medium text-base text-[#00000066]'>Trống</h3>
-        </div>
+          <h3 className='font-medium text-base text-[#00000066]'>Chưa có thông tin mới</h3>
+        </div> */}
       </Popover>
     </div>
   );

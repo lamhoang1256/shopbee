@@ -33,6 +33,11 @@ const sidebarLinks = [
     display: "Đã xem gần đây",
   },
   {
+    icon: "https://cf.shopee.vn/file/e10a43b53ec8605f4829da5618e0717c",
+    path: PATH.notify,
+    display: "Thông báo",
+  },
+  {
     icon: "/images/icon-heart.png",
     path: PATH.wishlist,
     display: "Đã thích",
