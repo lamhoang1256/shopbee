@@ -11,7 +11,9 @@ interface LogoProps {
 const Logo = ({ to = PATH.home, className, children, primary }: LogoProps) => {
   return (
     <Link to={to} className={className}>
-      <h1 className={`text-2xl font-medium ${primary ? "text-orangeee4" : "text-white"} $`}>
+      <h1
+        className={`text-2xl font-medium ${primary ? "text-orangeee4" : "text-white"} ${className}`}
+      >
         {children}
       </h1>
     </Link>

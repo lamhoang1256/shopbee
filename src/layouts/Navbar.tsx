@@ -1,4 +1,5 @@
 import { Menu } from "components/header";
+import { Logo } from "components/logo";
 import { Notification } from "components/notification";
 import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
@@ -8,7 +9,10 @@ const Navbar = () => {
   const { currentUser } = useStore((state) => state);
   return (
     <div className='flex items-center justify-between h-12 text-white'>
-      <Link to={PATH.order}>Kiểm tra đơn hàng</Link>
+      <Link to={PATH.order} className='hidden sm:block'>
+        Kiểm tra đơn hàng
+      </Link>
+      <Logo className='!text-xl sm:hidden'>Shopbee</Logo>
       {!currentUser?.email && (
         <div className='flex gap-x-4'>
           <Link to={PATH.signUp}>Đăng kí</Link>

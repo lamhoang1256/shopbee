@@ -4,11 +4,11 @@ import { Dropdown } from "components/dropdown";
 import { FormGroup, MessageError } from "components/form";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 
-interface UpdateAdministrativeProps {
+interface AdministrativeProps {
   formik: any;
 }
 
-const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
+const Administrative = ({ formik }: AdministrativeProps) => {
   const { city, district, ward } = formik.values;
   const { citys, districts, wards } = useFetchAdministrative(city.id, district.id);
   const handleChangeCity = (city: ICity) => {
@@ -83,4 +83,4 @@ const UpdateAdministrative = ({ formik }: UpdateAdministrativeProps) => {
   );
 };
 
-export default UpdateAdministrative;
+export default Administrative;

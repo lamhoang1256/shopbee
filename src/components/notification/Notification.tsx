@@ -24,7 +24,7 @@ const Notification = () => {
 
   return (
     <div
-      className='relative h-full !min-w-[160px] max5se:max-w-[130px]'
+      className='hidden lg:block relative h-full !min-w-[160px] max5se:max-w-[130px]'
       onMouseEnter={() => {
         showPopover();
         handleHaveSeenNotify();

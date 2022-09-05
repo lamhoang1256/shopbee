@@ -1,7 +1,7 @@
 import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
-import { UpdateAdministrative } from "components/common";
+import { Administrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import * as Yup from "yup";
@@ -123,7 +123,7 @@ const UserUpdate = () => {
           </div>
           <FormGroup>
             <Label htmlFor='address'>Địa chỉ: {formik.values.address}</Label>
-            <UpdateAdministrative formik={formik} />
+            <Administrative formik={formik} />
             <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
           </FormGroup>
           <FormGroup>
