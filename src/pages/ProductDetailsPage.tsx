@@ -32,9 +32,9 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     if (!product?.name) return;
     const handleAddToHistory = (prod: IProduct) => {
-      const history = JSON.parse(localStorage.getItem("history") || "[]");
+      const history: IProduct[] = JSON.parse(localStorage.getItem("history") || "[]");
       if (history.length >= 20) history.splice(19, 1);
-      const index = history.findIndex((item: IProduct) => item._id === id);
+      const index = history.findIndex((item) => item._id === id);
       if (index === -1) {
         history.unshift(prod);
       } else {
