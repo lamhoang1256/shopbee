@@ -83,7 +83,7 @@ const DashboardNeedWork = () => {
     <Template title='Danh sách cần làm' desc='Những việc bạn sẽ phải làm'>
       {loading && <Loading />}
       {!loading && (
-        <div className='grid grid-cols-5 mt-6 gap-y-2'>
+        <div className='grid grid-cols-2 mt-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-2'>
           {works.map((work) => (
             <Link
               key={work.label}

@@ -27,7 +27,7 @@ const Menu = () => {
     "text-[#000000cc] block px-5 py-2 hover:bg-[#fafafa] transition-all duration-300 hover:text-[#00bfa5]";
   return (
     <div>
-      {currentUser?.email && (
+      {currentUser?.email ? (
         <div
           className='relative h-full !min-w-[160px] max5se:max-w-[130px]'
           onMouseEnter={showPopover}
@@ -62,6 +62,15 @@ const Menu = () => {
               Đăng xuất
             </button>
           </Popover>
+        </div>
+      ) : (
+        <div className='flex gap-x-4'>
+          <Link to={PATH.signUp} className='transition-all duration-100 hover:opacity-70'>
+            Đăng kí
+          </Link>
+          <Link to={PATH.signIn} className='transition-all duration-100 hover:opacity-70'>
+            Đăng nhập
+          </Link>
         </div>
       )}
     </div>
