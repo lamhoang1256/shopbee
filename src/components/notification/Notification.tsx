@@ -1,4 +1,3 @@
-import { socket } from "App";
 import { IconBell } from "components/icons";
 import { Popover } from "components/popover";
 import { useEffect, useState } from "react";
@@ -6,6 +5,7 @@ import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
+import { socket } from "utils/socket";
 
 const Notification = () => {
   const { notifications, currentUser } = useStore((state) => state);
@@ -44,9 +44,9 @@ const Notification = () => {
       </div>
       <Popover active={activePopover} className='min-w-[400px]'>
         <h3 className='px-3 py-2 text-[#000000cc]'>Thông báo mới nhận</h3>
-        <>
-          {notifications.length > 0 &&
-            notifications.slice(0, 5).map((notify) => (
+        {notifications.length > 0 && (
+          <>
+            {notifications.slice(0, 5).map((notify) => (
               <div
                 key={notify._id}
                 className='text-[#000000cc] flex gap-x-2 p-3 hover:bg-[#f8f8f8]'
@@ -65,13 +65,14 @@ const Notification = () => {
                 </div>
               </div>
             ))}
-          <Link
-            to={PATH.notification}
-            className='p-3 py-2 text-center text-[#000000cc] hover:bg-[#f8f8f8] block'
-          >
-            Xem tất cả
-          </Link>
-        </>
+            <Link
+              to={PATH.notification}
+              className='p-3 py-2 text-center text-[#000000cc] hover:bg-[#f8f8f8] block'
+            >
+              Xem tất cả
+            </Link>
+          </>
+        )}
         {notifications.length <= 0 && (
           <div className='flex flex-col items-center justify-center gap-y-1 h-[200px]'>
             <img src='/images/bell.png' alt='empty notification' className='w-24 h-24' />

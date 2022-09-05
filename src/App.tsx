@@ -1,33 +1,19 @@
+import useFetchCarts from "hooks/useFetchCarts";
 import { useEffect } from "react";
 import Modal from "react-modal";
+import { ToastContainer } from "react-toastify";
 import AppRoutes from "routes/Routes";
-import { toast, ToastContainer } from "react-toastify";
 import { useStore } from "store/globalStore";
-import { cartAPI } from "apis";
-import * as io from "socket.io-client";
-
-export const socket = io.connect("http://localhost:8000");
-Modal.setAppElement("#root");
+import { socket } from "utils/socket";
 
 const App = () => {
-  const { currentUser, setCart, setNotifications } = useStore((state) => state);
+  const { currentUser, setNotifications } = useStore((state) => state);
+  useFetchCarts();
   useEffect(() => {
-    socket?.emit("newUser", currentUser?._id);
-    socket?.emit("getNotifications", currentUser?._id);
+    if (!currentUser?._id) return;
+    socket.emit("newUser", currentUser._id);
     socket.on("notifications", (notifications) => setNotifications(notifications));
-  }, [socket, currentUser]);
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const { data } = await cartAPI.getAllCart();
-        setCart(data);
-      } catch (error) {
-        toast.error(error?.message);
-      }
-    };
-    if (currentUser?.email) fetchCart();
-  }, [currentUser]);
-
+  }, [currentUser, setNotifications]);
   return (
     <>
       <AppRoutes />
@@ -37,3 +23,4 @@ const App = () => {
 };
 
 export default App;
+Modal.setAppElement("#root");

@@ -20,7 +20,7 @@ import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { currentUser, carts, setCart } = useStore((state) => state);
+  const { currentUser, carts, setCarts } = useStore((state) => state);
   const { shopInfo } = useFetchShopInfo();
   const price = calcTotalCart(carts, "price");
   const [note, setNote] = useState("");
@@ -34,7 +34,7 @@ const CheckoutPage = () => {
     try {
       const { data, message } = await productAPI.buyProducts(payload);
       toast.success(message);
-      setCart([]);
+      setCarts([]);
       navigate(`${PATH.order}/${data?._id}`);
     } catch (error) {
       toast.error(error?.message);

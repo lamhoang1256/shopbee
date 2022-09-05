@@ -12,7 +12,7 @@ interface ProductAddToCartProps {
 
 const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
   const { id = "" } = useParams();
-  const { setCart, carts } = useStore((state) => state);
+  const { setCarts, carts } = useStore((state) => state);
   const handleAddToCart = async () => {
     if (quantityAdd < 1) return;
     let quantity = quantityAdd;
@@ -25,8 +25,8 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
       const { message, data } = await cartAPI.addToCart({ productId: id, quantity });
       if (cartExist) {
         const cartsRemoveExist = carts?.filter((cart) => cart?._id !== cartExist?._id);
-        setCart([...cartsRemoveExist, cartExist]);
-      } else setCart([...carts, data]);
+        setCarts([...cartsRemoveExist, cartExist]);
+      } else setCarts([...carts, data]);
       toast.success(message);
     } catch (error) {
       toast.error(error?.message);

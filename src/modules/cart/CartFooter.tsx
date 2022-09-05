@@ -12,11 +12,11 @@ interface CartFooterProps {
 }
 
 const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
-  const { setCart } = useStore((state) => state);
+  const { setCarts } = useStore((state) => state);
   const handleRemoveAllCart = async () => {
     try {
       const { message } = await cartAPI.deleteAllCart();
-      setCart([]);
+      setCarts([]);
       toast.success(message);
     } catch (error) {
       toast.error(error?.message);

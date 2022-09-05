@@ -8,14 +8,14 @@ import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 
 const CartItem = ({ cartItem }: { cartItem: ICart }) => {
-  const { carts, setCart } = useStore((state) => state);
+  const { carts, setCarts } = useStore((state) => state);
   const handleAddToCart = async (quantity: number) => {
     try {
       const payload = { productId: cartItem.product._id, quantity };
       const { data } = await cartAPI.addToCart(payload);
       const indexNewItem = carts.findIndex((cart: ICart) => data._id === cart._id);
       carts[indexNewItem].quantity = quantity;
-      setCart([...carts]);
+      setCarts([...carts]);
     } catch (error) {
       toast.error(error?.message);
     }
@@ -24,7 +24,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
     try {
       const { message } = await cartAPI.deleteSingleCart(cartItem._id);
       const newCarts = carts.filter((item) => item._id !== cartItem._id);
-      setCart(newCarts);
+      setCarts(newCarts);
       toast.success(message);
     } catch (error) {
       toast.error(error?.message);

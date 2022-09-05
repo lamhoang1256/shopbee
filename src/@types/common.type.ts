@@ -10,7 +10,7 @@ export interface IResponse {
 }
 export interface IUseStore {
   carts: ICart[];
-  setCart: (carts: ICart[]) => void;
+  setCarts: (carts: ICart[]) => void;
   currentUser: ICurrentUser;
   setCurrentUser: (currentUser: ICurrentUser) => void;
   notifications: INotification[];
