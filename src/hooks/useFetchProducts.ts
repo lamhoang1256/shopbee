@@ -32,5 +32,6 @@ export default function useFetchProducts(params?: Partial<IProductSearchParams>)
     fetchProducts,
     setSearchParams,
     searchParams,
+    currentParams,
   };
 }

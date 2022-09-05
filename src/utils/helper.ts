@@ -53,6 +53,11 @@ export function scrollTo(top?: number, left?: number) {
 export function formatDatetimeLocal(date: Date) {
   return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().substring(0, 19);
 }
+
+export function isEmptyObject(obj: any) {
+  return Object.keys(obj).length === 0;
+}
+
 export function removeEmptyStringValueObj(obj: { [key: string]: any }) {
   const cloneObj = obj;
   Object.keys(cloneObj).forEach((key) => {

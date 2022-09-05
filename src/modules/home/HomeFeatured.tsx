@@ -3,12 +3,15 @@ import { Pagination } from "components/pagination";
 import useFetchProducts from "hooks/useFetchProducts";
 import { ProductGrid } from "modules/product";
 import { useEffect, useRef } from "react";
+import { isEmptyObject } from "utils/helper";
 
 const HomeFeatured = () => {
-  const { products, searchParams, pagination } = useFetchProducts();
+  const { products, searchParams, currentParams, pagination } = useFetchProducts();
   const sectionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (sectionRef.current) sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    if (sectionRef.current && !isEmptyObject(currentParams)) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [searchParams]);
   return (
     <div className='layout-container' ref={sectionRef}>
