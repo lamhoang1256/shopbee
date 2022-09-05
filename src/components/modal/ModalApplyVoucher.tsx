@@ -50,7 +50,7 @@ const ModalApplyVoucher = ({
       onRequestClose={closeModal}
       contentLabel='Áp dụng voucher'
       className='max-w-[600px] w-[94%] min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
-      style={{ overlay: { backgroundColor: "#2424247f", zIndex: "100" } }}
+      style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <h2 className='text-xl font-medium'>Chọn Shopbee Voucher</h2>
       <SectionGray className='mt-4 maxsm:p-0'>

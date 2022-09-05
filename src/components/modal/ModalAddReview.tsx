@@ -53,7 +53,7 @@ const ModalAddReview = ({
       onRequestClose={closeModal}
       contentLabel='Thêm bình luận mới'
       className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
-      style={{ overlay: { backgroundColor: "#2424247f", zIndex: "100" } }}
+      style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div className='flex gap-x-2'>
         <ProductImage imageUrl={productReview.image} className='w-10 h-10' />
