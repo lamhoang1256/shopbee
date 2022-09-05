@@ -33,7 +33,7 @@ const Menu = () => {
           onMouseEnter={showPopover}
           onMouseLeave={hidePopover}
         >
-          <div className='flex items-center justify-end h-full gap-x-2 transition-all duration-100 hover:text-[#ffffffb3]'>
+          <div className='flex items-center justify-end h-full gap-x-2 transition-all duration-100 hover:text-[#ffffffb3] cursor-pointer'>
             <UserAvatar
               urlAvatar={currentUser?.avatar}
               className='object-cover w-5 h-5 rounded-full'

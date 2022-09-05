@@ -42,5 +42,6 @@ export interface INotification {
   image: string;
   updatedAt: string;
   createdAt: string;
+  haveSeen: boolean;
   __v: number;
 }

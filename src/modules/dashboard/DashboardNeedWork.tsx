@@ -6,6 +6,7 @@ import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { formatCash } from "utils/helper";
 
 const DashboardNeedWork = () => {
   const [loading, setLoading] = useState(true);
@@ -73,7 +74,7 @@ const DashboardNeedWork = () => {
     },
     {
       label: "Doanh thu",
-      value: overview.totalRevenue || 0,
+      value: formatCash(overview.totalRevenue) || 0,
       path: `${PATH.orderManage}`,
     },
   ];

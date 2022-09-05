@@ -6,7 +6,7 @@ import { useStore } from "store/globalStore";
 import { cartAPI } from "apis";
 import * as io from "socket.io-client";
 
-const socket = io.connect("http://localhost:8000");
+export const socket = io.connect("http://localhost:8000");
 Modal.setAppElement("#root");
 
 const App = () => {
