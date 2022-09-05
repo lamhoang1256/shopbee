@@ -7,15 +7,14 @@ import { cartAPI } from "apis";
 import * as io from "socket.io-client";
 
 const socket = io.connect("http://localhost:8000");
-console.log("socket: ", socket);
-
-socket.on("notifies", (notifies) => console.log("notifies ", notifies));
 Modal.setAppElement("#root");
 
 const App = () => {
-  const { currentUser, setCart } = useStore((state) => state);
+  const { currentUser, setCart, setNotifications } = useStore((state) => state);
   useEffect(() => {
-    socket?.emit("newUser", currentUser._id);
+    socket?.emit("newUser", currentUser?._id);
+    socket?.emit("getNotifications", currentUser?._id);
+    socket.on("notifications", (notifications) => setNotifications(notifications));
   }, [socket, currentUser]);
   useEffect(() => {
     const fetchCart = async () => {

@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IconBell } from "components/icons";
 import { Popover } from "components/popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { Link } from "react-router-dom";
+import { useStore } from "store/globalStore";
 
 const stylesPopoverLink = "text-[#000000cc] flex gap-x-2 p-3 hover:bg-[#f8f8f8]";
 const Notification = () => {
+  const { notifications } = useStore((state) => state);
   const { activePopover, hidePopover, showPopover } = usePopover();
   return (
     <div
@@ -21,19 +22,23 @@ const Notification = () => {
       <Popover active={activePopover} className='min-w-[400px]'>
         <h3 className='px-3 py-2 text-[#000000cc]'>Thông báo mới nhận</h3>
         <>
-          <div className={stylesPopoverLink}>
-            <img
-              src='https://source.unsplash.com/random'
-              alt=''
-              className='flex-shrink-0 w-10 h-10 rounded-sm'
-            />
-            <div>
-              <h4 className='text-[13px] font-medium uppercase'>Đã được thanh toán</h4>
-              <p className='text-[13px] line-clamp-3 leading-4 text-[#0000008a]'>
-                Đơn hàng đã được thanh toán Đơn hàng đã được thanh toán
-              </p>
+          {notifications.slice(0, 5).map((notify) => (
+            <div className={stylesPopoverLink} key={notify._id}>
+              <img
+                alt='notification'
+                src={notify.image}
+                className='flex-shrink-0 rounded-sm w-11 h-11'
+              />
+              <div>
+                <h4 className='text-[13px] font-medium uppercase'>{notify.title}</h4>
+                <div
+                  className='text-[13px] line-clamp-3 leading-4 text-[#0000008a]'
+                  dangerouslySetInnerHTML={{ __html: notify.desc || "" }}
+                />
+              </div>
             </div>
-          </div>
+          ))}
+
           <Link
             to={PATH.notification}
             className='p-3 py-2 text-center text-[#000000cc] hover:bg-[#f8f8f8] block'

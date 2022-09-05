@@ -13,6 +13,8 @@ export interface IUseStore {
   setCart: (carts: ICart[]) => void;
   currentUser: ICurrentUser;
   setCurrentUser: (currentUser: ICurrentUser) => void;
+  notifications: INotification[];
+  setNotifications: (notifications: INotification[]) => void;
 }
 export interface ICloudinaryUpload {
   asset_id: string;
@@ -31,4 +33,14 @@ export interface IPagination {
   limit: number;
   page: number;
   pageCount: number;
+}
+export interface INotification {
+  _id: string;
+  user: string;
+  title: string;
+  desc: string;
+  image: string;
+  updatedAt: string;
+  createdAt: string;
+  __v: number;
 }
