@@ -8,6 +8,7 @@ import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVN } from "utils/helper";
@@ -57,6 +58,9 @@ const UserManage = () => {
 
   return (
     <Template title='Quản lí người dùng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+      <Helmet>
+        <title>Quản lí người dùng</title>
+      </Helmet>
       <form
         onSubmit={formik.handleSubmit}
         autoComplete='off'

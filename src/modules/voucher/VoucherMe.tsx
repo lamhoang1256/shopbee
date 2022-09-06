@@ -5,6 +5,7 @@ import { Tabs } from "components/tabs";
 import { PATH } from "constants/path";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import VoucherEmpty from "./VoucherEmpty";
@@ -12,12 +13,12 @@ import VoucherItem from "./VoucherItem";
 import VoucherSave from "./VoucherSave";
 
 const tabs = [
-  { key: "", display: "Tất cả", to: PATH.voucher },
-  { key: "used", display: "Đã sử dụng", to: `${PATH.voucher}?status=used` },
+  { key: "", display: "Tất cả", to: PATH.voucherWallet },
+  { key: "used", display: "Đã sử dụng", to: `${PATH.voucherWallet}?status=used` },
   {
     key: "expiration",
     display: "Hết hiệu lực",
-    to: `${PATH.voucher}?status=expiration`,
+    to: `${PATH.voucherWallet}?status=expiration`,
   },
 ];
 
@@ -44,6 +45,9 @@ const VoucherMe = () => {
 
   return (
     <Template title='Ví voucher' desc='Khám phá kho voucher'>
+      <Helmet>
+        <title>Kho voucher của bạn</title>
+      </Helmet>
       <VoucherSave fetchReloadVoucher={fetchMyVoucher} />
       <Tabs tabs={tabs} query={status} className='my-4' />
       {loading && <Loading />}

@@ -9,6 +9,7 @@ import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVNFull, formatMoney } from "utils/helper";
@@ -66,6 +67,9 @@ const VoucherManage = () => {
 
   return (
     <Template title='Quản lí voucher' desc='Khám phá kho voucher'>
+      <Helmet>
+        <title>Quản lí voucher</title>
+      </Helmet>
       <Tabs tabs={tabs} query={status} className='my-4' />
       {loading && <Loading />}
       {!loading && vouchers?.length === 0 && <VoucherEmpty />}

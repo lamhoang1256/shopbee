@@ -4,12 +4,13 @@ import { Switch } from "components/checkbox";
 import { Administrative } from "components/common";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input, InputPassword } from "components/input";
-import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { ChangeEvent } from "react";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
+import * as Yup from "yup";
 import UserChangeAvatar from "./UserChangeAvatar";
 
 const UserAddNew = () => {
@@ -74,6 +75,9 @@ const UserAddNew = () => {
       title='Thêm người dùng mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
+      <Helmet>
+        <title>Thêm người dùng mới</title>
+      </Helmet>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>

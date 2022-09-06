@@ -3,6 +3,7 @@ import { wishlistAPI } from "apis";
 import { Loading } from "components/loading";
 import { ProductGrid } from "modules/product";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 
 const UserWishList = () => {
@@ -24,6 +25,9 @@ const UserWishList = () => {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Sản phẩm yêu thích</title>
+      </Helmet>
       <h2 className='text-base font-medium'>Sản phẩm yêu thích của bạn</h2>
       {loading ? <Loading /> : <ProductGrid products={wishlist} />}
     </>

@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const UserChangePassword = () => {
   const formik = useFormik({
@@ -35,6 +36,9 @@ const UserChangePassword = () => {
       title='Đổi Mật Khẩu'
       desc='Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác'
     >
+      <Helmet>
+        <title>Đổi mật khẩu</title>
+      </Helmet>
       <form className='max-w-[470px] mt-4' onSubmit={formik.handleSubmit} autoComplete='off'>
         <FormGroup>
           <Label htmlFor='currentPassword'>Mật khẩu hiện tại</Label>

@@ -4,6 +4,7 @@ import { SectionWhite } from "components/common";
 import { Loading } from "components/loading";
 import { Option, Select } from "components/select";
 import { ChangeEvent, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import OrderHeader from "./OrderHeader";
@@ -65,6 +66,9 @@ const OrderUpdate = () => {
   if (loading) return <Loading />;
   return (
     <>
+      <Helmet>
+        <title>Cập nhật đơn hàng</title>
+      </Helmet>
       <SectionWhite>
         <OrderHeader orderId={order._id}>{OrderStatusVietnamese[order.status]}</OrderHeader>
         <OrderProgress order={order} />

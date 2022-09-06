@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { formatMoney } from "utils/helper";
 import { PriceSale } from "components/price";
 import { swalDelete } from "utils/swal";
+import { Helmet } from "react-helmet-async";
 import ProductImage from "./ProductImage";
 import ProductNotFound from "./ProductNotFound";
 
@@ -37,6 +38,9 @@ const ProductManage = () => {
 
   return (
     <Template title='Quản lí sản phẩm' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+      <Helmet>
+        <title>Quản lí sản phẩm</title>
+      </Helmet>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

@@ -4,6 +4,7 @@ import { Loading } from "components/loading";
 import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { swalDelete } from "utils/swal";
 
@@ -21,6 +22,9 @@ const CategoryManage = () => {
 
   return (
     <Template title='Quản lí danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
+      <Helmet>
+        <title>Quản lí danh mục</title>
+      </Helmet>
       {loading && <Loading />}
       {!loading && categories.length > 0 && (
         <div className='tables'>

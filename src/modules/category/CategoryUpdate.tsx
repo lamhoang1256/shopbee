@@ -10,6 +10,7 @@ import { ChangeEvent, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
+import { Helmet } from "react-helmet-async";
 
 const CategoryUpdate = () => {
   const { id = "" } = useParams();
@@ -57,6 +58,9 @@ const CategoryUpdate = () => {
 
   return (
     <Template title='Sửa danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
+      <Helmet>
+        <title>Sửa danh mục</title>
+      </Helmet>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

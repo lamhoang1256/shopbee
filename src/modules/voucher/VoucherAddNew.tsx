@@ -4,6 +4,7 @@ import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import VoucherItem from "./VoucherItem";
 
@@ -28,6 +29,9 @@ const VoucherAddNew = () => {
 
   return (
     <Template title='Thêm mới voucher' desc='Vui lòng nhập đầy đủ thông tin voucher'>
+      <Helmet>
+        <title>Thêm mới voucher</title>
+      </Helmet>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

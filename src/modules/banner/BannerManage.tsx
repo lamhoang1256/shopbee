@@ -5,6 +5,7 @@ import { ImageUpload } from "components/image";
 import { Loading } from "components/loading";
 import { Template } from "layouts";
 import { ChangeEvent, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { swalDelete } from "utils/swal";
 import { uploadImage } from "utils/uploadImage";
@@ -62,6 +63,9 @@ const BannerManage = () => {
 
   return (
     <Template title='Quản lí banner' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+      <Helmet>
+        <title>Quản lí banner</title>
+      </Helmet>
       {loading && <Loading />}
       {!loading && (
         <div className='grid gap-4 mt-4 lg:grid-cols-2'>

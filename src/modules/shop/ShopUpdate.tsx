@@ -11,6 +11,7 @@ import { UserChangeAvatar } from "modules/user";
 import { ChangeEvent, useEffect } from "react";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
+import { Helmet } from "react-helmet-async";
 
 const ShopUpdate = () => {
   const { shopInfo } = useFetchShopInfo();
@@ -67,6 +68,9 @@ const ShopUpdate = () => {
 
   return (
     <Template title='Quản lí thông tin shop' desc='Vui lòng nhập đầy đủ thông tin shop'>
+      <Helmet>
+        <title>Cập nhật thông tin shop</title>
+      </Helmet>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

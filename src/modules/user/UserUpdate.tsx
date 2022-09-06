@@ -11,6 +11,7 @@ import { ChangeEvent, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
+import { Helmet } from "react-helmet-async";
 import UserChangeAvatar from "./UserChangeAvatar";
 
 const UserUpdate = () => {
@@ -87,6 +88,9 @@ const UserUpdate = () => {
       title='Chỉnh sửa thông tin người dùng'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
+      <Helmet>
+        <title>Cập nhật người dùng</title>
+      </Helmet>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>

@@ -10,6 +10,7 @@ import { Tabs } from "components/tabs";
 import { OrderEmpty, OrderItem } from "modules/order";
 import { Pagination } from "components/pagination";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const tabs = [
   { key: "", display: "Tất cả", to: PATH.order },
@@ -51,6 +52,9 @@ const OrderPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Đơn hàng của bạn</title>
+      </Helmet>
       <Tabs tabs={tabs} query={status} />
       <form onSubmit={formik.handleSubmit} autoComplete='off'>
         <InputSearch

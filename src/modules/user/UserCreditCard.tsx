@@ -7,6 +7,7 @@ import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/lib/styles.scss";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
@@ -61,6 +62,9 @@ const UserCreditCard = () => {
 
   return (
     <Template title='Thẻ Tín Dụng/Ghi Nợ' desc='Thêm tài khoản ngân hàng'>
+      <Helmet>
+        <title>Ngân hàng</title>
+      </Helmet>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <form className='w-full max-w-[500px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>

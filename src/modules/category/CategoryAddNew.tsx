@@ -9,6 +9,7 @@ import { UserChangeAvatar } from "modules/user";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 import { ChangeEvent } from "react";
+import { Helmet } from "react-helmet-async";
 
 const CategoryAddNew = () => {
   const formik = useFormik({
@@ -43,6 +44,9 @@ const CategoryAddNew = () => {
 
   return (
     <Template title='Thêm danh mục mới' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+      <Helmet>
+        <title>Thêm danh mục mới</title>
+      </Helmet>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}

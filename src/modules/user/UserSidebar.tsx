@@ -24,7 +24,7 @@ const sidebarLinks = [
   },
   {
     icon: "https://cf.shopee.vn/file/84feaa363ce325071c0a66d3c9a88748",
-    path: PATH.voucher,
+    path: PATH.voucherWallet,
     display: "Ví voucher",
   },
   {

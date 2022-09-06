@@ -9,6 +9,7 @@ import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import OrderEmpty from "./OrderEmpty";
@@ -54,6 +55,9 @@ const OrderManage = () => {
 
   return (
     <Template title='Quản lí đơn hàng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+      <Helmet>
+        <title>Quản lí đơn hàng</title>
+      </Helmet>
       <Tabs tabs={tabs} query={status} className='border-[#efefef] border-b' />
       <form
         autoComplete='off'

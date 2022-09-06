@@ -217,7 +217,7 @@ const AppRoutes = () => {
                 }
               />
               <Route
-                path={PATH.voucher}
+                path={PATH.voucherWallet}
                 element={
                   <Suspense fallback={<Fallback />}>
                     <ErrorBoundary>

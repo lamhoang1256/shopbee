@@ -5,16 +5,17 @@ import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
 import { Input } from "components/input";
 import { Option, Select } from "components/select";
-import * as Yup from "yup";
 import { useFormik } from "formik";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
+import { ChangeEvent } from "react";
+import { Helmet } from "react-helmet-async";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
 import { getRandomInt } from "utils/helper";
 import { uploadImage } from "utils/uploadImage";
-import { ChangeEvent } from "react";
+import * as Yup from "yup";
 
 const ProductAddNew = () => {
   const { categories } = useFetchCategories();
@@ -71,6 +72,9 @@ const ProductAddNew = () => {
       title='Thêm 1 sản phẩm mới'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
+      <Helmet>
+        <title>Thêm sản phẩm mới</title>
+      </Helmet>
       <form autoComplete='off' onSubmit={formik.handleSubmit}>
         <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
           <div className='max-w-[600px]'>

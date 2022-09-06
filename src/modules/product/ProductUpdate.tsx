@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getRandomInt } from "utils/helper";
 import { uploadImage } from "utils/uploadImage";
+import { Helmet } from "react-helmet-async";
 
 const ProductUpdate = () => {
   const { id = "" } = useParams();
@@ -80,6 +81,9 @@ const ProductUpdate = () => {
       title='Sửa thông tin sản phẩm'
       desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
     >
+      <Helmet>
+        <title>Cập nhật sản phẩm</title>
+      </Helmet>
       <form onSubmit={formik.handleSubmit} autoComplete='off'>
         <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
           <div className='max-w-[600px]'>

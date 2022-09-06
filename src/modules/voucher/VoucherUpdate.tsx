@@ -5,6 +5,7 @@ import { Input } from "components/input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDatetimeLocal } from "utils/helper";
@@ -45,6 +46,9 @@ const VoucherUpdate = () => {
 
   return (
     <Template title='Chỉnh sửa thông tin voucher' desc='Vui lòng nhập đầy đủ thông tin voucher'>
+      <Helmet>
+        <title>Cập nhật voucher</title>
+      </Helmet>
       <form
         autoComplete='off'
         onSubmit={formik.handleSubmit}
