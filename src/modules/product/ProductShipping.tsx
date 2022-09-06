@@ -24,7 +24,7 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
   return (
     <div className='my-6'>
       <div>
-        <div className='flex items-center gap-x-2'>
+        <div className='flex items-center text-sm gap-x-2'>
           <img
             alt='freeship'
             className='w-6 h-4'
@@ -41,7 +41,7 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
           <IconShipping className='w-6 h-5' />
           <span>Vận chuyển tới:</span>
         </div>
-        <Dropdown className='maxsm:ml-[14px] maxsm:-mb-1 maxsm:-mt-2 w-[205px] dropdown-outline'>
+        <Dropdown className='maxsm:ml-[12px] maxsm:-mb-1 maxsm:-mt-2 w-[205px] dropdown-outline'>
           <Dropdown.Select placeholder={selectedCity?.name || "Vận chuyển tới"} />
           <Dropdown.List>
             {citys.length > 0 &&
@@ -56,10 +56,7 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
           </Dropdown.List>
         </Dropdown>
       </div>
-      <p className='-mt-1 pl-7'>
-        Phí vận chuyển:
-        <span className='pl-[14px]'>{formatMoney(shippingFee)}</span>
-      </p>
+      <p className='-mt-1 pl-7'>Phí vận chuyển: {formatMoney(shippingFee)}</p>
     </div>
   );
 };

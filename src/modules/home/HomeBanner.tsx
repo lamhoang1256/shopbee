@@ -28,7 +28,7 @@ const HomeBanner = () => {
     return (
       <div className='layout-container mt-7'>
         <div className='h-[360px] bg-[#fafafa] flex justify-center items-center'>
-          <img src='/images/img-loading.png' alt='banner' className='w-16 h-16' />
+          <img src='/images/logo-gray.png' alt='banner' className='w-16 h-16' />
         </div>
       </div>
     );

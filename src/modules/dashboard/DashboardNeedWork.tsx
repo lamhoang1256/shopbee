@@ -91,7 +91,7 @@ const DashboardNeedWork = () => {
               className='flex p-2 flex-col items-center justify-center hover:bg-[#0000000a] duration-100 rounded transition-all'
             >
               <span className='text-[#2673dd] text-lg font-medium'>{work.value}</span>
-              <span className=''>{work.label}</span>
+              <span>{work.label}</span>
             </Link>
           ))}
         </div>

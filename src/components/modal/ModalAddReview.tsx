@@ -56,7 +56,7 @@ const ModalAddReview = ({
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div className='flex gap-x-2'>
-        <ProductImage imageUrl={productReview.image} className='w-10 h-10' />
+        <ProductImage src={productReview.image} className='w-10 h-10' />
         <div>
           <ProductTitle className='font-medium line-clamp-1'>{productReview.name}</ProductTitle>
           <span>Shopbee</span>

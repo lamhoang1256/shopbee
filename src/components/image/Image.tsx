@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage, LazyLoadImageProps } from "react-lazy-load-image-component";
 import { useState } from "react";
 
-interface ImageProps {
-  src: string;
+interface ImageProps extends LazyLoadImageProps {
   to?: string;
-  alt?: string;
-  className?: string;
   imageError?: string;
 }
 
@@ -37,8 +34,6 @@ const Image = ({
 
 Image.defaultProps = {
   to: "",
-  alt: "",
-  className: "",
   imageError: "/images/no-image-avaliable.png",
 };
 

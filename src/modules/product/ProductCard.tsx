@@ -18,11 +18,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       to={`${PATH.product}/${product._id}`}
       className='transition-all rounded overflow-hidden duration-300 border bg-white shadow-product hover:-translate-y-[3px] border-transparent hover:shadow-product-hover'
     >
-      <ProductImage imageUrl={product.image} />
+      <ProductImage src={product.image} />
       <div className='p-2 pb-4'>
         <ProductTitle>{product.name}</ProductTitle>
         <div className='flex flex-col my-1 gap-x-2 gap-y-1 md:items-center md:flex-row'>
-          <Rating rating={product.rating} className='w-[14px] h-[14px]' />
+          <Rating rating={product.rating} className='!w-[14px] !h-[14px]' />
           <span className='text-[#787878] text-xs'>Đã bán {formatCash(product.sold)}</span>
         </div>
         <div className='flex items-center gap-x-2'>

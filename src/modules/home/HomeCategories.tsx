@@ -18,7 +18,7 @@ const HomeCategories = () => {
                   key={uuidv4()}
                   className='p-1 flex items-center justify-center w-[120px] h-[130px]'
                 >
-                  <img src='/images/img-loading.png' alt='banner' className='w-10 h-w-10' />
+                  <img src='/images/logo-gray.png' alt='banner' className='w-10 h-w-10' />
                 </div>
               ))}
           {!loading &&

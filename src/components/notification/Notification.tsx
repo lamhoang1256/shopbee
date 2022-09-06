@@ -35,8 +35,8 @@ const Notification = () => {
         <div className='relative'>
           <IconBell />
           {totalNewNotify > 0 && (
-            <span className='absolute flex items-center justify-center w-5 h-4 text-[10px] font-medium bg-white rounded-full -top-2 -right-2 text-orangeee4'>
-              {totalNewNotify}
+            <span className='absolute flex items-center justify-center w-[18px] h-[14px] text-[10px] font-medium bg-white rounded-full -top-1 -right-1 text-orangeee4'>
+              {totalNewNotify >= 99 ? 99 : totalNewNotify}
             </span>
           )}
         </div>

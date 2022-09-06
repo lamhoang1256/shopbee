@@ -20,7 +20,7 @@ const HeaderCart = () => {
       <Link to={PATH.cart}>
         <IconCartOutline className='text-white' />
         <span className='absolute flex items-center justify-center w-6 h-[18px] text-xs font-medium bg-white rounded-full max5se:-top-3 max5se:-right-3 top-2 right-2 text-orangeee4'>
-          {carts?.length >= 99 ? 99 : carts.length}
+          {carts.length >= 99 ? 99 : carts.length}
         </span>
       </Link>
       <Popover
@@ -44,7 +44,7 @@ const HeaderCart = () => {
                   className='flex items-start p-3 gap-x-2 hover:bg-[#f8f8f8] transition-all duration-300'
                 >
                   <ProductImage
-                    imageUrl={cart.product.image}
+                    src={cart.product.image}
                     className='border h-11 w-11 border-[#00000017]'
                   />
                   <ProductTitle className='flex-1 line-clamp-1'>{cart.product.name}</ProductTitle>

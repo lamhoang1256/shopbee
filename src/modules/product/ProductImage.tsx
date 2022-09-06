@@ -1,17 +1,17 @@
 import { Image } from "components/image";
 import classNames from "utils/className";
 
-interface ProductImageProps {
-  imageUrl: string;
-  className?: string;
-}
+interface ProductImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-const ProductImage = ({ imageUrl, className }: ProductImageProps) => {
-  return <Image src={imageUrl} alt='product' className={classNames("aspect-square", className)} />;
-};
-
-ProductImage.defaultProps = {
-  className: "",
+const ProductImage = ({ src, className = "", alt = "product" }: ProductImageProps) => {
+  return (
+    <Image
+      alt={alt}
+      src={src}
+      placeholderSrc='/images/shopbee-loading.png'
+      className={classNames("aspect-square h-auto max-w-full w-[500px] bg-[#fafafa]", className)}
+    />
+  );
 };
 
 export default ProductImage;

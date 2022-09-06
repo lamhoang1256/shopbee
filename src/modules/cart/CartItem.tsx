@@ -34,7 +34,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
 
   return (
     <div className='border-[#00000017] my-3 border p-4 flex items-center gap-3'>
-      <ProductImage className='w-24 lg:w-20' imageUrl={cartItem.product.image} />
+      <ProductImage className='w-24 lg:w-20' src={cartItem.product.image} />
       <div className='flex flex-col flex-1 md:flex-row'>
         <ProductTitle styleLink='md:w-[40%]' to={`${PATH.product}/${cartItem.product._id}`}>
           {cartItem.product.name}

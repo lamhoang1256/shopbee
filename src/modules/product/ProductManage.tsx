@@ -78,7 +78,7 @@ const ProductManage = () => {
                     </td>
                     <td>
                       <ProductImage
-                        imageUrl={product.image}
+                        src={product.image}
                         className='border rounded w-14 h-14 border-slate-200'
                       />
                     </td>
