@@ -12,6 +12,7 @@ import useFetchShopInfo from "hooks/useFetchShopInfo";
 import useModal from "hooks/useModal";
 import { OrderPayment, OrderProduct } from "modules/order";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
@@ -83,6 +84,9 @@ const CheckoutPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Thanh toán</title>
+      </Helmet>
       <header className='bg-white'>
         <div className='layout-container'>
           <div className='flex items-center h-20 gap-x-4'>

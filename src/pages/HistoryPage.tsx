@@ -1,4 +1,5 @@
 import { ProductGrid } from "modules/product";
+import { Helmet } from "react-helmet-async";
 import { swalDelete } from "utils/swal";
 
 const HistoryPage = () => {
@@ -11,6 +12,9 @@ const HistoryPage = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Lịch sử xem gần đây</title>
+      </Helmet>
       <div className='flex items-center justify-between'>
         <h2 className='text-base font-medium'>Lịch sử xem gần đây</h2>
         {history.length > 0 && (

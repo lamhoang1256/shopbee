@@ -5,6 +5,7 @@ import { uploadImage } from "utils/uploadImage";
 import { useStore } from "store/globalStore";
 import { UserChangeAvatar, UserUpdateMe } from "modules/user";
 import { ChangeEvent } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
@@ -22,6 +23,9 @@ const ProfilePage = () => {
 
   return (
     <Template title='Hồ sơ của tôi' desc='Quản lý thông tin hồ sơ để bảo mật tài khoản'>
+      <Helmet>
+        <title>Hồ sơ của tôi</title>
+      </Helmet>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <UserUpdateMe />
         <UserChangeAvatar avatar={currentUser.avatar} handleChangeAvatar={handleChangeAvatar} />

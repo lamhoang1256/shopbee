@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -36,6 +37,9 @@ const SignUpPage = () => {
 
   return (
     <div className='layout-container'>
+      <Helmet>
+        <title>Đăng ký</title>
+      </Helmet>
       <div className='px-4 py-8 lg:p-10 mx-auto max-w-[500px] bg-white w-full rounded'>
         <h1 className='text-[22px]'>Đăng ký</h1>
         <form onSubmit={formik.handleSubmit}>

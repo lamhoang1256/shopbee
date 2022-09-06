@@ -1,4 +1,5 @@
 import { Template } from "layouts";
+import { Helmet } from "react-helmet-async";
 import { useStore } from "store/globalStore";
 import { formatDateVNFull } from "utils/helper";
 
@@ -7,6 +8,9 @@ const NotificationPage = () => {
   const { notifications } = useStore((state) => state);
   return (
     <Template title='Thông báo mới' desc='Quản lý tất cả thông báo của bạn'>
+      <Helmet>
+        <title>Thông báo</title>
+      </Helmet>
       <div className='-mx-5 cursor-pointer'>
         {notifications.map((notify) => (
           <div className={stylesPopoverLink} key={notify._id}>

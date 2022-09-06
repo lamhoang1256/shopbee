@@ -4,15 +4,24 @@ import useFetchProducts from "hooks/useFetchProducts";
 import { ProductGrid } from "modules/product";
 import { SearchSidebar, SearchSortBar } from "modules/search";
 import { scrollTo } from "utils/helper";
+import { Helmet } from "react-helmet-async";
 
+const currentMonth = new Date().getMonth() + 1;
+const currentYear = new Date().getFullYear();
 const SearchPage = () => {
-  const { products, pagination, searchParams } = useFetchProducts();
+  const { products, pagination, searchParams, currentParams } = useFetchProducts();
   useEffect(() => {
     scrollTo();
   }, [searchParams]);
-
   return (
     <div className='flex flex-col gap-6 mt-8 layout-container lg:flex-row'>
+      <Helmet>
+        <title>
+          {currentParams?.name
+            ? `${currentParams?.name} giá tốt Tháng ${currentMonth}, ${currentYear} | Mua ngay | Shopbee Việt Nam`
+            : "Tìm kiếm sản phẩm"}
+        </title>
+      </Helmet>
       <SearchSidebar />
       <div className='flex-1'>
         <SearchSortBar pagination={pagination} />

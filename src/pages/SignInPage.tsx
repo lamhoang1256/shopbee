@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
+import { Helmet } from "react-helmet-async";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -37,6 +38,9 @@ const SignInPage = () => {
 
   return (
     <div className='layout-container'>
+      <Helmet>
+        <title>Đăng nhập</title>
+      </Helmet>
       <div className='px-4 py-8 lg:p-10 max-w-[500px] mx-auto bg-white w-full rounded'>
         <h1 className='text-[22px]'>Đăng nhập</h1>
         <form onSubmit={formik.handleSubmit}>

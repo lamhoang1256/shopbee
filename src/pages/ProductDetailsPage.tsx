@@ -18,6 +18,7 @@ import {
 } from "modules/product";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
 
@@ -51,6 +52,9 @@ const ProductDetailsPage = () => {
   if (!product.name) return <ProductNotFound />;
   return (
     <div className='layout-container'>
+      <Helmet>
+        <title>{product.name}</title>
+      </Helmet>
       <div className='flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row'>
         <ProductImageSlider images={product.images} />
         <div className='flex-1'>

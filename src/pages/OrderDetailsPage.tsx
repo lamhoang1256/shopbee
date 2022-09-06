@@ -11,6 +11,7 @@ import {
   OrderReview,
 } from "modules/order";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -37,6 +38,9 @@ const OrderDetailsPage = () => {
   if (loading) return <Loading />;
   return (
     <>
+      <Helmet>
+        <title>Chi tiết đơn hàng</title>
+      </Helmet>
       <SectionWhite>
         <OrderHeader orderId={order._id}>{OrderStatusVietnamese[order.status]}</OrderHeader>
         <OrderProgress order={order} />
