@@ -11,6 +11,7 @@ import ProductGrid from "./ProductGrid";
 import ProductAddToCart from "./ProductAddToCart";
 import ProductRelated from "./ProductRelated";
 import ProductShipping from "./ProductShipping";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 export {
   ProductCard,
@@ -20,6 +21,7 @@ export {
   ProductGrid,
   ProductShipping,
   ProductUpdate,
+  ProductCardSkeleton,
   ProductAddNew,
   ProductTitle,
   ProductImage,

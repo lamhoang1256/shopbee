@@ -1,26 +1,27 @@
 import { IProduct } from "@types";
+import { v4 as uuidv4 } from "uuid";
 import ProductCard from "./ProductCard";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 interface ProductGridProps {
   products: IProduct[];
-  title?: string;
+  loading?: boolean;
 }
 
-const ProductGrid = ({ products, title }: ProductGridProps) => {
+const ProductGrid = ({ products, loading }: ProductGridProps) => {
   return (
-    <div className='mt-3'>
-      {title && <h3 className='mb-3 text-[#0000008a] text-base font-medium'>{title}</h3>}
-      <div className='product-grid'>
-        {products?.map((product) => (
-          <ProductCard product={product} key={product._id} />
-        ))}
-      </div>
+    <div className='mt-3 product-grid'>
+      {loading &&
+        Array(12)
+          .fill(0)
+          .map(() => <ProductCardSkeleton key={uuidv4()} />)}
+      {!loading && products?.map((product) => <ProductCard product={product} key={product._id} />)}
     </div>
   );
 };
 
 ProductGrid.defaultProps = {
-  title: "",
+  loading: false,
 };
 
 export default ProductGrid;

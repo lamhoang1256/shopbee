@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { isEmptyObject } from "utils/helper";
 
 const HomeFeatured = () => {
-  const { products, searchParams, currentParams, pagination } = useFetchProducts();
+  const { products, searchParams, currentParams, pagination, loading } = useFetchProducts();
   const sectionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (sectionRef.current && !isEmptyObject(currentParams)) {
@@ -18,7 +18,7 @@ const HomeFeatured = () => {
       <SectionHeader>
         <h3 className='text-base font-medium text-orangeee4'>GỢI Ý HÔM NAY</h3>
       </SectionHeader>
-      <ProductGrid products={products} />
+      <ProductGrid products={products} loading={loading} />
       {products.length > 0 && <Pagination pagination={pagination} />}
     </div>
   );
