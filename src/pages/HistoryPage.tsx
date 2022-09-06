@@ -1,10 +1,13 @@
 import { ProductGrid } from "modules/product";
+import { swalDelete } from "utils/swal";
 
 const HistoryPage = () => {
   const history = JSON.parse(localStorage.getItem("history") || "[]");
   const handleClearHistory = () => {
-    localStorage.removeItem("history");
-    window.location.reload();
+    swalDelete(() => {
+      localStorage.removeItem("history");
+      window.location.reload();
+    });
   };
   return (
     <>
