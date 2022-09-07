@@ -38,7 +38,10 @@ const UserCreditCard = () => {
         .required("Vui lòng họ và tên!")
         .min(12, "Họ và tên tối thiểu bao gồm 12 kí tự!")
         .max(22, "Họ và tên tối thiểu bao gồm 22 kí tự!"),
-      expiry: Yup.string().required("Vui lòng thời hạn thẻ!"),
+      expiry: Yup.string()
+        .required("Vui lòng thời hạn thẻ!")
+        .min(5, "Thời hạn có định dạng MM/YY!")
+        .max(5, "Thời hạn có định dạng MM/YY!"),
       cvc: Yup.string()
         .required("Vui lòng mã bảo vệ CVC!")
         .min(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!")
