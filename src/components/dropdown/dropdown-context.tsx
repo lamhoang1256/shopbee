@@ -15,7 +15,7 @@ const DropdownProvider = ({ children, ...props }: IDropdownProviderProps) => {
   const dropdownRef = useRef(null);
   const [show, setShow] = useState(false);
   const toggle = useCallback(() => {
-    setShow(!show);
+    setShow((isShow) => !isShow);
   }, [show]);
   const values = useMemo(() => ({ show, setShow, toggle }), [show, setShow, toggle]);
   useOnClickOutside(dropdownRef, () => setShow(() => false));

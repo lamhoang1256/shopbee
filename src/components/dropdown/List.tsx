@@ -6,7 +6,6 @@ interface ListProps {
 
 const List = ({ children }: ListProps) => {
   const { show } = useDropdown();
-
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>

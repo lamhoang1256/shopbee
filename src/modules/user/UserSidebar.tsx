@@ -8,7 +8,7 @@ import UserAvatar from "./UserAvatar";
 
 const sidebarLinks = [
   {
-    icon: "https://cf.shopee.vn/file/ba61750a46794d8847c3f463c5e71cc4",
+    icon: "/images/icon-account.png",
     path: PATH.profile,
     display: "Tài khoản của tôi",
   },
@@ -18,12 +18,12 @@ const sidebarLinks = [
     display: "Đổi mật khẩu",
   },
   {
-    icon: "https://cf.shopee.vn/file/f0049e9df4e536bc3e7f140d071e9078",
+    icon: "icon-order.png",
     path: PATH.order,
     display: "Đơn mua",
   },
   {
-    icon: "https://cf.shopee.vn/file/84feaa363ce325071c0a66d3c9a88748",
+    icon: "icon-voucher-wallet.png",
     path: PATH.voucherWallet,
     display: "Ví voucher",
   },
@@ -38,7 +38,7 @@ const sidebarLinks = [
     display: "Đã thích",
   },
   {
-    icon: "https://cf.shopee.vn/file/e10a43b53ec8605f4829da5618e0717c",
+    icon: "/images/icon-notification.png",
     path: PATH.notification,
     display: "Thông báo",
   },

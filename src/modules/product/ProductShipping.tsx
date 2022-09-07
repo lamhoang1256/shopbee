@@ -24,19 +24,15 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
   return (
     <div className='my-6'>
       <div>
-        <div className='flex items-center text-sm gap-x-2'>
-          <img
-            alt='freeship'
-            className='w-6 h-4'
-            src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/1cdd37339544d858f4d0ade5723cd477.png'
-          />
+        <div className='flex items-center gap-2 text-sm'>
+          <img alt='freeship' className='w-6 h-4' src='/images/icon-freeship.png' />
           <span>Miễn phí vận chuyển</span>
         </div>
-        <span className='pl-8 mt-1 text-[#0000008a]'>
+        <p className='ml-8 maxsm:text-[13px] mt-1 text-[#0000008a]'>
           Miễn phí vận chuyển cho đơn hàng trên ₫50.000
-        </span>
+        </p>
       </div>
-      <div className='flex flex-wrap items-center'>
+      <div className='flex flex-wrap items-center maxsm:mt-2'>
         <div className='flex items-center gap-x-1'>
           <IconShipping className='w-6 h-5' />
           <span>Vận chuyển tới:</span>
@@ -56,7 +52,9 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
           </Dropdown.List>
         </Dropdown>
       </div>
-      <p className='-mt-1 pl-7'>Phí vận chuyển: {formatMoney(shippingFee)}</p>
+      <p className='-mt-1 text-sm pl-7 maxsm:text-[13px]'>
+        Phí vận chuyển: {formatMoney(shippingFee)}
+      </p>
     </div>
   );
 };
