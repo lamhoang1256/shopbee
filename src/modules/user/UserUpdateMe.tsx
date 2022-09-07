@@ -41,6 +41,8 @@ const UserUpdateMe = () => {
       }),
     }),
     onSubmit: async (values) => {
+      console.log("values: ", values);
+      return;
       try {
         const { street, city, district, ward } = values;
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
@@ -52,6 +54,8 @@ const UserUpdateMe = () => {
       }
     },
   });
+  console.log("values ", formik.values);
+  console.log("errors ", formik.errors);
 
   useEffect(() => {
     const fetchDataUser = async () => {

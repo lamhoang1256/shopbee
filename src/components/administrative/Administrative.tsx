@@ -38,7 +38,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
               ))}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.city && formik.errors?.city}</MessageError>
+        <MessageError>{formik.touched.city && formik.errors?.city?.name}</MessageError>
       </FormGroup>
       <FormGroup>
         <Dropdown>
@@ -60,7 +60,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
             )}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.district && formik.errors?.district}</MessageError>
+        <MessageError>{formik.touched.district && formik.errors?.district?.name}</MessageError>
       </FormGroup>
       <FormGroup>
         <Dropdown>
@@ -77,7 +77,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
             )}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.ward && formik.errors?.ward}</MessageError>
+        <MessageError>{formik.touched.ward && formik.errors?.ward?.name}</MessageError>
       </FormGroup>
     </div>
   );

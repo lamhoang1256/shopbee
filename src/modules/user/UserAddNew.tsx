@@ -35,7 +35,9 @@ const UserAddNew = () => {
       phone: Yup.string()
         .required("Vui lòng nhập số điện thoại!")
         .max(20, "Số điện thoại tối đa là 20 kí tự!"),
-      password: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      password: Yup.string()
+        .required("Vui lòng nhập mật khẩu!")
+        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
       confirm_password: Yup.string()
         .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
         .required("Vui lòng nhập xác nhận mật khẩu!"),

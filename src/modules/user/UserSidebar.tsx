@@ -18,12 +18,12 @@ const sidebarLinks = [
     display: "Đổi mật khẩu",
   },
   {
-    icon: "icon-order.png",
+    icon: "/images/icon-order.png",
     path: PATH.order,
     display: "Đơn mua",
   },
   {
-    icon: "icon-voucher-wallet.png",
+    icon: "/images/icon-voucher-wallet.png",
     path: PATH.voucherWallet,
     display: "Ví voucher",
   },
