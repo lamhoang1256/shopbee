@@ -16,19 +16,19 @@ import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import Swal from "sweetalert2";
 import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils/helper";
+import { swalInfo, swalQuestion } from "utils/swal";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCarts } = useStore((state) => state);
+  const { isShow, toggleModal } = useModal();
   const { shopInfo } = useFetchShopInfo();
   const price = calcTotalCart(carts, "price");
   const [note, setNote] = useState("");
   const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [appliedVoucher, setAppliedVoucher] = useState<IVoucher>(Object);
-  const { isShow, toggleModal } = useModal();
   const [methodPayment, setMethodPayment] = useState("money");
 
   const buyProducts = async (payload: IPayloadBuyProduct) => {
@@ -44,15 +44,15 @@ const CheckoutPage = () => {
 
   const handleCheckout = () => {
     if (carts?.length <= 0) {
-      Swal.fire({
-        title: "Giỏ hàng của bạn đang trống",
-        text: "Bạn vui lòng kiểm tra giỏ hàng và thử lại",
-        icon: "info",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Đồng ý!",
-      }).then((result) => {
-        if (result.isConfirmed) navigate(PATH.cart);
-      });
+      swalInfo("Giỏ hàng của bạn đang trống", "Vui lòng kiểm tra giỏ hàng và thử lại", () =>
+        navigate(PATH.cart),
+      );
+      return;
+    }
+    if (!currentUser.fullname || !currentUser.phone || !currentUser.address) {
+      swalInfo("Thông tin nhận hàng đang trống", "Vui lòng kiểm tra thông tin và thử lại", () =>
+        navigate(PATH.profile),
+      );
       return;
     }
     const orderItems = carts.map((cart: ICart) => ({
@@ -70,18 +70,7 @@ const CheckoutPage = () => {
       voucherCode: appliedVoucher.code,
       methodPayment,
     };
-    Swal.fire({
-      title: "Xác nhận",
-      text: "Bạn có chắc chắc muốn xác nhận thanh toán?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Đồng ý!",
-      cancelButtonText: "Hủy!",
-    }).then((result) => {
-      if (result.isConfirmed) buyProducts(values);
-    });
+    swalQuestion("Xác nhận", "Bạn có chắc chắc muốn thanh toán?", () => buyProducts(values));
   };
 
   useEffect(() => {
@@ -112,11 +101,11 @@ const CheckoutPage = () => {
         <SectionWhite className='text-base font-medium rounded-tl-none rounded-tr-none'>
           <h3 className='flex items-center gap-2 mb-2 text-lg font-medium text-orangeee4'>
             <IconGPS />
-            Thông tin nhận hàng
+            <span>Thông tin nhận hàng</span>
           </h3>
-          <p>Họ tên: {currentUser.fullname}</p>
-          <p>Số điện thoại: {currentUser.phone}</p>
-          <p>Địa chỉ nhận hàng: {currentUser.address}</p>
+          <p>Họ tên: {currentUser.fullname || "Trống"}</p>
+          <p>Số điện thoại: {currentUser.phone || "Trống"}</p>
+          <p>Địa chỉ nhận hàng: {currentUser.address || "Trống"}</p>
           <Link to={PATH.profile} className='font-medium text-blue08f'>
             Thay đổi địa chỉ giao hàng
           </Link>
@@ -124,11 +113,11 @@ const CheckoutPage = () => {
         <SectionWhite className='mt-3'>
           <h2>Sản phẩm</h2>
           <div className='mt-3'>
-            {carts.length > 0 ? (
+            {carts.length > 0 &&
               carts.map(({ _id, quantity, product }) => (
                 <OrderProduct key={_id} order={{ quantity, product }} />
-              ))
-            ) : (
+              ))}
+            {carts.length === 0 && (
               <h3 className='text-base font-medium'>Giỏ hàng của bạn đang trống</h3>
             )}
           </div>

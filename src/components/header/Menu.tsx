@@ -29,7 +29,7 @@ const Menu = () => {
     <div>
       {currentUser?.email ? (
         <div
-          className='relative h-full !min-w-[160px] max5se:max-w-[130px]'
+          className='relative h-full w-max max5se:max-w-[130px]'
           onMouseEnter={showPopover}
           onMouseLeave={hidePopover}
         >
@@ -42,7 +42,7 @@ const Menu = () => {
               {currentUser?.fullname || "User"}
             </span>
           </div>
-          <Popover active={activePopover} className='min-w-[150px]'>
+          <Popover active={activePopover} className='w-max'>
             {currentUser.isAdmin && (
               <Link to={PATH.dashboard} className={stylesPopoverLink}>
                 Dashboard

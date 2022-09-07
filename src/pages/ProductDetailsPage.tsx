@@ -33,15 +33,11 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     if (!product?.name) return;
     const handleAddToHistory = (prod: IProduct) => {
-      const history: IProduct[] = JSON.parse(localStorage.getItem("history") || "[]");
+      let history: IProduct[] = JSON.parse(localStorage.getItem("history") || "[]");
       if (history.length >= 20) history.splice(19, 1);
-      const index = history.findIndex((item) => item._id === id);
-      if (index === -1) {
-        history.unshift(prod);
-      } else {
-        history.splice(index, 1);
-        history.unshift(prod);
-      }
+      const isExist = history.some((item) => item._id === prod._id);
+      if (isExist) history = history.filter((item) => item._id !== prod._id);
+      history.unshift(prod);
       localStorage.setItem("history", JSON.stringify(history));
     };
     handleAddToHistory(product);

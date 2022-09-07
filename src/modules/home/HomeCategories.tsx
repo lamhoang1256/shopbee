@@ -8,7 +8,7 @@ const HomeCategories = () => {
   return (
     <div className='layout-container mt-7'>
       <div className='py-3 my-4 bg-white'>
-        <h3 className='px-5 text-[#0000008a] text-base'>DANH MỤC</h3>
+        <h2 className='px-5 text-[#0000008a] text-base'>DANH MỤC</h2>
         <div className='mt-3 home-categories'>
           {loading &&
             Array(10)
