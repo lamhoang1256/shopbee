@@ -12,17 +12,19 @@ const Administrative = ({ formik }: AdministrativeProps) => {
   const { city, district, ward } = formik.values;
   const { citys, districts, wards } = useFetchAdministrative(city.id, district.id);
   const handleChangeCity = (city: ICity) => {
-    formik.setFieldValue("city", { id: city.cityId, name: city.name });
-    formik.setFieldValue("district", { id: "", name: "" });
     formik.setFieldValue("ward", { id: "", name: "" });
+    formik.setFieldValue("district", { id: "", name: "" });
+    formik.setFieldValue("city", { id: city.cityId, name: city.name });
   };
   const handleChangeDistrict = (district: IDistrict) => {
-    formik.setFieldValue("district", { id: district.districtId, name: district.name });
     formik.setFieldValue("ward", { id: "", name: "" });
+    formik.setFieldValue("district", { id: district.districtId, name: district.name });
   };
   const handleChangeWard = (ward: IWard) => {
     formik.setFieldValue("ward", { id: ward.wardId, name: ward.name });
   };
+
+  console.log(" formik.touched.city: ", formik.touched.city);
 
   return (
     <div className='grid gap-2 md:grid-cols-3'>
@@ -38,7 +40,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
               ))}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.city && formik.errors?.city?.name}</MessageError>
+        <MessageError>{formik.touched.city?.name && formik.errors?.city?.name}</MessageError>
       </FormGroup>
       <FormGroup>
         <Dropdown>
@@ -60,7 +62,9 @@ const Administrative = ({ formik }: AdministrativeProps) => {
             )}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.district && formik.errors?.district?.name}</MessageError>
+        <MessageError>
+          {formik.touched.district?.name && formik.errors?.district?.name}
+        </MessageError>
       </FormGroup>
       <FormGroup>
         <Dropdown>
@@ -77,7 +81,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
             )}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.ward && formik.errors?.ward?.name}</MessageError>
+        <MessageError>{formik.touched.ward?.name && formik.errors?.ward?.name}</MessageError>
       </FormGroup>
     </div>
   );

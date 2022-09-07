@@ -54,8 +54,6 @@ const UserUpdateMe = () => {
       }
     },
   });
-  console.log("values ", formik.values);
-  console.log("errors ", formik.errors);
 
   useEffect(() => {
     const fetchDataUser = async () => {
