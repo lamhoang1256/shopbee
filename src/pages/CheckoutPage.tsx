@@ -43,6 +43,18 @@ const CheckoutPage = () => {
   };
 
   const handleCheckout = () => {
+    if (carts?.length <= 0) {
+      Swal.fire({
+        title: "Giỏ hàng của bạn đang trống",
+        text: "Bạn vui lòng kiểm tra giỏ hàng và thử lại",
+        icon: "info",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Đồng ý!",
+      }).then((result) => {
+        if (result.isConfirmed) navigate(PATH.cart);
+      });
+      return;
+    }
     const orderItems = carts.map((cart: ICart) => ({
       quantity: cart.quantity,
       product: cart.product._id,
@@ -112,9 +124,13 @@ const CheckoutPage = () => {
         <SectionWhite className='mt-3'>
           <h2>Sản phẩm</h2>
           <div className='mt-3'>
-            {carts.map(({ _id, quantity, product }) => (
-              <OrderProduct key={_id} order={{ quantity, product }} />
-            ))}
+            {carts.length > 0 ? (
+              carts.map(({ _id, quantity, product }) => (
+                <OrderProduct key={_id} order={{ quantity, product }} />
+              ))
+            ) : (
+              <h3 className='text-base font-medium'>Giỏ hàng của bạn đang trống</h3>
+            )}
           </div>
         </SectionWhite>
         <div className='bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex gap-x-8 gap-y-4 justify-between flex-col md:flex-row'>
@@ -195,9 +211,9 @@ const CheckoutPage = () => {
         </div>
         <OrderPayment
           price={price}
-          shippingFee={shippingFee}
+          shippingFee={carts.length > 0 ? shippingFee : 0}
           promotion={appliedVoucher.value || 0}
-          total={total}
+          total={carts.length > 0 ? total : 0}
         />
         <div className='bg-[#fffcf5] border-dotted border border-[rgba(0,0,0,.09)] flex flex-wrap-reverse justify-end px-4 py-6 gap-y-3 lg:items-center lg:justify-between'>
           <span className='maxsm:hidden'>

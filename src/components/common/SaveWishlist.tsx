@@ -15,7 +15,7 @@ const SaveWishlist = () => {
         const index = data.findIndex((product: IProduct) => product._id === id);
         setIsSaved(index !== -1);
       } catch (error) {
-        console.log(`Failed to fetch wishlist:`, error);
+        toast.error(error?.message);
       }
     };
     fetchMyWishlist();
