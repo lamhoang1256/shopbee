@@ -6,23 +6,25 @@ import { ProductGrid } from "modules/product";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import { useStore } from "store/globalStore";
 
 const UserWishList = () => {
+  const { currentUser } = useStore((state) => state);
   const [wishlists, setWishlists] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const fetchMyWishlist = async () => {
+    try {
+      setLoading(true);
+      const { data } = await wishlistAPI.getMyWishlist();
+      setWishlists(data);
+    } catch (error) {
+      toast.error(error?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchMyWishlist = async () => {
-      try {
-        setLoading(true);
-        const { data } = await wishlistAPI.getMyWishlist();
-        setWishlists(data);
-      } catch (error) {
-        toast.error(error?.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMyWishlist();
+    if (currentUser?._id) fetchMyWishlist();
   }, []);
   return (
     <>

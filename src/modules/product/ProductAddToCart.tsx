@@ -12,9 +12,14 @@ interface ProductAddToCartProps {
 
 const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
   const { id = "" } = useParams();
-  const { setCarts, carts } = useStore((state) => state);
+  const { setCarts, carts, currentUser } = useStore((state) => state);
+
   const handleAddToCart = async () => {
     if (quantityAdd < 1) return;
+    if (!currentUser?._id) {
+      toast.error("Vui lòng đăng nhập để thêm giỏ hàng!");
+      return;
+    }
     let quantity = quantityAdd;
     const cartExist = carts?.find((cart) => cart.product._id === id);
     if (cartExist) {

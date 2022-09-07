@@ -16,7 +16,7 @@ const abouts = [
 const socials = [
   { display: "Facebook", image: "/images/icon-facebook.png" },
   { display: "Instagram", image: "/images/icon-instagram.png" },
-  { display: "linked", image: "/images/icon-linked.png" },
+  { display: "Linked", image: "/images/icon-linked.png" },
 ];
 const downloads = [
   { key: "download-playstore", image: "/images/download-playstore.png" },

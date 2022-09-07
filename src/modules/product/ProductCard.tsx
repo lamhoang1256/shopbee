@@ -4,7 +4,7 @@ import { PATH } from "constants/path";
 import { ProductImage, ProductTitle } from "modules/product";
 import { PriceSale } from "components/price";
 import { Link } from "react-router-dom";
-import { formatCash } from "utils/helper";
+import { formatCash, slugify } from "utils/helper";
 
 interface ProductCardProps {
   product: IProduct;
@@ -18,7 +18,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       to={`${PATH.product}/${product._id}`}
       className='transition-all rounded overflow-hidden duration-300 border bg-white shadow-product hover:-translate-y-[3px] border-transparent hover:shadow-product-hover'
     >
-      <ProductImage src={product.image} />
+      <ProductImage src={product.image} alt={slugify(product.name)} />
       <div className='p-2 pb-4'>
         <ProductTitle>{product.name}</ProductTitle>
         <div className='flex flex-col my-1 gap-x-2 gap-y-1 md:items-center md:flex-row'>
