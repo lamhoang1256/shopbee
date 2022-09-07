@@ -41,8 +41,6 @@ const UserUpdateMe = () => {
       }),
     }),
     onSubmit: async (values) => {
-      console.log("values: ", values);
-      return;
       try {
         const { street, city, district, ward } = values;
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;

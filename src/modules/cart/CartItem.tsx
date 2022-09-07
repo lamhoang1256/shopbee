@@ -47,6 +47,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
           <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
             {cartItem.product.stock ? (
               <QuantityController
+                className='quantity-cart-item'
                 defaultQuantity={cartItem.quantity}
                 onChangeValue={onChangeQuantity}
               />

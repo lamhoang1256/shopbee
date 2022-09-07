@@ -16,7 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Link
       key={product._id}
       to={`${PATH.product}/${product._id}`}
-      className='transition-all rounded overflow-hidden duration-300 border bg-white shadow-product hover:-translate-y-[3px] border-transparent hover:shadow-product-hover'
+      className='transition-all rounded overflow-hidden duration-300 border bg-white shadow-product-card hover:-translate-y-[3px] border-transparent hover:shadow-product-card-hover'
     >
       <ProductImage src={product.image} alt={slugify(product.name)} />
       <div className='p-2 pb-4'>

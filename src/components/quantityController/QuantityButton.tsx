@@ -7,7 +7,7 @@ const QuantityButton = ({ children, onClick }: QuantityButtonProps) => {
   return (
     <button
       type='button'
-      className='border-[#00000017] border w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center'
+      className='border-[#00000017] border w-8 h-8 flex items-center justify-center'
       onClick={onClick}
     >
       {children}

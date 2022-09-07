@@ -24,8 +24,6 @@ const Administrative = ({ formik }: AdministrativeProps) => {
     formik.setFieldValue("ward", { id: ward.wardId, name: ward.name });
   };
 
-  console.log(" formik.touched.city: ", formik.touched.city);
-
   return (
     <div className='grid gap-2 md:grid-cols-3'>
       <FormGroup>
