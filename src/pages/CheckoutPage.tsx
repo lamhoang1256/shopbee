@@ -1,7 +1,7 @@
 import { ICart, IPayloadBuyProduct, IVoucher } from "@types";
 import { productAPI } from "apis";
 import { Button, ButtonOutline } from "components/button";
-import { SectionWhite } from "components/common";
+import { SectionWhite } from "components/section";
 import { IconGPS } from "components/icons";
 import { Input } from "components/input";
 import { Logo } from "components/logo";

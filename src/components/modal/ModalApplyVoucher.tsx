@@ -1,7 +1,7 @@
 import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import { Button } from "components/button";
-import { SectionGray } from "components/common";
+import { SectionGray } from "components/section";
 import { Input } from "components/input";
 import { VoucherApplyItem, VoucherEmpty } from "modules/voucher";
 import { useEffect, useState } from "react";

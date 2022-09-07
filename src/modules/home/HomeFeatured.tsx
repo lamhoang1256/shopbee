@@ -1,4 +1,4 @@
-import { SectionHeader } from "components/common";
+import { SectionHeader } from "components/section";
 import { Pagination } from "components/pagination";
 import useFetchProducts from "hooks/useFetchProducts";
 import { ProductGrid } from "modules/product";

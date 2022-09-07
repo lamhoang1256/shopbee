@@ -1,7 +1,7 @@
 import { userAPI } from "apis";
 import { Button } from "components/button";
 import { Switch } from "components/checkbox";
-import { Administrative } from "components/common";
+import { Administrative } from "components/administrative";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import * as Yup from "yup";

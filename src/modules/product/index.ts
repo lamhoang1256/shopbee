@@ -12,6 +12,7 @@ import ProductAddToCart from "./ProductAddToCart";
 import ProductRelated from "./ProductRelated";
 import ProductShipping from "./ProductShipping";
 import ProductCardSkeleton from "./ProductCardSkeleton";
+import ProductSaveWishlist from "./ProductSaveWishlist";
 
 export {
   ProductCard,
@@ -28,4 +29,5 @@ export {
   ProductDesc,
   ProductManage,
   ProductNotFound,
+  ProductSaveWishlist,
 };

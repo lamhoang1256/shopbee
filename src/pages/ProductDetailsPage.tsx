@@ -1,5 +1,5 @@
 import { IProduct } from "@types";
-import { SaveWishlist, SectionGray, SectionWhite } from "components/common";
+import { SectionGray, SectionWhite } from "components/section";
 import { Loading } from "components/loading";
 import { PriceOld, PriceSale } from "components/price";
 import { QuantityController } from "components/quantityController";
@@ -13,6 +13,7 @@ import {
   ProductImageSlider,
   ProductNotFound,
   ProductRelated,
+  ProductSaveWishlist,
   ProductShipping,
   ProductTitle,
 } from "modules/product";
@@ -66,7 +67,7 @@ const ProductDetailsPage = () => {
               <span>{product.sold}</span>
               <span className='pl-3 text-[#767676] text-sm'>Đã bán</span>
             </div>
-            <SaveWishlist />
+            <ProductSaveWishlist />
           </div>
           <SectionGray className='flex flex-col-reverse md:flex-row md:items-center gap-x-3'>
             <PriceOld className='text-[#929292]'>{product.oldPrice}</PriceOld>
