@@ -32,7 +32,7 @@ export interface ICloudinaryUpload {
 export interface IPagination {
   limit: number;
   page: number;
-  pageCount: number;
+  totalPage: number;
 }
 export interface INotification {
   _id: string;

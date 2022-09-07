@@ -60,12 +60,12 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
       <div className='flex items-center'>
         <div className='mr-3'>
           <span className='text-orangeee4'>{currentPage || 1}</span>
-          <span>/{pagination.pageCount || 1}</span>
+          <span>/{pagination.totalPage || 1}</span>
         </div>
         <ButtonPagination onClick={goPrevPage} primary={pagination.page > 1}>
           <IconPrev className='w-3 h-3' />
         </ButtonPagination>
-        <ButtonPagination onClick={goNextPage} primary={pagination.pageCount > currentPage}>
+        <ButtonPagination onClick={goNextPage} primary={pagination.totalPage > currentPage}>
           <IconNext className='w-3 h-3' />
         </ButtonPagination>
       </div>

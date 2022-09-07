@@ -20,7 +20,7 @@ const Pagination = ({ pagination }: PaginationProps) => {
       >
         <IconPrev />
       </button>
-      {Array(pagination.pageCount)
+      {Array(pagination.totalPage)
         .fill(0)
         .map((_, index) => (
           <ButtonPage
@@ -35,7 +35,7 @@ const Pagination = ({ pagination }: PaginationProps) => {
         type='button'
         className='cursor-pointer disabled:cursor-not-allowed'
         onClick={goNextPage}
-        disabled={pagination.page >= pagination.pageCount}
+        disabled={pagination.page >= pagination.totalPage}
       >
         <IconNext />
       </button>
