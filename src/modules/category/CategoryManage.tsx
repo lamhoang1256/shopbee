@@ -21,7 +21,7 @@ const CategoryManage = () => {
   };
 
   return (
-    <Template title='Quản lí danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
+    <Template title='Quản lí danh mục' desc='Thêm, xóa, sửa các danh mục sản phẩm'>
       <Helmet>
         <title>Quản lí danh mục</title>
       </Helmet>

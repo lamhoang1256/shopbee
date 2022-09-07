@@ -73,10 +73,7 @@ const UserAddNew = () => {
   };
 
   return (
-    <Template
-      title='Thêm người dùng mới'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
-    >
+    <Template title='Thêm người dùng mới' desc='Vui lòng nhập đầy đủ thông tin của người dùng'>
       <Helmet>
         <title>Thêm người dùng mới</title>
       </Helmet>

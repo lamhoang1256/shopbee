@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
+import { defaultPreviewImage } from "constants/global";
 
 const CategoryAddNew = () => {
   const formik = useFormik({
@@ -43,7 +44,7 @@ const CategoryAddNew = () => {
   };
 
   return (
-    <Template title='Thêm danh mục mới' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Thêm danh mục mới' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
       <Helmet>
         <title>Thêm danh mục mới</title>
       </Helmet>
@@ -67,7 +68,10 @@ const CategoryAddNew = () => {
             Thêm danh mục
           </Button>
         </div>
-        <UserChangeAvatar avatar={formik.values.image} handleChangeAvatar={handleUploadImage} />
+        <UserChangeAvatar
+          avatar={formik.values.image || defaultPreviewImage}
+          handleChangeAvatar={handleUploadImage}
+        />
       </form>
     </Template>
   );

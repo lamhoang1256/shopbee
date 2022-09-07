@@ -54,7 +54,7 @@ const OrderManage = () => {
   }, [searchParams]);
 
   return (
-    <Template title='Quản lí đơn hàng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí đơn hàng' desc='Danh sách các đơn hàng của shop'>
       <Helmet>
         <title>Quản lí đơn hàng</title>
       </Helmet>

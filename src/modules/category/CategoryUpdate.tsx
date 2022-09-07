@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 import { Helmet } from "react-helmet-async";
+import { defaultPreviewImage } from "constants/global";
 
 const CategoryUpdate = () => {
   const { id = "" } = useParams();
@@ -81,7 +82,10 @@ const CategoryUpdate = () => {
             Cập nhật danh mục
           </Button>
         </div>
-        <UserChangeAvatar avatar={formik.values.image} handleChangeAvatar={handleUploadThumb} />
+        <UserChangeAvatar
+          avatar={formik.values.image || defaultPreviewImage}
+          handleChangeAvatar={handleUploadThumb}
+        />
       </form>
     </Template>
   );

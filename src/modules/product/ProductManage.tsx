@@ -37,7 +37,7 @@ const ProductManage = () => {
   };
 
   return (
-    <Template title='Quản lí sản phẩm' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí sản phẩm' desc='Thêm, xóa, sửa các sản phẩm của bạn'>
       <Helmet>
         <title>Quản lí sản phẩm</title>
       </Helmet>

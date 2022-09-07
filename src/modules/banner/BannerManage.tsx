@@ -62,7 +62,7 @@ const BannerManage = () => {
   }, []);
 
   return (
-    <Template title='Quản lí banner' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title='Quản lí banner' desc='Thêm, xóa, sửa các banner của trang chủ'>
       <Helmet>
         <title>Quản lí banner</title>
       </Helmet>
