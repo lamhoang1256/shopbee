@@ -21,7 +21,9 @@ const SignInPage = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
-      password: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      password: Yup.string()
+        .required("Vui lòng nhập mật khẩu!")
+        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
     }),
     onSubmit: async (values) => {
       try {

@@ -1,12 +1,13 @@
 import { ProductGrid } from "modules/product";
 import { Helmet } from "react-helmet-async";
+import { getHistoryLocalStorage, removeHistoryLocalStorage } from "utils/localStorage";
 import { swalDelete } from "utils/swal";
 
 const HistoryPage = () => {
-  const history = JSON.parse(localStorage.getItem("history") || "[]");
+  const history = getHistoryLocalStorage();
   const handleClearHistory = () => {
     swalDelete(() => {
-      localStorage.removeItem("history");
+      removeHistoryLocalStorage();
       window.location.reload();
     });
   };

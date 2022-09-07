@@ -16,8 +16,12 @@ const UserChangePassword = () => {
       confirmPassword: "",
     },
     validationSchema: Yup.object({
-      currentPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
-      newPassword: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      currentPassword: Yup.string()
+        .required("Vui lòng nhập mật khẩu!")
+        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
+      newPassword: Yup.string()
+        .required("Vui lòng nhập mật khẩu!")
+        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("newPassword")], "Xác nhận mật khẩu không khớp!")
         .required("Vui lòng nhập xác nhận mật khẩu!"),

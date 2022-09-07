@@ -19,7 +19,9 @@ const SignUpPage = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
-      password: Yup.string().required("Vui lòng nhập mật khẩu!"),
+      password: Yup.string()
+        .required("Vui lòng nhập mật khẩu!")
+        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
       confirm_password: Yup.string()
         .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
         .required("Vui lòng nhập xác nhận mật khẩu!"),

@@ -18,28 +18,31 @@ import {
   ProductTitle,
 } from "modules/product";
 import { ShopOverview } from "modules/shop";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
+import { getHistoryLocalStorage, setHistoryLocalStorage } from "utils/localStorage";
 import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
   const { id = "" } = useParams();
   const { loading, product } = useFetchProduct(id);
   const { shopInfo } = useFetchShopInfo();
-  const percentSale = Math.ceil(100 - (product.price / product.oldPrice) * 100);
+  const calcPercentSale = useCallback(() => {
+    return Math.ceil(100 - (product.price / product.oldPrice) * 100);
+  }, [product]);
   const [quantityAdd, setQuantityAdd] = useState(1);
   const handleChangeQuantity = (quantity: number) => setQuantityAdd(() => quantity);
 
   useEffect(() => {
     if (!product?.name) return;
     const handleAddToHistory = (prod: IProduct) => {
-      let history: IProduct[] = JSON.parse(localStorage.getItem("history") || "[]");
+      let history: IProduct[] = getHistoryLocalStorage();
       if (history.length >= 20) history.splice(19, 1);
       const isExist = history.some((item) => item._id === prod._id);
       if (isExist) history = history.filter((item) => item._id !== prod._id);
       history.unshift(prod);
-      localStorage.setItem("history", JSON.stringify(history));
+      setHistoryLocalStorage(history);
     };
     handleAddToHistory(product);
   }, [product, id]);
@@ -73,7 +76,7 @@ const ProductDetailsPage = () => {
             <PriceOld className='text-[#929292]'>{product.oldPrice}</PriceOld>
             <PriceSale className='text-lg font-medium lg:text-3xl'>{product.price}</PriceSale>
             <span className='text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4'>
-              -{percentSale}%
+              -{calcPercentSale()}%
             </span>
           </SectionGray>
           <ProductShipping shopCityId={shopInfo?.city?.id} />

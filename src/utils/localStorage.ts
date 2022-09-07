@@ -1,13 +1,8 @@
 import { LocalStorage } from "constants/localStorage";
-import { ICurrentUser } from "@types";
+import { ICurrentUser, IProduct } from "@types";
 
 export const getCurrentUserLocalStorage: () => ICurrentUser = () => {
   return JSON.parse(localStorage.getItem(LocalStorage.currentUser) || "{}");
-};
-
-export const getRefreshTokenLocalStorage = () => {
-  const currentUser = getCurrentUserLocalStorage();
-  return currentUser?.refreshToken;
 };
 
 export const removeCurrentUserLocalStorage = () => {
@@ -20,7 +15,24 @@ export const setCurrentUserLocalStorage = (user: Partial<ICurrentUser>) => {
   localStorage.setItem(LocalStorage.currentUser, JSON.stringify(newCurrentUser));
 };
 
+export const getRefreshTokenLocalStorage = () => {
+  const currentUser = getCurrentUserLocalStorage();
+  return currentUser?.refreshToken;
+};
+
 export const getAccessTokenLocalStorage = () => {
   const currentUser = getCurrentUserLocalStorage();
   return currentUser?.accessToken;
+};
+
+export const getHistoryLocalStorage: () => IProduct[] = () => {
+  return JSON.parse(localStorage.getItem(LocalStorage.history) || "[]");
+};
+
+export const setHistoryLocalStorage = (products: IProduct[]) => {
+  localStorage.setItem(LocalStorage.history, JSON.stringify(products));
+};
+
+export const removeHistoryLocalStorage: () => void = () => {
+  return localStorage.removeItem(LocalStorage.history);
 };
