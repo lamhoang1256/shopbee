@@ -52,7 +52,7 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
           className='h-9 py-0 px-2 border border-[#00000017] outline-none'
           onChange={handleSortByPrice}
         >
-          <Option>Giá</Option>
+          <Option disabled>Giá</Option>
           <Option value='asc'>Giá: Thấp đến Cao</Option>
           <Option value='desc'>Giá: Cao đến Thấp</Option>
         </Select>

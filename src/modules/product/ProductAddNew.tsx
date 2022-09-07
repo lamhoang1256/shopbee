@@ -86,7 +86,7 @@ const ProductAddNew = () => {
             <FormGroup>
               <Label htmlFor='category'>Chọn danh mục</Label>
               <Select name='category' onChange={formik.handleChange} value={formik.values.category}>
-                <Option value=''>Chọn danh mục</Option>
+                <Option disabled>Chọn danh mục</Option>
                 {categories?.map((category) => (
                   <Option value={category._id} key={category._id}>
                     {category.name}

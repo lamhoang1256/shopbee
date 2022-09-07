@@ -78,7 +78,7 @@ const OrderUpdate = () => {
         <div className='flex items-center gap-x-5'>
           <span>Trạng thái đơn hàng</span>
           <Select name='status' onChange={handleUpdateStatusOrder}>
-            <Option value=''>Trạng thái</Option>
+            <Option disabled>Trạng thái</Option>
             <Option value={OrderStatus.processing}>Đang xử lí</Option>
             <Option value={OrderStatus.shipping}>Đang vận chuyển</Option>
             <Option value={OrderStatus.delivered}>Đã giao hàng</Option>
