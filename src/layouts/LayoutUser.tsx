@@ -17,7 +17,7 @@ const LayoutUser = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer className='mt-[50px]' />
     </div>
   );
 };
