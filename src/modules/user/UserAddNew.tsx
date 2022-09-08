@@ -135,6 +135,7 @@ const UserAddNew = () => {
           <FormGroup>
             <Label htmlFor='isAdmin'>Quyền quản trị (Admin)</Label>
             <Switch
+              name='isAdmin'
               checked={formik.values.isAdmin}
               handleOnChangeSwitch={(checked) => {
                 formik.setFieldValue("isAdmin", checked);
