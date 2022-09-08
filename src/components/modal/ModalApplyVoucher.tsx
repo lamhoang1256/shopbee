@@ -67,7 +67,7 @@ const ModalApplyVoucher = ({
           </Button>
         </div>
       </SectionGray>
-      <div className='overflow-y-auto max-h-64'>
+      <div className='overflow-y-auto max-h-72'>
         {vouchers.length === 0 && <VoucherEmpty />}
         {vouchers.length > 0 &&
           vouchers.map((voucher) => (

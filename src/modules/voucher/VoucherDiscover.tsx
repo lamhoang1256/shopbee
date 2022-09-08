@@ -6,7 +6,10 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
+import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
+
+const stylesImageBox = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";
 
 const VoucherDiscover = () => {
   const { currentUser } = useStore((state) => state);
@@ -47,10 +50,20 @@ const VoucherDiscover = () => {
           <div className='grid gap-4 md:grid-cols-2'>
             {vouchers.map((voucher) => (
               <div className='flex items-center overflow-hidden bg-white rounded-md gap-x-2 md:gap-x-5 shadow1'>
-                <div className='flex flex-col items-center justify-center w-20 h-20 sm:w-28 sm:h-28 bg-orangeee4'>
-                  <img src='/images/voucher.png' className='w-3/5 h-3/5' alt='voucher' />
-                  <span className='text-white'>Shopbee</span>
-                </div>
+                {voucher.isFreeship ? (
+                  <div className={classNames(stylesImageBox, "bg-[#00bfa5]")}>
+                    <span className='font-medium text-center text-white'>MIỄN PHÍ VẬN CHUYỂN</span>
+                  </div>
+                ) : (
+                  <div className={classNames(stylesImageBox, "bg-orangeee4")}>
+                    <img
+                      src='/images/voucher-shopbee.png'
+                      className='w-3/5 h-3/5'
+                      alt='voucher-shopbee'
+                    />
+                    <span className='text-white'>Shopbee</span>
+                  </div>
+                )}
                 <div className='flex flex-col justify-center flex-1 text-xs md:text-sm'>
                   <h3 className='md:text-base'>{voucher.title}</h3>
                   <span>Code: {voucher.code}</span>
