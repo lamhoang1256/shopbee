@@ -6,7 +6,7 @@ import { PATH } from "constants/path";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import VoucherEmpty from "./VoucherEmpty";
 import VoucherItem from "./VoucherItem";
@@ -44,7 +44,15 @@ const VoucherMe = () => {
   }, [status]);
 
   return (
-    <Template title='Ví voucher' desc='Khám phá kho voucher'>
+    <Template
+      title='Ví voucher'
+      desc='Khám phá kho voucher'
+      subtitle={
+        <Link to={PATH.voucherDiscover} className='text-[#ee4d2d]'>
+          Tìm thêm voucher
+        </Link>
+      }
+    >
       <Helmet>
         <title>Kho voucher của bạn</title>
       </Helmet>
@@ -58,9 +66,11 @@ const VoucherMe = () => {
           <div className='grid gap-4 mt-6 md:grid-cols-2'>
             {vouchers.map((voucher) => (
               <VoucherItem
-                active={!(status === "expiration" || status === "used")}
                 key={voucher?._id}
+                active={!(status === "expiration" || status === "used")}
                 title={voucher.title}
+                isFreeship={voucher.isFreeship}
+                code={voucher.code}
                 expirationDate={voucher.expirationDate}
               />
             ))}

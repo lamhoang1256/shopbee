@@ -1,3 +1,7 @@
+export interface IDiscoverVoucherSearchParams {
+  limit: number;
+  page: number;
+}
 export interface IVoucherSearchParams {
   code: string;
   status: string;
@@ -8,6 +12,8 @@ export interface IVoucher {
   code: string;
   createdAt: string;
   title: string;
+  isFreeship: boolean;
+  isPublic: boolean;
   expirationDate: number;
   updatedAt: string;
   usersUsed: string[];

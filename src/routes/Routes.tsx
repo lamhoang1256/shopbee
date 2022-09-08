@@ -19,6 +19,7 @@ const ShopUpdate = lazy(() => import("modules/shop/ShopUpdate"));
 const VoucherAddNew = lazy(() => import("modules/voucher/VoucherAddNew"));
 const VoucherManage = lazy(() => import("modules/voucher/VoucherManage"));
 const VoucherMe = lazy(() => import("modules/voucher/VoucherMe"));
+const VoucherDiscover = lazy(() => import("modules/voucher/VoucherDiscover"));
 const VoucherUpdate = lazy(() => import("modules/voucher/VoucherUpdate"));
 const OrderManage = lazy(() => import("modules/order/OrderManage"));
 const OrderUpdate = lazy(() => import("modules/order/OrderUpdate"));
@@ -98,6 +99,16 @@ const AppRoutes = () => {
                 <Suspense fallback={<Fallback />}>
                   <ErrorBoundary>
                     <SearchPage />
+                  </ErrorBoundary>
+                </Suspense>
+              }
+            />
+            <Route
+              path={PATH.voucherDiscover}
+              element={
+                <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                    <VoucherDiscover />
                   </ErrorBoundary>
                 </Suspense>
               }

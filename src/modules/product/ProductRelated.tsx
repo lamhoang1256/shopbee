@@ -26,7 +26,7 @@ const ProductRelated = ({ categoryId }: ProductRelatedProps) => {
   return (
     <>
       <h3 className='my-3 text-[#0000008a] text-base font-medium'>SẢN PHẨM TƯƠNG TỰ</h3>
-      <ProductGrid products={relatedProduct} />;
+      <ProductGrid products={relatedProduct} />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { voucherAPI } from "apis";
 import { Button } from "components/button";
+import { Switch } from "components/checkbox";
 import { FormGroup, Label, MessageError } from "components/form";
 import { Input } from "components/input";
 import { useFormik } from "formik";
@@ -19,6 +20,8 @@ const VoucherUpdate = () => {
       title: "",
       expirationDate: 0,
       value: 0,
+      isPublic: true,
+      isFreeship: false,
     },
     onSubmit: async (values) => {
       try {
@@ -86,6 +89,26 @@ const VoucherUpdate = () => {
               onChange={formik.handleChange}
             />
           </FormGroup>
+          <div className='grid gap-2 lg:grid-cols-2'>
+            <FormGroup>
+              <Label htmlFor='isPublic'>Mã công khai</Label>
+              <Switch
+                name='isPublic'
+                checked={formik.values.isPublic}
+                handleOnChangeSwitch={(checked) => formik.setFieldValue("isPublic", checked)}
+              />
+              <MessageError>{formik.touched.isPublic && formik.errors?.isPublic}</MessageError>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='isFreeship'>Mã freeship</Label>
+              <Switch
+                name='isFreeship'
+                checked={formik.values.isFreeship}
+                handleOnChangeSwitch={(checked) => formik.setFieldValue("isFreeship", checked)}
+              />
+              <MessageError>{formik.touched.isFreeship && formik.errors?.isFreeship}</MessageError>
+            </FormGroup>
+          </div>
           <Button type='submit' primary className='w-full h-10'>
             Cập nhật
           </Button>
@@ -95,6 +118,8 @@ const VoucherUpdate = () => {
             <Label htmlFor='voucher'>Preview</Label>
             <VoucherItem
               title={formik.values.title}
+              code={formik.values.code}
+              isFreeship={formik.values.isFreeship}
               expirationDate={formik.values.expirationDate}
               className='max-w-[460px]'
             />

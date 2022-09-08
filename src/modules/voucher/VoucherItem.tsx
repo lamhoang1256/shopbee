@@ -2,13 +2,25 @@ import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
 
 interface VoucherItemProps {
+  code: string;
   title: string;
+  isFreeship: boolean;
   expirationDate: number;
   active?: boolean;
   className?: string;
 }
 
-const VoucherItem = ({ title, active, className, expirationDate }: VoucherItemProps) => {
+const stylesImageBox = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";
+const VoucherItem = ({
+  title,
+  code,
+  isFreeship,
+  active,
+  className,
+  expirationDate,
+}: VoucherItemProps) => {
+  const stylesBgFreeship = active ? "bg-[#00bfa5]" : "bg-[#bdbdbd]";
+  const stylesBgShopbee = active ? "bg-orangeee4" : "bg-[#bdbdbd]";
   return (
     <div
       className={classNames(
@@ -16,15 +28,16 @@ const VoucherItem = ({ title, active, className, expirationDate }: VoucherItemPr
         className,
       )}
     >
-      <div
-        className={classNames(
-          "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center",
-          active ? "bg-orangeee4" : "bg-[#bdbdbd]",
-        )}
-      >
-        <img src='/images/voucher.png' className='w-3/5 h-3/5' alt='voucher' />
-        <span className='text-white'>Shopbee</span>
-      </div>
+      {isFreeship ? (
+        <div className={classNames(stylesImageBox, stylesBgFreeship)}>
+          <span className='font-medium text-center text-white'>MIỄN PHÍ VẬN CHUYỂN</span>
+        </div>
+      ) : (
+        <div className={classNames(stylesImageBox, stylesBgShopbee)}>
+          <img src='/images/voucher.png' className='w-3/5 h-3/5' alt='voucher' />
+          <span className='text-white'>Shopbee</span>
+        </div>
+      )}
       <div
         className={classNames(
           "flex flex-col justify-center flex-1 text-xs md:text-sm",
@@ -32,6 +45,7 @@ const VoucherItem = ({ title, active, className, expirationDate }: VoucherItemPr
         )}
       >
         <h3 className='md:text-base'>{title}</h3>
+        <span>Code: {code}</span>
         {expirationDate !== 0 && <span>HSD: {formatDateVNFull(expirationDate)}</span>}
       </div>
     </div>

@@ -1,4 +1,5 @@
 import {
+  IDiscoverVoucherSearchParams,
   IPayloadAddNewVoucher,
   IPayloadUpdateVoucher,
   IResponse,
@@ -9,6 +10,10 @@ import axiosClient from "./axiosClient";
 export const voucherAPI = {
   getMyVoucher: (params?: Partial<IVoucherSearchParams>): Promise<IResponse> => {
     const path = `api/user/my-voucher`;
+    return axiosClient.get(path, { params });
+  },
+  getDiscoverVoucher: (params?: Partial<IDiscoverVoucherSearchParams>): Promise<IResponse> => {
+    const path = `api/voucher/discover`;
     return axiosClient.get(path, { params });
   },
   getAllVoucher: (params?: Partial<IVoucherSearchParams>): Promise<IResponse> => {

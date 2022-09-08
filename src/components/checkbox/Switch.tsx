@@ -4,15 +4,15 @@ interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   handleOnChangeSwitch?: (checked?: boolean) => void;
 }
 
-const Switch = ({ checked, handleOnChangeSwitch }: SwitchProps) => {
+const Switch = ({ name = "switch", checked, handleOnChangeSwitch }: SwitchProps) => {
   const onChangeSwitch = (e: ChangeEvent<HTMLInputElement>) => {
     if (handleOnChangeSwitch) handleOnChangeSwitch(e.target.checked);
   };
   return (
-    <label htmlFor='default-toggle' className='relative inline-flex items-center cursor-pointer'>
+    <label htmlFor={name} className='relative inline-flex items-center cursor-pointer'>
       <input
         type='checkbox'
-        id='default-toggle'
+        id={name}
         className='sr-only peer'
         checked={checked}
         onChange={onChangeSwitch}

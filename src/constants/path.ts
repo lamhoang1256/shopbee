@@ -13,6 +13,7 @@ export const PATH = {
   orderManage: "/dashboard/order",
   orderUpdate: "/dashboard/order/update",
   voucherWallet: "/user/voucher-wallet",
+  voucherDiscover: "/voucher-discover",
   notification: "/user/notification",
   checkout: "/checkout",
   userUpdate: "/dashboard/user/update",
