@@ -10,13 +10,16 @@ import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
 
 const stylesImageBox = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";
-
 const VoucherDiscover = () => {
   const { currentUser } = useStore((state) => state);
   const [loading, setLoading] = useState(true);
   const [vouchers, setVouchers] = useState<IVoucher[]>(Object);
   const handleSaveVoucher = async (voucher: string) => {
     try {
+      if (!currentUser?._id) {
+        toast.error("Vui lòng đăng nhập để lưu voucher");
+        return;
+      }
       const { message } = await voucherAPI.saveVoucher(voucher);
       toast.success(message);
     } catch (error) {
