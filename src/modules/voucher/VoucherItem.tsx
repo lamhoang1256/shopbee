@@ -1,13 +1,12 @@
 import classNames from "utils/className";
 import { formatDateVNFull } from "utils/helper";
 
-interface VoucherItemProps {
+interface VoucherItemProps extends React.HTMLAttributes<HTMLDivElement> {
   code: string;
   title: string;
   isFreeship: boolean;
   expirationDate: number;
   active?: boolean;
-  className?: string;
 }
 
 const stylesImageBox = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";
@@ -54,7 +53,6 @@ const VoucherItem = ({
 
 VoucherItem.defaultProps = {
   active: true,
-  className: "",
 };
 
 export default VoucherItem;

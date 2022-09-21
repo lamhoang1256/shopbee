@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconFilterProps {
-  className?: string;
-}
+interface IconFilterProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconFilter = ({ className }: IconFilterProps) => {
   return (
@@ -21,10 +19,6 @@ const IconFilter = ({ className }: IconFilterProps) => {
       />
     </svg>
   );
-};
-
-IconFilter.defaultProps = {
-  className: "",
 };
 
 export default IconFilter;

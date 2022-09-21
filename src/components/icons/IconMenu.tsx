@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconMenuProps {
-  className?: string;
-}
+interface IconMenuProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconMenu = ({ className }: IconMenuProps) => {
   return (
@@ -17,10 +15,6 @@ const IconMenu = ({ className }: IconMenuProps) => {
       <path strokeLinecap='round' strokeLinejoin='round' d='M4 6h16M4 12h16M4 18h16' />
     </svg>
   );
-};
-
-IconMenu.defaultProps = {
-  className: "",
 };
 
 export default IconMenu;

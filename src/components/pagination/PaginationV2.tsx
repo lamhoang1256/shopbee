@@ -2,11 +2,10 @@ import { IconNext, IconPrev } from "components/icons";
 import { v4 as uuidv4 } from "uuid";
 import ButtonPage from "./ButtonPage";
 
-interface PaginationV2Props {
+interface PaginationV2Props extends React.HTMLAttributes<HTMLDivElement> {
   itemsPerPage: number;
   totalItems: number;
   currentPage: number;
-  className?: string;
   handleChangePage: (pageNumber: number) => void;
 }
 
@@ -52,10 +51,6 @@ const PaginationV2 = ({
       </button>
     </div>
   );
-};
-
-PaginationV2.defaultProps = {
-  className: "",
 };
 
 export default PaginationV2;

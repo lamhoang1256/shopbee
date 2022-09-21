@@ -33,10 +33,10 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
         <IconMenu />
         <span>{labelOpenSidebar}</span>
       </Button>
-      <div className={classNames("layout-sidebar", className)} ref={sidebarRef}>
+      <aside className={classNames("layout-sidebar", className)} ref={sidebarRef}>
         <SidebarCloseAction onCloseSidebar={toggleSearchSidebar} />
         <div>{children}</div>
-      </div>
+      </aside>
       <div
         aria-hidden
         ref={overlayRef}

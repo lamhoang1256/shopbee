@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconBellProps {
-  className?: string;
-}
+interface IconBellProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconBell = ({ className }: IconBellProps) => {
   return (
@@ -16,10 +14,6 @@ const IconBell = ({ className }: IconBellProps) => {
       <path d='m10 18c1 0 1.9-.6 2.3-1.4h-4.6c.4.9 1.3 1.4 2.3 1.4z' />
     </svg>
   );
-};
-
-IconBell.defaultProps = {
-  className: "",
 };
 
 export default IconBell;

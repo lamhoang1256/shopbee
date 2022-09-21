@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 
-interface ProductTitleProps {
-  children: React.ReactNode;
-  className?: string;
-  styleLink?: string;
+interface ProductTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   to?: string;
+  styleLink?: string;
 }
 
-const ProductTitle = ({ children, className, styleLink, to }: ProductTitleProps) => {
+const ProductTitle = ({
+  to,
+  children,
+  styleLink,
+  className = "text-sm text-black33 line-clamp-2",
+}: ProductTitleProps) => {
   if (to) {
     return (
       <Link to={to} className={styleLink}>
@@ -19,7 +22,6 @@ const ProductTitle = ({ children, className, styleLink, to }: ProductTitleProps)
 };
 
 ProductTitle.defaultProps = {
-  className: "text-sm text-black33 line-clamp-2",
   to: "",
   styleLink: "",
 };

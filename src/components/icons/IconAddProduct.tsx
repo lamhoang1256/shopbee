@@ -1,8 +1,7 @@
+import { SVGProps } from "react";
 import classNames from "utils/className";
 
-interface IconAddProductProps {
-  className?: string;
-}
+interface IconAddProductProps extends SVGProps<SVGSVGElement> {}
 
 const IconAddProduct = ({ className }: IconAddProductProps) => {
   return (
@@ -21,10 +20,6 @@ const IconAddProduct = ({ className }: IconAddProductProps) => {
       />
     </svg>
   );
-};
-
-IconAddProduct.defaultProps = {
-  className: "",
 };
 
 export default IconAddProduct;

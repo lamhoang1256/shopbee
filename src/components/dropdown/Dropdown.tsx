@@ -3,9 +3,8 @@ import Option from "./Option";
 import Select from "./Select";
 import List from "./List";
 
-interface DropdownProps {
+interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  className?: string;
 }
 
 const Dropdown = ({ children, className, ...props }: DropdownProps) => {
@@ -19,9 +18,5 @@ const Dropdown = ({ children, className, ...props }: DropdownProps) => {
 Dropdown.Option = Option;
 Dropdown.Select = Select;
 Dropdown.List = List;
-
-Dropdown.defaultProps = {
-  className: "",
-};
 
 export default Dropdown;

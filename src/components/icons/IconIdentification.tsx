@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconIdentificationProps {
-  className?: string;
-}
+interface IconIdentificationProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconIdentification = ({ className }: IconIdentificationProps) => {
   return (
@@ -21,10 +19,6 @@ const IconIdentification = ({ className }: IconIdentificationProps) => {
       />
     </svg>
   );
-};
-
-IconIdentification.defaultProps = {
-  className: "",
 };
 
 export default IconIdentification;

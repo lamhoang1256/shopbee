@@ -1,6 +1,4 @@
-interface IconGPSProps {
-  className?: string;
-}
+interface IconGPSProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconGPS = ({ className }: IconGPSProps) => {
   return (
@@ -11,10 +9,6 @@ const IconGPS = ({ className }: IconGPSProps) => {
       />
     </svg>
   );
-};
-
-IconGPS.defaultProps = {
-  className: "",
 };
 
 export default IconGPS;

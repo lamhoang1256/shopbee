@@ -3,7 +3,7 @@ import classNames from "utils/className";
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {}
 
-const Select = ({ name, className = "", children, ...props }: SelectProps) => {
+const Select = ({ name, className, children, ...props }: SelectProps) => {
   return (
     <select
       id={name}

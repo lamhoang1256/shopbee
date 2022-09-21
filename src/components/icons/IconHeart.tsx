@@ -1,5 +1,4 @@
-interface IconHeartProps {
-  className?: string;
+interface IconHeartProps extends React.SVGProps<SVGSVGElement> {
   active: boolean;
 }
 
@@ -16,10 +15,6 @@ const IconHeart = ({ className, active }: IconHeartProps) => {
       />
     </svg>
   );
-};
-
-IconHeart.defaultProps = {
-  className: "",
 };
 
 export default IconHeart;

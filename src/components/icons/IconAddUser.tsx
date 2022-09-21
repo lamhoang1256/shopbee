@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconAddUserProps {
-  className?: string;
-}
+interface IconAddUserProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconAddUser = ({ className }: IconAddUserProps) => {
   return (
@@ -21,10 +19,6 @@ const IconAddUser = ({ className }: IconAddUserProps) => {
       />
     </svg>
   );
-};
-
-IconAddUser.defaultProps = {
-  className: "",
 };
 
 export default IconAddUser;

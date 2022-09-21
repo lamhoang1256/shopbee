@@ -4,7 +4,7 @@ import { IconHiddenPassword, IconShowPassword } from "components/icons";
 
 interface InputPasswordProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-const InputPassword = ({ name, className = "", ...props }: InputPasswordProps) => {
+const InputPassword = ({ name, className, ...props }: InputPasswordProps) => {
   const [focus, setFocus] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);
   const toggleVisiblePassword = () => {

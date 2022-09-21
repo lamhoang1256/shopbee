@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconNextProps {
-  className?: string;
-}
+interface IconNextProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconNext = ({ className }: IconNextProps) => {
   return (
@@ -17,10 +15,6 @@ const IconNext = ({ className }: IconNextProps) => {
       <path strokeLinecap='round' strokeLinejoin='round' d='M9 5l7 7-7 7' />
     </svg>
   );
-};
-
-IconNext.defaultProps = {
-  className: "",
 };
 
 export default IconNext;

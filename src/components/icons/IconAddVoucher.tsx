@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconAddVoucherProps {
-  className?: string;
-}
+interface IconAddVoucherProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconAddVoucher = ({ className }: IconAddVoucherProps) => {
   return (
@@ -21,10 +19,6 @@ const IconAddVoucher = ({ className }: IconAddVoucherProps) => {
       />
     </svg>
   );
-};
-
-IconAddVoucher.defaultProps = {
-  className: "",
 };
 
 export default IconAddVoucher;

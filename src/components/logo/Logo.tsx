@@ -1,5 +1,6 @@
 import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
+import classNames from "utils/className";
 
 interface LogoProps {
   to?: string;
@@ -9,13 +10,10 @@ interface LogoProps {
 }
 
 const Logo = ({ to = PATH.home, className, children, primary }: LogoProps) => {
+  const stylePrimary = primary ? "text-orangeee4" : "text-white";
   return (
     <Link to={to} className={className}>
-      <h1
-        className={`text-2xl font-medium ${primary ? "text-orangeee4" : "text-white"} ${className}`}
-      >
-        {children}
-      </h1>
+      <h1 className={classNames(`text-2xl font-medium`, stylePrimary, className)}>{children}</h1>
     </Link>
   );
 };

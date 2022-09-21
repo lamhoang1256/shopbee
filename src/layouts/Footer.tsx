@@ -24,11 +24,9 @@ const downloads = [
   { key: "download-appgallery", image: "/images/download-appgallery.png" },
 ];
 
-interface FooterProps {
-  className?: string;
-}
+interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const Footer = ({ className = "" }: FooterProps) => {
+const Footer = ({ className }: FooterProps) => {
   return (
     <footer
       className={classNames(
@@ -120,10 +118,6 @@ const Footer = ({ className = "" }: FooterProps) => {
       </div>
     </footer>
   );
-};
-
-Footer.defaultProps = {
-  className: "",
 };
 
 export default Footer;

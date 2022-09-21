@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconUpProps {
-  className?: string;
-}
+interface IconUpProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconUp = ({ className }: IconUpProps) => {
   return (
@@ -16,10 +14,6 @@ const IconUp = ({ className }: IconUpProps) => {
       <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M5 15l7-7 7 7' />
     </svg>
   );
-};
-
-IconUp.defaultProps = {
-  className: "",
 };
 
 export default IconUp;

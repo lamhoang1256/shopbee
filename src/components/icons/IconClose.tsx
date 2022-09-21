@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconClipboardProps {
-  className?: string;
-}
+interface IconClipboardProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconClipboard = ({ className }: IconClipboardProps) => {
   return (
@@ -17,10 +15,6 @@ const IconClipboard = ({ className }: IconClipboardProps) => {
       <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
     </svg>
   );
-};
-
-IconClipboard.defaultProps = {
-  className: "",
 };
 
 export default IconClipboard;

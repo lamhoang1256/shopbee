@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconCubeProps {
-  className?: string;
-}
+interface IconCubeProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconCube = ({ className }: IconCubeProps) => {
   return (
@@ -21,10 +19,6 @@ const IconCube = ({ className }: IconCubeProps) => {
       />
     </svg>
   );
-};
-
-IconCube.defaultProps = {
-  className: "",
 };
 
 export default IconCube;

@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import classNames from "utils/className";
 
-interface PopoverProps {
+interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   active: boolean;
   children: React.ReactNode;
-  className?: string;
 }
 
 const Popover = ({ active, children, className }: PopoverProps) => {
@@ -18,10 +17,6 @@ const Popover = ({ active, children, className }: PopoverProps) => {
       )}
     </>
   );
-};
-
-Popover.defaultProps = {
-  className: "",
 };
 
 export default Popover;

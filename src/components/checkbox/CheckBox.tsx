@@ -2,7 +2,7 @@ import classNames from "utils/className";
 
 interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const CheckBox = ({ className = "", onChange, checked }: CheckBoxProps) => {
+const CheckBox = ({ className, onChange, checked }: CheckBoxProps) => {
   return (
     <input
       type='checkbox'

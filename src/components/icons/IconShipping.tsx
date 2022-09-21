@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconShippingProps {
-  className?: string;
-}
+interface IconShippingProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconShipping = ({ className }: IconShippingProps) => {
   return (
@@ -22,10 +20,6 @@ const IconShipping = ({ className }: IconShippingProps) => {
       />
     </svg>
   );
-};
-
-IconShipping.defaultProps = {
-  className: "",
 };
 
 export default IconShipping;

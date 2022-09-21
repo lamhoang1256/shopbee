@@ -4,8 +4,7 @@ import classNames from "utils/className";
 import QuantityButton from "./QuantityButton";
 import QuantityInput from "./QuantityInput";
 
-interface QuantityControllerProps {
-  className?: string;
+interface QuantityControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultQuantity?: number;
   onChangeValue?: (quantity: number) => void;
 }
@@ -43,7 +42,6 @@ const QuantityController = ({
 };
 
 QuantityController.defaultProps = {
-  className: "",
   defaultQuantity: 1,
   onChangeValue: () => {},
 };

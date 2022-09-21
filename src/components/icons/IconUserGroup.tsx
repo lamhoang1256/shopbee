@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconUserGroupProps {
-  className?: string;
-}
+interface IconUserGroupProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconUserGroup = ({ className }: IconUserGroupProps) => {
   return (
@@ -21,10 +19,6 @@ const IconUserGroup = ({ className }: IconUserGroupProps) => {
       />
     </svg>
   );
-};
-
-IconUserGroup.defaultProps = {
-  className: "",
 };
 
 export default IconUserGroup;

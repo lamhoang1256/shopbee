@@ -1,8 +1,7 @@
 import classNames from "utils/className";
 
-interface SectionHeaderProps {
+interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  className?: string;
 }
 
 const SectionHeader = ({ children, className }: SectionHeaderProps) => {
@@ -11,10 +10,6 @@ const SectionHeader = ({ children, className }: SectionHeaderProps) => {
       {children}
     </div>
   );
-};
-
-SectionHeader.defaultProps = {
-  className: "",
 };
 
 export default SectionHeader;

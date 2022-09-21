@@ -7,7 +7,7 @@ interface ButtonOutlineProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
 }
 
-const ButtonOutline = ({ to, children, primary, className = "", ...props }: ButtonOutlineProps) => {
+const ButtonOutline = ({ to, children, primary, className, ...props }: ButtonOutlineProps) => {
   const stylesButton = primary
     ? "border-orangeee4 text-orangeee4 bg-[#ff57221a] hover:bg-[#ffc5b22e]"
     : "border-[#00000016] hover:bg-[#00000005] text-[#555] shadow-button-normal";

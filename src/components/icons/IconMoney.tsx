@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconMoneyProps {
-  className?: string;
-}
+interface IconMoneyProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconMoney = ({ className }: IconMoneyProps) => {
   return (
@@ -21,10 +19,6 @@ const IconMoney = ({ className }: IconMoneyProps) => {
       />
     </svg>
   );
-};
-
-IconMoney.defaultProps = {
-  className: "",
 };
 
 export default IconMoney;

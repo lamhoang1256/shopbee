@@ -3,7 +3,7 @@ import classNames from "utils/className";
 
 interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {}
 
-const Label = ({ htmlFor, className = "", children, ...props }: LabelProps) => {
+const Label = ({ htmlFor, className, children, ...props }: LabelProps) => {
   return (
     <label
       htmlFor={htmlFor}

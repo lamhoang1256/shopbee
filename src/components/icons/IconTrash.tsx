@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconTrashProps {
-  className?: string;
-}
+interface IconTrashProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconTrash = ({ className }: IconTrashProps) => {
   return (
@@ -21,10 +19,6 @@ const IconTrash = ({ className }: IconTrashProps) => {
       />
     </svg>
   );
-};
-
-IconTrash.defaultProps = {
-  className: "",
 };
 
 export default IconTrash;

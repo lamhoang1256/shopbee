@@ -10,12 +10,7 @@ const stylesNormal =
 const stylesActive =
   "h-9 flex items-center justify-center w-10 border bg-[#f9f9f9] border-[#00000017] opacity-70 disabled:cursor-not-allowed";
 
-const ButtonPagination = ({
-  children,
-  className = "",
-  primary,
-  ...props
-}: ButtonPaginationProps) => {
+const ButtonPagination = ({ children, className, primary, ...props }: ButtonPaginationProps) => {
   if (primary) {
     return (
       <button type='button' className={classNames(stylesNormal, className)} {...props}>

@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconTagProps {
-  className?: string;
-}
+interface IconTagProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconTag = ({ className }: IconTagProps) => {
   return (
@@ -22,10 +20,6 @@ const IconTag = ({ className }: IconTagProps) => {
       <path strokeLinecap='round' strokeLinejoin='round' d='M6 6h.008v.008H6V6z' />
     </svg>
   );
-};
-
-IconTag.defaultProps = {
-  className: "",
 };
 
 export default IconTag;

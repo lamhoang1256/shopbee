@@ -1,9 +1,8 @@
 import { IconStar } from "components/icons";
 import classNames from "utils/className";
 
-interface ProductRatingProps {
+interface ProductRatingProps extends React.HTMLAttributes<HTMLDivElement> {
   rating: number;
-  className?: string;
 }
 
 const renderRating = (rating: number, className: string) => {
@@ -18,10 +17,6 @@ const renderRating = (rating: number, className: string) => {
 
 const Rating = ({ rating, className = "" }: ProductRatingProps) => {
   return <div className='flex'>{renderRating(rating, className)}</div>;
-};
-
-Rating.defaultProps = {
-  className: "",
 };
 
 export default Rating;

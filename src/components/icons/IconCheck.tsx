@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconCheckProps {
-  className?: string;
-}
+interface IconCheckProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconCheck = ({ className }: IconCheckProps) => {
   return (
@@ -17,10 +15,6 @@ const IconCheck = ({ className }: IconCheckProps) => {
       <path strokeLinecap='round' strokeLinejoin='round' d='M5 13l4 4L19 7' />
     </svg>
   );
-};
-
-IconCheck.defaultProps = {
-  className: "",
 };
 
 export default IconCheck;

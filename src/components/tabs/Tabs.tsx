@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import classNames from "utils/className";
 
-interface TabsProps {
+interface TabsProps extends React.HTMLAttributes<HTMLUListElement> {
   query: string | number;
-  className?: string;
   tabs: {
     to: string;
     key: string;
@@ -34,10 +33,6 @@ const Tabs = ({ tabs, query, className }: TabsProps) => {
       })}
     </ul>
   );
-};
-
-Tabs.defaultProps = {
-  className: "",
 };
 
 export default Tabs;

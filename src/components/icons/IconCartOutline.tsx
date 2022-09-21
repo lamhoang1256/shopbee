@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconCartOutlineProps {
-  className?: string;
-}
+interface IconCartOutlineProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconCartOutline = ({ className }: IconCartOutlineProps) => {
   return (
@@ -21,10 +19,6 @@ const IconCartOutline = ({ className }: IconCartOutlineProps) => {
       />
     </svg>
   );
-};
-
-IconCartOutline.defaultProps = {
-  className: "",
 };
 
 export default IconCartOutline;

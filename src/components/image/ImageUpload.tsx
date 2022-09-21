@@ -1,10 +1,9 @@
 import { ChangeEvent } from "react";
 import classNames from "utils/className";
 
-interface ImageUploadProps {
+interface ImageUploadProps extends React.HTMLAttributes<HTMLDivElement> {
   onChange: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
   previewImage: string;
-  className?: string;
 }
 
 const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) => {
@@ -34,10 +33,6 @@ const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) =>
       </div>
     </div>
   );
-};
-
-ImageUpload.defaultProps = {
-  className: "",
 };
 
 export default ImageUpload;

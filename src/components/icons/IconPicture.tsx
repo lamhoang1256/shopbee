@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconPictureProps {
-  className?: string;
-}
+interface IconPictureProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconPicture = ({ className }: IconPictureProps) => {
   return (
@@ -21,10 +19,6 @@ const IconPicture = ({ className }: IconPictureProps) => {
       />
     </svg>
   );
-};
-
-IconPicture.defaultProps = {
-  className: "",
 };
 
 export default IconPicture;

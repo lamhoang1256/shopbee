@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconCategoryManageProps {
-  className?: string;
-}
+interface IconCategoryManageProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconCategoryManage = ({ className }: IconCategoryManageProps) => {
   return (
@@ -21,10 +19,6 @@ const IconCategoryManage = ({ className }: IconCategoryManageProps) => {
       />
     </svg>
   );
-};
-
-IconCategoryManage.defaultProps = {
-  className: "",
 };
 
 export default IconCategoryManage;

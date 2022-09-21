@@ -3,7 +3,7 @@ import classNames from "utils/className";
 
 interface InputNumberProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const InputNumber = ({ name, onChange, value, className = "", ...props }: InputNumberProps) => {
+const InputNumber = ({ name, onChange, value, className, ...props }: InputNumberProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if ((/^\d+$/.test(val) || val === "") && onChange) {

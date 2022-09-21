@@ -1,8 +1,6 @@
 import classNames from "utils/className";
 
-interface IconSearchProps {
-  className?: string;
-}
+interface IconSearchProps extends React.SVGProps<SVGSVGElement> {}
 
 const IconSearch = ({ className }: IconSearchProps) => {
   return (
@@ -21,10 +19,6 @@ const IconSearch = ({ className }: IconSearchProps) => {
       />
     </svg>
   );
-};
-
-IconSearch.defaultProps = {
-  className: "",
 };
 
 export default IconSearch;
