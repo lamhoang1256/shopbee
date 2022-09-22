@@ -92,7 +92,7 @@ const UserUpdate = () => {
         <title>Cập nhật người dùng</title>
       </Helmet>
       <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
-        <form className='max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
+        <form className='max-w-[600px] w-full' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
             <Label htmlFor='email'>Email</Label>
             <Input
@@ -125,8 +125,8 @@ const UserUpdate = () => {
               <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
             </FormGroup>
           </div>
-          <FormGroup>
-            <Label htmlFor='address'>Địa chỉ: {formik.values.address}</Label>
+          <FormGroup className='mb-0'>
+            <Label htmlFor='address'>Địa chỉ:</Label>
             <Administrative formik={formik} />
             <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
           </FormGroup>
