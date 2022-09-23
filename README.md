@@ -10,7 +10,8 @@ Official website: https://e-shopbee.vercel.app
 
 ## Preview
 
-![homepage](https://user-images.githubusercontent.com/61537853/191778840-f6a056ad-f1f4-4f5c-b8fd-a415d5191ad7.png)
+![homepage](https://user-images.githubusercontent.com/61537853/191889286-18237d45-7151-4855-b7a1-4efb05992928.png)
+
 ## Resources
 ```
 API NodeJS: https://github.com/lamhoang1256/shopbee-api
