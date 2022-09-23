@@ -64,6 +64,20 @@ REACT_APP_API_ADMINISTRATION_URL = https://vietnamese-administration.up.railway.
  </p>
 </details>
 <details>
+ <summary>Cart Page</summary>
+ <p>
+
+![cart-page](https://user-images.githubusercontent.com/61537853/191882927-898eec87-64da-4dcb-a426-a094e9a7d4f7.png)
+ </p>
+</details>
+<details>
+ <summary>Checkout Page</summary>
+ <p>
+
+![checkout-page](https://user-images.githubusercontent.com/61537853/191882914-313555f2-03c7-4718-a874-4b0213480115.png)
+ </p>
+</details>
+<details>
  <summary>Seach Page</summary>
  <p>
 
