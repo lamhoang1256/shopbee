@@ -29,7 +29,7 @@ Google Font: https://fonts.google.com/specimen/Inter
 - React-toastify, sweetalert2 (Message UI)
 - Socket.io-client (Support real time notify message)
 - React-helmet-async (Optimize SEO)
-- Other: react-router-dom, uuid, react-lazy-load-image-component, query-string, jwt-decode,react-credit-cards, react-quill ...
+- Other: react-router-dom, uuid, react-lazy-load-image-component, query-string, jwt-decode, react-credit-cards, react-quill, ...
 
 ## Features
 
@@ -85,6 +85,20 @@ REACT_APP_API_ADMINISTRATION_URL = https://vietnamese-administration.up.railway.
  <p>
 
  ![searchpage](https://user-images.githubusercontent.com/61537853/191779399-862c0d7b-930a-40ab-9673-905abcf80070.png)
+ </p>
+</details>
+<details>
+ <summary>Sign Up Page</summary>
+ <p>
+ 
+![sign-up](https://user-images.githubusercontent.com/61537853/191889741-68966572-404f-47c2-92bf-7ca26e58a90c.png)
+ </p>
+</details>
+<details>
+ <summary>Sign In Page</summary>
+ <p>
+ 
+![sign-in](https://user-images.githubusercontent.com/61537853/191889758-a7e43bbc-7cdd-4b78-b0e3-e1e41dbc51e2.png)
  </p>
 </details>
 <details>
