@@ -154,3 +154,52 @@ REACT_APP_API_ADMINISTRATION_URL = https://vietnamese-administration.up.railway.
 ![dashboard-add-product](https://user-images.githubusercontent.com/61537853/191881604-6c45f552-bede-4885-a071-85410d74bbf0.png)
  </p>
 </details>
+<details>
+ <summary>Dashboard Product Update Page</summary>
+ <p>
+
+![dashboard-product-update](https://user-images.githubusercontent.com/61537853/191881824-5f6f17ce-2e57-4246-8ffa-cabcc6dfded4.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Category Manage Page</summary>
+ <p>
+
+![dashboard-category-manage](https://user-images.githubusercontent.com/61537853/191881871-41ec6887-13ea-45e8-9b64-4a6d38fbf339.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Category Add New Page</summary>
+ <p>
+
+![dashboard-add-category](https://user-images.githubusercontent.com/61537853/191881874-57a292d2-27ca-494f-a081-bc365676a349.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Order Manage Page</summary>
+ <p>
+
+![dashboard-order-manage](https://user-images.githubusercontent.com/61537853/191881956-37c1e472-9916-4745-9c30-5245cad26ef1.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard User Manage Page</summary>
+ <p>
+
+![dashboard-user-manage](https://user-images.githubusercontent.com/61537853/191882034-54d5f2dc-352c-4f89-b9d2-e42f1a797706.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard User Add New Page</summary>
+ <p>
+
+![dashboard-add-user](https://user-images.githubusercontent.com/61537853/191882046-c6ef8c8b-e1ec-48d2-a336-68a7b38fe7da.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard User Update Page</summary>
+ <p>
+
+![dashboard-user-update](https://user-images.githubusercontent.com/61537853/191882048-8940ac41-78e3-4dac-a069-692f35188664.png)
+ </p>
+</details>
