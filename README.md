@@ -1,4 +1,4 @@
-# Youme
+# Shopbee
 A Website Ecommmerce Using ReactJS
 
 ## Live demo
@@ -34,8 +34,8 @@ Google Font: https://fonts.google.com/specimen/Inter
 ## Environment Variables
 
 ```
-
-REACT_APP_API_URL = http://localhost:3000 (or Link vercel)
+# See: [https://github.com/lamhoang1256/shopbee-api](https://github.com/lamhoang1256/shopbee-api)
+REACT_APP_API_URL =
 
 # See: https://cloudinary.com/documentation
 REACT_APP_CLOUDINARY_API = 
