@@ -119,3 +119,38 @@ REACT_APP_API_ADMINISTRATION_URL = https://vietnamese-administration.up.railway.
  ![user-card-bank](https://user-images.githubusercontent.com/61537853/191880964-38b89af9-379f-43dd-8038-7e5ef2bc4fac.png)
  </p>
 </details>
+<details>
+ <summary>Order Details Page</summary>
+ <p>
+
+ ![user-order-detail](https://user-images.githubusercontent.com/61537853/191881295-af09809f-ec73-40eb-939a-c1a28aff1767.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Overview Page</summary>
+ <p>
+
+ ![dashboard-manage](https://user-images.githubusercontent.com/61537853/191881420-ccfbddd1-ed4b-4f4f-96dd-889b5959aaff.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Banner Manage Page</summary>
+ <p>
+
+![dashboard-banner-manage](https://user-images.githubusercontent.com/61537853/191881483-742e1786-13d5-44d4-a86f-e1cfdff0174a.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Product Manage Page</summary>
+ <p>
+
+![dashboard-product-manage](https://user-images.githubusercontent.com/61537853/191881520-8afbcef1-897f-4955-9360-ab99b2293742.png)
+ </p>
+</details>
+<details>
+ <summary>Dashboard Product Add New Page</summary>
+ <p>
+
+![dashboard-add-product](https://user-images.githubusercontent.com/61537853/191881604-6c45f552-bede-4885-a071-85410d74bbf0.png)
+ </p>
+</details>
