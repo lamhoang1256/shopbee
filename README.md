@@ -3,7 +3,7 @@ A Website Ecommmerce Using ReactJS
 
 ## Live demo
 
-Official website: https://e-shopbee.app
+Official website: https://e-shopbee.vercel.app
 
 ## Author
 - Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
@@ -19,13 +19,16 @@ Google Font: https://fonts.google.com/specimen/Inter
 ```
 ## Main technology used
 
-- React
+- React, Typescript
+- Tailwindcss
 - Zustand (State management)
-- Axios
-- Swiper
-- Formik , Yup (Validation)
-- React-toastify (Message UI)
-- Other: react-router-dom, uuid, react-lazy-load-image-component, query-string
+- Axios (Support fetching data)
+- Swiper (Slider), react-modal
+- Formik , yup (Validation)
+- React-toastify, sweetalert2 (Message UI)
+- Socket.io-client (Support real time notify message)
+- React-helmet-async (Optimize SEO)
+- Other: react-router-dom, uuid, react-lazy-load-image-component, query-string, jwt-decode,react-credit-cards, react-quill ...
 
 ## Features
 
@@ -34,7 +37,7 @@ Google Font: https://fonts.google.com/specimen/Inter
 ## Environment Variables
 
 ```
-# See: [https://github.com/lamhoang1256/shopbee-api](https://github.com/lamhoang1256/shopbee-api)
+# See: https://github.com/lamhoang1256/shopbee-api
 REACT_APP_API_URL =
 
 # See: https://cloudinary.com/documentation
@@ -43,7 +46,6 @@ REACT_APP_CLOUDINARY_API =
 # See: https://cloudinary.com/documentation/upload_presets
 REACT_APP_CLOUDINARY_UPLOAD_PRESET = 
 
-# See: https://github.com/lamhoang1256/shopbee-api
 REACT_APP_API_ADMINISTRATION_URL = https://vietnamese-administration.up.railway.app
 ```
 
