@@ -1,5 +1,5 @@
 # Shopbee
-A Website Ecommmerce Using ReactJS
+A Website Ecommmerce Using ReactJS, Typescript, Tailwindcss
 
 ## Live demo
 
