@@ -1,7 +1,8 @@
 {
   "name": "shopbee",
   "version": "0.1.0",
-  "private": true,
+  "author": "Nguyen Hoang Lam",
+  "license": "ISC",
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.0",
     "@testing-library/jest-dom": "^5.16.4",
