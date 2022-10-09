@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { userAPI } from "apis";
 import { Button } from "components/button";
 import { FormGroup, Label, MessageError } from "components/form";
@@ -5,8 +6,8 @@ import { Input } from "components/input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
+// import Cards from "react-credit-cards";
+// import "react-credit-cards/es/styles-compiled.css";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
@@ -68,7 +69,8 @@ const UserCreditCard = () => {
       <Helmet>
         <title>Ngân hàng</title>
       </Helmet>
-      <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
+      Ngân hàng
+      {/* <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
         <form className='w-full max-w-[500px]' onSubmit={formik.handleSubmit} autoComplete='off'>
           <FormGroup>
             <Label htmlFor='name'>Họ và tên</Label>
@@ -125,7 +127,7 @@ const UserCreditCard = () => {
             cvc={formik.values.cvc}
           />
         </div>
-      </div>
+      </div> */}
     </Template>
   );
 };
