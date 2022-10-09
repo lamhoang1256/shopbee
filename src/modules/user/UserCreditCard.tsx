@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
 import Cards from "react-credit-cards";
-import "react-credit-cards/lib/styles.scss";
+import "react-credit-cards/es/styles-compiled.css";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
