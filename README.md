@@ -1,9 +1,12 @@
 # Shopbee
 A Website Ecommmerce Using ReactJS, Typescript, Tailwindcss
 
-## Overview
-- Live demo: https://e-shopbee.vercel.app
-- Author: Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
+## Live demo
+
+Official website: https://e-shopbee.vercel.app
+
+## Author
+- Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
 
 ## Preview
 
