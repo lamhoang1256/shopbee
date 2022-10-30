@@ -82,7 +82,7 @@ const UserManage = () => {
         <>
           <div className='tables'>
             <table>
-              <thead className=''>
+              <thead>
                 <tr>
                   <th>STT</th>
                   <th>Thông tin khách hàng</th>
