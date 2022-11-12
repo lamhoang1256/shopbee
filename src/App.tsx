@@ -1,3 +1,4 @@
+import { Meta } from "components/meta";
 import useFetchCarts from "hooks/useFetchCarts";
 import { useEffect } from "react";
 import Modal from "react-modal";
@@ -16,6 +17,7 @@ const App = () => {
   }, [currentUser, setNotifications]);
   return (
     <>
+      <Meta />
       <AppRoutes />
       <ToastContainer />
     </>
