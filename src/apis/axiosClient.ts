@@ -14,7 +14,7 @@ const axiosClient = axios.create({
 
 const requestRefreshToken = async () => {
   const refreshToken = getRefreshTokenLocalStorage();
-  const path = `${BASE_URL_API}/api/auth/refresh-token?refreshToken=${refreshToken}}`;
+  const path = `${BASE_URL_API}/api/auth/refresh-token?refreshToken=${refreshToken}`;
   const { data } = await axios.post(path);
   return data.data;
 };

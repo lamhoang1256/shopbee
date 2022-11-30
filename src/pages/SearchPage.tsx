@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Pagination } from "components/pagination";
 import useFetchProducts from "hooks/useFetchProducts";
 import { ProductGrid } from "modules/product";
-import { SearchSidebar, SearchSortBar } from "modules/search";
+import { SearchAside, SearchSortBar } from "modules/search";
 import { scrollTo } from "utils/helper";
 import { Helmet } from "react-helmet-async";
 
@@ -22,7 +22,7 @@ const SearchPage = () => {
             : "Tìm kiếm sản phẩm"}
         </title>
       </Helmet>
-      <SearchSidebar />
+      <SearchAside />
       <div className="flex-1">
         <SearchSortBar pagination={pagination} />
         <ProductGrid products={products} />

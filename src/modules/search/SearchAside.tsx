@@ -4,7 +4,7 @@ import SearchByRating from "./SearchByRating";
 import SearchRangePrice from "./SearchRangePrice";
 import SearchRemoveAll from "./SearchRemoveAll";
 
-const SearchSidebar = () => {
+const SearchAside = () => {
   return (
     <Sidebar labelOpenSidebar="Bộ lọc">
       <SearchByCategory />
@@ -15,4 +15,4 @@ const SearchSidebar = () => {
   );
 };
 
-export default SearchSidebar;
+export default SearchAside;

@@ -45,7 +45,7 @@
         "embeddedLanguageFormatting": "auto",
         "htmlWhitespaceSensitivity": "css",
         "insertPragma": false,
-        "jsxSingleQuote": true,
+        "jsxSingleQuote": false,
         "printWidth": 100,
         "proseWrap": "preserve",
         "quoteProps": "as-needed",
@@ -53,7 +53,7 @@
         "semi": true,
         "singleQuote": false,
         "tabWidth": 2,
-        "trailingComma": "all",
+        "trailingComma": "none",
         "useTabs": false,
         "vueIndentScriptAndStyle": false,
         "endOfLine": "auto"

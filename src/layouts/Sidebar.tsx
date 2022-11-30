@@ -11,7 +11,7 @@ interface SidebarProps {
   className?: string;
 }
 
-const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) => {
+const SearchAside = ({ children, labelOpenSidebar, className }: SidebarProps) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const toggleSearchSidebar = () => {
@@ -47,9 +47,9 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
   );
 };
 
-SearchSidebar.defaultProps = {
+SearchAside.defaultProps = {
   labelOpenSidebar: "Mở sidebar",
   className: "lg:w-48"
 };
 
-export default SearchSidebar;
+export default SearchAside;
