@@ -1,7 +1,7 @@
 import { ProductGrid } from "modules/product";
 import { Helmet } from "react-helmet-async";
 import { getHistoryLocalStorage, removeHistoryLocalStorage } from "utils/localStorage";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 
 const HistoryPage = () => {
   const history = getHistoryLocalStorage();

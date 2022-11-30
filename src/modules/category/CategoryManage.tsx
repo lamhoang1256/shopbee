@@ -6,7 +6,7 @@ import useFetchCategories from "hooks/useFetchCategories";
 import { Template } from "layouts";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 
 const CategoryManage = () => {
   const { categories, loading, fetchCategories } = useFetchCategories();

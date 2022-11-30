@@ -6,7 +6,7 @@ import useModal from "hooks/useModal";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 import OrderProduct from "./OrderProduct";
 
 interface OrderReviewProps {

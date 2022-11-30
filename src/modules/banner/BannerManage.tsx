@@ -7,7 +7,7 @@ import { Template } from "layouts";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 import { uploadImage } from "utils/uploadImage";
 
 const BannerManage = () => {

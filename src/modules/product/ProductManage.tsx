@@ -10,7 +10,7 @@ import { Template } from "layouts";
 import { toast } from "react-toastify";
 import { formatMoney } from "utils/helper";
 import { PriceSale } from "components/price";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 import { Helmet } from "react-helmet-async";
 import ProductImage from "./ProductImage";
 import ProductNotFound from "./ProductNotFound";

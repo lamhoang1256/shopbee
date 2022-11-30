@@ -13,7 +13,7 @@ import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVNFull, formatMoney } from "utils/helper";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 import VoucherEmpty from "./VoucherEmpty";
 
 const tabs = [

@@ -17,7 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils/helper";
-import { swalInfo, swalQuestion } from "utils/swal";
+import { swalInfo, swalQuestion } from "utils/sweetalert2";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();

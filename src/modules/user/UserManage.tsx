@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVN } from "utils/helper";
-import { swalDelete } from "utils/swal";
+import { swalDelete } from "utils/sweetalert2";
 import UserAvatar from "./UserAvatar";
 
 const UserManage = () => {
