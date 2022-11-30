@@ -30,7 +30,13 @@ Google Font: https://fonts.google.com/specimen/Inter
 
 ## Features
 
-- Update
+- Add product to cart
+- Search products by name
+- Filter products by price, rating, sold,...
+- Profile page: allowing to change profile photo, fullname, password, phone number, address, add payment method with credit card
+- Collect voucher code and apply at checkout
+- Bookmark favourite products, store recently watched products
+- Realtime notification of order status and discount code expiration
 
 ## Environment Variables
 
