@@ -2,6 +2,7 @@
 
 A Website Ecommmerce Using ReactJS, Typescript, Tailwindcss
 
+<<<<<<< HEAD
 ## Live demo
 
 Official website: https://e-shopbee.vercel.app
@@ -9,6 +10,11 @@ Official website: https://e-shopbee.vercel.app
 ## Author
 
 - Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
+=======
+## Overview
+- Official website: https://e-shopbee.vercel.app
+- Author: Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
+>>>>>>> 96c1b15d07f7489f132f9422cbf9b1a661c1eee1
 
 ## Preview
 
