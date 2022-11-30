@@ -14,7 +14,7 @@ const InputPassword = ({ name, className, ...props }: InputPasswordProps) => {
     <div
       className={classNames(
         "flex items-center border shadow-input pr-4",
-        focus ? "border-[#0000008a]" : "border-[#00000023] ",
+        focus ? "border-[#0000008a]" : "border-[#00000023] "
       )}
     >
       <input
@@ -26,7 +26,7 @@ const InputPassword = ({ name, className, ...props }: InputPasswordProps) => {
         onBlur={() => setFocus(false)}
         {...props}
       />
-      <button type='button' onClick={toggleVisiblePassword} className='w-5 h-5'>
+      <button type="button" onClick={toggleVisiblePassword} className="w-5 h-5">
         {visiblePassword ? <IconShowPassword /> : <IconHiddenPassword />}
       </button>
     </div>

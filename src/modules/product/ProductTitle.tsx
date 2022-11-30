@@ -9,7 +9,7 @@ const ProductTitle = ({
   to,
   children,
   styleLink,
-  className = "text-sm text-black33 line-clamp-2",
+  className = "text-sm text-black33 line-clamp-2"
 }: ProductTitleProps) => {
   if (to) {
     return (
@@ -23,7 +23,7 @@ const ProductTitle = ({
 
 ProductTitle.defaultProps = {
   to: "",
-  styleLink: "",
+  styleLink: ""
 };
 
 export default ProductTitle;

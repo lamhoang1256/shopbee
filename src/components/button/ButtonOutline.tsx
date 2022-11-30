@@ -15,11 +15,11 @@ const ButtonOutline = ({ to, children, primary, className, ...props }: ButtonOut
     return (
       <Link to={to}>
         <button
-          type='button'
+          type="button"
           className={classNames(
             "py-2 px-4 border rounded-sm transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60",
             stylesButton,
-            className,
+            className
           )}
           {...props}
         >
@@ -30,11 +30,11 @@ const ButtonOutline = ({ to, children, primary, className, ...props }: ButtonOut
   }
   return (
     <button
-      type='button'
+      type="button"
       className={classNames(
         "py-2 px-4 border rounded-sm transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60",
         stylesButton,
-        className,
+        className
       )}
       {...props}
     >
@@ -45,7 +45,7 @@ const ButtonOutline = ({ to, children, primary, className, ...props }: ButtonOut
 
 ButtonOutline.defaultProps = {
   to: "",
-  primary: false,
+  primary: false
 };
 
 export default ButtonOutline;

@@ -17,5 +17,5 @@ export const cartAPI = {
   deleteAllCart: (): Promise<IResponse> => {
     const path = `api/cart`;
     return axiosClient.delete(path);
-  },
+  }
 };

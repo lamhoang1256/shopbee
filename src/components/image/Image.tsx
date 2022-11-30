@@ -19,7 +19,7 @@ const Image = ({
     return (
       <Link to={to} style={{ display: "block" }}>
         <LazyLoadImage
-          effect='opacity'
+          effect="opacity"
           src={fallback || src}
           onError={handleErrorImage}
           {...props}
@@ -28,13 +28,13 @@ const Image = ({
     );
   }
   return (
-    <LazyLoadImage src={fallback || src} effect='opacity' onError={handleErrorImage} {...props} />
+    <LazyLoadImage src={fallback || src} effect="opacity" onError={handleErrorImage} {...props} />
   );
 };
 
 Image.defaultProps = {
   to: "",
-  imageError: "/images/no-image-avaliable.png",
+  imageError: "/images/no-image-avaliable.png"
 };
 
 export default Image;

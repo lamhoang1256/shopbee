@@ -15,23 +15,23 @@ const renderStarRating = (score: number) => {
 const SearchByRating = () => {
   return (
     <>
-      <div className='mt-6 search-catelog-header'>
+      <div className="mt-6 search-catelog-header">
         <IconStar />
         <span>Đánh giá</span>
       </div>
-      <div className='mt-3'>
+      <div className="mt-3">
         {[5, 4, 3, 2, 1].map((num) => {
           if (num === 5) {
             return (
-              <Link to={`${PATH.search}?rating=${num}`} className='flex mt-2' key={num}>
+              <Link to={`${PATH.search}?rating=${num}`} className="flex mt-2" key={num}>
                 {renderStarRating(num)}
               </Link>
             );
           }
           return (
-            <Link to={`${PATH.search}?rating=${num}`} className='flex mt-2' key={num}>
+            <Link to={`${PATH.search}?rating=${num}`} className="flex mt-2" key={num}>
               {renderStarRating(num)}
-              <span className='text-[#000000cc] ml-2'>Trở lên</span>
+              <span className="text-[#000000cc] ml-2">Trở lên</span>
             </Link>
           );
         })}

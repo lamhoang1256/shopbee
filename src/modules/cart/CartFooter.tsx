@@ -24,18 +24,18 @@ const CartFooter = ({ total, totalNotSale, count }: CartFooterProps) => {
   };
 
   return (
-    <div className='flex flex-col justify-between px-5 py-6 mt-6 bg-white gap-y-4 lg:items-center lg:flex-row'>
+    <div className="flex flex-col justify-between px-5 py-6 mt-6 bg-white gap-y-4 lg:items-center lg:flex-row">
       <div>
         <div>
           Tổng ({count} sản phẩm):
-          <PriceSale className='ml-1 text-xl font-medium'>{total}</PriceSale>
+          <PriceSale className="ml-1 text-xl font-medium">{total}</PriceSale>
         </div>
         <div>
           Tiết kiệm:
-          <PriceSale className='ml-1'>{totalNotSale - total}</PriceSale>
+          <PriceSale className="ml-1">{totalNotSale - total}</PriceSale>
         </div>
       </div>
-      <div className='flex gap-3'>
+      <div className="flex gap-3">
         <Button onClick={handleRemoveAllCart}>Xóa tất cả</Button>
         <Button primary to={PATH.checkout}>
           Thanh toán

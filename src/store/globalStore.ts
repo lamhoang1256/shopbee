@@ -13,5 +13,5 @@ export const useStore = create<IUseStore>((set) => ({
     set({ currentUser });
   },
   notifications: [],
-  setNotifications: (notifications: INotification[]) => set({ notifications }),
+  setNotifications: (notifications: INotification[]) => set({ notifications })
 }));

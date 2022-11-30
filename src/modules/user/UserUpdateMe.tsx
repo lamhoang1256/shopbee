@@ -19,7 +19,7 @@ const UserUpdateMe = () => {
       address: "",
       city: { id: "", name: "" },
       district: { id: "", name: "" },
-      ward: { id: "", name: "" },
+      ward: { id: "", name: "" }
     },
     validationSchema: Yup.object({
       fullname: Yup.string().required("Vui lòng nhập họ và tên!"),
@@ -29,16 +29,16 @@ const UserUpdateMe = () => {
       street: Yup.string().required("Vui lòng nhập địa chỉ cụ thể!"),
       city: Yup.object().shape({
         id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
-        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!")
       }),
       district: Yup.object().shape({
         id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
-        name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+        name: Yup.string().required("Vui lòng chọn Quận/Huyện!")
       }),
       ward: Yup.object().shape({
         id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
-        name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
-      }),
+        name: Yup.string().required("Vui lòng chọn Phường/Xã!")
+      })
     }),
     onSubmit: async (values) => {
       try {
@@ -50,7 +50,7 @@ const UserUpdateMe = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
 
   useEffect(() => {
@@ -66,32 +66,32 @@ const UserUpdateMe = () => {
   }, [currentUser?._id]);
 
   return (
-    <form className='w-full max-w-[600px]' onSubmit={formik.handleSubmit} autoComplete='off'>
+    <form className="w-full max-w-[600px]" onSubmit={formik.handleSubmit} autoComplete="off">
       <FormGroup>
-        <Label htmlFor='email'>Email</Label>
+        <Label htmlFor="email">Email</Label>
         <span>{currentUser?.email}</span>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor='fullname'>Họ và tên</Label>
-        <Input name='fullname' value={formik.values.fullname} onChange={formik.handleChange} />
+        <Label htmlFor="fullname">Họ và tên</Label>
+        <Input name="fullname" value={formik.values.fullname} onChange={formik.handleChange} />
         <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor='phone'>Số điện thoại</Label>
-        <Input name='phone' value={formik.values.phone} onChange={formik.handleChange} />
+        <Label htmlFor="phone">Số điện thoại</Label>
+        <Input name="phone" value={formik.values.phone} onChange={formik.handleChange} />
         <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
       </FormGroup>
-      <FormGroup className='mb-0'>
-        <Label htmlFor='address'>Địa chỉ:</Label>
+      <FormGroup className="mb-0">
+        <Label htmlFor="address">Địa chỉ:</Label>
         <Administrative formik={formik} />
         <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor='street'>Địa chỉ nhận hàng cụ thể</Label>
-        <Input name='street' value={formik.values.street} onChange={formik.handleChange} />
+        <Label htmlFor="street">Địa chỉ nhận hàng cụ thể</Label>
+        <Input name="street" value={formik.values.street} onChange={formik.handleChange} />
         <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
       </FormGroup>
-      <Button type='submit' primary className='w-full h-10'>
+      <Button type="submit" primary className="w-full h-10">
         Lưu
       </Button>
     </form>

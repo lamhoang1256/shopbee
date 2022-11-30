@@ -25,7 +25,7 @@ const UserManage = () => {
     initialValues: { email: "" },
     onSubmit: (values) => {
       setSearchParams(values);
-    },
+    }
   });
 
   const fetchAllUser = async () => {
@@ -57,30 +57,30 @@ const UserManage = () => {
   }, [searchParams]);
 
   return (
-    <Template title='Quản lí người dùng' desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'>
+    <Template title="Quản lí người dùng" desc="Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn">
       <Helmet>
         <title>Quản lí người dùng</title>
       </Helmet>
       <form
         onSubmit={formik.handleSubmit}
-        autoComplete='off'
-        className='flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1'
+        autoComplete="off"
+        className="flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1"
       >
         <Input
-          name='email'
-          className='w-full lg:!h-12'
+          name="email"
+          className="w-full lg:!h-12"
           value={formik.values.email}
           onChange={formik.handleChange}
-          placeholder='Tìm kiếm người dùng theo email'
+          placeholder="Tìm kiếm người dùng theo email"
         />
-        <Button primary className='flex-shrink-0 lg:h-12'>
+        <Button primary className="flex-shrink-0 lg:h-12">
           Tìm kiếm
         </Button>
       </form>
       {loading && <Loading />}
       {!loading && users.length > 0 && (
         <>
-          <div className='tables'>
+          <div className="tables">
             <table>
               <thead>
                 <tr>
@@ -98,10 +98,10 @@ const UserManage = () => {
                   <tr key={user._id}>
                     <td>{index + 1}</td>
                     <td>
-                      <div className='flex items-center gap-x-2'>
-                        <UserAvatar className='w-8 h-8 rounded-full' urlAvatar={user.avatar} />
+                      <div className="flex items-center gap-x-2">
+                        <UserAvatar className="w-8 h-8 rounded-full" urlAvatar={user.avatar} />
                         <div>
-                          <h3 className='font-medium max-w-[140px] line-clamp-1'>
+                          <h3 className="font-medium max-w-[140px] line-clamp-1">
                             {user.fullname}
                           </h3>
                           <span>{formatDateVN(user.createdAt)}</span>
@@ -109,17 +109,17 @@ const UserManage = () => {
                       </div>
                     </td>
                     <td>
-                      <span className='max-w-[180px] line-clamp-1'>{user.email}</span>
+                      <span className="max-w-[180px] line-clamp-1">{user.email}</span>
                     </td>
                     <td>{user.phone}</td>
                     <td>
-                      <span className='max-w-[180px] line-clamp-1'>
+                      <span className="max-w-[180px] line-clamp-1">
                         {user.address?.split(",").slice(-1)[0]}
                       </span>
                     </td>
                     <td>{user.isAdmin ? "Admin" : "User"}</td>
                     <td>
-                      <div className='flex gap-x-1'>
+                      <div className="flex gap-x-1">
                         <Button to={`${PATH.userUpdate}/${user._id}`}>Sửa</Button>
                         <Button onClick={() => swalDelete(() => handleDeleteUser(user._id))}>
                           Xóa
@@ -135,9 +135,9 @@ const UserManage = () => {
         </>
       )}
       {!loading && users.length === 0 && (
-        <div className='flex flex-col items-center justify-center gap-y-2 h-[400px]'>
-          <img src='/images/no-product-found.png' alt='not found product' />
-          <span className='text-[#bababa]'>Không tìm thấy người dùng</span>
+        <div className="flex flex-col items-center justify-center gap-y-2 h-[400px]">
+          <img src="/images/no-product-found.png" alt="not found product" />
+          <span className="text-[#bababa]">Không tìm thấy người dùng</span>
         </div>
       )}
     </Template>

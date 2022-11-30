@@ -19,12 +19,12 @@ const CategoryUpdate = () => {
     initialValues: {
       name: "",
       slug: "",
-      image: "",
+      image: ""
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Vui lòng nhập tên danh mục!"),
       slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
-      image: Yup.string().required("Vui lòng chọn hình ảnh!"),
+      image: Yup.string().required("Vui lòng chọn hình ảnh!")
     }),
     onSubmit: async (values) => {
       try {
@@ -33,7 +33,7 @@ const CategoryUpdate = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
 
   const handleUploadThumb = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,27 +58,27 @@ const CategoryUpdate = () => {
   }, [id]);
 
   return (
-    <Template title='Sửa danh mục' desc='Vui lòng nhập đầy đủ thông tin cho danh mục của bạn'>
+    <Template title="Sửa danh mục" desc="Vui lòng nhập đầy đủ thông tin cho danh mục của bạn">
       <Helmet>
         <title>Sửa danh mục</title>
       </Helmet>
       <form
-        autoComplete='off'
+        autoComplete="off"
         onSubmit={formik.handleSubmit}
-        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
+        className="flex flex-col-reverse gap-8 mt-6 lg:flex-row"
       >
-        <div className='w-full max-w-[600px]'>
+        <div className="w-full max-w-[600px]">
           <FormGroup>
-            <Label htmlFor='name'>Tên danh mục:</Label>
-            <Input name='name' value={formik.values.name} onChange={formik.handleChange} />
+            <Label htmlFor="name">Tên danh mục:</Label>
+            <Input name="name" value={formik.values.name} onChange={formik.handleChange} />
             <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='slug'>Tên danh mục slug:</Label>
-            <Input name='slug' value={formik.values.slug} onChange={formik.handleChange} />
+            <Label htmlFor="slug">Tên danh mục slug:</Label>
+            <Input name="slug" value={formik.values.slug} onChange={formik.handleChange} />
             <MessageError>{formik.touched.slug && formik.errors?.slug}</MessageError>
           </FormGroup>
-          <Button type='submit' primary className='w-full h-10'>
+          <Button type="submit" primary className="w-full h-10">
             Cập nhật danh mục
           </Button>
         </div>

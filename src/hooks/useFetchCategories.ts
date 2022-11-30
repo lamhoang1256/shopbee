@@ -23,6 +23,6 @@ export default function useFetchCategories() {
   return {
     loading,
     categories,
-    fetchCategories,
+    fetchCategories
   };
 }

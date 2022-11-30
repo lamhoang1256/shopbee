@@ -23,7 +23,7 @@ const Tabs = ({ tabs, query, className }: TabsProps) => {
               to={tab.to}
               className={classNames(
                 tabStyles,
-                checkActive(tab.key) ? tabActiveStyles : "text-[#555]",
+                checkActive(tab.key) ? tabActiveStyles : "text-[#555]"
               )}
             >
               {tab.display}

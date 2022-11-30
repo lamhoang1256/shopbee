@@ -18,8 +18,8 @@ const tabs = [
   {
     key: "expiration",
     display: "Hết hiệu lực",
-    to: `${PATH.voucherWallet}?status=expiration`,
-  },
+    to: `${PATH.voucherWallet}?status=expiration`
+  }
 ];
 
 const VoucherMe = () => {
@@ -45,10 +45,10 @@ const VoucherMe = () => {
 
   return (
     <Template
-      title='Ví voucher'
-      desc='Khám phá kho voucher'
+      title="Ví voucher"
+      desc="Khám phá kho voucher"
       subtitle={
-        <Link to={PATH.voucherDiscover} className='text-[#ee4d2d]'>
+        <Link to={PATH.voucherDiscover} className="text-[#ee4d2d]">
           Tìm thêm voucher
         </Link>
       }
@@ -57,13 +57,13 @@ const VoucherMe = () => {
         <title>Kho voucher của bạn</title>
       </Helmet>
       <VoucherSave fetchReloadVoucher={fetchMyVoucher} />
-      <Tabs tabs={tabs} query={status} className='my-4' />
+      <Tabs tabs={tabs} query={status} className="my-4" />
       {loading && <Loading />}
       {!loading &&
         (vouchers.length === 0 ? (
           <VoucherEmpty />
         ) : (
-          <div className='grid gap-4 mt-6 md:grid-cols-2'>
+          <div className="grid gap-4 mt-6 md:grid-cols-2">
             {vouchers.map((voucher) => (
               <VoucherItem
                 key={voucher?._id}

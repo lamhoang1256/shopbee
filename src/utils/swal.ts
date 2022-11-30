@@ -9,7 +9,7 @@ export const swalDelete = (callback: () => void) => {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Đồng ý!",
-    cancelButtonText: "Hủy!",
+    cancelButtonText: "Hủy!"
   }).then(async (result) => {
     if (result.isConfirmed) callback();
   });
@@ -21,7 +21,7 @@ export const swalInfo = (title: string, text: string, callback: () => void) => {
     text,
     icon: "info",
     confirmButtonColor: "#3085d6",
-    confirmButtonText: "Đồng ý!",
+    confirmButtonText: "Đồng ý!"
   }).then((result) => {
     if (result.isConfirmed) callback();
   });
@@ -36,7 +36,7 @@ export const swalQuestion = (title: string, text: string, callback: () => void) 
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Đồng ý!",
-    cancelButtonText: "Hủy!",
+    cancelButtonText: "Hủy!"
   }).then((result) => {
     if (result.isConfirmed) callback();
   });

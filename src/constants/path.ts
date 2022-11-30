@@ -33,5 +33,5 @@ export const PATH = {
   product: "/product",
   productManage: "/dashboard/product",
   productAddNew: "/dashboard/product/add-new",
-  productUpdate: "/dashboard/product/update",
+  productUpdate: "/dashboard/product/update"
 };

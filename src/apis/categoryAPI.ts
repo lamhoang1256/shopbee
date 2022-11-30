@@ -21,5 +21,5 @@ export const categoryAPI = {
   updateCategory: (id: string, payload: IPayloadUpdateCategory): Promise<IResponse> => {
     const path = `api/category/${id}`;
     return axiosClient.put(path, payload);
-  },
+  }
 };

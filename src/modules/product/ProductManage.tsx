@@ -19,11 +19,11 @@ const ProductManage = () => {
   const { products, loading, pagination, fetchProducts, setSearchParams } = useFetchProducts();
   const formik = useFormik({
     initialValues: {
-      name: "",
+      name: ""
     },
     onSubmit: (values) => {
       setSearchParams(values);
-    },
+    }
   });
 
   const handleDeleteProduct = async (productId: string) => {
@@ -37,32 +37,32 @@ const ProductManage = () => {
   };
 
   return (
-    <Template title='Quản lí sản phẩm' desc='Thêm, xóa, sửa các sản phẩm của bạn'>
+    <Template title="Quản lí sản phẩm" desc="Thêm, xóa, sửa các sản phẩm của bạn">
       <Helmet>
         <title>Quản lí sản phẩm</title>
       </Helmet>
       <form
-        autoComplete='off'
+        autoComplete="off"
         onSubmit={formik.handleSubmit}
-        className='flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1'
+        className="flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1"
       >
         <Input
-          name='name'
-          className='w-full lg:!h-12'
+          name="name"
+          className="w-full lg:!h-12"
           value={formik.values.name}
           onChange={formik.handleChange}
-          placeholder='Tìm kiếm sản phẩm theo tên'
+          placeholder="Tìm kiếm sản phẩm theo tên"
         />
-        <Button primary className='flex-shrink-0 lg:h-12'>
+        <Button primary className="flex-shrink-0 lg:h-12">
           Tìm kiếm
         </Button>
       </form>
       {loading && <Loading />}
       {!loading && products.length > 0 && (
         <>
-          <div className='tables'>
+          <div className="tables">
             <table>
-              <thead className=''>
+              <thead className="">
                 <tr>
                   <th>STT</th>
                   <th>Tên sản phẩm</th>
@@ -77,22 +77,22 @@ const ProductManage = () => {
                 {products?.map((product, index) => (
                   <tr key={product._id}>
                     <td>{index + 1}</td>
-                    <td className='w-[300px]'>
-                      <p className='!whitespace-pre-line line-clamp-2'>{product.name}</p>
+                    <td className="w-[300px]">
+                      <p className="!whitespace-pre-line line-clamp-2">{product.name}</p>
                     </td>
                     <td>
                       <ProductImage
                         src={product.image}
-                        className='border rounded w-14 h-14 border-slate-200'
+                        className="border rounded w-14 h-14 border-slate-200"
                       />
                     </td>
                     <td>{product.stock}</td>
                     <td>{formatMoney(product.oldPrice)}</td>
                     <td>
-                      <PriceSale className='text-sm'>{product.price}</PriceSale>
+                      <PriceSale className="text-sm">{product.price}</PriceSale>
                     </td>
                     <td>
-                      <div className='flex gap-x-1'>
+                      <div className="flex gap-x-1">
                         <Button to={`${PATH.productUpdate}/${product._id}`}>Sửa</Button>
                         <Button onClick={() => swalDelete(() => handleDeleteProduct(product._id))}>
                           Xóa

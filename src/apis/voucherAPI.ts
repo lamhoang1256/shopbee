@@ -3,7 +3,7 @@ import {
   IPayloadAddNewVoucher,
   IPayloadUpdateVoucher,
   IResponse,
-  IVoucherSearchParams,
+  IVoucherSearchParams
 } from "@types";
 import axiosClient from "./axiosClient";
 
@@ -39,5 +39,5 @@ export const voucherAPI = {
   deleteVoucher: (id: string): Promise<IResponse> => {
     const path = `api/voucher/${id}`;
     return axiosClient.delete(path);
-  },
+  }
 };

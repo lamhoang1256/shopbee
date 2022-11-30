@@ -12,7 +12,7 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
   constructor(props: IErrorBoundaryProps) {
     super(props);
     this.state = {
-      hasError: false,
+      hasError: false
     };
   }
 
@@ -30,7 +30,7 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
     const { children } = this.props;
     if (hasError) {
       return (
-        <p className='p-4 text-base font-medium text-center text-red-500 bg-red-100'>
+        <p className="p-4 text-base font-medium text-center text-red-500 bg-red-100">
           Đã xảy ra lỗi
         </p>
       );

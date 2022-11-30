@@ -18,6 +18,6 @@ export default function useFetchCarts() {
     if (currentUser?._id) fetchCarts();
   }, [currentUser]);
   return {
-    fetchCarts,
+    fetchCarts
   };
 }

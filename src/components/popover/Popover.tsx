@@ -11,8 +11,8 @@ const Popover = ({ active, children, className }: PopoverProps) => {
     <>
       {active && (
         <div className={classNames("popover", className)}>
-          <span className='popover-arrow' />
-          <div className='popover-content'>{children}</div>
+          <span className="popover-arrow" />
+          <div className="popover-content">{children}</div>
         </div>
       )}
     </>

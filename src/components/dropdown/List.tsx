@@ -10,7 +10,7 @@ const List = ({ children }: ListProps) => {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {show && (
-        <div className='absolute left-0 z-20 w-full bg-white rounded-sm shadow1 top-full max-h-[300px] overflow-y-auto'>
+        <div className="absolute left-0 z-20 w-full bg-white rounded-sm shadow1 top-full max-h-[300px] overflow-y-auto">
           {children}
         </div>
       )}

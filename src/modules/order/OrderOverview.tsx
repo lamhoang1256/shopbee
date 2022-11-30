@@ -8,10 +8,10 @@ interface OrderOverviewProps {
 const OrderOverview = ({ order }: OrderOverviewProps) => {
   return (
     <>
-      <div className='mt-6 md:mt-14 gradient-line' />
-      <div className='grid grid-cols-1 pt-5 text-xs md:text-sm gap-x-6 gap-y-3 lg:grid-cols-2'>
+      <div className="mt-6 md:mt-14 gradient-line" />
+      <div className="grid grid-cols-1 pt-5 text-xs md:text-sm gap-x-6 gap-y-3 lg:grid-cols-2">
         <div>
-          <h3 className='mb-1 text-lg'>Chi tiết đơn hàng</h3>
+          <h3 className="mb-1 text-lg">Chi tiết đơn hàng</h3>
           <p>Mã đơn hàng: {order?._id}</p>
           <p>Đặt lúc: {formatDateVNFull(order?.createdAt)}</p>
           <p>
@@ -21,7 +21,7 @@ const OrderOverview = ({ order }: OrderOverviewProps) => {
           <p>Địa chỉ shop: {order?.shippingFrom}</p>
         </div>
         <div>
-          <h3 className='mb-1 text-lg'>Thông tin nhận hàng</h3>
+          <h3 className="mb-1 text-lg">Thông tin nhận hàng</h3>
           <p>Người nhận: {order?.user?.fullname}</p>
           <p>Email: {order?.user?.email}</p>
           <p>Địa chỉ nhận hàng: {order?.shippingTo}</p>

@@ -3,5 +3,5 @@ export const LocalStorage = {
   accessToken: "accessToken",
   refreshToken: "refreshToken",
   cart: "cart",
-  history: "history",
+  history: "history"
 };

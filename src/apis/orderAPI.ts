@@ -29,5 +29,5 @@ export const orderAPI = {
   cancelOrder: (id: string, payload: IPayloadCancelOrder): Promise<IResponse> => {
     const path = `api/order/${id}/canceled`;
     return axiosClient.put(path, payload);
-  },
+  }
 };

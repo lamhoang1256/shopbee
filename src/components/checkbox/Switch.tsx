@@ -9,11 +9,11 @@ const Switch = ({ name = "switch", checked, handleOnChangeSwitch }: SwitchProps)
     if (handleOnChangeSwitch) handleOnChangeSwitch(e.target.checked);
   };
   return (
-    <label htmlFor={name} className='relative inline-flex items-center cursor-pointer'>
+    <label htmlFor={name} className="relative inline-flex items-center cursor-pointer">
       <input
-        type='checkbox'
+        type="checkbox"
         id={name}
-        className='sr-only peer'
+        className="sr-only peer"
         checked={checked}
         onChange={onChangeSwitch}
       />
@@ -23,7 +23,7 @@ const Switch = ({ name = "switch", checked, handleOnChangeSwitch }: SwitchProps)
 };
 
 Switch.defaultProps = {
-  handleOnChangeSwitch: () => {},
+  handleOnChangeSwitch: () => {}
 };
 
 export default Switch;

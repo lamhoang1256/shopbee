@@ -17,7 +17,7 @@ const tabs = [
   { key: "processing", display: "Đã thanh toán", to: `${PATH.order}?status=processing` },
   { key: "shipping", display: "Đang giao hàng", to: `${PATH.order}?status=shipping` },
   { key: "delivered", display: "Đã giao hàng", to: `${PATH.order}?status=delivered` },
-  { key: "canceled", display: "Đã hủy", to: `${PATH.order}?status=canceled` },
+  { key: "canceled", display: "Đã hủy", to: `${PATH.order}?status=canceled` }
 ];
 
 const OrderPage = () => {
@@ -31,7 +31,7 @@ const OrderPage = () => {
     initialValues: { orderId: "" },
     onSubmit: (values) => {
       setSearchParams(values);
-    },
+    }
   });
 
   useEffect(() => {
@@ -56,13 +56,13 @@ const OrderPage = () => {
         <title>Đơn hàng của bạn</title>
       </Helmet>
       <Tabs tabs={tabs} query={status} />
-      <form onSubmit={formik.handleSubmit} autoComplete='off'>
+      <form onSubmit={formik.handleSubmit} autoComplete="off">
         <InputSearch
-          name='orderId'
-          className='mt-3'
+          name="orderId"
+          className="mt-3"
           value={formik.values.orderId}
           onChange={formik.handleChange}
-          placeholder='Tìm kiếm theo đơn hàng theo ID'
+          placeholder="Tìm kiếm theo đơn hàng theo ID"
         />
       </form>
       {loading && <Loading />}

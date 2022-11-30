@@ -23,23 +23,23 @@ const ShopUpdate = () => {
       address: "",
       city: { id: "", name: "" },
       district: { id: "", name: "" },
-      ward: { id: "", name: "" },
+      ward: { id: "", name: "" }
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Vui lòng nhập tên shop!"),
       street: Yup.string().required("Vui lòng nhập địa chỉ lấy hàng!"),
       city: Yup.object().shape({
         id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
-        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+        name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!")
       }),
       district: Yup.object().shape({
         id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
-        name: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+        name: Yup.string().required("Vui lòng chọn Quận/Huyện!")
       }),
       ward: Yup.object().shape({
         id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
-        name: Yup.string().required("Vui lòng chọn Phường/Xã!"),
-      }),
+        name: Yup.string().required("Vui lòng chọn Phường/Xã!")
+      })
     }),
     onSubmit: async (values) => {
       try {
@@ -50,7 +50,7 @@ const ShopUpdate = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
   const handleChangeAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
@@ -67,32 +67,32 @@ const ShopUpdate = () => {
   }, [shopInfo]);
 
   return (
-    <Template title='Quản lí thông tin shop' desc='Vui lòng nhập đầy đủ thông tin shop'>
+    <Template title="Quản lí thông tin shop" desc="Vui lòng nhập đầy đủ thông tin shop">
       <Helmet>
         <title>Cập nhật thông tin shop</title>
       </Helmet>
       <form
-        autoComplete='off'
+        autoComplete="off"
         onSubmit={formik.handleSubmit}
-        className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'
+        className="flex flex-col-reverse gap-8 mt-6 lg:flex-row"
       >
-        <div className='max-w-[600px]'>
+        <div className="max-w-[600px]">
           <FormGroup>
-            <Label htmlFor='name'>Tên shop:</Label>
-            <Input name='name' value={formik.values.name} onChange={formik.handleChange} />
+            <Label htmlFor="name">Tên shop:</Label>
+            <Input name="name" value={formik.values.name} onChange={formik.handleChange} />
             <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
           </FormGroup>
-          <FormGroup className='mb-0'>
-            <Label htmlFor='address'>Địa chỉ shop:</Label>
+          <FormGroup className="mb-0">
+            <Label htmlFor="address">Địa chỉ shop:</Label>
             <Administrative formik={formik} />
             <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='street'>Địa chỉ lấy hàng cụ thể</Label>
-            <Input name='street' value={formik.values.street} onChange={formik.handleChange} />
+            <Label htmlFor="street">Địa chỉ lấy hàng cụ thể</Label>
+            <Input name="street" value={formik.values.street} onChange={formik.handleChange} />
             <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
           </FormGroup>
-          <Button type='submit' primary className='w-full h-10'>
+          <Button type="submit" primary className="w-full h-10">
             Lưu
           </Button>
         </div>

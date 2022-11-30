@@ -18,7 +18,7 @@ enum InputFocus {
   name = "name",
   number = "number",
   expiry = "expiry",
-  cvc = "cvc",
+  cvc = "cvc"
 }
 const UserCreditCard = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
@@ -28,7 +28,7 @@ const UserCreditCard = () => {
       number: "",
       name: "",
       expiry: "",
-      cvc: "",
+      cvc: ""
     },
     validationSchema: Yup.object({
       number: Yup.string()
@@ -46,7 +46,7 @@ const UserCreditCard = () => {
       cvc: Yup.string()
         .required("Vui lòng mã bảo vệ CVC!")
         .min(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!")
-        .max(3, "Mã bảo vệ CVC tối đa bao gồm 3 kí tự!"),
+        .max(3, "Mã bảo vệ CVC tối đa bao gồm 3 kí tự!")
     }),
     onSubmit: async (values) => {
       try {
@@ -57,7 +57,7 @@ const UserCreditCard = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
   const handleInputFocus = (e: any) => setFocus(e.target.name);
   useEffect(() => {
@@ -65,16 +65,16 @@ const UserCreditCard = () => {
   }, [currentUser]);
 
   return (
-    <Template title='Thẻ Tín Dụng/Ghi Nợ' desc='Thêm tài khoản ngân hàng'>
+    <Template title="Thẻ Tín Dụng/Ghi Nợ" desc="Thêm tài khoản ngân hàng">
       <Helmet>
         <title>Ngân hàng</title>
       </Helmet>
-      <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
-        <form className='w-full max-w-[500px]' onSubmit={formik.handleSubmit} autoComplete='off'>
+      <div className="flex flex-col-reverse gap-8 mt-6 lg:flex-row">
+        <form className="w-full max-w-[500px]" onSubmit={formik.handleSubmit} autoComplete="off">
           <FormGroup>
-            <Label htmlFor='name'>Họ và tên</Label>
+            <Label htmlFor="name">Họ và tên</Label>
             <Input
-              name='name'
+              name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
               onFocus={handleInputFocus}
@@ -82,20 +82,20 @@ const UserCreditCard = () => {
             <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor='number'>Số thẻ</Label>
+            <Label htmlFor="number">Số thẻ</Label>
             <Input
-              name='number'
+              name="number"
               value={formik.values.number}
               onChange={formik.handleChange}
               onFocus={handleInputFocus}
             />
             <MessageError>{formik.touched.number && formik.errors?.number}</MessageError>
           </FormGroup>
-          <div className='grid lg:grid-cols-2 gap-x-3'>
+          <div className="grid lg:grid-cols-2 gap-x-3">
             <FormGroup>
-              <Label htmlFor='expiry'>Hết hạn</Label>
+              <Label htmlFor="expiry">Hết hạn</Label>
               <Input
-                name='expiry'
+                name="expiry"
                 value={formik.values.expiry}
                 onChange={formik.handleChange}
                 onFocus={handleInputFocus}
@@ -103,9 +103,9 @@ const UserCreditCard = () => {
               <MessageError>{formik.touched.expiry && formik.errors?.expiry}</MessageError>
             </FormGroup>
             <FormGroup>
-              <Label htmlFor='cvc'>CVG</Label>
+              <Label htmlFor="cvc">CVG</Label>
               <Input
-                name='cvc'
+                name="cvc"
                 value={formik.values.cvc}
                 onChange={formik.handleChange}
                 onFocus={handleInputFocus}
@@ -113,11 +113,11 @@ const UserCreditCard = () => {
               <MessageError>{formik.touched.cvc && formik.errors?.cvc}</MessageError>
             </FormGroup>
           </div>
-          <Button type='submit' primary className='w-full h-10'>
+          <Button type="submit" primary className="w-full h-10">
             Lưu
           </Button>
         </form>
-        <div className='lg:mt-6'>
+        <div className="lg:mt-6">
           <Cards
             focused={focus}
             number={formik.values.number}

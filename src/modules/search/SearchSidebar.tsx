@@ -6,7 +6,7 @@ import SearchRemoveAll from "./SearchRemoveAll";
 
 const SearchSidebar = () => {
   return (
-    <Sidebar labelOpenSidebar='Bộ lọc'>
+    <Sidebar labelOpenSidebar="Bộ lọc">
       <SearchByCategory />
       <SearchRangePrice />
       <SearchByRating />

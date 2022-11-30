@@ -21,13 +21,13 @@ const CategoryManage = () => {
   };
 
   return (
-    <Template title='Quản lí danh mục' desc='Thêm, xóa, sửa các danh mục sản phẩm'>
+    <Template title="Quản lí danh mục" desc="Thêm, xóa, sửa các danh mục sản phẩm">
       <Helmet>
         <title>Quản lí danh mục</title>
       </Helmet>
       {loading && <Loading />}
       {!loading && categories.length > 0 && (
-        <div className='tables'>
+        <div className="tables">
           <table>
             <thead>
               <tr>
@@ -42,19 +42,19 @@ const CategoryManage = () => {
               {categories?.map((category, index) => (
                 <tr key={category._id}>
                   <td>{index + 1}</td>
-                  <td className='w-[300px]'>
-                    <p className='!whitespace-pre-line line-clamp-2'>{category.name}</p>
+                  <td className="w-[300px]">
+                    <p className="!whitespace-pre-line line-clamp-2">{category.name}</p>
                   </td>
                   <td>
                     <img
                       src={category.image}
                       alt={category.slug}
-                      className='border rounded w-14 h-14 border-slate-200'
+                      className="border rounded w-14 h-14 border-slate-200"
                     />
                   </td>
                   <td>{category.slug}</td>
                   <td>
-                    <div className='flex gap-x-1'>
+                    <div className="flex gap-x-1">
                       <Button to={`${PATH.categoryUpdate}/${category._id}`}>Sửa</Button>
                       <Button onClick={() => swalDelete(() => handleDeleteCategory(category._id))}>
                         Xóa

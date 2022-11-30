@@ -11,7 +11,7 @@ const PriceOld = ({ children, className }: PriceOldProps) => {
 };
 
 PriceOld.defaultProps = {
-  className: "text-[#666]",
+  className: "text-[#666]"
 };
 
 export default PriceOld;

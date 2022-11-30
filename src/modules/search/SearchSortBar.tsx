@@ -22,51 +22,51 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
   };
 
   return (
-    <div className='bg-[#00000008] flex items-center justify-between whitespace-nowrap p-3 overflow-auto gap-x-8'>
-      <div className='flex items-center gap-x-3 '>
+    <div className="bg-[#00000008] flex items-center justify-between whitespace-nowrap p-3 overflow-auto gap-x-8">
+      <div className="flex items-center gap-x-3 ">
         <span>Sắp xếp theo</span>
         <Button
           primary={sortBy === "view" || sortBy === null}
-          className='py-0 rounded-sm h-9'
+          className="py-0 rounded-sm h-9"
           onClick={() => setSearchParams({ ...currentParams, sort_by: "view" })}
         >
           Phổ biến
         </Button>
         <Button
           primary={sortBy === "createdAt"}
-          className='py-0 rounded-sm h-9'
+          className="py-0 rounded-sm h-9"
           onClick={() => setSearchParams({ ...currentParams, sort_by: "createdAt" })}
         >
           Mới nhất
         </Button>
         <Button
           primary={sortBy === "sold"}
-          className='py-0 rounded-sm h-9'
+          className="py-0 rounded-sm h-9"
           onClick={() => setSearchParams({ ...currentParams, sort_by: "sold" })}
         >
           Bán chạy
         </Button>
         <Select
-          name='sortPrice'
-          id='sortPrice'
-          className='h-9 py-0 px-2 border border-[#00000017] outline-none'
+          name="sortPrice"
+          id="sortPrice"
+          className="h-9 py-0 px-2 border border-[#00000017] outline-none"
           onChange={handleSortByPrice}
         >
           <Option disabled>Giá</Option>
-          <Option value='asc'>Giá: Thấp đến Cao</Option>
-          <Option value='desc'>Giá: Cao đến Thấp</Option>
+          <Option value="asc">Giá: Thấp đến Cao</Option>
+          <Option value="desc">Giá: Cao đến Thấp</Option>
         </Select>
       </div>
-      <div className='flex items-center'>
-        <div className='mr-3'>
-          <span className='text-orangeee4'>{currentPage || 1}</span>
+      <div className="flex items-center">
+        <div className="mr-3">
+          <span className="text-orangeee4">{currentPage || 1}</span>
           <span>/{pagination.totalPage || 1}</span>
         </div>
         <ButtonPagination onClick={goPrevPage} primary={pagination.page > 1}>
-          <IconPrev className='w-3 h-3' />
+          <IconPrev className="w-3 h-3" />
         </ButtonPagination>
         <ButtonPagination onClick={goNextPage} primary={pagination.totalPage > currentPage}>
-          <IconNext className='w-3 h-3' />
+          <IconNext className="w-3 h-3" />
         </ButtonPagination>
       </div>
     </div>

@@ -29,20 +29,20 @@ const Menu = () => {
     <div>
       {currentUser?.email ? (
         <div
-          className='relative h-full w-max max5se:max-w-[130px]'
+          className="relative h-full w-max max5se:max-w-[130px]"
           onMouseEnter={showPopover}
           onMouseLeave={hidePopover}
         >
-          <div className='flex items-center justify-end h-full gap-x-2 transition-all duration-100 hover:text-[#ffffffb3] cursor-pointer'>
+          <div className="flex items-center justify-end h-full gap-x-2 transition-all duration-100 hover:text-[#ffffffb3] cursor-pointer">
             <UserAvatar
               urlAvatar={currentUser?.avatar}
-              className='object-cover w-5 h-5 rounded-full'
+              className="object-cover w-5 h-5 rounded-full"
             />
-            <span className='font-medium max5se:line-clamp-1 '>
+            <span className="font-medium max5se:line-clamp-1 ">
               {currentUser?.fullname || "User"}
             </span>
           </div>
-          <Popover active={activePopover} className='w-max'>
+          <Popover active={activePopover} className="w-max">
             {currentUser.isAdmin && (
               <Link to={PATH.dashboard} className={stylesPopoverLink}>
                 Dashboard
@@ -55,7 +55,7 @@ const Menu = () => {
               Đơn mua
             </Link>
             <button
-              type='button'
+              type="button"
               onClick={handleLogout}
               className={classNames(stylesPopoverLink, "w-full text-left")}
             >
@@ -64,11 +64,11 @@ const Menu = () => {
           </Popover>
         </div>
       ) : (
-        <div className='flex gap-x-4'>
-          <Link to={PATH.signUp} className='transition-all duration-100 hover:opacity-70'>
+        <div className="flex gap-x-4">
+          <Link to={PATH.signUp} className="transition-all duration-100 hover:opacity-70">
             Đăng kí
           </Link>
-          <Link to={PATH.signIn} className='transition-all duration-100 hover:opacity-70'>
+          <Link to={PATH.signIn} className="transition-all duration-100 hover:opacity-70">
             Đăng nhập
           </Link>
         </div>

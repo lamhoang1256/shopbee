@@ -62,25 +62,25 @@ const BannerManage = () => {
   }, []);
 
   return (
-    <Template title='Quản lí banner' desc='Thêm, xóa, sửa các banner của trang chủ'>
+    <Template title="Quản lí banner" desc="Thêm, xóa, sửa các banner của trang chủ">
       <Helmet>
         <title>Quản lí banner</title>
       </Helmet>
       {loading && <Loading />}
       {!loading && (
-        <div className='grid gap-4 mt-4 lg:grid-cols-2'>
+        <div className="grid gap-4 mt-4 lg:grid-cols-2">
           <ImageUpload
-            previewImage=''
+            previewImage=""
             onChange={handleAddNewBanner}
-            className='!w-full aspect-auto'
+            className="!w-full aspect-auto"
           />
           {banners.map((banner) => (
-            <div className='relative' key={banner._id}>
-              <img src={banner.bannerUrl} alt='banner' className='rounded-md' />
-              <div className='absolute inset-0'>
+            <div className="relative" key={banner._id}>
+              <img src={banner.bannerUrl} alt="banner" className="rounded-md" />
+              <div className="absolute inset-0">
                 <input
-                  type='file'
-                  className='w-full h-full opacity-0'
+                  type="file"
+                  className="w-full h-full opacity-0"
                   onChange={(e) => handleUpdateBanner(e, banner._id)}
                 />
               </div>

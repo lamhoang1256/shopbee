@@ -13,20 +13,20 @@ const stylesActive =
 const ButtonPagination = ({ children, className, primary, ...props }: ButtonPaginationProps) => {
   if (primary) {
     return (
-      <button type='button' className={classNames(stylesNormal, className)} {...props}>
+      <button type="button" className={classNames(stylesNormal, className)} {...props}>
         {children}
       </button>
     );
   }
   return (
-    <button disabled type='button' className={classNames(stylesActive, className)} {...props}>
+    <button disabled type="button" className={classNames(stylesActive, className)} {...props}>
       {children}
     </button>
   );
 };
 
 ButtonPagination.defaultProps = {
-  primary: false,
+  primary: false
 };
 
 export default ButtonPagination;

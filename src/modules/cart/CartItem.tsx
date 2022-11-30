@@ -33,28 +33,28 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
   const onChangeQuantity = (value: number) => handleAddToCart(value);
 
   return (
-    <div className='border-[#00000017] my-3 border p-4 flex items-center gap-3'>
-      <ProductImage className='w-24 lg:w-20' src={cartItem.product.image} />
-      <div className='flex flex-col flex-1 md:flex-row'>
-        <ProductTitle styleLink='md:w-[40%]' to={`${PATH.product}/${cartItem.product._id}`}>
+    <div className="border-[#00000017] my-3 border p-4 flex items-center gap-3">
+      <ProductImage className="w-24 lg:w-20" src={cartItem.product.image} />
+      <div className="flex flex-col flex-1 md:flex-row">
+        <ProductTitle styleLink="md:w-[40%]" to={`${PATH.product}/${cartItem.product._id}`}>
           {cartItem.product.name}
         </ProductTitle>
-        <div className='flex flex-col justify-between flex-1 gap-y-2 md:flex-row'>
-          <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2'>
+        <div className="flex flex-col justify-between flex-1 gap-y-2 md:flex-row">
+          <div className="flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2">
             <PriceOld>{cartItem.product.oldPrice}</PriceOld>
             <PriceSale>{cartItem.product.price}</PriceSale>
           </div>
-          <div className='flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2'>
+          <div className="flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2">
             {cartItem.product.stock ? (
               <QuantityController
-                className='quantity-cart-item'
+                className="quantity-cart-item"
                 defaultQuantity={cartItem.quantity}
                 onChangeValue={onChangeQuantity}
               />
             ) : (
-              <span className='text-base text-redff4'>Hết hàng</span>
+              <span className="text-base text-redff4">Hết hàng</span>
             )}
-            <button type='button' onClick={handleRemoveCartItem}>
+            <button type="button" onClick={handleRemoveCartItem}>
               Xóa
             </button>
           </div>

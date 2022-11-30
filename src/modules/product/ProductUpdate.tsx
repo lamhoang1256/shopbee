@@ -36,7 +36,7 @@ const ProductUpdate = () => {
       rating: 0,
       stock: 0,
       sold: 0,
-      view: getRandomInt(0, 10000),
+      view: getRandomInt(0, 10000)
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Vui lòng nhập tên sản phẩm!"),
@@ -47,7 +47,7 @@ const ProductUpdate = () => {
       price: Yup.number()
         .required()
         .max(Yup.ref("oldPrice"), "Giá đã giảm không được lớn hơn giá gốc"),
-      stock: Yup.number().required("Vui lòng chọn số lượng!"),
+      stock: Yup.number().required("Vui lòng chọn số lượng!")
     }),
     onSubmit: async (values) => {
       try {
@@ -58,7 +58,7 @@ const ProductUpdate = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
   const handleUpdateImage = async (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const newImgUrl = await uploadImage(e);
@@ -78,23 +78,23 @@ const ProductUpdate = () => {
   if (!id) return <PageNotFound />;
   return (
     <Template
-      title='Sửa thông tin sản phẩm'
-      desc='Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn'
+      title="Sửa thông tin sản phẩm"
+      desc="Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn"
     >
       <Helmet>
         <title>Cập nhật sản phẩm</title>
       </Helmet>
-      <form onSubmit={formik.handleSubmit} autoComplete='off'>
-        <div className='flex flex-col-reverse gap-8 mt-6 lg:flex-row'>
-          <div className='max-w-[600px]'>
+      <form onSubmit={formik.handleSubmit} autoComplete="off">
+        <div className="flex flex-col-reverse gap-8 mt-6 lg:flex-row">
+          <div className="max-w-[600px]">
             <FormGroup>
-              <Label htmlFor='name'>Tên sản phẩm</Label>
-              <Input name='name' value={formik.values.name} onChange={formik.handleChange} />
+              <Label htmlFor="name">Tên sản phẩm</Label>
+              <Input name="name" value={formik.values.name} onChange={formik.handleChange} />
               <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
             </FormGroup>
             <FormGroup>
-              <Label htmlFor='category'>Chọn danh mục</Label>
-              <Select name='category' onChange={formik.handleChange} value={formik.values.category}>
+              <Label htmlFor="category">Chọn danh mục</Label>
+              <Select name="category" onChange={formik.handleChange} value={formik.values.category}>
                 <Option disabled>Chọn danh mục</Option>
                 {categories?.map((category) => (
                   <Option value={category._id} key={category._id}>
@@ -104,32 +104,32 @@ const ProductUpdate = () => {
               </Select>
               <MessageError>{formik.touched.category && formik.errors?.category}</MessageError>
             </FormGroup>
-            <div className='grid md:grid-cols-3 gap-x-2'>
+            <div className="grid md:grid-cols-3 gap-x-2">
               <FormGroup>
-                <Label htmlFor='stock'>Số lượng hiện có</Label>
+                <Label htmlFor="stock">Số lượng hiện có</Label>
                 <Input
-                  name='stock'
-                  type='number'
+                  name="stock"
+                  type="number"
                   value={formik.values.stock}
                   onChange={formik.handleChange}
                 />
                 <MessageError>{formik.touched.stock && formik.errors?.stock}</MessageError>
               </FormGroup>
               <FormGroup>
-                <Label htmlFor='oldPrice'>Giá gốc</Label>
+                <Label htmlFor="oldPrice">Giá gốc</Label>
                 <Input
-                  name='oldPrice'
-                  type='number'
+                  name="oldPrice"
+                  type="number"
                   value={formik.values.oldPrice}
                   onChange={formik.handleChange}
                 />
                 <MessageError>{formik.touched.oldPrice && formik.errors?.oldPrice}</MessageError>
               </FormGroup>
               <FormGroup>
-                <Label htmlFor='price'>Giá đã giảm</Label>
+                <Label htmlFor="price">Giá đã giảm</Label>
                 <Input
-                  name='price'
-                  type='number'
+                  name="price"
+                  type="number"
                   value={formik.values.price}
                   onChange={formik.handleChange}
                 />
@@ -139,16 +139,16 @@ const ProductUpdate = () => {
           </div>
           <FormGroup>
             <Label>Chọn ảnh sản phẩm</Label>
-            <div className='flex flex-wrap gap-3'>
+            <div className="flex flex-wrap gap-3">
               {[0, 1, 2, 3, 4].map((index) => (
-                <div className='relative' key={index}>
+                <div className="relative" key={index}>
                   <ImageUpload
-                    className='!w-24'
+                    className="!w-24"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateImage(e, index)}
                     previewImage={formik.values.images[index]}
                   />
                   {formik.values.images[index] && (
-                    <ActionDelete className='!w-5 !h-5' onClick={() => handleRemoveImage(index)} />
+                    <ActionDelete className="!w-5 !h-5" onClick={() => handleRemoveImage(index)} />
                   )}
                 </div>
               ))}
@@ -157,16 +157,16 @@ const ProductUpdate = () => {
           </FormGroup>
         </div>
         <FormGroup>
-          <Label htmlFor='description'>Mô tả sản phẩm</Label>
+          <Label htmlFor="description">Mô tả sản phẩm</Label>
           <ReactQuill
-            className='mt-1'
-            theme='snow'
+            className="mt-1"
+            theme="snow"
             value={formik.values.description}
             onChange={(e) => formik.setFieldValue("description", e)}
           />
           <MessageError>{formik.touched.description && formik.errors?.description}</MessageError>
         </FormGroup>
-        <Button type='submit' primary className='w-full h-10'>
+        <Button type="submit" primary className="w-full h-10">
           Cập nhật sản phẩm
         </Button>
       </form>

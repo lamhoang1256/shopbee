@@ -20,7 +20,7 @@ const ModalAddReview = ({
   isOpen,
   closeModal,
   productReview,
-  fetchReviews,
+  fetchReviews
 }: ModalAddReviewProps) => {
   const { id = "" } = useParams();
   const [rating, setRating] = useState(0);
@@ -51,29 +51,29 @@ const ModalAddReview = ({
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel='Thêm bình luận mới'
-      className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
+      contentLabel="Thêm bình luận mới"
+      className="max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md"
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
-      <div className='flex gap-x-2'>
-        <ProductImage src={productReview.image} className='w-10 h-10' />
+      <div className="flex gap-x-2">
+        <ProductImage src={productReview.image} className="w-10 h-10" />
         <div>
-          <ProductTitle className='font-medium line-clamp-1'>{productReview.name}</ProductTitle>
+          <ProductTitle className="font-medium line-clamp-1">{productReview.name}</ProductTitle>
           <span>Shopbee</span>
         </div>
       </div>
-      <div className='my-3'>
-        <h2 className='text-lg font-semibold text-center'>Vui lòng đánh giá</h2>
+      <div className="my-3">
+        <h2 className="text-lg font-semibold text-center">Vui lòng đánh giá</h2>
         <ReviewSelectStar rating={rating} setRating={setRating} />
         <Textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder='Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé.'
+          placeholder="Hãy chia sẻ cảm nhận, đánh giá của bạn về sản phẩm này nhé."
         />
       </div>
-      <div className='flex gap-x-2'>
+      <div className="flex gap-x-2">
         <Button
-          className='w-full'
+          className="w-full"
           onClick={() => {
             closeModal();
             setComment("");
@@ -81,7 +81,7 @@ const ModalAddReview = ({
         >
           Hủy
         </Button>
-        <Button primary className='w-full' onClick={handleAddNewReview}>
+        <Button primary className="w-full" onClick={handleAddNewReview}>
           Gửi đánh giá
         </Button>
       </div>

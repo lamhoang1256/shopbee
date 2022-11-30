@@ -3,13 +3,13 @@ import queryString from "query-string";
 import {
   getAccessTokenLocalStorage,
   getRefreshTokenLocalStorage,
-  setCurrentUserLocalStorage,
+  setCurrentUserLocalStorage
 } from "utils/localStorage";
 
 const BASE_URL_API = process.env.REACT_APP_API_URL;
 const axiosClient = axios.create({
   baseURL: BASE_URL_API,
-  paramsSerializer: (params) => queryString.stringify(params),
+  paramsSerializer: (params) => queryString.stringify(params)
 });
 
 const requestRefreshToken = async () => {
@@ -25,14 +25,14 @@ axiosClient.interceptors.request.use(
       ...config,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getAccessTokenLocalStorage()}`,
-      },
+        Authorization: `Bearer ${getAccessTokenLocalStorage()}`
+      }
     };
     return customConfig;
   },
   (err) => {
     return Promise.reject(err);
-  },
+  }
 );
 
 axiosClient.interceptors.response.use(
@@ -56,7 +56,7 @@ axiosClient.interceptors.response.use(
     }
     const errorResult = { ...response.data, status: response.status };
     return Promise.reject(errorResult);
-  },
+  }
 );
 
 export default axiosClient;

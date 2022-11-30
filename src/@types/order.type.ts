@@ -5,21 +5,21 @@ export enum OrderStatus {
   processing = "processing",
   shipping = "shipping",
   delivered = "delivered",
-  canceled = "canceled",
+  canceled = "canceled"
 }
 export enum OrderStatusVietnamese {
   waiting = "Đang chờ",
   processing = "Đang xử lí",
   shipping = "Đang giao hàng",
   delivered = "Đã giao hàng",
-  canceled = "Đã hủy",
+  canceled = "Đã hủy"
 }
 export enum OrderStatusCode {
   waiting = 0,
   processing = 1,
   shipping = 2,
   delivered = 3,
-  canceled = 4,
+  canceled = 4
 }
 export interface IOrderItem {
   product: IProduct;

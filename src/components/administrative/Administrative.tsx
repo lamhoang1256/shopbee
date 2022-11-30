@@ -25,7 +25,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
   };
 
   return (
-    <div className='grid gap-2 md:grid-cols-3'>
+    <div className="grid gap-2 md:grid-cols-3">
       <FormGroup>
         <Dropdown>
           <Dropdown.Select placeholder={city.name || "Chọn Tỉnh/Thành Phố"} />
@@ -54,7 +54,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
                 </Dropdown.Option>
               ))
             ) : (
-              <span className='inline-block p-2 text-sm line-clamp-1'>
+              <span className="inline-block p-2 text-sm line-clamp-1">
                 Chưa chọn Tỉnh/Thành Phố
               </span>
             )}
@@ -75,7 +75,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
                 </Dropdown.Option>
               ))
             ) : (
-              <span className='inline-block p-2 text-sm line-clamp-1'>Chưa chọn Quận/Huyện</span>
+              <span className="inline-block p-2 text-sm line-clamp-1">Chưa chọn Quận/Huyện</span>
             )}
           </Dropdown.List>
         </Dropdown>

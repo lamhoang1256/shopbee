@@ -48,7 +48,7 @@ const Review = ({ productId }: ReviewProps) => {
       )}
       {currentReviews.length > 0 && (
         <PaginationV2
-          className='mt-6 mb-2'
+          className="mt-6 mb-2"
           currentPage={currentPage}
           itemsPerPage={reviewsPerPage}
           handleChangePage={handleChangePage}

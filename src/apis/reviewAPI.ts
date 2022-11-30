@@ -21,5 +21,5 @@ export const reviewAPI = {
   deleteReview: (id: string): Promise<IResponse> => {
     const path = `api/review/${id}`;
     return axiosClient.delete(path);
-  },
+  }
 };

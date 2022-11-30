@@ -14,7 +14,7 @@ const SearchPage = () => {
     scrollTo();
   }, [searchParams]);
   return (
-    <div className='flex flex-col gap-6 mt-8 layout-container lg:flex-row'>
+    <div className="flex flex-col gap-6 mt-8 layout-container lg:flex-row">
       <Helmet>
         <title>
           {currentParams?.name
@@ -23,7 +23,7 @@ const SearchPage = () => {
         </title>
       </Helmet>
       <SearchSidebar />
-      <div className='flex-1'>
+      <div className="flex-1">
         <SearchSortBar pagination={pagination} />
         <ProductGrid products={products} />
         {products.length > 0 && <Pagination pagination={pagination} />}

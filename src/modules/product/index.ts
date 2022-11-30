@@ -29,5 +29,5 @@ export {
   ProductDesc,
   ProductManage,
   ProductNotFound,
-  ProductSaveWishlist,
+  ProductSaveWishlist
 };

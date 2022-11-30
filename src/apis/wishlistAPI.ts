@@ -13,5 +13,5 @@ export const wishlistAPI = {
   removeFromWishlist: (id: string): Promise<IResponse> => {
     const path = `api/wishlist?productId=${id}`;
     return axiosClient.delete(path);
-  },
+  }
 };

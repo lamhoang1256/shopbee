@@ -34,23 +34,23 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel='Hủy đơn hàng'
-      className='max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md'
+      contentLabel="Hủy đơn hàng"
+      className="max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md"
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div>
-        <h2 className='mt-4 text-lg font-semibold text-center'>
+        <h2 className="mt-4 text-lg font-semibold text-center">
           Vui lòng cho Shopbee biết lý do bạn hủy đơn
         </h2>
         <Textarea
           value={reasonCancel}
           onChange={(e) => setReasonCancel(e.target.value)}
-          placeholder='Hãy chia sẻ lý do bạn muốn hủy đơn hàng này nhé.'
+          placeholder="Hãy chia sẻ lý do bạn muốn hủy đơn hàng này nhé."
         />
       </div>
-      <div className='flex mt-4 gap-x-2'>
+      <div className="flex mt-4 gap-x-2">
         <Button
-          className='w-full'
+          className="w-full"
           onClick={() => {
             closeModal();
             setReasonCancel("");
@@ -58,7 +58,7 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
         >
           Trở về
         </Button>
-        <Button primary className='w-full' onClick={handleCancelOrder}>
+        <Button primary className="w-full" onClick={handleCancelOrder}>
           Hủy đơn hàng
         </Button>
       </div>

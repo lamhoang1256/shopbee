@@ -25,7 +25,7 @@ const ProductRelated = ({ categoryId }: ProductRelatedProps) => {
   if (relatedProduct.length === 0) return null;
   return (
     <>
-      <h3 className='my-3 text-[#0000008a] text-base font-medium'>SẢN PHẨM TƯƠNG TỰ</h3>
+      <h3 className="my-3 text-[#0000008a] text-base font-medium">SẢN PHẨM TƯƠNG TỰ</h3>
       <ProductGrid products={relatedProduct} />
     </>
   );

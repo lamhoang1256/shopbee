@@ -56,7 +56,7 @@ const AppRoutes = () => {
         <ScrollToTop />
         <Routes>
           <Route
-            path='/'
+            path="/"
             element={
               <ErrorBoundary>
                 <LayoutHome />
@@ -125,11 +125,11 @@ const AppRoutes = () => {
             }
           >
             <Route
-              path='/'
+              path="/"
               element={
                 <Suspense fallback={<Fallback />}>
                   <ErrorBoundary>
-                    <LayoutAuth title='Đăng ký' />
+                    <LayoutAuth title="Đăng ký" />
                   </ErrorBoundary>
                 </Suspense>
               }
@@ -146,11 +146,11 @@ const AppRoutes = () => {
               />
             </Route>
             <Route
-              path='/'
+              path="/"
               element={
                 <Suspense fallback={<Fallback />}>
                   <ErrorBoundary>
-                    <LayoutAuth title='Đăng nhập' />
+                    <LayoutAuth title="Đăng nhập" />
                   </ErrorBoundary>
                 </Suspense>
               }
@@ -299,7 +299,7 @@ const AppRoutes = () => {
               }
             >
               <Route
-                path='/dashboard'
+                path="/dashboard"
                 element={
                   <Suspense fallback={<Fallback />}>
                     <ErrorBoundary>
@@ -483,7 +483,7 @@ const AppRoutes = () => {
           </Route>
 
           <Route
-            path='*'
+            path="*"
             element={
               <Suspense fallback={<Fallback />}>
                 <ErrorBoundary>

@@ -10,7 +10,7 @@ interface ProductGridProps {
 
 const ProductGrid = ({ products, loading }: ProductGridProps) => {
   return (
-    <div className='mt-3 product-grid'>
+    <div className="mt-3 product-grid">
       {loading &&
         Array(12)
           .fill(0)
@@ -21,7 +21,7 @@ const ProductGrid = ({ products, loading }: ProductGridProps) => {
 };
 
 ProductGrid.defaultProps = {
-  loading: false,
+  loading: false
 };
 
 export default ProductGrid;

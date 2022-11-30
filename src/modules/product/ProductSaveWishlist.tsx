@@ -48,17 +48,17 @@ const SaveWishlist = () => {
   }, [id, currentUser]);
 
   return (
-    <div className='flex items-center gap-x-2'>
+    <div className="flex items-center gap-x-2">
       {isSaved ? (
-        <button type='button' onClick={handleRemoveFromWishlist}>
+        <button type="button" onClick={handleRemoveFromWishlist}>
           <IconHeart active />
         </button>
       ) : (
-        <button type='button' onClick={handleAddToWishlist}>
+        <button type="button" onClick={handleAddToWishlist}>
           <IconHeart active={false} />
         </button>
       )}
-      <span className='text-base'>Đã thích</span>
+      <span className="text-base">Đã thích</span>
     </div>
   );
 };

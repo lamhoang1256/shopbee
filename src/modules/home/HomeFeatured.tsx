@@ -14,9 +14,9 @@ const HomeFeatured = () => {
     }
   }, [searchParams]);
   return (
-    <div className='layout-container' ref={sectionRef}>
+    <div className="layout-container" ref={sectionRef}>
       <SectionHeader>
-        <h2 className='text-base font-medium text-orangeee4'>GỢI Ý HÔM NAY</h2>
+        <h2 className="text-base font-medium text-orangeee4">GỢI Ý HÔM NAY</h2>
       </SectionHeader>
       <ProductGrid products={products} loading={loading} />
       {products.length > 0 && <Pagination pagination={pagination} />}

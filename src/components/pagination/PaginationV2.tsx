@@ -14,7 +14,7 @@ const PaginationV2 = ({
   currentPage,
   totalItems,
   handleChangePage,
-  className,
+  className
 }: PaginationV2Props) => {
   const totalPage: number[] = [];
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i += 1) {
@@ -25,8 +25,8 @@ const PaginationV2 = ({
       className={`flex flex-wrap gap-x-3 gap-y-2 text-[#00000066] justify-center items-center my-8 ${className}`}
     >
       <button
-        type='button'
-        className='cursor-pointer disabled:cursor-not-allowed'
+        type="button"
+        className="cursor-pointer disabled:cursor-not-allowed"
         onClick={() => handleChangePage(currentPage - 1)}
         disabled={currentPage <= 1}
       >
@@ -42,8 +42,8 @@ const PaginationV2 = ({
         </ButtonPage>
       ))}
       <button
-        type='button'
-        className='cursor-pointer disabled:cursor-not-allowed'
+        type="button"
+        className="cursor-pointer disabled:cursor-not-allowed"
         onClick={() => handleChangePage(currentPage + 1)}
         disabled={currentPage >= totalPage.length}
       >

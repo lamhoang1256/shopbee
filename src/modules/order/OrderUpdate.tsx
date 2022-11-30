@@ -74,10 +74,10 @@ const OrderUpdate = () => {
         <OrderProgress order={order} />
         <OrderOverview order={order} />
       </SectionWhite>
-      <SectionWhite className='mt-3'>
-        <div className='flex items-center gap-x-5'>
+      <SectionWhite className="mt-3">
+        <div className="flex items-center gap-x-5">
           <span>Trạng thái đơn hàng</span>
-          <Select name='status' onChange={handleUpdateStatusOrder}>
+          <Select name="status" onChange={handleUpdateStatusOrder}>
             <Option disabled>Trạng thái</Option>
             <Option value={OrderStatus.processing}>Đang xử lí</Option>
             <Option value={OrderStatus.shipping}>Đang vận chuyển</Option>
@@ -86,7 +86,7 @@ const OrderUpdate = () => {
           </Select>
         </div>
       </SectionWhite>
-      <SectionWhite className='mt-3'>
+      <SectionWhite className="mt-3">
         {order?.orderItems.map((orderItem) => (
           <OrderProduct order={orderItem} key={orderItem.product._id} />
         ))}

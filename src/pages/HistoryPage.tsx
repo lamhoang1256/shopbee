@@ -16,10 +16,10 @@ const HistoryPage = () => {
       <Helmet>
         <title>Lịch sử xem gần đây</title>
       </Helmet>
-      <div className='flex items-center justify-between'>
-        <h2 className='text-base font-medium'>Lịch sử xem gần đây</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-base font-medium">Lịch sử xem gần đây</h2>
         {history.length > 0 && (
-          <button type='button' onClick={handleClearHistory}>
+          <button type="button" onClick={handleClearHistory}>
             Xóa tất cả
           </button>
         )}
@@ -27,8 +27,8 @@ const HistoryPage = () => {
       {history.length > 0 ? (
         <ProductGrid products={history} />
       ) : (
-        <div className='flex flex-col items-center justify-center gap-2 h-[300px] mt-3'>
-          <img src='/images/history.png' alt='history' className='w-20 h-20' />
+        <div className="flex flex-col items-center justify-center gap-2 h-[300px] mt-3">
+          <img src="/images/history.png" alt="history" className="w-20 h-20" />
           <h3>Lịch sử xem trống</h3>
         </div>
       )}

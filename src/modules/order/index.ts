@@ -21,5 +21,5 @@ export {
   OrderManage,
   OrderOverview,
   OrderUpdate,
-  OrderHeader,
+  OrderHeader
 };

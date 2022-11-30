@@ -71,5 +71,5 @@ export {
   IconHiddenPassword,
   IconMinus,
   IconMenu,
-  IconCube,
+  IconCube
 };

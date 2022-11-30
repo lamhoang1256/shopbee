@@ -17,5 +17,5 @@ export const bannerAPI = {
   deleteBanner: (id: string): Promise<IResponse> => {
     const path = `api/banner/${id}`;
     return axiosClient.delete(path);
-  },
+  }
 };

@@ -20,7 +20,7 @@ const tabs = [
   { key: "processing", display: "Đã thanh toán", to: `${PATH.orderManage}?status=processing` },
   { key: "shipping", display: "Đang giao hàng", to: `${PATH.orderManage}?status=shipping` },
   { key: "delivered", display: "Đã giao hàng", to: `${PATH.orderManage}?status=delivered` },
-  { key: "canceled", display: "Đã hủy", to: `${PATH.orderManage}?status=canceled` },
+  { key: "canceled", display: "Đã hủy", to: `${PATH.orderManage}?status=canceled` }
 ];
 
 const OrderManage = () => {
@@ -34,7 +34,7 @@ const OrderManage = () => {
     initialValues: { orderId: "" },
     onSubmit: (values) => {
       setSearchParams(values);
-    },
+    }
   });
 
   const fetchAllOrder = async () => {
@@ -54,24 +54,24 @@ const OrderManage = () => {
   }, [searchParams]);
 
   return (
-    <Template title='Quản lí đơn hàng' desc='Danh sách các đơn hàng của shop'>
+    <Template title="Quản lí đơn hàng" desc="Danh sách các đơn hàng của shop">
       <Helmet>
         <title>Quản lí đơn hàng</title>
       </Helmet>
-      <Tabs tabs={tabs} query={status} className='border-[#efefef] border-b' />
+      <Tabs tabs={tabs} query={status} className="border-[#efefef] border-b" />
       <form
-        autoComplete='off'
+        autoComplete="off"
         onSubmit={formik.handleSubmit}
-        className='flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1'
+        className="flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1"
       >
         <Input
-          name='orderId'
-          className='w-full'
+          name="orderId"
+          className="w-full"
           value={formik.values.orderId}
           onChange={formik.handleChange}
-          placeholder='Tìm kiếm đơn hàng theo ID'
+          placeholder="Tìm kiếm đơn hàng theo ID"
         />
-        <Button primary className='flex-shrink-0 h-10'>
+        <Button primary className="flex-shrink-0 h-10">
           Tìm kiếm
         </Button>
       </form>

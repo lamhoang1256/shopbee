@@ -13,5 +13,5 @@ export const shopAPI = {
   updateShopInfo: (payload: Partial<IShop>): Promise<IResponse> => {
     const path = `api/shop`;
     return axiosClient.put(path, payload);
-  },
+  }
 };

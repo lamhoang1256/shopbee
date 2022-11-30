@@ -9,20 +9,20 @@ interface OrderProductItemProps {
 
 const OrderProduct = ({ order }: OrderProductItemProps) => {
   return (
-    <div className='flex flex-col justify-between gap-3 py-2 lg:items-center lg:flex-row'>
-      <div className='flex gap-3'>
+    <div className="flex flex-col justify-between gap-3 py-2 lg:items-center lg:flex-row">
+      <div className="flex gap-3">
         <ProductImage
           src={order.product.image}
-          className='w-20 h-20 object-cover border border-[#e1e1e1]'
+          className="w-20 h-20 object-cover border border-[#e1e1e1]"
         />
         <div>
           <ProductTitle to={`${PATH.product}/${order.product._id}`}>
             {order.product.name}
           </ProductTitle>
-          <span className='block mt-1'>x{order.quantity}</span>
+          <span className="block mt-1">x{order.quantity}</span>
         </div>
       </div>
-      <div className='flex items-center gap-x-2'>
+      <div className="flex items-center gap-x-2">
         <PriceOld>{order.product.oldPrice}</PriceOld>
         <PriceSale>{order.product.price}</PriceSale>
       </div>

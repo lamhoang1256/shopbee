@@ -23,6 +23,6 @@ export default function useFetchProduct(id = "") {
   return {
     loading,
     product,
-    fetchProduct,
+    fetchProduct
   };
 }

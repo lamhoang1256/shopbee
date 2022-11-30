@@ -8,7 +8,7 @@ import {
   OrderOverview,
   OrderPayment,
   OrderProgress,
-  OrderReview,
+  OrderReview
 } from "modules/order";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";

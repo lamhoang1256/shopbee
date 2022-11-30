@@ -21,7 +21,7 @@ const Logo = ({ to = PATH.home, className, children, primary }: LogoProps) => {
 Logo.defaultProps = {
   to: PATH.home,
   primary: false,
-  className: "",
+  className: ""
 };
 
 export default Logo;

@@ -16,7 +16,7 @@ const VoucherItem = ({
   isFreeship,
   active,
   className,
-  expirationDate,
+  expirationDate
 }: VoucherItemProps) => {
   const stylesBgFreeship = active ? "bg-[#00bfa5]" : "bg-[#bdbdbd]";
   const stylesBgShopbee = active ? "bg-orangeee4" : "bg-[#bdbdbd]";
@@ -24,26 +24,26 @@ const VoucherItem = ({
     <div
       className={classNames(
         "flex items-center overflow-hidden bg-white rounded-md gap-x-2 md:gap-x-5 shadow1",
-        className,
+        className
       )}
     >
       {isFreeship ? (
         <div className={classNames(stylesImageBox, stylesBgFreeship)}>
-          <span className='font-medium text-center text-white'>MIỄN PHÍ VẬN CHUYỂN</span>
+          <span className="font-medium text-center text-white">MIỄN PHÍ VẬN CHUYỂN</span>
         </div>
       ) : (
         <div className={classNames(stylesImageBox, stylesBgShopbee)}>
-          <img src='/images/voucher-shopbee.png' className='w-3/5 h-3/5' alt='voucher-shopbee' />
-          <span className='text-white'>Shopbee</span>
+          <img src="/images/voucher-shopbee.png" className="w-3/5 h-3/5" alt="voucher-shopbee" />
+          <span className="text-white">Shopbee</span>
         </div>
       )}
       <div
         className={classNames(
           "flex flex-col justify-center flex-1 text-xs md:text-sm",
-          !active && "opacity-50",
+          !active && "opacity-50"
         )}
       >
-        <h3 className='md:text-base'>{title}</h3>
+        <h3 className="md:text-base">{title}</h3>
         <span>Code: {code}</span>
         {expirationDate !== 0 && <span>HSD: {formatDateVNFull(expirationDate)}</span>}
       </div>
@@ -52,7 +52,7 @@ const VoucherItem = ({
 };
 
 VoucherItem.defaultProps = {
-  active: true,
+  active: true
 };
 
 export default VoucherItem;

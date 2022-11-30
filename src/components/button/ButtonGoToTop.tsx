@@ -21,11 +21,11 @@ const ButtonGoToTop = () => {
   }, []);
   return (
     <button
-      type='button'
+      type="button"
       onClick={() => handleGoToTop()}
       className={classNames(
         `fixed bottom-10 right-5 z-50 w-10 h-10 bg-orangeee4 text-white flex items-center justify-center rounded-full`,
-        !isShow && "hidden",
+        !isShow && "hidden"
       )}
     >
       <IconUp />

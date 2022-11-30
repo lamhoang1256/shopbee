@@ -19,6 +19,6 @@ export default function useFetchShopInfo() {
   return {
     shopInfo,
     setShopInfo,
-    fetchShopInfo,
+    fetchShopInfo
   };
 }

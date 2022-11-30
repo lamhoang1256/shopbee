@@ -6,11 +6,11 @@ interface UserAvatarProps {
 }
 
 const UserAvatar = ({ urlAvatar, className }: UserAvatarProps) => {
-  return <img src={urlAvatar || defaultUserAvatar} alt='avatar' className={className} />;
+  return <img src={urlAvatar || defaultUserAvatar} alt="avatar" className={className} />;
 };
 
 UserAvatar.defaultProps = {
-  className: "w-[100px] h-[100px] rounded-full",
+  className: "w-[100px] h-[100px] rounded-full"
 };
 
 export default UserAvatar;

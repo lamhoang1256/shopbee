@@ -38,17 +38,17 @@ const ProductAddToCart = ({ quantityAdd, stock }: ProductAddToCartProps) => {
     }
   };
   if (stock <= 0) {
-    return <span className='block mt-4 text-lg text-redff4'>Sản phẩm đã hết hàng</span>;
+    return <span className="block mt-4 text-lg text-redff4">Sản phẩm đã hết hàng</span>;
   }
   return (
-    <div className='flex flex-col gap-2 mt-6 md:flex-row md:items-center'>
+    <div className="flex flex-col gap-2 mt-6 md:flex-row md:items-center">
       <ButtonOutline
         primary
-        className='flex items-center h-10 w-max lg:h-12'
+        className="flex items-center h-10 w-max lg:h-12"
         onClick={handleAddToCart}
       >
-        <IconCartOutline className='w-4 h-4 mr-2' />
-        <span className='text-sm'>Thêm vào giỏ hàng</span>
+        <IconCartOutline className="w-4 h-4 mr-2" />
+        <span className="text-sm">Thêm vào giỏ hàng</span>
       </ButtonOutline>
     </div>
   );

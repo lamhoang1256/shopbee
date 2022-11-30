@@ -7,7 +7,7 @@ import {
   CartFooter,
   CartHeader,
   CartItem,
-  CartOutOfStock,
+  CartOutOfStock
 } from "modules/cart";
 import { Helmet } from "react-helmet-async";
 
@@ -17,7 +17,7 @@ const CartPage = () => {
   const totalSale = calcTotalCart(carts, "price");
   if (carts?.length === 0 && cartsOutOfStock?.length === 0) return <CartEmpty />;
   return (
-    <div className='layout-container'>
+    <div className="layout-container">
       <Helmet>
         <title>Giỏ hàng</title>
       </Helmet>

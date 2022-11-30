@@ -21,8 +21,8 @@ const tabs = [
   {
     key: "expiration",
     display: "Hết hiệu lực",
-    to: `${PATH.voucherManage}?status=expiration`,
-  },
+    to: `${PATH.voucherManage}?status=expiration`
+  }
 ];
 
 const VoucherManage = () => {
@@ -36,7 +36,7 @@ const VoucherManage = () => {
     initialValues: { code: "" },
     onSubmit: (values) => {
       setSearchParams({ ...params, ...values });
-    },
+    }
   });
 
   const fetchMyVoucher = async () => {
@@ -66,34 +66,34 @@ const VoucherManage = () => {
   }, [searchParams]);
 
   return (
-    <Template title='Quản lí voucher' desc='Khám phá kho voucher'>
+    <Template title="Quản lí voucher" desc="Khám phá kho voucher">
       <Helmet>
         <title>Quản lí voucher</title>
       </Helmet>
-      <Tabs tabs={tabs} query={status} className='my-4' />
+      <Tabs tabs={tabs} query={status} className="my-4" />
       {loading && <Loading />}
       {!loading && vouchers?.length === 0 && <VoucherEmpty />}
       {!loading && vouchers?.length !== 0 && (
         <>
           <form
             onSubmit={formik.handleSubmit}
-            autoComplete='off'
-            className='flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1'
+            autoComplete="off"
+            className="flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1"
           >
             <Input
-              name='code'
-              className='w-full lg:!h-12'
+              name="code"
+              className="w-full lg:!h-12"
               value={formik.values.code}
               onChange={formik.handleChange}
-              placeholder='Tìm kiếm voucher theo mã code'
+              placeholder="Tìm kiếm voucher theo mã code"
             />
-            <Button primary className='flex-shrink-0 lg:h-12'>
+            <Button primary className="flex-shrink-0 lg:h-12">
               Tìm kiếm
             </Button>
           </form>
-          <div className='tables'>
+          <div className="tables">
             <table>
-              <thead className=''>
+              <thead className="">
                 <tr>
                   <th>STT</th>
                   <th>Mã code</th>
@@ -114,7 +114,7 @@ const VoucherManage = () => {
                     <td>{formatDateVNFull(voucher.createdAt)}</td>
                     <td>{formatDateVNFull(voucher.expirationDate)}</td>
                     <td>
-                      <div className='flex gap-x-1'>
+                      <div className="flex gap-x-1">
                         <Button to={`${PATH.voucherUpdate}/${voucher._id}`}>Sửa</Button>
                         <Button onClick={() => swalDelete(() => handleDeleteVoucher(voucher._id))}>
                           Xóa

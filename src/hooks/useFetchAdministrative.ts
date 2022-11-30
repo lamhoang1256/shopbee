@@ -29,6 +29,6 @@ export default function useFetchAdministrative(cityId?: string, districtId?: str
   return {
     citys,
     districts,
-    wards,
+    wards
   };
 }

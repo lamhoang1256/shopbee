@@ -28,7 +28,7 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
       <Button
         primary
         onClick={() => toggleSearchSidebar()}
-        className='flex items-center lg:hidden gap-x-2 max-w-fit'
+        className="flex items-center lg:hidden gap-x-2 max-w-fit"
       >
         <IconMenu />
         <span>{labelOpenSidebar}</span>
@@ -41,7 +41,7 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
         aria-hidden
         ref={overlayRef}
         onClick={closeSearchSidebar}
-        className='inset-0 -m-3 overlay bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] z-[200]'
+        className="inset-0 -m-3 overlay bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] z-[200]"
       />
     </>
   );
@@ -49,7 +49,7 @@ const SearchSidebar = ({ children, labelOpenSidebar, className }: SidebarProps) 
 
 SearchSidebar.defaultProps = {
   labelOpenSidebar: "Mở sidebar",
-  className: "lg:w-48",
+  className: "lg:w-48"
 };
 
 export default SearchSidebar;

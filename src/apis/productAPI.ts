@@ -3,7 +3,7 @@ import {
   IPayloadUpdateProduct,
   IResponse,
   IProductSearchParams,
-  IPayloadBuyProduct,
+  IPayloadBuyProduct
 } from "@types";
 import axiosClient from "./axiosClient";
 
@@ -31,5 +31,5 @@ export const productAPI = {
   buyProducts: (payload: IPayloadBuyProduct): Promise<IResponse> => {
     const path = `api/order`;
     return axiosClient.post(path, payload);
-  },
+  }
 };

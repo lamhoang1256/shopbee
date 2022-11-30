@@ -26,19 +26,19 @@ const HomeBanner = () => {
 
   if (loading) {
     return (
-      <div className='layout-container mt-7'>
-        <div className='h-[360px] bg-[#fafafa] flex justify-center items-center'>
-          <img src='/images/logo-gray.png' alt='banner' className='w-16 h-16' />
+      <div className="layout-container mt-7">
+        <div className="h-[360px] bg-[#fafafa] flex justify-center items-center">
+          <img src="/images/logo-gray.png" alt="banner" className="w-16 h-16" />
         </div>
       </div>
     );
   }
   return (
-    <div className='layout-container mt-7'>
-      <Swiper slidesPerView={1} className='overflow-hidden rounded-md'>
+    <div className="layout-container mt-7">
+      <Swiper slidesPerView={1} className="overflow-hidden rounded-md">
         {banners?.map((banner) => (
           <SwiperSlide key={banner._id}>
-            <img src={banner.bannerUrl} alt='banner' />
+            <img src={banner.bannerUrl} alt="banner" />
           </SwiperSlide>
         ))}
       </Swiper>

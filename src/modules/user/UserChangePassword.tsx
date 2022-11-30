@@ -13,7 +13,7 @@ const UserChangePassword = () => {
     initialValues: {
       currentPassword: "",
       newPassword: "",
-      confirmPassword: "",
+      confirmPassword: ""
     },
     validationSchema: Yup.object({
       currentPassword: Yup.string()
@@ -24,7 +24,7 @@ const UserChangePassword = () => {
         .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("newPassword")], "Xác nhận mật khẩu không khớp!")
-        .required("Vui lòng nhập xác nhận mật khẩu!"),
+        .required("Vui lòng nhập xác nhận mật khẩu!")
     }),
     onSubmit: async (values) => {
       try {
@@ -33,21 +33,21 @@ const UserChangePassword = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
   return (
     <Template
-      title='Đổi Mật Khẩu'
-      desc='Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác'
+      title="Đổi Mật Khẩu"
+      desc="Để bảo vệ tài khoản, vui lòng không chia sẻ mật khẩu cho người khác"
     >
       <Helmet>
         <title>Đổi mật khẩu</title>
       </Helmet>
-      <form className='max-w-[470px] mt-4' onSubmit={formik.handleSubmit} autoComplete='off'>
+      <form className="max-w-[470px] mt-4" onSubmit={formik.handleSubmit} autoComplete="off">
         <FormGroup>
-          <Label htmlFor='currentPassword'>Mật khẩu hiện tại</Label>
+          <Label htmlFor="currentPassword">Mật khẩu hiện tại</Label>
           <InputPassword
-            name='currentPassword'
+            name="currentPassword"
             value={formik.values.currentPassword}
             onChange={formik.handleChange}
           />
@@ -56,18 +56,18 @@ const UserChangePassword = () => {
           </MessageError>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor='newPassword'>Mật Khẩu Mới</Label>
+          <Label htmlFor="newPassword">Mật Khẩu Mới</Label>
           <InputPassword
-            name='newPassword'
+            name="newPassword"
             value={formik.values.newPassword}
             onChange={formik.handleChange}
           />
           <MessageError>{formik.touched.newPassword && formik.errors?.newPassword}</MessageError>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor='confirmPassword'>Xác Nhận Mật Khẩu</Label>
+          <Label htmlFor="confirmPassword">Xác Nhận Mật Khẩu</Label>
           <InputPassword
-            name='confirmPassword'
+            name="confirmPassword"
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
           />
@@ -75,7 +75,7 @@ const UserChangePassword = () => {
             {formik.touched.confirmPassword && formik.errors?.confirmPassword}
           </MessageError>
         </FormGroup>
-        <Button type='submit' primary className='w-full h-10'>
+        <Button type="submit" primary className="w-full h-10">
           Lưu
         </Button>
       </form>

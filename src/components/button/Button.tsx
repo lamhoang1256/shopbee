@@ -30,7 +30,7 @@ const Button = ({ children, type, className, primary, to, ...props }: ButtonProp
 
 Button.defaultProps = {
   primary: false,
-  to: "",
+  to: ""
 };
 
 export default Button;

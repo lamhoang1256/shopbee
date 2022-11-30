@@ -5,7 +5,7 @@ import {
   IPayloadUpdateUser,
   IResponse,
   IUserCreditCard,
-  IUserSearchParams,
+  IUserSearchParams
 } from "@types";
 import axiosClient from "./axiosClient";
 
@@ -41,5 +41,5 @@ export const userAPI = {
   changePasswordMe: (payload: IPayloadChangePassword): Promise<IResponse> => {
     const path = `api/user/change-password`;
     return axiosClient.put(path, payload);
-  },
+  }
 };

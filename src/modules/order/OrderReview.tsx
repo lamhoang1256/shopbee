@@ -52,14 +52,14 @@ const OrderReview = ({ orderItems }: OrderReviewProps) => {
   }, [id]);
 
   return (
-    <div className='p-4 mt-4 bg-white rounded-md'>
+    <div className="p-4 mt-4 bg-white rounded-md">
       {orderItems.map((orderItem) => {
         const review = reviews?.find((item) => item.productId === orderItem.product._id);
         return (
-          <div className='my-3' key={orderItem.product._id}>
+          <div className="my-3" key={orderItem.product._id}>
             <OrderProduct order={orderItem} />
             {review?._id ? (
-              <div className='flex gap-x-2'>
+              <div className="flex gap-x-2">
                 <Button onClick={() => openModalUpdate(orderItem.product, review)}>
                   Chỉnh sửa nhận xét
                 </Button>

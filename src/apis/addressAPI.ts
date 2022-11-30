@@ -5,7 +5,7 @@ import queryString from "query-string";
 const axiosClientAddress = axios.create({
   baseURL: process.env.REACT_APP_API_ADMINISTRATION_URL,
   paramsSerializer: (params) => queryString.stringify(params),
-  headers: { "Content-Type": "application/json" },
+  headers: { "Content-Type": "application/json" }
 });
 
 export const addressAPI = {
@@ -20,5 +20,5 @@ export const addressAPI = {
   getAllWard: (params: IPayloadGetAllWard) => {
     const path = `/ward`;
     return axiosClientAddress.get(path, { params });
-  },
+  }
 };

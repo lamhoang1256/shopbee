@@ -17,5 +17,5 @@ export {
   UserUpdateMe,
   UserSidebar,
   UserCreditCard,
-  UserChangePassword,
+  UserChangePassword
 };

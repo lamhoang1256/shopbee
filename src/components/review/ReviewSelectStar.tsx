@@ -10,13 +10,13 @@ const ReviewSelectStar = ({ rating, setRating }: ReviewSelectStarProps) => {
     setRating(() => num);
   };
   return (
-    <div className='flex justify-center mt-2'>
+    <div className="flex justify-center mt-2">
       {[1, 2, 3, 4, 5].map((num) => {
         const color = num <= rating ? "text-[#ffce3d]" : "text-[#e3e3e3]";
         return (
           <button
             key={num}
-            type='button'
+            type="button"
             onClick={() => handleSelectRating(num)}
             onMouseEnter={() => handleSelectRating(num)}
           >

@@ -17,13 +17,13 @@ const SignInPage = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      password: ""
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
       password: Yup.string()
         .required("Vui lòng nhập mật khẩu!")
-        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
+        .min(8, "Mật khẩu phải có ít nhất 8 ký tự")
     }),
     onSubmit: async (values) => {
       try {
@@ -35,44 +35,44 @@ const SignInPage = () => {
       } catch (error) {
         toast.error(error?.message);
       }
-    },
+    }
   });
 
   return (
-    <div className='layout-container'>
+    <div className="layout-container">
       <Helmet>
         <title>Đăng nhập</title>
       </Helmet>
-      <div className='px-4 py-8 lg:p-10 max-w-[500px] mx-auto bg-white w-full rounded'>
-        <h1 className='text-[22px]'>Đăng nhập</h1>
+      <div className="px-4 py-8 lg:p-10 max-w-[500px] mx-auto bg-white w-full rounded">
+        <h1 className="text-[22px]">Đăng nhập</h1>
         <form onSubmit={formik.handleSubmit}>
-          <FormGroup className='mt-4'>
-            <Label htmlFor='email'>Email</Label>
+          <FormGroup className="mt-4">
+            <Label htmlFor="email">Email</Label>
             <Input
-              name='email'
-              placeholder='Email'
+              name="email"
+              placeholder="Email"
               onChange={formik.handleChange}
               value={formik.values.email}
             />
             <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
           </FormGroup>
-          <FormGroup className='mt-4'>
-            <Label htmlFor='password'>Mật khẩu</Label>
+          <FormGroup className="mt-4">
+            <Label htmlFor="password">Mật khẩu</Label>
             <InputPassword
-              name='password'
-              placeholder='Mật khẩu'
+              name="password"
+              placeholder="Mật khẩu"
               onChange={formik.handleChange}
               value={formik.values.password}
             />
             <MessageError>{formik.touched.password && formik.errors?.password}</MessageError>
           </FormGroup>
-          <Button primary className='w-full mt-3'>
+          <Button primary className="w-full mt-3">
             Đăng nhập
           </Button>
         </form>
-        <div className='mt-6 text-center'>
-          <span className='text-[#00000042]'>Bạn chưa có tài khoản ? </span>
-          <Link to={PATH.signUp} className='text-orangeee4'>
+        <div className="mt-6 text-center">
+          <span className="text-[#00000042]">Bạn chưa có tài khoản ? </span>
+          <Link to={PATH.signUp} className="text-orangeee4">
             Đăng kí
           </Link>
         </div>

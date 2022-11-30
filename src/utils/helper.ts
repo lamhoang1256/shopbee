@@ -47,7 +47,7 @@ export function scrollTo(top?: number, left?: number) {
   window.scroll({
     top: top || 0,
     left: left || 0,
-    behavior: "smooth",
+    behavior: "smooth"
   });
 }
 

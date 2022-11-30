@@ -8,7 +8,7 @@ const CheckAdmin = () => {
   const { accessToken } = currentUser;
   const decodedJwt: IDecodedToken = jwtDecode(accessToken);
   if (currentUser && !decodedJwt.isAdmin) {
-    return <Navigate to='/404' />;
+    return <Navigate to="/404" />;
   }
   return <Outlet />;
 };
