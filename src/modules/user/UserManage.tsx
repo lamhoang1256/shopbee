@@ -102,7 +102,7 @@ const UserManage = () => {
                         <UserAvatar className="w-8 h-8 rounded-full" urlAvatar={user.avatar} />
                         <div>
                           <h3 className="font-medium max-w-[140px] line-clamp-1">
-                            {user.fullname}
+                            {user.fullname || "Khách hàng"}
                           </h3>
                           <span>{formatDateVN(user.createdAt)}</span>
                         </div>
