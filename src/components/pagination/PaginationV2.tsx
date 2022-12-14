@@ -1,6 +1,6 @@
 import { IconNext, IconPrev } from "components/icons";
 import { v4 as uuidv4 } from "uuid";
-import ButtonPage from "./ButtonPage";
+import PaginationNumber from "./PaginationNumber";
 
 interface PaginationV2Props extends React.HTMLAttributes<HTMLDivElement> {
   itemsPerPage: number;
@@ -33,13 +33,13 @@ const PaginationV2 = ({
         <IconPrev />
       </button>
       {totalPage.map((page) => (
-        <ButtonPage
+        <PaginationNumber
           key={uuidv4()}
           active={page === currentPage}
           onClick={() => handleChangePage(page)}
         >
           {page}
-        </ButtonPage>
+        </PaginationNumber>
       ))}
       <button
         type="button"

@@ -1,15 +1,78 @@
-import { v4 as uuidv4 } from "uuid";
 import { IPagination } from "@types";
-import usePagination from "hooks/usePagination";
 import { IconNext, IconPrev } from "components/icons";
-import ButtonPage from "./ButtonPage";
+import usePagination from "hooks/usePagination";
+import PaginationNumber from "./PaginationNumber";
 
 interface PaginationProps {
   pagination: IPagination;
 }
 
+const RANGE = 3;
 const Pagination = ({ pagination }: PaginationProps) => {
   const { goPrevPage, goNextPage, handleClickNumberPage } = usePagination();
+  const page = Number(pagination.page);
+  const renderPagination = () => {
+    let dotAfter = false;
+    let dotBefore = false;
+    const renderDotBefore = (index: number) => {
+      if (!dotBefore) {
+        dotBefore = true;
+        return (
+          <span key={index} className="text-xl">
+            ...
+          </span>
+        );
+      }
+      return null;
+    };
+    const renderDotAfter = (index: number) => {
+      if (!dotAfter) {
+        dotAfter = true;
+        return (
+          <span key={index} className="text-xl">
+            ...
+          </span>
+        );
+      }
+      return null;
+    };
+    return Array(pagination.totalPage)
+      .fill(0)
+      .map((_, index) => {
+        const pageNumber = index + 1;
+        // Điều kiện để return về ...
+        if (
+          page <= RANGE * 2 + 1 &&
+          pageNumber > page + RANGE &&
+          pageNumber < pagination.totalPage - RANGE + 1
+        ) {
+          return renderDotAfter(index);
+        }
+        if (page > RANGE * 2 + 1 && page < pagination.totalPage - RANGE * 2) {
+          if (pageNumber < page - RANGE && pageNumber > RANGE) {
+            return renderDotBefore(index);
+          }
+          if (pageNumber > page + RANGE && pageNumber < pagination.totalPage - RANGE + 1) {
+            return renderDotAfter(index);
+          }
+        } else if (
+          page >= pagination.totalPage - RANGE * 2 &&
+          pageNumber > RANGE &&
+          pageNumber < page - RANGE
+        ) {
+          return renderDotBefore(index);
+        }
+        return (
+          <PaginationNumber
+            key={pageNumber}
+            active={index + 1 === pagination.page}
+            onClick={() => handleClickNumberPage(index + 1)}
+          >
+            {index + 1}
+          </PaginationNumber>
+        );
+      });
+  };
   return (
     <div className="flex flex-wrap gap-x-3 gap-y-2 text-[#00000066] justify-center items-center my-8">
       <button
@@ -20,17 +83,7 @@ const Pagination = ({ pagination }: PaginationProps) => {
       >
         <IconPrev />
       </button>
-      {Array(pagination.totalPage)
-        .fill(0)
-        .map((_, index) => (
-          <ButtonPage
-            key={uuidv4()}
-            active={index + 1 === pagination.page}
-            onClick={() => handleClickNumberPage(index + 1)}
-          >
-            {index + 1}
-          </ButtonPage>
-        ))}
+      {renderPagination()}
       <button
         type="button"
         className="cursor-pointer disabled:cursor-not-allowed"
