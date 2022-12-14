@@ -1,5 +1,5 @@
 import { useState, InputHTMLAttributes } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import { IconHiddenPassword, IconShowPassword } from "components/icons";
 
 interface InputPasswordProps extends InputHTMLAttributes<HTMLInputElement> {}

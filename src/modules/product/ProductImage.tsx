@@ -1,5 +1,5 @@
 import { Image } from "components/image";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface ProductImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 

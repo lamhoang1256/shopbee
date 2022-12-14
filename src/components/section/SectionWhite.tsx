@@ -1,4 +1,4 @@
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface SectionWhiteProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

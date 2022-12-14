@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import { formatDateVNFull } from "utils/helper";
 
 const stylesImageBox = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";

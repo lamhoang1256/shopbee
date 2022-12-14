@@ -1,6 +1,6 @@
 import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface LogoProps {
   to?: string;

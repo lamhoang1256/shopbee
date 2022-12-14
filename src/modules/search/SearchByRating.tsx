@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IconStar } from "components/icons";
 import { PATH } from "constants/path";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 const renderStarRating = (score: number) => {
   return [1, 2, 3, 4, 5].map((num) => {

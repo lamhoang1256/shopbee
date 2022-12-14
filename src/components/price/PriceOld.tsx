@@ -1,4 +1,4 @@
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import { formatMoney } from "utils/helper";
 
 interface PriceOldProps {

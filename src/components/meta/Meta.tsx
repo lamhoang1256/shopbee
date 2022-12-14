@@ -46,7 +46,7 @@ Meta.defaultProps = {
   title: "Shopbee Việt Nam | Mua và Bán trên ứng dụng di động hoặc website",
   description:
     "Mua sắm trực tuyến hàng triệu sản phẩm ở tất cả ngành hàng...Giá tốt & nhiều ưu đãi. Mua và bán online trong 30 giây. Shopee đảm bảo nhận hàng hoặc hoàn tiền. Shopbee Đảm Bảo | Miễn Phí Vận Chuyển | Gợi Ý Hôm Nay",
-  image: `${server}/preview-home.png`
+  image: `/preview-home.png`
 };
 
 export default memo(Meta);

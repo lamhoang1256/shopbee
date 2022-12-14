@@ -1,5 +1,5 @@
 import { IconPaymentList } from "components/icons";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 const customerCares = [
   "Trung Tâm Trợ Giúp",

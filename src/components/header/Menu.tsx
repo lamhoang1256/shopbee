@@ -7,7 +7,7 @@ import { UserAvatar } from "modules/user";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import { removeCurrentUserLocalStorage } from "utils/localStorage";
 
 const Menu = () => {

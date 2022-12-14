@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface ButtonOutlineProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   to?: string;

@@ -1,4 +1,4 @@
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface IconSearchProps extends React.SVGProps<SVGSVGElement> {}
 

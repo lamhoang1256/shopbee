@@ -1,6 +1,6 @@
 import { IconUp } from "components/icons";
 import { useEffect, useState } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import { scrollTo } from "utils/helper";
 
 const ButtonGoToTop = () => {

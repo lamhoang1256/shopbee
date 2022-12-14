@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface ProductImageSliderProps {
   images: string[];

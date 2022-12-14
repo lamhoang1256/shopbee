@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   active: boolean;

@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import { ButtonHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;

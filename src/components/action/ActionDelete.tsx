@@ -1,6 +1,6 @@
 import { IconClose } from "components/icons";
 import { ButtonHTMLAttributes } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface ActionDeleteProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 

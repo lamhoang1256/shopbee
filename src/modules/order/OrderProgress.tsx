@@ -1,6 +1,6 @@
 import { IOrder, IStatusOrder, OrderStatusCode, OrderStatus, OrderStatusVietnamese } from "@types";
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/icons";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import { formatDateVNFull } from "utils/helper";
 import { v4 as uuidv4 } from "uuid";
 

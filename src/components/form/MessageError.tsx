@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface MessageErrorProps extends HTMLAttributes<HTMLSpanElement> {}
 

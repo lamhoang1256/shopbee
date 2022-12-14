@@ -2,7 +2,7 @@ import { Button } from "components/button";
 import { IconMenu } from "components/icons";
 import useOnClickOutside from "hooks/useClickOutside";
 import { useRef } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 import SidebarCloseAction from "./SidebarCloseAction";
 
 interface SidebarProps {

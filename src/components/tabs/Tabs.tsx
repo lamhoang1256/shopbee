@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface TabsProps extends React.HTMLAttributes<HTMLUListElement> {
   query: string | number;

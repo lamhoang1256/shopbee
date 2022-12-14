@@ -2,7 +2,7 @@ import { voucherAPI } from "apis";
 import { Input } from "components/input";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface VoucherSaveProps {
   fetchReloadVoucher: () => void;

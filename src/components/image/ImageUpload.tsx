@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import classNames from "utils/className";
+import classNames from "utils/classNames";
 
 interface ImageUploadProps extends React.HTMLAttributes<HTMLDivElement> {
   onChange: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
