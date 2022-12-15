@@ -1,6 +1,6 @@
 import { IPagination } from "@types";
-import { Button } from "components/button";
-import ButtonPagination from "components/button/ButtonPagination";
+import { Button } from "components/_button";
+import ButtonPagination from "components/_button/ButtonPagination";
 import { IconNext, IconPrev } from "components/icons";
 import { Option, Select } from "components/select";
 import usePagination from "hooks/usePagination";

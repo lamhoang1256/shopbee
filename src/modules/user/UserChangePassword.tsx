@@ -1,7 +1,7 @@
 import { userAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { FormGroup, Label, MessageError } from "components/form";
-import { InputPassword } from "components/input";
+import { InputPassword } from "components/_input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";

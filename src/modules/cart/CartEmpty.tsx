@@ -1,4 +1,4 @@
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { PATH } from "constants/path";
 
 const CartEmpty = () => {

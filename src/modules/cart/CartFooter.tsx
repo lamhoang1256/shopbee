@@ -1,5 +1,5 @@
 import { cartAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { PATH } from "constants/path";
 import { PriceSale } from "components/price";
 import { toast } from "react-toastify";

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Fallback } from "components/fallback";
 import { ErrorBoundary } from "components/errorBoundary";
 import { ScrollToTop } from "components/scrollToTop";
-import { ButtonGoToTop } from "components/button";
+import { ButtonGoToTop } from "components/_button";
 
 const LayoutAuth = lazy(() => import("layouts/LayoutAuth"));
 const LayoutUser = lazy(() => import("layouts/LayoutUser"));

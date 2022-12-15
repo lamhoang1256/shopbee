@@ -1,5 +1,5 @@
 import { OrderStatus } from "@types";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { ModalCancelOrder } from "components/modal";
 import useModal from "hooks/useModal";
 

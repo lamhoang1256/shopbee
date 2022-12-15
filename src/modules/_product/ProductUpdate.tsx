@@ -1,9 +1,9 @@
 import { productAPI } from "apis";
 import { ActionDelete } from "components/action";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { FormGroup, Label, MessageError } from "components/form";
 import { ImageUpload } from "components/image";
-import { Input } from "components/input";
+import { Input } from "components/_input";
 import { Option, Select } from "components/select";
 import * as Yup from "yup";
 import { useFormik } from "formik";

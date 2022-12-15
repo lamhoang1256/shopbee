@@ -1,6 +1,6 @@
 import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { Loading } from "components/loading";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";

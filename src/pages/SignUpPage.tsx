@@ -1,31 +1,22 @@
 import { authAPI } from "apis";
-import { Button } from "components/button";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input, InputPassword } from "components/input";
+import Button from "components/Button";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
+import InputPassword from "components/InputPassword";
+import Label from "components/Label";
 import { PATH } from "constants/path";
-import * as Yup from "yup";
 import { useFormik } from "formik";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Helmet } from "react-helmet-async";
+import { signUpRules } from "utils/rules";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      confirm_password: ""
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
-      password: Yup.string()
-        .required("Vui lòng nhập mật khẩu!")
-        .min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
-      confirm_password: Yup.string()
-        .oneOf([Yup.ref("password")], "Xác nhận mật khẩu không khớp!")
-        .required("Vui lòng nhập xác nhận mật khẩu!")
-    }),
+    initialValues: { email: "", password: "", confirm_password: "" },
+    validationSchema: signUpRules,
     onSubmit: async (values) => {
       try {
         const { message } = await authAPI.signUp(values);
@@ -36,7 +27,6 @@ const SignUpPage = () => {
       }
     }
   });
-
   return (
     <div className="layout-container">
       <Helmet>
@@ -53,7 +43,7 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
+            <FormError>{formik.touched.email && formik.errors?.email}</FormError>
           </FormGroup>
           <FormGroup className="mt-4">
             <Label htmlFor="password">Mật khẩu</Label>
@@ -63,7 +53,7 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            <MessageError>{formik.touched.password && formik.errors?.password}</MessageError>
+            <FormError>{formik.touched.password && formik.errors?.password}</FormError>
           </FormGroup>
           <FormGroup className="mt-4">
             <Label htmlFor="confirm_password">Xác nhận mật khẩu</Label>
@@ -73,9 +63,9 @@ const SignUpPage = () => {
               onChange={formik.handleChange}
               value={formik.values.confirm_password}
             />
-            <MessageError>
+            <FormError>
               {formik.touched.confirm_password && formik.errors?.confirm_password}
-            </MessageError>
+            </FormError>
           </FormGroup>
           <Button primary className="w-full mt-3">
             Đăng kí

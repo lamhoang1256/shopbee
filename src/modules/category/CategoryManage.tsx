@@ -1,5 +1,5 @@
 import { categoryAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { Loading } from "components/loading";
 import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";

@@ -1,7 +1,7 @@
 import { ICurrentUser, IPagination } from "@types";
 import { userAPI } from "apis";
-import { Button } from "components/button";
-import { Input } from "components/input";
+import { Button } from "components/_button";
+import { Input } from "components/_input";
 import { Loading } from "components/loading";
 import { Pagination } from "components/_pagination";
 import { PATH } from "constants/path";

@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { orderAPI } from "apis";
 import { IOrder, IPagination } from "@types";
 import { PATH } from "constants/path";
-import { InputSearch } from "components/input";
+import { InputSearch } from "components/_input";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { OrderEmpty, OrderItem } from "modules/order";

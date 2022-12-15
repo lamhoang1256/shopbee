@@ -1,4 +1,4 @@
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { IconCartOutline } from "components/icons";
 import { Popover } from "components/popover";
 import { PATH } from "constants/path";

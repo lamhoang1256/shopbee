@@ -1,9 +1,9 @@
 import { userAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { Switch } from "components/checkbox";
 import { Administrative } from "components/administrative";
 import { FormGroup, Label, MessageError } from "components/form";
-import { Input, InputPassword } from "components/input";
+import { Input, InputPassword } from "components/_input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { ChangeEvent } from "react";

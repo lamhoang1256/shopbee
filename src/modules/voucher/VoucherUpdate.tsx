@@ -1,8 +1,8 @@
 import { voucherAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { Switch } from "components/checkbox";
 import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/input";
+import { Input } from "components/_input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect } from "react";

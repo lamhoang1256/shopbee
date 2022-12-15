@@ -1,8 +1,8 @@
 import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { SectionGray } from "components/section";
-import { Input } from "components/input";
+import { Input } from "components/_input";
 import { VoucherApplyItem, VoucherEmpty } from "modules/voucher";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";

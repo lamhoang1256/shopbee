@@ -1,30 +1,25 @@
 import { authAPI } from "apis";
-import { Button } from "components/button";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input, InputPassword } from "components/input";
+import Button from "components/Button";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
+import InputPassword from "components/InputPassword";
+import Label from "components/Label";
 import { PATH } from "constants/path";
-import * as Yup from "yup";
 import { useFormik } from "formik";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 import { setCurrentUserLocalStorage } from "utils/localStorage";
-import { Helmet } from "react-helmet-async";
+import { signInRules } from "utils/rules";
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const { setCurrentUser } = useStore((state) => state);
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: ""
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email("Email không hợp lệ!").required("Vui lòng nhập email của bạn!"),
-      password: Yup.string()
-        .required("Vui lòng nhập mật khẩu!")
-        .min(8, "Mật khẩu phải có ít nhất 8 ký tự")
-    }),
+    initialValues: { email: "", password: "" },
+    validationSchema: signInRules,
     onSubmit: async (values) => {
       try {
         const { data, message } = await authAPI.signIn(values);
@@ -37,7 +32,6 @@ const SignInPage = () => {
       }
     }
   });
-
   return (
     <div className="layout-container">
       <Helmet>
@@ -54,7 +48,7 @@ const SignInPage = () => {
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
+            <FormError>{formik.touched.email && formik.errors?.email}</FormError>
           </FormGroup>
           <FormGroup className="mt-4">
             <Label htmlFor="password">Mật khẩu</Label>
@@ -64,7 +58,7 @@ const SignInPage = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            <MessageError>{formik.touched.password && formik.errors?.password}</MessageError>
+            <FormError>{formik.touched.password && formik.errors?.password}</FormError>
           </FormGroup>
           <Button primary className="w-full mt-3">
             Đăng nhập

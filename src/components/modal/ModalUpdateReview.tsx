@@ -1,6 +1,6 @@
 import { IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
-import { Button } from "components/button";
+import { Button } from "components/_button";
 import { ReviewSelectStar } from "components/review";
 import { Textarea } from "components/textarea";
 import { ProductImage, ProductTitle } from "modules/_product";
