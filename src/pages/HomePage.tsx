@@ -1,4 +1,6 @@
-import { HomeBanner, HomeCategories, HomeFeatured } from "modules/home";
+import HomeBanner from "modules/Home/HomeBanner";
+import HomeCategories from "modules/Home/HomeCategories";
+import HomeProducts from "modules/Home/HomeProducts";
 import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
@@ -9,7 +11,7 @@ const HomePage = () => {
       </Helmet>
       <HomeBanner />
       <HomeCategories />
-      <HomeFeatured />
+      <HomeProducts />
     </>
   );
 };

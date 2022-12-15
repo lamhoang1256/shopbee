@@ -4,7 +4,7 @@ import { Popover } from "components/popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { PriceSale } from "components/price";
-import { ProductImage, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/_product";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
 

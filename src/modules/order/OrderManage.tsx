@@ -3,7 +3,7 @@ import { orderAPI } from "apis";
 import { Button } from "components/button";
 import { Input } from "components/input";
 import { Loading } from "components/loading";
-import { Pagination } from "components/pagination";
+import { Pagination } from "components/_pagination";
 import { Tabs } from "components/tabs";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";

@@ -1,4 +1,4 @@
-import { ProductGrid } from "modules/product";
+import { ProductGrid } from "modules/_product";
 import { Helmet } from "react-helmet-async";
 import { getHistoryLocalStorage, removeHistoryLocalStorage } from "utils/localStorage";
 import { swalDelete } from "utils/sweetalert2";

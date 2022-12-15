@@ -16,7 +16,7 @@ import {
   ProductSaveWishlist,
   ProductShipping,
   ProductTitle
-} from "modules/product";
+} from "modules/_product";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";

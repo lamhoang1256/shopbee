@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IReview } from "@types";
-import { PaginationV2 } from "components/pagination";
+import { PaginationV2 } from "components/_pagination";
 import { reviewAPI } from "apis";
 import ReviewItem from "./ReviewItem";
 import ReviewEmpty from "./ReviewEmpty";

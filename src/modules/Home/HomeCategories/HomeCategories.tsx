@@ -1,16 +1,22 @@
+import { categoryAPI } from "apis";
 import { PATH } from "constants/path";
-import useFetchCategories from "hooks/useFetchCategories";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const HomeCategories = () => {
-  const { categories, loading } = useFetchCategories();
+  const { isLoading, data: categoriesData } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => categoryAPI.getAllCategory(),
+    keepPreviousData: true,
+    staleTime: 5 * 60 * 1000
+  });
   return (
     <div className="layout-container mt-7">
       <div className="py-3 my-4 bg-white">
         <h2 className="px-5 text-[#0000008a] text-base">DANH MỤC</h2>
         <div className="mt-3 home-categories">
-          {loading &&
+          {isLoading &&
             Array(10)
               .fill(0)
               .map(() => (
@@ -18,11 +24,11 @@ const HomeCategories = () => {
                   key={uuidv4()}
                   className="p-1 flex items-center justify-center w-[120px] h-[130px]"
                 >
-                  <img src="/images/logo-gray.png" alt="banner" className="w-10 h-w-10" />
+                  <img src="/logo-gray.png" alt="loading" className="w-10 h-w-10" />
                 </div>
               ))}
-          {!loading &&
-            categories?.map(({ _id, image, name, slug }) => (
+          {!isLoading &&
+            categoriesData?.data?.map(({ _id, image, name, slug }) => (
               <Link
                 key={_id}
                 to={`${PATH.search}?category=${_id}`}

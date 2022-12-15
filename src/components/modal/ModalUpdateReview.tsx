@@ -3,7 +3,7 @@ import { reviewAPI } from "apis";
 import { Button } from "components/button";
 import { ReviewSelectStar } from "components/review";
 import { Textarea } from "components/textarea";
-import { ProductImage, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/_product";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";

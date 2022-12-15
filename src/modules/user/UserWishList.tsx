@@ -2,7 +2,7 @@ import { IProduct } from "@types";
 import { wishlistAPI } from "apis";
 import { IconHeart } from "components/icons";
 import { Loading } from "components/loading";
-import { ProductGrid } from "modules/product";
+import { ProductGrid } from "modules/_product";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";

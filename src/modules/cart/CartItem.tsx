@@ -3,7 +3,7 @@ import { cartAPI } from "apis";
 import { QuantityController } from "components/quantityController";
 import { PATH } from "constants/path";
 import { PriceSale, PriceOld } from "components/price";
-import { ProductImage, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/_product";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 

@@ -2,7 +2,7 @@ import { ICart } from "@types";
 import { cartAPI } from "apis";
 import { PriceOld, PriceSale } from "components/price";
 import { PATH } from "constants/path";
-import { ProductImage, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/_product";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 

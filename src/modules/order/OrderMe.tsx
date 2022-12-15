@@ -8,7 +8,7 @@ import { InputSearch } from "components/input";
 import { Loading } from "components/loading";
 import { Tabs } from "components/tabs";
 import { OrderEmpty, OrderItem } from "modules/order";
-import { Pagination } from "components/pagination";
+import { Pagination } from "components/_pagination";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 

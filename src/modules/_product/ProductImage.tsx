@@ -12,7 +12,7 @@ const ProductImage = ({
     <Image
       alt={alt}
       src={src}
-      placeholderSrc="/images/shopbee-loading.png"
+      placeholderSrc="/card-loading.png"
       className={classNames("aspect-square max-w-full bg-[#fafafa]", className)}
     />
   );

@@ -1,7 +1,7 @@
 import { IProduct } from "@types";
 import { Rating } from "components/rating";
 import { PATH } from "constants/path";
-import { ProductImage, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/_product";
 import { PriceSale } from "components/price";
 import { Link } from "react-router-dom";
 import { formatCash, slugify } from "utils/helper";

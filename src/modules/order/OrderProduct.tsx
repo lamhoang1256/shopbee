@@ -1,6 +1,6 @@
 import { IOrderItem } from "@types";
 import { PATH } from "constants/path";
-import { ProductImage, ProductTitle } from "modules/product";
+import { ProductImage, ProductTitle } from "modules/_product";
 import { PriceOld, PriceSale } from "components/price";
 
 interface OrderProductItemProps {
