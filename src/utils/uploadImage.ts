@@ -3,7 +3,6 @@ import { ChangeEvent } from "react";
 import { toast } from "react-toastify";
 
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || "";
-
 export const uploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
   let urlUploaded: string = "";
   if (!e.target.files) return "";

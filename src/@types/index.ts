@@ -1,4 +1,4 @@
-export * from "./common.type";
+export * from "./utils.type";
 export * from "./auth.type";
 export * from "./cart.type";
 export * from "./order.type";
@@ -10,3 +10,4 @@ export * from "./shop.type";
 export * from "./banner.type";
 export * from "./voucher.type";
 export * from "./review.type";
+export * from "./store.type";

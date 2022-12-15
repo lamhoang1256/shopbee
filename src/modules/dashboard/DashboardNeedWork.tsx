@@ -1,4 +1,4 @@
-import { IDashboardOverview } from "@types";
+import { IShopOverview } from "@types";
 import { shopAPI } from "apis";
 import { Loading } from "components/loading";
 import { PATH } from "constants/path";
@@ -10,12 +10,12 @@ import { formatCash } from "utils/helper";
 
 const DashboardNeedWork = () => {
   const [loading, setLoading] = useState(true);
-  const [overview, setOverview] = useState<IDashboardOverview>(Object);
+  const [overview, setOverview] = useState<IShopOverview>(Object);
   useEffect(() => {
     const fetchOverviewDashboard = async () => {
       try {
         setLoading(true);
-        const { data } = await shopAPI.getOverviewDashboard();
+        const { data } = await shopAPI.getShopOverview();
         setOverview(data);
       } catch (error) {
         toast.error(error?.message);

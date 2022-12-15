@@ -1,9 +1,12 @@
+import { IPagination, SuccessResponse } from "./utils.type";
+
 export interface IUserCreditCard {
   number: string;
   name: string;
   expiry: string;
   cvc: string;
 }
+
 export interface ICurrentUser {
   _id: string;
   accessToken: string;
@@ -24,20 +27,24 @@ export interface ICurrentUser {
   creditCard: IUserCreditCard;
   __v: number;
 }
+
 export interface IChangePassword {
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
 }
+
 export interface IUserSearchParams {
   page: number;
   limit: number;
   email: string;
 }
+
 export interface IPayloadChangePassword {
   currentPassword: string;
   newPassword: string;
 }
+
 export interface IPayloadAddNewUser {
   email: string;
   fullname: string;
@@ -51,5 +58,11 @@ export interface IPayloadAddNewUser {
   address: string;
   isAdmin: boolean;
 }
+
 export type IPayloadUpdateUser = Omit<IPayloadAddNewUser, "password">;
 export type IPayloadUpdateMe = Omit<IPayloadAddNewUser, "email" | "isAdmin">;
+export type UserResponse = SuccessResponse<ICurrentUser>;
+export type UsersResponse = SuccessResponse<{
+  users: ICurrentUser[];
+  pagination: IPagination;
+}>;

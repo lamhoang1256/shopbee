@@ -1,3 +1,5 @@
+import { SuccessResponse } from "./utils.type";
+
 export interface IBanner {
   _id: string;
   bannerUrl: string;
@@ -5,7 +7,6 @@ export interface IBanner {
   updatedAt: string;
   __v: number;
 }
-export interface IPayloadAddNewBanner {
-  bannerUrl: string;
-}
-export interface IPayloadUpdateBanner extends IPayloadAddNewBanner {}
+
+export type BannersResponse = SuccessResponse<IBanner[]>;
+export type BannerResponse = SuccessResponse<IBanner>;

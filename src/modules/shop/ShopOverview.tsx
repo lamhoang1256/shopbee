@@ -1,9 +1,9 @@
-import { IShop } from "@types";
+import { IShopInfo } from "@types";
 import { ButtonOutline } from "components/button";
 import { PATH } from "constants/path";
 
 interface ShopOverviewProps {
-  shopInfo: IShop;
+  shopInfo: IShopInfo;
 }
 
 const overview = [

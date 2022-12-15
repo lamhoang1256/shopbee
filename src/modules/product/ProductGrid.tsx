@@ -11,11 +11,11 @@ interface ProductGridProps {
 const ProductGrid = ({ products, loading }: ProductGridProps) => {
   return (
     <div className="mt-3 product-grid">
-      {loading &&
-        Array(12)
-          .fill(0)
-          .map(() => <ProductCardSkeleton key={uuidv4()} />)}
-      {!loading && products?.map((product) => <ProductCard product={product} key={product._id} />)}
+      {loading
+        ? Array(12)
+            .fill(0)
+            .map(() => <ProductCardSkeleton key={uuidv4()} />)
+        : products.map((product) => <ProductCard product={product} key={product._id} />)}
     </div>
   );
 };

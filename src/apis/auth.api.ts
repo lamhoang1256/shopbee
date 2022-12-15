@@ -1,12 +1,12 @@
-import { IPayloadSignIn, IPayloadSignUp, IResponse } from "@types";
+import { AuthResponse, IPayloadAuth, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const authAPI = {
-  signIn: (payload: IPayloadSignIn): Promise<IResponse> => {
+  signIn: (payload: IPayloadAuth): Promise<AuthResponse> => {
     const path = `api/auth/sign-in`;
     return axiosClient.post(path, payload);
   },
-  signUp: (payload: IPayloadSignUp): Promise<IResponse> => {
+  signUp: (payload: IPayloadAuth): Promise<AuthResponse> => {
     const path = `api/auth/sign-up`;
     return axiosClient.post(path, payload);
   },

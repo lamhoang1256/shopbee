@@ -1,30 +1,31 @@
 import {
-  IPayloadAddNewProduct,
-  IPayloadUpdateProduct,
-  IResponse,
+  IPayloadBuyProduct,
+  IPayloadProduct,
   IProductSearchParams,
-  IPayloadBuyProduct
+  IResponse,
+  ProductResponse,
+  ProductsResponse
 } from "@types";
 import axiosClient from "./axiosClient";
 
 export const productAPI = {
-  addNewProduct: (payload: IPayloadAddNewProduct): Promise<IResponse> => {
+  addNewProduct: (payload: IPayloadProduct): Promise<ProductResponse> => {
     const path = `api/product`;
     return axiosClient.post(path, payload);
   },
-  updateProduct: (id: string, payload: IPayloadUpdateProduct): Promise<IResponse> => {
+  updateProduct: (id: string, payload: IPayloadProduct): Promise<ProductResponse> => {
     const path = `api/product/${id}`;
     return axiosClient.put(path, payload);
   },
-  deleteProduct: (id: string): Promise<IResponse> => {
+  deleteProduct: (id: string): Promise<ProductResponse> => {
     const path = `api/product/${id}`;
     return axiosClient.delete(path);
   },
-  getAllProduct: (params?: Partial<IProductSearchParams>): Promise<IResponse> => {
+  getAllProduct: (params?: Partial<IProductSearchParams>): Promise<ProductsResponse> => {
     const path = `api/product`;
     return axiosClient.get(path, { params });
   },
-  getSingleProduct: (id: string): Promise<IResponse> => {
+  getSingleProduct: (id: string): Promise<ProductResponse> => {
     const path = `api/product/${id}`;
     return axiosClient.get(path);
   },

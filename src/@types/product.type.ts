@@ -1,4 +1,5 @@
 import { IReview } from "./review.type";
+import { IPagination, SuccessResponse } from "./utils.type";
 
 export interface IProduct {
   _id: string;
@@ -15,6 +16,7 @@ export interface IProduct {
   view: number;
   reviews: IReview[];
 }
+
 export interface IProductSearchParams {
   page: string;
   limit: string;
@@ -26,5 +28,10 @@ export interface IProductSearchParams {
   order: string;
   name: string;
 }
-export type IPayloadAddNewProduct = Omit<IProduct, "_id" | "reviews">;
-export type IPayloadUpdateProduct = Omit<IProduct, "_id" | "reviews">;
+
+export type IPayloadProduct = Omit<IProduct, "_id" | "reviews">;
+export type ProductResponse = SuccessResponse<IProduct>;
+export type ProductsResponse = SuccessResponse<{
+  products: IProduct[];
+  pagination: IPagination;
+}>;

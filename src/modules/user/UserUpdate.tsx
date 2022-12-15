@@ -52,7 +52,7 @@ const UserUpdate = () => {
       try {
         const { street, city, district, ward } = values;
         const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
-        const { message } = await userAPI.updateUser({ ...values, address });
+        const { message } = await userAPI.updateUser(id, { ...values, address });
         toast.success(message);
       } catch (error) {
         toast.error(error?.message);

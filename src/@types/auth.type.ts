@@ -1,3 +1,6 @@
+import { ICurrentUser } from "./user.type";
+import { SuccessResponse } from "./utils.type";
+
 export interface IDecodedToken {
   email: string;
   exp: number;
@@ -5,8 +8,10 @@ export interface IDecodedToken {
   isAdmin: boolean;
   _id: string;
 }
-export interface IPayloadSignUp {
+
+export interface IPayloadAuth {
   email: string;
   password: string;
 }
-export interface IPayloadSignIn extends IPayloadSignUp {}
+
+export type AuthResponse = SuccessResponse<ICurrentUser>;

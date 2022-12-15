@@ -1,12 +1,12 @@
-import { IPayloadAddToCart, IResponse } from "@types";
+import { CartResponse, CartsResponse, IPayloadAddToCart, IResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const cartAPI = {
-  getAllCart: (): Promise<IResponse> => {
+  getAllCart: (): Promise<CartsResponse> => {
     const path = `api/cart`;
     return axiosClient.get(path);
   },
-  addToCart: (payload: IPayloadAddToCart): Promise<IResponse> => {
+  addToCart: (payload: IPayloadAddToCart): Promise<CartResponse> => {
     const path = `api/cart/add-to-cart`;
     return axiosClient.post(path, payload);
   },

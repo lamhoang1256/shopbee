@@ -1,3 +1,5 @@
+import { SuccessResponse } from "./utils.type";
+
 export interface ICategory {
   _id: string;
   name: string;
@@ -6,9 +8,12 @@ export interface ICategory {
   createdAt: string;
   updatedAt: string;
 }
-export interface IPayloadAddNewCategory {
+
+export interface IPayloadCategory {
   name: string;
   slug: string;
   image: string;
 }
-export interface IPayloadUpdateCategory extends IPayloadAddNewCategory {}
+
+export type CategoriesResponse = SuccessResponse<ICategory[]>;
+export type CategoryResponse = SuccessResponse<ICategory>;

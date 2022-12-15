@@ -16,7 +16,7 @@ const ProductImageSlider = ({ images }: ProductImageSliderProps) => {
           <img
             src={image}
             key={image}
-            alt="product"
+            alt={`product-${index}`}
             className={classNames(
               "inline-block object-cover w-1/5 border-2 aspect-square transition-all duration-200 cursor-pointer p-1",
               indexActive === index ? " border-orangeee4" : "border-transparent"

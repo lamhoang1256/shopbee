@@ -1,4 +1,5 @@
 import { ICurrentUser } from "./user.type";
+import { SuccessResponse } from "./utils.type";
 
 export interface IReview {
   _id: string;
@@ -10,10 +11,13 @@ export interface IReview {
   createdAt: string;
   updatedAt: string;
 }
-export interface IPayloadAddNewReview {
+
+export interface IPayloadReview {
   rating: number;
   comment: string;
   productId: string;
   orderId: string;
 }
-export interface IPayloadUpdateReview extends IPayloadAddNewReview {}
+
+export type ReviewsResponse = SuccessResponse<IReview[]>;
+export type ReviewResponse = SuccessResponse<IReview>;

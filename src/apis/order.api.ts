@@ -1,32 +1,32 @@
-import { IOrderParams, IPayloadCancelOrder, IResponse } from "@types";
+import { IOrderParams, IPayloadCancelOrder, OrderResponse, OrdersResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const orderAPI = {
-  getAllOrder: (params: IOrderParams): Promise<IResponse> => {
+  getAllOrder: (params: IOrderParams): Promise<OrdersResponse> => {
     const path = `api/order/me`;
     return axiosClient.get(path, { params });
   },
-  getAllOrderByAdmin: (params: IOrderParams): Promise<IResponse> => {
+  getAllOrderByAdmin: (params: IOrderParams): Promise<OrdersResponse> => {
     const path = `api/order`;
     return axiosClient.get(path, { params });
   },
-  getSingleOrder: (id: string): Promise<IResponse> => {
+  getSingleOrder: (id: string): Promise<OrderResponse> => {
     const path = `api/order/${id}`;
     return axiosClient.get(path);
   },
-  processingOrder: (id: string): Promise<IResponse> => {
+  processingOrder: (id: string): Promise<OrderResponse> => {
     const path = `api/order/${id}/processing`;
     return axiosClient.put(path);
   },
-  shippingOrder: (id: string): Promise<IResponse> => {
+  shippingOrder: (id: string): Promise<OrderResponse> => {
     const path = `api/order/${id}/shipping`;
     return axiosClient.put(path);
   },
-  deliveredOrder: (id: string): Promise<IResponse> => {
+  deliveredOrder: (id: string): Promise<OrderResponse> => {
     const path = `api/order/${id}/delivered`;
     return axiosClient.put(path);
   },
-  cancelOrder: (id: string, payload: IPayloadCancelOrder): Promise<IResponse> => {
+  cancelOrder: (id: string, payload: IPayloadCancelOrder): Promise<OrderResponse> => {
     const path = `api/order/${id}/canceled`;
     return axiosClient.put(path, payload);
   }

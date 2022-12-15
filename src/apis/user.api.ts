@@ -5,20 +5,22 @@ import {
   IPayloadUpdateUser,
   IResponse,
   IUserCreditCard,
-  IUserSearchParams
+  IUserSearchParams,
+  UserResponse,
+  UsersResponse
 } from "@types";
 import axiosClient from "./axiosClient";
 
 export const userAPI = {
-  getAllUser: (params: Partial<IUserSearchParams>): Promise<IResponse> => {
+  getAllUser: (params: Partial<IUserSearchParams>): Promise<UsersResponse> => {
     const path = `api/user`;
     return axiosClient.get(path, { params });
   },
-  getSingleUser: (id: string): Promise<IResponse> => {
+  getSingleUser: (id: string): Promise<UserResponse> => {
     const path = `api/user/${id}`;
     return axiosClient.get(path);
   },
-  addNewUser: (payload: IPayloadAddNewUser): Promise<IResponse> => {
+  addNewUser: (payload: IPayloadAddNewUser): Promise<UserResponse> => {
     const path = `api/user`;
     return axiosClient.post(path, payload);
   },
@@ -26,15 +28,15 @@ export const userAPI = {
     const path = `api/user/${id}`;
     return axiosClient.delete(path);
   },
-  updateUser: (payload: IPayloadUpdateUser): Promise<IResponse> => {
-    const path = `api/user`;
+  updateUser: (id: string, payload: IPayloadUpdateUser): Promise<UserResponse> => {
+    const path = `api/user/${id}`;
     return axiosClient.put(path, payload);
   },
-  updateCreditCard: (payload: IUserCreditCard): Promise<IResponse> => {
+  updateCreditCard: (payload: IUserCreditCard): Promise<UserResponse> => {
     const path = `api/user/credit-card`;
     return axiosClient.put(path, payload);
   },
-  updateMe: (payload: Partial<IPayloadUpdateMe>): Promise<IResponse> => {
+  updateMe: (payload: Partial<IPayloadUpdateMe>): Promise<UserResponse> => {
     const path = `api/user/me`;
     return axiosClient.put(path, payload);
   },

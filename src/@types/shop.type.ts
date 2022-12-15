@@ -1,4 +1,6 @@
-export interface IShop {
+import { SuccessResponse } from "./utils.type";
+
+export interface IShopInfo {
   _id: string;
   name: string;
   avatar: string;
@@ -10,7 +12,8 @@ export interface IShop {
   createdAt: string;
   updatedAt: string;
 }
-export interface IDashboardOverview {
+
+export interface IShopOverview {
   totalOrders: number;
   totalOrdersWaiting: number;
   totalOrdersProcessing: number;
@@ -22,3 +25,6 @@ export interface IDashboardOverview {
   totalVouchers: number;
   totalRevenue: number;
 }
+
+export type ShopOverviewResponse = SuccessResponse<IShopOverview>;
+export type ShopInfoResponse = SuccessResponse<IShopInfo>;

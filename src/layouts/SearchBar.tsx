@@ -10,7 +10,6 @@ const SearchBar = () => {
     e.preventDefault();
     navigate(`${PATH.search}?name=${keyword}`);
   };
-
   return (
     <form
       onSubmit={handleSearchWithKeyword}

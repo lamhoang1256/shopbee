@@ -1,8 +1,10 @@
-import { IResponse } from "@types";
+import { IProduct, IResponse, SuccessResponse } from "@types";
 import axiosClient from "./axiosClient";
 
+export type WishlistsResponse = SuccessResponse<IProduct[]>;
+
 export const wishlistAPI = {
-  getMyWishlist: (): Promise<IResponse> => {
+  getMyWishlist: (): Promise<WishlistsResponse> => {
     const path = `api/wishlist`;
     return axiosClient.get(path);
   },

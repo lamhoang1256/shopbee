@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import queryString from "query-string";
 import {
   getAccessTokenLocalStorage,
@@ -36,7 +36,7 @@ axiosClient.interceptors.request.use(
 );
 
 axiosClient.interceptors.response.use(
-  async (response) => {
+  async (response: AxiosResponse) => {
     if (response && response.data) {
       return response.data;
     }

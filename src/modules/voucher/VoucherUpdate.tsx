@@ -39,7 +39,7 @@ const VoucherUpdate = () => {
       try {
         const { data } = await voucherAPI.getSingleVoucher(id);
         const expirationDate = formatDatetimeLocal(new Date(data.expirationDate));
-        formik.resetForm({ values: { ...data, expirationDate } });
+        formik.resetForm({ values: { ...data, expirationDate: Number(expirationDate) } });
       } catch (error) {
         toast.error(error?.message);
       }

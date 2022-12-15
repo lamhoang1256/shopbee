@@ -1,4 +1,5 @@
 import { IProduct } from "./product.type";
+import { IPagination, SuccessResponse } from "./utils.type";
 
 export enum OrderStatus {
   waiting = "waiting",
@@ -7,6 +8,7 @@ export enum OrderStatus {
   delivered = "delivered",
   canceled = "canceled"
 }
+
 export enum OrderStatusVietnamese {
   waiting = "Đang chờ",
   processing = "Đang xử lí",
@@ -14,6 +16,7 @@ export enum OrderStatusVietnamese {
   delivered = "Đã giao hàng",
   canceled = "Đã hủy"
 }
+
 export enum OrderStatusCode {
   waiting = 0,
   processing = 1,
@@ -21,10 +24,12 @@ export enum OrderStatusCode {
   delivered = 3,
   canceled = 4
 }
+
 export interface IOrderItem {
   product: IProduct;
   quantity: number;
 }
+
 export interface IOrder {
   _id: string;
   orderItems: IOrderItem[];
@@ -51,6 +56,7 @@ export interface IOrder {
     fullname: string;
   };
 }
+
 export interface IPayloadBuyProduct {
   orderItems: { product: string; quantity: number }[];
   shippingTo: string;
@@ -62,15 +68,24 @@ export interface IPayloadBuyProduct {
   voucherCode: string;
   methodPayment: string;
 }
+
 export interface IStatusOrder {
   active: boolean;
   icon: React.ReactNode;
   date: string;
   status: string;
 }
+
 export interface IOrderParams {
   [k: string]: string;
 }
+
 export interface IPayloadCancelOrder {
   reasonCancel: string;
 }
+
+export type OrderResponse = SuccessResponse<IOrder>;
+export type OrdersResponse = SuccessResponse<{
+  orders: IOrder[];
+  pagination: IPagination;
+}>;
