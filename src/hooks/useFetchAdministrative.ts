@@ -1,5 +1,5 @@
 import { ICity, IDistrict, IWard } from "@types";
-import { addressAPI } from "apis";
+import { countryAPI } from "apis";
 import { useEffect, useState } from "react";
 
 export default function useFetchAdministrative(cityId?: string, districtId?: string) {
@@ -7,13 +7,13 @@ export default function useFetchAdministrative(cityId?: string, districtId?: str
   const [districts, setDistricts] = useState<IDistrict[]>([]);
   const [wards, setWards] = useState<IWard[]>([]);
   const fetchAllCity = () => {
-    addressAPI.getAllCity().then((res) => setCitys(res.data));
+    countryAPI.getAllCity().then((res) => setCitys(res.data));
   };
   const fetchAllDistrict = () => {
-    addressAPI.getAllDistrict({ cityId }).then((res) => setDistricts(res.data));
+    countryAPI.getAllDistrict({ cityId }).then((res) => setDistricts(res.data));
   };
   const fetchAllWard = () => {
-    addressAPI.getAllWard({ districtId }).then((res) => setWards(res.data));
+    countryAPI.getAllWard({ districtId }).then((res) => setWards(res.data));
   };
 
   useEffect(() => {

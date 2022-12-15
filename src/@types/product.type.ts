@@ -29,6 +29,18 @@ export interface IProductSearchParams {
   name: string;
 }
 
+export interface IProductsConfig {
+  page?: string;
+  limit?: string;
+  category?: string;
+  rating?: string;
+  price_max?: string;
+  price_min?: string;
+  sort_by?: string;
+  order?: string;
+  name?: string;
+}
+
 export type IPayloadProduct = Omit<IProduct, "_id" | "reviews">;
 export type ProductResponse = SuccessResponse<IProduct>;
 export type ProductsResponse = SuccessResponse<{

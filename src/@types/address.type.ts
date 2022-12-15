@@ -1,18 +1,23 @@
+import { SuccessResponse } from "./utils.type";
+
 export interface ICity {
   ID: string;
   cityId: string;
   name: string;
 }
+
 export interface IDistrict {
   cityId: string;
   districtId: string;
   name: string;
 }
+
 export interface IWard {
   districtId: string;
   wardId: string;
   name: string;
 }
+
 export interface IShopAddress {
   _id: string;
   cityId: string;
@@ -23,9 +28,15 @@ export interface IShopAddress {
   address: string;
   default: boolean;
 }
-export interface IPayloadGetAllDistrict {
+
+export interface IParamsDistrict {
   cityId?: string;
 }
-export interface IPayloadGetAllWard {
+
+export interface IParamsWard {
   districtId?: string;
 }
+
+export type CityResponse = SuccessResponse<ICity[]>;
+export type DistrictResponse = SuccessResponse<IDistrict[]>;
+export type WardResponse = SuccessResponse<IWard[]>;

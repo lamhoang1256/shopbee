@@ -1,7 +1,7 @@
 import {
   IPayloadBuyProduct,
   IPayloadProduct,
-  IProductSearchParams,
+  IProductsConfig,
   IResponse,
   ProductResponse,
   ProductsResponse
@@ -21,7 +21,7 @@ export const productAPI = {
     const path = `api/product/${id}`;
     return axiosClient.delete(path);
   },
-  getAllProduct: (params?: Partial<IProductSearchParams>): Promise<ProductsResponse> => {
+  getAllProduct: (params?: Partial<IProductsConfig>): Promise<ProductsResponse> => {
     const path = `api/product`;
     return axiosClient.get(path, { params });
   },

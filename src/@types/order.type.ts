@@ -80,7 +80,7 @@ export interface IOrderParams {
   [k: string]: string;
 }
 
-export interface IPayloadCancelOrder {
+export interface ICancelOrder {
   reasonCancel: string;
 }
 

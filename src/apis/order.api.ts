@@ -1,4 +1,4 @@
-import { IOrderParams, IPayloadCancelOrder, OrderResponse, OrdersResponse } from "@types";
+import { ICancelOrder, IOrderParams, OrderResponse, OrdersResponse } from "@types";
 import axiosClient from "./axiosClient";
 
 export const orderAPI = {
@@ -26,7 +26,7 @@ export const orderAPI = {
     const path = `api/order/${id}/delivered`;
     return axiosClient.put(path);
   },
-  cancelOrder: (id: string, payload: IPayloadCancelOrder): Promise<OrderResponse> => {
+  cancelOrder: (id: string, payload: ICancelOrder): Promise<OrderResponse> => {
     const path = `api/order/${id}/canceled`;
     return axiosClient.put(path, payload);
   }
