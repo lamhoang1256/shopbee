@@ -3,7 +3,7 @@ import { UserCreditCard } from "modules/user";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Fallback } from "components/fallback";
-import { ErrorBoundary } from "components/_errorBoundary";
+import ErrorBoundary from "components/ErrorBoundary";
 import { ScrollToTop } from "components/scrollToTop";
 import { ButtonGoToTop } from "components/_button";
 
