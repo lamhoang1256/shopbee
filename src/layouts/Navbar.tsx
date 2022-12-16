@@ -1,6 +1,6 @@
 import { Menu } from "components/header";
 import Logo from "components/Logo";
-import { Notification } from "components/_notification";
+import Notification from "components/Notification";
 import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
 

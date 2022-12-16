@@ -1,4 +1,4 @@
-import { PriceSale } from "components/price";
+import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { formatMoney } from "utils/helper";
 
 interface OrderPaymentProps {
@@ -26,7 +26,7 @@ const OrderPayment = ({ price, shippingFee, promotion, total }: OrderPaymentProp
       <div className="flex">
         <div className="flex-1 py-2">Tổng thanh toán</div>
         <div className="w-1/2 py-2 md:w-48">
-          <PriceSale>{total}</PriceSale>
+          <ProductPriceSale>{total}</ProductPriceSale>
         </div>
       </div>
     </div>

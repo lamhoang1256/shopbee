@@ -5,7 +5,7 @@ interface TemplateProps {
   children: React.ReactNode;
 }
 
-const Template = ({ title, desc, subtitle, children }: TemplateProps) => {
+const Template = ({ title, desc, subtitle = "", children }: TemplateProps) => {
   return (
     <div className="p-5 pb-10 bg-white rounded">
       <div className="flex flex-wrap justify-between">
@@ -18,10 +18,6 @@ const Template = ({ title, desc, subtitle, children }: TemplateProps) => {
       <div>{children}</div>
     </div>
   );
-};
-
-Template.defaultProps = {
-  subtitle: ""
 };
 
 export default Template;

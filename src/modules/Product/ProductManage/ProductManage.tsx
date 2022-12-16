@@ -8,7 +8,7 @@ import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
 import ProductNotFound from "modules/Product/ProductNotFound";
-import ProductPriceSale from "modules/Product/ProductPriceSale";
+import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSearchParams } from "react-router-dom";

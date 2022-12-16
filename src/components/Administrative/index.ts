@@ -1,3 +1,3 @@
 import Administrative from "./Administrative";
 
-export { Administrative };
+export default Administrative;

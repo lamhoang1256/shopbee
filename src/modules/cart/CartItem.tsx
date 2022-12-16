@@ -2,7 +2,7 @@ import { ICart } from "@types";
 import { cartAPI } from "apis";
 import { QuantityController } from "components/QuantityController";
 import { PATH } from "constants/path";
-import { PriceSale, PriceOld } from "components/price";
+import { ProductPriceOld, ProductPriceSale } from "modules/Product/ProductPrice";
 import { ProductImage, ProductTitle } from "modules/_product";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
@@ -41,8 +41,8 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
         </ProductTitle>
         <div className="flex flex-col justify-between flex-1 gap-y-2 md:flex-row">
           <div className="flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2">
-            <PriceOld>{cartItem.product.oldPrice}</PriceOld>
-            <PriceSale>{cartItem.product.price}</PriceSale>
+            <ProductPriceOld>{cartItem.product.oldPrice}</ProductPriceOld>
+            <ProductPriceSale>{cartItem.product.price}</ProductPriceSale>
           </div>
           <div className="flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2">
             {cartItem.product.stock ? (

@@ -1,7 +1,6 @@
-import { PriceOld } from "components/price";
 import LabelSale from "modules/Common/LabelSale";
+import { ProductPriceOld, ProductPriceSale } from "modules/Product/ProductPrice";
 import { useCallback } from "react";
-import ProductPriceSale from "modules/Product/ProductPriceSale";
 
 interface ProductPriceProps {
   oldPrice: number;
@@ -14,7 +13,7 @@ const ProductPrice = ({ oldPrice, price }: ProductPriceProps) => {
   }, [oldPrice, price]);
   return (
     <div className="flex flex-col-reverse section-gray md:flex-row md:items-center gap-x-3">
-      <PriceOld className="text-[#929292]">{oldPrice}</PriceOld>
+      <ProductPriceOld className="text-[#929292]">{oldPrice}</ProductPriceOld>
       <ProductPriceSale className="lg:text-3xl">{price}</ProductPriceSale>
       <LabelSale>-{calcPercentSale()}%</LabelSale>
     </div>

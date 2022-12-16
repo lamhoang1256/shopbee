@@ -6,7 +6,7 @@ import { IconGPS } from "components/Icons";
 import Input from "components/Input";
 import Logo from "components/Logo";
 import { ModalApplyVoucher } from "components/Modal";
-import { PriceSale } from "components/price";
+import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { PATH } from "constants/path";
 import useFetchShopInfo from "hooks/useFetchShopInfo";
 import useModal from "hooks/useModal";
@@ -149,7 +149,7 @@ const CheckoutPage = () => {
         </div>
         <div className="bg-[#fafdff] px-4 py-6 border border-dotted border-[#00000017] flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center">
           <span>Tổng số tiền ({carts.length} sản phẩm):</span>
-          <PriceSale className="text-lg font-medium">{price}</PriceSale>
+          <ProductPriceSale className="text-lg font-medium">{price}</ProductPriceSale>
         </div>
         <div className="flex items-center justify-between section-dotted">
           <h3>Voucher Shopbee</h3>

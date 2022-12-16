@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Fallback from "components/Fallback";
 import ErrorBoundary from "components/ErrorBoundary";
-import { ScrollToTop } from "components/scrollToTop";
+import { ScrollToTop } from "components/_scrollToTop";
 import { ButtonGoToTop } from "components/_button";
 
 const LayoutAuth = lazy(() => import("layouts/LayoutAuth"));

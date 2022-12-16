@@ -1,7 +1,7 @@
 import { userAPI } from "apis";
 import Button from "components/Button";
 import Switch from "components/Switch";
-import { Administrative } from "components/_administrative";
+import Administrative from "components/Administrative";
 import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";

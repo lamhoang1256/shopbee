@@ -1,7 +1,7 @@
 import { IProduct } from "@types";
 import { PATH } from "constants/path";
 import Image from "components/Image";
-import ProductPriceSale from "modules/Product/ProductPriceSale";
+import { ProductPriceSale } from "modules/Product/ProductPrice";
 import ProductRating from "modules/Product/ProductRating";
 import { Link } from "react-router-dom";
 import { formatCash, slugify } from "utils/helper";
