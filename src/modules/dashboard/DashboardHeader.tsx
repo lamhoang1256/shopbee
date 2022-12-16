@@ -1,4 +1,4 @@
-import { Logo } from "components/_logo";
+import Logo from "components/Logo";
 import { defaultUserAvatar } from "constants/global";
 import { PATH } from "constants/path";
 import { UserAvatar } from "modules/_user";

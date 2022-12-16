@@ -1,4 +1,4 @@
-import { QuantityController } from "components/_quantityController";
+import { QuantityController } from "components/QuantityController";
 import { ProductAddToCart } from "modules/_product";
 import { useState } from "react";
 

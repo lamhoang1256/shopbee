@@ -2,7 +2,7 @@ import { IProduct } from "@types";
 import { reviewAPI } from "apis";
 import Button from "components/Button";
 import SelectStar from "modules/Common/SelectStar";
-import { Textarea } from "components/_textarea";
+import Textarea from "components/Textarea";
 import { ProductImage, ProductTitle } from "modules/_product";
 import { useState } from "react";
 import Modal from "react-modal";

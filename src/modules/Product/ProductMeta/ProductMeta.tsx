@@ -1,4 +1,4 @@
-import { Rating } from "components/_rating";
+import Rating from "components/Rating";
 import { ProductSaveWishlist } from "modules/_product";
 
 interface ProductMetaProps {

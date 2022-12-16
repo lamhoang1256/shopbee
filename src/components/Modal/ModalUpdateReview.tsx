@@ -2,7 +2,7 @@ import { IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
 import Button from "components/Button";
 import Image from "components/Image";
-import { Textarea } from "components/_textarea";
+import Textarea from "components/Textarea";
 import SelectStar from "modules/Common/SelectStar";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";

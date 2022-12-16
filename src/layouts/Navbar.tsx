@@ -1,5 +1,5 @@
 import { Menu } from "components/header";
-import { Logo } from "components/_logo";
+import Logo from "components/Logo";
 import { Notification } from "components/_notification";
 import { PATH } from "constants/path";
 import { Link } from "react-router-dom";
