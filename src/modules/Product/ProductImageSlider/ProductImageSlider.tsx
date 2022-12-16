@@ -3,9 +3,10 @@ import classNames from "utils/classNames";
 
 interface ProductImageSliderProps {
   images: string[];
+  productName: string;
 }
 
-const ProductImageSlider = ({ images }: ProductImageSliderProps) => {
+const ProductImageSlider = ({ images, productName }: ProductImageSliderProps) => {
   const [indexActive, setIndexActive] = useState(0);
   const handleChooseActive = (index: number) => setIndexActive(index);
   return (
@@ -16,7 +17,7 @@ const ProductImageSlider = ({ images }: ProductImageSliderProps) => {
           <img
             src={image}
             key={image}
-            alt={`product-${index}`}
+            alt={`${productName}-${index}`}
             className={classNames(
               "inline-block object-cover w-1/5 border-2 aspect-square transition-all duration-200 cursor-pointer p-1",
               indexActive === index ? " border-orangeee4" : "border-transparent"

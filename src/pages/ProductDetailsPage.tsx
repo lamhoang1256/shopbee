@@ -10,18 +10,18 @@ import useFetchShopInfo from "hooks/useFetchShopInfo";
 import {
   ProductAddToCart,
   ProductDesc,
-  ProductImageSlider,
-  ProductNotFound,
-  ProductRelated,
   ProductSaveWishlist,
   ProductShipping,
   ProductTitle
 } from "modules/_product";
+import ProductNotFound from "modules/Product/ProductNotFound";
+import ProductRelated from "modules/Product/ProductRelated";
 import { ShopOverview } from "modules/shop";
 import { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
-import { getHistoryLocalStorage, setHistoryLocalStorage } from "utils/localStorage";
+import { getHistoryLocalStorage, setHistoryLocalStorage } from "utils";
+import ProductImageSlider from "modules/Product/ProductImageSlider";
 import PageNotFound from "./PageNotFound";
 
 const ProductDetailsPage = () => {
@@ -56,7 +56,7 @@ const ProductDetailsPage = () => {
         <title>{product.name}</title>
       </Helmet>
       <div className="flex flex-col gap-6 p-4 mt-6 bg-white lg:flex-row">
-        <ProductImageSlider images={product.images} />
+        <ProductImageSlider images={product.images} productName={product.name} />
         <div className="flex-1">
           <ProductTitle className="text-[#242424] text-base lg:text-2xl">
             {product.name}

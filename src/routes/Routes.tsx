@@ -26,7 +26,7 @@ const OrderUpdate = lazy(() => import("modules/order/OrderUpdate"));
 const OrderDetailsPage = lazy(() => import("pages/OrderDetailsPage"));
 const OrderMe = lazy(() => import("modules/order/OrderMe"));
 const ProductAddNew = lazy(() => import("modules/Product/ProductAddNew"));
-const ProductManage = lazy(() => import("modules/_product/ProductManage"));
+const ProductManage = lazy(() => import("modules/Product/ProductManage"));
 const ProductUpdate = lazy(() => import("modules/Product/ProductUpdate"));
 const ProductDetailsPage = lazy(() => import("pages/ProductDetailsPage"));
 const UserAddNew = lazy(() => import("modules/_user/UserAddNew"));

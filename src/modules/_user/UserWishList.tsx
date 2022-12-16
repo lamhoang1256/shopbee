@@ -2,7 +2,7 @@ import { IProduct } from "@types";
 import { wishlistAPI } from "apis";
 import { IconHeart } from "components/Icons";
 import Loading from "components/Loading";
-import { ProductGrid } from "modules/_product";
+import ProductList from "modules/Product/ProductList";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
@@ -35,7 +35,7 @@ const UserWishList = () => {
       {loading && <Loading />}
       {!loading &&
         (wishlists.length > 0 ? (
-          <ProductGrid products={wishlists} />
+          <ProductList products={wishlists} />
         ) : (
           <div className="flex flex-col items-center justify-center gap-y-1 h-[300px]">
             <img src="/images/wishlist.png" alt="wishlist" className="w-24 h-24" />

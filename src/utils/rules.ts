@@ -31,7 +31,7 @@ export const signUpRules = Yup.object({
 
 export const addNewProductRules = Yup.object({
   name: Yup.string().required("Vui lòng nhập tên sản phẩm!"),
-  image: Yup.string().required("Vui lòng chọn hình ảnh!"),
+  // image: Yup.string().required("Vui lòng chọn hình ảnh!"),
   description: Yup.string().required("Vui lòng nhập mô tả sản phẩm!"),
   category: Yup.string().required("Vui lòng chọn danh mục!"),
   oldPrice: Yup.number().required("Vui lòng chọn giá sản phẩm!"),

@@ -22,6 +22,13 @@ export interface IResponse {
   [key: string]: any;
 }
 
+export interface IErrorData {
+  status: number;
+  success: boolean;
+  message: string;
+  error?: { [key: string]: string }[];
+}
+
 export interface ICloudinaryUpload {
   asset_id: string;
   bytes: number;

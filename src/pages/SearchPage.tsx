@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Pagination from "components/Pagination";
 import useFetchProducts from "hooks/useFetchProducts";
-import { ProductGrid } from "modules/_product";
+import ProductList from "modules/Product/ProductList";
 import { SearchAside, SearchSortBar } from "modules/search";
 import { scrollTo } from "utils/helper";
 import { Helmet } from "react-helmet-async";
@@ -25,7 +25,7 @@ const SearchPage = () => {
       <SearchAside />
       <div className="flex-1">
         <SearchSortBar pagination={pagination} />
-        <ProductGrid products={products} />
+        <ProductList products={products} />
         {products.length > 0 && <Pagination pagination={pagination} />}
       </div>
     </div>

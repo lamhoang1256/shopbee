@@ -13,7 +13,7 @@ import useUploadImages from "hooks/useUploadImages";
 import Template from "layouts/Template";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import ReactQuill from "react-quill";
 import { toast } from "react-toastify";
 import { addNewProductRules, initialValuesProduct } from "utils";
@@ -24,21 +24,26 @@ const ProductAddNew = () => {
     queryFn: () => categoryAPI.getAllCategory(),
     staleTime: 5 * 60 * 1000
   });
+  const addProductMutation = useMutation({
+    mutationFn: (body: typeof initialValuesProduct) => productAPI.addNewProduct(body)
+  });
   const formik = useFormik({
     initialValues: initialValuesProduct,
     validationSchema: addNewProductRules,
-    onSubmit: async (values) => {
-      try {
-        const images = values.images.filter((image) => image);
-        const payload = { ...values, image: images[0], images };
-        const { message } = await productAPI.addNewProduct(payload);
-        toast.success(message);
-      } catch (error) {
-        toast.error(error?.message);
-      }
+    onSubmit: async (values, { setErrors }) => {
+      const images = values.images.filter((image) => image);
+      const body = { ...values, image: images[0], images };
+      addProductMutation.mutate(body, {
+        onSuccess: ({ message }) => {
+          toast.success(message);
+        },
+        onError(error: any) {
+          setErrors(error.error);
+        }
+      });
     }
   });
-  const { values, handleChange, touched, errors, handleSubmit, setFieldValue } = formik;
+  const { values, touched, errors, setFieldValue } = formik;
   const { addNewImage, removeImage } = useUploadImages(values, setFieldValue);
   return (
     <Template
@@ -48,17 +53,17 @@ const ProductAddNew = () => {
       <Helmet>
         <title>Thêm sản phẩm mới</title>
       </Helmet>
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={formik.handleSubmit}>
         <div className="flex flex-col-reverse gap-8 mt-6 lg:flex-row">
           <div className="max-w-[600px]">
             <FormGroup>
               <Label htmlFor="name">Tên sản phẩm</Label>
-              <Input name="name" value={values.name} onChange={handleChange} />
+              <Input name="name" value={values.name} onChange={formik.handleChange} />
               <FormError>{touched.name && errors?.name}</FormError>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="category">Chọn danh mục</Label>
-              <Select name="category" onChange={handleChange} value={values.category}>
+              <Select name="category" value={values.category} onChange={formik.handleChange}>
                 <Option disabled>Chọn danh mục</Option>
                 {categoriesData?.data.map((category) => (
                   <Option value={category._id} key={category._id}>
@@ -71,7 +76,12 @@ const ProductAddNew = () => {
             <div className="grid md:grid-cols-3 gap-x-2">
               <FormGroup>
                 <Label htmlFor="stock">Số lượng hiện có</Label>
-                <Input name="stock" type="number" value={values.stock} onChange={handleChange} />
+                <Input
+                  name="stock"
+                  type="number"
+                  value={values.stock}
+                  onChange={formik.handleChange}
+                />
                 <FormError>{touched.stock && errors?.stock}</FormError>
               </FormGroup>
               <FormGroup>
@@ -80,13 +90,18 @@ const ProductAddNew = () => {
                   type="number"
                   name="oldPrice"
                   value={values.oldPrice}
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                 />
                 <FormError>{touched.oldPrice && errors?.oldPrice}</FormError>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="price">Giá đã giảm</Label>
-                <Input name="price" type="number" value={values.price} onChange={handleChange} />
+                <Input
+                  name="price"
+                  type="number"
+                  value={values.price}
+                  onChange={formik.handleChange}
+                />
                 <FormError>{touched.price && errors?.price}</FormError>
               </FormGroup>
             </div>
