@@ -1,6 +1,6 @@
 import { IProduct } from "@types";
-import { SectionGray, SectionWhite } from "components/section";
-import { Loading } from "components/loading";
+import { SectionGray, SectionWhite } from "components/_section";
+import Loading from "components/Loading";
 import { PriceOld, PriceSale } from "components/price";
 import { QuantityController } from "components/quantityController";
 import { Rating } from "components/rating";

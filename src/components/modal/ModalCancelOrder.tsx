@@ -1,5 +1,5 @@
 import { orderAPI } from "apis";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { Textarea } from "components/textarea";
 import { useState } from "react";
 import Modal from "react-modal";

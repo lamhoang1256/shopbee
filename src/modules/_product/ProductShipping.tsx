@@ -1,6 +1,6 @@
 import { ICity } from "@types";
 import { Dropdown } from "components/dropdown";
-import { IconShipping } from "components/icons";
+import { IconShipping } from "components/_icons";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 import { useEffect, useState } from "react";
 import { useStore } from "store/globalStore";

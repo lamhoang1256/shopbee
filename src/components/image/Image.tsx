@@ -7,12 +7,7 @@ interface ImageProps extends LazyLoadImageProps {
   imageError?: string;
 }
 
-const Image = ({
-  to,
-  src,
-  imageError = "/images/no-image-avaliable.png",
-  ...props
-}: ImageProps) => {
+const Image = ({ to = "", src, imageError = "/no-image-avaliable.png", ...props }: ImageProps) => {
   const [fallback, setFallback] = useState("");
   const handleErrorImage = () => setFallback(imageError);
   if (to) {
@@ -30,11 +25,6 @@ const Image = ({
   return (
     <LazyLoadImage src={fallback || src} effect="opacity" onError={handleErrorImage} {...props} />
   );
-};
-
-Image.defaultProps = {
-  to: "",
-  imageError: "/images/no-image-avaliable.png"
 };
 
 export default Image;

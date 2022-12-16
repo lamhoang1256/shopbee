@@ -1,10 +1,10 @@
 import { authAPI } from "apis";
 import Button from "components/Button";
+import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
 import Input from "components/Input";
 import InputPassword from "components/InputPassword";
-import Label from "components/Label";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Helmet } from "react-helmet-async";

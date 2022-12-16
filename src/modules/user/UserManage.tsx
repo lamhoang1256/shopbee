@@ -1,9 +1,9 @@
 import { ICurrentUser, IPagination } from "@types";
 import { userAPI } from "apis";
-import { Button } from "components/_button";
-import { Input } from "components/_input";
-import { Loading } from "components/loading";
-import { Pagination } from "components/_pagination";
+import Button from "components/Button";
+import Input from "components/Input";
+import Loading from "components/Loading";
+import Pagination from "components/Pagination";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Template } from "layouts";

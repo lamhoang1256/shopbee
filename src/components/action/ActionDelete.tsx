@@ -1,4 +1,4 @@
-import { IconClose } from "components/icons";
+import { IconClose } from "components/_icons";
 import { ButtonHTMLAttributes } from "react";
 import classNames from "utils/classNames";
 

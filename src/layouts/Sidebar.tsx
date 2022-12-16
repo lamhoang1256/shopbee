@@ -1,5 +1,5 @@
-import { Button } from "components/_button";
-import { IconMenu } from "components/icons";
+import Button from "components/Button";
+import { IconMenu } from "components/_icons";
 import useOnClickOutside from "hooks/useClickOutside";
 import { useRef } from "react";
 import classNames from "utils/classNames";

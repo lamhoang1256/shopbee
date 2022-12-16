@@ -1,10 +1,12 @@
 import { productAPI } from "apis";
 import { ActionDelete } from "components/action";
-import { Button } from "components/_button";
-import { FormGroup, Label, MessageError } from "components/form";
-import { ImageUpload } from "components/image";
-import { Input } from "components/_input";
-import { Option, Select } from "components/select";
+import Button from "components/Button";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import ImageUpload from "components/ImageUpload";
+import Input from "components/Input";
+import { Option, Select } from "components/_select";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import useFetchCategories from "hooks/useFetchCategories";
@@ -90,7 +92,7 @@ const ProductUpdate = () => {
             <FormGroup>
               <Label htmlFor="name">Tên sản phẩm</Label>
               <Input name="name" value={formik.values.name} onChange={formik.handleChange} />
-              <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
+              <FormError>{formik.touched.name && formik.errors?.name}</FormError>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="category">Chọn danh mục</Label>
@@ -102,7 +104,7 @@ const ProductUpdate = () => {
                   </Option>
                 ))}
               </Select>
-              <MessageError>{formik.touched.category && formik.errors?.category}</MessageError>
+              <FormError>{formik.touched.category && formik.errors?.category}</FormError>
             </FormGroup>
             <div className="grid md:grid-cols-3 gap-x-2">
               <FormGroup>
@@ -113,7 +115,7 @@ const ProductUpdate = () => {
                   value={formik.values.stock}
                   onChange={formik.handleChange}
                 />
-                <MessageError>{formik.touched.stock && formik.errors?.stock}</MessageError>
+                <FormError>{formik.touched.stock && formik.errors?.stock}</FormError>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="oldPrice">Giá gốc</Label>
@@ -123,7 +125,7 @@ const ProductUpdate = () => {
                   value={formik.values.oldPrice}
                   onChange={formik.handleChange}
                 />
-                <MessageError>{formik.touched.oldPrice && formik.errors?.oldPrice}</MessageError>
+                <FormError>{formik.touched.oldPrice && formik.errors?.oldPrice}</FormError>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="price">Giá đã giảm</Label>
@@ -133,7 +135,7 @@ const ProductUpdate = () => {
                   value={formik.values.price}
                   onChange={formik.handleChange}
                 />
-                <MessageError>{formik.touched.price && formik.errors?.price}</MessageError>
+                <FormError>{formik.touched.price && formik.errors?.price}</FormError>
               </FormGroup>
             </div>
           </div>
@@ -153,7 +155,7 @@ const ProductUpdate = () => {
                 </div>
               ))}
             </div>
-            <MessageError>{formik.touched.image && formik.errors?.image}</MessageError>
+            <FormError>{formik.touched.image && formik.errors?.image}</FormError>
           </FormGroup>
         </div>
         <FormGroup>
@@ -164,7 +166,7 @@ const ProductUpdate = () => {
             value={formik.values.description}
             onChange={(e) => formik.setFieldValue("description", e)}
           />
-          <MessageError>{formik.touched.description && formik.errors?.description}</MessageError>
+          <FormError>{formik.touched.description && formik.errors?.description}</FormError>
         </FormGroup>
         <Button type="submit" primary className="w-full h-10">
           Cập nhật sản phẩm

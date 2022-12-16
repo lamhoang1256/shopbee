@@ -1,9 +1,11 @@
 import { userAPI } from "apis";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { Switch } from "components/checkbox";
 import { Administrative } from "components/administrative";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/_input";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
@@ -101,7 +103,7 @@ const UserUpdate = () => {
               value={formik.values.email}
               onChange={formik.handleChange}
             />
-            <MessageError>{formik.touched.email && formik.errors?.email}</MessageError>
+            <FormError>{formik.touched.email && formik.errors?.email}</FormError>
           </FormGroup>
           <div className="grid gap-2 lg:grid-cols-2">
             <FormGroup>
@@ -112,7 +114,7 @@ const UserUpdate = () => {
                 value={formik.values.fullname}
                 onChange={formik.handleChange}
               />
-              <MessageError>{formik.touched.fullname && formik.errors?.fullname}</MessageError>
+              <FormError>{formik.touched.fullname && formik.errors?.fullname}</FormError>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="phone">Số điện thoại</Label>
@@ -122,13 +124,13 @@ const UserUpdate = () => {
                 value={formik.values.phone}
                 onChange={formik.handleChange}
               />
-              <MessageError>{formik.touched.phone && formik.errors?.phone}</MessageError>
+              <FormError>{formik.touched.phone && formik.errors?.phone}</FormError>
             </FormGroup>
           </div>
           <FormGroup className="mb-0">
             <Label htmlFor="address">Địa chỉ:</Label>
             <Administrative formik={formik} />
-            <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
+            <FormError>{formik.touched.address && formik.errors?.address}</FormError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="street">Địa chỉ nhận hàng cụ thể</Label>
@@ -138,7 +140,7 @@ const UserUpdate = () => {
               value={formik.values.street}
               onChange={formik.handleChange}
             />
-            <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
+            <FormError>{formik.touched.street && formik.errors?.street}</FormError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="isAdmin">Quyền quản trị (Admin)</Label>
@@ -147,7 +149,7 @@ const UserUpdate = () => {
               checked={formik.values.isAdmin}
               handleOnChangeSwitch={(checked) => formik.setFieldValue("isAdmin", checked)}
             />
-            <MessageError>{formik.touched.isAdmin && formik.errors?.isAdmin}</MessageError>
+            <FormError>{formik.touched.isAdmin && formik.errors?.isAdmin}</FormError>
           </FormGroup>
           <Button type="submit" primary className="w-full h-10">
             Lưu

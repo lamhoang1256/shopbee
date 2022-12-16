@@ -1,4 +1,4 @@
-import { IconStar } from "components/icons";
+import { IconStar } from "components/_icons";
 import classNames from "utils/classNames";
 
 interface ProductRatingProps extends React.HTMLAttributes<HTMLDivElement> {

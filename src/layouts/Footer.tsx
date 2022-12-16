@@ -1,4 +1,4 @@
-import { IconPaymentList } from "components/icons";
+import { IconPaymentList } from "components/_icons";
 import classNames from "utils/classNames";
 
 const customerCares = [

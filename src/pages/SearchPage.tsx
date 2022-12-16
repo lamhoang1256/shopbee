@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Pagination } from "components/_pagination";
+import Pagination from "components/Pagination";
 import useFetchProducts from "hooks/useFetchProducts";
 import { ProductGrid } from "modules/_product";
 import { SearchAside, SearchSortBar } from "modules/search";

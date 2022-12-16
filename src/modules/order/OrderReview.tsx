@@ -1,6 +1,6 @@
 import { IOrderItem, IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { ModalAddReview, ModalUpdateReview } from "components/modal";
 import useModal from "hooks/useModal";
 import { useEffect, useState } from "react";

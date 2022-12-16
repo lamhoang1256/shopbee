@@ -1,8 +1,8 @@
 import { IOrder, OrderStatus, OrderStatusVietnamese } from "@types";
 import { orderAPI } from "apis";
-import { SectionWhite } from "components/section";
-import { Loading } from "components/loading";
-import { Option, Select } from "components/select";
+import { SectionWhite } from "components/_section";
+import Loading from "components/Loading";
+import { Option, Select } from "components/_select";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";

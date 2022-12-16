@@ -1,5 +1,5 @@
-import { IconBell } from "components/icons";
-import { Popover } from "components/popover";
+import { IconBell } from "components/_icons";
+import { Popover } from "components/_popover";
 import { useEffect, useState } from "react";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";

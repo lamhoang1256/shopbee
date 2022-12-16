@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
-
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
@@ -102,11 +101,11 @@
 .shadow-input {
   box-shadow: inset 0 2px 0 rgb(0 0 0 / 2%);
 }
-.shadow-product-card {
+.product-card {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
-}
-.shadow-product-card-hover {
-  box-shadow: 0 0.1rem 2rem 0 rgb(0 0 0 / 5%);
+  &:hover {
+    box-shadow: 0 0.1rem 2rem 0 rgb(0 0 0 / 5%);
+  }
 }
 .shadow1 {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -191,7 +190,9 @@
 .quantity-cart-item input {
   width: 40px;
 }
-
+.product-title {
+  @apply text-sm text-black33 line-clamp-2;
+}
 @media screen and (max-width: 767.98px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);

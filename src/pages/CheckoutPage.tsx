@@ -1,9 +1,9 @@
 import { ICart, IPayloadBuyProduct, IVoucher } from "@types";
 import { productAPI } from "apis";
 import { Button, ButtonOutline } from "components/_button";
-import { SectionWhite } from "components/section";
-import { IconGPS } from "components/icons";
-import { Input } from "components/_input";
+import { SectionWhite } from "components/_section";
+import { IconGPS } from "components/_icons";
+import Input from "components/Input";
 import { Logo } from "components/logo";
 import { ModalApplyVoucher } from "components/modal";
 import { PriceSale } from "components/price";

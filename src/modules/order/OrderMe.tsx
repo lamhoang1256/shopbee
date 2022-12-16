@@ -5,10 +5,10 @@ import { orderAPI } from "apis";
 import { IOrder, IPagination } from "@types";
 import { PATH } from "constants/path";
 import { InputSearch } from "components/_input";
-import { Loading } from "components/loading";
-import { Tabs } from "components/tabs";
+import Loading from "components/Loading";
+import { Tabs } from "components/_tabs";
 import { OrderEmpty, OrderItem } from "modules/order";
-import { Pagination } from "components/_pagination";
+import Pagination from "components/Pagination";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 

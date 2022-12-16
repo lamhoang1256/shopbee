@@ -26,7 +26,7 @@ const ImageUpload = ({ onChange, previewImage, className }: ImageUploadProps) =>
       <div className="flex flex-col items-center justify-center h-full gap-y-2">
         <img
           alt="upload"
-          src="/images/upload-image.png"
+          src="/upload-image.png"
           className="w-3/5 mx-auto aspect-square max-w-[80px]"
         />
         <span className="font-medium whitespace-pre">Chọn ảnh</span>

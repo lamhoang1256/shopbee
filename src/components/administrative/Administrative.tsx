@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { ICity, IDistrict, IWard } from "@types";
 import { Dropdown } from "components/dropdown";
-import { FormGroup, MessageError } from "components/form";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 
 interface AdministrativeProps {
@@ -38,7 +39,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
               ))}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.city?.name && formik.errors?.city?.name}</MessageError>
+        <FormError>{formik.touched.city?.name && formik.errors?.city?.name}</FormError>
       </FormGroup>
       <FormGroup>
         <Dropdown>
@@ -60,9 +61,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
             )}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>
-          {formik.touched.district?.name && formik.errors?.district?.name}
-        </MessageError>
+        <FormError>{formik.touched.district?.name && formik.errors?.district?.name}</FormError>
       </FormGroup>
       <FormGroup>
         <Dropdown>
@@ -79,7 +78,7 @@ const Administrative = ({ formik }: AdministrativeProps) => {
             )}
           </Dropdown.List>
         </Dropdown>
-        <MessageError>{formik.touched.ward?.name && formik.errors?.ward?.name}</MessageError>
+        <FormError>{formik.touched.ward?.name && formik.errors?.ward?.name}</FormError>
       </FormGroup>
     </div>
   );

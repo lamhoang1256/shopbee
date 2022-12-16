@@ -1,5 +1,5 @@
 import { IOrder, OrderStatusCode } from "@types";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { PriceSale } from "components/price";
 import { Link } from "react-router-dom";
 import OrderProduct from "./OrderProduct";

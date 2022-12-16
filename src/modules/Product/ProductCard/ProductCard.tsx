@@ -1,8 +1,8 @@
 import { IProduct } from "@types";
-import { Rating } from "components/rating";
 import { PATH } from "constants/path";
-import { ProductImage, ProductTitle } from "modules/_product";
-import { PriceSale } from "components/price";
+import Image from "components/Image";
+import ProductPriceSale from "modules/Product/ProductPriceSale";
+import ProductRating from "modules/Product/ProductRating";
 import { Link } from "react-router-dom";
 import { formatCash, slugify } from "utils/helper";
 
@@ -11,24 +11,29 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const precentSale = Math.ceil((1 - product.price / product.oldPrice) * 100);
+  const precentPriceSale = Math.ceil((1 - product.price / product.oldPrice) * 100);
   return (
     <Link
       key={product._id}
       to={`${PATH.product}/${product._id}`}
-      className="transition-all rounded overflow-hidden duration-300 border bg-white shadow-product-card hover:-translate-y-[3px] border-transparent hover:shadow-product-card-hover"
+      className="transition-all rounded overflow-hidden duration-300 border bg-white hover:-translate-y-[3px] border-transparent product-card"
     >
-      <ProductImage src={product.image} alt={slugify(product.name)} />
+      <Image
+        src={product.image}
+        alt={slugify(product.name)}
+        placeholderSrc="/card-loading.png"
+        className="aspect-square max-w-full bg-[#fafafa] w-[500px] h-auto"
+      />
       <div className="p-2 pb-4">
-        <ProductTitle>{product.name}</ProductTitle>
+        <h3 className="product-title">{product.name}</h3>
         <div className="flex flex-col my-1 gap-x-2 gap-y-1 md:items-center md:flex-row">
-          <Rating rating={product.rating} className="!w-[14px] !h-[14px]" />
+          <ProductRating rating={product.rating} className="!w-[14px] !h-[14px]" />
           <span className="text-[#787878] text-xs">Đã bán {formatCash(product.sold)}</span>
         </div>
         <div className="flex items-center gap-x-2">
-          <PriceSale>{product.price}</PriceSale>
+          <ProductPriceSale>{product.price}</ProductPriceSale>
           <span className="text-xs w-11 rounded-sm px-1 py-[2px] text-redff4 bg-[#fff0f1] border border-redff4">
-            -{precentSale}%
+            -{precentPriceSale}%
           </span>
         </div>
       </div>

@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { userAPI } from "apis";
-import { Button } from "components/_button";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/_input";
+import Button from "components/Button";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";
@@ -79,7 +81,7 @@ const UserCreditCard = () => {
               onChange={formik.handleChange}
               onFocus={handleInputFocus}
             />
-            <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
+            <FormError>{formik.touched.name && formik.errors?.name}</FormError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="number">Số thẻ</Label>
@@ -89,7 +91,7 @@ const UserCreditCard = () => {
               onChange={formik.handleChange}
               onFocus={handleInputFocus}
             />
-            <MessageError>{formik.touched.number && formik.errors?.number}</MessageError>
+            <FormError>{formik.touched.number && formik.errors?.number}</FormError>
           </FormGroup>
           <div className="grid lg:grid-cols-2 gap-x-3">
             <FormGroup>
@@ -100,7 +102,7 @@ const UserCreditCard = () => {
                 onChange={formik.handleChange}
                 onFocus={handleInputFocus}
               />
-              <MessageError>{formik.touched.expiry && formik.errors?.expiry}</MessageError>
+              <FormError>{formik.touched.expiry && formik.errors?.expiry}</FormError>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="cvc">CVG</Label>
@@ -110,7 +112,7 @@ const UserCreditCard = () => {
                 onChange={formik.handleChange}
                 onFocus={handleInputFocus}
               />
-              <MessageError>{formik.touched.cvc && formik.errors?.cvc}</MessageError>
+              <FormError>{formik.touched.cvc && formik.errors?.cvc}</FormError>
             </FormGroup>
           </div>
           <Button type="submit" primary className="w-full h-10">

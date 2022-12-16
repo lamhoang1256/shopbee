@@ -1,8 +1,10 @@
 import { voucherAPI } from "apis";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { Switch } from "components/checkbox";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/_input";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
 import { useFormik } from "formik";
 import { Template } from "layouts";
 import { useEffect } from "react";
@@ -61,13 +63,13 @@ const VoucherUpdate = () => {
           <FormGroup>
             <Label htmlFor="title">Tên mã giảm giá</Label>
             <Input name="title" value={formik.values.title} onChange={formik.handleChange} />
-            <MessageError>{formik.touched.title && formik.errors?.title}</MessageError>
+            <FormError>{formik.touched.title && formik.errors?.title}</FormError>
           </FormGroup>
           <div className="grid gap-2 lg:grid-cols-2">
             <FormGroup>
               <Label htmlFor="code">Mã code</Label>
               <Input name="code" value={formik.values.code} onChange={formik.handleChange} />
-              <MessageError>{formik.touched.code && formik.errors?.code}</MessageError>
+              <FormError>{formik.touched.code && formik.errors?.code}</FormError>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="value">Giá trị</Label>
@@ -77,7 +79,7 @@ const VoucherUpdate = () => {
                 value={formik.values.value}
                 onChange={formik.handleChange}
               />
-              <MessageError>{formik.touched.value && formik.errors?.value}</MessageError>
+              <FormError>{formik.touched.value && formik.errors?.value}</FormError>
             </FormGroup>
           </div>
           <FormGroup>
@@ -97,7 +99,7 @@ const VoucherUpdate = () => {
                 checked={formik.values.isPublic}
                 handleOnChangeSwitch={(checked) => formik.setFieldValue("isPublic", checked)}
               />
-              <MessageError>{formik.touched.isPublic && formik.errors?.isPublic}</MessageError>
+              <FormError>{formik.touched.isPublic && formik.errors?.isPublic}</FormError>
             </FormGroup>
             <FormGroup>
               <Label htmlFor="isFreeship">Mã freeship</Label>
@@ -106,7 +108,7 @@ const VoucherUpdate = () => {
                 checked={formik.values.isFreeship}
                 handleOnChangeSwitch={(checked) => formik.setFieldValue("isFreeship", checked)}
               />
-              <MessageError>{formik.touched.isFreeship && formik.errors?.isFreeship}</MessageError>
+              <FormError>{formik.touched.isFreeship && formik.errors?.isFreeship}</FormError>
             </FormGroup>
           </div>
           <Button type="submit" primary className="w-full h-10">

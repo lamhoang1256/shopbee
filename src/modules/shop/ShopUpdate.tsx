@@ -1,8 +1,10 @@
 import { shopAPI } from "apis";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { Administrative } from "components/administrative";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/_input";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import useFetchShopInfo from "hooks/useFetchShopInfo";
@@ -80,17 +82,17 @@ const ShopUpdate = () => {
           <FormGroup>
             <Label htmlFor="name">Tên shop:</Label>
             <Input name="name" value={formik.values.name} onChange={formik.handleChange} />
-            <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
+            <FormError>{formik.touched.address && formik.errors?.address}</FormError>
           </FormGroup>
           <FormGroup className="mb-0">
             <Label htmlFor="address">Địa chỉ shop:</Label>
             <Administrative formik={formik} />
-            <MessageError>{formik.touched.address && formik.errors?.address}</MessageError>
+            <FormError>{formik.touched.address && formik.errors?.address}</FormError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="street">Địa chỉ lấy hàng cụ thể</Label>
             <Input name="street" value={formik.values.street} onChange={formik.handleChange} />
-            <MessageError>{formik.touched.street && formik.errors?.street}</MessageError>
+            <FormError>{formik.touched.street && formik.errors?.street}</FormError>
           </FormGroup>
           <Button type="submit" primary className="w-full h-10">
             Lưu

@@ -1,7 +1,7 @@
 import { IOrder, OrderStatusVietnamese } from "@types";
 import { orderAPI } from "apis";
-import { SectionWhite } from "components/section";
-import { Loading } from "components/loading";
+import { SectionWhite } from "components/_section";
+import Loading from "components/Loading";
 import {
   OrderCancel,
   OrderHeader,

@@ -1,6 +1,6 @@
 import { cartAPI } from "apis";
 import { ButtonOutline } from "components/_button";
-import { IconCartOutline } from "components/icons";
+import { IconCartOutline } from "components/_icons";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";

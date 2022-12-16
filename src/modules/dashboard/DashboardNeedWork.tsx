@@ -1,6 +1,6 @@
 import { IShopOverview } from "@types";
 import { shopAPI } from "apis";
-import { Loading } from "components/loading";
+import Loading from "components/Loading";
 import { PATH } from "constants/path";
 import { Template } from "layouts";
 import { useEffect, useState } from "react";

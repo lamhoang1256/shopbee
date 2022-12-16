@@ -1,5 +1,5 @@
 import { IPagination } from "@types";
-import { IconNext, IconPrev } from "components/icons";
+import { IconNext, IconPrev } from "components/_icons";
 import usePagination from "hooks/usePagination";
 import PaginationNumber from "components/Pagination/PaginationNumber";
 

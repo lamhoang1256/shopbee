@@ -1,6 +1,8 @@
 import { userAPI } from "apis";
-import { Button } from "components/_button";
-import { FormGroup, Label, MessageError } from "components/form";
+import Button from "components/Button";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
 import { InputPassword } from "components/_input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -51,9 +53,7 @@ const UserChangePassword = () => {
             value={formik.values.currentPassword}
             onChange={formik.handleChange}
           />
-          <MessageError>
-            {formik.touched.currentPassword && formik.errors?.currentPassword}
-          </MessageError>
+          <FormError>{formik.touched.currentPassword && formik.errors?.currentPassword}</FormError>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="newPassword">Mật Khẩu Mới</Label>
@@ -62,7 +62,7 @@ const UserChangePassword = () => {
             value={formik.values.newPassword}
             onChange={formik.handleChange}
           />
-          <MessageError>{formik.touched.newPassword && formik.errors?.newPassword}</MessageError>
+          <FormError>{formik.touched.newPassword && formik.errors?.newPassword}</FormError>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="confirmPassword">Xác Nhận Mật Khẩu</Label>
@@ -71,9 +71,7 @@ const UserChangePassword = () => {
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
           />
-          <MessageError>
-            {formik.touched.confirmPassword && formik.errors?.confirmPassword}
-          </MessageError>
+          <FormError>{formik.touched.confirmPassword && formik.errors?.confirmPassword}</FormError>
         </FormGroup>
         <Button type="submit" primary className="w-full h-10">
           Lưu

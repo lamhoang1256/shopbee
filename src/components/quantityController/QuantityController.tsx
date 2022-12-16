@@ -1,4 +1,4 @@
-import { IconMinus, IconPlus } from "components/icons";
+import { IconMinus, IconPlus } from "components/_icons";
 import { useState } from "react";
 import classNames from "utils/classNames";
 import QuantityButton from "./QuantityButton";

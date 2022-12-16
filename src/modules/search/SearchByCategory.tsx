@@ -1,4 +1,4 @@
-import { IconMenu } from "components/icons";
+import { IconMenu } from "components/_icons";
 import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
 import { Link, useSearchParams } from "react-router-dom";

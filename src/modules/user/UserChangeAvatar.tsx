@@ -1,5 +1,5 @@
 import { defaultUserAvatar } from "constants/global";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { ChangeEvent } from "react";
 import UserAvatar from "./UserAvatar";
 

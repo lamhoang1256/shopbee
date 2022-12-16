@@ -1,6 +1,6 @@
-import { Button } from "components/_button";
-import { MessageError } from "components/form";
-import { IconFilter } from "components/icons";
+import Button from "components/Button";
+import FormError from "components/FormError";
+import { IconFilter } from "components/_icons";
 import { InputRangePrice } from "components/_input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -54,9 +54,9 @@ const SearchRangePrice = () => {
             onChange={formik.handleChange}
           />
         </div>
-        <MessageError className="block text-xs">
+        <FormError className="block text-xs">
           {formik.touched.price_max && formik.errors?.price_max}
-        </MessageError>
+        </FormError>
         <Button type="submit" primary className="w-full py-[6px] rounded-sm">
           ÁP DỤNG
         </Button>

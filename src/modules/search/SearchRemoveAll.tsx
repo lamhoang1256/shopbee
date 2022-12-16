@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "components/_button";
+import Button from "components/Button";
 import { PATH } from "constants/path";
 
 const SearchRemoveAll = () => {

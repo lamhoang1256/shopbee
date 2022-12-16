@@ -1,7 +1,9 @@
 import { categoryAPI } from "apis";
-import { Button } from "components/_button";
-import { FormGroup, Label, MessageError } from "components/form";
-import { Input } from "components/_input";
+import Button from "components/Button";
+import Label from "components/Label";
+import FormError from "components/FormError";
+import FormGroup from "components/FormGroup";
+import Input from "components/Input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Template } from "layouts";
@@ -57,12 +59,12 @@ const CategoryAddNew = () => {
           <FormGroup>
             <Label htmlFor="name">Tên danh mục:</Label>
             <Input name="name" value={formik.values.name} onChange={formik.handleChange} />
-            <MessageError>{formik.touched.name && formik.errors?.name}</MessageError>
+            <FormError>{formik.touched.name && formik.errors?.name}</FormError>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="slug">Tên danh mục slug:</Label>
             <Input name="slug" value={formik.values.slug} onChange={formik.handleChange} />
-            <MessageError>{formik.touched.slug && formik.errors?.slug}</MessageError>
+            <FormError>{formik.touched.slug && formik.errors?.slug}</FormError>
           </FormGroup>
           <Button type="submit" primary className="w-full h-10">
             Thêm danh mục

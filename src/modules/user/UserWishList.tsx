@@ -1,7 +1,7 @@
 import { IProduct } from "@types";
 import { wishlistAPI } from "apis";
-import { IconHeart } from "components/icons";
-import { Loading } from "components/loading";
+import { IconHeart } from "components/_icons";
+import Loading from "components/Loading";
 import { ProductGrid } from "modules/_product";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";

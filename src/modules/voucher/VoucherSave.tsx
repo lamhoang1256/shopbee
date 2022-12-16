@@ -1,5 +1,5 @@
 import { voucherAPI } from "apis";
-import { Input } from "components/_input";
+import Input from "components/Input";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import classNames from "utils/classNames";

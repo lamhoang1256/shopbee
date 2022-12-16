@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconStar } from "components/icons";
+import { IconStar } from "components/_icons";
 import { PATH } from "constants/path";
 import classNames from "utils/classNames";
 

@@ -1,6 +1,6 @@
-import { IconNext, IconPrev } from "components/icons";
+import { IconNext, IconPrev } from "components/_icons";
 import { v4 as uuidv4 } from "uuid";
-import PaginationNumber from "./PaginationNumber";
+import PaginationNumber from "components/Pagination/PaginationNumber";
 
 interface PaginationV2Props extends React.HTMLAttributes<HTMLDivElement> {
   itemsPerPage: number;

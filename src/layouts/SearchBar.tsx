@@ -1,4 +1,4 @@
-import { IconSearch } from "components/icons";
+import { IconSearch } from "components/_icons";
 import { PATH } from "constants/path";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
