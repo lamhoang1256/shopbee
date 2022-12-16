@@ -1,4 +1,4 @@
-import { IconUp } from "components/_icons";
+import { IconUp } from "components/Icons";
 import { useEffect, useState } from "react";
 import classNames from "utils/classNames";
 import { scrollTo } from "utils/helper";

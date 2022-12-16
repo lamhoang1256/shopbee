@@ -7,7 +7,7 @@ import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
 import { Input, InputPassword } from "components/_input";
 import { useFormik } from "formik";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";

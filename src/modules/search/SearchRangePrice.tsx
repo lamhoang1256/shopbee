@@ -1,6 +1,6 @@
 import Button from "components/Button";
 import FormError from "components/FormError";
-import { IconFilter } from "components/_icons";
+import { IconFilter } from "components/Icons";
 import { InputRangePrice } from "components/_input";
 import * as Yup from "yup";
 import { useFormik } from "formik";

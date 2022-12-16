@@ -1,4 +1,4 @@
-import { Logo } from "components/logo";
+import { Logo } from "components/_logo";
 import HeaderCart from "./HeaderCart";
 import Navbar from "./Navbar";
 import SearchBar from "./SearchBar";

@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
 import { userAPI } from "apis";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { uploadImage } from "utils/uploadImage";
 import { useStore } from "store/globalStore";
-import { UserChangeAvatar, UserUpdateMe } from "modules/user";
+import { UserChangeAvatar, UserUpdateMe } from "modules/_user";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
 

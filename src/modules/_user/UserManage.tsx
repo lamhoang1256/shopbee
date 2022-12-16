@@ -6,7 +6,7 @@ import Loading from "components/Loading";
 import Pagination from "components/Pagination";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";

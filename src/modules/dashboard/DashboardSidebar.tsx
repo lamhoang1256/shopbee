@@ -11,7 +11,7 @@ import {
   IconTemplate,
   IconUserGroup,
   IconVoucher
-} from "components/_icons";
+} from "components/Icons";
 import { PATH } from "constants/path";
 import { Sidebar } from "layouts";
 import { NavLink } from "react-router-dom";

@@ -1,8 +1,9 @@
 import { IPagination } from "@types";
 import Button from "components/Button";
 import ButtonPagination from "components/_button/ButtonPagination";
-import { IconNext, IconPrev } from "components/_icons";
-import { Option, Select } from "components/_select";
+import { IconNext, IconPrev } from "components/Icons";
+import Option from "components/Option";
+import Select from "components/Select";
 import usePagination from "hooks/usePagination";
 import { ChangeEvent } from "react";
 import { useSearchParams } from "react-router-dom";

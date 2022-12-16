@@ -1,4 +1,4 @@
-import { Logo } from "components/logo";
+import { Logo } from "components/_logo";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 

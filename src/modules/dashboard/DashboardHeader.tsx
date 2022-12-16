@@ -1,7 +1,7 @@
-import { Logo } from "components/logo";
+import { Logo } from "components/_logo";
 import { defaultUserAvatar } from "constants/global";
 import { PATH } from "constants/path";
-import { UserAvatar } from "modules/user";
+import { UserAvatar } from "modules/_user";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
 

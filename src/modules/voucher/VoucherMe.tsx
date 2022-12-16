@@ -3,7 +3,7 @@ import { voucherAPI } from "apis";
 import Loading from "components/Loading";
 import { Tabs } from "components/_tabs";
 import { PATH } from "constants/path";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";

@@ -8,7 +8,7 @@ import FormGroup from "components/FormGroup";
 import Input from "components/Input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { ChangeEvent, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";

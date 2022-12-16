@@ -1,4 +1,4 @@
-import { IconStar } from "components/_icons";
+import { IconStar } from "components/Icons";
 
 interface ReviewSelectStarProps {
   rating: number;

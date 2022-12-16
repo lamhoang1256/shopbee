@@ -7,7 +7,7 @@ import Pagination from "components/Pagination";
 import { Tabs } from "components/_tabs";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";

@@ -6,7 +6,7 @@ import FormGroup from "components/FormGroup";
 import { InputPassword } from "components/_input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 

@@ -1,6 +1,6 @@
 import { IProduct } from "@types";
 import { wishlistAPI } from "apis";
-import { IconHeart } from "components/_icons";
+import { IconHeart } from "components/Icons";
 import Loading from "components/Loading";
 import { ProductGrid } from "modules/_product";
 import { useEffect, useState } from "react";

@@ -11,8 +11,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import { setCurrentUserLocalStorage } from "utils/localStorage";
-import { signInRules } from "utils/rules";
+import { setCurrentUserLocalStorage, signInRules } from "utils";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -32,6 +31,7 @@ const SignInPage = () => {
       }
     }
   });
+  const { values, handleChange, touched, errors, handleSubmit } = formik;
   return (
     <div className="layout-container">
       <Helmet>
@@ -39,26 +39,21 @@ const SignInPage = () => {
       </Helmet>
       <div className="px-4 py-8 lg:p-10 max-w-[500px] mx-auto bg-white w-full rounded">
         <h1 className="text-[22px]">Đăng nhập</h1>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <FormGroup className="mt-4">
             <Label htmlFor="email">Email</Label>
-            <Input
-              name="email"
-              placeholder="Email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            />
-            <FormError>{formik.touched.email && formik.errors?.email}</FormError>
+            <Input name="email" placeholder="Email" value={values.email} onChange={handleChange} />
+            <FormError>{touched.email && errors?.email}</FormError>
           </FormGroup>
           <FormGroup className="mt-4">
             <Label htmlFor="password">Mật khẩu</Label>
             <InputPassword
               name="password"
               placeholder="Mật khẩu"
-              onChange={formik.handleChange}
-              value={formik.values.password}
+              onChange={handleChange}
+              value={values.password}
             />
-            <FormError>{formik.touched.password && formik.errors?.password}</FormError>
+            <FormError>{touched.password && errors?.password}</FormError>
           </FormGroup>
           <Button primary className="w-full mt-3">
             Đăng nhập

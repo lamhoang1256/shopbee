@@ -1,4 +1,4 @@
-import { IconPrev } from "components/_icons";
+import { IconPrev } from "components/Icons";
 
 interface SidebarCloseActionProps {
   onCloseSidebar: () => void;

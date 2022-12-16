@@ -3,7 +3,7 @@ import Button from "components/Button";
 import Loading from "components/Loading";
 import { PATH } from "constants/path";
 import useFetchCategories from "hooks/useFetchCategories";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { swalDelete } from "utils/sweetalert2";

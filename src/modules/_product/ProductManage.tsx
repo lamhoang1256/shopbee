@@ -6,7 +6,7 @@ import Pagination from "components/Pagination";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import useFetchProducts from "hooks/useFetchProducts";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { toast } from "react-toastify";
 import { formatMoney } from "utils/helper";
 import { PriceSale } from "components/price";

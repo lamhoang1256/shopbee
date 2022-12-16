@@ -1,18 +1,16 @@
+import ProductAddToCart from "./ProductAddToCart";
 import ProductCard from "./ProductCard";
-import ProductTitle from "./ProductTitle";
-import ProductImage from "./ProductImage";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 import ProductDesc from "./ProductDesc";
-import ProductAddNew from "./ProductAddNew";
-import ProductUpdate from "./ProductUpdate";
+import ProductGrid from "./ProductGrid";
+import ProductImage from "./ProductImage";
+import ProductImageSlider from "./ProductImageSlider";
 import ProductManage from "./ProductManage";
 import ProductNotFound from "./ProductNotFound";
-import ProductImageSlider from "./ProductImageSlider";
-import ProductGrid from "./ProductGrid";
-import ProductAddToCart from "./ProductAddToCart";
 import ProductRelated from "./ProductRelated";
-import ProductShipping from "./ProductShipping";
-import ProductCardSkeleton from "./ProductCardSkeleton";
 import ProductSaveWishlist from "./ProductSaveWishlist";
+import ProductShipping from "./ProductShipping";
+import ProductTitle from "./ProductTitle";
 
 export {
   ProductCard,
@@ -21,9 +19,7 @@ export {
   ProductAddToCart,
   ProductGrid,
   ProductShipping,
-  ProductUpdate,
   ProductCardSkeleton,
-  ProductAddNew,
   ProductTitle,
   ProductImage,
   ProductDesc,

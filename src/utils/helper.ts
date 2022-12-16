@@ -39,7 +39,7 @@ export const calcShippingFee = (shopCityId: string, userCityId: string) => {
   return 10000 + distance * 1000;
 };
 
-export function getRandomInt(min: number, max: number) {
+export function randomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 

@@ -6,7 +6,7 @@ import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
 import Input from "components/Input";
 import { useFormik } from "formik";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";

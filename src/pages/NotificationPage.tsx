@@ -1,4 +1,4 @@
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { Helmet } from "react-helmet-async";
 import { useStore } from "store/globalStore";
 import { formatDateVNFull } from "utils/helper";

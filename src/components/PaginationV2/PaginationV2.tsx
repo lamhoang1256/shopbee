@@ -1,4 +1,4 @@
-import { IconNext, IconPrev } from "components/_icons";
+import { IconNext, IconPrev } from "components/Icons";
 import { v4 as uuidv4 } from "uuid";
 import PaginationNumber from "components/Pagination/PaginationNumber";
 

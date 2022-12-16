@@ -1,5 +1,5 @@
 import Button from "components/Button";
-import { IconCartOutline } from "components/_icons";
+import { IconCartOutline } from "components/Icons";
 import { Popover } from "components/_popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";

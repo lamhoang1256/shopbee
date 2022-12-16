@@ -1,6 +1,6 @@
 import { IProduct } from "@types";
 import { wishlistAPI } from "apis";
-import { IconHeart } from "components/_icons";
+import { IconHeart } from "components/Icons";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";

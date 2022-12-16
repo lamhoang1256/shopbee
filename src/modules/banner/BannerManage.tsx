@@ -1,9 +1,9 @@
 import { IBanner } from "@types";
 import { bannerAPI } from "apis";
-import { ActionDelete } from "components/action";
+import ActionDelete from "components/ActionDelete";
 import ImageUpload from "components/ImageUpload";
 import Loading from "components/Loading";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";

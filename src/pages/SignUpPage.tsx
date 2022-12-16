@@ -27,6 +27,7 @@ const SignUpPage = () => {
       }
     }
   });
+  const { values, handleChange, touched, errors, handleSubmit } = formik;
   return (
     <div className="layout-container">
       <Helmet>
@@ -34,38 +35,31 @@ const SignUpPage = () => {
       </Helmet>
       <div className="px-4 py-8 lg:p-10 mx-auto max-w-[500px] bg-white w-full rounded">
         <h1 className="text-[22px]">Đăng ký</h1>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <FormGroup className="mt-4">
             <Label htmlFor="email">Email</Label>
-            <Input
-              name="email"
-              placeholder="Email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            />
-            <FormError>{formik.touched.email && formik.errors?.email}</FormError>
+            <Input name="email" placeholder="Email" onChange={handleChange} value={values.email} />
+            <FormError>{touched.email && errors?.email}</FormError>
           </FormGroup>
           <FormGroup className="mt-4">
             <Label htmlFor="password">Mật khẩu</Label>
             <InputPassword
               name="password"
               placeholder="Mật khẩu"
-              onChange={formik.handleChange}
-              value={formik.values.password}
+              onChange={handleChange}
+              value={values.password}
             />
-            <FormError>{formik.touched.password && formik.errors?.password}</FormError>
+            <FormError>{touched.password && errors?.password}</FormError>
           </FormGroup>
           <FormGroup className="mt-4">
             <Label htmlFor="confirm_password">Xác nhận mật khẩu</Label>
             <InputPassword
               name="confirm_password"
               placeholder="Xác nhận mật khẩu"
-              onChange={formik.handleChange}
-              value={formik.values.confirm_password}
+              onChange={handleChange}
+              value={values.confirm_password}
             />
-            <FormError>
-              {formik.touched.confirm_password && formik.errors?.confirm_password}
-            </FormError>
+            <FormError>{touched.confirm_password && errors?.confirm_password}</FormError>
           </FormGroup>
           <Button primary className="w-full mt-3">
             Đăng kí

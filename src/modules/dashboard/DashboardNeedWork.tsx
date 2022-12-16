@@ -2,7 +2,7 @@ import { IShopOverview } from "@types";
 import { shopAPI } from "apis";
 import Loading from "components/Loading";
 import { PATH } from "constants/path";
-import { Template } from "layouts";
+import Template from "layouts/Template";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
