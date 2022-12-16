@@ -1,5 +1,5 @@
 import { IShopInfo } from "@types";
-import { ButtonOutline } from "components/_button";
+import ButtonOutline from "components/ButtonOutline";
 import { PATH } from "constants/path";
 
 interface ShopOverviewProps {

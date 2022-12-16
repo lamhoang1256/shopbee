@@ -15,7 +15,7 @@ import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { saveHistoryView } from "utils";
-import PageNotFound from "./PageNotFound";
+import PageNotFound from "pages/PageNotFound";
 
 const ProductDetailsPage = () => {
   const { id = "" } = useParams();

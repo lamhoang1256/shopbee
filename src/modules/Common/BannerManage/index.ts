@@ -1,3 +1,3 @@
 import BannerManage from "./BannerManage";
 
-export { BannerManage };
+export default BannerManage;

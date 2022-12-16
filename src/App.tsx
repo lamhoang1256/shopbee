@@ -1,4 +1,4 @@
-import { Meta } from "components/_meta";
+import Meta from "components/Meta";
 import useFetchCarts from "hooks/useFetchCarts";
 import { useEffect } from "react";
 import Modal from "react-modal";

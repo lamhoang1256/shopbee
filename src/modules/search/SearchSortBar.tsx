@@ -1,6 +1,6 @@
 import { IPagination } from "@types";
 import Button from "components/Button";
-import ButtonPagination from "components/_button/ButtonPagination";
+import { PaginationButton } from "components/Pagination";
 import { IconNext, IconPrev } from "components/Icons";
 import Option from "components/Option";
 import Select from "components/Select";
@@ -63,12 +63,12 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
           <span className="text-orangeee4">{currentPage || 1}</span>
           <span>/{pagination.totalPage || 1}</span>
         </div>
-        <ButtonPagination onClick={goPrevPage} primary={pagination.page > 1}>
+        <PaginationButton onClick={goPrevPage} primary={pagination.page > 1}>
           <IconPrev className="w-3 h-3" />
-        </ButtonPagination>
-        <ButtonPagination onClick={goNextPage} primary={pagination.totalPage > currentPage}>
+        </PaginationButton>
+        <PaginationButton onClick={goNextPage} primary={pagination.totalPage > currentPage}>
           <IconNext className="w-3 h-3" />
-        </ButtonPagination>
+        </PaginationButton>
       </div>
     </div>
   );

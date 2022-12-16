@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import classNames from "utils/classNames";
 import { scrollTo } from "utils/helper";
 
-const ButtonGoToTop = () => {
+const ButtonScrollTop = () => {
   const [isShow, setIsShow] = useState(false);
   const handleGoToTop = () => scrollTo();
   useEffect(() => {
@@ -33,4 +33,4 @@ const ButtonGoToTop = () => {
   );
 };
 
-export default ButtonGoToTop;
+export default ButtonScrollTop;

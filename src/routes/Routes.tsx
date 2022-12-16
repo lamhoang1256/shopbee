@@ -4,8 +4,8 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Fallback from "components/Fallback";
 import ErrorBoundary from "components/ErrorBoundary";
-import { ScrollToTop } from "components/_scrollToTop";
-import { ButtonGoToTop } from "components/_button";
+import ScrollToTop from "components/ScrollToTop";
+import ButtonScrollTop from "components/ButtonScrollTop";
 
 const LayoutAuth = lazy(() => import("layouts/LayoutAuth"));
 const LayoutUser = lazy(() => import("layouts/LayoutUser"));
@@ -14,7 +14,7 @@ const LayoutDashboard = lazy(() => import("layouts/LayoutDashboard"));
 const CheckLoggedIn = lazy(() => import("routes/CheckLoggedIn"));
 const ProtectedRoute = lazy(() => import("routes/ProtectedRoute"));
 const CheckAdmin = lazy(() => import("routes/CheckAdmin"));
-const BannerManage = lazy(() => import("modules/banner/BannerManage"));
+const BannerManage = lazy(() => import("modules/Common/BannerManage"));
 const ShopUpdate = lazy(() => import("modules/shop/ShopUpdate"));
 const VoucherAddNew = lazy(() => import("modules/voucher/VoucherAddNew"));
 const VoucherManage = lazy(() => import("modules/voucher/VoucherManage"));
@@ -493,7 +493,7 @@ const AppRoutes = () => {
             }
           />
         </Routes>
-        <ButtonGoToTop />
+        <ButtonScrollTop />
       </Router>
     </Suspense>
   );

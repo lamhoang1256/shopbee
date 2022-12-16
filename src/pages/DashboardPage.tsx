@@ -1,4 +1,4 @@
-import { DashboardNeedWork } from "modules/dashboard";
+import { DashboardNeedWork } from "modules/_dashboard";
 import { Helmet } from "react-helmet-async";
 
 const DashboardPage = () => {

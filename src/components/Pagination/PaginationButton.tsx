@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import classNames from "utils/classNames";
 
-interface ButtonPaginationProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PaginationButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
 }
 
@@ -10,7 +10,12 @@ const stylesNormal =
 const stylesActive =
   "h-9 flex items-center justify-center w-10 border bg-[#f9f9f9] border-[#00000017] opacity-70 disabled:cursor-not-allowed";
 
-const ButtonPagination = ({ children, className, primary, ...props }: ButtonPaginationProps) => {
+const PaginationButton = ({
+  children,
+  className,
+  primary = false,
+  ...props
+}: PaginationButtonProps) => {
   if (primary) {
     return (
       <button type="button" className={classNames(stylesNormal, className)} {...props}>
@@ -25,8 +30,4 @@ const ButtonPagination = ({ children, className, primary, ...props }: ButtonPagi
   );
 };
 
-ButtonPagination.defaultProps = {
-  primary: false
-};
-
-export default ButtonPagination;
+export default PaginationButton;
