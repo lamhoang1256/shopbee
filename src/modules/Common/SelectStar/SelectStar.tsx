@@ -1,11 +1,11 @@
 import { IconStar } from "components/Icons";
 
-interface ReviewSelectStarProps {
+interface SelectStarProps {
   rating: number;
   setRating: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ReviewSelectStar = ({ rating, setRating }: ReviewSelectStarProps) => {
+const SelectStar = ({ rating, setRating }: SelectStarProps) => {
   const handleSelectRating = (num: number) => {
     setRating(() => num);
   };
@@ -28,4 +28,4 @@ const ReviewSelectStar = ({ rating, setRating }: ReviewSelectStarProps) => {
   );
 };
 
-export default ReviewSelectStar;
+export default SelectStar;

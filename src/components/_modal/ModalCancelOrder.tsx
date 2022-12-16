@@ -1,6 +1,6 @@
 import { orderAPI } from "apis";
 import Button from "components/Button";
-import { Textarea } from "components/textarea";
+import { Textarea } from "components/_textarea";
 import { useState } from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";

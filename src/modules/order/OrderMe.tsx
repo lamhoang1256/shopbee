@@ -6,7 +6,7 @@ import { IOrder, IPagination } from "@types";
 import { PATH } from "constants/path";
 import { InputSearch } from "components/_input";
 import Loading from "components/Loading";
-import { Tabs } from "components/_tabs";
+import Tabs from "components/Tabs";
 import { OrderEmpty, OrderItem } from "modules/order";
 import Pagination from "components/Pagination";
 import { toast } from "react-toastify";

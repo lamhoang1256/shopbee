@@ -58,7 +58,7 @@ const SaveWishlist = () => {
           <IconHeart active={false} />
         </button>
       )}
-      <span className="text-base">Đã thích</span>
+      <span className="text-sm">Đã thích</span>
     </div>
   );
 };

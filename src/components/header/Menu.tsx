@@ -1,6 +1,6 @@
 import { ICurrentUser } from "@types";
 import { authAPI } from "apis";
-import { Popover } from "components/_popover";
+import Popover from "components/Popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { UserAvatar } from "modules/_user";

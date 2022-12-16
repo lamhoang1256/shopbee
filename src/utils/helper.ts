@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
-import { ICart } from "@types";
+import { ICart, IProduct } from "@types";
+import { getHistoryLocalStorage, setHistoryLocalStorage } from "./localStorage";
 
 export const formatMoney = (money: number) => {
   return money?.toLocaleString("vi", { style: "currency", currency: "VND" });
@@ -89,3 +90,13 @@ export function slugify(value: string) {
     .replace(/^-+/, "")
     .replace(/-+$/, "");
 }
+
+export const saveHistoryView = (product: IProduct) => {
+  if (!product?.name) return;
+  let history: IProduct[] = getHistoryLocalStorage();
+  if (history.length >= 20) history.splice(19, 1);
+  const foundProductIndex = history.findIndex((item) => item._id === product._id);
+  if (foundProductIndex !== -1) history = history.splice(foundProductIndex, 1);
+  history.unshift(product);
+  setHistoryLocalStorage(history);
+};

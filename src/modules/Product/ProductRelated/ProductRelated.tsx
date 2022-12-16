@@ -1,33 +1,23 @@
-import { IProduct } from "@types";
 import { productAPI } from "apis";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import ProductList from "modules/Product/ProductList";
+import { useQuery } from "react-query";
 
 interface ProductRelatedProps {
   categoryId: string;
 }
 
 const ProductRelated = ({ categoryId }: ProductRelatedProps) => {
-  const [relatedProduct, setRelatedProduct] = useState<IProduct[]>([]);
-  useEffect(() => {
-    const fetchRelatedProduct = async (params: { category: string }) => {
-      try {
-        const { data } = await productAPI.getAllProduct(params);
-        setRelatedProduct(data.products);
-      } catch (error) {
-        toast.error(error?.message);
-      }
-    };
-    fetchRelatedProduct({ category: categoryId });
-  }, [categoryId]);
-
-  if (relatedProduct.length === 0) return null;
+  const { data: productsData } = useQuery({
+    queryKey: ["products", categoryId],
+    queryFn: () => productAPI.getAllProduct({ category: categoryId }),
+    staleTime: 5 * 60 * 1000
+  });
+  if (!productsData || productsData?.data?.products.length === 0) return null;
   return (
-    <>
+    <div>
       <h3 className="my-3 text-[#0000008a] text-base font-medium">SẢN PHẨM TƯƠNG TỰ</h3>
-      <ProductList products={relatedProduct} />
-    </>
+      <ProductList products={productsData?.data?.products} />
+    </div>
   );
 };
 

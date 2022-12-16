@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { ICity, IDistrict, IWard } from "@types";
-import { Dropdown } from "components/dropdown";
+import { Dropdown } from "components/_dropdown";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
 import useFetchAdministrative from "hooks/useFetchAdministrative";

@@ -1,6 +1,6 @@
 import { shopAPI } from "apis";
 import Button from "components/Button";
-import { Administrative } from "components/administrative";
+import { Administrative } from "components/_administrative";
 import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";

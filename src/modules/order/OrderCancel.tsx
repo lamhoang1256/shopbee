@@ -1,6 +1,6 @@
 import { OrderStatus } from "@types";
 import Button from "components/Button";
-import { ModalCancelOrder } from "components/modal";
+import { ModalCancelOrder } from "components/_modal";
 import useModal from "hooks/useModal";
 
 interface OrderCancelProps {

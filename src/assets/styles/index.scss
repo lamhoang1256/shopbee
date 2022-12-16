@@ -43,6 +43,13 @@
   .section-dotted {
     @apply border-dotted border border-[#00000017] bg-[#fff] p-4;
   }
+  .section-white {
+    @apply px-4 py-5 bg-white rounded-md;
+    box-shadow: 0 1px 4px 0 rgb(74 74 78 / 12%);
+  }
+  .section-gray {
+    @apply bg-[#fafafa] px-5 py-4 font-medium;
+  }
 }
 
 .rounded-checkbox {

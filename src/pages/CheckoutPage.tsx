@@ -5,7 +5,7 @@ import { SectionWhite } from "components/_section";
 import { IconGPS } from "components/Icons";
 import Input from "components/Input";
 import { Logo } from "components/_logo";
-import { ModalApplyVoucher } from "components/modal";
+import { ModalApplyVoucher } from "components/_modal";
 import { PriceSale } from "components/price";
 import { PATH } from "constants/path";
 import useFetchShopInfo from "hooks/useFetchShopInfo";

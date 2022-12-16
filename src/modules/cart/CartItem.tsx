@@ -1,6 +1,6 @@
 import { ICart } from "@types";
 import { cartAPI } from "apis";
-import { QuantityController } from "components/quantityController";
+import { QuantityController } from "components/_quantityController";
 import { PATH } from "constants/path";
 import { PriceSale, PriceOld } from "components/price";
 import { ProductImage, ProductTitle } from "modules/_product";

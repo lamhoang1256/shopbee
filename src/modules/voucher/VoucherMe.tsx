@@ -1,7 +1,7 @@
 import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import Loading from "components/Loading";
-import { Tabs } from "components/_tabs";
+import Tabs from "components/Tabs";
 import { PATH } from "constants/path";
 import Template from "layouts/Template";
 import { useEffect, useState } from "react";

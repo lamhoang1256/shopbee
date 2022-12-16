@@ -35,24 +35,26 @@ const overview = [
 
 const ShopOverview = ({ shopInfo }: ShopOverviewProps) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-y-4 md:gap-x-20 lg:items-center">
-      <div className="flex items-center gap-x-4">
-        <img src={shopInfo.avatar} alt="shop avatar" className="w-20 h-20 rounded-full" />
-        <div>
-          <h3 className="text-base font-medium">{shopInfo.name}</h3>
-          <p className="-mt-1">Online 2 giờ trước</p>
-          <ButtonOutline primary to={PATH.search} className="py-0 mt-1 h-[34px]">
-            Xem shop
-          </ButtonOutline>
-        </div>
-      </div>
-      <div className="grid gap-y-1 sm:gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6">
-        {overview.map((item) => (
-          <div key={item.key}>
-            <span className="text-[#00000066] mr-2">{item.key}</span>
-            <span className="text-orangeee4">{item.value}</span>
+    <div className="mt-4 section-white">
+      <div className="flex flex-col lg:flex-row gap-y-4 md:gap-x-20 lg:items-center">
+        <div className="flex items-center gap-x-4">
+          <img src={shopInfo.avatar} alt="shop avatar" className="w-20 h-20 rounded-full" />
+          <div>
+            <h3 className="text-base font-medium">{shopInfo.name}</h3>
+            <p className="-mt-1">Online 2 giờ trước</p>
+            <ButtonOutline primary to={PATH.search} className="py-0 mt-1 h-[34px]">
+              Xem shop
+            </ButtonOutline>
           </div>
-        ))}
+        </div>
+        <div className="grid gap-y-1 sm:gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6">
+          {overview.map((item) => (
+            <div key={item.key}>
+              <span className="text-[#00000066] mr-2">{item.key}</span>
+              <span className="text-orangeee4">{item.value}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

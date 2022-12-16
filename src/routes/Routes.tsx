@@ -2,7 +2,7 @@ import { PATH } from "constants/path";
 import { UserCreditCard } from "modules/_user";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Fallback } from "components/fallback";
+import { Fallback } from "components/_fallback";
 import ErrorBoundary from "components/ErrorBoundary";
 import { ScrollToTop } from "components/scrollToTop";
 import { ButtonGoToTop } from "components/_button";

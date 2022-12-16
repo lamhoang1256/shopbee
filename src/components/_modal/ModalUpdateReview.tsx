@@ -1,9 +1,9 @@
 import { IProduct, IReview } from "@types";
 import { reviewAPI } from "apis";
 import Button from "components/Button";
-import { ReviewSelectStar } from "components/review";
-import { Textarea } from "components/textarea";
-import { ProductImage, ProductTitle } from "modules/_product";
+import Image from "components/Image";
+import { Textarea } from "components/_textarea";
+import SelectStar from "modules/Common/SelectStar";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
@@ -62,15 +62,15 @@ const ModalUpdateReview = ({
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div className="flex gap-x-2">
-        <ProductImage src={productReview.image} className="w-10 h-10" />
+        <Image alt={productReview.name} src={productReview.image} className="w-10 h-10" />
         <div>
-          <ProductTitle className="font-medium line-clamp-1">{productReview.name}</ProductTitle>
+          <h3 className="product-title line-clamp-1">{productReview.name}</h3>
           <span>Shopbee</span>
         </div>
       </div>
       <div className="my-3">
         <h2 className="text-lg font-semibold text-center">Vui lòng đánh giá</h2>
-        <ReviewSelectStar rating={rating} setRating={setRating} />
+        <SelectStar rating={rating} setRating={setRating} />
         <Textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}

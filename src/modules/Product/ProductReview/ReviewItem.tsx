@@ -1,4 +1,4 @@
-import { Rating } from "components/rating";
+import { Rating } from "components/_rating";
 import { defaultUserAvatar } from "constants/global";
 import { formatDateVNFull } from "utils/helper";
 

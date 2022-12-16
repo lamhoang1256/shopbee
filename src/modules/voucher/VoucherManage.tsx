@@ -4,7 +4,7 @@ import Button from "components/Button";
 import Input from "components/Input";
 import Loading from "components/Loading";
 import Pagination from "components/Pagination";
-import { Tabs } from "components/_tabs";
+import Tabs from "components/Tabs";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import Template from "layouts/Template";

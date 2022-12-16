@@ -1,8 +1,8 @@
 import { IProduct } from "@types";
 import { reviewAPI } from "apis";
 import Button from "components/Button";
-import { ReviewSelectStar } from "components/review";
-import { Textarea } from "components/textarea";
+import SelectStar from "modules/Common/SelectStar";
+import { Textarea } from "components/_textarea";
 import { ProductImage, ProductTitle } from "modules/_product";
 import { useState } from "react";
 import Modal from "react-modal";
@@ -64,7 +64,7 @@ const ModalAddReview = ({
       </div>
       <div className="my-3">
         <h2 className="text-lg font-semibold text-center">Vui lòng đánh giá</h2>
-        <ReviewSelectStar rating={rating} setRating={setRating} />
+        <SelectStar rating={rating} setRating={setRating} />
         <Textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}

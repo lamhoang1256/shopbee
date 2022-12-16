@@ -21,8 +21,8 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Lỗi: ", error);
-    console.error("Thông tin lỗi: ", errorInfo);
+    console.error("Error: ", error);
+    console.error("Error info: ", errorInfo);
   }
 
   public render() {
@@ -30,7 +30,7 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
     const { children } = this.props;
     if (hasError) {
       return (
-        <p className="p-4 text-base font-medium text-center text-red-500 bg-red-100">
+        <p className="p-4 text-base min-h-[40vh] font-medium text-center text-red-500 bg-red-100">
           Đã xảy ra lỗi
         </p>
       );
