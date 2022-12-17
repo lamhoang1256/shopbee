@@ -3,7 +3,7 @@ import Pagination from "components/Pagination";
 import useFetchProducts from "hooks/useFetchProducts";
 import ProductList from "modules/Product/ProductList";
 import { SearchAside, SearchSortBar } from "modules/search";
-import { scrollTo } from "utils/helper";
+import { scrollTo } from "utils";
 import { Helmet } from "react-helmet-async";
 
 const currentMonth = new Date().getMonth() + 1;

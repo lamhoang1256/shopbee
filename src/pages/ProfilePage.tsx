@@ -13,10 +13,9 @@ import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import { generateAddress, initialValuesUpdateUser, userRules } from "utils";
+import { generateAddress, initialValuesUpdateUser, userUpdateRules } from "utils";
 import { uploadImage } from "utils/uploadImage";
 
-const userUpdateRules = userRules.pick(["fullname", "phone", "street", "city", "district", "ward"]);
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const updateMeMutation = useMutation({
@@ -34,7 +33,7 @@ const ProfilePage = () => {
           setCurrentUser({ ...currentUser, ...data });
         },
         onError(error: any) {
-          toast.success(error?.message);
+          toast.error(error?.message);
           setErrors(error.error);
         }
       });

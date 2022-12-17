@@ -12,23 +12,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 import { setCurrentUserLocalStorage, signInRules } from "utils";
+import { useMutation } from "react-query";
+import { IPayloadAuth } from "@types";
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const { setCurrentUser } = useStore((state) => state);
+  const signInMutation = useMutation({
+    mutationFn: (payload: IPayloadAuth) => authAPI.signIn(payload)
+  });
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: signInRules,
-    onSubmit: async (values) => {
-      try {
-        const { data, message } = await authAPI.signIn(values);
-        setCurrentUser(data);
-        setCurrentUserLocalStorage(data);
-        toast.success(message);
-        navigate(PATH.home);
-      } catch (error) {
-        toast.error(error?.message);
-      }
+    onSubmit: async (values, { setErrors }) => {
+      signInMutation.mutate(values, {
+        onSuccess: ({ message, data }) => {
+          setCurrentUser(data);
+          setCurrentUserLocalStorage(data);
+          toast.success(message);
+          navigate(PATH.home);
+        },
+        onError(error: any) {
+          toast.error(error?.message);
+          setErrors(error.error);
+        }
+      });
     }
   });
   const { values, handleChange, touched, errors, handleSubmit } = formik;

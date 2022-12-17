@@ -1,3 +1,4 @@
+import { IPayloadAuth } from "@types";
 import { authAPI } from "apis";
 import Button from "components/Button";
 import FormError from "components/FormError";
@@ -8,23 +9,30 @@ import Label from "components/Label";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import { Helmet } from "react-helmet-async";
+import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { signUpRules } from "utils/rules";
+import { signUpRules } from "utils";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const signUpMutation = useMutation({
+    mutationFn: (payload: IPayloadAuth) => authAPI.signUp(payload)
+  });
   const formik = useFormik({
     initialValues: { email: "", password: "", confirm_password: "" },
     validationSchema: signUpRules,
-    onSubmit: async (values) => {
-      try {
-        const { message } = await authAPI.signUp(values);
-        navigate(PATH.signIn);
-        toast.success(message);
-      } catch (error) {
-        toast.error(error?.message);
-      }
+    onSubmit: async (values, { setErrors }) => {
+      signUpMutation.mutate(values, {
+        onSuccess: ({ message }) => {
+          toast.success(message);
+          navigate(PATH.signIn);
+        },
+        onError(error: any) {
+          toast.error(error?.message);
+          setErrors(error.error);
+        }
+      });
     }
   });
   const { values, handleChange, touched, errors, handleSubmit } = formik;

@@ -83,6 +83,15 @@ export const userRules = Yup.object({
   })
 });
 
+export const userUpdateRules = userRules.pick([
+  "fullname",
+  "phone",
+  "street",
+  "city",
+  "district",
+  "ward"
+]);
+
 export const updatePasswordRules = Yup.object({
   currentPassword: Yup.string()
     .required("Vui lòng nhập mật khẩu!")

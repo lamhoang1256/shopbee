@@ -1,6 +1,6 @@
-import { productAPI } from "apis";
+import { IShopInfo } from "@types";
+import { productAPI, shopAPI } from "apis";
 import Loading from "components/Loading";
-import useFetchShopInfo from "hooks/useFetchShopInfo";
 import ShopOverview from "modules/Common/ShopOverview";
 import ProductDesc from "modules/Product/ProductDesc";
 import ProductImageSlider from "modules/Product/ProductImageSlider";
@@ -27,7 +27,11 @@ const ProductDetailsPage = () => {
       saveHistoryView(data);
     }
   });
-  const { shopInfo } = useFetchShopInfo();
+  const { data: shopInfoData } = useQuery({
+    queryKey: ["shopinfo"],
+    queryFn: () => shopAPI.getShopInfo(),
+    staleTime: 5 * 60 * 1000
+  });
   if (!id) return <PageNotFound />;
   if (isLoading) return <Loading />;
   if (!productData?.data) return <ProductNotFound />;
@@ -43,11 +47,11 @@ const ProductDetailsPage = () => {
           <h1 className="text-[#242424] text-base lg:text-2xl">{product.name}</h1>
           <ProductMeta rating={product.rating} sold={product.sold} />
           <ProductPrice oldPrice={product.oldPrice} price={product.price} />
-          <ProductShipping shopCityId={shopInfo?.city?.id} />
+          <ProductShipping shopCityId={shopInfoData?.data?.city?.id as string} />
           <ProductQuantity stock={product.stock} />
         </div>
       </div>
-      <ShopOverview shopInfo={shopInfo} />
+      <ShopOverview shopInfo={shopInfoData?.data as IShopInfo} />
       <ProductDesc description={product.description} />
       <ProductReview productId={id} />
       <ProductRelated categoryId={product.category} />
