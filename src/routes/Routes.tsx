@@ -45,9 +45,9 @@ const SearchPage = lazy(() => import("pages/SearchPage"));
 const SignInPage = lazy(() => import("pages/SignInPage"));
 const SignUpPage = lazy(() => import("pages/SignUpPage"));
 const NotificationPage = lazy(() => import("pages/NotificationPage"));
-const CategoryAddNew = lazy(() => import("modules/_category/CategoryAddNew"));
-const CategoryManage = lazy(() => import("modules/_category/CategoryManage"));
-const CategoryUpdate = lazy(() => import("modules/_category/CategoryUpdate"));
+const CategoryAddNew = lazy(() => import("modules/Category/CategoryAddNew"));
+const CategoryManage = lazy(() => import("modules/Category/CategoryManage"));
+const CategoryUpdate = lazy(() => import("modules/Category/CategoryUpdate"));
 
 const AppRoutes = () => {
   return (

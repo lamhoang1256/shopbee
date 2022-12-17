@@ -104,6 +104,12 @@ export const updatePasswordRules = Yup.object({
     .required("Vui lòng nhập xác nhận mật khẩu!")
 });
 
+export const categoryRules = Yup.object({
+  name: Yup.string().required("Vui lòng nhập tên danh mục!"),
+  slug: Yup.string().required("Vui lòng chọn tên danh mục slug!"),
+  image: Yup.string().required("Vui lòng chọn hình ảnh!")
+});
+
 export const creditCardRules = Yup.object({
   number: Yup.string()
     .required("Vui lòng nhập số thẻ!")

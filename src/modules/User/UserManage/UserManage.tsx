@@ -33,17 +33,20 @@ const UserManage = () => {
     staleTime: 5 * 60 * 1000
   });
   const deleteProductMutation = useMutation({
-    mutationFn: (usedId: string) => userAPI.deleteUser(usedId),
-    onSuccess: ({ message }) => {
-      toast.success(message);
-      queryClient.invalidateQueries({ queryKey: ["users", email], exact: true });
-    },
-    onError(error: any) {
-      toast.error(error.message);
-    }
+    mutationFn: (usedId: string) => userAPI.deleteUser(usedId)
   });
   const handleDeleteUser = (userId: string) => {
-    swalDelete(() => deleteProductMutation.mutate(userId));
+    swalDelete(() =>
+      deleteProductMutation.mutate(userId, {
+        onSuccess: ({ message }) => {
+          toast.success(message);
+          queryClient.invalidateQueries({ queryKey: ["users", email], exact: true });
+        },
+        onError(error: any) {
+          toast.error(error.message);
+        }
+      })
+    );
   };
   return (
     <Template title="Quản lí người dùng" desc="Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn">

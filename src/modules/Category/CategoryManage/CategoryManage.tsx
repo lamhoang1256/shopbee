@@ -2,31 +2,43 @@ import { categoryAPI } from "apis";
 import Button from "components/Button";
 import Loading from "components/Loading";
 import { PATH } from "constants/path";
-import useFetchCategories from "hooks/useFetchCategories";
 import Template from "layouts/Template";
 import { Helmet } from "react-helmet-async";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { swalDelete } from "utils/sweetalert2";
 
 const CategoryManage = () => {
-  const { categories, loading, fetchCategories } = useFetchCategories();
-  const handleDeleteCategory = async (categoryId: string) => {
-    try {
-      const { message } = await categoryAPI.deleteCategory(categoryId);
-      toast.success(message);
-      fetchCategories();
-    } catch (error) {
-      toast.error(error?.message);
-    }
+  const queryClient = useQueryClient();
+  const { isLoading, data: categoriesData } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => categoryAPI.getAllCategory(),
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true
+  });
+  const deleteCategoryMutation = useMutation({
+    mutationFn: (categoryId: string) => categoryAPI.deleteCategory(categoryId)
+  });
+  const handleDeleteCategory = (userId: string) => {
+    swalDelete(() =>
+      deleteCategoryMutation.mutate(userId, {
+        onSuccess: ({ message }) => {
+          toast.success(message);
+          queryClient.invalidateQueries({ queryKey: ["categories"] });
+        },
+        onError(error: any) {
+          toast.error(error.message);
+        }
+      })
+    );
   };
-
   return (
     <Template title="Quản lí danh mục" desc="Thêm, xóa, sửa các danh mục sản phẩm">
       <Helmet>
         <title>Quản lí danh mục</title>
       </Helmet>
-      {loading && <Loading />}
-      {!loading && categories.length > 0 && (
+      {isLoading && <Loading />}
+      {!isLoading && categoriesData && categoriesData.data.length > 0 && (
         <div className="tables">
           <table>
             <thead>
@@ -39,7 +51,7 @@ const CategoryManage = () => {
               </tr>
             </thead>
             <tbody>
-              {categories?.map((category, index) => (
+              {categoriesData.data?.map((category, index) => (
                 <tr key={category._id}>
                   <td>{index + 1}</td>
                   <td className="w-[300px]">
@@ -56,9 +68,7 @@ const CategoryManage = () => {
                   <td>
                     <div className="flex gap-x-1">
                       <Button to={`${PATH.categoryUpdate}/${category._id}`}>Sửa</Button>
-                      <Button onClick={() => swalDelete(() => handleDeleteCategory(category._id))}>
-                        Xóa
-                      </Button>
+                      <Button onClick={() => handleDeleteCategory(category._id)}>Xóa</Button>
                     </div>
                   </td>
                 </tr>
@@ -67,7 +77,9 @@ const CategoryManage = () => {
           </table>
         </div>
       )}
-      {!loading && categories.length === 0 && <span>Không tìm thấy danh mục</span>}
+      {!isLoading && categoriesData && categoriesData.data.length === 0 && (
+        <span>Không tìm thấy danh mục</span>
+      )}
     </Template>
   );
 };
