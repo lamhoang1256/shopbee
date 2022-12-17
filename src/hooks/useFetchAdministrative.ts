@@ -15,7 +15,6 @@ export default function useFetchAdministrative(cityId?: string, districtId?: str
   const fetchAllWard = () => {
     countryAPI.getAllWard({ districtId }).then((res) => setWards(res.data));
   };
-
   useEffect(() => {
     fetchAllCity();
   }, []);
@@ -25,7 +24,6 @@ export default function useFetchAdministrative(cityId?: string, districtId?: str
   useEffect(() => {
     fetchAllWard();
   }, [districtId]);
-
   return {
     citys,
     districts,

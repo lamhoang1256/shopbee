@@ -4,7 +4,6 @@ import Popover from "components/Popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
 import { ProductPriceSale } from "modules/Product/ProductPrice";
-import { ProductImage, ProductTitle } from "modules/_product";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
 
@@ -43,11 +42,12 @@ const HeaderCart = () => {
                   to={`${PATH.product}/${cart.product._id}`}
                   className="flex items-start p-3 gap-x-2 hover:bg-[#f8f8f8] transition-all duration-300"
                 >
-                  <ProductImage
+                  <img
+                    alt={cart.product.name}
                     src={cart.product.image}
                     className="border h-11 w-11 border-[#00000017]"
                   />
-                  <ProductTitle className="flex-1 line-clamp-1">{cart.product.name}</ProductTitle>
+                  <h3 className="flex-1 product-title line-clamp-1">{cart.product.name}</h3>
                   <ProductPriceSale className="flex-shrink-0 ml-2">
                     {cart.product.price}
                   </ProductPriceSale>

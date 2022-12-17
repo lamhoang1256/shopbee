@@ -3,7 +3,7 @@ import { cartAPI } from "apis";
 import { QuantityController } from "components/QuantityController";
 import { PATH } from "constants/path";
 import { ProductPriceOld, ProductPriceSale } from "modules/Product/ProductPrice";
-import { ProductImage, ProductTitle } from "modules/_product";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
 
@@ -34,11 +34,11 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
 
   return (
     <div className="border-[#00000017] my-3 border p-4 flex items-center gap-3">
-      <ProductImage className="w-24 lg:w-20" src={cartItem.product.image} />
+      <img alt={cartItem.product.name} className="w-24 lg:w-20" src={cartItem.product.image} />
       <div className="flex flex-col flex-1 md:flex-row">
-        <ProductTitle styleLink="md:w-[40%]" to={`${PATH.product}/${cartItem.product._id}`}>
-          {cartItem.product.name}
-        </ProductTitle>
+        <Link className="md:w-[40%]" to={`${PATH.product}/${cartItem.product._id}`}>
+          <h3>{cartItem.product.name}</h3>
+        </Link>
         <div className="flex flex-col justify-between flex-1 gap-y-2 md:flex-row">
           <div className="flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-4 gap-x-2">
             <ProductPriceOld>{cartItem.product.oldPrice}</ProductPriceOld>

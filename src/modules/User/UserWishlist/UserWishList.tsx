@@ -4,12 +4,15 @@ import Loading from "components/Loading";
 import ProductList from "modules/Product/ProductList";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
+import { useStore } from "store/globalStore";
 
 const UserWishList = () => {
+  const { currentUser } = useStore((state) => state);
   const { isLoading, data: wishlistsData } = useQuery({
     queryKey: ["wishlists"],
     queryFn: () => wishlistAPI.getMyWishlist(),
     keepPreviousData: true,
+    enabled: Boolean(currentUser?._id),
     staleTime: 5 * 60 * 1000
   });
   return (

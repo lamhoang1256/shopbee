@@ -3,7 +3,6 @@ import { reviewAPI } from "apis";
 import Button from "components/Button";
 import SelectStar from "modules/Common/SelectStar";
 import Textarea from "components/Textarea";
-import { ProductImage, ProductTitle } from "modules/_product";
 import { useState } from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
@@ -56,9 +55,9 @@ const ModalAddReview = ({
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div className="flex gap-x-2">
-        <ProductImage src={productReview.image} className="w-10 h-10" />
+        <img alt={productReview.name} src={productReview.image} className="w-10 h-10" />
         <div>
-          <ProductTitle className="font-medium line-clamp-1">{productReview.name}</ProductTitle>
+          <h3 className="font-medium product-title line-clamp-1">{productReview.name}</h3>
           <span>Shopbee</span>
         </div>
       </div>

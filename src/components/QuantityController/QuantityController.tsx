@@ -12,7 +12,7 @@ interface QuantityControllerProps extends React.HTMLAttributes<HTMLDivElement> {
 const QuantityController = ({
   className,
   defaultQuantity = 1,
-  onChangeValue
+  onChangeValue = () => {}
 }: QuantityControllerProps) => {
   const [quantity, setQuantity] = useState<number>(defaultQuantity);
   const handleIncreaseQuantity = () => {
@@ -39,11 +39,6 @@ const QuantityController = ({
       </QuantityButton>
     </div>
   );
-};
-
-QuantityController.defaultProps = {
-  defaultQuantity: 1,
-  onChangeValue: () => {}
 };
 
 export default QuantityController;

@@ -4,7 +4,7 @@ import { IconShipping } from "components/Icons";
 import useFetchAdministrative from "hooks/useFetchAdministrative";
 import { useEffect, useState } from "react";
 import { useStore } from "store/globalStore";
-import { calcShippingFee, formatMoney } from "utils/helper";
+import { calcShippingFee, formatMoney } from "utils";
 
 interface ProductShippingProps {
   shopCityId: string;

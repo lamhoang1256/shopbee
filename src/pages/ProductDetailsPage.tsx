@@ -10,7 +10,7 @@ import ProductPrice from "modules/Product/ProductPrice";
 import ProductQuantity from "modules/Product/ProductQuantity";
 import ProductRelated from "modules/Product/ProductRelated";
 import ProductReview from "modules/Product/ProductReview";
-import { ProductShipping } from "modules/_product";
+import ProductShipping from "modules/Product/ProductShipping";
 import PageNotFound from "pages/PageNotFound";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
