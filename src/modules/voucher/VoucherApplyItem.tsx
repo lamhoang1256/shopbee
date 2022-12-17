@@ -21,7 +21,7 @@ const VoucherApplyItem = ({
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center w-20 h-20 bg-orangeee4 sm:w-28 sm:h-28">
-          <img src="/images/voucher-shopbee.png" className="w-3/5 h-3/5" alt="voucher" />
+          <img src="/voucher-shopbee.png" className="w-3/5 h-3/5" alt="voucher" />
           <span className="text-white">Shopbee</span>
         </div>
       )}

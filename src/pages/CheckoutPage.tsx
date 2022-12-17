@@ -190,7 +190,7 @@ const CheckoutPage = () => {
           {methodPayment === "credit-card" && (
             <div className="flex flex-col lg:items-center lg:flex-row gap-x-4 gap-y-2">
               <div className="w-14 rounded-sm border border-[#00000024]">
-                <img alt="visa" className="h-8 mx-auto w-11" src="/images/icon-visa.png" />
+                <img alt="visa" className="h-8 mx-auto w-11" src="/icon-visa.png" />
               </div>
               <span>Họ tên: {currentUser.creditCard.name}</span>
               <span>Số thẻ: {currentUser.creditCard.number}</span>

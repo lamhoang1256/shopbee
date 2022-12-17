@@ -1,5 +1,4 @@
 import { PATH } from "constants/path";
-import { UserCreditCard } from "modules/_user";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Fallback from "components/Fallback";
@@ -31,9 +30,10 @@ const ProductUpdate = lazy(() => import("modules/Product/ProductUpdate"));
 const ProductDetailsPage = lazy(() => import("pages/ProductDetailsPage"));
 const UserAddNew = lazy(() => import("modules/User/UserAddNew"));
 const UserChangePassword = lazy(() => import("modules/User/UserChangePassword"));
-const UserManage = lazy(() => import("modules/_user/UserManage"));
+const UserManage = lazy(() => import("modules/User/UserManage"));
 const UserUpdate = lazy(() => import("modules/User/UserUpdate"));
-const UserWishList = lazy(() => import("modules/_user/UserWishList"));
+const UserCreditCard = lazy(() => import("modules/User/UserCreditCard"));
+const UserWishList = lazy(() => import("modules/User/UserWishlist"));
 const ProfilePage = lazy(() => import("pages/ProfilePage"));
 const CartPage = lazy(() => import("pages/CartPage"));
 const CheckoutPage = lazy(() => import("pages/CheckoutPage"));

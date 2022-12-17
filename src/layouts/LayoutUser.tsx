@@ -1,5 +1,5 @@
+import UserSidebar from "modules/User/UserSidebar";
 import { Outlet } from "react-router-dom";
-import { UserSidebar } from "modules/_user";
 import Footer from "./Footer";
 import Header from "./Header";
 

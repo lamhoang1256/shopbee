@@ -1,85 +1,74 @@
-import { ICurrentUser, IPagination } from "@types";
 import { userAPI } from "apis";
 import Button from "components/Button";
 import Input from "components/Input";
 import Loading from "components/Loading";
 import Pagination from "components/Pagination";
+import { defaultUserAvatar } from "constants/global";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVN } from "utils/helper";
 import { swalDelete } from "utils/sweetalert2";
-import UserAvatar from "./UserAvatar";
 
 const UserManage = () => {
-  const [users, setUsers] = useState<ICurrentUser[]>([]);
-  const [pagination, setPagination] = useState<IPagination>(Object);
   const [searchParams, setSearchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams);
-  const [loading, setLoading] = useState(true);
+  const queryParams = Object.fromEntries(searchParams);
+  const email = queryParams?.email as string;
   const formik = useFormik({
     initialValues: { email: "" },
     onSubmit: (values) => {
       setSearchParams(values);
     }
   });
-
-  const fetchAllUser = async () => {
-    try {
-      setLoading(true);
-      const { data } = await userAPI.getAllUser({ ...params, limit: 10 });
-      setUsers(data.users);
-      setPagination(data.pagination);
-      setLoading(false);
-    } catch (error) {
-      toast.error(error?.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDeleteUser = async (usedId: string) => {
-    try {
-      const { message } = await userAPI.deleteUser(usedId);
-      fetchAllUser();
+  const { values, handleSubmit, handleChange } = formik;
+  const queryClient = useQueryClient();
+  const { isLoading, data: usersData } = useQuery({
+    queryKey: ["users", email],
+    queryFn: () => userAPI.getAllUser({ ...queryParams, limit: 10 }),
+    keepPreviousData: true,
+    staleTime: 5 * 60 * 1000
+  });
+  const deleteProductMutation = useMutation({
+    mutationFn: (usedId: string) => userAPI.deleteUser(usedId),
+    onSuccess: ({ message }) => {
       toast.success(message);
-    } catch (error) {
-      toast.error(error?.message);
+      queryClient.invalidateQueries({ queryKey: ["users", email], exact: true });
+    },
+    onError(error: any) {
+      toast.error(error.message);
     }
+  });
+  const handleDeleteUser = (userId: string) => {
+    swalDelete(() => deleteProductMutation.mutate(userId));
   };
-
-  useEffect(() => {
-    fetchAllUser();
-  }, [searchParams]);
-
   return (
     <Template title="Quản lí người dùng" desc="Vui lòng nhập đầy đủ thông tin cho sản phẩm của bạn">
       <Helmet>
         <title>Quản lí người dùng</title>
       </Helmet>
       <form
-        onSubmit={formik.handleSubmit}
         autoComplete="off"
+        onSubmit={handleSubmit}
         className="flex flex-wrap items-center my-4 sm:flex-nowrap gap-x-2 gap-y-1"
       >
         <Input
           name="email"
           className="w-full lg:!h-12"
-          value={formik.values.email}
-          onChange={formik.handleChange}
+          value={values.email}
+          onChange={handleChange}
           placeholder="Tìm kiếm người dùng theo email"
         />
         <Button primary className="flex-shrink-0 lg:h-12">
           Tìm kiếm
         </Button>
       </form>
-      {loading && <Loading />}
-      {!loading && users.length > 0 && (
-        <>
+      {isLoading && <Loading />}
+      {!isLoading && usersData && usersData?.data.users.length > 0 && (
+        <div>
           <div className="tables">
             <table>
               <thead>
@@ -94,12 +83,16 @@ const UserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user, index) => (
+                {usersData.data.users.map((user, index) => (
                   <tr key={user._id}>
                     <td>{index + 1}</td>
                     <td>
                       <div className="flex items-center gap-x-2">
-                        <UserAvatar className="w-8 h-8 rounded-full" urlAvatar={user.avatar} />
+                        <img
+                          alt={user.fullname}
+                          className="w-10 h-10 border border-gray-200 rounded-full"
+                          src={user.avatar || defaultUserAvatar}
+                        />
                         <div>
                           <h3 className="font-medium max-w-[140px] line-clamp-1">
                             {user.fullname || "Khách hàng"}
@@ -121,9 +114,7 @@ const UserManage = () => {
                     <td>
                       <div className="flex gap-x-1">
                         <Button to={`${PATH.userUpdate}/${user._id}`}>Sửa</Button>
-                        <Button onClick={() => swalDelete(() => handleDeleteUser(user._id))}>
-                          Xóa
-                        </Button>
+                        <Button onClick={() => handleDeleteUser(user._id)}>Xóa</Button>
                       </div>
                     </td>
                   </tr>
@@ -131,10 +122,10 @@ const UserManage = () => {
               </tbody>
             </table>
           </div>
-          <Pagination pagination={pagination} />
-        </>
+          <Pagination pagination={usersData.data.pagination} />
+        </div>
       )}
-      {!loading && users.length === 0 && (
+      {!isLoading && usersData && usersData?.data.users.length === 0 && (
         <div className="flex flex-col items-center justify-center gap-y-2 h-[400px]">
           <img src="/product-notfound.png" alt="not found product" />
           <span className="text-[#bababa]">Không tìm thấy người dùng</span>

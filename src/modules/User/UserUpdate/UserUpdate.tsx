@@ -45,9 +45,9 @@ const UserUpdate = () => {
   const handleChangeAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     const newAvatarUrl = await uploadImage(e);
     updateAvatarMutation.mutate(newAvatarUrl, {
-      onSuccess(data) {
+      onSuccess({ message, data }) {
         setFieldValue("avatar", data?.avatar);
-        toast.success(data?.message);
+        toast.success(message);
       },
       onError(error: any) {
         toast.error(error?.message);

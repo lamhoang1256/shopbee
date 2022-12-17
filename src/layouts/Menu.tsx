@@ -3,7 +3,6 @@ import { authAPI } from "apis";
 import Popover from "components/Popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
-import { UserAvatar } from "modules/_user";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
@@ -34,8 +33,9 @@ const Menu = () => {
           onMouseLeave={hidePopover}
         >
           <div className="flex items-center justify-end h-full gap-x-2 transition-all duration-100 hover:text-[#ffffffb3] cursor-pointer">
-            <UserAvatar
-              urlAvatar={currentUser?.avatar}
+            <img
+              alt={currentUser.fullname}
+              src={currentUser.avatar}
               className="object-cover w-5 h-5 rounded-full"
             />
             <span className="font-medium max5se:line-clamp-1 ">

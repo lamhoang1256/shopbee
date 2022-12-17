@@ -32,7 +32,7 @@ const HeaderCart = () => {
           <div className="mt-5">
             {carts.length === 0 && (
               <div className="flex flex-col items-center justify-center gap-y-1">
-                <img src="/images/cart-empty.png" alt="cart" className="w-20 h-20" />
+                <img src="/cart-empty.png" alt="cart" className="w-20 h-20" />
                 <h3 className="text-[#00000066]">Giỏ hàng của bạn còn trống</h3>
               </div>
             )}

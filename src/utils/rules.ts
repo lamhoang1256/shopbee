@@ -94,3 +94,22 @@ export const updatePasswordRules = Yup.object({
     .oneOf([Yup.ref("newPassword")], "Xác nhận mật khẩu không khớp!")
     .required("Vui lòng nhập xác nhận mật khẩu!")
 });
+
+export const creditCardRules = Yup.object({
+  number: Yup.string()
+    .required("Vui lòng nhập số thẻ!")
+    .min(16, "Số thẻ tối thiểu bao gồm 16 chữ số!")
+    .max(19, "Số thẻ tối đa bao gồm 19 chữ số!"),
+  name: Yup.string()
+    .required("Vui lòng họ và tên!")
+    .min(12, "Họ và tên tối thiểu bao gồm 12 kí tự!")
+    .max(22, "Họ và tên tối đa bao gồm 22 kí tự!"),
+  expiry: Yup.string()
+    .required("Vui lòng thời hạn thẻ!")
+    .min(5, "Thời hạn có định dạng MM/YY!")
+    .max(5, "Thời hạn có định dạng MM/YY!"),
+  cvc: Yup.string()
+    .required("Vui lòng mã bảo vệ CVC!")
+    .min(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!")
+    .max(3, "Mã bảo vệ CVC tối đa bao gồm 3 kí tự!")
+});

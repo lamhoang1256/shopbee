@@ -75,7 +75,7 @@ const Notification = () => {
         )}
         {notifications.length <= 0 && (
           <div className="flex flex-col items-center justify-center gap-y-1 h-[200px]">
-            <img src="/images/bell.png" alt="empty notification" className="w-24 h-24" />
+            <img src="/bell.png" alt="empty notification" className="w-24 h-24" />
             <h3 className="font-medium text-base text-[#00000066]">Chưa có thông tin mới</h3>
           </div>
         )}

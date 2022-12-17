@@ -4,46 +4,45 @@ import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
 import { v4 as uuidv4 } from "uuid";
-import UserAvatar from "./UserAvatar";
 
 const sidebarLinks = [
   {
-    icon: "/images/icon-account.png",
+    icon: "/icon-account.png",
     path: PATH.profile,
     display: "Tài khoản của tôi"
   },
   {
-    icon: "/images/icon-password.png",
+    icon: "/icon-password.png",
     path: PATH.password,
     display: "Đổi mật khẩu"
   },
   {
-    icon: "/images/icon-order.png",
+    icon: "/icon-order.png",
     path: PATH.order,
     display: "Đơn mua"
   },
   {
-    icon: "/images/icon-voucher-wallet.png",
+    icon: "/icon-voucher-wallet.png",
     path: PATH.voucherWallet,
     display: "Ví voucher"
   },
   {
-    icon: "/images/icon-history.png",
+    icon: "/icon-history.png",
     path: PATH.history,
     display: "Đã xem gần đây"
   },
   {
-    icon: "/images/icon-heart.png",
+    icon: "/icon-heart.png",
     path: PATH.wishlist,
     display: "Đã thích"
   },
   {
-    icon: "/images/icon-notification.png",
+    icon: "/icon-notification.png",
     path: PATH.notification,
     display: "Thông báo"
   },
   {
-    icon: "/images/icon-credit-card.png",
+    icon: "/icon-credit-card.png",
     path: PATH.creditCard,
     display: "Ngân hàng"
   }
@@ -54,9 +53,10 @@ const UserSidebar = () => {
   return (
     <Sidebar labelOpenSidebar="Tài khoản của tôi">
       <div className="flex items-center gap-x-2">
-        <UserAvatar
+        <img
+          alt={currentUser?.fullname}
           className="w-10 h-10 rounded-full"
-          urlAvatar={currentUser?.avatar || defaultUserAvatar}
+          src={currentUser?.avatar || defaultUserAvatar}
         />
         <div>
           <h3 className="font-semibold line-clamp-1">{currentUser?.fullname || "User"}</h3>

@@ -25,7 +25,7 @@ const ProductShipping = ({ shopCityId }: ProductShippingProps) => {
     <div className="my-6">
       <div>
         <div className="flex items-center gap-2 text-sm">
-          <img alt="freeship" className="w-6 h-4" src="/images/icon-freeship.png" />
+          <img alt="freeship" className="w-6 h-4" src="/icon-freeship.png" />
           <span>Miễn phí vận chuyển</span>
         </div>
         <p className="ml-8 maxsm:text-[13px] mt-1 text-[#0000008a]">

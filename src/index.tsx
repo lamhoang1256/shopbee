@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/src/sweetalert2.scss";
 import "swiper/css";
 import "react-quill/dist/quill.snow.css";
+import "react-credit-cards/es/styles-compiled.css";
 
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);

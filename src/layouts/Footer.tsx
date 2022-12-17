@@ -14,14 +14,14 @@ const abouts = [
   "Chính Sách Bảo Mật"
 ];
 const socials = [
-  { display: "Facebook", image: "/images/icon-facebook.png" },
-  { display: "Instagram", image: "/images/icon-instagram.png" },
-  { display: "Linked", image: "/images/icon-linked.png" }
+  { display: "Facebook", image: "/icon-facebook.png" },
+  { display: "Instagram", image: "/icon-instagram.png" },
+  { display: "Linked", image: "/icon-linked.png" }
 ];
 const downloads = [
-  { key: "download-playstore", image: "/images/download-playstore.png" },
-  { key: "download-appstore", image: "/images/download-appstore.png" },
-  { key: "download-appgallery", image: "/images/download-appgallery.png" }
+  { key: "download-playstore", image: "/download-playstore.png" },
+  { key: "download-appstore", image: "/download-appstore.png" },
+  { key: "download-appgallery", image: "/download-appgallery.png" }
 ];
 
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -80,7 +80,7 @@ const Footer = ({ className }: FooterProps) => {
             <h3 className="text-[#000000de] font-semibold">TẢI ỨNG DỤNG SHOPBEE NGAY THÔI</h3>
             <div className="flex gap-3 mt-5">
               <img
-                src="/images/download-qrcode.png"
+                src="/download-qrcode.png"
                 alt="download-qrcode"
                 className="w-20 h-20 cursor-pointer"
               />

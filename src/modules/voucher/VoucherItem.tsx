@@ -33,7 +33,7 @@ const VoucherItem = ({
         </div>
       ) : (
         <div className={classNames(stylesImageBox, stylesBgShopbee)}>
-          <img src="/images/voucher-shopbee.png" className="w-3/5 h-3/5" alt="voucher-shopbee" />
+          <img src="/voucher-shopbee.png" className="w-3/5 h-3/5" alt="voucher-shopbee" />
           <span className="text-white">Shopbee</span>
         </div>
       )}
