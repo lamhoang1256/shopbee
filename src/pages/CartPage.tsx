@@ -8,7 +8,7 @@ import {
   CartHeader,
   CartItem,
   CartOutOfStock
-} from "modules/cart";
+} from "modules/_cart";
 import { Helmet } from "react-helmet-async";
 
 const CartPage = () => {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Pagination from "components/Pagination";
 import useFetchProducts from "hooks/useFetchProducts";
 import ProductList from "modules/Product/ProductList";
-import { SearchAside, SearchSortBar } from "modules/search";
+import { SearchAside, SearchSortBar } from "modules/_search";
 import { scrollTo } from "utils";
 import { Helmet } from "react-helmet-async";
 

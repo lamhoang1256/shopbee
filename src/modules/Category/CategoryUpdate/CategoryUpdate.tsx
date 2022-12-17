@@ -49,7 +49,7 @@ const CategoryUpdate = () => {
     }
   });
   return (
-    <Template title="Sửa danh mục" desc="Vui lòng nhập đầy đủ thông tin cho danh mục của bạn">
+    <Template title="Sửa danh mục" desc="Vui lòng nhập thông tin cho danh mục của bạn">
       <Helmet>
         <title>Sửa danh mục</title>
       </Helmet>

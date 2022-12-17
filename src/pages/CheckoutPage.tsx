@@ -9,7 +9,7 @@ import { ModalApplyVoucher } from "components/Modal";
 import { PATH } from "constants/path";
 import useFetchShopInfo from "hooks/useFetchShopInfo";
 import useModal from "hooks/useModal";
-import { OrderPayment, OrderProduct } from "modules/order";
+import { OrderPayment, OrderProduct } from "modules/_order";
 import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";

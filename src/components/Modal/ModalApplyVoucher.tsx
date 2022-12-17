@@ -2,7 +2,7 @@ import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import Button from "components/Button";
 import Input from "components/Input";
-import { VoucherApplyItem, VoucherEmpty } from "modules/voucher";
+import { VoucherApplyItem, VoucherEmpty } from "modules/_voucher";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
