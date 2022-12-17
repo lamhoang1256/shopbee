@@ -15,7 +15,7 @@ const CheckLoggedIn = lazy(() => import("routes/CheckLoggedIn"));
 const ProtectedRoute = lazy(() => import("routes/ProtectedRoute"));
 const CheckAdmin = lazy(() => import("routes/CheckAdmin"));
 const BannerManage = lazy(() => import("modules/Common/BannerManage"));
-const ShopUpdate = lazy(() => import("modules/shop/ShopUpdate"));
+const ShopUpdate = lazy(() => import("modules/Common/ShopUpdate"));
 const VoucherAddNew = lazy(() => import("modules/voucher/VoucherAddNew"));
 const VoucherManage = lazy(() => import("modules/voucher/VoucherManage"));
 const VoucherMe = lazy(() => import("modules/voucher/VoucherMe"));

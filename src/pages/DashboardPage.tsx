@@ -1,4 +1,4 @@
-import { DashboardNeedWork } from "modules/_dashboard";
+import DashboardOverview from "modules/Dashboard/DashboardOverview";
 import { Helmet } from "react-helmet-async";
 
 const DashboardPage = () => {
@@ -7,7 +7,7 @@ const DashboardPage = () => {
       <Helmet>
         <title>Trang tổng quan</title>
       </Helmet>
-      <DashboardNeedWork />;
+      <DashboardOverview />;
     </>
   );
 };

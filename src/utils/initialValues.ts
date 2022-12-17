@@ -11,3 +11,13 @@ export const initialValuesProduct = {
   sold: 0,
   view: Math.floor(Math.random() * (10000 - 0 + 1)) + 0
 };
+
+export const initialValuesShopInfo = {
+  name: "",
+  avatar: "",
+  street: "",
+  address: "",
+  city: { id: "", name: "" },
+  district: { id: "", name: "" },
+  ward: { id: "", name: "" }
+};

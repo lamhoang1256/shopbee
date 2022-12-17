@@ -1,6 +1,7 @@
 import { productAPI } from "apis";
 import Loading from "components/Loading";
 import useFetchShopInfo from "hooks/useFetchShopInfo";
+import ShopOverview from "modules/Common/ShopOverview";
 import ProductDesc from "modules/Product/ProductDesc";
 import ProductImageSlider from "modules/Product/ProductImageSlider";
 import ProductMeta from "modules/Product/ProductMeta";
@@ -9,13 +10,12 @@ import ProductPrice from "modules/Product/ProductPrice";
 import ProductQuantity from "modules/Product/ProductQuantity";
 import ProductRelated from "modules/Product/ProductRelated";
 import ProductReview from "modules/Product/ProductReview";
-import { ShopOverview } from "modules/shop";
 import { ProductShipping } from "modules/_product";
+import PageNotFound from "pages/PageNotFound";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { saveHistoryView } from "utils";
-import PageNotFound from "pages/PageNotFound";
 
 const ProductDetailsPage = () => {
   const { id = "" } = useParams();

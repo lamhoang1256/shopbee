@@ -38,3 +38,20 @@ export const addNewProductRules = Yup.object({
   price: Yup.number().required().max(Yup.ref("oldPrice"), "Giá đã giảm không được lớn hơn giá gốc"),
   stock: Yup.number().required("Vui lòng chọn số lượng!")
 });
+
+export const shopInfoRules = Yup.object({
+  name: Yup.string().required("Vui lòng nhập tên shop!"),
+  street: Yup.string().required("Vui lòng nhập địa chỉ lấy hàng!"),
+  city: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!"),
+    name: Yup.string().required("Vui lòng chọn Tỉnh/Thành phố!")
+  }),
+  district: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Quận/Huyện!"),
+    name: Yup.string().required("Vui lòng chọn Quận/Huyện!")
+  }),
+  ward: Yup.object().shape({
+    id: Yup.string().required("Vui lòng chọn Phường/Xã!"),
+    name: Yup.string().required("Vui lòng chọn Phường/Xã!")
+  })
+});
