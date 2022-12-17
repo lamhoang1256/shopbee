@@ -1,6 +1,5 @@
 import { IOrder, OrderStatus, OrderStatusVietnamese } from "@types";
 import { orderAPI } from "apis";
-import { SectionWhite } from "components/_section";
 import Loading from "components/Loading";
 import Option from "components/Option";
 import Select from "components/Select";
@@ -70,12 +69,12 @@ const OrderUpdate = () => {
       <Helmet>
         <title>Cập nhật đơn hàng</title>
       </Helmet>
-      <SectionWhite>
+      <div className="section-white">
         <OrderHeader orderId={order._id}>{OrderStatusVietnamese[order.status]}</OrderHeader>
         <OrderProgress order={order} />
         <OrderOverview order={order} />
-      </SectionWhite>
-      <SectionWhite className="mt-3">
+      </div>
+      <div className="mt-3 section-white">
         <div className="flex items-center gap-x-5">
           <span>Trạng thái đơn hàng</span>
           <Select name="status" onChange={handleUpdateStatusOrder}>
@@ -86,12 +85,12 @@ const OrderUpdate = () => {
             <Option value={OrderStatus.canceled}>Hủy</Option>
           </Select>
         </div>
-      </SectionWhite>
-      <SectionWhite className="mt-3">
+      </div>
+      <div className="mt-3 section-white">
         {order?.orderItems.map((orderItem) => (
           <OrderProduct order={orderItem} key={orderItem.product._id} />
         ))}
-      </SectionWhite>
+      </div>
       <OrderPayment
         price={order.price}
         shippingFee={order.shippingFee}

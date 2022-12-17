@@ -5,7 +5,6 @@ import Administrative from "components/Administrative";
 import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
-import { Input, InputPassword } from "components/_input";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
 import { ChangeEvent } from "react";
@@ -13,6 +12,8 @@ import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
 import * as Yup from "yup";
+import Input from "components/Input";
+import InputPassword from "components/InputPassword";
 import UserChangeAvatar from "./UserChangeAvatar";
 
 const UserAddNew = () => {

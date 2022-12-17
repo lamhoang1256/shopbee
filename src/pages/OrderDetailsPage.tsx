@@ -1,6 +1,5 @@
 import { IOrder, OrderStatusVietnamese } from "@types";
 import { orderAPI } from "apis";
-import { SectionWhite } from "components/_section";
 import Loading from "components/Loading";
 import {
   OrderCancel,
@@ -41,11 +40,11 @@ const OrderDetailsPage = () => {
       <Helmet>
         <title>Chi tiết đơn hàng</title>
       </Helmet>
-      <SectionWhite>
+      <div className="section-white">
         <OrderHeader orderId={order._id}>{OrderStatusVietnamese[order.status]}</OrderHeader>
         <OrderProgress order={order} />
         <OrderOverview order={order} />
-      </SectionWhite>
+      </div>
       <OrderCancel status={order.status} fetchDetailsOrder={fetchDetailsOrder} />
       <OrderReview orderItems={order.orderItems} />
       <OrderPayment

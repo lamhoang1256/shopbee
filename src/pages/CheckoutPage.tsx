@@ -2,16 +2,15 @@ import { ICart, IPayloadBuyProduct, IVoucher } from "@types";
 import { productAPI } from "apis";
 import Button from "components/Button";
 import ButtonOutline from "components/ButtonOutline";
-import { SectionWhite } from "components/_section";
 import { IconGPS } from "components/Icons";
 import Input from "components/Input";
 import Logo from "components/Logo";
 import { ModalApplyVoucher } from "components/Modal";
-import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { PATH } from "constants/path";
 import useFetchShopInfo from "hooks/useFetchShopInfo";
 import useModal from "hooks/useModal";
 import { OrderPayment, OrderProduct } from "modules/order";
+import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
@@ -99,7 +98,7 @@ const CheckoutPage = () => {
       </header>
       <main className="pt-6 pb-10 layout-container">
         <div className="mt-3 gradient-line " />
-        <SectionWhite className="text-base font-medium rounded-tl-none rounded-tr-none">
+        <div className="text-base font-medium rounded-tl-none rounded-tr-none section-white">
           <h3 className="flex items-center gap-2 mb-2 text-lg font-medium text-orangeee4">
             <IconGPS />
             <span>Thông tin nhận hàng</span>
@@ -110,8 +109,8 @@ const CheckoutPage = () => {
           <Link to={PATH.profile} className="font-medium text-blue08f">
             Thay đổi địa chỉ giao hàng
           </Link>
-        </SectionWhite>
-        <SectionWhite className="mt-3">
+        </div>
+        <div className="mt-3 section-white">
           <h2>Sản phẩm</h2>
           <div className="mt-3">
             {carts.length > 0 &&
@@ -122,7 +121,7 @@ const CheckoutPage = () => {
               <h3 className="text-base font-medium">Giỏ hàng của bạn đang trống</h3>
             )}
           </div>
-        </SectionWhite>
+        </div>
         <div className="bg-[#fafdff] px-4 py-6 border border-dotted border-[rgba(0,0,0,.09)] flex gap-x-8 gap-y-4 justify-between flex-col md:flex-row">
           <div className="flex flex-col flex-1 md:items-center md:flex-row gap-x-3 gap-y-2">
             <span>Lời nhắn: </span>

@@ -1,7 +1,6 @@
 import { IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import Button from "components/Button";
-import { SectionGray } from "components/_section";
 import Input from "components/Input";
 import { VoucherApplyItem, VoucherEmpty } from "modules/voucher";
 import { useEffect, useState } from "react";
@@ -53,7 +52,7 @@ const ModalApplyVoucher = ({
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <h2 className="text-xl font-medium">Chọn Shopbee Voucher</h2>
-      <SectionGray className="mt-4 maxsm:p-0">
+      <div className="mt-4 section-gray maxsm:p-0">
         <div className="flex items-center md:gap-2">
           <span className="hidden md:block">Mã Voucher</span>
           <Input
@@ -66,7 +65,7 @@ const ModalApplyVoucher = ({
             Áp dụng
           </Button>
         </div>
-      </SectionGray>
+      </div>
       <div className="overflow-y-auto max-h-72">
         {vouchers.length === 0 && <VoucherEmpty />}
         {vouchers.length > 0 &&

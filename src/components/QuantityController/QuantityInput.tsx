@@ -1,4 +1,4 @@
-import { InputNumber } from "components/_input";
+import InputNumber from "components/InputNumber";
 
 interface QuantityInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   handleChange: (quantity: number) => void;

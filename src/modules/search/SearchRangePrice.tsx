@@ -1,10 +1,10 @@
 import Button from "components/Button";
 import FormError from "components/FormError";
 import { IconFilter } from "components/Icons";
-import { InputRangePrice } from "components/_input";
-import * as Yup from "yup";
+import InputNumber from "components/InputNumber";
 import { useFormik } from "formik";
 import usePagination from "hooks/usePagination";
+import * as Yup from "yup";
 
 interface IParamsSearchByPrice {
   price_min: string;
@@ -40,16 +40,18 @@ const SearchRangePrice = () => {
       >
         <span className="text-[#000000cc]">Khoản giá</span>
         <div className="flex items-center justify-between">
-          <InputRangePrice
+          <InputNumber
             name="price_min"
             placeholder="Từ"
+            className="outline-none !h-8 py-0 w-[85px] px-1 bg-white border border-[#00000024]"
             value={formik.values.price_min}
             onChange={formik.handleChange}
           />
           <span>-</span>
-          <InputRangePrice
+          <InputNumber
             name="price_max"
             placeholder="Đến"
+            className="outline-none !h-8 py-0 w-[85px] px-1 bg-white border border-[#00000024]"
             value={formik.values.price_max}
             onChange={formik.handleChange}
           />

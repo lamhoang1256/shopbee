@@ -3,12 +3,12 @@ import Button from "components/Button";
 import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
-import { InputPassword } from "components/_input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import InputPassword from "components/InputPassword";
 
 const UserChangePassword = () => {
   const formik = useFormik({

@@ -1,16 +1,15 @@
-import { useFormik } from "formik";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { orderAPI } from "apis";
 import { IOrder, IPagination } from "@types";
-import { PATH } from "constants/path";
-import { InputSearch } from "components/_input";
+import { orderAPI } from "apis";
 import Loading from "components/Loading";
-import Tabs from "components/Tabs";
-import { OrderEmpty, OrderItem } from "modules/order";
 import Pagination from "components/Pagination";
-import { toast } from "react-toastify";
+import Tabs from "components/Tabs";
+import { PATH } from "constants/path";
+import { useFormik } from "formik";
+import { OrderEmpty, OrderItem } from "modules/order";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const tabs = [
   { key: "", display: "Tất cả", to: PATH.order },
@@ -57,9 +56,9 @@ const OrderPage = () => {
       </Helmet>
       <Tabs tabs={tabs} query={status} />
       <form onSubmit={formik.handleSubmit} autoComplete="off">
-        <InputSearch
+        <input
           name="orderId"
-          className="mt-3"
+          className="px-4 py-3 w-full bg-[#eaeaea] outline-none mt-3"
           value={formik.values.orderId}
           onChange={formik.handleChange}
           placeholder="Tìm kiếm theo đơn hàng theo ID"
