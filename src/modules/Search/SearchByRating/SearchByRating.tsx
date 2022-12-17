@@ -15,7 +15,7 @@ const renderStarRating = (score: number) => {
 const SearchByRating = () => {
   return (
     <>
-      <div className="mt-6 search-catelog-header">
+      <div className="mt-6 search-category">
         <IconStar />
         <span>Đánh giá</span>
       </div>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "components/Button";
 import { PATH } from "constants/path";
 
-const SearchRemoveAll = () => {
+const SearchClear = () => {
   const navigate = useNavigate();
   return (
     <div className="border-t-2 pb-3 mt-6 border-[#0000000d]">
@@ -17,4 +17,4 @@ const SearchRemoveAll = () => {
   );
 };
 
-export default SearchRemoveAll;
+export default SearchClear;

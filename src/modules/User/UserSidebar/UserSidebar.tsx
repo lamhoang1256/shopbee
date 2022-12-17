@@ -51,7 +51,7 @@ const sidebarLinks = [
 const UserSidebar = () => {
   const { currentUser } = useStore((state) => state);
   return (
-    <Sidebar labelOpenSidebar="Tài khoản của tôi">
+    <Sidebar content="Tài khoản của tôi">
       <div className="flex items-center gap-x-2">
         <img
           alt={currentUser?.fullname}

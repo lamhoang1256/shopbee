@@ -11,7 +11,6 @@ const InputNumber = ({ name, onChange, value, className, ...props }: InputNumber
       onChange(e);
     }
   };
-
   return (
     <input
       id={name}

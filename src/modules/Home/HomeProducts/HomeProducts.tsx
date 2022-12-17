@@ -8,7 +8,7 @@ import ProductList from "modules/Product/ProductList";
 import ProductListSekeleton from "modules/Product/ProductSekeleton";
 
 const HomeProducts = () => {
-  const queryParams = useQueryParams();
+  const { queryParams } = useQueryParams();
   const sectionRef = useRef<HTMLDivElement>(null);
   const { isLoading, data: productsData } = useQuery({
     queryKey: ["products", queryParams],

@@ -84,7 +84,7 @@ const stylesLink = "flex gap-x-2 items-center p-3";
 const stylesLinkActive = "flex gap-x-2 items-center p-3 bg-orangeee4 text-white rounded-lg";
 const DashboardSidebar = () => {
   return (
-    <Sidebar labelOpenSidebar="Dashboard" className="lg:w-[280px] lg:p-4 lg:bg-white shadow1">
+    <Sidebar content="Dashboard" className="lg:w-[280px] lg:p-4 lg:bg-white shadow1">
       <ul>
         {sidebarLinks.map((link) => (
           <li key={uuidv4()}>

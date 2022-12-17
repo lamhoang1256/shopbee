@@ -110,6 +110,11 @@ export const categoryRules = Yup.object({
   image: Yup.string().required("Vui lòng chọn hình ảnh!")
 });
 
+export const priceRules = Yup.object({
+  price_min: Yup.number().min(0).default(0),
+  price_max: Yup.number().min(Yup.ref("price_min"), "Vui lòng điền khoảng giá phù hợp")
+});
+
 export const creditCardRules = Yup.object({
   number: Yup.string()
     .required("Vui lòng nhập số thẻ!")

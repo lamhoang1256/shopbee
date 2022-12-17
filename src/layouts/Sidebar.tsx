@@ -7,11 +7,11 @@ import SidebarCloseAction from "./SidebarCloseAction";
 
 interface SidebarProps {
   children: React.ReactNode;
-  labelOpenSidebar?: string;
+  content?: string;
   className?: string;
 }
 
-const SearchAside = ({ children, labelOpenSidebar, className }: SidebarProps) => {
+const SearchAside = ({ children, content, className }: SidebarProps) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const toggleSearchSidebar = () => {
@@ -31,7 +31,7 @@ const SearchAside = ({ children, labelOpenSidebar, className }: SidebarProps) =>
         className="flex items-center lg:hidden gap-x-2 max-w-fit"
       >
         <IconMenu />
-        <span>{labelOpenSidebar}</span>
+        <span>{content}</span>
       </Button>
       <aside className={classNames("layout-sidebar", className)} ref={sidebarRef}>
         <SidebarCloseAction onCloseSidebar={toggleSearchSidebar} />
@@ -48,7 +48,7 @@ const SearchAside = ({ children, labelOpenSidebar, className }: SidebarProps) =>
 };
 
 SearchAside.defaultProps = {
-  labelOpenSidebar: "Mở sidebar",
+  content: "Mở sidebar",
   className: "lg:w-48"
 };
 

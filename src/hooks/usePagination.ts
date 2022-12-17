@@ -1,24 +1,23 @@
-import { useSearchParams } from "react-router-dom";
 import { IProductSearchParams } from "@types";
 import { removeEmptyStringValueObj } from "utils/helper";
+import useQueryParams from "./useQueryParams";
 
 export default function usePagination() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentParams = Object.fromEntries(searchParams);
-  const currentPage = Number(searchParams.get("page") || 1);
+  const { queryParams, setSearchParams } = useQueryParams();
+  const currentPage = Number(queryParams?.page) || 1;
   const goPrevPage = () => {
     const prevPage = currentPage - 1;
-    setSearchParams({ ...currentParams, page: prevPage.toString() });
+    setSearchParams({ ...queryParams, page: prevPage.toString() });
   };
   const goNextPage = () => {
     const nextPage = currentPage + 1;
-    setSearchParams({ ...currentParams, page: nextPage.toString() });
+    setSearchParams({ ...queryParams, page: nextPage.toString() });
   };
   const handleClickNumberPage = (page: number) => {
-    setSearchParams({ ...currentParams, page: page.toString() });
+    setSearchParams({ ...queryParams, page: page.toString() });
   };
   const handleFilter = (filterParams: Partial<IProductSearchParams>) => {
-    const params = removeEmptyStringValueObj({ ...currentParams, ...filterParams });
+    const params = removeEmptyStringValueObj({ ...queryParams, ...filterParams });
     setSearchParams(params);
   };
   return {
