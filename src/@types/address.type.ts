@@ -37,6 +37,22 @@ export interface IParamsWard {
   districtId?: string;
 }
 
+export interface IAddress {
+  street: string;
+  city: {
+    id: string;
+    name: string;
+  };
+  district: {
+    id: string;
+    name: string;
+  };
+  ward: {
+    id: string;
+    name: string;
+  };
+}
+
 export type CityResponse = SuccessResponse<ICity[]>;
 export type DistrictResponse = SuccessResponse<IDistrict[]>;
 export type WardResponse = SuccessResponse<IWard[]>;

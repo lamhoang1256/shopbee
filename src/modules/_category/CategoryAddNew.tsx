@@ -1,18 +1,18 @@
 import { categoryAPI } from "apis";
 import Button from "components/Button";
-import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
 import Input from "components/Input";
-import * as Yup from "yup";
+import Label from "components/Label";
+import { defaultPreviewImage } from "constants/global";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
-import { UserChangeAvatar } from "modules/_user";
-import { toast } from "react-toastify";
-import { uploadImage } from "utils/uploadImage";
+import UserUploadAvatar from "modules/User/UserUploadAvatar";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
-import { defaultPreviewImage } from "constants/global";
+import { toast } from "react-toastify";
+import { uploadImage } from "utils/uploadImage";
+import * as Yup from "yup";
 
 const CategoryAddNew = () => {
   const formik = useFormik({
@@ -70,9 +70,9 @@ const CategoryAddNew = () => {
             Thêm danh mục
           </Button>
         </div>
-        <UserChangeAvatar
+        <UserUploadAvatar
           avatar={formik.values.image || defaultPreviewImage}
-          handleChangeAvatar={handleUploadImage}
+          onChangeAvatar={handleUploadImage}
         />
       </form>
     </Template>

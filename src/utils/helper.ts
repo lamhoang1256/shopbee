@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import { ICart, IProduct } from "@types";
+import { IAddress, ICart, IProduct } from "@types";
 import { getHistoryLocalStorage, setHistoryLocalStorage } from "./localStorage";
 
 export const formatMoney = (money: number) => {
@@ -99,4 +99,10 @@ export const saveHistoryView = (product: IProduct) => {
   if (foundProductIndex !== -1) history = history.splice(foundProductIndex, 1);
   history.unshift(product);
   setHistoryLocalStorage(history);
+};
+
+export const generateAddress = (values: IAddress) => {
+  const { street, city, district, ward } = values;
+  const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
+  return address;
 };

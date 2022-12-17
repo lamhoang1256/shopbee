@@ -1,23 +1,27 @@
-import { defaultUserAvatar } from "constants/global";
 import Button from "components/Button";
+import { defaultUserAvatar } from "constants/global";
 import { ChangeEvent } from "react";
-import UserAvatar from "./UserAvatar";
 
-interface UserChangeAvatarProps {
+interface UserUploadAvatarProps {
   avatar: string;
-  handleChangeAvatar: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
+  onChangeAvatar: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
-const UserChangeAvatar = ({ avatar, handleChangeAvatar }: UserChangeAvatarProps) => {
+const UserUploadAvatar = ({ avatar, onChangeAvatar }: UserUploadAvatarProps) => {
   return (
     <div className="flex flex-col items-center gap-y-4 lg:w-1/3">
-      <UserAvatar urlAvatar={avatar || defaultUserAvatar} />
+      <img
+        alt="avatar"
+        src={avatar || defaultUserAvatar}
+        className="w-[100px] h-[100px] rounded-full"
+      />
       <div className="relative w-[100px] mx-auto h-10">
         <Button className="absolute">Chọn ảnh</Button>
         <input
           type="file"
+          accept="image/*"
           className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer"
-          onChange={handleChangeAvatar}
+          onChange={onChangeAvatar}
         />
       </div>
       <div className="text-[#999]">
@@ -28,4 +32,4 @@ const UserChangeAvatar = ({ avatar, handleChangeAvatar }: UserChangeAvatarProps)
   );
 };
 
-export default UserChangeAvatar;
+export default UserUploadAvatar;

@@ -21,3 +21,37 @@ export const initialValuesShopInfo = {
   district: { id: "", name: "" },
   ward: { id: "", name: "" }
 };
+
+export const initialValuesUser = {
+  email: "",
+  fullname: "",
+  phone: "",
+  password: "",
+  confirm_password: "",
+  avatar: "",
+  street: "",
+  city: { id: "", name: "" },
+  district: { id: "", name: "" },
+  ward: { id: "", name: "" },
+  address: "",
+  isAdmin: false
+};
+
+export const initialValuesUpdateUser = {
+  fullname: "",
+  phone: "",
+  email: "",
+  avatar: "",
+  street: "",
+  city: { id: "", name: "" },
+  district: { id: "", name: "" },
+  ward: { id: "", name: "" },
+  address: "",
+  isAdmin: false
+};
+
+export const initialValuesPasswords = {
+  currentPassword: "",
+  newPassword: "",
+  confirmPassword: ""
+};

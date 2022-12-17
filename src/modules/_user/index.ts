@@ -1,18 +1,14 @@
-import UserChangeAvatar from "./UserChangeAvatar";
-import UserUpdateMe from "./UserUpdateMe";
-import UserChangePassword from "./UserChangePassword";
-import UserUpdate from "./UserUpdate";
+import UserUpdateMe from "../User/UserUpdateMe/UserUpdateMe";
+import UserChangePassword from "../User/UserChangePassword/UserChangePassword";
+import UserUpdate from "../User/UserUpdate/UserUpdate";
 import UserSidebar from "./UserSidebar";
 import UserManage from "./UserManage";
 import UserAvatar from "./UserAvatar";
-import UserAddNew from "./UserAddNew";
 import UserCreditCard from "./UserCreditCard";
 
 export {
-  UserChangeAvatar,
   UserUpdate,
   UserAvatar,
-  UserAddNew,
   UserManage,
   UserUpdateMe,
   UserSidebar,

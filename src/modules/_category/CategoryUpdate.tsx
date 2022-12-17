@@ -1,19 +1,19 @@
 import { categoryAPI } from "apis";
 import Button from "components/Button";
-import Label from "components/Label";
 import FormError from "components/FormError";
 import FormGroup from "components/FormGroup";
 import Input from "components/Input";
-import * as Yup from "yup";
+import Label from "components/Label";
+import { defaultPreviewImage } from "constants/global";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
-import { UserChangeAvatar } from "modules/_user";
+import UserUploadAvatar from "modules/User/UserUploadAvatar";
 import { ChangeEvent, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImage } from "utils/uploadImage";
-import { Helmet } from "react-helmet-async";
-import { defaultPreviewImage } from "constants/global";
+import * as Yup from "yup";
 
 const CategoryUpdate = () => {
   const { id = "" } = useParams();
@@ -84,9 +84,9 @@ const CategoryUpdate = () => {
             Cập nhật danh mục
           </Button>
         </div>
-        <UserChangeAvatar
+        <UserUploadAvatar
           avatar={formik.values.image || defaultPreviewImage}
-          handleChangeAvatar={handleUploadThumb}
+          onChangeAvatar={handleUploadThumb}
         />
       </form>
     </Template>

@@ -7,12 +7,12 @@ import Input from "components/Input";
 import Label from "components/Label";
 import { useFormik } from "formik";
 import Template from "layouts/Template";
-import { UserChangeAvatar } from "modules/_user";
+import UserUploadAvatar from "modules/User/UserUploadAvatar";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
-import { initialValuesShopInfo, shopInfoRules, uploadImage } from "utils";
+import { generateAddress, initialValuesShopInfo, shopInfoRules, uploadImage } from "utils";
 
 const ShopUpdate = () => {
   const updateShopInfoMutation = useMutation({
@@ -22,8 +22,7 @@ const ShopUpdate = () => {
     initialValues: initialValuesShopInfo,
     validationSchema: shopInfoRules,
     onSubmit: async (values, { setErrors }) => {
-      const { street, city, district, ward } = values;
-      const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
+      const address = generateAddress(values);
       const payload = { ...values, address };
       updateShopInfoMutation.mutate(payload, {
         onSuccess: ({ message }) => {
@@ -35,7 +34,7 @@ const ShopUpdate = () => {
       });
     }
   });
-  const { values, touched, errors, setFieldValue } = formik;
+  const { values, touched, errors, setFieldValue, handleSubmit, handleChange } = formik;
   useQuery({
     queryKey: ["shopinfo"],
     queryFn: () => shopAPI.getShopInfo(),
@@ -64,15 +63,11 @@ const ShopUpdate = () => {
       <Helmet>
         <title>Cập nhật thông tin shop</title>
       </Helmet>
-      <form
-        autoComplete="off"
-        onSubmit={formik.handleSubmit}
-        className="flex flex-col-reverse gap-8 mt-6 lg:flex-row"
-      >
-        <div className="max-w-[600px]">
+      <div className="flex flex-col-reverse gap-8 mt-6 lg:flex-row">
+        <form autoComplete="off" className="max-w-[600px] w-full" onSubmit={handleSubmit}>
           <FormGroup>
             <Label htmlFor="name">Tên shop:</Label>
-            <Input name="name" value={values.name} onChange={formik.handleChange} />
+            <Input name="name" value={values.name} onChange={handleChange} />
             <FormError>{touched.address && errors?.address}</FormError>
           </FormGroup>
           <FormGroup className="mb-0">
@@ -82,15 +77,15 @@ const ShopUpdate = () => {
           </FormGroup>
           <FormGroup>
             <Label htmlFor="street">Địa chỉ lấy hàng cụ thể</Label>
-            <Input name="street" value={values.street} onChange={formik.handleChange} />
+            <Input name="street" value={values.street} onChange={handleChange} />
             <FormError>{touched.street && errors?.street}</FormError>
           </FormGroup>
           <Button type="submit" primary className="w-full h-10">
             Lưu
           </Button>
-        </div>
-        <UserChangeAvatar avatar={values.avatar} handleChangeAvatar={handleChangeAvatar} />
-      </form>
+        </form>
+        <UserUploadAvatar avatar={values.avatar} onChangeAvatar={handleChangeAvatar} />
+      </div>
     </Template>
   );
 };

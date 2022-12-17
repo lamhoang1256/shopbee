@@ -2,9 +2,10 @@ import classNames from "utils/classNames";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const Input = ({ name, className, ...props }: InputProps) => {
+const Input = ({ name, type = "text", className, ...props }: InputProps) => {
   return (
     <input
+      type={type}
       id={name}
       name={name}
       className={classNames(

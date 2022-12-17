@@ -1,11 +1,12 @@
-import { toast } from "react-toastify";
 import { userAPI } from "apis";
 import Template from "layouts/Template";
-import { uploadImage } from "utils/uploadImage";
-import { useStore } from "store/globalStore";
-import { UserChangeAvatar, UserUpdateMe } from "modules/_user";
+import UserUploadAvatar from "modules/User/UserUploadAvatar";
+import { UserUpdateMe } from "modules/_user";
 import { ChangeEvent } from "react";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
+import { useStore } from "store/globalStore";
+import { uploadImage } from "utils/uploadImage";
 
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
@@ -28,7 +29,7 @@ const ProfilePage = () => {
       </Helmet>
       <div className="flex flex-col-reverse gap-8 mt-6 lg:flex-row">
         <UserUpdateMe />
-        <UserChangeAvatar avatar={currentUser.avatar} handleChangeAvatar={handleChangeAvatar} />
+        <UserUploadAvatar avatar={currentUser.avatar} onChangeAvatar={handleChangeAvatar} />
       </div>
     </Template>
   );
