@@ -45,7 +45,7 @@ const HeaderCart = () => {
                   <img
                     alt={cart.product.name}
                     src={cart.product.image}
-                    className="border h-11 w-11 border-[#00000017]"
+                    className="border h-11 w-11 border-black017"
                   />
                   <h3 className="flex-1 product-title line-clamp-1">{cart.product.name}</h3>
                   <ProductPriceSale className="flex-shrink-0 ml-2">

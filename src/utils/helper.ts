@@ -18,7 +18,7 @@ export const formatCash = (num: number) => {
 };
 
 export const calcTotalCart = (array: ICart[], key: "oldPrice" | "price") => {
-  const totalMoney = array?.reduce((prevValue: number, currentValue: ICart) => {
+  const totalMoney = array.reduce((prevValue: number, currentValue: ICart) => {
     return prevValue + currentValue.product[key] * currentValue.quantity;
   }, 0);
   return totalMoney;

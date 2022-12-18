@@ -41,7 +41,7 @@
     @apply relative z-20 flex items-center justify-center rounded-full md:w-14 md:h-14 w-12 h-12 border-4 bg-white;
   }
   .section-dotted {
-    @apply border-dotted border border-[#00000017] bg-[#fff] p-4;
+    @apply border-dotted border border-black017 bg-[#fff] p-4;
   }
   .section-white {
     @apply px-4 py-5 bg-white rounded-md;
@@ -194,7 +194,7 @@
 .swal2-title {
   font-size: 24px;
 }
-.quantity-cart-item input {
+.quantity-controller input {
   width: 40px;
 }
 .product-title {

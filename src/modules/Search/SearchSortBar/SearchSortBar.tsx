@@ -48,7 +48,7 @@ const SearchSortBar = ({ pagination }: SearchSortBarProps) => {
         <Select
           id="sortPrice"
           name="sortPrice"
-          className="h-9 py-0 px-2 border border-[#00000017] outline-none"
+          className="h-9 py-0 px-2 border border-black017 outline-none"
           onChange={handleSortByPrice}
         >
           <Option disabled>Giá</Option>

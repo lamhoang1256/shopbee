@@ -25,7 +25,7 @@ const renderStatusOrderWithColor = (statusCode: number) => {
 
 const OrderItem = ({ order }: OrderItemProps) => {
   return (
-    <div className="py-4 px-4 md:px-6 mt-3 border border-[#00000017] bg-white rounded">
+    <div className="py-4 px-4 md:px-6 mt-3 border border-black017 bg-white rounded">
       <div className="flex flex-col justify-between gap-2 mt-2 mb-4 md:items-center md:flex-row">
         <div>
           <span className="font-medium">Mã đơn hàng: </span>

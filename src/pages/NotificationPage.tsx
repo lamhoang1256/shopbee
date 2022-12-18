@@ -16,7 +16,7 @@ const NotificationPage = () => {
           {notifications.map((notify) => (
             <div className={stylesPopoverLink} key={notify._id}>
               <img
-                alt="notification"
+                alt={notify.title}
                 src={notify.image}
                 className="flex-shrink-0 w-16 h-16 rounded lg:w-20 lg:h-20 border border-[#e1e1e1]"
               />

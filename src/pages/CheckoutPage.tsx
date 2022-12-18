@@ -147,7 +147,7 @@ const CheckoutPage = () => {
             <span className="text-base">{formatMoney(shippingFee)}</span>
           </div>
         </div>
-        <div className="bg-[#fafdff] px-4 py-6 border border-dotted border-[#00000017] flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center">
+        <div className="bg-[#fafdff] px-4 py-6 border border-dotted border-black017 flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center">
           <span>Tổng số tiền ({carts.length} sản phẩm):</span>
           <ProductPriceSale className="text-lg font-medium">{price}</ProductPriceSale>
         </div>
@@ -178,7 +178,7 @@ const CheckoutPage = () => {
             Thanh toán khi nhận hàng
           </ButtonOutline>
         </div>
-        <div className="flex p-4 items-center gap-x-4 border-dotted border border-[#00000017] bg-[#fff]">
+        <div className="flex p-4 items-center gap-x-4 border-dotted border border-black017 bg-[#fff]">
           {methodPayment === "money" && (
             <div>
               <p>Thanh toán khi nhận hàng</p>

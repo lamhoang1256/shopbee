@@ -1,6 +1,6 @@
 import { ICart } from "@types";
 import { cartAPI } from "apis";
-import { QuantityController } from "components/QuantityController";
+import QuantityController from "components/QuantityController";
 import { PATH } from "constants/path";
 import { ProductPriceOld, ProductPriceSale } from "modules/Product/ProductPrice";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
   const onChangeQuantity = (value: number) => handleAddToCart(value);
 
   return (
-    <div className="border-[#00000017] my-3 border p-4 flex items-center gap-3">
+    <div className="border-black017 my-3 border p-4 flex items-center gap-3">
       <img alt={cartItem.product.name} className="w-24 lg:w-20" src={cartItem.product.image} />
       <div className="flex flex-col flex-1 md:flex-row">
         <Link className="md:w-[40%]" to={`${PATH.product}/${cartItem.product._id}`}>
@@ -47,7 +47,7 @@ const CartItem = ({ cartItem }: { cartItem: ICart }) => {
           <div className="flex flex-wrap items-center flex-1 text-sm md:justify-center md:gap-x-7 gap-x-2">
             {cartItem.product.stock ? (
               <QuantityController
-                className="quantity-cart-item"
+                className="quantity-controller"
                 defaultQuantity={cartItem.quantity}
                 onChangeValue={onChangeQuantity}
               />

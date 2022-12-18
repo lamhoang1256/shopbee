@@ -2,7 +2,7 @@ import { IPayloadAddToCart } from "@types";
 import { cartAPI } from "apis";
 import ButtonOutline from "components/ButtonOutline";
 import { IconCartOutline } from "components/Icons";
-import { QuantityController } from "components/QuantityController";
+import QuantityController from "components/QuantityController";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { useParams } from "react-router-dom";

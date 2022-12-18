@@ -6,9 +6,9 @@ interface PaginationButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> 
 }
 
 const stylesNormal =
-  "h-9 w-10 flex items-center justify-center border border-[#00000017] bg-[#fff] cursor-pointer disabled:cursor-not-allowed";
+  "h-9 w-10 flex items-center justify-center border border-black017 bg-[#fff] cursor-pointer disabled:cursor-not-allowed";
 const stylesActive =
-  "h-9 flex items-center justify-center w-10 border bg-[#f9f9f9] border-[#00000017] opacity-70 disabled:cursor-not-allowed";
+  "h-9 flex items-center justify-center w-10 border bg-[#f9f9f9] border-black017 opacity-70 disabled:cursor-not-allowed";
 
 const PaginationButton = ({
   children,

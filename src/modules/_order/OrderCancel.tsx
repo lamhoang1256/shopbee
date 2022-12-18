@@ -12,7 +12,7 @@ const OrderCancel = ({ status, fetchDetailsOrder }: OrderCancelProps) => {
   const { isShow, toggleModal } = useModal();
   const isCanceled = status !== OrderStatus.delivered && status !== OrderStatus.canceled;
   return (
-    <div className="bg-[#fafdff] p-4 flex gap-y-3 md:justify-between flex-col md:flex-row border-dotted border-[#00000017] shadow2 border -mx-[1px]">
+    <div className="bg-[#fafdff] p-4 flex gap-y-3 md:justify-between flex-col md:flex-row border-dotted border-black017 shadow2 border -mx-[1px]">
       <span className="leading-10 text-xs text-[#0000008a]">
         Cảm ơn bạn đã mua sắm tại Shopbee!
       </span>

@@ -1,3 +1,4 @@
+import { IPayloadUpdateMe } from "@types";
 import { userAPI } from "apis";
 import Administrative from "components/Administrative";
 import Button from "components/Button";
@@ -19,7 +20,7 @@ import { uploadImage } from "utils/uploadImage";
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const updateMeMutation = useMutation({
-    mutationFn: (payload: typeof initialValuesUpdateUser) => userAPI.updateMe(payload)
+    mutationFn: (payload: Omit<IPayloadUpdateMe, "password">) => userAPI.updateMe(payload)
   });
   const formik = useFormik({
     initialValues: initialValuesUpdateUser,

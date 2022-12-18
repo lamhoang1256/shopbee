@@ -24,7 +24,7 @@ const SearchPage = () => {
     scrollTo();
   }, [queryParams]);
   return (
-    <div className="flex flex-col gap-6 mt-8 layout-container lg:flex-row">
+    <>
       <Helmet>
         <title>
           {queryParams?.name
@@ -32,18 +32,18 @@ const SearchPage = () => {
             : "Tìm kiếm sản phẩm"}
         </title>
       </Helmet>
-      <SearchAside />
-      <div className="flex-1">
-        {isLoading && <Loading />}
-        {!isLoading && productsData && (
-          <>
+      {isLoading && <Loading />}
+      {!isLoading && productsData && (
+        <div className="flex flex-col gap-6 mt-8 layout-container lg:flex-row">
+          <SearchAside />
+          <div className="flex-1">
             <SearchSortBar pagination={productsData?.data.pagination} />
             <ProductList products={productsData?.data.products} />
             <Pagination pagination={productsData?.data.pagination} />
-          </>
-        )}
-      </div>
-    </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

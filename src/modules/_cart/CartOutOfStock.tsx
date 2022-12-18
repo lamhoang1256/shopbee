@@ -19,7 +19,7 @@ const CartOutOfStock = ({ cartItem }: { cartItem: ICart }) => {
     }
   };
   return (
-    <div className="border-[#00000017] my-3 border p-4 flex items-center gap-3 opacity-60">
+    <div className="border-black017 my-3 border p-4 flex items-center gap-3 opacity-60">
       <img alt={cartItem.product.name} className="w-24 lg:w-20" src={cartItem.product.image} />
       <div className="flex flex-col flex-1 md:flex-row">
         <Link className="md:w-[40%]" to={`${PATH.product}/${cartItem.product._id}`}>

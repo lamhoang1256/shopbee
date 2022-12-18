@@ -74,7 +74,7 @@ const VoucherDiscover = () => {
                   <Button
                     primary
                     disabled
-                    className="mr-5 bg-[#00000017] hover:bg-[#00000017]"
+                    className="mr-5 bg-black017 hover:bg-black017"
                     onClick={() => handleSaveVoucher(voucher.code)}
                   >
                     Đã lưu
