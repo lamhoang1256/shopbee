@@ -17,11 +17,11 @@ export const formatCash = (num: number) => {
   return num;
 };
 
-export const calcTotalCart = (array: ICart[], key: "oldPrice" | "price") => {
-  const totalMoney = array.reduce((prevValue: number, currentValue: ICart) => {
-    return prevValue + currentValue.product[key] * currentValue.quantity;
+export const calcTotalPrice = (carts: ICart[], key: "oldPrice" | "price") => {
+  const totalPrice = carts.reduce((prevTotal: number, currentTotal: ICart) => {
+    return prevTotal + currentTotal.product[key] * currentTotal.quantity;
   }, 0);
-  return totalMoney;
+  return totalPrice;
 };
 
 export const formatDateVNFull = (timestamp: string | number) => {
@@ -105,4 +105,26 @@ export const generateAddress = (values: IAddress) => {
   const { street, city, district, ward } = values;
   const address = `${street}, ${ward.name}, ${district.name}, ${city.name}`;
   return address;
+};
+
+export const formatDateTimeLocal = (timestamp: number) => {
+  const date = new Date(timestamp);
+  let dateTime = "";
+  let year: string | number = 0;
+  let month: string | number = 0;
+  let day: string | number = 0;
+  let hour: string | number = 0;
+  let min: string | number = 0;
+  year = date.getFullYear();
+  month = date.getMonth() + 1;
+  month = month < 10 ? `0${month}` : month;
+  day = date.getDate();
+  day = day < 10 ? `0${day}` : day;
+  hour = date.getHours();
+  hour = hour < 10 ? `0${hour}` : hour;
+  min = date.getMinutes();
+  min = min < 10 ? `0${min}` : min;
+  dateTime += `${year}-${month}-${day}`;
+  dateTime += `T${hour}:${min}`;
+  return dateTime;
 };

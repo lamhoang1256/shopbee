@@ -1,3 +1,4 @@
+import { IPayloadUpdateUser } from "@types";
 import { userAPI } from "apis";
 import Administrative from "components/Administrative";
 import Button from "components/Button";
@@ -14,13 +15,13 @@ import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { initialValuesUpdateUser, userRules, uploadImage, generateAddress } from "utils";
+import { generateAddress, initialValuesUpdateUser, uploadImage, userRules } from "utils";
 
 const userUpdateRules = userRules.pick(["fullname", "phone", "street", "city", "district", "ward"]);
 const UserUpdate = () => {
   const { id = "" } = useParams();
   const updateUserMutation = useMutation({
-    mutationFn: (payload: typeof initialValuesUpdateUser) => userAPI.updateUser(id, payload)
+    mutationFn: (payload: IPayloadUpdateUser) => userAPI.updateUser(id, payload)
   });
   const formik = useFormik({
     initialValues: initialValuesUpdateUser,

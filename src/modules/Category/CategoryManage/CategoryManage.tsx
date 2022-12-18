@@ -6,7 +6,7 @@ import Template from "layouts/Template";
 import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import { swalDelete } from "utils/sweetalert2";
+import { sweetAlertDelete } from "utils/sweetalert2";
 
 const CategoryManage = () => {
   const queryClient = useQueryClient();
@@ -20,7 +20,7 @@ const CategoryManage = () => {
     mutationFn: (categoryId: string) => categoryAPI.deleteCategory(categoryId)
   });
   const handleDeleteCategory = (userId: string) => {
-    swalDelete(() =>
+    sweetAlertDelete(() =>
       deleteCategoryMutation.mutate(userId, {
         onSuccess: ({ message }) => {
           toast.success(message);

@@ -133,3 +133,18 @@ export const creditCardRules = Yup.object({
     .min(3, "Mã bảo vệ CVC tối thiểu bao gồm 3 kí tự!")
     .max(3, "Mã bảo vệ CVC tối đa bao gồm 3 kí tự!")
 });
+
+export const voucherRules = Yup.object({
+  code: Yup.string()
+    .required("Vui lòng nhập mã code!")
+    .min(5, "Họ và tên tối thiểu bao gồm 5 kí tự!")
+    .max(20, "Họ và tên tối đa bao gồm 20 kí tự!"),
+  title: Yup.string()
+    .required("Vui lòng tên voucher!")
+    .min(10, "Họ và tên tối thiểu bao gồm 10 kí tự!")
+    .max(200, "Họ và tên tối đa bao gồm 200 kí tự!"),
+  value: Yup.number().min(0).default(0),
+  expirationDate: Yup.number().default(Number(new Date())),
+  isPublic: Yup.boolean(),
+  isFreeship: Yup.boolean()
+});

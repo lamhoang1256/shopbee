@@ -13,7 +13,7 @@ import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatMoney, swalDelete } from "utils";
+import { formatMoney, sweetAlertDelete } from "utils";
 
 const ProductManage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -103,7 +103,7 @@ const ProductManage = () => {
                         <Button to={`${PATH.productUpdate}/${product._id}`}>Sửa</Button>
                         <Button
                           onClick={() =>
-                            swalDelete(() => deleteProductMutation.mutate(product._id))
+                            sweetAlertDelete(() => deleteProductMutation.mutate(product._id))
                           }
                         >
                           Xóa

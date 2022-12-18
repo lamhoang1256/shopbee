@@ -55,3 +55,12 @@ export const initialValuesPasswords = {
   newPassword: "",
   confirmPassword: ""
 };
+
+export const initialValuesVoucher = {
+  code: "",
+  title: "",
+  expirationDate: Date.now(),
+  value: 0,
+  isPublic: true,
+  isFreeship: false
+};

@@ -1,15 +1,17 @@
-import { ICart, IPayloadAddToCart } from "@types";
+import { IPayloadAddToCart } from "@types";
 import { cartAPI } from "apis";
 import Button from "components/Button";
 import QuantityController from "components/QuantityController";
 import { PATH } from "constants/path";
-import { ProductPriceOld, ProductPriceSale } from "modules/Product/ProductPrice";
 import CartEmpty from "modules/Cart/CartEmpty";
+import { ProductPriceOld, ProductPriceSale } from "modules/Product/ProductPrice";
+import { useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
+import { calcTotalPrice } from "utils";
 
 const CartPage = () => {
   const { carts, cartsOutOfStock, setCarts } = useStore((state) => state);
@@ -48,12 +50,8 @@ const CartPage = () => {
   const onChangeQuantity = (productId: string, quantity: number) => {
     addToCartMutation.mutate({ productId, quantity });
   };
-  const totalBuyPrice = carts.reduce((prevTotal: number, currentTotal: ICart) => {
-    return prevTotal + currentTotal.product.price * currentTotal.quantity;
-  }, 0);
-  const totalBuyPriceNotSale = carts.reduce((prevTotal: number, currentTotal: ICart) => {
-    return prevTotal + currentTotal.product.oldPrice * currentTotal.quantity;
-  }, 0);
+  const totalProductsPrice = useMemo(() => calcTotalPrice(carts, "price"), [carts]);
+  const totalProductsOldPrice = useMemo(() => calcTotalPrice(carts, "oldPrice"), [carts]);
   if (carts?.length === 0 && cartsOutOfStock?.length === 0) return <CartEmpty />;
   return (
     <div className="layout-container">
@@ -115,13 +113,13 @@ const CartPage = () => {
           <div>
             Tổng ({carts?.length} sản phẩm):
             <ProductPriceSale className="ml-1 text-xl font-medium">
-              {totalBuyPrice}
+              {totalProductsPrice}
             </ProductPriceSale>
           </div>
           <div>
             Tiết kiệm:
             <ProductPriceSale className="ml-1">
-              {totalBuyPriceNotSale - totalBuyPrice}
+              {totalProductsOldPrice - totalProductsPrice}
             </ProductPriceSale>
           </div>
         </div>

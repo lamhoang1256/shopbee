@@ -1,11 +1,11 @@
 import ProductList from "modules/Product/ProductList";
 import { Helmet } from "react-helmet-async";
-import { getHistoryLocalStorage, removeHistoryLocalStorage, swalDelete } from "utils";
+import { getHistoryLocalStorage, removeHistoryLocalStorage, sweetAlertDelete } from "utils";
 
 const HistoryPage = () => {
   const history = getHistoryLocalStorage();
   const handleClearHistory = () => {
-    swalDelete(() => {
+    sweetAlertDelete(() => {
       removeHistoryLocalStorage();
       window.location.reload();
     });

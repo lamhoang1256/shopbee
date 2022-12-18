@@ -35,7 +35,7 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
       isOpen={isOpen}
       onRequestClose={closeModal}
       contentLabel="Hủy đơn hàng"
-      className="max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md"
+      className="stylesModal"
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div>

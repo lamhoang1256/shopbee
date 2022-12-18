@@ -4,17 +4,17 @@ import { formatDateVNFull } from "utils/helper";
 interface VoucherItemProps extends React.HTMLAttributes<HTMLDivElement> {
   code: string;
   title: string;
+  active?: boolean;
   isFreeship: boolean;
   expirationDate: number;
-  active?: boolean;
 }
 
-const stylesImageBox = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";
+const stylesImage = "w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center";
 const VoucherItem = ({
   title,
   code,
   isFreeship,
-  active,
+  active = true,
   className,
   expirationDate
 }: VoucherItemProps) => {
@@ -28,12 +28,12 @@ const VoucherItem = ({
       )}
     >
       {isFreeship ? (
-        <div className={classNames(stylesImageBox, stylesBgFreeship)}>
+        <div className={classNames(stylesImage, stylesBgFreeship)}>
           <span className="font-medium text-center text-white">MIỄN PHÍ VẬN CHUYỂN</span>
         </div>
       ) : (
-        <div className={classNames(stylesImageBox, stylesBgShopbee)}>
-          <img src="/voucher-shopbee.png" className="w-3/5 h-3/5" alt="voucher-shopbee" />
+        <div className={classNames(stylesImage, stylesBgShopbee)}>
+          <img src="/voucher-shopbee.png" className="w-3/5 h-3/5" alt={title} />
           <span className="text-white">Shopbee</span>
         </div>
       )}
@@ -45,14 +45,10 @@ const VoucherItem = ({
       >
         <h3 className="md:text-base">{title}</h3>
         <span>Code: {code}</span>
-        {expirationDate !== 0 && <span>HSD: {formatDateVNFull(expirationDate)}</span>}
+        {!Number.isNaN(expirationDate) && <span>HSD: {formatDateVNFull(expirationDate)}</span>}
       </div>
     </div>
   );
-};
-
-VoucherItem.defaultProps = {
-  active: true
 };
 
 export default VoucherItem;

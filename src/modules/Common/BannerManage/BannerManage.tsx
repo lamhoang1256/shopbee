@@ -7,7 +7,7 @@ import Template from "layouts/Template";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
-import { swalDelete } from "utils/sweetalert2";
+import { sweetAlertDelete } from "utils/sweetalert2";
 import { uploadImage } from "utils/uploadImage";
 
 const BannerManage = () => {
@@ -84,7 +84,9 @@ const BannerManage = () => {
                   onChange={(e) => handleUpdateBanner(e, banner._id)}
                 />
               </div>
-              <ActionDelete onClick={() => swalDelete(() => handleDeleteBanner(banner._id))} />
+              <ActionDelete
+                onClick={() => sweetAlertDelete(() => handleDeleteBanner(banner._id))}
+              />
             </div>
           ))}
         </div>

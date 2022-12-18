@@ -50,6 +50,9 @@
   .section-gray {
     @apply bg-[#fafafa] px-5 py-4 font-medium;
   }
+  .stylesModal {
+    @apply max-w-[600px] w-[94%] min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md;
+  }
 }
 
 .rounded-checkbox {

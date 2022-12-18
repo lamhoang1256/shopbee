@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export const swalDelete = (callback: () => void) => {
+export const sweetAlertDelete = (callback: () => void) => {
   Swal.fire({
     title: "Xác nhận",
     text: "Bạn có chắc chắc muốn xóa?",
@@ -15,7 +15,7 @@ export const swalDelete = (callback: () => void) => {
   });
 };
 
-export const swalInfo = (title: string, text: string, callback: () => void) => {
+export const sweetAlertInfo = (title: string, text: string, callback: () => void) => {
   Swal.fire({
     title,
     text,
@@ -27,7 +27,7 @@ export const swalInfo = (title: string, text: string, callback: () => void) => {
   });
 };
 
-export const swalQuestion = (title: string, text: string, callback: () => void) => {
+export const sweetAlertQuestion = (title: string, text: string, callback: () => void) => {
   Swal.fire({
     title,
     text,

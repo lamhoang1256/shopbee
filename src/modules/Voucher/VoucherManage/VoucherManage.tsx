@@ -1,4 +1,3 @@
-import { IPagination, IVoucher } from "@types";
 import { voucherAPI } from "apis";
 import Button from "components/Button";
 import Input from "components/Input";
@@ -7,17 +6,21 @@ import Pagination from "components/Pagination";
 import Tabs from "components/Tabs";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
+import useQueryParams from "hooks/useQueryParams";
 import Template from "layouts/Template";
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useSearchParams } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { formatDateVNFull, formatMoney } from "utils/helper";
-import { swalDelete } from "utils/sweetalert2";
-import VoucherEmpty from "./VoucherEmpty";
+import { sweetAlertDelete } from "utils/sweetalert2";
+import VoucherEmpty from "../VoucherEmpty/VoucherEmpty";
 
 const tabs = [
-  { key: "", display: "Tất cả", to: PATH.voucherManage },
+  {
+    key: "",
+    display: "Tất cả",
+    to: PATH.voucherManage
+  },
   {
     key: "expiration",
     display: "Hết hiệu lực",
@@ -26,55 +29,46 @@ const tabs = [
 ];
 
 const VoucherManage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState<IPagination>(Object);
-  const status = searchParams.get("status") || "";
-  const params = Object.fromEntries(searchParams);
-  const [vouchers, setVouchers] = useState<IVoucher[]>(Object);
+  const { queryParams, setSearchParams } = useQueryParams();
+  const queryClient = useQueryClient();
+  const status = queryParams?.status || "";
   const formik = useFormik({
     initialValues: { code: "" },
     onSubmit: (values) => {
-      setSearchParams({ ...params, ...values });
+      setSearchParams({ ...queryParams, ...values });
     }
   });
-
-  const fetchMyVoucher = async () => {
-    try {
-      setLoading(true);
-      const { data } = await voucherAPI.getAllVoucher({ ...params });
-      setVouchers(data.vouchers);
-      setPagination(data.pagination);
-    } catch (error) {
-      toast.error(error?.message);
-    } finally {
-      setLoading(false);
-    }
+  const { isLoading, data: vouchersData } = useQuery({
+    queryKey: ["vouchers"],
+    queryFn: () => voucherAPI.getAllVoucher(),
+    staleTime: 5 * 60 * 1000
+  });
+  const deleteVoucherMutation = useMutation({
+    mutationFn: (voucherId: string) => voucherAPI.deleteVoucher(voucherId)
+  });
+  const handleDeleteVoucher = (voucherId: string) => {
+    sweetAlertDelete(() =>
+      deleteVoucherMutation.mutate(voucherId, {
+        onSuccess: ({ message }) => {
+          toast.success(message);
+          queryClient.invalidateQueries({ queryKey: ["vouchers"] });
+        },
+        onError(error: any) {
+          toast.error(error.message);
+        }
+      })
+    );
   };
-
-  const handleDeleteVoucher = async (voucherId: string) => {
-    try {
-      const { message } = await voucherAPI.deleteVoucher(voucherId);
-      fetchMyVoucher();
-      toast.success(message);
-    } catch (error) {
-      toast.error(error?.message);
-    }
-  };
-  useEffect(() => {
-    fetchMyVoucher();
-  }, [searchParams]);
-
   return (
     <Template title="Quản lí voucher" desc="Khám phá kho voucher">
       <Helmet>
         <title>Quản lí voucher</title>
       </Helmet>
       <Tabs tabs={tabs} query={status} className="my-4" />
-      {loading && <Loading />}
-      {!loading && vouchers?.length === 0 && <VoucherEmpty />}
-      {!loading && vouchers?.length !== 0 && (
-        <>
+      {isLoading && <Loading />}
+      {!isLoading && !vouchersData && <VoucherEmpty />}
+      {!isLoading && vouchersData && (
+        <div>
           <form
             onSubmit={formik.handleSubmit}
             autoComplete="off"
@@ -93,7 +87,7 @@ const VoucherManage = () => {
           </form>
           <div className="tables">
             <table>
-              <thead className="">
+              <thead>
                 <tr>
                   <th>STT</th>
                   <th>Mã code</th>
@@ -105,7 +99,7 @@ const VoucherManage = () => {
                 </tr>
               </thead>
               <tbody>
-                {vouchers.map((voucher, index) => (
+                {vouchersData?.data.vouchers.map((voucher, index) => (
                   <tr key={voucher._id}>
                     <td>{index + 1}</td>
                     <td>{voucher.code}</td>
@@ -116,18 +110,16 @@ const VoucherManage = () => {
                     <td>
                       <div className="flex gap-x-1">
                         <Button to={`${PATH.voucherUpdate}/${voucher._id}`}>Sửa</Button>
-                        <Button onClick={() => swalDelete(() => handleDeleteVoucher(voucher._id))}>
-                          Xóa
-                        </Button>
+                        <Button onClick={() => handleDeleteVoucher(voucher._id)}>Xóa</Button>
                       </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <Pagination pagination={pagination} />
           </div>
-        </>
+          <Pagination pagination={vouchersData?.data.pagination} />
+        </div>
       )}
     </Template>
   );

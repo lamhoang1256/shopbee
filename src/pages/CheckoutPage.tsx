@@ -1,88 +1,96 @@
-import { ICart, IPayloadBuyProduct, IVoucher } from "@types";
-import { productAPI } from "apis";
+import { IPayloadBuyProduct, IVoucher } from "@types";
+import { productAPI, shopAPI } from "apis";
 import Button from "components/Button";
 import ButtonOutline from "components/ButtonOutline";
 import { IconGPS } from "components/Icons";
 import Input from "components/Input";
 import Logo from "components/Logo";
-import { ModalApplyVoucher } from "components/Modal";
 import { PATH } from "constants/path";
-import useFetchShopInfo from "hooks/useFetchShopInfo";
 import useModal from "hooks/useModal";
-import { OrderPayment, OrderProduct } from "modules/_order";
 import { ProductPriceSale } from "modules/Product/ProductPrice";
-import { useEffect, useState } from "react";
+import ModalApplyVoucher from "modules/Voucher/ModalApplyVoucher";
+import { OrderPayment, OrderProduct } from "modules/_order";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useMutation, useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import { calcShippingFee, calcTotalCart, formatDateVN, formatMoney } from "utils/helper";
-import { swalInfo, swalQuestion } from "utils/sweetalert2";
+import { calcShippingFee, calcTotalPrice, formatDateVN, formatMoney } from "utils";
+import { sweetAlertInfo, sweetAlertQuestion } from "utils/sweetalert2";
 
+type MethodPaymentType = "money" | "credit-card";
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { currentUser, carts, setCarts } = useStore((state) => state);
   const { isShow, toggleModal } = useModal();
-  const { shopInfo } = useFetchShopInfo();
-  const price = calcTotalCart(carts, "price");
-  const [note, setNote] = useState("");
-  const [total, setTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
+  const [note, setNote] = useState("");
   const [appliedVoucher, setAppliedVoucher] = useState<IVoucher>(Object);
-  const [methodPayment, setMethodPayment] = useState("money");
-
-  const buyProducts = async (payload: IPayloadBuyProduct) => {
-    try {
-      const { data, message } = await productAPI.buyProducts(payload);
+  const [methodPayment, setMethodPayment] = useState<MethodPaymentType>("money");
+  const totalProductsPrice = useMemo(() => calcTotalPrice(carts, "price"), [carts]);
+  const totalPayment = useMemo(
+    () => totalProductsPrice + shippingFee - (appliedVoucher.value || 0) || 0,
+    [totalProductsPrice, shippingFee, appliedVoucher.value]
+  );
+  useQuery({
+    queryKey: ["shopinfo"],
+    queryFn: () => shopAPI.getShopInfo(),
+    staleTime: 5 * 60 * 1000,
+    enabled: Boolean(currentUser?.city),
+    onSuccess({ data }) {
+      setShippingFee(calcShippingFee(data.city.id, currentUser.city.id));
+    }
+  });
+  const buyProductsMutation = useMutation({
+    mutationFn: (payload: IPayloadBuyProduct) => productAPI.buyProducts(payload),
+    onSuccess: ({ data, message }) => {
       toast.success(message);
       setCarts([]);
       navigate(`${PATH.order}/${data?._id}`);
-    } catch (error) {
+    },
+    onError(error: any) {
       toast.error(error?.message);
     }
-  };
-
+  });
   const handleCheckout = () => {
-    if (carts?.length <= 0) {
-      swalInfo("Giỏ hàng của bạn đang trống", "Vui lòng kiểm tra giỏ hàng và thử lại", () =>
-        navigate(PATH.cart)
+    if (carts.length <= 0) {
+      const navigateToCartPage = () => navigate(PATH.cart);
+      sweetAlertInfo(
+        "Giỏ hàng của bạn đang trống",
+        "Vui lòng kiểm tra giỏ hàng và thử lại",
+        navigateToCartPage
       );
       return;
     }
     if (!currentUser.fullname || !currentUser.phone || !currentUser.address) {
-      swalInfo("Thông tin nhận hàng đang trống", "Vui lòng kiểm tra thông tin và thử lại", () =>
-        navigate(PATH.profile)
+      const navigateToProfilePage = () => navigate(PATH.profile);
+      sweetAlertInfo(
+        "Thông tin nhận hàng đang trống",
+        "Vui lòng kiểm tra thông tin và thử lại",
+        navigateToProfilePage
       );
       return;
     }
-    const orderItems = carts.map((cart: ICart) => ({
+    const orderItems = carts.map((cart) => ({
       quantity: cart.quantity,
       product: cart.product._id
     }));
     const values = {
       orderItems,
-      shippingTo: currentUser?.address,
-      price,
+      shippingTo: currentUser.address,
+      price: totalProductsPrice,
       note,
       shippingFee,
       promotion: appliedVoucher.value || 0,
-      total,
+      total: totalPayment,
       voucherCode: appliedVoucher.code,
       methodPayment
     };
-    swalQuestion("Xác nhận", "Bạn có chắc chắc muốn thanh toán?", () => buyProducts(values));
+    sweetAlertQuestion("Xác nhận", "Bạn có chắc chắc muốn thanh toán?", () =>
+      buyProductsMutation.mutate(values)
+    );
   };
-
-  useEffect(() => {
-    if (!shopInfo.city || !currentUser.city) return;
-    setShippingFee(calcShippingFee(shopInfo.city.id, currentUser.city.id));
-  }, [shopInfo?.city, currentUser?.city]);
-
-  useEffect(() => {
-    const totalPrice = price + shippingFee - (appliedVoucher.value || 0);
-    setTotal(totalPrice > 0 ? totalPrice : 0);
-  }, [price, shippingFee, appliedVoucher.value]);
-
   return (
     <>
       <Helmet>
@@ -97,7 +105,7 @@ const CheckoutPage = () => {
         </div>
       </header>
       <main className="pt-6 pb-10 layout-container">
-        <div className="mt-3 gradient-line " />
+        <div className="mt-3 gradient-line" />
         <div className="text-base font-medium rounded-tl-none rounded-tr-none section-white">
           <h3 className="flex items-center gap-2 mb-2 text-lg font-medium text-orangeee4">
             <IconGPS />
@@ -149,7 +157,7 @@ const CheckoutPage = () => {
         </div>
         <div className="bg-[#fafdff] px-4 py-6 border border-dotted border-black017 flex justify-end gap-x-4 gap-y-1 flex-col md:flex-row md:items-center">
           <span>Tổng số tiền ({carts.length} sản phẩm):</span>
-          <ProductPriceSale className="text-lg font-medium">{price}</ProductPriceSale>
+          <ProductPriceSale className="text-lg font-medium">{totalProductsPrice}</ProductPriceSale>
         </div>
         <div className="flex items-center justify-between section-dotted">
           <h3>Voucher Shopbee</h3>
@@ -199,10 +207,10 @@ const CheckoutPage = () => {
           )}
         </div>
         <OrderPayment
-          price={price}
+          price={totalProductsPrice}
           shippingFee={carts.length > 0 ? shippingFee : 0}
           promotion={appliedVoucher.value || 0}
-          total={carts.length > 0 ? total : 0}
+          total={carts.length > 0 ? totalPayment : 0}
         />
         <div className="bg-[#fffcf5] border-dotted border border-[rgba(0,0,0,.09)] flex flex-wrap-reverse justify-end px-4 py-6 gap-y-3 lg:items-center lg:justify-between">
           <span className="maxsm:hidden">
@@ -214,7 +222,7 @@ const CheckoutPage = () => {
         </div>
       </main>
       <ModalApplyVoucher
-        isOpen={isShow}
+        isShow={isShow}
         closeModal={toggleModal}
         appliedVoucher={appliedVoucher}
         setAppliedVoucher={setAppliedVoucher}

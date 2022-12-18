@@ -12,7 +12,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatDateVN } from "utils/helper";
-import { swalDelete } from "utils/sweetalert2";
+import { sweetAlertDelete } from "utils/sweetalert2";
 
 const UserManage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,7 +36,7 @@ const UserManage = () => {
     mutationFn: (usedId: string) => userAPI.deleteUser(usedId)
   });
   const handleDeleteUser = (userId: string) => {
-    swalDelete(() =>
+    sweetAlertDelete(() =>
       deleteProductMutation.mutate(userId, {
         onSuccess: ({ message }) => {
           toast.success(message);
