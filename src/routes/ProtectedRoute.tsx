@@ -4,7 +4,8 @@ import { useStore } from "store/globalStore";
 
 const ProtectedRoute = () => {
   const { currentUser } = useStore();
-  const { accessToken, refreshToken } = currentUser;
+  const accessToken = currentUser?.accessToken;
+  const refreshToken = currentUser?.refreshToken;
   if (!currentUser || !accessToken || !refreshToken) {
     return <Navigate to={PATH.signIn} />;
   }

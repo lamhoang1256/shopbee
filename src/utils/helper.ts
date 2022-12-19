@@ -107,6 +107,11 @@ export const generateAddress = (values: IAddress) => {
   return address;
 };
 
+export const generateUsername = (email: string) => {
+  const username = email.substring(0, email.lastIndexOf("@")) || "user";
+  return username;
+};
+
 export const formatDateTimeLocal = (timestamp: number) => {
   const date = new Date(timestamp);
   let dateTime = "";

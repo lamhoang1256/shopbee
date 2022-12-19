@@ -1,7 +1,7 @@
 import { LocalStorage } from "constants/localStorage";
 import { ICurrentUser, IProduct } from "@types";
 
-export const getCurrentUserLocalStorage: () => ICurrentUser = () => {
+export const getCurrentUserLocalStorage: () => ICurrentUser | null = () => {
   return JSON.parse(localStorage.getItem(LocalStorage.currentUser) || "{}");
 };
 
@@ -9,7 +9,7 @@ export const removeCurrentUserLocalStorage = () => {
   localStorage.removeItem(LocalStorage.currentUser);
 };
 
-export const setCurrentUserLocalStorage = (user: Partial<ICurrentUser>) => {
+export const setCurrentUserLocalStorage = (user: Partial<ICurrentUser> | null) => {
   const currentUser = getCurrentUserLocalStorage();
   const newCurrentUser = { ...currentUser, ...user };
   localStorage.setItem(LocalStorage.currentUser, JSON.stringify(newCurrentUser));

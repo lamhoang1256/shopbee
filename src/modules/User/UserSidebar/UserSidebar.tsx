@@ -3,6 +3,7 @@ import { PATH } from "constants/path";
 import { Sidebar } from "layouts";
 import { Link } from "react-router-dom";
 import { useStore } from "store/globalStore";
+import { generateUsername } from "utils";
 import { v4 as uuidv4 } from "uuid";
 
 const sidebarLinks = [
@@ -59,7 +60,9 @@ const UserSidebar = () => {
           src={currentUser?.avatar || defaultUserAvatar}
         />
         <div>
-          <h3 className="font-semibold line-clamp-1">{currentUser?.fullname || "User"}</h3>
+          <h3 className="font-semibold line-clamp-1">
+            {generateUsername(currentUser?.email as string)}
+          </h3>
           <Link to={PATH.profile}>Sửa hồ sơ</Link>
         </div>
       </div>

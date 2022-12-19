@@ -42,9 +42,10 @@ const ProfilePage = () => {
   });
   const { values, touched, errors, setFieldValue, handleSubmit, handleChange } = formik;
   useQuery({
-    queryKey: ["user", currentUser._id],
-    queryFn: () => userAPI.getSingleUser(currentUser._id),
+    queryKey: ["user", currentUser?._id],
+    queryFn: () => userAPI.getSingleUser(currentUser?._id as string),
     staleTime: 5 * 60 * 1000,
+    enabled: Boolean(currentUser?._id),
     onSuccess({ data }) {
       formik.resetForm({ values: data });
     }
@@ -101,7 +102,10 @@ const ProfilePage = () => {
             Lưu
           </Button>
         </form>
-        <UserUploadAvatar avatar={currentUser.avatar} onChangeAvatar={handleChangeAvatar} />
+        <UserUploadAvatar
+          avatar={currentUser?.avatar as string}
+          onChangeAvatar={handleChangeAvatar}
+        />
       </div>
     </Template>
   );

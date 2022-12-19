@@ -65,7 +65,7 @@ const VoucherDiscover = () => {
                     <span>HSD: {formatDateVNFull(voucher.expirationDate)}</span>
                   )}
                 </div>
-                {voucher.usersSave.includes(currentUser?._id) ? (
+                {voucher.usersSave.includes(currentUser?._id as string) ? (
                   <Button
                     primary
                     disabled

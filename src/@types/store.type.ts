@@ -7,8 +7,8 @@ export interface IUseStore {
   setCarts: (carts: ICart[]) => void;
   cartsOutOfStock: ICart[];
   setCartsOutOfStock: (carts: ICart[]) => void;
-  currentUser: ICurrentUser;
-  setCurrentUser: (currentUser: ICurrentUser) => void;
+  currentUser: ICurrentUser | null;
+  setCurrentUser: (currentUser: ICurrentUser | null) => void;
   notifications: INotification[];
   setNotifications: (notifications: INotification[]) => void;
 }

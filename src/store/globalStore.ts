@@ -8,7 +8,7 @@ export const useStore = create<IUseStore>((set) => ({
   cartsOutOfStock: [],
   setCartsOutOfStock: (carts: ICart[]) => set({ cartsOutOfStock: carts }),
   currentUser: getCurrentUserLocalStorage(),
-  setCurrentUser: (currentUser: ICurrentUser) => {
+  setCurrentUser: (currentUser: ICurrentUser | null) => {
     setCurrentUserLocalStorage(currentUser);
     set({ currentUser });
   },

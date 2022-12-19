@@ -1,26 +1,39 @@
-import { ICurrentUser } from "@types";
 import { authAPI } from "apis";
 import Popover from "components/Popover";
 import { PATH } from "constants/path";
 import usePopover from "hooks/usePopover";
+import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
+import { generateUsername } from "utils";
 import classNames from "utils/classNames";
 import { removeCurrentUserLocalStorage } from "utils/localStorage";
 
 const Menu = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
   const { activePopover, hidePopover, showPopover } = usePopover();
-  const handleLogout = async () => {
-    try {
-      const { message } = await authAPI.logout(currentUser?.refreshToken);
-      setCurrentUser({} as ICurrentUser);
+  const logoutMutation = useMutation({
+    mutationFn: () => authAPI.logout(currentUser?.refreshToken as string),
+    onSuccess: ({ message }) => {
+      setCurrentUser(null);
       removeCurrentUserLocalStorage();
       toast.success(message);
-    } catch (error) {
+    },
+    onError(error: any) {
       toast.error(error?.message);
     }
+  });
+  const handleLogout = async () => {
+    logoutMutation.mutate();
+    // try {
+    // const { message } = await authAPI.logout(currentUser?.refreshToken);
+    // setCurrentUser({} as ICurrentUser);
+    // removeCurrentUserLocalStorage();
+    // toast.success(message);
+    // } catch (error) {
+    //   toast.error(error?.message);
+    // }
   };
   const stylesPopoverLink =
     "text-[#000000cc] block px-5 py-2 hover:bg-[#fafafa] transition-all duration-300 hover:text-[#00bfa5]";
@@ -39,7 +52,7 @@ const Menu = () => {
               className="object-cover w-5 h-5 rounded-full"
             />
             <span className="font-medium max5se:line-clamp-1 ">
-              {currentUser?.fullname || "User"}
+              {generateUsername(currentUser?.email)}
             </span>
           </div>
           <Popover active={activePopover} className="w-max">

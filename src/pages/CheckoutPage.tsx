@@ -40,7 +40,7 @@ const CheckoutPage = () => {
     staleTime: 5 * 60 * 1000,
     enabled: Boolean(currentUser?.city),
     onSuccess({ data }) {
-      setShippingFee(calcShippingFee(data.city.id, currentUser.city.id));
+      setShippingFee(calcShippingFee(data.city.id, currentUser?.city?.id as string));
     }
   });
   const buyProductsMutation = useMutation({
@@ -64,7 +64,7 @@ const CheckoutPage = () => {
       );
       return;
     }
-    if (!currentUser.fullname || !currentUser.phone || !currentUser.address) {
+    if (!currentUser || !currentUser.fullname || !currentUser.phone || !currentUser.address) {
       const navigateToProfilePage = () => navigate(PATH.profile);
       sweetAlertInfo(
         "Thông tin nhận hàng đang trống",
@@ -112,9 +112,9 @@ const CheckoutPage = () => {
             <IconGPS />
             <span>Thông tin nhận hàng</span>
           </h3>
-          <p>Họ tên: {currentUser.fullname || "Trống"}</p>
-          <p>Số điện thoại: {currentUser.phone || "Trống"}</p>
-          <p>Địa chỉ nhận hàng: {currentUser.address || "Trống"}</p>
+          <p>Họ tên: {currentUser?.fullname || "Trống"}</p>
+          <p>Số điện thoại: {currentUser?.phone || "Trống"}</p>
+          <p>Địa chỉ nhận hàng: {currentUser?.address || "Trống"}</p>
           <Link to={PATH.profile} className="font-medium text-blue08f">
             Thay đổi địa chỉ giao hàng
           </Link>
@@ -174,7 +174,7 @@ const CheckoutPage = () => {
         <div className="flex flex-col mt-3 lg:items-center gap-x-4 gap-y-2 section-dotted lg:flex-row">
           <h3 className="text-base font-medium">Phương thức thanh toán</h3>
           <ButtonOutline
-            disabled={!currentUser.creditCard.name}
+            disabled={!currentUser?.creditCard.name}
             primary={methodPayment === "credit-card"}
             onClick={() => setMethodPayment("credit-card")}
           >
@@ -201,9 +201,9 @@ const CheckoutPage = () => {
               <div className="w-14 rounded-sm border border-[#00000024]">
                 <img alt="visa" className="h-8 mx-auto w-11" src="/icon-visa.png" />
               </div>
-              <span>Họ tên: {currentUser.creditCard.name}</span>
-              <span>Số thẻ: {currentUser.creditCard.number}</span>
-              <span>Hết hạn: {currentUser.creditCard.expiry}</span>
+              <span>Họ tên: {currentUser?.creditCard.name}</span>
+              <span>Số thẻ: {currentUser?.creditCard.number}</span>
+              <span>Hết hạn: {currentUser?.creditCard.expiry}</span>
             </div>
           )}
         </div>

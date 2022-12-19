@@ -5,7 +5,7 @@ import { useStore } from "store/globalStore";
 
 const CheckAdmin = () => {
   const { currentUser } = useStore();
-  const { accessToken } = currentUser;
+  const accessToken = currentUser?.accessToken as string;
   const decodedJwt: IDecodedToken = jwtDecode(accessToken);
   if (currentUser && !decodedJwt.isAdmin) {
     return <Navigate to="/404" />;
