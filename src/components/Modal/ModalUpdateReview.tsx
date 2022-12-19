@@ -14,7 +14,7 @@ interface ModalUpdateReviewProps {
   closeModal: () => void;
   productReview: IProduct;
   dataReview: IReview;
-  fetchReviews: () => Promise<void>;
+  refetch: () => void;
 }
 
 const ModalUpdateReview = ({
@@ -22,7 +22,7 @@ const ModalUpdateReview = ({
   closeModal,
   productReview,
   dataReview,
-  fetchReviews
+  refetch
 }: ModalUpdateReviewProps) => {
   const { id = "" } = useParams();
   const [rating, setRating] = useState(0);
@@ -40,7 +40,7 @@ const ModalUpdateReview = ({
       const payload = { rating, comment, productId: productReview._id, orderId: id };
       const { message } = await reviewAPI.updateReview(dataReview._id, payload);
       toast.success(message);
-      fetchReviews();
+      refetch();
     } catch (error) {
       toast.error(error?.message);
     } finally {
@@ -58,7 +58,7 @@ const ModalUpdateReview = ({
       isOpen={isOpen}
       onRequestClose={closeModal}
       contentLabel="Chỉnh sửa nhận xét"
-      className="max-w-[600px] w-full min-w-[300px] bg-white top-1/2 absolute left-1/2 -translate-y-1/2 -translate-x-1/2 p-5 rounded-md"
+      className="stylesModal"
       style={{ overlay: { backgroundColor: "#2424247f", zIndex: "1000" } }}
     >
       <div className="flex gap-x-2">

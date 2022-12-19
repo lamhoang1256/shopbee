@@ -9,10 +9,10 @@ import { toast } from "react-toastify";
 interface ModalCancelOrderProps {
   isOpen: boolean;
   closeModal: () => void;
-  fetchDetailsOrder: () => void;
+  refetch: () => void;
 }
 
-const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancelOrderProps) => {
+const ModalCancelOrder = ({ isOpen, closeModal, refetch }: ModalCancelOrderProps) => {
   const { id = "" } = useParams();
   const [reasonCancel, setReasonCancel] = useState("");
   const handleCancelOrder = async () => {
@@ -23,7 +23,7 @@ const ModalCancelOrder = ({ isOpen, closeModal, fetchDetailsOrder }: ModalCancel
       }
       const { message } = await orderAPI.cancelOrder(id, { reasonCancel });
       setReasonCancel("");
-      fetchDetailsOrder();
+      refetch();
       toast.success(message);
     } catch (error) {
       toast.error(error?.message);

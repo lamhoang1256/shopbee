@@ -1,7 +1,7 @@
 import { IProduct } from "./product.type";
 import { IPagination, SuccessResponse } from "./utils.type";
 
-export enum OrderStatus {
+export enum EnumOrderStatus {
   waiting = "waiting",
   processing = "processing",
   shipping = "shipping",
@@ -30,7 +30,7 @@ export interface IOrderItem {
   quantity: number;
 }
 
-export interface IOrder {
+export interface IOrderDetails {
   _id: string;
   orderItems: IOrderItem[];
   shippingFrom: string;
@@ -41,7 +41,7 @@ export interface IOrder {
   promotion: number;
   total: number;
   note: string;
-  status: OrderStatus;
+  status: EnumOrderStatus;
   statusCode: OrderStatusCode;
   shippingAt: string;
   deliveredAt: string;
@@ -80,12 +80,12 @@ export interface IOrderParams {
   [k: string]: string;
 }
 
-export interface ICancelOrder {
+export interface IPayloadCancelOrder {
   reasonCancel: string;
 }
 
-export type OrderResponse = SuccessResponse<IOrder>;
+export type OrderResponse = SuccessResponse<IOrderDetails>;
 export type OrdersResponse = SuccessResponse<{
-  orders: IOrder[];
+  orders: IOrderDetails[];
   pagination: IPagination;
 }>;

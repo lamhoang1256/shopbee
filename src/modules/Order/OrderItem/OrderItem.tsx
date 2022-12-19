@@ -1,11 +1,12 @@
-import { IOrder, OrderStatusCode } from "@types";
+import { IOrderDetails, OrderStatusCode } from "@types";
 import Button from "components/Button";
+import OrderProduct from "modules/Order/OrderProduct";
 import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { Link } from "react-router-dom";
-import OrderProduct from "./OrderProduct";
+import { v4 as uuidv4 } from "uuid";
 
 interface OrderItemProps {
-  order: IOrder;
+  order: IOrderDetails;
 }
 
 const renderStatusOrderWithColor = (statusCode: number) => {
@@ -24,27 +25,28 @@ const renderStatusOrderWithColor = (statusCode: number) => {
 };
 
 const OrderItem = ({ order }: OrderItemProps) => {
+  if (!order) return null;
   return (
-    <div className="py-4 px-4 md:px-6 mt-3 border border-black017 bg-white rounded">
+    <div className="px-4 py-4 mt-3 bg-white border rounded md:px-6 border-black017">
       <div className="flex flex-col justify-between gap-2 mt-2 mb-4 md:items-center md:flex-row">
         <div>
           <span className="font-medium">Mã đơn hàng: </span>
-          <span>{order?._id}</span>
+          <span>{order._id}</span>
         </div>
         {renderStatusOrderWithColor(order.statusCode)}
       </div>
       <div className="my-3">
-        {order?.orderItems?.map((orderItem) => (
-          <OrderProduct order={orderItem} key={orderItem?.product._id} />
+        {order.orderItems?.map((orderItem) => (
+          <OrderProduct order={orderItem} key={uuidv4()} />
         ))}
       </div>
       <div className="flex flex-col-reverse justify-between gap-3 mt-5 md:flex-row md:items-center">
-        <Link to={`${order?._id}`}>
+        <Link to={`${order._id}`}>
           <Button>Xem chi tiết đơn</Button>
         </Link>
         <div>
           <span>Tổng số tiền: </span>
-          <ProductPriceSale className="pl-1 text-lg lg:text-2xl">{order?.total}</ProductPriceSale>
+          <ProductPriceSale className="pl-1 text-lg lg:text-2xl">{order.total}</ProductPriceSale>
         </div>
       </div>
     </div>

@@ -6,19 +6,18 @@ import Loading from "components/Loading";
 import Pagination from "components/Pagination";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
+import useQueryParams from "hooks/useQueryParams";
 import Template from "layouts/Template";
 import ProductNotFound from "modules/Product/ProductNotFound";
 import { ProductPriceSale } from "modules/Product/ProductPrice";
 import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatMoney, sweetAlertDelete } from "utils";
 
 const ProductManage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const queryParams = Object.fromEntries([...searchParams]);
-  const name = queryParams?.name as string;
+  const { queryParams, setSearchParams } = useQueryParams();
+  const name = queryParams?.name || "";
   const queryClient = useQueryClient();
   const { isLoading, data: productsData } = useQuery({
     queryKey: ["products", name],

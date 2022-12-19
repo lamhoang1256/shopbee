@@ -1,21 +1,27 @@
-import { IOrder, IStatusOrder, OrderStatusCode, OrderStatus, OrderStatusVietnamese } from "@types";
+import {
+  IOrderDetails,
+  IStatusOrder,
+  OrderStatusCode,
+  EnumOrderStatus,
+  OrderStatusVietnamese
+} from "@types";
 import { IconCheck, IconClipboard, IconMoney, IconShipping } from "components/Icons";
 import classNames from "utils/classNames";
 import { formatDateVNFull } from "utils/helper";
 import { v4 as uuidv4 } from "uuid";
 
-interface OrderStatusProps {
-  order: IOrder;
+interface OrderShippingProgressProps {
+  orderDetails: IOrderDetails;
 }
 
-const OrderProgress = ({ order }: OrderStatusProps) => {
+const OrderShippingProgress = ({ orderDetails }: OrderShippingProgressProps) => {
   const calcWidthActiveStatusBar = () => {
-    if (order.statusCode >= OrderStatusCode.delivered) return "after:w-[100%]";
-    if (order.statusCode >= OrderStatusCode.shipping) return "after:w-[66%]";
-    if (order.statusCode >= OrderStatusCode.processing) return "after:w-[33%]";
+    if (orderDetails.statusCode >= OrderStatusCode.delivered) return "after:w-[100%]";
+    if (orderDetails.statusCode >= OrderStatusCode.shipping) return "after:w-[66%]";
+    if (orderDetails.statusCode >= OrderStatusCode.processing) return "after:w-[33%]";
     return "after:w-0";
   };
-  if (order.status === OrderStatus.canceled) {
+  if (orderDetails.status === EnumOrderStatus.canceled) {
     return (
       <div className="grid mt-10 gap-x-6 gap-y-4 md:grid-cols-2">
         <div className="flex items-center gap-3 md:flex-col">
@@ -25,13 +31,13 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
           <div className="md:text-center">
             <h3>{OrderStatusVietnamese.canceled}</h3>
             <span className="text-[#00000042] text-xs block mt-1">
-              {formatDateVNFull(order?.canceledAt)}
+              {formatDateVNFull(orderDetails?.canceledAt)}
             </span>
           </div>
         </div>
         <div>
           <h3 className="mb-1 text-lg">Lý do hủy đơn hàng</h3>
-          <p className="text-xs md:text-sm">{order.reasonCancel}</p>
+          <p className="text-xs md:text-sm">{orderDetails.reasonCancel}</p>
         </div>
       </div>
     );
@@ -40,27 +46,27 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
   const statusList: IStatusOrder[] = [
     {
       icon: <IconClipboard />,
-      active: order.statusCode >= OrderStatusCode.waiting,
+      active: orderDetails.statusCode >= OrderStatusCode.waiting,
       status: OrderStatusVietnamese.waiting,
-      date: formatDateVNFull(order?.createdAt)
+      date: formatDateVNFull(orderDetails?.createdAt)
     },
     {
       icon: <IconMoney />,
-      active: order.statusCode >= OrderStatusCode.processing,
+      active: orderDetails.statusCode >= OrderStatusCode.processing,
       status: OrderStatusVietnamese.processing,
-      date: formatDateVNFull(order?.createdAt)
+      date: formatDateVNFull(orderDetails?.createdAt)
     },
     {
       icon: <IconShipping />,
-      active: order.statusCode >= OrderStatusCode.shipping,
+      active: orderDetails.statusCode >= OrderStatusCode.shipping,
       status: OrderStatusVietnamese.shipping,
-      date: order?.shippingAt ? formatDateVNFull(order?.shippingAt) : "Đang chờ"
+      date: orderDetails?.shippingAt ? formatDateVNFull(orderDetails?.shippingAt) : "Đang chờ"
     },
     {
       icon: <IconCheck />,
-      active: order.statusCode >= OrderStatusCode.delivered,
+      active: orderDetails.statusCode >= OrderStatusCode.delivered,
       status: OrderStatusVietnamese.delivered,
-      date: order?.deliveredAt ? formatDateVNFull(order?.deliveredAt) : "Đang chờ"
+      date: orderDetails?.deliveredAt ? formatDateVNFull(orderDetails?.deliveredAt) : "Đang chờ"
     }
   ];
   return (
@@ -95,4 +101,4 @@ const OrderProgress = ({ order }: OrderStatusProps) => {
   );
 };
 
-export default OrderProgress;
+export default OrderShippingProgress;

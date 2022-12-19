@@ -1,15 +1,14 @@
-import { IOrder, IPagination } from "@types";
 import { orderAPI } from "apis";
 import Loading from "components/Loading";
 import Pagination from "components/Pagination";
 import Tabs from "components/Tabs";
 import { PATH } from "constants/path";
 import { useFormik } from "formik";
-import { OrderEmpty, OrderItem } from "modules/_order";
-import { useEffect, useState } from "react";
+import useQueryParams from "hooks/useQueryParams";
+import OrderEmpty from "modules/Order/OrderEmpty";
+import OrderItem from "modules/Order/OrderItem";
 import { Helmet } from "react-helmet-async";
-import { useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useQuery } from "react-query";
 
 const tabs = [
   { key: "", display: "Tất cả", to: PATH.order },
@@ -20,35 +19,20 @@ const tabs = [
 ];
 
 const OrderPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState<IOrder[]>([]);
-  const [pagination, setPagination] = useState<IPagination>(Object);
-  const params = Object.fromEntries(searchParams);
-  const status = searchParams.get("status") || "";
+  const { queryParams, setSearchParams } = useQueryParams();
+  const status = queryParams?.status || "";
+  const { isLoading, data: ordersData } = useQuery({
+    queryKey: ["ordersMe", queryParams],
+    queryFn: () => orderAPI.getAllOrder(queryParams),
+    keepPreviousData: true,
+    staleTime: 5 * 60 * 1000
+  });
   const formik = useFormik({
     initialValues: { orderId: "" },
     onSubmit: (values) => {
       setSearchParams(values);
     }
   });
-
-  useEffect(() => {
-    const fetchAllOrderMe = async () => {
-      try {
-        setLoading(true);
-        const { data } = await orderAPI.getAllOrder(params);
-        setOrders(data.orders);
-        setPagination(data.pagination);
-      } catch (error) {
-        toast.error(error?.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchAllOrderMe();
-  }, [searchParams]);
-
   return (
     <>
       <Helmet>
@@ -64,17 +48,17 @@ const OrderPage = () => {
           placeholder="Tìm kiếm theo đơn hàng theo ID"
         />
       </form>
-      {loading && <Loading />}
-      {!loading &&
-        (orders.length === 0 ? (
-          <OrderEmpty />
-        ) : (
-          <>
-            {orders.map((order) => (
+      {isLoading && <Loading />}
+      {!isLoading &&
+        (ordersData?.data.orders ? (
+          <div>
+            {ordersData?.data.orders.map((order) => (
               <OrderItem key={order?._id} order={order} />
             ))}
-            <Pagination pagination={pagination} />
-          </>
+            <Pagination pagination={ordersData?.data.pagination} />
+          </div>
+        ) : (
+          <OrderEmpty />
         ))}
     </>
   );

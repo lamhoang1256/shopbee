@@ -7,9 +7,10 @@ import Input from "components/Input";
 import Logo from "components/Logo";
 import { PATH } from "constants/path";
 import useModal from "hooks/useModal";
+import OrderPayment from "modules/Order/OrderPayment";
+import OrderProduct from "modules/Order/OrderProduct";
 import { ProductPriceSale } from "modules/Product/ProductPrice";
 import ModalApplyVoucher from "modules/Voucher/ModalApplyVoucher";
-import { OrderPayment, OrderProduct } from "modules/_order";
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery } from "react-query";
@@ -207,10 +208,10 @@ const CheckoutPage = () => {
           )}
         </div>
         <OrderPayment
-          price={totalProductsPrice}
+          totalProductsPrice={totalProductsPrice}
           shippingFee={carts.length > 0 ? shippingFee : 0}
           promotion={appliedVoucher.value || 0}
-          total={carts.length > 0 ? totalPayment : 0}
+          totalPayment={carts.length > 0 ? totalPayment : 0}
         />
         <div className="bg-[#fffcf5] border-dotted border border-[rgba(0,0,0,.09)] flex flex-wrap-reverse justify-end px-4 py-6 gap-y-3 lg:items-center lg:justify-between">
           <span className="maxsm:hidden">

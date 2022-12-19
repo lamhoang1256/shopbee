@@ -1,12 +1,18 @@
 import { IconStar } from "components/Icons";
+import { Dispatch, SetStateAction } from "react";
 
 interface SelectStarProps {
   rating: number;
-  setRating: React.Dispatch<React.SetStateAction<number>>;
+  setRating?: Dispatch<SetStateAction<number>>;
+  onSelectRating?: (ratingValue: number) => void;
 }
 
-const SelectStar = ({ rating, setRating }: SelectStarProps) => {
+const SelectStar = ({ rating, setRating = () => {}, onSelectRating }: SelectStarProps) => {
   const handleSelectRating = (num: number) => {
+    if (onSelectRating) {
+      onSelectRating(num);
+      return;
+    }
     setRating(() => num);
   };
   return (

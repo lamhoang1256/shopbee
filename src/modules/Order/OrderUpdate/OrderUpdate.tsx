@@ -1,17 +1,17 @@
 import { OrderStatusVietnamese } from "@types";
 import { orderAPI } from "apis";
 import Loading from "components/Loading";
-import OrderCancel from "modules/Order/OrderCancel";
 import OrderInfomation from "modules/Order/OrderInfomation";
 import OrderPayment from "modules/Order/OrderPayment";
-import OrderReviews from "modules/Order/OrderReviews";
+import OrderProduct from "modules/Order/OrderProduct";
 import OrderShippingProgress from "modules/Order/OrderShippingProgress";
+import OrderUpdateStatus from "modules/Order/OrderUpdateStatus";
+import PageNotFound from "pages/PageNotFound";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import PageNotFound from "./PageNotFound";
 
-const OrderDetailsPage = () => {
+const OrderUpdate = () => {
   const { id = "" } = useParams();
   const {
     isLoading,
@@ -28,7 +28,7 @@ const OrderDetailsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Chi tiết đơn hàng</title>
+        <title>Cập nhật đơn hàng</title>
       </Helmet>
       <div className="section-white">
         <div className="flex flex-col justify-between md:items-center md:flex-row">
@@ -43,16 +43,20 @@ const OrderDetailsPage = () => {
         <OrderShippingProgress orderDetails={orderDetails} />
         <OrderInfomation orderDetails={orderDetails} />
       </div>
-      <OrderCancel status={orderDetails.status} refetch={refetch} />
-      <OrderReviews orderItems={orderDetails.orderItems} />
+      <OrderUpdateStatus refetch={refetch} />
+      <div className="mt-3 section-white">
+        {orderDetails?.orderItems.map((orderItem) => (
+          <OrderProduct order={orderItem} key={orderItem.product._id} />
+        ))}
+      </div>
       <OrderPayment
-        promotion={orderDetails.promotion}
-        shippingFee={orderDetails.shippingFee}
-        totalPayment={orderDetails.total}
         totalProductsPrice={orderDetails.price}
+        shippingFee={orderDetails.shippingFee}
+        promotion={orderDetails.promotion}
+        totalPayment={orderDetails.total}
       />
     </>
   );
 };
 
-export default OrderDetailsPage;
+export default OrderUpdate;

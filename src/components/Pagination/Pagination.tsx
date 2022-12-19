@@ -1,13 +1,13 @@
 import { IPagination } from "@types";
 import { IconNext, IconPrev } from "components/Icons";
 import usePagination from "hooks/usePagination";
-import PaginationNumber from "components/Pagination/PaginationNumber";
+import PaginationNumber from "./PaginationNumber";
 
 interface PaginationProps {
   pagination: IPagination;
 }
 
-const RANGE = 3;
+const RANGE = 2;
 const Pagination = ({ pagination }: PaginationProps) => {
   const { goPrevPage, goNextPage, handleClickNumberPage } = usePagination();
   const page = Number(pagination.page);
