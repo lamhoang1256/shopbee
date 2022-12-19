@@ -1,32 +1,27 @@
-import { ICity, IDistrict, IWard } from "@types";
 import { countryAPI } from "apis";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 export default function useFetchAdministrative(cityId?: string, districtId?: string) {
-  const [citys, setCitys] = useState<ICity[]>([]);
-  const [districts, setDistricts] = useState<IDistrict[]>([]);
-  const [wards, setWards] = useState<IWard[]>([]);
-  const fetchAllCity = () => {
-    countryAPI.getAllCity().then((res) => setCitys(res.data));
-  };
-  const fetchAllDistrict = () => {
-    countryAPI.getAllDistrict({ cityId }).then((res) => setDistricts(res.data));
-  };
-  const fetchAllWard = () => {
-    countryAPI.getAllWard({ districtId }).then((res) => setWards(res.data));
-  };
-  useEffect(() => {
-    fetchAllCity();
-  }, []);
-  useEffect(() => {
-    fetchAllDistrict();
-  }, [cityId]);
-  useEffect(() => {
-    fetchAllWard();
-  }, [districtId]);
+  const { data: citysData } = useQuery({
+    queryKey: ["citys"],
+    queryFn: () => countryAPI.getAllCity(),
+    staleTime: 5 * 60 * 1000
+  });
+  const { data: districtsData } = useQuery({
+    queryKey: ["districts", cityId],
+    queryFn: () => countryAPI.getAllDistrict({ cityId }),
+    keepPreviousData: true,
+    staleTime: 5 * 60 * 1000
+  });
+  const { data: wardsData } = useQuery({
+    queryKey: ["wards", districtId],
+    queryFn: () => countryAPI.getAllWard({ districtId }),
+    keepPreviousData: true,
+    staleTime: 5 * 60 * 1000
+  });
   return {
-    citys,
-    districts,
-    wards
+    citys: citysData?.data || [],
+    districts: districtsData?.data || [],
+    wards: wardsData?.data || []
   };
 }

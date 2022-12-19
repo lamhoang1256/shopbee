@@ -9,7 +9,7 @@ const Header = () => {
       <div className="layout-container">
         <Navbar />
         <div className="flex items-center justify-between h-20 lg:ml-0 md:gap-x-6">
-          <Logo className="hidden w-0 sm:block sm:w-36">Shopbee</Logo>
+          <Logo className="hidden w-0 sm:flex sm:w-36">Shopbee</Logo>
           <SearchBar />
           <HeaderCart />
         </div>

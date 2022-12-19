@@ -14,8 +14,7 @@ import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { useStore } from "store/globalStore";
-import { generateAddress, initialValuesUpdateUser, userUpdateRules } from "utils";
-import { uploadImage } from "utils/uploadImage";
+import { generateAddress, initialValuesUpdateUser, userUpdateRules, uploadImage } from "utils";
 
 const ProfilePage = () => {
   const { currentUser, setCurrentUser } = useStore((state) => state);
@@ -88,7 +87,7 @@ const ProfilePage = () => {
             <Input name="phone" value={values.phone} onChange={handleChange} />
             <FormError>{touched.phone && errors?.phone}</FormError>
           </FormGroup>
-          <FormGroup className="mb-0">
+          <FormGroup className="-mb-[10px]">
             <Label htmlFor="address">Địa chỉ:</Label>
             <Administrative formik={formik} />
             <FormError>{touched.address && errors?.address}</FormError>
